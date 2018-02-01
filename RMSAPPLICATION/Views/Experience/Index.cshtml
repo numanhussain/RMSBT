@@ -25,10 +25,7 @@
 
         <table class="table datatable-basic ">
             <thead>
-                <tr class="">
-                    <th style="width:90px">
-                        ExpID
-                    </th>
+                <tr>
                     <th>
                         Designation
                     </th>
@@ -53,9 +50,6 @@
                 @foreach (var item in Model)
             {
                 <tr>
-                    <th>
-                        @Html.DisplayFor(modelItem => item.ExpID)
-                    </th>
                     <td>
                         @Html.DisplayFor(modelItem => item.PositionTitle)
                     </td>

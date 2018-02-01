@@ -18,10 +18,7 @@
         </div>
         <table class="table datatable-basic ">
             <thead>
-                <tr class="">
-                    <th style="width:90px">
-                        RefID
-                    </th>
+                <tr>
                     <th>
                         Ref Name
                     </th>
@@ -43,9 +40,6 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th>
-                            @Html.DisplayFor(modelItem => item.RefID)
-                        </th>
                         <td>
                             @Html.DisplayFor(modelItem => item.RefName)
                         </td>

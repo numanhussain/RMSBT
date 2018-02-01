@@ -17,8 +17,8 @@
         </div>
         <table class="table datatable-basic ">
             <thead>
-                <tr class="">
-                    <th style="width:90px">
+                <tr>
+                    <th>
                         Skill Name
                     </th>
                     <th>
@@ -36,9 +36,9 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <th>
+                        <td>
                             @Html.DisplayFor(modelItem => item.SkillTitle)
-                        </th>
+                        </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.skillLevelName)
                         </td>

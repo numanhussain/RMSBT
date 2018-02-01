@@ -1,28 +1,28 @@
 ﻿function MiscellaneousGetCreate() {
+    if (document.getElementById('WorkedBefore').checked) {
+        $("#WorkedBeforeDiv").show();
+    }
+    else {
+        $("#WorkedBeforeDiv").hide();
+    }
+    $('#WorkedBefore').change(function () {
+        if ($(this).is(":checked")) {
+            $("#WorkedBeforeDiv").show();
+        }
+        else {
+            $("#WorkedBeforeDiv").hide();
+        }
+
+
+    });
     $.ajax({
         url: '/Miscellaneous/Create',
         type: "GET",
         cache: false,
     }).done(function (result) {
         $('#PVMiscellaneousIndex').html(result);
-    });
+        });
 }
-    //if (document.getElementById('WorkedBefore').checked) {
-    //    $("#DivWorkedBefore").show();
-    //}
-    //else {
-    //    $("#DivWorkedBefore").hide();
-    ////}
-    //$('#WorkedBefore').change(function () {
-    //    alert(OK);
-    //    if ($(this).is(":checked")) {
-    //        $("#DivWorkedBefore").show();
-    //    }
-    //    else {
-    //        $("#DivWorkedBefore").hide();
-    //    }
-    //});
-
 function LoadPVMiscellaneousIndex(id) {
     $.ajax({
         url: '/Miscellaneous/Create',
