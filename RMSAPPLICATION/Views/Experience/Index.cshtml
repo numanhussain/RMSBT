@@ -1,0 +1,90 @@
+﻿@model List<RMSCORE.Models.Main.VMExperienceIndex>
+@{
+    ViewBag.title = "Experience details";
+    Layout = null;
+}
+<!-- Page container -->
+<!-- Page content -->
+<!-- Main content -->
+<!-- Basic datatable -->
+<div style="margin-top:-45px">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h3><i class="icon-attachment"></i>&nbsp;&nbsp;Experience Details</h3>
+        </div>
+    </div><!-- Page content -->
+    <!-- Main content -->
+    <!-- Basic datatable -->
+    <div class="panel panel-flat">
+        <div class="breadcrumb-line bg-blue-400">
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            <ul class="breadcrumb-elements">
+                <li><a href="#" id="ExperienceGetCreate"><i class="icon-add position-left"></i> Add New Experience</a></li>
+            </ul>
+        </div>
+
+        <table class="table datatable-basic ">
+            <thead>
+                <tr class="">
+                    <th style="width:90px">
+                        ExpID
+                    </th>
+                    <th>
+                        Designation
+                    </th>
+                    <th>
+                        Employer
+                    </th>
+                    <th>
+                        StartDate
+                    </th>
+                    <th>
+                        EndDate
+                    </th>
+                    <th>
+                        Working
+                    </th>
+                    <th>
+                        Edit | Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                <tr>
+                    <th>
+                        @Html.DisplayFor(modelItem => item.ExpID)
+                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PositionTitle)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CurrentlyWorking)
+                    </td>
+                    <td>
+                        <input type="button" onclick="ExperienceDetailGetEdit(@item.ExpID)" value="Edit" class="fa fa-edit" />|
+                        <input type="button" onclick="ExperienceDetailGetDelete(@item.ExpID)" value="Delete" class="icon-trash" />
+                    </td>
+                </tr>
+        }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/Candidate/Experience.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        ExperienceDetailGetCreate();
+    });
+</script>

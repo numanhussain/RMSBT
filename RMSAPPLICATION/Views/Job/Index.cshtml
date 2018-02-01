@@ -1,0 +1,180 @@
+﻿@model RMSCORE.Models.Main.VMJobPortalIndex
+<!-- Page container -->
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <form class="form-horizontal" action="~/Job/Index" enctype="multipart/form-data" id="frmJobIndex" method="post">
+            <!-- Main sidebar -->
+            <div class="sidebar sidebar-main sidebar-default sidebar-separate">
+                <div class="sidebar-content">
+                    <!-- Sidebar search -->
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <div class="panel-title text-semibold">
+                                <i class="icon-search4 text-size-base position-left"></i>
+                                Filter
+                            </div>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <div class="has-feedback has-feedback-left">
+                                    @Html.EditorFor(model => model.FilterBox, new { htmlAttributes = new { @class = "form-control" }, @placeholder = "Job title or keywords" })
+                                    @*<input type="search" class="form-control" placeholder="Job title or keywords">*@
+                                    <div class="form-control-feedback">
+                                        <i class="icon-reading text-size-large text-muted"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            @*<button type="submit" class="btn bg-blue btn-block" onclick="OpenPartialView('/Job/OpenJob')">
+                                    <i class="icon-search4 text-size-base position-left"></i>
+                                    Submit
+                                </button>*@
+                        </div>
+                    </div>
+                    <!-- /sidebar search -->
+                    <!-- Location selection -->
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <div class="panel-title text-semibold">
+                                <i class="icon-pin-alt position-left"></i>
+                                Location
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCompany">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="chkSelectAll" /></th>
+                                        <th>
+                                            Location
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LocationList)
+                                    {
+                                        <tr>
+                                            <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.ID" /></td>
+                                            <td class="valSelect">
+                                                @item.Name
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @*<div class="form-group">
+                                    @foreach (var item in Model.LocationList)
+                                    {
+                                    <div class="checkbox no-margin-top">
+                                        <label>
+                                            <input type="checkbox" @(item.IsSlected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.FilterID" />
+                                            @item.Name
+                                        </label>
+                                    </div>
+                                    }
+                                </div>*@
+                        </div>
+                    </div>
+                    <!-- /location selection -->
+                    <!-- Title selection -->
+                    <div class="panel panel-white">
+                        <div class="panel-heading">
+                            <div class="panel-title text-semibold">
+                                <i class="icon-menu7 position-left"></i>
+                                Catagory
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCatagory">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="chkSelectAllCatagory" /></th>
+                                        <th>
+                                            Catagory
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.CatagoryList)
+                                    {
+                                        <tr>
+                                            <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelectCatagory" name="SelectedCatagoryIds" value="@item.ID" /></td>
+                                            <td class="valSelect">
+                                                @item.Name
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                            @*<div class="form-group">
+                                    @foreach (var item in Model.CatagoryList)
+                                    {
+                                        <div class="checkbox no-margin-top">
+                                            <label>
+                                                <input type="checkbox" name="IsSelected" class="styled">
+                                                @item.Name
+                                            </label>
+                                        </div>
+                                    }
+                                </div>*@
+                        </div>
+                    </div>
+                    <!-- /title selection -->
+                    <div class="panel panel-white">
+                        <div class="panel-body">
+                            <button type="button" id="btnSave" class="btn bg-blue btn-block" @*onclick="OpenPartialView('/Job/OpenJob')"*@>
+                                <i class="icon-search4 text-size-base position-left"></i>
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /main sidebar -->
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div id="DivContainer"></div>
+                        @*<iframe runat="server" id="Reports" src="~/Areas/Reporting/ReportLoader/Attendance.aspx" width="100%" height="460"></iframe>*@
+                    </div>
+                </div>
+            </div>
+            <!-- /main content -->
+        </form>
+    </div>
+    <!-- /page content -->
+</div>
+<script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        OpenPartialView('/Job/OpenJob')
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        SelectAllCheckBox();
+        $('#btnSave').click(function () {
+            $.ajax({
+                url: '/Job/Index',
+                type: 'POST',
+                cache: false,
+                data: $("#frmJobIndex").serialize(),
+                success: function (data) {
+                    $('#DivContainer').html(data);
+                },
+                error: function () {
+                    $("#result").text('an error occured')
+                }
+            });
+        });
+    });
+
+</script>

@@ -1,0 +1,65 @@
+﻿@model List<RMSCORE.Models.Main.VMSkillIndex>
+<!-- Page container -->
+<div style="margin-top:-45px">
+    <div class="modal-header">
+        <div class="modal-title">
+            <h3><i class="icon-wrench2"></i>&nbsp;&nbsp;Skill Details</h3>
+        </div>
+    </div><!-- Page content -->
+    <!-- Main content -->
+    <!-- Basic datatable -->
+    <div class="panel panel-flat">
+        <div class="breadcrumb-line bg-blue-400">
+            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+            <ul class="breadcrumb-elements">
+                <li><a href="#" id="SkillGetCreate"><i class="icon-add position-left"></i> Add New Skill</a></li>
+            </ul>
+        </div>
+        <table class="table datatable-basic ">
+            <thead>
+                <tr class="">
+                    <th style="width:90px">
+                        Skill Name
+                    </th>
+                    <th>
+                        Skill Level
+                    </th>
+                    <th>
+                        Description
+                    </th>
+                    <th>
+                        Edit | Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <th>
+                            @Html.DisplayFor(modelItem => item.SkillTitle)
+                        </th>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.skillLevelName)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            <a href="#" type="button" onclick="SkillDetailGetEdit(@item.SkillID)" value="Edit" class="icon-pencil"></a> &nbsp;|
+                            <a href="#" type="button" onclick="SkillDetailGetDelete(@item.SkillID)" value="Delete" class="icon-trash" style="color:red"></a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/Candidate/SkillDetail.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        SkillDetailGetCreate();
+    });
+</script>
+

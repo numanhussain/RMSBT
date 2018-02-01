@@ -1,0 +1,50 @@
+﻿@model RMSCORE.Models.Operation.VMSkillOperation
+@{
+    ViewBag.title = "Skill details";
+    Layout = null;
+}
+@using (Html.BeginForm("Edit", "Skill", FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.SkillID)
+    @Html.HiddenFor(model => model.CandidateID)
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Edit Skill Detail
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="form-group col-md-8">
+                        <label class="text-semibold">Enter Skill</label>
+                        <div>@Html.EditorFor(model => model.SkillTitle, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Skill Level</label>
+                        <div>
+                            @Html.DropDownList("SLevelID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.ValidationMessageFor(model => model.SLevelID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-12">
+                    <label class="text-semibold">Skill Description</label>
+                    <div>@Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 5, @rows = 1 })</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success bg-success-800" value="Save">Save</button>
+    </div>
+}
+<script type="text/javascript">
+    $(document).ready(function () {
+        //SkillDetailPostEdit();
+    });
+</script>

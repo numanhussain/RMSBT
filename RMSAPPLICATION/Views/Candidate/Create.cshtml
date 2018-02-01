@@ -1,0 +1,112 @@
+﻿@model RMSCORE.EF.Candidate
+@{
+    ViewBag.title = "Candidate";
+    Layout = null;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CandidateID)
+    <!-- Page container -->
+    <div style="margin-top:-45px">
+        <div class="modal-header">
+            <div class="modal-title">
+                <h3><i class="icon-person"></i>&nbsp;&nbsp;Personal Details</h3>
+            </div>
+        </div>
+        <!-- Page content -->
+        <!-- Main content -->
+        <!-- Basic datatable -->
+        <div class="panel panel-flat">
+            <div class="breadcrumb-line bg-blue">
+                <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                <ul class="breadcrumb">
+                    <li><a href="~/Home/Index"> Dashboard</a></li>
+                    <li><a class="active"> Candidate</a></li>
+                    <li class="active"> - Add New</li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Name</label>
+                        <div>@Html.EditorFor(model => model.CName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Father Name</label>
+                        <div>@Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">CNIC #</label>
+                        <div>@Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">DOB</label>
+                        <div>@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Martial Status</label>
+                        <div>@Html.EditorFor(model => model.MartialStatus, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Blood Group</label>
+                        <div>@Html.EditorFor(model => model.BloodGroup, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Domicile</label>
+                        <div>@Html.EditorFor(model => model.Domicile, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label class="text-semibold">Addresss</label>
+                        <div>@Html.TextAreaFor(model => model.Address, new { @class = "form-control", @cols = 5, @rows = 1 })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">City</label>
+                        <div>@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Country</label>
+                        <div>@Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Nationality</label>
+                        <div>@Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Landline #</label>
+                        <div>@Html.EditorFor(model => model.LandlineNo, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Cell #</label>
+                        <div>@Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label class="text-semibold">Email</label>
+                        <div>@Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="text-semibold">Objective</label>
+                        <div>@Html.TextAreaFor(model => model.Objective, new { @class = "form-control", @cols = 5, @rows = 1 })</div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <div class="heading-elements">
+                    @*<button type="button" id="btnPostEdit" class="btn btn-success bg-success-800 pull" value="Save">Save</button>*@
+                    <button type="submit" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- /basic datatable -->
+        <!-- /main content -->
+        <!-- /page content -->
+    </div>
+}
+<script type="text/javascript">
+    $(function () {
+        SavePersonalInfoFunction();
+    });
+
+</script>
+

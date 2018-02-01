@@ -1,0 +1,1631 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BTRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="MartialStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="LandlineNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="Domicile" Type="nvarchar" MaxLength="50" />
+          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="Objective" Type="nvarchar" MaxLength="500" />
+          <Property Name="CImage" Type="int" />
+        </EntityType>
+        <EntityType Name="CandidateJob">
+          <Key>
+            <PropertyRef Name="CJobID" />
+          </Key>
+          <Property Name="CJobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CJobDate" Type="datetime" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="CandidateID" Type="int" />
+        </EntityType>
+        <EntityType Name="CandidatePhoto">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="CandidatePic" Type="image" />
+        </EntityType>
+        <EntityType Name="CompensationDetail">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MBSalary" Type="nvarchar" MaxLength="50" />
+          <Property Name="MGSalary" Type="nvarchar" MaxLength="50" />
+          <Property Name="Bonus" Type="bit" />
+          <Property Name="BBonus" Type="bit" />
+          <Property Name="GBonus" Type="bit" />
+          <Property Name="BonusPerYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="LFA" Type="bit" />
+          <Property Name="BLFA" Type="bit" />
+          <Property Name="GLFA" Type="bit" />
+          <Property Name="LFAPerYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="OT" Type="bit" />
+          <Property Name="BOT" Type="bit" />
+          <Property Name="GOT" Type="bit" />
+          <Property Name="TransportAllowence" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileAllowence" Type="nvarchar" MaxLength="50" />
+          <Property Name="CarEntitlement" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileUserLimit" Type="nvarchar" MaxLength="50" />
+          <Property Name="BuyBackOption" Type="bit" />
+          <Property Name="AccomdAllowence" Type="nvarchar" MaxLength="50" />
+          <Property Name="COLA" Type="nvarchar" MaxLength="50" />
+          <Property Name="Other" Type="nvarchar" MaxLength="50" />
+          <Property Name="Food" Type="bit" />
+          <Property Name="Free" Type="bit" />
+          <Property Name="Subscribed" Type="bit" />
+          <Property Name="OPDInsurance" Type="nvarchar" MaxLength="50" />
+          <Property Name="IPInsurance" Type="nvarchar" MaxLength="50" />
+          <Property Name="LifeInsurance" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProvidentFund" Type="bit" />
+          <Property Name="GProvidentFund" Type="bit" />
+          <Property Name="BProvidentFund" Type="bit" />
+          <Property Name="ProvidentFundPerYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gratuity" Type="bit" />
+          <Property Name="BGratuity" Type="bit" />
+          <Property Name="GGratuity" Type="bit" />
+          <Property Name="AnnualTAllowence" Type="nvarchar" MaxLength="50" />
+          <Property Name="CasualTAllowence" Type="nvarchar" MaxLength="50" />
+          <Property Name="MedTAllowence" Type="nvarchar" MaxLength="50" />
+          <Property Name="TAllowenceWorkDay" Type="nvarchar" MaxLength="50" />
+          <Property Name="ExpectedSalary" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherBenifits" Type="nvarchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="EduDegreeLevel">
+          <Key>
+            <PropertyRef Name="DLevelID" />
+          </Key>
+          <Property Name="DLevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DegreeLevel" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="EduDetail">
+          <Key>
+            <PropertyRef Name="EduID" />
+          </Key>
+          <Property Name="EduID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DegreeID" Type="int" />
+          <Property Name="ObtainedMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="Institution" Type="int" />
+          <Property Name="BoardName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="30" />
+          <Property Name="CGPA" Type="nvarchar" MaxLength="30" />
+          <Property Name="PassingYear" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="EduInstitute">
+          <Key>
+            <PropertyRef Name="InstituteID" />
+          </Key>
+          <Property Name="InstituteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InstituteName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExperienceDetail">
+          <Key>
+            <PropertyRef Name="ExpID" />
+          </Key>
+          <Property Name="ExpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PostionTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmployerName" Type="nvarchar" MaxLength="500" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="3000" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="CurrentlyWorking" Type="bit" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="IndustryID" Type="int" />
+        </EntityType>
+        <EntityType Name="ExperienceIndustry">
+          <Key>
+            <PropertyRef Name="ExpIndustryID" />
+          </Key>
+          <Property Name="ExpIndustryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ExpIndustryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="HearAbout">
+          <Key>
+            <PropertyRef Name="HearAboutID" />
+          </Key>
+          <Property Name="HearAboutID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HearAboutSource" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Interview">
+          <Key>
+            <PropertyRef Name="InterviewID" />
+          </Key>
+          <Property Name="InterviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="LocName" Type="nvarchar" MaxLength="30" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="30" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Experience" Type="int" />
+          <Property Name="QualificationReq" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Resposibilties" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CatagoryName" Type="nvarchar" MaxLength="30" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="SkillReq" Type="nvarchar" MaxLength="3000" />
+        </EntityType>
+        <EntityType Name="MiscellaneousDetails">
+          <Key>
+            <PropertyRef Name="PMiscellaneousID" />
+          </Key>
+          <Property Name="PMiscellaneousID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CrimanalRecord" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelative" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateJoining" Type="datetime" />
+          <Property Name="DateLeavig" Type="datetime" />
+          <Property Name="EmploymentNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReasonLeaving" Type="nvarchar" MaxLength="100" />
+          <Property Name="TotalExp" Type="nvarchar" MaxLength="50" />
+          <Property Name="CementExp" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoticeTime" Type="int" />
+          <Property Name="CandidateID" Type="bigint" />
+          <Property Name="WorkedBefore" Type="bit" />
+          <Property Name="HearAboutJobID" Type="int" />
+        </EntityType>
+        <EntityType Name="NotificationDetail">
+          <Key>
+            <PropertyRef Name="NotifyID" />
+          </Key>
+          <Property Name="NotifyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="URL" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsViewed" Type="bit" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="JobStatus" Type="bit" />
+          <Property Name="InterviewID" Type="int" />
+        </EntityType>
+        <EntityType Name="ReferenceDetail">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RefName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefDesignation" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="bigint" />
+        </EntityType>
+        <EntityType Name="SkillDetail">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Name="SkillID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="SLevelID" Type="int" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="CandidateID" Type="int" />
+        </EntityType>
+        <EntityType Name="SkillLevel">
+          <Key>
+            <PropertyRef Name="SkillLevelID" />
+          </Key>
+          <Property Name="SkillLevelID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillLevelName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="UserTypeID" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="CanEdit" Type="bit" />
+          <Property Name="CanDelete" Type="bit" />
+          <Property Name="CanView" Type="bit" />
+          <Property Name="CanAdd" Type="bit" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Candidate_EduDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Candidate_EduDetail">
+          <Key>
+            <PropertyRef Name="EduID" />
+          </Key>
+          <Property Name="DegreeID" Type="int" />
+          <Property Name="DegreeLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObtainedMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="BoardName" Type="nvarchar" MaxLength="50" />
+          <Property Name="EduID" Type="int" Nullable="false" />
+          <Property Name="TotalMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="30" />
+          <Property Name="CGPA" Type="nvarchar" MaxLength="30" />
+          <Property Name="PassingYear" Type="nvarchar" MaxLength="30" />
+          <Property Name="Institution" Type="int" />
+          <Property Name="InstituteName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Exp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Candidate_Exp">
+          <Key>
+            <PropertyRef Name="ExpID" />
+          </Key>
+          <Property Name="ExpID" Type="int" Nullable="false" />
+          <Property Name="PostionTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="EmployerName" Type="nvarchar" MaxLength="500" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="3000" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="CurrentlyWorking" Type="bit" />
+          <Property Name="City" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndustryID" Type="int" />
+          <Property Name="ExpIndustryName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Miscellaneous' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Candidate_Miscellaneous">
+          <Key>
+            <PropertyRef Name="PMiscellaneousID" />
+          </Key>
+          <Property Name="PMiscellaneousID" Type="int" Nullable="false" />
+          <Property Name="CrimanalRecord" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelative" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateJoining" Type="datetime" />
+          <Property Name="DateLeavig" Type="datetime" />
+          <Property Name="EmploymentNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReasonLeaving" Type="nvarchar" MaxLength="100" />
+          <Property Name="TotalExp" Type="nvarchar" MaxLength="50" />
+          <Property Name="CementExp" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoticeTime" Type="int" />
+          <Property Name="CandidateID" Type="bigint" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkedBefore" Type="bit" />
+          <Property Name="HearAboutJobID" Type="int" />
+          <Property Name="HearAboutSource" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Reference' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Candidate_Reference">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="int" Nullable="false" />
+          <Property Name="RefName" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefDesignation" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefEmail" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="bigint" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Skills' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Candidate_Skills">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="SkillID" Type="int" Nullable="false" />
+          <Property Name="SLevelID" Type="int" />
+          <Property Name="SkillLevelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Interview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Interview">
+          <Key>
+            <PropertyRef Name="InterviewID" />
+          </Key>
+          <Property Name="InterviewID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nchar" MaxLength="50" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartDate" Type="date" />
+          <Property Name="StartTime" Type="time" Precision="7" />
+          <Property Name="EndDateTime" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_Notification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_Notification">
+          <Key>
+            <PropertyRef Name="NotifyID" />
+          </Key>
+          <Property Name="NotifyID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar" MaxLength="100" />
+          <Property Name="URL" Type="nvarchar" MaxLength="30" />
+          <Property Name="IsViewed" Type="bit" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="JobID" Type="int" />
+          <Property Name="JobStatus" Type="bit" />
+          <Property Name="InterviewID" Type="int" />
+        </EntityType>
+        <Association Name="FK_EduDetail_Candidate">
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+          <End Role="EduDetail" Type="Self.EduDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="EduDetail">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EduDetail_EduDegreeLevel">
+          <End Role="EduDegreeLevel" Type="Self.EduDegreeLevel" Multiplicity="0..1" />
+          <End Role="EduDetail" Type="Self.EduDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduDegreeLevel">
+              <PropertyRef Name="DLevelID" />
+            </Principal>
+            <Dependent Role="EduDetail">
+              <PropertyRef Name="DegreeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EduDetail_EduInstituate">
+          <End Role="EduInstitute" Type="Self.EduInstitute" Multiplicity="0..1" />
+          <End Role="EduDetail" Type="Self.EduDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduInstitute">
+              <PropertyRef Name="InstituteID" />
+            </Principal>
+            <Dependent Role="EduDetail">
+              <PropertyRef Name="Institution" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interview_Candidate">
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+          <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="Interview">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interview_Job">
+          <End Role="Job" Type="Self.Job" Multiplicity="0..1" />
+          <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="Interview">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Candidate">
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+          <End Role="NotificationDetail" Type="Self.NotificationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="NotificationDetail">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Candidate">
+          <End Role="Candidate" Type="Self.Candidate" Multiplicity="0..1" />
+          <End Role="SkillDetail" Type="Self.SkillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="SkillDetail">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BTRMSModelStoreContainer">
+          <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidateJob" EntityType="Self.CandidateJob" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidatePhoto" EntityType="Self.CandidatePhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompensationDetail" EntityType="Self.CompensationDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EduDegreeLevel" EntityType="Self.EduDegreeLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EduDetail" EntityType="Self.EduDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EduInstitute" EntityType="Self.EduInstitute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExperienceDetail" EntityType="Self.ExperienceDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExperienceIndustry" EntityType="Self.ExperienceIndustry" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HearAbout" EntityType="Self.HearAbout" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Interview" EntityType="Self.Interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Job" EntityType="Self.Job" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MiscellaneousDetails" EntityType="Self.MiscellaneousDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NotificationDetail" EntityType="Self.NotificationDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReferenceDetail" EntityType="Self.ReferenceDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkillDetail" EntityType="Self.SkillDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SkillLevel" EntityType="Self.SkillLevel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_Candidate_EduDetail" EntityType="Self.V_Candidate_EduDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Candidate_EduDetail].[DegreeID] AS [DegreeID], 
+    [V_Candidate_EduDetail].[DegreeLevel] AS [DegreeLevel], 
+    [V_Candidate_EduDetail].[ObtainedMark] AS [ObtainedMark], 
+    [V_Candidate_EduDetail].[StartDate] AS [StartDate], 
+    [V_Candidate_EduDetail].[EndDate] AS [EndDate], 
+    [V_Candidate_EduDetail].[BoardName] AS [BoardName], 
+    [V_Candidate_EduDetail].[EduID] AS [EduID], 
+    [V_Candidate_EduDetail].[TotalMark] AS [TotalMark], 
+    [V_Candidate_EduDetail].[Percentage] AS [Percentage], 
+    [V_Candidate_EduDetail].[CGPA] AS [CGPA], 
+    [V_Candidate_EduDetail].[PassingYear] AS [PassingYear], 
+    [V_Candidate_EduDetail].[Institution] AS [Institution], 
+    [V_Candidate_EduDetail].[InstituteName] AS [InstituteName], 
+    [V_Candidate_EduDetail].[CandidateID] AS [CandidateID], 
+    [V_Candidate_EduDetail].[CName] AS [CName]
+    FROM [dbo].[V_Candidate_EduDetail] AS [V_Candidate_EduDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Candidate_Exp" EntityType="Self.V_Candidate_Exp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Candidate_Exp].[ExpID] AS [ExpID], 
+    [V_Candidate_Exp].[PostionTitle] AS [PostionTitle], 
+    [V_Candidate_Exp].[EmployerName] AS [EmployerName], 
+    [V_Candidate_Exp].[JobTitle] AS [JobTitle], 
+    [V_Candidate_Exp].[StartDate] AS [StartDate], 
+    [V_Candidate_Exp].[EndDate] AS [EndDate], 
+    [V_Candidate_Exp].[CurrentlyWorking] AS [CurrentlyWorking], 
+    [V_Candidate_Exp].[City] AS [City], 
+    [V_Candidate_Exp].[Address] AS [Address], 
+    [V_Candidate_Exp].[Description] AS [Description], 
+    [V_Candidate_Exp].[CandidateID] AS [CandidateID], 
+    [V_Candidate_Exp].[CName] AS [CName], 
+    [V_Candidate_Exp].[IndustryID] AS [IndustryID], 
+    [V_Candidate_Exp].[ExpIndustryName] AS [ExpIndustryName]
+    FROM [dbo].[V_Candidate_Exp] AS [V_Candidate_Exp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Candidate_Miscellaneous" EntityType="Self.V_Candidate_Miscellaneous" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Candidate_Miscellaneous].[PMiscellaneousID] AS [PMiscellaneousID], 
+    [V_Candidate_Miscellaneous].[CrimanalRecord] AS [CrimanalRecord], 
+    [V_Candidate_Miscellaneous].[WorkingRelative] AS [WorkingRelative], 
+    [V_Candidate_Miscellaneous].[DateJoining] AS [DateJoining], 
+    [V_Candidate_Miscellaneous].[DateLeavig] AS [DateLeavig], 
+    [V_Candidate_Miscellaneous].[EmploymentNo] AS [EmploymentNo], 
+    [V_Candidate_Miscellaneous].[Designation] AS [Designation], 
+    [V_Candidate_Miscellaneous].[Location] AS [Location], 
+    [V_Candidate_Miscellaneous].[ReasonLeaving] AS [ReasonLeaving], 
+    [V_Candidate_Miscellaneous].[TotalExp] AS [TotalExp], 
+    [V_Candidate_Miscellaneous].[CementExp] AS [CementExp], 
+    [V_Candidate_Miscellaneous].[NoticeTime] AS [NoticeTime], 
+    [V_Candidate_Miscellaneous].[CandidateID] AS [CandidateID], 
+    [V_Candidate_Miscellaneous].[CName] AS [CName], 
+    [V_Candidate_Miscellaneous].[CNICNo] AS [CNICNo], 
+    [V_Candidate_Miscellaneous].[WorkedBefore] AS [WorkedBefore], 
+    [V_Candidate_Miscellaneous].[HearAboutJobID] AS [HearAboutJobID], 
+    [V_Candidate_Miscellaneous].[HearAboutSource] AS [HearAboutSource]
+    FROM [dbo].[V_Candidate_Miscellaneous] AS [V_Candidate_Miscellaneous]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Candidate_Reference" EntityType="Self.V_Candidate_Reference" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Candidate_Reference].[RefID] AS [RefID], 
+    [V_Candidate_Reference].[RefName] AS [RefName], 
+    [V_Candidate_Reference].[RefDesignation] AS [RefDesignation], 
+    [V_Candidate_Reference].[RefEmail] AS [RefEmail], 
+    [V_Candidate_Reference].[RefContact] AS [RefContact], 
+    [V_Candidate_Reference].[CandidateID] AS [CandidateID], 
+    [V_Candidate_Reference].[CName] AS [CName], 
+    [V_Candidate_Reference].[CNICNo] AS [CNICNo]
+    FROM [dbo].[V_Candidate_Reference] AS [V_Candidate_Reference]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Candidate_Skills" EntityType="Self.V_Candidate_Skills" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Candidate_Skills].[Description] AS [Description], 
+    [V_Candidate_Skills].[Title] AS [Title], 
+    [V_Candidate_Skills].[SkillID] AS [SkillID], 
+    [V_Candidate_Skills].[SLevelID] AS [SLevelID], 
+    [V_Candidate_Skills].[SkillLevelName] AS [SkillLevelName], 
+    [V_Candidate_Skills].[CandidateID] AS [CandidateID], 
+    [V_Candidate_Skills].[CName] AS [CName]
+    FROM [dbo].[V_Candidate_Skills] AS [V_Candidate_Skills]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Interview" EntityType="Self.V_Interview" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Interview].[InterviewID] AS [InterviewID], 
+    [V_Interview].[Title] AS [Title], 
+    [V_Interview].[CandidateID] AS [CandidateID], 
+    [V_Interview].[CName] AS [CName], 
+    [V_Interview].[CNICNo] AS [CNICNo], 
+    [V_Interview].[JobID] AS [JobID], 
+    [V_Interview].[JobTitle] AS [JobTitle], 
+    [V_Interview].[StartDate] AS [StartDate], 
+    [V_Interview].[StartTime] AS [StartTime], 
+    [V_Interview].[EndDateTime] AS [EndDateTime], 
+    [V_Interview].[Status] AS [Status]
+    FROM [dbo].[V_Interview] AS [V_Interview]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_Notification" EntityType="Self.V_Notification" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_Notification].[NotifyID] AS [NotifyID], 
+    [V_Notification].[Title] AS [Title], 
+    [V_Notification].[Description] AS [Description], 
+    [V_Notification].[URL] AS [URL], 
+    [V_Notification].[IsViewed] AS [IsViewed], 
+    [V_Notification].[CandidateID] AS [CandidateID], 
+    [V_Notification].[CName] AS [CName], 
+    [V_Notification].[JobID] AS [JobID], 
+    [V_Notification].[JobStatus] AS [JobStatus], 
+    [V_Notification].[InterviewID] AS [InterviewID]
+    FROM [dbo].[V_Notification] AS [V_Notification]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_EduDetail_Candidate" Association="Self.FK_EduDetail_Candidate">
+            <End Role="Candidate" EntitySet="Candidate" />
+            <End Role="EduDetail" EntitySet="EduDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EduDetail_EduDegreeLevel" Association="Self.FK_EduDetail_EduDegreeLevel">
+            <End Role="EduDegreeLevel" EntitySet="EduDegreeLevel" />
+            <End Role="EduDetail" EntitySet="EduDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EduDetail_EduInstituate" Association="Self.FK_EduDetail_EduInstituate">
+            <End Role="EduInstitute" EntitySet="EduInstitute" />
+            <End Role="EduDetail" EntitySet="EduDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Candidate" Association="Self.FK_Interview_Candidate">
+            <End Role="Candidate" EntitySet="Candidate" />
+            <End Role="Interview" EntitySet="Interview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Job" Association="Self.FK_Interview_Job">
+            <End Role="Job" EntitySet="Job" />
+            <End Role="Interview" EntitySet="Interview" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Candidate" Association="Self.FK_Notification_Candidate">
+            <End Role="Candidate" EntitySet="Candidate" />
+            <End Role="NotificationDetail" EntitySet="NotificationDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Candidate" Association="Self.FK_Skill_Candidate">
+            <End Role="Candidate" EntitySet="Candidate" />
+            <End Role="SkillDetail" EntitySet="SkillDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BTRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BTRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
+          <EntitySet Name="CandidateJobs" EntityType="BTRMSModel.CandidateJob" />
+          <EntitySet Name="CandidatePhotoes" EntityType="BTRMSModel.CandidatePhoto" />
+          <EntitySet Name="CompensationDetails" EntityType="BTRMSModel.CompensationDetail" />
+          <EntitySet Name="EduDegreeLevels" EntityType="BTRMSModel.EduDegreeLevel" />
+          <EntitySet Name="EduDetails" EntityType="BTRMSModel.EduDetail" />
+          <EntitySet Name="EduInstitutes" EntityType="BTRMSModel.EduInstitute" />
+          <EntitySet Name="ExperienceDetails" EntityType="BTRMSModel.ExperienceDetail" />
+          <EntitySet Name="ExperienceIndustries" EntityType="BTRMSModel.ExperienceIndustry" />
+          <EntitySet Name="HearAbouts" EntityType="BTRMSModel.HearAbout" />
+          <EntitySet Name="Interviews" EntityType="BTRMSModel.Interview" />
+          <EntitySet Name="Jobs" EntityType="BTRMSModel.Job" />
+          <EntitySet Name="MiscellaneousDetails" EntityType="BTRMSModel.MiscellaneousDetail" />
+          <EntitySet Name="NotificationDetails" EntityType="BTRMSModel.NotificationDetail" />
+          <EntitySet Name="ReferenceDetails" EntityType="BTRMSModel.ReferenceDetail" />
+          <EntitySet Name="SkillDetails" EntityType="BTRMSModel.SkillDetail" />
+          <EntitySet Name="SkillLevels" EntityType="BTRMSModel.SkillLevel" />
+          <EntitySet Name="sysdiagrams" EntityType="BTRMSModel.sysdiagram" />
+          <EntitySet Name="Users" EntityType="BTRMSModel.User" />
+          <EntitySet Name="V_Candidate_EduDetail" EntityType="BTRMSModel.V_Candidate_EduDetail" />
+          <EntitySet Name="V_Candidate_Exp" EntityType="BTRMSModel.V_Candidate_Exp" />
+          <EntitySet Name="V_Candidate_Miscellaneous" EntityType="BTRMSModel.V_Candidate_Miscellaneous" />
+          <EntitySet Name="V_Candidate_Reference" EntityType="BTRMSModel.V_Candidate_Reference" />
+          <EntitySet Name="V_Candidate_Skills" EntityType="BTRMSModel.V_Candidate_Skills" />
+          <EntitySet Name="V_Interview" EntityType="BTRMSModel.V_Interview" />
+          <EntitySet Name="V_Notification" EntityType="BTRMSModel.V_Notification" />
+          <AssociationSet Name="FK_EduDetail_Candidate" Association="BTRMSModel.FK_EduDetail_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="EduDetail" EntitySet="EduDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Candidate" Association="BTRMSModel.FK_Interview_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Candidate" Association="BTRMSModel.FK_Notification_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="NotificationDetail" EntitySet="NotificationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Candidate" Association="BTRMSModel.FK_Skill_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="SkillDetail" EntitySet="SkillDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EduDetail_EduDegreeLevel" Association="BTRMSModel.FK_EduDetail_EduDegreeLevel">
+            <End Role="EduDegreeLevel" EntitySet="EduDegreeLevels" />
+            <End Role="EduDetail" EntitySet="EduDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EduDetail_EduInstituate" Association="BTRMSModel.FK_EduDetail_EduInstituate">
+            <End Role="EduInstitute" EntitySet="EduInstitutes" />
+            <End Role="EduDetail" EntitySet="EduDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Job" Association="BTRMSModel.FK_Interview_Job">
+            <End Role="Job" EntitySet="Jobs" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MartialStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LandlineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CImage" Type="Int32" />
+          <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="Candidate" ToRole="EduDetail" />
+          <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Candidate" ToRole="Interview" />
+          <NavigationProperty Name="NotificationDetails" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="Candidate" ToRole="NotificationDetail" />
+          <NavigationProperty Name="SkillDetails" Relationship="BTRMSModel.FK_Skill_Candidate" FromRole="Candidate" ToRole="SkillDetail" />
+        </EntityType>
+        <EntityType Name="CandidateJob">
+          <Key>
+            <PropertyRef Name="CJobID" />
+          </Key>
+          <Property Name="CJobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CJobDate" Type="DateTime" Precision="3" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="CandidateID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="CandidatePhoto">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="CandidatePic" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CompensationDetail">
+          <Key>
+            <PropertyRef Name="CID" />
+          </Key>
+          <Property Name="CID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MBSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MGSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Bonus" Type="Boolean" />
+          <Property Name="BBonus" Type="Boolean" />
+          <Property Name="GBonus" Type="Boolean" />
+          <Property Name="BonusPerYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LFA" Type="Boolean" />
+          <Property Name="BLFA" Type="Boolean" />
+          <Property Name="GLFA" Type="Boolean" />
+          <Property Name="LFAPerYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OT" Type="Boolean" />
+          <Property Name="BOT" Type="Boolean" />
+          <Property Name="GOT" Type="Boolean" />
+          <Property Name="TransportAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CarEntitlement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileUserLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BuyBackOption" Type="Boolean" />
+          <Property Name="AccomdAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COLA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Food" Type="Boolean" />
+          <Property Name="Free" Type="Boolean" />
+          <Property Name="Subscribed" Type="Boolean" />
+          <Property Name="OPDInsurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IPInsurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LifeInsurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProvidentFund" Type="Boolean" />
+          <Property Name="GProvidentFund" Type="Boolean" />
+          <Property Name="BProvidentFund" Type="Boolean" />
+          <Property Name="ProvidentFundPerYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Gratuity" Type="Boolean" />
+          <Property Name="BGratuity" Type="Boolean" />
+          <Property Name="GGratuity" Type="Boolean" />
+          <Property Name="AnnualTAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CasualTAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MedTAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TAllowenceWorkDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherBenifits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="EduDegreeLevel">
+          <Key>
+            <PropertyRef Name="DLevelID" />
+          </Key>
+          <Property Name="DLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DegreeLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_EduDegreeLevel" FromRole="EduDegreeLevel" ToRole="EduDetail" />
+        </EntityType>
+        <EntityType Name="EduDetail">
+          <Key>
+            <PropertyRef Name="EduID" />
+          </Key>
+          <Property Name="EduID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DegreeID" Type="Int32" />
+          <Property Name="ObtainedMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="Institution" Type="Int32" />
+          <Property Name="BoardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="Percentage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CGPA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PassingYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="EduDetail" ToRole="Candidate" />
+          <NavigationProperty Name="EduDegreeLevel" Relationship="BTRMSModel.FK_EduDetail_EduDegreeLevel" FromRole="EduDetail" ToRole="EduDegreeLevel" />
+          <NavigationProperty Name="EduInstitute" Relationship="BTRMSModel.FK_EduDetail_EduInstituate" FromRole="EduDetail" ToRole="EduInstitute" />
+        </EntityType>
+        <EntityType Name="EduInstitute">
+          <Key>
+            <PropertyRef Name="InstituteID" />
+          </Key>
+          <Property Name="InstituteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InstituteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_EduInstituate" FromRole="EduInstitute" ToRole="EduDetail" />
+        </EntityType>
+        <EntityType Name="ExperienceDetail">
+          <Key>
+            <PropertyRef Name="ExpID" />
+          </Key>
+          <Property Name="ExpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PostionTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployerName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrentlyWorking" Type="Boolean" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="IndustryID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ExperienceIndustry">
+          <Key>
+            <PropertyRef Name="ExpIndustryID" />
+          </Key>
+          <Property Name="ExpIndustryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ExpIndustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="HearAbout">
+          <Key>
+            <PropertyRef Name="HearAboutID" />
+          </Key>
+          <Property Name="HearAboutID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HearAboutSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Interview">
+          <Key>
+            <PropertyRef Name="InterviewID" />
+          </Key>
+          <Property Name="InterviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
+          <NavigationProperty Name="Job" Relationship="BTRMSModel.FK_Interview_Job" FromRole="Interview" ToRole="Job" />
+        </EntityType>
+        <EntityType Name="Job">
+          <Key>
+            <PropertyRef Name="JobID" />
+          </Key>
+          <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="LocName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="Int32" />
+          <Property Name="QualificationReq" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Resposibilties" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CatagoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="SkillReq" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Job" FromRole="Job" ToRole="Interview" />
+        </EntityType>
+        <EntityType Name="MiscellaneousDetail">
+          <Key>
+            <PropertyRef Name="PMiscellaneousID" />
+          </Key>
+          <Property Name="PMiscellaneousID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CrimanalRecord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelative" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateJoining" Type="DateTime" Precision="3" />
+          <Property Name="DateLeavig" Type="DateTime" Precision="3" />
+          <Property Name="EmploymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TotalExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CementExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeTime" Type="Int32" />
+          <Property Name="CandidateID" Type="Int64" />
+          <Property Name="WorkedBefore" Type="Boolean" />
+          <Property Name="HearAboutJobID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="NotificationDetail">
+          <Key>
+            <PropertyRef Name="NotifyID" />
+          </Key>
+          <Property Name="NotifyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IsViewed" Type="Boolean" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="JobStatus" Type="Boolean" />
+          <Property Name="InterviewID" Type="Int32" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="NotificationDetail" ToRole="Candidate" />
+        </EntityType>
+        <EntityType Name="ReferenceDetail">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RefName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int64" />
+        </EntityType>
+        <EntityType Name="SkillDetail">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Name="SkillID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SLevelID" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Skill_Candidate" FromRole="SkillDetail" ToRole="Candidate" />
+        </EntityType>
+        <EntityType Name="SkillLevel">
+          <Key>
+            <PropertyRef Name="SkillLevelID" />
+          </Key>
+          <Property Name="SkillLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SkillLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="UserTypeID" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="CanEdit" Type="Boolean" />
+          <Property Name="CanDelete" Type="Boolean" />
+          <Property Name="CanView" Type="Boolean" />
+          <Property Name="CanAdd" Type="Boolean" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Candidate_EduDetail">
+          <Key>
+            <PropertyRef Name="EduID" />
+          </Key>
+          <Property Name="DegreeID" Type="Int32" />
+          <Property Name="DegreeLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObtainedMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="BoardName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EduID" Type="Int32" Nullable="false" />
+          <Property Name="TotalMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Percentage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CGPA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="PassingYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Institution" Type="Int32" />
+          <Property Name="InstituteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Candidate_Exp">
+          <Key>
+            <PropertyRef Name="ExpID" />
+          </Key>
+          <Property Name="ExpID" Type="Int32" Nullable="false" />
+          <Property Name="PostionTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EmployerName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="JobTitle" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="CurrentlyWorking" Type="Boolean" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndustryID" Type="Int32" />
+          <Property Name="ExpIndustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Candidate_Miscellaneous">
+          <Key>
+            <PropertyRef Name="PMiscellaneousID" />
+          </Key>
+          <Property Name="PMiscellaneousID" Type="Int32" Nullable="false" />
+          <Property Name="CrimanalRecord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelative" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateJoining" Type="DateTime" Precision="3" />
+          <Property Name="DateLeavig" Type="DateTime" Precision="3" />
+          <Property Name="EmploymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TotalExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CementExp" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeTime" Type="Int32" />
+          <Property Name="CandidateID" Type="Int64" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkedBefore" Type="Boolean" />
+          <Property Name="HearAboutJobID" Type="Int32" />
+          <Property Name="HearAboutSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Candidate_Reference">
+          <Key>
+            <PropertyRef Name="RefID" />
+          </Key>
+          <Property Name="RefID" Type="Int32" Nullable="false" />
+          <Property Name="RefName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int64" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Candidate_Skills">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SkillID" Type="Int32" Nullable="false" />
+          <Property Name="SLevelID" Type="Int32" />
+          <Property Name="SkillLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_Interview">
+          <Key>
+            <PropertyRef Name="InterviewID" />
+          </Key>
+          <Property Name="InterviewID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="JobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="StartTime" Type="Time" Precision="7" />
+          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="V_Notification">
+          <Key>
+            <PropertyRef Name="NotifyID" />
+          </Key>
+          <Property Name="NotifyID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="URL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="IsViewed" Type="Boolean" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="JobID" Type="Int32" />
+          <Property Name="JobStatus" Type="Boolean" />
+          <Property Name="InterviewID" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_EduDetail_Candidate">
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+          <End Type="BTRMSModel.EduDetail" Role="EduDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="EduDetail">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interview_Candidate">
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+          <End Type="BTRMSModel.Interview" Role="Interview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="Interview">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_Candidate">
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+          <End Type="BTRMSModel.NotificationDetail" Role="NotificationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="NotificationDetail">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Candidate">
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="0..1" />
+          <End Type="BTRMSModel.SkillDetail" Role="SkillDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Candidate">
+              <PropertyRef Name="CandidateID" />
+            </Principal>
+            <Dependent Role="SkillDetail">
+              <PropertyRef Name="CandidateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EduDetail_EduDegreeLevel">
+          <End Type="BTRMSModel.EduDegreeLevel" Role="EduDegreeLevel" Multiplicity="0..1" />
+          <End Type="BTRMSModel.EduDetail" Role="EduDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduDegreeLevel">
+              <PropertyRef Name="DLevelID" />
+            </Principal>
+            <Dependent Role="EduDetail">
+              <PropertyRef Name="DegreeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EduDetail_EduInstituate">
+          <End Type="BTRMSModel.EduInstitute" Role="EduInstitute" Multiplicity="0..1" />
+          <End Type="BTRMSModel.EduDetail" Role="EduDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EduInstitute">
+              <PropertyRef Name="InstituteID" />
+            </Principal>
+            <Dependent Role="EduDetail">
+              <PropertyRef Name="Institution" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Interview_Job">
+          <End Type="BTRMSModel.Job" Role="Job" Multiplicity="0..1" />
+          <End Type="BTRMSModel.Interview" Role="Interview" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Job">
+              <PropertyRef Name="JobID" />
+            </Principal>
+            <Dependent Role="Interview">
+              <PropertyRef Name="JobID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BTRMSModelStoreContainer" CdmEntityContainer="BTRMSEntities">
+          <EntitySetMapping Name="Candidates">
+            <EntityTypeMapping TypeName="BTRMSModel.Candidate">
+              <MappingFragment StoreEntitySet="Candidate">
+                <ScalarProperty Name="CImage" ColumnName="CImage" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
+                <ScalarProperty Name="Domicile" ColumnName="Domicile" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MartialStatus" ColumnName="MartialStatus" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandidateJobs">
+            <EntityTypeMapping TypeName="BTRMSModel.CandidateJob">
+              <MappingFragment StoreEntitySet="CandidateJob">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CJobDate" ColumnName="CJobDate" />
+                <ScalarProperty Name="CJobID" ColumnName="CJobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandidatePhotoes">
+            <EntityTypeMapping TypeName="BTRMSModel.CandidatePhoto">
+              <MappingFragment StoreEntitySet="CandidatePhoto">
+                <ScalarProperty Name="CandidatePic" ColumnName="CandidatePic" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompensationDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.CompensationDetail">
+              <MappingFragment StoreEntitySet="CompensationDetail">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="OtherBenifits" ColumnName="OtherBenifits" />
+                <ScalarProperty Name="ExpectedSalary" ColumnName="ExpectedSalary" />
+                <ScalarProperty Name="TAllowenceWorkDay" ColumnName="TAllowenceWorkDay" />
+                <ScalarProperty Name="MedTAllowence" ColumnName="MedTAllowence" />
+                <ScalarProperty Name="CasualTAllowence" ColumnName="CasualTAllowence" />
+                <ScalarProperty Name="AnnualTAllowence" ColumnName="AnnualTAllowence" />
+                <ScalarProperty Name="GGratuity" ColumnName="GGratuity" />
+                <ScalarProperty Name="BGratuity" ColumnName="BGratuity" />
+                <ScalarProperty Name="Gratuity" ColumnName="Gratuity" />
+                <ScalarProperty Name="ProvidentFundPerYear" ColumnName="ProvidentFundPerYear" />
+                <ScalarProperty Name="BProvidentFund" ColumnName="BProvidentFund" />
+                <ScalarProperty Name="GProvidentFund" ColumnName="GProvidentFund" />
+                <ScalarProperty Name="ProvidentFund" ColumnName="ProvidentFund" />
+                <ScalarProperty Name="LifeInsurance" ColumnName="LifeInsurance" />
+                <ScalarProperty Name="IPInsurance" ColumnName="IPInsurance" />
+                <ScalarProperty Name="OPDInsurance" ColumnName="OPDInsurance" />
+                <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
+                <ScalarProperty Name="Free" ColumnName="Free" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="COLA" ColumnName="COLA" />
+                <ScalarProperty Name="AccomdAllowence" ColumnName="AccomdAllowence" />
+                <ScalarProperty Name="BuyBackOption" ColumnName="BuyBackOption" />
+                <ScalarProperty Name="MobileUserLimit" ColumnName="MobileUserLimit" />
+                <ScalarProperty Name="CarEntitlement" ColumnName="CarEntitlement" />
+                <ScalarProperty Name="MobileAllowence" ColumnName="MobileAllowence" />
+                <ScalarProperty Name="TransportAllowence" ColumnName="TransportAllowence" />
+                <ScalarProperty Name="GOT" ColumnName="GOT" />
+                <ScalarProperty Name="BOT" ColumnName="BOT" />
+                <ScalarProperty Name="OT" ColumnName="OT" />
+                <ScalarProperty Name="LFAPerYear" ColumnName="LFAPerYear" />
+                <ScalarProperty Name="GLFA" ColumnName="GLFA" />
+                <ScalarProperty Name="BLFA" ColumnName="BLFA" />
+                <ScalarProperty Name="LFA" ColumnName="LFA" />
+                <ScalarProperty Name="BonusPerYear" ColumnName="BonusPerYear" />
+                <ScalarProperty Name="GBonus" ColumnName="GBonus" />
+                <ScalarProperty Name="BBonus" ColumnName="BBonus" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="MGSalary" ColumnName="MGSalary" />
+                <ScalarProperty Name="MBSalary" ColumnName="MBSalary" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EduDegreeLevels">
+            <EntityTypeMapping TypeName="BTRMSModel.EduDegreeLevel">
+              <MappingFragment StoreEntitySet="EduDegreeLevel">
+                <ScalarProperty Name="DegreeLevel" ColumnName="DegreeLevel" />
+                <ScalarProperty Name="DLevelID" ColumnName="DLevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EduDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.EduDetail">
+              <MappingFragment StoreEntitySet="EduDetail">
+                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
+                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="BoardName" ColumnName="BoardName" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+                <ScalarProperty Name="EduID" ColumnName="EduID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EduInstitutes">
+            <EntityTypeMapping TypeName="BTRMSModel.EduInstitute">
+              <MappingFragment StoreEntitySet="EduInstitute">
+                <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
+                <ScalarProperty Name="InstituteID" ColumnName="InstituteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExperienceDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.ExperienceDetail">
+              <MappingFragment StoreEntitySet="ExperienceDetail">
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CurrentlyWorking" ColumnName="CurrentlyWorking" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+                <ScalarProperty Name="PostionTitle" ColumnName="PostionTitle" />
+                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExperienceIndustries">
+            <EntityTypeMapping TypeName="BTRMSModel.ExperienceIndustry">
+              <MappingFragment StoreEntitySet="ExperienceIndustry">
+                <ScalarProperty Name="ExpIndustryName" ColumnName="ExpIndustryName" />
+                <ScalarProperty Name="ExpIndustryID" ColumnName="ExpIndustryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HearAbouts">
+            <EntityTypeMapping TypeName="BTRMSModel.HearAbout">
+              <MappingFragment StoreEntitySet="HearAbout">
+                <ScalarProperty Name="HearAboutSource" ColumnName="HearAboutSource" />
+                <ScalarProperty Name="HearAboutID" ColumnName="HearAboutID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Interviews">
+            <EntityTypeMapping TypeName="BTRMSModel.Interview">
+              <MappingFragment StoreEntitySet="Interview">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Jobs">
+            <EntityTypeMapping TypeName="BTRMSModel.Job">
+              <MappingFragment StoreEntitySet="Job">
+                <ScalarProperty Name="SkillReq" ColumnName="SkillReq" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CatagoryName" ColumnName="CatagoryName" />
+                <ScalarProperty Name="Resposibilties" ColumnName="Resposibilties" />
+                <ScalarProperty Name="QualificationReq" ColumnName="QualificationReq" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="LocName" ColumnName="LocName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MiscellaneousDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.MiscellaneousDetail">
+              <MappingFragment StoreEntitySet="MiscellaneousDetails">
+                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
+                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
+                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
+                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
+                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
+                <ScalarProperty Name="DateJoining" ColumnName="DateJoining" />
+                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
+                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
+                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NotificationDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.NotificationDetail">
+              <MappingFragment StoreEntitySet="NotificationDetail">
+                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReferenceDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.ReferenceDetail">
+              <MappingFragment StoreEntitySet="ReferenceDetail">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="RefContact" ColumnName="RefContact" />
+                <ScalarProperty Name="RefEmail" ColumnName="RefEmail" />
+                <ScalarProperty Name="RefDesignation" ColumnName="RefDesignation" />
+                <ScalarProperty Name="RefName" ColumnName="RefName" />
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkillDetails">
+            <EntityTypeMapping TypeName="BTRMSModel.SkillDetail">
+              <MappingFragment StoreEntitySet="SkillDetail">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SLevelID" ColumnName="SLevelID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SkillLevels">
+            <EntityTypeMapping TypeName="BTRMSModel.SkillLevel">
+              <MappingFragment StoreEntitySet="SkillLevel">
+                <ScalarProperty Name="SkillLevelName" ColumnName="SkillLevelName" />
+                <ScalarProperty Name="SkillLevelID" ColumnName="SkillLevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BTRMSModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="BTRMSModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Candidate_EduDetail">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_EduDetail">
+              <MappingFragment StoreEntitySet="V_Candidate_EduDetail">
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
+                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="EduID" ColumnName="EduID" />
+                <ScalarProperty Name="BoardName" ColumnName="BoardName" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
+                <ScalarProperty Name="DegreeLevel" ColumnName="DegreeLevel" />
+                <ScalarProperty Name="DegreeID" ColumnName="DegreeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Candidate_Exp">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Exp">
+              <MappingFragment StoreEntitySet="V_Candidate_Exp">
+                <ScalarProperty Name="ExpIndustryName" ColumnName="ExpIndustryName" />
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CurrentlyWorking" ColumnName="CurrentlyWorking" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+                <ScalarProperty Name="PostionTitle" ColumnName="PostionTitle" />
+                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Candidate_Miscellaneous">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Miscellaneous">
+              <MappingFragment StoreEntitySet="V_Candidate_Miscellaneous">
+                <ScalarProperty Name="HearAboutSource" ColumnName="HearAboutSource" />
+                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
+                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
+                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
+                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
+                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
+                <ScalarProperty Name="DateJoining" ColumnName="DateJoining" />
+                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
+                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
+                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Candidate_Reference">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Reference">
+              <MappingFragment StoreEntitySet="V_Candidate_Reference">
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="RefContact" ColumnName="RefContact" />
+                <ScalarProperty Name="RefEmail" ColumnName="RefEmail" />
+                <ScalarProperty Name="RefDesignation" ColumnName="RefDesignation" />
+                <ScalarProperty Name="RefName" ColumnName="RefName" />
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Candidate_Skills">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Skills">
+              <MappingFragment StoreEntitySet="V_Candidate_Skills">
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="SkillLevelName" ColumnName="SkillLevelName" />
+                <ScalarProperty Name="SLevelID" ColumnName="SLevelID" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Interview">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Interview">
+              <MappingFragment StoreEntitySet="V_Interview">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_Notification">
+            <EntityTypeMapping TypeName="BTRMSModel.V_Notification">
+              <MappingFragment StoreEntitySet="V_Notification">
+                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

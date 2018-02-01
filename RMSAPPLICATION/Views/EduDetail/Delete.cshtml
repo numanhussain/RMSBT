@@ -1,0 +1,97 @@
+﻿@model RMSCORE.Models.Operation.VMEduDetailOperation
+@{
+    ViewBag.title = "Educational details";
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.EduID)
+    @Html.HiddenFor(model => model.CandidateID)
+    @Html.HiddenFor(model => model.InstitutionID)
+    @Html.HiddenFor(model => model.BoardName)
+    @Html.HiddenFor(model => model.ObtainedMark)
+    @Html.HiddenFor(model => model.TotalMark)
+    @Html.HiddenFor(model => model.Percentage)
+    @Html.HiddenFor(model => model.CGPA)
+    @Html.HiddenFor(model => model.PassingYear)
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Delete Education Detail
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="col-md-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EduID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EduID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CandidateID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CandidateID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.InstitutionID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.InstitutionID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.BoardName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.BoardName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ObtainedMark)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ObtainedMark)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.TotalMark)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.TotalMark)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Percentage)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Percentage)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CGPA)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CGPA)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PassingYear)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PassingYear)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Delete" class="btn btn-danger pull-right">
+        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+        @*<button type="button" id="btnPostDelete" class="btn btn-success bg-success-800" value="Delete">Delete</button>*@
+    </div>
+}
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            EduDetailPostDelete();
+        });
+    </script>*@

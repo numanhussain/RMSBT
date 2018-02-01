@@ -1,0 +1,179 @@
+﻿@model RMSCORE.EF.Candidate
+
+@*@Html.HiddenFor(model=>model.CandidateID)*@
+<!-- /second navbar -->
+<!-- Page header -->
+@*<div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">User Pages</span> - Tabbed Profile</h4>
+                <ul class="breadcrumb breadcrumb-caret position-right">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="user_pages_profile_tabbed.html">User pages</a></li>
+                    <li class="active">Tabbed profile</li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+<!-- /page header -->
+<!-- Page container -->
+<head>
+    <style>
+        img {
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main sidebar -->
+        <div class="sidebar sidebar-main sidebar-default sidebar-separate">
+            <div class="sidebar-content">
+                <!-- User details -->
+                <div class="content-group">
+                    <div class="panel no-border-top no-border-radius-top">
+                        <section>
+                            <div class="form-group">
+                                <img src="~/Candidate/RetrieveImage/@Model.CandidateID" id="dbImage" width="200" height="200" style="margin-left:25px; margin-top: 20px" />
+                                <div style="padding:10px;margin-left:65px ">
+                                    <div tabindex="500" class="btn btn-primary btn-xs btn-file">
+                                        <i class="icon-file-plus"></i>  <span class="hidden-xs">Browse</span>
+                                        <input type="file" class="file-input" id="imgupload" onchange="fileCheck(this);" value="Open" data-browse-class="btn btn-primary btn-xs" data-show-caption="false" data-remove-class="btn btn-default btn-xs" data-show-upload="false" />
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <ul class="navigation">
+                            <li class="navigation-header">Navigation</li>
+                            <li class="active"><a href="#tabs_personaldetail" onclick="CandidateGetCreate()" data-toggle="tab"><i class="icon-person"></i>Personal Detail</a></li>
+                            <li><a href="#tabs_education" data-toggle="tab"><i class="icon-book"></i> Educational Detail</a></li>
+                            <li><a href="#tabs_skill" data-toggle="tab"><i class="glyphicon glyphicon-wrench"></i> Skills</a></li>
+                            <li><a href="#tabs_experience" data-toggle="tab"><i class="glyphicon-export"></i> Experience</a></li>
+                            <li><a href="#tabs_miscellaneous" onclick="MiscellaneousGetCreate()" data-toggle="tab"><i class="glyphicon-export"></i>Miscellaneous</a></li>
+                            <li><a href="#tabs_compensation" onclick="CompensationGetCreate()" data-toggle="tab"><i class="glyphicon-export"></i>Compensation</a></li>
+                            <li><a href="#tabs_reference" data-toggle="tab"><i class="glyphicon-export"></i> Reference</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Tab content -->
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tabs_personaldetail">
+                    <div>
+                        <div class="col-lg-12" id="PVCandidateIndex"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabs_education">
+                    <div>
+                        <div class="col-lg-12" id="PVEduDetailIndex"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabs_skill">
+                    <div>
+                        <div class="col-lg-12" id="PVSkillDetailIndex"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabs_experience">
+                    <div>
+                        <div class="col-lg-12" id="PVExperienceDetailIndex"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabs_miscellaneous">
+                    <div>
+                        <div class="col-lg-12" id="PVMiscellaneousIndex"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabs_compensation">
+                    <div>
+                        <div class="col-lg-12" id="PVCompensationIndex"></div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="tabs_reference">
+                    <div>
+                        <div class="col-lg-12" id="PVReferenceDetailIndex"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/Candidate/PersonalDetail.js"></script>
+<script type="text/javascript" src="~/Scripts/Candidate/EduDetail.js"></script>
+<script type="text/javascript" src="~/Scripts/Candidate/SkillDetail.js"></script>
+<script type="text/javascript" src="~/Scripts/Candidate/Experience.js"></script>
+<script type="text/javascript" src="~/Scripts/Candidate/Miscellaneous.js"></script>
+<script type="text/javascript" src="~/Scripts/Candidate/Reference.js"></script>
+<script type="text/javascript" src="~/Scripts/Candidate/Compensation.js"></script>
+<script>
+    $(document).ready(function () {
+        LoadPVCandidateIndex();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        LoadPVEduDetailIndex();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        LoadPVSkillDetailIndex();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        SavePersonalInfoFunction();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        LoadPVExperienceDetailIndex();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        LoadPVReferenceDetailIndex();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        LoadPVMiscellaneousIndex();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        LoadPVCompensationIndex();
+    });
+</script>
+<script type="text/javascript">
+    function fileCheck(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#dbImage')
+                    .attr('src', e.target.result)
+                    .width(200)
+                    .height(200);
+                document.getElementById("dbImage").style.marginTop = "20px";
+                document.getElementById("dbImage").style.marginLeft = "30px";
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>

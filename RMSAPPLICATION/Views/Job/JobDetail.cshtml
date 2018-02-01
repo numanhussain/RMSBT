@@ -1,0 +1,52 @@
+﻿@model RMSCORE.EF.Job
+<!-- Page container -->
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <!-- Details -->
+            <div class="panel panel-flat">
+                <div class="panel-body">
+                    <div class="media stack-media-on-mobile text-left content-group-lg">
+                        <a href="#" class="media-left media-middle">
+                            <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
+                        </a>
+                        <div class="media-body">
+                            <h5 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h5>
+                            <ul class="list-inline list-inline-separate text-muted no-margin">
+                                <li>@Html.DisplayFor(x => x.LocName)</li>
+                            </ul>
+                        </div>
+
+
+                        <div class="media-right media-middle text-nowrap">
+                            
+                            <a href="#" onclick="ApplyJob(@Model.JobID)" class="btn bg-blue"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                        </div>
+                    </div>
+                    <div class="content-group-lg">
+                        <h6 class="text-semibold">Job Description</h6>
+                        <p>@Html.DisplayFor(x => x.Description)</p>
+                    </div>
+                    <div class="content-group-lg">
+                        <h6 class="text-semibold">Responsibilities:</h6>
+                        <p class="content-group-sm">@Html.DisplayFor(x => x.Resposibilties)</p>
+                    </div>
+                    <div class="content-group-lg">
+                        <h6 class="text-semibold">Requirements:</h6>
+                        <p class="content-group-sm">@Html.DisplayFor(x => x.QualificationReq)</p>
+                    </div>
+                    <div class="content-group-lg">
+                        <h6 class="text-semibold">Desired Skills and Experience:</h6>
+                        <p class="content-group-sm">@Html.DisplayFor(x => x.SkillReq)</p>
+                    </div>
+                </div>
+                <!-- /details -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+</div>
+<script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>

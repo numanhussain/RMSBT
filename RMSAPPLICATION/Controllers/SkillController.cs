@@ -1,0 +1,95 @@
+﻿using RMSCORE.Models.Main;
+using RMSCORE.Models.Operation;
+using RMSSERVICES.Generic;
+using RMSSERVICES.Skill;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+
+namespace RMSAPPLICATION.Controllers
+{
+    public class SkillController : Controller
+    {
+        #region -- Controller Initialization --
+        //IEntityService<VMEduDetailIndex> EduDetailEntityService;
+        ISkillService SkillDetailService;
+        IDDService DDService;
+        // Controller Constructor
+        public SkillController(ISkillService skilldetailService, IDDService ddService)
+        {
+            DDService = ddService;
+            SkillDetailService = skilldetailService;
+        }
+        #endregion
+        #region -- Controller ActionResults  --
+        // GET: Skill
+        public ActionResult Index()
+        {
+            long cid = AssistantService.LoggedInUserID;
+            List<VMSkillIndex> vmlist = SkillDetailService.GetIndex(cid);
+            return View(vmlist);
+        }
+        #region -- Controller Main View Actions  --
+        [HttpGet]
+        public ActionResult Create()
+        {
+            int cid = AssistantService.LoggedInUserID;
+            VMSkillOperation obj = SkillDetailService.GetCreate(cid);
+            CreateHelper(obj);
+            return View(obj);
+        }
+        [HttpPost]
+        public ActionResult Create(VMSkillOperation obj)
+        {
+            if (ModelState.IsValid)
+            {
+                SkillDetailService.PostCreate(obj);
+                return RedirectToAction("Index");
+            }
+            return PartialView(obj);
+        }
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            VMSkillOperation obj = SkillDetailService.GetEdit((int)id);
+            EditHelper(obj);
+            return PartialView(obj);
+        }
+        [HttpPost]
+        public ActionResult Edit(VMSkillOperation obj)
+        {
+            if (ModelState.IsValid)
+            {
+                SkillDetailService.PostEdit(obj);
+                
+            }
+            return View(obj);
+        }
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            VMSkillOperation vmOperation = SkillDetailService.GetDelete((int)id);
+            return View(vmOperation);
+        }
+        [HttpPost]
+        public ActionResult Delete(VMSkillOperation obj, int? id)
+        {
+            SkillDetailService.PostDelete(obj, id);
+            return RedirectToAction("Index", "Skill");
+        }
+        #endregion
+        #endregion
+        #region -- Controller Private  Methods--
+        private void CreateHelper(VMSkillOperation obj)
+        {
+            ViewBag.SLevelID = new SelectList(DDService.GetSkillLevel().ToList().OrderBy(aa => aa.SkillLevelID).ToList(), "SkillLevelID", "SkillLevelName", obj.SLevelID);
+        }
+        private void EditHelper(VMSkillOperation obj)
+        {
+            ViewBag.SLevelID = new SelectList(DDService.GetSkillLevel().ToList().OrderBy(aa => aa.SkillLevelID).ToList(), "SkillLevelID", "SkillLevelName", obj.SLevelID);
+        }
+        #endregion
+    }
+}

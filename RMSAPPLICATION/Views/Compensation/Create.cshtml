@@ -1,0 +1,67 @@
+﻿@model RMSCORE.EF.CompensationDetail
+@{
+    ViewBag.title = "Compensation";
+    Layout = null;
+}
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.CandidateID)
+    @Html.HiddenFor(model => model.CID)
+    <div style="margin-top:-45px">
+        <div class="modal-header">
+            <div class="modal-title">
+                <h3><i class="glyphicon-lamp"></i>&nbsp;&nbsp;Compensation Details</h3>
+            </div>
+        </div>
+        <!-- Page container -->
+        <!-- Main content -->
+        <!-- Basic datatable -->
+        <div class="panel panel-flat">
+            <div class="breadcrumb-line bg-blue">
+                <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                <ul class="breadcrumb">
+                    <li><a href="~/Home/Index"> Dashboard</a></li>
+                    <li><a class="active"> Miscellaneous</a></li>
+                    <li class="active"> - Add New</li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label class="control-label col-lg-2 text-semibold">Monthlty Bonus Salary</label>
+                        <div class="col-lg-4">
+                            @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <label class="control-label col-lg-2 text-semibold">Monthlty Gross Salary</label>
+                        <div class="col-lg-4">
+                            @Html.EditorFor(model => model.MGSalary, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label checkbox-right text-semibold " for="Bonus" id="Bonus">
+                            @Html.CheckBox("Bonus")
+                            @Html.ValidationMessageFor(model => model.Bonus, "", new { @class = "text-danger" })
+                            Bonus
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <div class="heading-elements">
+                    <button type="submit" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Submit</button>
+                </div>
+            </div>
+        </div>
+        <!-- /basic datatable -->
+        <!-- /main content -->
+    </div>
+}
+
+<script type="text/javascript">
+    $(function () {
+        SaveCompensationFunction();
+    });
+
+</script>

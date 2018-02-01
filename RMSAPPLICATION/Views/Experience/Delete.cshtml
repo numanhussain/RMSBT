@@ -1,0 +1,93 @@
+﻿@model RMSCORE.Models.Operation.VMExperienceOperation
+@{
+    ViewBag.title = "Experience details";
+    Layout = null;
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.ExpID)
+    @Html.HiddenFor(model => model.CandidateID)
+    @Html.HiddenFor(model => model.PositionTitle)
+    @Html.HiddenFor(model => model.StartDate)
+    @Html.HiddenFor(model => model.EndDate)
+    @Html.HiddenFor(model => model.EmployerName)
+    @Html.HiddenFor(model => model.City)
+    @Html.HiddenFor(model => model.Address)
+    @Html.HiddenFor(model => model.CurrentlyWorking)
+    @Html.HiddenFor(model => model.Description)
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;Delete Experience Detail
+        </h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-horizontal">
+            <div class="col-md-12">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.ExpID)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.ExpID)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PositionTitle)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.PositionTitle)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EmployerName)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EmployerName)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.StartDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.StartDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EndDate)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.EndDate)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CurrentlyWorking)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.CurrentlyWorking)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.City)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.City)
+                    </dd>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Description)
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" value="Delete" class="btn btn-danger pull-right">
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary bg-primary-300" })
+        @*<button type="button" id="btnPostDelete" class="btn btn-success bg-success-800" value="Delete">Delete</button>*@
+    </div>
+}
