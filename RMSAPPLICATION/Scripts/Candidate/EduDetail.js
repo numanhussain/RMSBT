@@ -48,7 +48,7 @@ function EduDetailPostCreate(){
         });
     });
 }
-function EduDetailGetEdit(id){
+function EduDetailGetEdit(id) {
     $.ajax({
         type: "GET",
         url: "/EduDetail/Edit",
@@ -65,7 +65,7 @@ function EduDetailGetEdit(id){
         }
     });
 }
-function EduDetailPostEdit(){
+function EduDetailPostEdit() {
     $('#btnPostEdit').click(function (){
         $.ajax({
             type: "POST",

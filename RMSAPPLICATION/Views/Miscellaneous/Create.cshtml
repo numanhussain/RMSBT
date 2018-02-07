@@ -35,37 +35,41 @@
                             @Html.EditorFor(model => model.WorkingRelative, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-12 form-group">
                         <label class="control-label checkbox-inline checkbox-right text-semibold " for="WorkedBefore">
                             @Html.CheckBox("WorkedBefore")
                             @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
                             Have you ever worked before/ with Bestway Group?
                         </label>
                     </div>
-                    <div class="form-group" id="WorkedBeforeDiv">
-                        <label class="col-md-1 control-label text-semibold">Date Joining</label>
-                        <div class="col-md-2">
-                            @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
+                    <div id="WorkedBeforeDiv">
+                        <div class="form-group">
+                            <label class="col-md-1 control-label text-semibold">Designation</label>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <label class="col-md-1 control-label text-semibold">Date Joining</label>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
+                            </div>
+                            <label class="col-md-1 control-label text-semibold">Date Leaving</label>
+                            <div class="col-md-2">
+                                @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
+                            </div>
                         </div>
-                        <label class="col-md-1 control-label text-semibold">Designation</label>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <label class="col-md-1 control-label text-semibold">Date Leaving</label>
-                        <div class="col-md-2">
-                            @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
-                        </div>
-                        <label class="col-md-1 control-label text-semibold">Employment No.</label>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <label class="col-md-1 control-label text-semibold">Location</label>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <label class="col-md-1 control-label text-semibold">Reason Leaving</label>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                        <div class="form-group">
+                            <label class="col-md-1 control-label text-semibold">Employment No.</label>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <label class="col-md-1 control-label text-semibold">Location</label>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            <label class="col-md-1 control-label text-semibold">Reason Leaving</label>
+                            <div class="col-md-5">
+                                @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

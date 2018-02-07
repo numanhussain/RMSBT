@@ -40,6 +40,7 @@ namespace RMSREPO.Generic
         {
             try
             {
+                _entities.Entry(entity).State = EntityState.Deleted;
                 return _dbset.Remove(entity);
             }
             catch (DbEntityValidationException dbEx)

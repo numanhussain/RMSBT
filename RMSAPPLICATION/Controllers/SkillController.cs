@@ -63,7 +63,7 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostEdit(obj);
-                
+                return RedirectToAction("Index");
             }
             return View(obj);
         }

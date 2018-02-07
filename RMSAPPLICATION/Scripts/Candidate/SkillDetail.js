@@ -72,25 +72,21 @@ function SkillDetailGetEdit(id) {
         $('#myModal').modal('hide');
     });
 }
-function SkillDetailPostEdit(id) {
-    $.ajax({
-        type: "POST",
-        url: "/Skill/Edit",
-        data: $("#formEditID").serialize(),
-        success: function (data) {
-
-            if (data === "OK") {
-
+function SkillDetailPostEdit() {
+    $('#btnPostEdit').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Skill/Edit",
+            contentType: "application/json; charset=utf-8",
+            data: $("#formEditID").serialize(),
+            datatype: "json",
+            success: function (data) {
                 $('#myModal').modal('hide');
-                location.reload();
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
             }
-            else {
-                $('#modelBody').html(data);
-            }
-        },
-        error: function () {
-            alert("Dynamic content load failed.");
-        }
+        });
     });
 }
 function SkillDetailGetDelete(id) {

@@ -6,13 +6,20 @@
     }).done(function (result) {
         $('#PVCompensationIndex').html(result);
     });
+    $('#DivHide').hide();
+    if ($("#Bonus").is(":checked") === true) {
+        $('#DivHide').show();
+    }
+    else {
+        $('#DivHide').hide();
+    }
+    // Has Version Changed
     $('#Bonus').change(function () {
-        alert(OK);
-        if ($(this).is(":checked")) {
-            $("#DivBonus").show();
+        if ($(this).is(':checked') === true) {
+            $('#DivHide').show();
         }
         else {
-            $("#DivBonus").hide();
+            $('#DivHide').hide();
         }
     });
 }

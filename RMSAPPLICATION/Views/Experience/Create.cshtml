@@ -3,7 +3,7 @@
     ViewBag.title = "Experience details";
     Layout = null;
 }
-@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+@using (Html.BeginForm("Create", "Experience", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CandidateID)
@@ -71,13 +71,14 @@
         </div>
     </div>
     <div class="modal-footer">
-        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary bg-primary-300" })
-        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>
+        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+       @* <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>*@
+        <button type="submit" class="btn btn-success bg-success-800" value="Save">Save</button>
     </div>
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        ExperienceDetailPostCreate();
+        //ExperienceDetailPostCreate();
     });
 </script>
 

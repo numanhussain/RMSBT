@@ -1,19 +1,18 @@
 ﻿function MiscellaneousGetCreate() {
-    if (document.getElementById('WorkedBefore').checked) {
-        $("#WorkedBeforeDiv").show();
+    $('#WorkedBeforeDiv').hide();
+    if ($("#WorkedBefore").is(":checked") === true) {
+        $('#WorkedBeforeDiv').show();
     }
     else {
-        $("#WorkedBeforeDiv").hide();
+        $('#WorkedBeforeDiv').hide();
     }
     $('#WorkedBefore').change(function () {
-        if ($(this).is(":checked")) {
-            $("#WorkedBeforeDiv").show();
+        if ($(this).is(':checked') === true) {
+            $('#WorkedBeforeDiv').show();
         }
         else {
-            $("#WorkedBeforeDiv").hide();
+            $('#WorkedBeforeDiv').hide();
         }
-
-
     });
     $.ajax({
         url: '/Miscellaneous/Create',
@@ -21,7 +20,7 @@
         cache: false,
     }).done(function (result) {
         $('#PVMiscellaneousIndex').html(result);
-        });
+    });
 }
 function LoadPVMiscellaneousIndex(id) {
     $.ajax({
