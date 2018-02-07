@@ -68,7 +68,7 @@ namespace RMSSERVICES.Compensation
             dbCompensation.Other = obj.Other;
             dbCompensation.Food = obj.Food;
             dbCompensation.Free = obj.Free;
-            dbCompensation.Subscribed = obj.Subscribed;
+            dbCompensation.Subsidized = obj.Subsidized;
             dbCompensation.OPDInsurance = obj.OPDInsurance;
             dbCompensation.IPInsurance = obj.IPInsurance;
             dbCompensation.LifeInsurance = obj.LifeInsurance;

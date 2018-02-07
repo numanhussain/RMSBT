@@ -35,7 +35,7 @@
                             @Html.EditorFor(model => model.WorkingRelative, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                    <div class="col-md-12 form-group">
+                    <div class="form-group col-md-12">
                         <label class="control-label checkbox-inline checkbox-right text-semibold " for="WorkedBefore">
                             @Html.CheckBox("WorkedBefore")
                             @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })

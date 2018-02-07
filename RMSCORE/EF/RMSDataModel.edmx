@@ -71,7 +71,7 @@
           <Property Name="Other" Type="nvarchar" MaxLength="50" />
           <Property Name="Food" Type="bit" />
           <Property Name="Free" Type="bit" />
-          <Property Name="Subscribed" Type="bit" />
+          <Property Name="Subsidized" Type="bit" />
           <Property Name="OPDInsurance" Type="nvarchar" MaxLength="50" />
           <Property Name="IPInsurance" Type="nvarchar" MaxLength="50" />
           <Property Name="LifeInsurance" Type="nvarchar" MaxLength="50" />
@@ -777,7 +777,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_Notification' does not have a primary 
           <Property Name="Other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Food" Type="Boolean" />
           <Property Name="Free" Type="Boolean" />
-          <Property Name="Subscribed" Type="Boolean" />
+          <Property Name="Subsidized" Type="Boolean" />
           <Property Name="OPDInsurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IPInsurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LifeInsurance" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1256,7 +1256,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_Notification' does not have a primary 
                 <ScalarProperty Name="LifeInsurance" ColumnName="LifeInsurance" />
                 <ScalarProperty Name="IPInsurance" ColumnName="IPInsurance" />
                 <ScalarProperty Name="OPDInsurance" ColumnName="OPDInsurance" />
-                <ScalarProperty Name="Subscribed" ColumnName="Subscribed" />
+                <ScalarProperty Name="Subsidized" ColumnName="Subsidized" />
                 <ScalarProperty Name="Free" ColumnName="Free" />
                 <ScalarProperty Name="Food" ColumnName="Food" />
                 <ScalarProperty Name="Other" ColumnName="Other" />

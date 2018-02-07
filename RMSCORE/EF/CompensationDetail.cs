@@ -38,7 +38,7 @@ namespace RMSCORE.EF
         public string Other { get; set; }
         public Nullable<bool> Food { get; set; }
         public Nullable<bool> Free { get; set; }
-        public Nullable<bool> Subscribed { get; set; }
+        public Nullable<bool> Subsidized { get; set; }
         public string OPDInsurance { get; set; }
         public string IPInsurance { get; set; }
         public string LifeInsurance { get; set; }
