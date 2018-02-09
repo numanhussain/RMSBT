@@ -12,7 +12,7 @@ namespace RMSSERVICES.Miscellaneous
 {
     public interface IMiscellaneousService
     {
-        MiscellaneousDetail GetCreate(long id);
+        MiscellaneousDetail GetCreate(int id);
         ServiceMessage PostCreate(MiscellaneousDetail obj);
     }
 }

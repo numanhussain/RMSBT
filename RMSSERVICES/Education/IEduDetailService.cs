@@ -14,7 +14,7 @@ namespace RMSSERVICES.Education
     public interface IEduDetailService
     {
         List<VMEduDetailIndex> GetIndex( Int64 cid);
-        VMEduDetailOperation GetCreate(int? id);
+        VMEduDetailOperation GetCreate(int id);
         ServiceMessage PostCreate(VMEduDetailOperation obj);
         VMEduDetailOperation GetEdit(int id);
         ServiceMessage PostEdit(VMEduDetailOperation obj);

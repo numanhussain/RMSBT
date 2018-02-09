@@ -1,4 +1,5 @@
 ﻿using RMSCORE.EF;
+using RMSSERVICES.Generic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,6 @@ namespace RMSSERVICES.UserDetail
     public interface IUserService
     {
         List<User> GetIndex();
+        ServiceMessage RegisterUser(User dbOperation);
     }
 }

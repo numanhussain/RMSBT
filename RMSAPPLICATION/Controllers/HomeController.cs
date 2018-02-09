@@ -1,5 +1,6 @@
 ﻿using RMSCORE.EF;
 using RMSSERVICES.Generic;
+using RMSSERVICES.UserDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +13,17 @@ namespace RMSAPPLICATION.Controllers
     public class HomeController : Controller
     {
         #region -- Controller Initialization --
-        IEntityService<User> UserService;
+        IEntityService<User> UserEntityService;
+        IEntityService<V_UserCandidate> VUserEntityService;
+        IUserService UserService;
         IDDService DDService;
         // Controller Constructor
-        public HomeController(IEntityService<User> userService, IDDService ddService)
+        public HomeController(IEntityService<User> userEntityService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService)
         {
+            UserEntityService = userEntityService;
             UserService = userService;
             DDService = ddService;
+            VUserEntityService = vUserEntityService;
         }
         #endregion
         #region -- Controller ActionResults  -- 
@@ -36,84 +41,41 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Login(User Obj)
         {
-            if (UserService.GetIndex().Where(aa => aa.UserName == Obj.UserName).Count() > 0)
+            //if (UserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName).Count() > 0)
+            //    return RedirectToAction("Index", "Job");
+            //else
+            //    return View("Login");
+
+            if (VUserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password).Count() > 0)
+            {
+                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password);
+                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
+                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                 return RedirectToAction("Index", "Job");
+
+            }
             else
                 return View("Login");
+
         }
-
-
-        //if (UserService.GetIndex().Where(aa => aa.UserName == Obj.UserName).Count() > 0)
-        //{
-        //    User vm = UserService.GetIndex().First(aa => aa.UserName == Obj.UserName);
-        //    Expression<Func<AppUserLocation, bool>> SpecificEntries = c => c.UserID == vm.PUserID;
-        //    Session["LoggedInUser"] = GetLoggedInUser(vm, AppUserLocationService.GetIndexSpecific(SpecificEntries));
-        //    return View("Index");
-
-        //}
-        //else
-        //    return View("Login");
-
-        //private VMLoggedUser GetLoggedInUser(VHR_AppUser vm, List<AppUserLocation> userLocationList)
-        //{
-        //    VMLoggedUser obj = new VMLoggedUser();
-        //    obj.PUserID = vm.PUserID;
-        //    obj.UserEmpID = vm.UserEmpID;
-        //    obj.UserName = vm.UserName;
-        //    obj.UserStatus = vm.UserStatus;
-        //    obj.UserLastActiveDate = vm.UserLastActiveDate;
-        //    obj.UserAccessTypeID = vm.UserAccessTypeID;
-        //    obj.UserRoleID = vm.UserRoleID;
-        //    obj.UserEmployeeName = vm.UserEmployeeName;
-        //    obj.UserFPID = vm.UserFPID;
-        //    obj.UserJobTitleID = vm.UserJobTitleID;
-        //    obj.UserLocationID = vm.UserLocationID;
-        //    obj.UserJobTitleName = vm.UserJobTitleName;
-        //    obj.UserLocationName = vm.UserLocationName;
-        //    obj.MLeave = vm.MLeave;
-        //    obj.LeavePolicy = vm.LeavePolicy;
-        //    obj.LeaveApplication = vm.LeaveApplication;
-        //    obj.LeaveQuota = vm.LeaveQuota;
-        //    obj.LeaveCF = vm.LeaveCF;
-        //    obj.MShift = vm.MShift;
-        //    obj.Shift = vm.Shift;
-        //    obj.ShiftChange = vm.ShiftChange;
-        //    obj.ShiftChangeEmp = vm.ShiftChangeEmp;
-        //    obj.Roster = vm.Roster;
-        //    obj.MOvertime = vm.MOvertime;
-        //    obj.OvertimePolicy = vm.OvertimePolicy;
-        //    obj.OvertimeAP = vm.OvertimeAP;
-        //    obj.OvertimeENCPL = vm.OvertimeENCPL;
-        //    obj.MAttendanceEditor = vm.MAttendanceEditor;
-        //    obj.JobCard = vm.JobCard;
-        //    obj.DailyAttEditor = vm.DailyAttEditor;
-        //    obj.MonthlyAttEditor = vm.MonthlyAttEditor;
-        //    obj.CompanyStructure = vm.CompanyStructure;
-        //    obj.MSettings = vm.MSettings;
-        //    obj.Reader = vm.Reader;
-        //    obj.Holiday = vm.Holiday;
-        //    obj.DownloadTime = vm.DownloadTime;
-        //    obj.ServiceLog = vm.ServiceLog;
-        //    obj.MUser = vm.MUser;
-        //    obj.AppUser = vm.AppUser;
-        //    obj.AppUserRole = vm.AppUserRole;
-        //    obj.Employee = vm.Employee;
-        //    obj.Crew = vm.Crew;
-        //    obj.OUCommon = vm.OUCommon;
-        //    obj.JTCommon = vm.JTCommon;
-        //    obj.FinancialYear = vm.FinancialYear;
-        //    obj.PayrollPeriod = vm.PayrollPeriod;
-        //    obj.TMSAdd = vm.TMSAdd;
-        //    obj.TMSEdit = vm.TMSEdit;
-        //    obj.TMSView = vm.TMSView;
-        //    obj.TMSDelete = vm.TMSDelete;
-        //    obj.LMUserID = vm.LMUserID;
-        //    obj.MCompany = vm.MCompany;
-        //    obj.MAttendance = vm.MAttendance;
-        //    obj.Reports = vm.Reports;
-        //    obj.UserLoctions = userLocationList;
-        //    return obj;
-        //}
+        [HttpGet]
+        public ActionResult RegisterUser()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult RegisterUser(User Obj)
+        {
+           
+            if (ModelState.IsValid)
+            {
+                UserService.RegisterUser(Obj);
+                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID;
+                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                return RedirectToAction("Index", "Job");
+            }
+            return View(Obj);
+        }
         [HttpGet]
         public ActionResult ForgetPassword()
         {
@@ -124,6 +86,35 @@ namespace RMSAPPLICATION.Controllers
         {
             Session["LoggedInUser"] = null;
             return View("Login");
+        }
+        public ActionResult ChangePass()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePass(FormCollection form )
+        {
+            string newPassword = Request.Form["newPassword"].ToString();
+            string ConfirmnewPassword = Request.Form["ConfirmnewPassword"].ToString();
+            if (newPassword == "")
+            {
+                ViewBag.Message = "Please Enter Password";
+                return View("ChangePass");
+            }
+            if (ConfirmnewPassword == "")
+            {
+                ViewBag.Message = "Please Re-Confirm Password";
+                return View("ChangePass");
+            }
+            if (newPassword == ConfirmnewPassword)
+            {
+                V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+                User user = UserEntityService.GetEdit((int)vmf.UserID);
+                user.Password = newPassword;
+                UserEntityService.PostEdit(user);
+            }
+            ViewBag.Message = "Password Not Matched!";
+            return RedirectToAction("Login");
         }
         #endregion
         #endregion

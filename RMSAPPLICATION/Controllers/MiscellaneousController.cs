@@ -17,7 +17,7 @@ namespace RMSAPPLICATION.Controllers
         IMiscellaneousService MiscellaneousService;
         IDDService DDService;
         // Controller Constructor
-        public MiscellaneousController(IMiscellaneousService miscellaneousService,IEntityService<MiscellaneousDetail> miscellaneousentityService, IDDService ddService)
+        public MiscellaneousController(IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousentityService, IDDService ddService)
         {
             DDService = ddService;
             MiscellaneousService = miscellaneousService;
@@ -29,7 +29,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            long cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             MiscellaneousDetail obj = MiscellaneousService.GetCreate(cid);
             CreateHelper(obj);
             return View(obj);
@@ -48,7 +49,7 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Private  Methods--
         private void CreateHelper(MiscellaneousDetail obj)
         {
-            ViewBag.HearAboutJobID = new SelectList(DDService.GetHearAboutJob().ToList().OrderBy(aa => aa.HearAboutID).ToList(), "HearAboutID", "HearAboutSource",obj.HearAboutJobID);
+            ViewBag.HearAboutJobID = new SelectList(DDService.GetHearAboutJob().ToList().OrderBy(aa => aa.HearAboutID).ToList(), "HearAboutID", "HearAboutSource", obj.HearAboutJobID);
         }
         #endregion
     }

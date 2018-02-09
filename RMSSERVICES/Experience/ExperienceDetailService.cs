@@ -53,7 +53,7 @@ namespace RMSSERVICES.Experience
             }
             return vmExperienceDetails.OrderByDescending(aa => aa.ExpID).ToList();
         }
-        public VMExperienceOperation GetCreate(int? id)
+        public VMExperienceOperation GetCreate(int id)
         {
             VMExperienceOperation vmExperienceDetail = new VMExperienceOperation();
             vmExperienceDetail.CandidateID = id;

@@ -1,6 +1,6 @@
-﻿@model IEnumerable<RMSCORE.EF.User>
+﻿@model RMSCORE.EF.User
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Register User";
     Layout = null;
 }
 <!DOCTYPE html>
@@ -10,9 +10,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bestway - e-Recruitment</title>
-
     <!-- Global stylesheets -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    @*<link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">*@
     <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
     <link href="~/Theme/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="~/Theme/assets/css/core.css" rel="stylesheet" type="text/css">
@@ -28,68 +27,63 @@
     <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
     <!-- /core JS files -->
     <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/styling/uniform.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/login.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/ripple.min.js"></script>
     <!-- /theme JS files -->
-
 </head>
-
-<body class="login-container login-cover  pace-done">
-
+<body class="login-container">
     <!-- /main navbar -->
     <!-- Page container -->
     <div class="page-container">
-
         <!-- Page content -->
         <div class="page-content">
-
             <!-- Main content -->
             <div class="content-wrapper">
-
-                <!-- Simple login form -->
-                <form action="~/Home/Login" enctype="multipart/form-data" method="post">
+                <!-- Advanced login -->
+                <form action="~/Home/RegisterUser" enctype="multipart/form-data" method="post">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-                    <div class="col-md-7">
-                        <div class="panel panel-body login-cover" style="margin-left:500px">
+                    <div class="col-md-12">
+                        <div class="panel panel-body login-form">
                             <div class="text-center">
-                                @*<img src="~/Theme/assets/images/bcl_logo_final.png" height="100" />*@
-                                @*<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>*@
-                                <h5 class="content-group" style="color:white"><strong>e-Recruitment</strong>  <small class="display-block" style="color:white">Enter your credentials below</small></h5>
+                                <h5 class="content-group">Register<small class="display-block">All fields are required</small></h5>
                             </div>
-
+                            <div class="content-divider text-muted form-group"><span>Your credentials</span></div>
                             <div class="form-group has-feedback has-feedback-left">
-                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
+                                @Html.EditorFor(model=>model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User name" } })
                                 <div class="form-control-feedback">
-                                    <i class="icon-user text-muted"></i>
+                                    <i class="icon-2x"></i>
                                 </div>
                             </div>
-
                             <div class="form-group has-feedback has-feedback-left">
-                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Your email" } })
                                 <div class="form-control-feedback">
-                                    <i class="icon-lock2 text-muted"></i>
+                                    <i class="icon-mention text-muted"></i>
                                 </div>
                             </div>
-
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+                            <div class="form-group has-feedback has-feedback-left">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" ,Type = "password" } })
+                                <div class="form-control-feedback">
+                                    <i class="icon-user-lock text-muted"></i>
+                                </div>
                             </div>
-
-                            <div class="text-center">
-                                <a href="~/Home/ForgetPassword"><strong style="color:white">Forgot password?</strong> </a> 
-                                <a href="~/Home/RegisterUser"><strong style="color:white">Register</strong> </a>
+                            <div class="form-group has-feedback has-feedback-left">
+                                @Html.EditorFor(model => model.RetypePassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", Type = "password" } })
+                                <div class="form-control-feedback">
+                                    <i class="icon-user-lock text-muted"></i>
+                                </div>
                             </div>
+                            <button type="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
                         </div>
                     </div>
                 </form>
-                <!-- /simple login form -->
-
+                <!-- /advanced login -->
             </div>
             <!-- /main content -->
-
         </div>
         <!-- /page content -->
-
     </div>
     <!-- /page container -->
     <!-- Footer -->

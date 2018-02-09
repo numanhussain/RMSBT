@@ -22,7 +22,7 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<int> Institution { get; set; }
         public string BoardName { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public string Percentage { get; set; }
         public string CGPA { get; set; }
         public string PassingYear { get; set; }

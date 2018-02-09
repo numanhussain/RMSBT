@@ -13,7 +13,7 @@ namespace RMSCORE.Models.Operation
         public int? SLevelID { get; set; }
         public string SLevelName { get; set; }
         public string Description { get; set; }
-        public int? CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public string CandidateName { get; set; }
     }
 }

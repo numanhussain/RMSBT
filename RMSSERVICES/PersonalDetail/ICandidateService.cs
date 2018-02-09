@@ -14,7 +14,7 @@ namespace RMSSERVICES.PersonalDetail
     public interface ICandidateService
     {
         List<Candidate> GetIndex();
-        Candidate GetCreate(long id);
+        Candidate GetCreate(int cid,int uid);
         ServiceMessage PostCreate(Candidate dbOperation);
         byte[] GetImageFromDataBase(int id);
         void SaveImageInDatabase(byte[] img, int empID);

@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace RMSSERVICES.Miscellaneous
 {
-   public class MiscellaneousService:IMiscellaneousService
+    public class MiscellaneousService : IMiscellaneousService
     {
         #region -- Service Variables --
         IUnitOfWork UnitOfWork;
@@ -25,18 +25,34 @@ namespace RMSSERVICES.Miscellaneous
         }
         #endregion
         #region -- Service Interface Implementation --
-        public MiscellaneousDetail GetCreate(long id)
+        public MiscellaneousDetail GetCreate(int id)
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == id;
-            MiscellaneousDetail dbMiscellaneous = MiscellaneousRepository.FindBy(SpecificClient).First();
+            MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
+            dbMiscellaneous.CandidateID = id;
+            if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
+            {
+                dbMiscellaneous = MiscellaneousRepository.FindBy(SpecificClient).First();
+            }
             return dbMiscellaneous;
         }
         public ServiceMessage PostCreate(MiscellaneousDetail obj)
         {
+            Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
-            dbMiscellaneous = ConvertMiscellaneousObject(obj);
-            MiscellaneousRepository.Edit(dbMiscellaneous);
-            MiscellaneousRepository.Save();
+            if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
+            {
+                dbMiscellaneous = ConvertMiscellaneousObject(obj);
+                MiscellaneousRepository.Edit(dbMiscellaneous);
+                MiscellaneousRepository.Save();
+            }
+            else
+            {
+                dbMiscellaneous = ConvertMiscellaneousObject(obj);
+                MiscellaneousRepository.Add(dbMiscellaneous);
+                MiscellaneousRepository.Save();
+            }
+                
             return new ServiceMessage();
         }
         #endregion

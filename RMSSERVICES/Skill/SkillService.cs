@@ -44,7 +44,7 @@ namespace RMSSERVICES.Skill
             }
             return vmSkillDetails.OrderByDescending(aa => aa.SkillID).ToList();
         }
-        public VMSkillOperation GetCreate(int? id)
+        public VMSkillOperation GetCreate(int id)
         {
             VMSkillOperation vmSkillDetail = new VMSkillOperation();
             vmSkillDetail.CandidateID = id;

@@ -16,7 +16,7 @@ namespace RMSCORE.EF
     {
         public int InterviewID { get; set; }
         public string Title { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public Nullable<int> JobID { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.TimeSpan> StartTime { get; set; }

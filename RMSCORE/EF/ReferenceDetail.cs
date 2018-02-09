@@ -19,6 +19,6 @@ namespace RMSCORE.EF
         public string RefDesignation { get; set; }
         public string RefEmail { get; set; }
         public string RefContact { get; set; }
-        public Nullable<long> CandidateID { get; set; }
+        public int CandidateID { get; set; }
     }
 }

@@ -142,6 +142,9 @@
     <Compile Include="EF\V_Notification.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\V_UserCandidate.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Helper\CustomModel.cs" />
     <Compile Include="Models\Helper\ValidationMessage.cs" />
     <Compile Include="Models\Helper\VMDropDown.cs" />

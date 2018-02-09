@@ -29,7 +29,7 @@ namespace RMSSERVICES.Reference
         }
         #endregion
         #region -- Service Interface Implementation --
-        public List<VMReferenceIndex> GetIndex(long cid)
+        public List<VMReferenceIndex> GetIndex(int cid)
         {
             Expression<Func<V_Candidate_Reference, bool>> SpecificCandidateReference = c => c.CandidateID == cid;
             List<V_Candidate_Reference> dbVReferenceDetails = ReferenceDetailRepository.FindBy(SpecificCandidateReference);
@@ -47,7 +47,7 @@ namespace RMSSERVICES.Reference
             }
             return vmReferenceDetails.OrderByDescending(aa => aa.RefID).ToList();
         }
-        public VMReferenceOperation GetCreate(long? id)
+        public VMReferenceOperation GetCreate(int id)
         {
             VMReferenceOperation vmReferenceDetail = new VMReferenceOperation();
             vmReferenceDetail.CandidateID = id;

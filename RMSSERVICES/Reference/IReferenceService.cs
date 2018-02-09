@@ -12,8 +12,8 @@ namespace RMSSERVICES.Reference
 {
     public interface IReferenceService
     {
-        List<VMReferenceIndex> GetIndex(Int64 cid);
-        VMReferenceOperation GetCreate(long? id);
+        List<VMReferenceIndex> GetIndex(int cid);
+        VMReferenceOperation GetCreate(int id);
         ServiceMessage PostCreate(VMReferenceOperation obj);
         VMReferenceOperation GetEdit(int id);
         ServiceMessage PostEdit(VMReferenceOperation obj);

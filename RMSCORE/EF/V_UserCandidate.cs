@@ -12,19 +12,14 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class V_UserCandidate
     {
-        public int UserID { get; set; }
+        public int CandidateID { get; set; }
+        public string CName { get; set; }
+        public Nullable<int> UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public Nullable<System.DateTime> DateCreated { get; set; }
-        public Nullable<int> UserTypeID { get; set; }
-        public Nullable<bool> Status { get; set; }
-        public Nullable<bool> CanEdit { get; set; }
-        public Nullable<bool> CanDelete { get; set; }
-        public Nullable<bool> CanView { get; set; }
-        public Nullable<bool> CanAdd { get; set; }
-        public string Email { get; set; }
+        public string EmailID { get; set; }
         public string RetypePassword { get; set; }
     }
 }

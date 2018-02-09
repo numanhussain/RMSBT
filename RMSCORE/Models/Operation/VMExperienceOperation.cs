@@ -19,7 +19,7 @@ namespace RMSCORE.Models.Operation
         public string Address { get; set; }
         public string Description { get; set; }
         public string Salary { get; set; }
-        public int? CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public string CandidateName { get; set; }
         public int? IndustryID { get; set; }
         public string IndustryName { get; set; }

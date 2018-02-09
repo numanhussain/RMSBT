@@ -10,7 +10,7 @@ namespace RMSCORE.Models.Operation
     public class VMEduDetailOperation
     {
         public int EduID { get; set; }
-        public int? CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public string CandidateName { get; set; }
         public int? DegreeID { get; set; }
         public string DegreeName { get; set; }

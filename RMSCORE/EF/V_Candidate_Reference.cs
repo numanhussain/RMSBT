@@ -19,7 +19,7 @@ namespace RMSCORE.EF
         public string RefDesignation { get; set; }
         public string RefEmail { get; set; }
         public string RefContact { get; set; }
-        public Nullable<long> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public string CName { get; set; }
         public string CNICNo { get; set; }
     }

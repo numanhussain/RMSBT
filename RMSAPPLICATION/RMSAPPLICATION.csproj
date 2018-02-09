@@ -3063,6 +3063,8 @@
     <Content Include="Views\Job\OpenJob.cshtml" />
     <Content Include="Views\Job\JobDetail.cshtml" />
     <Content Include="Views\Notification\Index.cshtml" />
+    <Content Include="Views\Home\RegisterUser.cshtml" />
+    <Content Include="Views\Home\ChangePass.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

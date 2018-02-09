@@ -55,6 +55,6 @@ namespace RMSCORE.EF
         public string TAllowenceWorkDay { get; set; }
         public string ExpectedSalary { get; set; }
         public string OtherBenifits { get; set; }
-        public Nullable<long> CandidateID { get; set; }
+        public Nullable<int> CandidateID { get; set; }
     }
 }

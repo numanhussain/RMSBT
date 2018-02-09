@@ -34,13 +34,14 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult GetSystemNotification()
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             StringBuilder list = new StringBuilder();
             List<NotificationDetail> vmList = NotificationService.GetIndex();
             int NotificationCount = 0;
             VMNotification vmNotification = new VMNotification();
             if (vmList.Count > 0)
             {
-                if (vmList.Where(aa => aa.CandidateID == AssistantService.LoggedInUserID && aa.IsViewed == false).Count() > 0)
+                if (vmList.Where(aa => aa.CandidateID == vmf.CandidateID && aa.IsViewed == false).Count() > 0)
                 {
                     NotificationCount++;
                     list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
@@ -52,7 +53,7 @@ namespace RMSAPPLICATION.Controllers
                     list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
                         "Jobs Opening " + vmList.Where(aa => aa.JobStatus == true).Count().ToString() + "  jobs.", "Jobs Information", GenerateLinkForSystemNotifications("Job").ToString()));
                 }
-                if (vmList.Where(aa => aa.CandidateID == AssistantService.LoggedInUserID && aa.IsViewed == false).Count() > 0)
+                if (vmList.Where(aa => aa.CandidateID ==vmf.CandidateID && aa.IsViewed == false).Count() > 0)
                 {
                     NotificationCount++;
                     list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
@@ -64,7 +65,7 @@ namespace RMSAPPLICATION.Controllers
                     list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
                         "Jobs Opening " + vmList.Where(aa => aa.JobStatus == true).Count().ToString() + "  jobs.", "Jobs Information", GenerateLinkForSystemNotifications("Job").ToString()));
                 }
-                if (vmList.Where(aa => aa.CandidateID == AssistantService.LoggedInUserID && aa.IsViewed == false).Count() > 0)
+                if (vmList.Where(aa => aa.CandidateID == vmf.CandidateID && aa.IsViewed == false).Count() > 0)
                 {
                     NotificationCount++;
                     list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",

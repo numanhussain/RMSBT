@@ -32,7 +32,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            long cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             CompensationDetail obj = CompensationDetailService.GetCreate(cid);
             return View(obj);
         }

@@ -27,15 +27,19 @@ namespace RMSAPPLICATION.Controllers
         // GET: Candidate
         public ActionResult Index()
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             Candidate obj = new Candidate();
-            obj.CandidateID = AssistantService.LoggedInUserID;
+            obj.CandidateID = vmf.CandidateID;
+            obj.UserID = vmf.UserID;
             return View(obj);
         }
         [HttpGet]
         public ActionResult Create()
         {
-            long cid = AssistantService.LoggedInUserID;
-            Candidate vmOperation = CandidateService.GetCreate(cid);
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            int? uid = vmf.UserID;
+            Candidate vmOperation = CandidateService.GetCreate(cid,(int)uid);
             return View(vmOperation);
         }
         [HttpPost]

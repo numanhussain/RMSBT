@@ -19,7 +19,7 @@ namespace RMSCORE.EF
         public string Description { get; set; }
         public string URL { get; set; }
         public Nullable<bool> IsViewed { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public Nullable<int> JobID { get; set; }
         public Nullable<bool> JobStatus { get; set; }
         public Nullable<int> InterviewID { get; set; }

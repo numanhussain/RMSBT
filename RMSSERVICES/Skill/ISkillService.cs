@@ -13,7 +13,7 @@ namespace RMSSERVICES.Skill
     public interface ISkillService
     {
         List<VMSkillIndex> GetIndex(Int64 cid);
-        VMSkillOperation GetCreate(int? id);
+        VMSkillOperation GetCreate(int id);
         ServiceMessage PostCreate(VMSkillOperation obj);
         VMSkillOperation GetEdit(int id);
         ServiceMessage PostEdit(VMSkillOperation obj);

@@ -25,18 +25,35 @@ namespace RMSSERVICES.Compensation
         }
         #endregion
         #region -- Service Interface Implementation --
-        public CompensationDetail GetCreate(long id)
+        public CompensationDetail GetCreate(int id)
         {
             Expression<Func<CompensationDetail, bool>> SpecificClient = c => c.CandidateID == id;
-            CompensationDetail dbCompensation = CompensationRepository.FindBy(SpecificClient).First();
+            CompensationDetail dbCompensation = new CompensationDetail();
+            dbCompensation.CandidateID = id;
+            if (CompensationRepository.FindBy(SpecificClient).Count() > 0)
+            {
+                dbCompensation = CompensationRepository.FindBy(SpecificClient).First();
+            }
             return dbCompensation;
         }
         public ServiceMessage PostCreate(CompensationDetail obj)
         {
+            Expression<Func<CompensationDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             CompensationDetail dbCompensation = new CompensationDetail();
-            dbCompensation = ConvertCompensationObject(obj);
-            CompensationRepository.Edit(dbCompensation);
-            CompensationRepository.Save();
+            if (CompensationRepository.FindBy(SpecificClient).Count() > 0)
+            {
+                dbCompensation = ConvertCompensationObject(obj);
+                CompensationRepository.Edit(dbCompensation);
+                CompensationRepository.Save();
+
+            }
+            else
+            {
+                dbCompensation = ConvertCompensationObject(obj);
+                CompensationRepository.Add(dbCompensation);
+                CompensationRepository.Save();
+            }
+                
             return new ServiceMessage();
         }
         #endregion

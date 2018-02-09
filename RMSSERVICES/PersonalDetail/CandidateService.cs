@@ -31,9 +31,10 @@ namespace RMSSERVICES.PersonalDetail
         {
             return CandidateRepository.GetAll();
         }
-        public Candidate GetCreate(long id)
+        public Candidate GetCreate(int cid,int uid)
         {
-            Candidate dbCandidate = CandidateRepository.GetSingle((int)id);
+            Candidate dbCandidate = CandidateRepository.GetSingle(cid);
+            dbCandidate.UserID = uid;
             return dbCandidate;
         }
         public ServiceMessage PostCreate(Candidate dbOperation)
@@ -62,6 +63,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.Address = dbOperation.Address;
             dbCandidate.Objective = dbOperation.Objective;
             dbCandidate.CImage = dbOperation.CImage;
+            dbCandidate.UserID = dbOperation.UserID;
             return dbCandidate;
         }  
         public byte[] GetImageFromDataBase(int id)

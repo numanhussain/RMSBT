@@ -13,7 +13,7 @@ namespace RMSSERVICES.Experience
     public interface IExperienceDetailService
     {
         List<VMExperienceIndex> GetIndex(Int64 cid);
-        VMExperienceOperation GetCreate(int? id);
+        VMExperienceOperation GetCreate(int id);
         ServiceMessage PostCreate(VMExperienceOperation obj);
         VMExperienceOperation GetEdit(int id);
         ServiceMessage PostEdit(VMExperienceOperation obj);

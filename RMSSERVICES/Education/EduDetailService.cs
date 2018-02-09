@@ -47,7 +47,7 @@ namespace RMSSERVICES.Education
             }
             return vmEduDetails.OrderByDescending(aa => aa.DegreeID).ToList();
         }
-        public VMEduDetailOperation GetCreate(int? id)
+        public VMEduDetailOperation GetCreate(int id)
         {
             VMEduDetailOperation vmEduDetail = new VMEduDetailOperation();
             vmEduDetail.CandidateID = id;

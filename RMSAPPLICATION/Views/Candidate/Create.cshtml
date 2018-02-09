@@ -7,6 +7,7 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CandidateID)
+    @Html.HiddenFor(model => model.UserID)
     <!-- Page container -->
     <div style="margin-top:-45px">
         <div class="modal-header">

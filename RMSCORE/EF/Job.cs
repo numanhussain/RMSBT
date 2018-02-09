@@ -27,7 +27,7 @@ namespace RMSCORE.EF
         public string CityName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CompanyName { get; set; }
-        public Nullable<int> Experience { get; set; }
+        public string Experience { get; set; }
         public string QualificationReq { get; set; }
         public string Resposibilties { get; set; }
         public string CatagoryName { get; set; }

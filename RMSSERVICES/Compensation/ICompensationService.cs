@@ -11,7 +11,7 @@ namespace RMSSERVICES.Compensation
 {
     public interface ICompensationService
     {
-        CompensationDetail GetCreate(long id);
+        CompensationDetail GetCreate(int id);
         ServiceMessage PostCreate(CompensationDetail dbOperation);
     }
 }

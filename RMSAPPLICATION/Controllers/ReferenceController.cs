@@ -27,7 +27,7 @@ namespace RMSAPPLICATION.Controllers
         // GET: Reference
         public ActionResult Index()
         {
-            long cid = AssistantService.LoggedInUserID;
+            int cid = AssistantService.LoggedInUserID;
             List<VMReferenceIndex> vmlist = ReferenceDetailService.GetIndex(cid);
             return View(vmlist);
         }
@@ -35,7 +35,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            long cid = AssistantService.LoggedInUserID;
+            int cid = AssistantService.LoggedInUserID;
             VMReferenceOperation obj = ReferenceDetailService.GetCreate(cid);
             return View(obj);
         }

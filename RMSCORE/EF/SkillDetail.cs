@@ -18,7 +18,7 @@ namespace RMSCORE.EF
         public string Title { get; set; }
         public Nullable<int> SLevelID { get; set; }
         public string Description { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
     
         public virtual Candidate Candidate { get; set; }
     }

@@ -31,6 +31,7 @@ namespace RMSAPPLICATION
             var container = builder.Build();
 
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+
         }
     }
 }

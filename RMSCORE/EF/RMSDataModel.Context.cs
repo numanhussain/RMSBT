@@ -51,5 +51,6 @@ namespace RMSCORE.EF
         public virtual DbSet<V_Candidate_Skills> V_Candidate_Skills { get; set; }
         public virtual DbSet<V_Interview> V_Interview { get; set; }
         public virtual DbSet<V_Notification> V_Notification { get; set; }
+        public virtual DbSet<V_UserCandidate> V_UserCandidate { get; set; }
     }
 }
