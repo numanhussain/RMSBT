@@ -5,7 +5,7 @@
         cache: false,
         data: { cid: id }
     }).done(function (result) {
-        $('#PVEduDetailIndex').html(result);
+        $('#PartialViewContainer').html(result);
     });
 };
 function EduDetailGetCreate(id) {
@@ -19,7 +19,6 @@ function EduDetailGetCreate(id) {
             success: function (data) {
                 $('#modelBody').html(data);
                 $('#myModal').modal('show');
-
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -27,22 +26,18 @@ function EduDetailGetCreate(id) {
         });
     });
 }
-function EduDetailPostCreate(){
+function EduDetailPostCreate(id) {
     $('#btnPostCreate').click(function () {
         $.ajax({
-            type: "POST",
-            url: "/EduDetail/Create",
+            url: '/EduDetail/Create',
+            type: 'POST',
+            cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data === "OK") {
-                    $('#myModal').modal('hide');
-                    location.reload();
-                }
-                else {
-                    $('#modelBody').html(data);
-                }
+                $('#myModal').modal('hide');
+                LoadPVEduDetailIndex(id)
             },
-            error: function (){
+            error: function () {
                 alert("Dynamic content load failed.");
             }
         });
@@ -65,21 +60,15 @@ function EduDetailGetEdit(id) {
         }
     });
 }
-function EduDetailPostEdit() {
-    $('#btnPostEdit').click(function (){
+function EduDetailPostEdit(id) {
+    $('#btnPostEdit').click(function () {
         $.ajax({
             type: "POST",
             url: "/EduDetail/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                if (data === "OK") {
-
-                    $('#myModal').modal('hide');
-                    location.reload();
-                }
-                else {
-                    $('#modelBody').html(data);
-                }
+                $('#myModal').modal('hide');
+                LoadPVEduDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -87,7 +76,7 @@ function EduDetailPostEdit() {
         });
     });
 }
-function EduDetailGetDelete(id){
+function EduDetailGetDelete(id) {
     $.ajax({
         type: "GET",
         url: "/EduDetail/Delete",
@@ -102,5 +91,21 @@ function EduDetailGetDelete(id){
         error: function () {
             alert("Dynamic content load failed.");
         }
+    });
+}
+function EduDetailPostDelete(id) {
+    $('#btnDeletePost').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/EduDetail/Delete",
+            data: $("#formDeleteID").serialize(),
+            success: function (data) {
+                $('#myModal').modal('hide');
+                LoadPVEduDetailIndex(id)
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
     });
 }

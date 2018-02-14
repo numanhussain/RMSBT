@@ -12,10 +12,10 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Job
+    public partial class JobDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Job()
+        public JobDetail()
         {
             this.Interviews = new HashSet<Interview>();
         }

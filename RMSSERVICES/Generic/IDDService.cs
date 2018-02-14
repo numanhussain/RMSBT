@@ -13,7 +13,7 @@ namespace RMSSERVICES.Generic
         List<Candidate> GetCandidate();
         List<EduDegreeLevel> GetEduLevel();
         List<User> GetUser();
-        List<Job> GetJob();
+        List<JobDetail> GetJob();
         List<HearAbout> GetHearAboutJob();
         List<EduInstitute> GetInstitute();
         List<SkillLevel> GetSkillLevel();

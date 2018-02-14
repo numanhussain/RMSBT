@@ -82,7 +82,7 @@
     <Compile Include="EF\Interview.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="EF\Job.cs">
+    <Compile Include="EF\JobDetail.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MiscellaneousDetail.cs">
@@ -119,6 +119,9 @@
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\User.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\V_AppliedJob.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\V_Candidate_EduDetail.cs">

@@ -43,6 +43,7 @@ function SaveCompensationFunction() {
                 if (data === "OK") {
                     location.reload();
                 }
+                $('#PVCompensationIndex').html(data);
             },
             error: function () {
                 alert("Dynamic content load failed.");

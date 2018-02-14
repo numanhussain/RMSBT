@@ -26,7 +26,7 @@ namespace RMSSERVICES.Education
             EduDetailRepository = edudetailRepository;
             EducationDetailRepository = educationDetailRepository;
         }
-        public List<VMEduDetailIndex> GetIndex(long cid)
+        public List<VMEduDetailIndex> GetIndex(int cid)
         {
             Expression<Func<V_Candidate_EduDetail, bool>> SpecificClient = c => c.CandidateID == cid;
             List<V_Candidate_EduDetail> dbVEduDetails = EduDetailRepository.FindBy(SpecificClient);
@@ -107,9 +107,9 @@ namespace RMSSERVICES.Education
             obj.PassingYear = dbEduDetail.PassingYear;
             return obj;
         }
-        public ServiceMessage PostDelete(VMEduDetailOperation vmOperation, int? id)
+        public ServiceMessage PostDelete(VMEduDetailOperation vmOperation)
         {
-            Expression<Func<EduDetail, bool>> TotalVersions = c => c.EduID == id;
+            Expression<Func<EduDetail, bool>> TotalVersions = c => c.EduID == vmOperation.EduID;
             List<EduDetail> dbEduDetails = EducationDetailRepository.FindBy(TotalVersions);
             foreach (var dbEduDetail in dbEduDetails)
             {

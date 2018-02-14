@@ -1,4 +1,8 @@
 ﻿@model List<RMSCORE.EF.V_Interview>
+@{ 
+    ViewBag.title = "Interview Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <!-- Page container -->
 <div class="page-container">
     <!-- Page content -->
@@ -9,14 +13,14 @@
             <div class="panel panel-flat">
                 <div class="breadcrumb-line bg-success-400">
                     <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                    @*<ul class="breadcrumb-elements">
-                        <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add New Detail</a></li>
-                    </ul>*@
+                    <ul class="breadcrumb-elements">
+                        @* <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add New Detail</a></li>*@
+                    </ul>
                 </div>
-                <table class="table datatable-basic ">
+                <table class="table datatable-basic">
                     <thead>
-                        <tr class="">
-                            <th style="width:90px">
+                        <tr>
+                            <th>
                                 Interview title
                             </th>
                             <th>

@@ -13,11 +13,11 @@ namespace RMSAPPLICATION.Controllers
     public class NotificationController : Controller
     {
         IEntityService<Candidate> CandidateService;
-        IEntityService<Job> JobTitleService;
+        IEntityService<JobDetail> JobTitleService;
         IEntityService<V_Interview> InterviewService;
         IEntityService<NotificationDetail> NotificationService;
         IDDService DDService;
-        public NotificationController(IEntityService<Candidate> candidateService, IEntityService<V_Interview> interviewService, IEntityService<NotificationDetail> notificationService, IDDService dDService, IEntityService<Job> jobTitleService)
+        public NotificationController(IEntityService<Candidate> candidateService, IEntityService<V_Interview> interviewService, IEntityService<NotificationDetail> notificationService, IDDService dDService, IEntityService<JobDetail> jobTitleService)
         {
             CandidateService = candidateService;
             DDService = dDService;

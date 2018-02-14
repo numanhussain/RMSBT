@@ -16,7 +16,7 @@ namespace RMSSERVICES.Generic
         IRepository<EduDegreeLevel> EduDetailRepository;
         IRepository<EduInstitute> EduInstituteRepository;
         IRepository<User> UserRepository;
-        IRepository<Job> JobRepository;
+        IRepository<JobDetail> JobRepository;
         IRepository<HearAbout> HearAboutJobRepository;
         IRepository<SkillLevel> SkillLevelRepository;
         IRepository<ExperienceIndustry> ExpIndustryRepository;
@@ -24,7 +24,7 @@ namespace RMSSERVICES.Generic
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<Candidate> candidateRepository,
             IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
-            IRepository<User> userRepository, IRepository<Job> jobRepository, IRepository<HearAbout> hearAboutJobRepository)
+            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository)
         {
             _unitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
@@ -52,7 +52,7 @@ namespace RMSSERVICES.Generic
         {
             return UserRepository.GetAll();
         }
-        public List<Job> GetJob()
+        public List<JobDetail> GetJob()
         {
             return JobRepository.GetAll();
         }

@@ -62,6 +62,8 @@
     <Compile Include="Generic\EntityService.cs" />
     <Compile Include="Generic\IDDService.cs" />
     <Compile Include="Generic\IEntityService.cs" />
+    <Compile Include="Job\IJobService.cs" />
+    <Compile Include="Job\JobService.cs" />
     <Compile Include="Miscellaneous\IMiscellaneousService.cs" />
     <Compile Include="Miscellaneous\MiscellaneousService.cs" />
     <Compile Include="PersonalDetail\CandidateService.cs" />

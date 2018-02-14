@@ -36,7 +36,7 @@ namespace RMSCORE.EF
         public virtual DbSet<ExperienceIndustry> ExperienceIndustries { get; set; }
         public virtual DbSet<HearAbout> HearAbouts { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
-        public virtual DbSet<Job> Jobs { get; set; }
+        public virtual DbSet<JobDetail> JobDetails { get; set; }
         public virtual DbSet<MiscellaneousDetail> MiscellaneousDetails { get; set; }
         public virtual DbSet<NotificationDetail> NotificationDetails { get; set; }
         public virtual DbSet<ReferenceDetail> ReferenceDetails { get; set; }
@@ -44,6 +44,7 @@ namespace RMSCORE.EF
         public virtual DbSet<SkillLevel> SkillLevels { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<V_AppliedJob> V_AppliedJob { get; set; }
         public virtual DbSet<V_Candidate_EduDetail> V_Candidate_EduDetail { get; set; }
         public virtual DbSet<V_Candidate_Exp> V_Candidate_Exp { get; set; }
         public virtual DbSet<V_Candidate_Miscellaneous> V_Candidate_Miscellaneous { get; set; }

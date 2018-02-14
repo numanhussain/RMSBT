@@ -12,17 +12,13 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class V_Interview
+    public partial class V_AppliedJob
     {
-        public int InterviewID { get; set; }
-        public string Title { get; set; }
-        public int CandidateID { get; set; }
+        public Nullable<int> CandidateID { get; set; }
+        public int CJobID { get; set; }
+        public Nullable<System.DateTime> CJobDate { get; set; }
         public string CName { get; set; }
         public Nullable<int> JobID { get; set; }
         public string JobTitle { get; set; }
-        public Nullable<System.DateTime> StartDate { get; set; }
-        public Nullable<System.TimeSpan> StartTime { get; set; }
-        public Nullable<System.DateTime> EndDateTime { get; set; }
-        public Nullable<bool> Status { get; set; }
     }
 }

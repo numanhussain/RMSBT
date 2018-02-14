@@ -36,7 +36,6 @@ function SelectAllCheckBox() {
     });
 }
 function ApplyJob(id) {
-    alert(id);
     $.ajax({
         url: '/Job/JobApply',
         type: "POST",

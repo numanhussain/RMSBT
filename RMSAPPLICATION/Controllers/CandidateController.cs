@@ -50,7 +50,7 @@ namespace RMSAPPLICATION.Controllers
                 CandidateService.PostCreate(dbOperation);
             }
             //CreateHelper(dbOperation);
-            return View("Index", dbOperation);
+            return View("Create", dbOperation);
         }
         [HttpPost]
         public void CandidateImage()

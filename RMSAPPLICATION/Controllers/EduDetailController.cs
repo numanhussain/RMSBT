@@ -21,7 +21,7 @@ namespace RMSAPPLICATION.Controllers
         // Controller Constructor
         public EduDetailController(IEduDetailService edudetailService, IDDService ddService)
         {
-            DDService= ddService;
+            DDService = ddService;
             EduDetailService = edudetailService;
         }
         #endregion
@@ -29,7 +29,8 @@ namespace RMSAPPLICATION.Controllers
         // GET: EduDetail
         public ActionResult Index()
         {
-            long cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             List<VMEduDetailIndex> vmlist = EduDetailService.GetIndex(cid);
             return View(vmlist);
         }
@@ -37,7 +38,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            int cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             VMEduDetailOperation obj = EduDetailService.GetCreate(cid);
             CreateHelper(obj);
             return View(obj);
@@ -48,15 +50,14 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 EduDetailService.PostCreate(obj);
-                return RedirectToAction("Index");
             }
-            //CreateHelper(dbOperation);
-            return View(obj);
+            CreateHelper(obj);
+            return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            VMEduDetailOperation obj = EduDetailService.GetEdit((int) id);
+            VMEduDetailOperation obj = EduDetailService.GetEdit((int)id);
             EditHelper(obj);
             return PartialView(obj);
         }
@@ -66,10 +67,9 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 EduDetailService.PostEdit(obj);
-                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             EditHelper(obj);
-            return PartialView("Edit", obj);
+            return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -78,10 +78,10 @@ namespace RMSAPPLICATION.Controllers
             return View(vmOperation);
         }
         [HttpPost]
-        public ActionResult Delete(VMEduDetailOperation obj, int? id)
+        public ActionResult Delete(VMEduDetailOperation obj)
         {
-            EduDetailService.PostDelete(obj, id);
-            return RedirectToAction("Index", "Candidate");
+            EduDetailService.PostDelete(obj);
+            return PartialView(obj);
         }
         #endregion
         #endregion

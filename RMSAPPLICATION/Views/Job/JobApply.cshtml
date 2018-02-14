@@ -1,0 +1,63 @@
+﻿@model List<RMSCORE.EF.V_AppliedJob>
+@{
+    ViewBag.title = "Applied Jobs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page-container">
+    <div class="page-content">
+        <div class="content-wrapper">
+            <!-- Page container -->
+            <!-- Page content -->
+            <!-- Main content -->
+            <!-- Basic datatable -->
+            <div style="margin-top:-45px">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3><i class="icon-attachment"></i>&nbsp;&nbsp;Applied Jobs</h3>
+                    </div>
+                </div>
+            </div>
+            <!-- Page content -->
+            <!-- Main content -->
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                <div class="modal-header bg-blue" style="padding:20px">
+                </div>
+                <div class="panel-body">
+                    <table class="table datatable-basic">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Candidate Name
+                                </th>
+                                <th>
+                                    Job Title
+                                </th>
+                                <th>
+                                    Applied Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CName)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.JobTitle)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CJobDate)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,68 +1,75 @@
 ﻿@model List<RMSCORE.Models.Main.VMReferenceIndex>
+
 <!-- Page container -->
 <!-- Basic datatable -->
-<div style="margin-top:-45px">
-    <div class="modal-header">
-        <div class="modal-title">
-            <h3><i class="icon-attachment"></i>&nbsp;&nbsp;Reference Details</h3>
+<div class="tab-pane" id="tabs_education">
+    <div style="margin-top:-45px">
+        <div class="modal-header">
+            <div class="modal-title">
+                <h3><i class="icon-attachment"></i>&nbsp;&nbsp;Reference Details</h3>
+            </div>
         </div>
-    </div><!-- Page content -->
-    <!-- Main content -->
-    <!-- Basic datatable -->
-    <div class="panel panel-flat">
-        <div class="breadcrumb-line bg-blue-400">
-            <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-            <ul class="breadcrumb-elements">
-                <li><a href="#" id="ReferenceGetCreate"><i class="icon-add position-left"></i> Add New Reference</a></li>
-            </ul>
-        </div>
-        <table class="table datatable-basic ">
-            <thead>
-                <tr>
-                    <th>
-                        Ref Name
-                    </th>
-                    <th>
-                        Ref Designation
-                    </th>
-                    <th>
-                        Ref Contact
-                    </th>
-                    <th>
-                        Ref Email
-                    </th>
-                    <th>
-                        Edit | Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RefName)
-                        </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RefDesignation)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RefContact)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.RefEmail)
-                        </td>
-                        <td>
-                            <input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="fa fa-edit" />|
-                            <input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" />
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="panel panel-flat">
+            <div class="breadcrumb-line bg-blue-400">
+                <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                <ul class="breadcrumb-elements">
+                    <li><a href="#" id="ReferenceGetCreate"><i class="icon-add position-left"></i> Add New Reference</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <table class="table datatable-basic ">
+                    <thead>
+                        <tr>
+                            <th>
+                                Ref Name
+                            </th>
+                            <th>
+                                Ref Designation
+                            </th>
+                            <th>
+                                Ref Contact
+                            </th>
+                            <th>
+                                Ref Email
+                            </th>
+                            <th>
+                                Edit | Delete
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RefName)
+                                </td>
+
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RefDesignation)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RefContact)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.RefEmail)
+                                </td>
+                                <td>
+                                    <input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="fa fa-edit" />|
+                                    <input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 </div>
+<!-- Page content -->
+<!-- Main content -->
+<!-- Basic datatable -->
 <script type="text/javascript" src="~/Scripts/Candidate/Reference.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

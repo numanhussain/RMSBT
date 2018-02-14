@@ -9,8 +9,8 @@ namespace RMSCORE.Models.Main
 {
     public class VMEduDetailIndex
     {
-        public Int64 EduID { get; set; }
-        public long? CandidateID { get; set; }
+        public int EduID { get; set; }
+        public int? CandidateID { get; set; }
         public string CandidateName { get; set; }
         public int? DegreeID { get; set; }
         public string DegreeName { get; set; }
@@ -25,6 +25,7 @@ namespace RMSCORE.Models.Main
         public string Percentage { get; set; }
         public string CGPA { get; set; }
         public string BoardName { get; set; }
-        public string IndustryName { get; set; }    
+        public string IndustryName { get; set; }
+        public string PassingYear { get; set; }
     }
 }

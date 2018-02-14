@@ -7,15 +7,18 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using RMSCORE.Models.Helper;
+using RMSSERVICES.Job;
 
 namespace RMSAPPLICATION.Controllers
 {
     public class JobController : Controller
     {
-        IEntityService<Job> JobService;
+        IEntityService<JobDetail> JobEntityService;
         IEntityService<CandidateJob> JobApplyService;
-        public JobController(IEntityService<Job> jobService,IEntityService<CandidateJob> jobApplyService)
+        IJobService JobService;
+        public JobController(IEntityService<JobDetail> jobEntityService,IEntityService<CandidateJob> jobApplyService, IJobService jobService)
         {
+            JobEntityService = jobEntityService;
             JobService = jobService;
             JobApplyService = jobApplyService;
         }
@@ -24,15 +27,15 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Index()
         {
             VMJobPortalIndex vm = new VMJobPortalIndex();
-            vm.LocationList = GetLocationList(JobService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
-            vm.CatagoryList = GetCatagoryList(JobService.GetIndex().Select(aa => aa.CatagoryName).Distinct().ToList());
+            vm.LocationList = GetLocationList(JobEntityService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
+            vm.CatagoryList = GetCatagoryList(JobEntityService.GetIndex().Select(aa => aa.CatagoryName).Distinct().ToList());
             return View(vm);
         }
         [HttpPost]
         public ActionResult Index(VMJobPortalIndex obj,string[] SelectedIds,string[] SelectedCatagoryIds)
         {
-            List<Job> vmAllJobList =JobService.GetIndex();
-            List<Job> vmTempList = new List<Job>();
+            List<JobDetail> vmAllJobList = JobEntityService.GetIndex();
+            List<JobDetail> vmTempList = new List<JobDetail>();
             if (obj.FilterBox != null)
             {
             vmAllJobList=vmAllJobList.Where(aa => aa.JobTitle.Contains(obj.FilterBox)).ToList();
@@ -92,13 +95,21 @@ namespace RMSAPPLICATION.Controllers
 
         public ActionResult OpenJob()
         {
-            List<Job> vmAllJobList = JobService.GetIndex();
+            List<JobDetail> vmAllJobList = JobEntityService.GetIndex();
             return View(vmAllJobList);
         }
         public ActionResult JobDetail(int JobID)
         {
-            Job vmallJobDetail = JobService.GetEdit(JobID);
+            JobDetail vmallJobDetail = JobEntityService.GetEdit(JobID);
             return View(vmallJobDetail);
+        }
+        [HttpGet]
+        public ActionResult JobApply()
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            List<V_AppliedJob> vmlist = JobService.GetAppliedJob(cid);
+            return View(vmlist);
         }
         [HttpPost]
         public ActionResult JobApply(CandidateJob obj,int JobID)

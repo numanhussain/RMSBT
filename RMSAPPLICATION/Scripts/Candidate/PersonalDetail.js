@@ -4,41 +4,25 @@
         type: "GET",
         cache: false,
     }).done(function (result) {
-        $('#PVCandidateIndex').html(result);
-    });
-};
-
-function LoadPVCandidateIndex(id) {
-    $.ajax({
-        url: '/Candidate/Create',
-        type: "GET",
-        cache: false,
-        data: { cid: id }
-    }).done(function (result) {
-        $('#PVCandidateIndex').html(result);
+        $('#PartialViewContainer').html(result);
     });
 };
 function SavePersonalInfoFunction() {
     $('#btnPostCreate').click(function () {
         $.ajax({
-            type: "POST",
-            url: "/Candidate/Create",
+            url: '/Candidate/Create',
+            type: 'POST',
             data: $("#formEditID").serialize(),
             success: function (data) {
-                if (data === "OK") {
-                    location.reload();
-                }
-                else {
-
-                }
+                $('#myModal').modal('hide');
+                $('#PVCandidateIndex').html(data);
             },
             error: function () {
-                alert("Dynamic content load failed.");
+                $("#result").text('an error occured')
             }
         });
         var formData = new FormData();
         var empid = document.getElementById("CandidateID").value;
-        alert(empid);
         var totalFiles = document.getElementById("imgupload").files.length;
         for (var i = 0; i < totalFiles; i++) {
             var _file = document.getElementById("imgupload").files[i];

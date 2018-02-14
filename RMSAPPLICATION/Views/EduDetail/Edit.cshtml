@@ -3,7 +3,7 @@
     ViewBag.title = "Educational details";
     Layout = null;
 }
-@using (Html.BeginForm("Edit", "EduDetail", FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+@using (Html.BeginForm(null,null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -18,12 +18,6 @@
     <div class="modal-body">
         <div class="form-horizontal">
             <div class="col-md-12">
-                @*<small>
-        Attendance Information of   <strong>@Model.Cand: Emp No @Model.PEmployeeID</strong>
-        </small>*@
-                @*<hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.CandidateID)*@
                 <div class="form-group">
                     <div class="form-group col-md-6">
                         <label class="text-semibold">Select Degree</label>
@@ -90,11 +84,11 @@
     </div>
     <div class="modal-footer">
         <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-success bg-success-800" value="Save">Save</button>
+        <button type="button" id="btnPostEdit" class="btn btn-success bg-success-800" value="Save">Save</button>
     </div>
 } 
 <script type="text/javascript">
     $(document).ready(function () {
-        //EduDetailPostEdit();
+        EduDetailPostEdit(@Model.CandidateID);
     });
 </script>

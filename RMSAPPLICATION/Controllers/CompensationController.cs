@@ -43,9 +43,8 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 CompensationDetailService.PostCreate(obj);
-                return Json("OK", JsonRequestBehavior.AllowGet);
             }
-            return PartialView("Create", obj);
+            return View(obj);
         }
         #endregion
         #region -- Controller Private  Methods--

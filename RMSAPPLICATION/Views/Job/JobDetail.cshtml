@@ -1,4 +1,8 @@
-﻿@model RMSCORE.EF.Job
+﻿@model RMSCORE.EF.JobDetail
+    @{
+    ViewBag.title = "Experience details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
 <!-- Page container -->
 <div class="page-container">
     <!-- Page content -->
@@ -21,7 +25,7 @@
 
 
                         <div class="media-right media-middle text-nowrap">
-                            
+
                             <a href="#" onclick="ApplyJob(@Model.JobID)" class="btn bg-blue"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                         </div>
                     </div>

@@ -13,13 +13,13 @@ namespace RMSSERVICES.Education
 {
     public interface IEduDetailService
     {
-        List<VMEduDetailIndex> GetIndex( Int64 cid);
+        List<VMEduDetailIndex> GetIndex( int cid);
         VMEduDetailOperation GetCreate(int id);
         ServiceMessage PostCreate(VMEduDetailOperation obj);
         VMEduDetailOperation GetEdit(int id);
         ServiceMessage PostEdit(VMEduDetailOperation obj);
         VMEduDetailOperation GetDelete(int? id);
-        ServiceMessage PostDelete(VMEduDetailOperation obj, int? id);
+        ServiceMessage PostDelete(VMEduDetailOperation obj);
         ValidationMessage ValidateNewEntry(VMEduDetailOperation obj);
     }
 }
