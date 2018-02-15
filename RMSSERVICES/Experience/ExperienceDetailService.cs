@@ -27,7 +27,7 @@ namespace RMSSERVICES.Experience
         }
         #endregion
         #region -- Service Interface Implementation --
-        public List<VMExperienceIndex> GetIndex(long cid)
+        public List<VMExperienceIndex> GetIndex(int cid)
         {
             Expression<Func<V_Candidate_Exp, bool>> SpecificCandidateExperience = c => c.CandidateID == cid;
             List<V_Candidate_Exp> dbVExperienceDetails = ExperienceDetailRepository.FindBy(SpecificCandidateExperience);
@@ -113,9 +113,9 @@ namespace RMSSERVICES.Experience
             obj.IndustryID = dbExperienceDetail.IndustryID;
             return obj;
         }
-        public ServiceMessage PostDelete(VMExperienceOperation obj, int? id)
+        public ServiceMessage PostDelete(VMExperienceOperation obj)
         {
-            Expression<Func<ExperienceDetail, bool>> TotalExperience = c => c.ExpID == id;
+            Expression<Func<ExperienceDetail, bool>> TotalExperience = c => c.ExpID == obj.ExpID;
             List<ExperienceDetail> dbExperienceDetails = ExperienceRepository.FindBy(TotalExperience);
             foreach (var dbExperienceDetail in dbExperienceDetails)
             {
@@ -123,10 +123,6 @@ namespace RMSSERVICES.Experience
                 ExperienceRepository.Save();
             }
             return new ServiceMessage();
-        }
-        public ValidationMessage ValidateNewEntry(VMExperienceOperation obj)
-        {
-            throw new NotImplementedException();
         }
         #endregion
         #region -- Service Private Methods --

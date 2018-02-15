@@ -11,7 +11,7 @@
         </div>
 
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-blue-400">
+            <div class="breadcrumb-line bg-success-400">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb-elements">
                     <li><a href="#" id="ReferenceGetCreate"><i class="icon-add position-left"></i> Add New Reference</a></li>
@@ -56,8 +56,8 @@
                                     @Html.DisplayFor(modelItem => item.RefEmail)
                                 </td>
                                 <td>
-                                    <input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="fa fa-edit" />|
-                                    <input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" />
+                                    <a href="#" input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="icon-pencil" />&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                                    <a href="#" input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" style="color:red" />
                                 </td>
                             </tr>
                         }
@@ -67,8 +67,6 @@
         </div>
     </div>
 </div>
-<!-- Page content -->
-<!-- Main content -->
 <!-- Basic datatable -->
 <script type="text/javascript" src="~/Scripts/Candidate/Reference.js"></script>
 <script type="text/javascript">

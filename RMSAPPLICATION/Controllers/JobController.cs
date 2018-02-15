@@ -114,7 +114,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult JobApply(CandidateJob obj,int JobID)
         {
-            int cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             CandidateJob dbCandidateJob = new CandidateJob();
             dbCandidateJob.CandidateID = cid;
             dbCandidateJob.JobID = JobID;

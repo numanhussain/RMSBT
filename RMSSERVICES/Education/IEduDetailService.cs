@@ -20,6 +20,5 @@ namespace RMSSERVICES.Education
         ServiceMessage PostEdit(VMEduDetailOperation obj);
         VMEduDetailOperation GetDelete(int? id);
         ServiceMessage PostDelete(VMEduDetailOperation obj);
-        ValidationMessage ValidateNewEntry(VMEduDetailOperation obj);
     }
 }

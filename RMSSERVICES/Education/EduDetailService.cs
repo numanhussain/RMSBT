@@ -135,9 +135,5 @@ namespace RMSSERVICES.Education
             dbEdudetail.PassingYear = obj.PassingYear;
             return dbEdudetail;
         }
-        public ValidationMessage ValidateNewEntry(VMEduDetailOperation obj)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

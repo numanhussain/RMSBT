@@ -64,6 +64,8 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.Objective = dbOperation.Objective;
             dbCandidate.CImage = dbOperation.CImage;
             dbCandidate.UserID = dbOperation.UserID;
+            dbCandidate.CellNo =dbOperation.CellNo;
+            dbCandidate.LandlineNo = dbOperation.LandlineNo;
             return dbCandidate;
         }  
         public byte[] GetImageFromDataBase(int id)

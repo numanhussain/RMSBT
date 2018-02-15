@@ -95,9 +95,9 @@ namespace RMSSERVICES.Reference
             obj.CandidateID = dbReferenceDetail.CandidateID;
             return obj;
         }
-        public ServiceMessage PostDelete(VMReferenceOperation obj, int? id)
+        public ServiceMessage PostDelete(VMReferenceOperation obj)
         {
-            Expression<Func<ReferenceDetail, bool>> TotalReference = c => c.RefID == id;
+            Expression<Func<ReferenceDetail, bool>> TotalReference = c => c.RefID == obj.RefID;
             List<ReferenceDetail> dbReferenceDetails = ReferenceRepository.FindBy(TotalReference);
             foreach (var dbReferenceDetail in dbReferenceDetails)
             {

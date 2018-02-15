@@ -1,4 +1,5 @@
-﻿using RMSCORE.Models.Main;
+﻿using RMSCORE.EF;
+using RMSCORE.Models.Main;
 using RMSCORE.Models.Operation;
 using RMSSERVICES.Generic;
 using RMSSERVICES.Reference;
@@ -27,7 +28,8 @@ namespace RMSAPPLICATION.Controllers
         // GET: Reference
         public ActionResult Index()
         {
-            int cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             List<VMReferenceIndex> vmlist = ReferenceDetailService.GetIndex(cid);
             return View(vmlist);
         }
@@ -35,7 +37,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            int cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             VMReferenceOperation obj = ReferenceDetailService.GetCreate(cid);
             return View(obj);
         }
@@ -45,9 +48,8 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostCreate(obj);
-                return Json("OK", JsonRequestBehavior.AllowGet);
             }
-            return PartialView("Create", obj);
+            return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -61,9 +63,8 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostEdit(obj);
-                return Json("OK", JsonRequestBehavior.AllowGet);
             }
-            return PartialView("Edit", obj);
+            return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -72,10 +73,10 @@ namespace RMSAPPLICATION.Controllers
             return View(vmOperation);
         }
         [HttpPost]
-        public ActionResult Delete(VMReferenceOperation obj, int? id)
+        public ActionResult Delete(VMReferenceOperation obj)
         {
-            ReferenceDetailService.PostDelete(obj, id);
-            return RedirectToAction("Index", "Reference");
+            ReferenceDetailService.PostDelete(obj);
+            return PartialView(obj);
         }
         #endregion
         #endregion

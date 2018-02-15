@@ -12,13 +12,12 @@ namespace RMSSERVICES.Skill
 {
     public interface ISkillService
     {
-        List<VMSkillIndex> GetIndex(Int64 cid);
+        List<VMSkillIndex> GetIndex(int cid);
         VMSkillOperation GetCreate(int id);
         ServiceMessage PostCreate(VMSkillOperation obj);
         VMSkillOperation GetEdit(int id);
         ServiceMessage PostEdit(VMSkillOperation obj);
         VMSkillOperation GetDelete(int? id);
-        ServiceMessage PostDelete(VMSkillOperation obj, int? id);
-        ValidationMessage ValidateNewEntry(VMSkillOperation obj);
+        ServiceMessage PostDelete(VMSkillOperation obj);
     }
 }

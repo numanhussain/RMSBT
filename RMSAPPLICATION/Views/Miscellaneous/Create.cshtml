@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-blue">
+            <div class="breadcrumb-line bg-success-400">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb">
                     <li><a href="~/Home/Index"> Dashboard</a></li>
@@ -25,79 +25,65 @@
             </div>
             <div class="form-horizontal">
                 <div class="panel-body">
-                    <div class="form-group">
-                        <label class="col-md-4 control-label text-semibold">Have you ever been convicted of crime?(Yes / No )</label>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.CrimanalRecord, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <div class="col-md-4 control-label text-semibold">Do you have any relative working in Bestway Group? (Yes / No )</div>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.WorkingRelative, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
+                    <label class="col-md-4 control-label text-semibold">Have you ever been convicted of crime?(Yes / No )</label>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CrimanalRecord, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="form-group col-md-12">
-                        <label class="control-label checkbox-inline checkbox-right text-semibold " for="WorkedBefore">
-                            @Html.CheckBox("WorkedBefore")
-                            @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
-                            Have you ever worked before/ with Bestway Group?
-                        </label>
+                    <div class="col-md-4 control-label text-semibold">Do you have any relative working in Bestway Group? (Yes / No )</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.WorkingRelative, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
+                    <label class="control-label checkbox-inline checkbox-right text-semibold" for="WorkedBefore">
+                        @Html.CheckBox("WorkedBefore", new { @class = "uniform", @id = "WorkedBefore" })<span> Do you have any relative working in Bestway group?</span>                      
+                    </label>
                     <div id="WorkedBeforeDiv">
-                        <div class="form-group">
-                            <label class="col-md-1 control-label text-semibold">Designation</label>
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                            <label class="col-md-1 control-label text-semibold">Date Joining</label>
-                            <div class="col-md-2">
-                                @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
-                            </div>
-                            <label class="col-md-1 control-label text-semibold">Date Leaving</label>
-                            <div class="col-md-2">
-                                @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-1 control-label text-semibold">Employment No.</label>
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                            <label class="col-md-1 control-label text-semibold">Location</label>
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                            <label class="col-md-1 control-label text-semibold">Reason Leaving</label>
-                            <div class="col-md-5">
-                                @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label text-semibold">Where do you hear about the job?</label>
-                        <div class="col-md-3">
-                            @Html.DropDownList("HearAboutJobID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
-                            @Html.ValidationMessageFor(model => model.HearAboutJobID, "", new { @class = "text-danger" })
-                        </div>
-                        <label class="col-md-1 control-label text-semibold">Total Experience</label>
+                        <label class="col-md-2 control-label text-semibold">Designation</label>
                         <div class="col-md-2">
-                            @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        <label class="col-md-1 control-label text-semibold">Cement Experience</label>
+                        <label class="col-md-2 control-label text-semibold">Date Joining</label>
                         <div class="col-md-2">
-                            @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd") })
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-5 control-label text-semibold">How much notice you need to give to your current Employer?</label>
+                        <label class="col-md-2 control-label text-semibold">Date Leaving</label>
+                        <div class="col-md-2">
+                            @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        </div>
+                        <label class="col-md-2 control-label text-semibold">Employment No.</label>
                         <div class="col-md-1">
-                            @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
+                        <label class="col-md-1 control-label text-semibold">Location</label>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <label class="col-md-2 control-label text-semibold">Reason Leaving</label>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <label class="col-md-3 control-label text-semibold">Where do you hear about the job?</label>
+                    <div class="col-md-3">
+                        @Html.DropDownList("HearAboutJobID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                        @Html.ValidationMessageFor(model => model.HearAboutJobID, "", new { @class = "text-danger" })
+                    </div>
+                    <label class="col-md-1 control-label text-semibold">Total Experience</label>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <label class="col-md-1 control-label text-semibold">Cement Experience</label>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <label class="col-md-5 control-label text-semibold">How much notice you need to give to your current Employer?</label>
+                    <div class="col-md-1">
+                        @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days" } })
                     </div>
                 </div>
                 <div class="panel-footer">
                     <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                     <div class="heading-elements">
-                        <button type="submit" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Submit</button>
+                        <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Save</button>
                     </div>
                 </div>
             </div>
@@ -106,7 +92,8 @@
     </div>
 }
 <script type="text/javascript">
-    $(function () {
+    $(document).ready(function () {
         SaveMiscellaneousInfoFunction();
+        MiscellaneousDetailHide();
     });
 </script>

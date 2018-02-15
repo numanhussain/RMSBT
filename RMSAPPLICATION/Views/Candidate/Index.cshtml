@@ -3,23 +3,6 @@
     ViewBag.title = "Index details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-@*@Html.HiddenFor(model=>model.CandidateID)*@
-<!-- /second navbar -->
-<!-- Page header -->
-@*<div class="page-header">
-        <div class="page-header-content">
-            <div class="page-title">
-                <h4><i class="icon-arrow-left52 position-left"></i> <span class="text-semibold">User Pages</span> - Tabbed Profile</h4>
-                <ul class="breadcrumb breadcrumb-caret position-right">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="user_pages_profile_tabbed.html">User pages</a></li>
-                    <li class="active">Tabbed profile</li>
-                </ul>
-            </div>
-        </div>
-    </div>*@
-<!-- /page header -->
-<!-- Page container -->
 <head>
     <style>
         img {
@@ -41,22 +24,22 @@
                                 <div class="form-group">
                                     <img src="~/Candidate/RetrieveImage/@Model.CandidateID" id="dbImage" width="200" height="200" style="margin-left:25px; margin-top: 20px" />
                                     <div style="padding:10px;margin-left:65px ">
-                                        <div tabindex="500" class="btn btn-primary btn-xs btn-file">
-                                            <i class="icon-file-plus"></i>  <span class="hidden-xs">Browse</span>
+                                        <div tabindex="500" class="btn btn-primary btn-xs btn-file bg-success-400"">
+                                            <i class="icon-file-plus bg-success-400"></i>  <span class="hidden-xs bg-success-400">Browse</span>
                                             <input type="file" class="file-input" id="imgupload" onchange="fileCheck(this);" value="Open" data-browse-class="btn btn-primary btn-xs" data-show-caption="false" data-remove-class="btn btn-default btn-xs" data-show-upload="false" />
                                         </div>
                                     </div>
                                 </div>
                             </section>
                             <ul class="navigation">
-                                <li class="navigation-header" >Navigation</li>
+                                <li class="navigation-header">Navigation</li>
                                 <li class="active" onclick="CandidateGetCreate()"><a><i class="icon-person"></i>Personal Detail</a></li>
-                                <li class="active" onclick="LoadPVEduDetailIndex(@Model.CandidateID)"><a><i class="icon-book"  ></i> Educational Detail</a></li>
-                                @*<li><a href="#tabs_skill" data-toggle="tab"><i class="glyphicon glyphicon-wrench"></i> Skills</a></li>
-        <li><a href="#tabs_experience" data-toggle="tab"><i class="glyphicon-export"></i> Experience</a></li>
-        <li><a href="#tabs_miscellaneous" onclick="MiscellaneousGetCreate()" data-toggle="tab"><i class="glyphicon-export"></i>Miscellaneous</a></li>
-        <li><a href="#tabs_compensation" onclick="CompensationGetCreate()" data-toggle="tab"><i class="glyphicon-export"></i>Compensation</a></li>
-        <li><a href="#tabs_reference" data-toggle="tab"><i class="glyphicon-export"></i> Reference</a></li>*@
+                                <li class="active" onclick="LoadPVEduDetailIndex(@Model.CandidateID)"><a><i class="icon-book"></i>Educational Detail</a></li>
+                                <li class="active" onclick="LoadPVSkillDetailIndex(@Model.CandidateID)"><a><i class="glyphicon glyphicon-wrench"></i>Skills</a></li>
+                                <li class="active" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID)"><a><i class="glyphicon-export"></i>Experience</a></li>
+                                <li class="active" onclick="CompensationGetCreate()"><a><i class="glyphicon-export"></i>Compensation</a></li>
+                                <li class="active" onclick="LoadPVReferenceDetailIndex(@Model.CandidateID)"><a><i class="glyphicon-export"></i>Reference</a></li>
+                                <li class="active" onclick="MiscellaneousGetCreate()"><a><i class="glyphicon-export"></i>Miscellaneous</a></li>
                             </ul>
                         </div>
                     </div>
@@ -66,8 +49,7 @@
         <!-- Main content -->
         <div class="content-wrapper">
             <div class="row">
-                        <div class="col-lg-12" id="PartialViewContainer"></div>
-                <!-- /main content -->
+                <div class="col-lg-12" id="PartialViewContainer"></div>
             </div>
         </div>
         <!-- /page content -->

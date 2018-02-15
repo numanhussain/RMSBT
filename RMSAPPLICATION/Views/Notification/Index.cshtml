@@ -1,5 +1,5 @@
 ﻿@model List<RMSCORE.EF.V_Interview>
-@{ 
+@{
     ViewBag.title = "Interview Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -9,13 +9,16 @@
     <div class="page-content">
         <!-- Main content -->
         <div class="content-wrapper">
+            <div style="margin-top:-45px">
+                <div class="modal-header">
+                    <div class="modal-title">
+                        <h3><i class="icon-attachment"></i>&nbsp;&nbsp;Interviews</h3>
+                    </div>
+                </div>
+            </div>
             <!-- Basic datatable -->
             <div class="panel panel-flat">
-                <div class="breadcrumb-line bg-success-400">
-                    <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                    <ul class="breadcrumb-elements">
-                        @* <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add New Detail</a></li>*@
-                    </ul>
+                <div class="modal-header bg-success-400" style="padding:20px">
                 </div>
                 <table class="table datatable-basic">
                     <thead>
@@ -36,24 +39,24 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Title)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.JobTitle)
-                                </td>
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.JobTitle)
+                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartDate)
-                                </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.StartTime)
-                                </td>
-                            </tr>
-                        }
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartTime)
+                    </td>
+                </tr>
+}
                     </tbody>
                 </table>
             </div>

@@ -3,7 +3,7 @@
     ViewBag.title = "Skill details";
     Layout = null;
 }
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formDeleteID", id = "formDeleteID" }))
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
@@ -12,7 +12,7 @@
     @Html.HiddenFor(model => model.SkillTitle)
     @Html.HiddenFor(model => model.SLevelName)
     @Html.HiddenFor(model => model.Description)
-    <div class="modal-header bg-blue">
+    <div class="modal-header bg-success-400">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
             <i class="icon-menu7"></i> &nbsp;Delete Skill Detail
@@ -51,14 +51,13 @@
         </div>
     </div>
     <div class="modal-footer">
-        <input type="submit" value="Delete" class="btn btn-danger pull-right">
         <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
-        @*<button type="button" id="btnPostDelete" class="btn btn-success bg-success-800" value="Delete">Delete</button>*@
+        <button type="button" id="btnPostDelete" class="btn btn-success bg-success-800" value="Delete">Delete</button>
     </div>
 }
-@*<script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
-        SkillDetailPostDelete();
+        SkillDetailPostDelete(@Model.CandidateID);
     });
-</script>*@
+</script>
 

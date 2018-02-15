@@ -26,7 +26,7 @@ namespace RMSSERVICES.Skill
             SkillDetailRepository = skilldetailRepository;
             SkillRepository = skillRepository;
         }
-        public List<VMSkillIndex> GetIndex(long cid)
+        public List<VMSkillIndex> GetIndex(int cid)
         {
             Expression<Func<V_Candidate_Skills, bool>> SpecificClient = c => c.CandidateID == cid;
             List<V_Candidate_Skills> dbVSkillDetails = SkillDetailRepository.FindBy(SpecificClient);
@@ -90,9 +90,9 @@ namespace RMSSERVICES.Skill
             obj.Description = dbEduDetail.Description;
             return obj;
         }
-        public ServiceMessage PostDelete(VMSkillOperation vmOperation, int? id)
+        public ServiceMessage PostDelete(VMSkillOperation vmOperation)
         {
-            Expression<Func<SkillDetail, bool>> TotalSkills = c => c.SkillID == id;
+            Expression<Func<SkillDetail, bool>> TotalSkills = c => c.SkillID == vmOperation.SkillID;
             List<SkillDetail> dbSkillDetails = SkillRepository.FindBy(TotalSkills);
             foreach (var dbSkillDetail in dbSkillDetails)
             {
@@ -110,10 +110,6 @@ namespace RMSSERVICES.Skill
             dbEdudetail.Description = obj.Description;
             dbEdudetail.CandidateID = obj.CandidateID;
             return dbEdudetail;
-        }
-        public ValidationMessage ValidateNewEntry(VMSkillOperation obj)
-        {
-            throw new NotImplementedException();
         }
     }
 }

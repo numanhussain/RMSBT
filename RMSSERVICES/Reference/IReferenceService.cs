@@ -18,7 +18,6 @@ namespace RMSSERVICES.Reference
         VMReferenceOperation GetEdit(int id);
         ServiceMessage PostEdit(VMReferenceOperation obj);
         VMReferenceOperation GetDelete(int? id);
-        ServiceMessage PostDelete(VMReferenceOperation obj, int? id);
-        ValidationMessage ValidateNewEntry(VMReferenceOperation obj);
+        ServiceMessage PostDelete(VMReferenceOperation obj);
     }
 }

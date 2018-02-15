@@ -1,4 +1,5 @@
-﻿using RMSCORE.Models.Main;
+﻿using RMSCORE.EF;
+using RMSCORE.Models.Main;
 using RMSCORE.Models.Operation;
 using RMSSERVICES.Generic;
 using RMSSERVICES.Skill;
@@ -27,7 +28,8 @@ namespace RMSAPPLICATION.Controllers
         // GET: Skill
         public ActionResult Index()
         {
-            long cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             List<VMSkillIndex> vmlist = SkillDetailService.GetIndex(cid);
             return View(vmlist);
         }
@@ -35,7 +37,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            int cid = AssistantService.LoggedInUserID;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
             VMSkillOperation obj = SkillDetailService.GetCreate(cid);
             CreateHelper(obj);
             return View(obj);
@@ -46,14 +49,14 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostCreate(obj);
-                return RedirectToAction("Index");
             }
+            CreateHelper(obj);
             return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            VMSkillOperation obj = SkillDetailService.GetEdit((int)id);
+            VMSkillOperation obj = SkillDetailService.GetEdit(id);
             EditHelper(obj);
             return PartialView(obj);
         }
@@ -63,9 +66,9 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostEdit(obj);
-                return RedirectToAction("Index");
             }
-            return View(obj);
+            EditHelper(obj);
+            return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Delete(int? id)
@@ -74,10 +77,10 @@ namespace RMSAPPLICATION.Controllers
             return View(vmOperation);
         }
         [HttpPost]
-        public ActionResult Delete(VMSkillOperation obj, int? id)
+        public ActionResult Delete(VMSkillOperation obj)
         {
-            SkillDetailService.PostDelete(obj, id);
-            return RedirectToAction("Index", "Skill");
+            SkillDetailService.PostDelete(obj);
+            return PartialView(obj);
         }
         #endregion
         #endregion

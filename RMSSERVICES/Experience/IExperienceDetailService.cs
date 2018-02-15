@@ -12,13 +12,12 @@ namespace RMSSERVICES.Experience
 {
     public interface IExperienceDetailService
     {
-        List<VMExperienceIndex> GetIndex(Int64 cid);
+        List<VMExperienceIndex> GetIndex(int cid);
         VMExperienceOperation GetCreate(int id);
         ServiceMessage PostCreate(VMExperienceOperation obj);
         VMExperienceOperation GetEdit(int id);
         ServiceMessage PostEdit(VMExperienceOperation obj);
         VMExperienceOperation GetDelete(int? id);
-        ServiceMessage PostDelete(VMExperienceOperation obj, int? id);
-        ValidationMessage ValidateNewEntry(VMExperienceOperation obj);
+        ServiceMessage PostDelete(VMExperienceOperation obj);
     }
 }

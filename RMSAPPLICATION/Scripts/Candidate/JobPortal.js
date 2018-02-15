@@ -45,7 +45,7 @@ function ApplyJob(id) {
         if (data === "OK") {
             $.jGrowl('You have successfully  Applied for this job.', {
                 header: 'Well done!',
-                theme: 'bg-blue'
+                theme: 'bg-success-400'
             });
         }
     });

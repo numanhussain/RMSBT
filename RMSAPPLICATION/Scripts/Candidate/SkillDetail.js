@@ -3,10 +3,9 @@
         url: '/Skill/Index',
         type: "GET",
         cache: false,
-        data: { cid: id }
     }).done(function (result) {
 
-        $('#PVSkillDetailIndex').html(result);
+        $('#PartialViewContainer').html(result);
     });
 };
 function SkillDetailGetCreate(id) {
@@ -15,7 +14,7 @@ function SkillDetailGetCreate(id) {
             type: "GET",
             url: "/Skill/Create",
             contentType: "application/json; charset=utf-8",
-            data: { "id": id },
+data: { "id": id },
             datatype: "json",
             success: function (data) {
                 $('#modelBody').html(data);
@@ -31,20 +30,16 @@ function SkillDetailGetCreate(id) {
         $('#myModal').modal('hide');
     });
 }
-function SkillDetailPostCreate() {
+function SkillDetailPostCreate(id) {
     $('#btnPostCreate').click(function () {
         $.ajax({
-            type: "POST",
-            url: "/Skill/Create",
+            url: '/Skill/Create',
+            type: 'POST',
+            cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data === "OK") {
-                    $('#myModal').modal('hide');
-                    location.reload();
-                }
-                else {
-                    $('#modelBody').html(data);
-                }
+                $('#myModal').modal('hide');
+                LoadPVSkillDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -57,7 +52,7 @@ function SkillDetailGetEdit(id) {
         type: "GET",
         url: "/Skill/Edit",
         contentType: "application/json; charset=utf-8",
-        data: { "id": id },
+data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -72,16 +67,15 @@ function SkillDetailGetEdit(id) {
         $('#myModal').modal('hide');
     });
 }
-function SkillDetailPostEdit() {
+function SkillDetailPostEdit(id) {
     $('#btnPostEdit').click(function () {
         $.ajax({
             type: "POST",
             url: "/Skill/Edit",
-            contentType: "application/json; charset=utf-8",
             data: $("#formEditID").serialize(),
-            datatype: "json",
             success: function (data) {
                 $('#myModal').modal('hide');
+                LoadPVSkillDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -94,7 +88,7 @@ function SkillDetailGetDelete(id) {
         type: "GET",
         url: "/Skill/Delete",
         contentType: "application/json; charset=utf-8",
-        data: { "id": id },
+data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -107,5 +101,22 @@ function SkillDetailGetDelete(id) {
     });
     $("#closbtn").click(function () {
         $('#myModal').modal('hide');
+    });
+}
+
+function SkillDetailPostDelete(id) {
+    $('#btnPostDelete').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Skill/Delete",
+            data: $("#formDeleteID").serialize(),
+            success: function (data) {
+                $('#myModal').modal('hide');
+                LoadPVSkillDetailIndex(id)
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
     });
 }

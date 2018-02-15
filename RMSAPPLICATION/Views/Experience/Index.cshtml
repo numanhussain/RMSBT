@@ -15,7 +15,7 @@
 <!-- Main content -->
 <!-- Basic datatable -->
 <div class="panel panel-flat">
-    <div class="breadcrumb-line bg-blue-400">
+    <div class="breadcrumb-line bg-success-400">
         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
         <ul class="breadcrumb-elements">
             <li><a href="#" id="ExperienceGetCreate"><i class="icon-add position-left"></i> Add New Experience</a></li>
@@ -66,8 +66,8 @@
                             @Html.DisplayFor(modelItem => item.CurrentlyWorking)
                         </td>
                         <td>
-                            <input type="button" onclick="ExperienceDetailGetEdit(@item.ExpID)" value="Edit" class="fa fa-edit" />|
-                            <input type="button" onclick="ExperienceDetailGetDelete(@item.ExpID)" value="Delete" class="icon-trash" />
+                            <a href="#" input type="button" onclick="ExperienceDetailGetEdit(@item.ExpID)" value="Edit" class="icon-pencil" /> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="#" input type="button" onclick="ExperienceDetailGetDelete(@item.ExpID)" value="Delete" class="icon-trash" style="color:red" />
                         </td>
                     </tr>
                 }

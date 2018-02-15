@@ -3,9 +3,8 @@
             url: '/Reference/Index',
             type: "GET",
             cache: false,
-            data: { cid: id }
         }).done(function (result) {
-            $('#PVReferenceDetailIndex').html(result);
+            $('#PartialViewContainer').html(result);
         });
 };
 function ReferenceDetailGetCreate(id) {
@@ -14,7 +13,6 @@ function ReferenceDetailGetCreate(id) {
             type: "GET",
             url: "/Reference/Create",
             contentType: "application/json; charset=utf-8",
-            data: { "id": id },
             datatype: "json",
             success: function (data) {
                 $('#modelBody').html(data);
@@ -27,20 +25,15 @@ function ReferenceDetailGetCreate(id) {
         });
     });
 }
-function ReferenceDetailPostCreate() {
+function ReferenceDetailPostCreate(id) {
     $('#btnPostCreate').click(function () {
         $.ajax({
             type: "POST",
             url: "/Reference/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data === "OK") {
                     $('#myModal').modal('hide');
-                    location.reload();
-                }
-                else {
-                    $('#modelBody').html(data);
-                }
+                    LoadPVReferenceDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -53,7 +46,6 @@ function ReferenceDetailGetEdit(id) {
         type: "GET",
         url: "/Reference/Edit",
         contentType: "application/json; charset=utf-8",
-        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -72,14 +64,8 @@ function ReferenceDetailPostEdit() {
             url: "/Reference/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                if (data === "OK") {
-
                     $('#myModal').modal('hide');
-                    location.reload();
-                }
-                else {
-                    $('#modelBody').html(data);
-                }
+                    LoadPVReferenceDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -92,7 +78,6 @@ function ReferenceDetailGetDelete(id) {
         type: "GET",
         url: "/Reference/Delete",
         contentType: "application/json; charset=utf-8",
-        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -102,5 +87,21 @@ function ReferenceDetailGetDelete(id) {
         error: function () {
             alert("Dynamic content load failed.");
         }
+    });
+}
+function ReferenceDetailPostDelete(id) {
+    $('#btnPostDelete').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Skill/Delete",
+            data: $("#formDeleteID").serialize(),
+            success: function (data) {
+                $('#myModal').modal('hide');
+                LoadPVSkillDetailIndex(id)
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
     });
 }

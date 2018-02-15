@@ -15,7 +15,7 @@ function SavePersonalInfoFunction() {
             data: $("#formEditID").serialize(),
             success: function (data) {
                 $('#myModal').modal('hide');
-                $('#PVCandidateIndex').html(data);
+                $('#PartialViewContainer').html(data);
             },
             error: function () {
                 $("#result").text('an error occured')

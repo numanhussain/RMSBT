@@ -57,7 +57,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            VMEduDetailOperation obj = EduDetailService.GetEdit((int)id);
+            VMEduDetailOperation obj = EduDetailService.GetEdit(id);
             EditHelper(obj);
             return PartialView(obj);
         }

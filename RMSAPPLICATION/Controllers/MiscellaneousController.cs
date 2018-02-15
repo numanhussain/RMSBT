@@ -41,9 +41,9 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 MiscellaneousService.PostCreate(obj);
-                return Json("OK", JsonRequestBehavior.AllowGet);
             }
-            return PartialView("Create", obj);
+            CreateHelper(obj);
+            return View(obj);
         }
         #endregion
         #region -- Controller Private  Methods--

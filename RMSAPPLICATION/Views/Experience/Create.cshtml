@@ -3,11 +3,11 @@
     ViewBag.title = "Experience details";
     Layout = null;
 }
-@using (Html.BeginForm("Create", "Experience", FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CandidateID)
-    <div class="modal-header bg-blue">
+    <div class="modal-header bg-success-400">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
             <i class="icon-menu7"></i> &nbsp;Add Experience Detail
@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <div class="form-group col-md-4">
                         <label class="text-semibold">Job Title</label>
-                     @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
                     </div>
                     <div class="form-group col-md-4">
@@ -38,7 +38,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label class="text-semibold">EndDate</label>
-                        <div>@Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date", @Value = @DateTime.Today.ToString("yyyy-MM-dd")})</div>
+                        <div>@Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date"})</div>
                     </div>
                 </div>
                 <div class="form-group">
@@ -59,26 +59,27 @@
                     </div>
                     <div class="form-group col-md-3">
                         <label class="text-semibold">Industry</label>
-                        <div>@Html.DropDownList("IndustryID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
-                        @Html.ValidationMessageFor(model => model.IndustryID, "", new { @class = "text-danger" })</div>
+                        <div>
+                            @Html.DropDownList("IndustryID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                        @Html.ValidationMessageFor(model => model.IndustryID, "", new { @class = "text-danger" })
                     </div>
-                    <div class="form-group col-md-6">
-                        <label class="text-semibold">Resposibilty</label>
-                        <div>@Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 5, @rows = 1 })</div>
-                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="text-semibold">Resposibilty</label>
+                    <div>@Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 5, @rows = 1 })</div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal-footer">
-        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
-       @* <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>*@
-        <button type="submit" class="btn btn-success bg-success-800" value="Save">Save</button>
-    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+    <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>
+</div>
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        //ExperienceDetailPostCreate();
+        ExperienceDetailPostCreate(@Model.CandidateID);
     });
 </script>
 
