@@ -14,7 +14,7 @@ function SkillDetailGetCreate(id) {
             type: "GET",
             url: "/Skill/Create",
             contentType: "application/json; charset=utf-8",
-data: { "id": id },
+            data: { "id": id },
             datatype: "json",
             success: function (data) {
                 $('#modelBody').html(data);
@@ -52,7 +52,7 @@ function SkillDetailGetEdit(id) {
         type: "GET",
         url: "/Skill/Edit",
         contentType: "application/json; charset=utf-8",
-data: { "id": id },
+        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -88,7 +88,7 @@ function SkillDetailGetDelete(id) {
         type: "GET",
         url: "/Skill/Delete",
         contentType: "application/json; charset=utf-8",
-data: { "id": id },
+        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);

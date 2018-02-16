@@ -49,35 +49,33 @@
                 <form action="~/Home/Login" enctype="multipart/form-data" method="post">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-                    <div class="col-md-7">
-                        <div class="panel panel-body login-cover" style="margin-left:500px">
-                            <div class="text-center">
-                                @*<img src="~/Theme/assets/images/bcl_logo_final.png" height="100" />*@
-                                @*<div class="icon-object border-slate-300 text-slate-300"><i class="icon-reading"></i></div>*@
-                                <h5 class="content-group" style="color:white; font-family:Broadway"><strong>e-Recruitment</strong>  <small class="display-block" style="color:white">Enter your credentials below</small></h5>
-                            </div>
+                    <div style="margin-left:60%; margin-top:10%">
+                        <div class="col-md-7">
+                            <div class="panel panel-body pace-done">
+                                <h5 class="content-group text-center" style="font-family:Broadway">e-Recruitment <small class="display-block">Enter your credentials below</small></h5>
 
-                            <div class="form-group has-feedback has-feedback-left">
-                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
-                                <div class="form-control-feedback">
-                                    <i class="icon-user text-muted"></i>
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-user text-muted"></i>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group has-feedback has-feedback-left">
-                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                                <div class="form-control-feedback">
-                                    <i class="icon-lock2 text-muted"></i>
+                                <div class="form-group has-feedback has-feedback-left">
+                                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                                    <div class="form-control-feedback">
+                                        <i class="icon-lock2 text-muted"></i>
+                                    </div>
                                 </div>
-                            </div>
 
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-success btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
-                            </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+                                </div>
 
-                            <div class="text-center">
-                                <a href="~/Home/ForgetPassword"><strong style="color:white">Forgot password?</strong> </a>
-                                <a href="~/Home/RegisterUser"><strong style="color:white">Register</strong> </a>
+                                <div class="text-center">
+                                    <a href="~/Home/ForgetPassword"><strong style="color:white">Forgot password?</strong> </a>
+                                    <a href="~/Home/RegisterUser"><strong style="color:white">Register</strong> </a>
+                                </div>
                             </div>
                         </div>
                     </div>

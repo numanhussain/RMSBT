@@ -62,9 +62,18 @@
                         <td>
                             @Html.DisplayFor(modelItem => item.EndDate)
                         </td>
+                        @if (item.CurrentlyWorking == true)
+                        {
+                            <td>
+                                <span class="label label-success">Active</span>
+                            </td>
+                        }
+                       @if (item.CurrentlyWorking == false)
+                       {
                         <td>
-                            @Html.DisplayFor(modelItem => item.CurrentlyWorking)
+                            <span class="label label-danger">Inactive</span>
                         </td>
+                        }
                         <td>
                             <a href="#" input type="button" onclick="ExperienceDetailGetEdit(@item.ExpID)" value="Edit" class="icon-pencil" /> &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
                             <a href="#" input type="button" onclick="ExperienceDetailGetDelete(@item.ExpID)" value="Delete" class="icon-trash" style="color:red" />

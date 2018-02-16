@@ -38,6 +38,7 @@ namespace RMSSERVICES.UserDetail
             Candidate dbCandidate = new Candidate();
             dbCandidate.CName = dbOperation.UserName;
             dbCandidate.UserID = dbOperation.UserID;
+            dbCandidate.EmailID = dbOperation.Email;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
 

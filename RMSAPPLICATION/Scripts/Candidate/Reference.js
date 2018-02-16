@@ -13,6 +13,7 @@ function ReferenceDetailGetCreate(id) {
             type: "GET",
             url: "/Reference/Create",
             contentType: "application/json; charset=utf-8",
+            data: { "id": id },
             datatype: "json",
             success: function (data) {
                 $('#modelBody').html(data);
@@ -46,6 +47,7 @@ function ReferenceDetailGetEdit(id) {
         type: "GET",
         url: "/Reference/Edit",
         contentType: "application/json; charset=utf-8",
+        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -78,6 +80,7 @@ function ReferenceDetailGetDelete(id) {
         type: "GET",
         url: "/Reference/Delete",
         contentType: "application/json; charset=utf-8",
+        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);

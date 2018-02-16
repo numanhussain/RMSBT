@@ -53,30 +53,6 @@ namespace RMSAPPLICATION.Controllers
                     list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
                         "Jobs Opening " + vmList.Where(aa => aa.JobStatus == true).Count().ToString() + "  jobs.", "Jobs Information", GenerateLinkForSystemNotifications("Job").ToString()));
                 }
-                if (vmList.Where(aa => aa.CandidateID ==vmf.CandidateID && aa.IsViewed == false).Count() > 0)
-                {
-                    NotificationCount++;
-                    list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
-                        "Interviews Pending " + vmList.Where(aa => aa.IsViewed == false).Count().ToString() + "  interviews.", "Interview Information", GenerateLinkForSystemNotifications("Interview").ToString()));
-                }
-                if (vmList.Where(aa => aa.JobStatus == true).Count() > 0)
-                {
-                    NotificationCount++;
-                    list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
-                        "Jobs Opening " + vmList.Where(aa => aa.JobStatus == true).Count().ToString() + "  jobs.", "Jobs Information", GenerateLinkForSystemNotifications("Job").ToString()));
-                }
-                if (vmList.Where(aa => aa.CandidateID == vmf.CandidateID && aa.IsViewed == false).Count() > 0)
-                {
-                    NotificationCount++;
-                    list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
-                        "Interviews Pending " + vmList.Where(aa => aa.IsViewed == false).Count().ToString() + "  interviews.", "Interview Information", GenerateLinkForSystemNotifications("Interview").ToString()));
-                }
-                if (vmList.Where(aa => aa.JobStatus == true).Count() > 0)
-                {
-                    NotificationCount++;
-                    list.Append(GenerateSingleNotification("icon-git-pull-request", "btn border-primary text-primary btn-flat btn-rounded btn-icon btn-sm",
-                        "Jobs Opening " + vmList.Where(aa => aa.JobStatus == true).Count().ToString() + "  jobs.", "Jobs Information", GenerateLinkForSystemNotifications("Job").ToString()));
-                }
             }
             vmNotification.Notification = list.ToString();
             vmNotification.NotificationCount = NotificationCount.ToString();
@@ -89,24 +65,9 @@ namespace RMSAPPLICATION.Controllers
             switch (Criteria)
             {
                 case "Interview":
-
                     link.Append("/Notification/Index");
                     break;
                 case "Job":
-                    link.Append("/Job/Index");
-                    break;
-                case "Interview1":
-
-                    link.Append("/Notification/Index");
-                    break;
-                case "Job1":
-                    link.Append("/Job/Index");
-                    break;
-                case "Interview2":
-
-                    link.Append("/Notification/Index");
-                    break;
-                case "Job2":
                     link.Append("/Job/Index");
                     break;
             }
@@ -125,7 +86,6 @@ namespace RMSAPPLICATION.Controllers
             list.Append(" </div>");
             list.Append(" </li>");
             return list;
-
         }
     }
 }
