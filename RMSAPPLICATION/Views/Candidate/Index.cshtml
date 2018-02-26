@@ -3,13 +3,6 @@
     ViewBag.title = "Index details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<head>
-    <style>
-        img {
-            border-radius: 50%;
-        }
-    </style>
-</head>
 <div class="page-container">
     <!-- Page content -->
     <div class="page-content">
@@ -22,7 +15,7 @@
                         <div class="panel-body">
                             <section>
                                 <div class="form-group">
-                                    <img src="~/Candidate/RetrieveImage/@Model.CandidateID" id="dbImage" width="200" height="200" style="margin-left:10px; margin-top: 0px" />
+                                    <img src="~/Candidate/RetrieveImage/@Model.CandidateID"class="img-circle" id="dbImage" width="200" height="200" style="margin-left:10px; margin-top: 0px" />
                                     <div style="padding:10px;margin-left:53px ">
                                         <div tabindex="500" class="btn btn-success btn-xs btn-file bg-success-400">
                                             <i class="icon-file-plus bg-success-400"></i>  <span class="hidden-xs bg-success-400">Browse</span>
