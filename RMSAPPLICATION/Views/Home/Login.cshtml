@@ -52,7 +52,8 @@
                     <div style="margin-left:60%; margin-top:10%">
                         <div class="col-md-7">
                             <div class="panel panel-body pace-done">
-                                <h5 class="content-group text-center" style="font-family:Broadway">e-Recruitment <small class="display-block">Enter your credentials below</small></h5>
+                                <img src="~/Theme/assets/images/bcl_logo_final.png" style="margin-left:80px" height="90"/>
+                                <h5 class="content-group text-center text-bold" @*style="font-family:Broadway"*@>e-Recruitment <small class="display-block">Enter your credentials below</small></h5>
 
                                 <div class="form-group has-feedback has-feedback-left">
                                     <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
@@ -68,13 +69,13 @@
                                     </div>
                                 </div>
 
+                                <a href="~/Home/ForgetPassword"><strong style="color:black">Forgot Password?</strong> </a>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-success btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
                                 </div>
 
                                 <div class="text-center">
-                                    <a href="~/Home/ForgetPassword"><strong style="color:white">Forgot password?</strong> </a>
-                                    <a href="~/Home/RegisterUser"><strong style="color:white">Register</strong> </a>
+                                    <span>New User ?</span> <a href="~/Home/RegisterUser"><strong style="color:black">Register</strong> </a>
                                 </div>
                             </div>
                         </div>

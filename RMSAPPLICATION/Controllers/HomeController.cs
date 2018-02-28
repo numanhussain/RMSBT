@@ -66,14 +66,21 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult RegisterUser(User Obj)
         {
-           
-            if (ModelState.IsValid)
+            if (Obj.Password != Obj.RetypePassword)
             {
-                UserService.RegisterUser(Obj);
-                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID;
-                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                return RedirectToAction("Index", "Job");
+                return RedirectToAction("RegisterUser");
             }
+            else    
+            {
+                if (ModelState.IsValid)
+                {
+                    UserService.RegisterUser(Obj);
+                    Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
+                    Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                    return RedirectToAction("Index", "Job");
+                }
+            }
+           
             return View(Obj);
         }
         [HttpGet]

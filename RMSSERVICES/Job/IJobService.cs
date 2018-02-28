@@ -1,4 +1,5 @@
 ﻿using RMSCORE.EF;
+using RMSCORE.Models.Main;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace RMSSERVICES.Job
 {
     public interface IJobService
     {
-        List<V_AppliedJob> GetAppliedJob(int cid);
+        List<VMAppliedJobIndex> GetAppliedJob(int cid);
     }
 }

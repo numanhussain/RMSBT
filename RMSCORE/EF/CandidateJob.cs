@@ -17,6 +17,6 @@ namespace RMSCORE.EF
         public int CJobID { get; set; }
         public Nullable<System.DateTime> CJobDate { get; set; }
         public Nullable<int> JobID { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
     }
 }
