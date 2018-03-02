@@ -56,6 +56,7 @@
                                 @foreach (var item in Model.LocationList)
                                 {
                                     <tr>
+<<<<<<< HEAD
                                         <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.ID" /></td>
                                         <td class="valSelect">
                                             @item.Name
@@ -64,6 +65,27 @@
                                 }
                             </tbody>
                         </table>
+=======
+                                        <th><input type="checkbox" id="chkSelectAll" /></th>
+                                        <th>
+                                            Location
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.LocationList)
+                                    {
+                                        <tr>
+                                            <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.ID" /></td>
+                                            <td class="valSelect">
+                                                @item.Name
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+>>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
                     </div>
                     <!-- /location selection -->
                     <!-- Title selection -->

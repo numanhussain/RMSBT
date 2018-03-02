@@ -10,6 +10,7 @@
     @foreach (var item in Model)
     {
         <ul class="media-list">
+<<<<<<< HEAD
             <li class="media panel-body stack-media-on-mobile">
                 <div class="media-left">
                     <a href="#">
@@ -29,6 +30,30 @@
                     @item.Description
                 </div>
             </li>
+=======
+            @if (item.DeadlineDate > DateTime.Now)
+            {
+                <li class="media panel-body stack-media-on-mobile">
+                    <div class="media-left">
+                        <a href="#">
+                            <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h6 class="media-heading text-semibold">
+                            <a href="~/Job/JobDetail?JobID=@item.JobID">@item.JobTitle</a>
+                        </h6>
+                        <ul class="list-inline list-inline-separate text-muted mb-10">
+                            <li>
+                                <a href="#" class="text-muted">@item.CompanyName</a>
+                            </li>
+                            <li>@item.LocName</li>
+                        </ul>
+                        @item.Description
+                    </div>
+                </li>
+            }
+>>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
         </ul>
     }
 </div>

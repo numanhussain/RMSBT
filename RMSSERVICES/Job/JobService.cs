@@ -43,6 +43,7 @@ namespace RMSSERVICES.Job
                 vmVAppliedJobs.Add(vmVAppliedJob);
             }
             return vmVAppliedJobs.OrderByDescending(aa=>aa.CJobID).ToList();
+<<<<<<< HEAD
         }
 
         public VMOpenJobIndex GetJobDetail(int JobID, V_UserCandidate LoggedInUser)
@@ -89,6 +90,8 @@ namespace RMSSERVICES.Job
                     vmVAppliedJobs.Add(vmVAppliedJob);
             }
             return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
+=======
+>>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
         }
         #endregion
         #region -- Service Private Methods --

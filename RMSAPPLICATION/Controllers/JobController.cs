@@ -121,6 +121,16 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult JobApply(CandidateJob obj, int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            //string Name = Request.Form["CandidateID"].ToString();
+            //Expression<Func<V_AppliedJob, bool>> SpecificEntries = c => c.JobID == obj.JobID && c.CandidateID=vmf.CandidateID;
+
+            //List<V_AppliedJob> _emp = VJobApplyService.GetIndexSpecific(SpecificEntries);
+            //if (_emp.Count > 0)
+            //{
+            //    TempData["Error"] = "<script>alert('You are not allowed to do this action');</script>";
+            //}
+            //else
+            //{
             int cid = vmf.CandidateID;
             CandidateJob dbCandidateJob = new CandidateJob();
             dbCandidateJob.CandidateID = cid;

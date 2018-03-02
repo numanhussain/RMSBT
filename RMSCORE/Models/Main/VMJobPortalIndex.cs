@@ -22,10 +22,13 @@ namespace RMSCORE.Models.Main
         public DateTime? CJobDate { get; set; }
         public int? JobID { get; set; }
         public string JobTitle { get; set; }
+<<<<<<< HEAD
     }
     public class VMOpenJobIndex:JobDetail
     {
         public bool IsApplied { get; set; }
 
+=======
+>>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
     }
 }
