@@ -35,7 +35,7 @@
           <Property Name="CJobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CJobDate" Type="datetime" />
           <Property Name="JobID" Type="int" />
-          <Property Name="CandidateID" Type="int" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="CandidatePhoto">
           <Key>
@@ -183,6 +183,7 @@
           <Property Name="CatagoryName" Type="nvarchar" MaxLength="30" />
           <Property Name="Status" Type="bit" />
           <Property Name="SkillReq" Type="nvarchar" MaxLength="3000" />
+          <Property Name="DeadlineDate" Type="date" />
         </EntityType>
         <EntityType Name="MiscellaneousDetails">
           <Key>
@@ -793,7 +794,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CJobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CJobDate" Type="DateTime" Precision="3" />
           <Property Name="JobID" Type="Int32" />
-          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="CandidatePhoto">
           <Key>
@@ -948,6 +949,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CatagoryName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Boolean" />
           <Property Name="SkillReq" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Job" FromRole="JobDetail" ToRole="Interview" />
         </EntityType>
         <EntityType Name="MiscellaneousDetail">
@@ -1448,6 +1450,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="JobDetails">
             <EntityTypeMapping TypeName="BTRMSModel.JobDetail">
               <MappingFragment StoreEntitySet="JobDetail">
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
                 <ScalarProperty Name="SkillReq" ColumnName="SkillReq" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="CatagoryName" ColumnName="CatagoryName" />

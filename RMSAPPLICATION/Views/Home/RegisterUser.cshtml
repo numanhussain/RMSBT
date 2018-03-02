@@ -44,36 +44,44 @@
                 <!-- Advanced login -->
                 <form action="~/Home/RegisterUser" enctype="multipart/form-data" method="post">
                     @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true)
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="col-md-12">
                         <div class="panel panel-body login-form">
                             <div class="text-center">
-                                <h5 class="content-group">Register<small class="display-block">All fields are required</small></h5>
+                                <img src="~/Theme/assets/images/bcl_logo_final.png" height="100" />
+                                <h5 class="content-group text-bold">Register<small class="display-block">All fields are required</small></h5>
                             </div>
                             <div class="content-divider text-muted form-group"><span>Your credentials</span></div>
                             <div class="form-group has-feedback has-feedback-left">
-                                @Html.EditorFor(model=>model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User name" } })
+                                <label class="text-bold">Enter Username</label>
+                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", @placeholder = "User name" } })
                                 <div class="form-control-feedback">
-                                    <i class="icon-2x"></i>
+                                    <i class="icon-person"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" , @placeholder = "Your email" } })
+                                <label class="text-bold">Email</label>
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your email" } })
                                 <div class="form-control-feedback">
                                     <i class="icon-mention text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password" ,Type = "password" } })
+                                <label class="text-bold">Enter Password</label>
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", Type = "password", @id = "password" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                 <div class="form-control-feedback">
-                                    <i class="icon-user-lock text-muted"></i>
+                                    <i class="icon-lock4 text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                @Html.EditorFor(model => model.RetypePassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Password", Type = "password" } })
+                                <label class="text-bold">Retype-Password</label>
+                                @Html.EditorFor(model => model.RetypePassword, new { htmlAttributes = new { @class = "form-control", @placeholder = " Confirm-Password", Type = "password", @id = "confirm_password" } })
+                                @Html.ValidationMessageFor(model => model.RetypePassword, "", new { @class = "text-danger" })
                                 <div class="form-control-feedback">
-                                    <i class="icon-user-lock text-muted"></i>
+                                    <i class="icon-lock4 text-muted"></i>
                                 </div>
+                                <span id="message"></span>
                             </div>
                             <button type="submit" class="btn bg-teal btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
                         </div>
@@ -93,3 +101,11 @@
     <!-- /footer -->
 </body>
 </html>
+<script>
+    $('#password, #confirm_password').on('keyup', function () {
+        if ($('#password').val() == $('#confirm_password').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else
+            $('#message').html('Not Matching').css('color', 'red');
+    });
+</script>

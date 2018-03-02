@@ -53,20 +53,23 @@
                         <div class="panel panel-body login-form">
                             <div class="text-center">
                                 <img src="~/Theme/assets/images/bcl_logo_final.png" height="100" />
-                                <h5 class="content-group">Password Change <small class="display-block"></small></h5>
+                                <h5 class="content-group text-bold">Password Change <small class="display-block"></small></h5>
                             </div>
 
                             <div class="form-group has-feedback">
-                                <input type="password" Class="form-control" id="newPassword" name="newPassword" />
+                                <label class="text-semibold">Enter New Password</label>
+                                <input type="password" Class="form-control" id="newPassword" name="newPassword" placeholder="New Password"/>
                                 <div class="form-control-feedback">
-                                    <i class="icon-mail5 text-muted"></i>
+                                    <i class="icon-lock4 text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                <input type="password" Class="form-control" id="ConfirmnewPassword" name="ConfirmnewPassword" />
+                                <label class="text-semibold">Retype-new Password</label>
+                                <input type="password" Class="form-control" id="ConfirmnewPassword" name="ConfirmnewPassword" placeholder="Confirm New Password" />
                                 <div class="form-control-feedback">
-                                    <i class="icon-mail5 text-muted"></i>
+                                    <i class="icon-lock4 text-muted"></i>
                                 </div>
+                                <span id="message"></span>
                             </div>
                             <button type="submit" class="btn bg-blue btn-block">Change password <i class="icon-arrow-right14 position-right"></i></button>
                         </div>
@@ -83,11 +86,19 @@
     </div>
     <!-- /page container -->
     <!-- Footer -->
-    <div class="footer text-muted">
+    <div class="footer text-muted text-center">
         &copy; 2018. <a href="#">Recruitment Management System</a> by <a href="http://cns.com.pk" target="_blank">Computer & Networking Services</a>
     </div>
     <!-- /footer -->
 
 </body>
 </html>
+<script>
+    $('#newPassword, #ConfirmnewPassword').on('keyup', function () {
+        if ($('#newPassword').val() == $('#ConfirmnewPassword').val()) {
+            $('#message').html('Matching').css('color', 'green');
+        } else
+            $('#message').html('Not Matching').css('color', 'red');
+    });
+</script>
 

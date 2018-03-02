@@ -1,8 +1,10 @@
-﻿@model List<RMSCORE.EF.V_AppliedJob>
+﻿@model List<RMSCORE.Models.Main.VMAppliedJobIndex>
 @{
     ViewBag.title = "Applied Jobs";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Html.ValidationSummary(true)
+@Html.Raw(TempData["Error"])
 <div class="page-container">
     <div class="page-content">
         <div class="content-wrapper">

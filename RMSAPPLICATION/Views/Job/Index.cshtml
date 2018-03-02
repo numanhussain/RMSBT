@@ -18,13 +18,6 @@
                                 <i class="icon-search4 text-size-base position-left"></i>
                                 Filter
                             </div>
-                            <div class="heading-elements">
-                                <ul class="icons-list">
-                                    <li><a data-action="collapse"></a></li>
-                                    <li><a data-action="reload"></a></li>
-                                    <li><a data-action="close"></a></li>
-                                </ul>
-                            </div>
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
@@ -44,96 +37,67 @@
                     </div>
                     <!-- /sidebar search -->
                     <!-- Location selection -->
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <div class="panel-title text-semibold">
-                                <i class="icon-pin-alt position-left"></i>
-                                Location
-                            </div>
+                    <div class="panel panel-flat">
+                        <div class="panel-body bg-blue-300 border-radius-top text-center" style="height:50px">
+                            <h5 style="margin-top:-5px">
+                                <strong>Select User Locations</strong>
+                            </h5>
                         </div>
-                        <div class="panel-body">
-                            <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCompany">
-                                <thead>
+                        <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCompany">
+                            <thead>
+                                <tr>
+                                    <th><input type="checkbox" id="chkSelectAll" /></th>
+                                    <th>
+                                        Location Name
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.LocationList)
+                                {
                                     <tr>
-                                        <th><input type="checkbox" id="chkSelectAll" /></th>
-                                        <th>
-                                            Location
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.LocationList)
-                                    {
-                                        <tr>
-                                            <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.ID" /></td>
-                                            <td class="valSelect">
-                                                @item.Name
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            @*<div class="form-group">
-                                    @foreach (var item in Model.LocationList)
-                                    {
-                                    <div class="checkbox no-margin-top">
-                                        <label>
-                                            <input type="checkbox" @(item.IsSlected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.FilterID" />
+                                        <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.ID" /></td>
+                                        <td class="valSelect">
                                             @item.Name
-                                        </label>
-                                    </div>
-                                    }
-                                </div>*@
-                        </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /location selection -->
                     <!-- Title selection -->
-                    <div class="panel panel-white">
-                        <div class="panel-heading">
-                            <div class="panel-title text-semibold">
-                                <i class="icon-menu7 position-left"></i>
-                                Catagory
-                            </div>
-                        </div>
-                        <div class="panel-body">
-                            <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCatagory">
-                                <thead>
-                                    <tr>
-                                        <th><input type="checkbox" id="chkSelectAllCatagory" /></th>
-                                        <th>
-                                            Catagory
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.CatagoryList)
-                                    {
-                                        <tr>
-                                            <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelectCatagory" name="SelectedCatagoryIds" value="@item.ID" /></td>
-                                            <td class="valSelect">
-                                                @item.Name
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                            @*<div class="form-group">
-                                    @foreach (var item in Model.CatagoryList)
-                                    {
-                                        <div class="checkbox no-margin-top">
-                                            <label>
-                                                <input type="checkbox" name="IsSelected" class="styled">
-                                                @item.Name
-                                            </label>
-                                        </div>
-                                    }
-                                </div>*@
-                        </div>
+                    <div class="panel-body bg-blue-300 border-radius-top text-center" style="height:50px">
+                        <h5 style="margin-top:-5px">
+                            <strong>Select Catagory</strong>
+                        </h5>
                     </div>
+                    <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCatagory">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" id="chkSelectAllCatagory" /></th>
+                                <th>
+                                    Catagory Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CatagoryList)
+                            {
+                                <tr>
+                                    <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkSelect" name="SelectedIds" value="@item.ID" /></td>
+                                    <td class="valSelect">
+                                        @item.Name
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
                     <!-- /title selection -->
                     <div class="panel panel-white">
                         <div class="panel-body">
-                            <button type="button" id="btnSave" class="btn bg-blue btn-block" @*onclick="OpenPartialView('/Job/OpenJob')"*@>
+                            <button type="button" id="btnSave" class="btn bg-blue-300 btn-block" @*onclick="OpenPartialView('/Job/OpenJob')"*@>
                                 <i class="icon-search4 text-size-base position-left"></i>
                                 Submit
                             </button>

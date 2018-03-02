@@ -1,37 +1,34 @@
-﻿@model List<RMSCORE.EF.JobDetail>
+﻿@model List<RMSCORE.Models.Main.VMOpenJobIndex>
 @{
     ViewBag.title = "Job Portal";
     Layout = null;
 }
 <div class="panel panel-white">
     <div class="panel-heading">
-        <h6 class="panel-title text-semibold">Open positions</h6>
+        <h5 class="panel-title text-semibold">Openings</h5>
     </div>
     @foreach (var item in Model)
     {
         <ul class="media-list">
-            @if (item.Status == true)
-            {
-                <li class="media panel-body stack-media-on-mobile">
-                    <div class="media-left">
-                        <a href="#">
-                            <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h6 class="media-heading text-semibold">
-                            <a href="~/Job/JobDetail?JobID=@item.JobID">@item.JobTitle</a>
-                        </h6>
-                        <ul class="list-inline list-inline-separate text-muted mb-10">
-                            <li>
-                                <a href="#" class="text-muted">@item.CompanyName</a>
-                            </li>
-                            <li>@item.LocName</li>
-                        </ul>
-                        @item.Description
-                    </div>
-                </li>
-            }
+            <li class="media panel-body stack-media-on-mobile">
+                <div class="media-left">
+                    <a href="#">
+                        <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h6 class="media-heading text-semibold">
+                        <a href="~/Job/JobDetail?JobID=@item.JobID">@item.JobTitle</a>
+                    </h6>
+                    <ul class="list-inline list-inline-separate text-muted mb-10">
+                        <li>
+                            <a href="#" class="text-muted">@item.CompanyName</a>
+                        </li>
+                        <li>@item.LocName</li>
+                    </ul>
+                    @item.Description
+                </div>
+            </li>
         </ul>
     }
 </div>

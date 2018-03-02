@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using RMSCORE.Models.Helper;
 using RMSSERVICES.Job;
+using System.Linq.Expressions;
 
 namespace RMSAPPLICATION.Controllers
 {
@@ -15,12 +16,15 @@ namespace RMSAPPLICATION.Controllers
     {
         IEntityService<JobDetail> JobEntityService;
         IEntityService<CandidateJob> JobApplyService;
+        IEntityService<V_AppliedJob> VJobApplyService;
         IJobService JobService;
-        public JobController(IEntityService<JobDetail> jobEntityService,IEntityService<CandidateJob> jobApplyService, IJobService jobService)
+        public JobController(IEntityService<JobDetail> jobEntityService,
+        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, IJobService jobService)
         {
             JobEntityService = jobEntityService;
             JobService = jobService;
             JobApplyService = jobApplyService;
+            VJobApplyService = vJobApplyService;
         }
         // GET: Job
         [HttpGet]
@@ -32,15 +36,15 @@ namespace RMSAPPLICATION.Controllers
             return View(vm);
         }
         [HttpPost]
-        public ActionResult Index(VMJobPortalIndex obj,string[] SelectedIds,string[] SelectedCatagoryIds)
+        public ActionResult Index(VMJobPortalIndex obj, string[] SelectedIds, string[] SelectedCatagoryIds)
         {
             List<JobDetail> vmAllJobList = JobEntityService.GetIndex();
             List<JobDetail> vmTempList = new List<JobDetail>();
             if (obj.FilterBox != null)
             {
-            vmAllJobList=vmAllJobList.Where(aa => aa.JobTitle.Contains(obj.FilterBox)).ToList();
+                vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle.Contains(obj.FilterBox)).ToList();
             }
-            if (SelectedIds!=null)
+            if (SelectedIds != null)
             {
                 foreach (var item in SelectedIds)
                 {
@@ -51,7 +55,7 @@ namespace RMSAPPLICATION.Controllers
             else
                 vmTempList = vmAllJobList.ToList();
             vmTempList.Clear();
-            if (SelectedCatagoryIds!=null)
+            if (SelectedCatagoryIds != null)
             {
                 foreach (var item in SelectedCatagoryIds)
                 {
@@ -62,13 +66,13 @@ namespace RMSAPPLICATION.Controllers
             else
                 vmTempList = vmAllJobList.ToList();
             vmTempList.Clear();
-            return View("OpenJob",vmAllJobList);
+            return View("OpenJob", vmAllJobList);
         }
 
         private List<CustomModel> GetCatagoryList(List<string> list)
         {
             List<CustomModel> cmList = new List<CustomModel>();
-            foreach(var item in list)
+            foreach (var item in list)
             {
                 CustomModel cm = new CustomModel();
                 cm.ID = item;
@@ -95,24 +99,26 @@ namespace RMSAPPLICATION.Controllers
 
         public ActionResult OpenJob()
         {
-            List<JobDetail> vmAllJobList = JobEntityService.GetIndex();
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            List<VMOpenJobIndex> vmAllJobList = JobService.GetOpenJob(vmf);
             return View(vmAllJobList);
         }
         public ActionResult JobDetail(int JobID)
         {
-            JobDetail vmallJobDetail = JobEntityService.GetEdit(JobID);
-            return View(vmallJobDetail);
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            VMOpenJobIndex vmJobDetail = JobService.GetJobDetail(JobID,vmf);
+            return View(vmJobDetail);
         }
         [HttpGet]
         public ActionResult JobApply()
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            List<V_AppliedJob> vmlist = JobService.GetAppliedJob(cid);
+            List<VMAppliedJobIndex> vmlist = JobService.GetAppliedJob(cid);
             return View(vmlist);
         }
         [HttpPost]
-        public ActionResult JobApply(CandidateJob obj,int JobID)
+        public ActionResult JobApply(CandidateJob obj, int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
@@ -121,7 +127,7 @@ namespace RMSAPPLICATION.Controllers
             dbCandidateJob.JobID = JobID;
             dbCandidateJob.CJobDate = DateTime.Now;
             JobApplyService.PostCreate(dbCandidateJob);
-            return Json("OK",JsonRequestBehavior.AllowGet);
+            return Json("OK", JsonRequestBehavior.AllowGet);
         }
     }
 }

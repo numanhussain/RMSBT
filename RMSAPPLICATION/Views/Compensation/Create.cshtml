@@ -26,7 +26,7 @@
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="col-md-2 control-label text-semibold">Monthly Bonus Salary</label>
+                        <label class="col-md-2 control-label text-semibold">Monthly Basic Salary</label>
                         <div class="col-lg-2">
                             @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-2">
-                            <label class="control-label checkbox-inline checkbox-right text-semibold" for="Bonus">
+                            <label class="control-label checkbox-inline checkbox-right text-semibold" style="margin-right:10px" for="Bonus">
                                 @Html.CheckBox("Bonus", new { @class = "uniform", @id = "Bonus" })
                                 @Html.ValidationMessageFor(model => model.Bonus, "", new { @class = "text-danger" })
                                 Bonus
@@ -119,11 +119,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-1 control-label text-semibold">Transport Allowence</label>
+                        <label class="col-md-1 control-label text-semibold">Transport Allowance</label>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.TransportAllowence, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        <div class="col-md-1 control-label text-semibold">Mobile Allowence</div>
+                        <div class="col-md-1 control-label text-semibold">Mobile Allowance</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
@@ -144,9 +144,7 @@
                                 Buy Back Option
                             </label>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-2 control-label text-semibold">Accomodation Allowence</div>
+                        <div class="col-md-2 control-label text-semibold">Accomodation Allowance</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.AccomdAllowence, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
@@ -155,26 +153,26 @@
                             @Html.EditorFor(model => model.COLA, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <div class="col-md-1 control-label text-semibold">Others</div>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="Food">
                                 @Html.CheckBox("Food")
                                 @Html.ValidationMessageFor(model => model.Food, "", new { @class = "text-danger" })
                                 Food
                             </label>
                         </div>
-                        <div class="col-md-2">
+                        <div class="col-md-4">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="Free">
                                 @Html.CheckBox("Free")
                                 @Html.ValidationMessageFor(model => model.Free, "", new { @class = "text-danger" })
                                 Free
                             </label>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="Subsidized">
                                 @Html.CheckBox("Subsidized")
                                 @Html.ValidationMessageFor(model => model.Subsidized, "", new { @class = "text-danger" })
@@ -265,7 +263,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-2 control-label text-semibold">Transport AllowenceWorking Days/Week</div>
+                        <div class="col-md-2 control-label text-semibold">Transport Allowance Working Days/Week</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.TAllowenceWorkDay, new { htmlAttributes = new { @class = "form-control" } })
                         </div>

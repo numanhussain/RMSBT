@@ -39,24 +39,24 @@
                     </thead>
                     <tbody>
                         @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.JobTitle)
-                    </td>
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.JobTitle)
+                                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartDate)
-                    </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartDate)
+                                </td>
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.StartTime)
-                    </td>
-                </tr>
-}
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StartTime)
+                                </td>
+                            </tr>
+                        }
                     </tbody>
                 </table>
             </div>
