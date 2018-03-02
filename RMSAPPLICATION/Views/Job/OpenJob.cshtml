@@ -10,7 +10,6 @@
     @foreach (var item in Model)
     {
         <ul class="media-list">
-<<<<<<< HEAD
             <li class="media panel-body stack-media-on-mobile">
                 <div class="media-left">
                     <a href="#">
@@ -30,7 +29,6 @@
                     @item.Description
                 </div>
             </li>
-=======
             @if (item.DeadlineDate > DateTime.Now)
             {
                 <li class="media panel-body stack-media-on-mobile">
@@ -53,7 +51,6 @@
                     </div>
                 </li>
             }
->>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
         </ul>
     }
 </div>

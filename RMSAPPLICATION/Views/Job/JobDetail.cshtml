@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 ﻿@model RMSCORE.Models.Main.VMOpenJobIndex
-=======
-﻿@model RMSCORE.EF.JobDetail
->>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
 @{
     ViewBag.title = "Experience details";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -26,7 +22,7 @@
                                 <li>@Html.DisplayFor(x => x.LocName)</li>
                             </ul>
                         </div>
-<<<<<<< HEAD
+
                         <div class="media-right media-middle text-nowrap">
                             @if (Model.IsApplied == false)
                             {
@@ -34,37 +30,32 @@
                             }
                             else
                             {
-                                <span class="glyphicon-ok-sign" >Already Applied For this Job</span>
+                                <span class="glyphicon-ok-sign">Already Applied For this Job</span>
                             }
-=======
-
-                        <div class="media-right media-middle text-nowrap">
-                            <a href="#" onclick="ApplyJob(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
->>>>>>> 1df9c303756e286c8f59847e4dacfe414b8b89f3
+                        </div>
+                        <div class="content-group-lg">
+                            <h6 class="text-semibold">Job Description</h6>
+                            <p>@Html.DisplayFor(x => x.Description)</p>
+                        </div>
+                        <div class="content-group-lg">
+                            <h6 class="text-semibold">Responsibilities:</h6>
+                            <p class="content-group-sm">@Html.DisplayFor(x => x.Resposibilties)</p>
+                        </div>
+                        <div class="content-group-lg">
+                            <h6 class="text-semibold">Requirements:</h6>
+                            <p class="content-group-sm">@Html.DisplayFor(x => x.QualificationReq)</p>
+                        </div>
+                        <div class="content-group-lg">
+                            <h6 class="text-semibold">Desired Skills and Experience:</h6>
+                            <p class="content-group-sm">@Html.DisplayFor(x => x.SkillReq)</p>
                         </div>
                     </div>
-                    <div class="content-group-lg">
-                        <h6 class="text-semibold">Job Description</h6>
-                        <p>@Html.DisplayFor(x => x.Description)</p>
-                    </div>
-                    <div class="content-group-lg">
-                        <h6 class="text-semibold">Responsibilities:</h6>
-                        <p class="content-group-sm">@Html.DisplayFor(x => x.Resposibilties)</p>
-                    </div>
-                    <div class="content-group-lg">
-                        <h6 class="text-semibold">Requirements:</h6>
-                        <p class="content-group-sm">@Html.DisplayFor(x => x.QualificationReq)</p>
-                    </div>
-                    <div class="content-group-lg">
-                        <h6 class="text-semibold">Desired Skills and Experience:</h6>
-                        <p class="content-group-sm">@Html.DisplayFor(x => x.SkillReq)</p>
-                    </div>
+                    <!-- /details -->
                 </div>
-                <!-- /details -->
+                <!-- /main content -->
             </div>
-            <!-- /main content -->
+            <!-- /page content -->
         </div>
-        <!-- /page content -->
     </div>
 </div>
 <script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
