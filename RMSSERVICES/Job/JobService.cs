@@ -91,6 +91,31 @@ namespace RMSSERVICES.Job
             return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
 
         }
+        public List<VMOpenJobIndex> JobIndex()
+        {
+            List<JobDetail> dbOpenJobs = OpenJobRepository.GetAll();
+            List<VMOpenJobIndex> vmOpenJobs = new List<VMOpenJobIndex>();
+            foreach (var dbOpenJob in dbOpenJobs)
+            {
+                VMOpenJobIndex vmOpenJobIndex = new VMOpenJobIndex();
+                vmOpenJobIndex.JobID = dbOpenJob.JobID;
+                vmOpenJobIndex.JobTitle = dbOpenJob.JobTitle;
+                vmOpenJobIndex.Description = dbOpenJob.Description;
+                vmOpenJobIndex.LocName = dbOpenJob.LocName;
+                vmOpenJobIndex.CityName = dbOpenJob.CityName;
+                vmOpenJobIndex.CreatedDate = dbOpenJob.CreatedDate;
+                vmOpenJobIndex.CompanyName = dbOpenJob.CompanyName;
+                vmOpenJobIndex.Experience = dbOpenJob.Experience;
+                vmOpenJobIndex.QualificationReq = dbOpenJob.QualificationReq;
+                vmOpenJobIndex.Resposibilties = dbOpenJob.Resposibilties;
+                vmOpenJobIndex.CatagoryName = dbOpenJob.CatagoryName;
+                vmOpenJobIndex.Status = dbOpenJob.Status;
+                vmOpenJobIndex.SkillReq = dbOpenJob.SkillReq;
+                vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
+                vmOpenJobs.Add(vmOpenJobIndex);
+            }
+            return vmOpenJobs.OrderByDescending(aa => aa.JobID).ToList();
+        }
         #endregion
         #region -- Service Private Methods --
         #endregion
