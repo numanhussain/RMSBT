@@ -197,6 +197,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\Candidate\Compensation.js" />
     <Content Include="Scripts\Candidate\EduDetail.js" />
@@ -503,7 +504,6 @@
     <Content Include="Theme\assets\images\flags\zw.png" />
     <Content Include="Theme\assets\images\image.png" />
     <Content Include="Theme\assets\images\login_cover.jpg" />
-    <Content Include="Theme\assets\images\login_cover2.jpg" />
     <Content Include="Theme\assets\images\logo_dark.png" />
     <Content Include="Theme\assets\images\logo_demo.png" />
     <Content Include="Theme\assets\images\logo_icon_dark.png" />

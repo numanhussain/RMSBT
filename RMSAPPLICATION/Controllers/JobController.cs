@@ -38,8 +38,9 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Index(VMJobPortalIndex obj, string[] SelectedIds, string[] SelectedCatagoryIds)
         {
-            List<JobDetail> vmAllJobList = JobEntityService.GetIndex();
-            List<JobDetail> vmTempList = new List<JobDetail>();
+            List<VMOpenJobIndex> vmlist = JobService.JobIndex();
+            List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
+            List<VMOpenJobIndex> vmTempList = new List<VMOpenJobIndex>();
             if (obj.FilterBox != null)
             {
                 vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle.Contains(obj.FilterBox)).ToList();
@@ -66,7 +67,7 @@ namespace RMSAPPLICATION.Controllers
             else
                 vmTempList = vmAllJobList.ToList();
             vmTempList.Clear();
-            return View("OpenJob", vmAllJobList);
+            return PartialView("OpenJob", vmAllJobList);
         }
 
         private List<CustomModel> GetCatagoryList(List<string> list)

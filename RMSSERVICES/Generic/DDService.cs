@@ -15,6 +15,7 @@ namespace RMSSERVICES.Generic
         IRepository<Candidate> CandidateRepository;
         IRepository<EduDegreeLevel> EduDetailRepository;
         IRepository<EduInstitute> EduInstituteRepository;
+        IRepository<MartialStatu> MartialStatusRepository;
         IRepository<User> UserRepository;
         IRepository<JobDetail> JobRepository;
         IRepository<HearAbout> HearAboutJobRepository;
@@ -22,8 +23,8 @@ namespace RMSSERVICES.Generic
         IRepository<ExperienceIndustry> ExpIndustryRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
-        IRepository<ExperienceIndustry> expIndustryRepository, IRepository<Candidate> candidateRepository,
-            IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
+        IRepository<ExperienceIndustry> expIndustryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
+        IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
             IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository)
         {
             _unitOfWork = unitOfWork;
@@ -35,6 +36,7 @@ namespace RMSSERVICES.Generic
             HearAboutJobRepository = hearAboutJobRepository;
             SkillLevelRepository = skilllevelRepository;
             ExpIndustryRepository = expIndustryRepository;
+            MartialStatusRepository = martialStatusRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -67,6 +69,10 @@ namespace RMSSERVICES.Generic
         public List<ExperienceIndustry> GetIndustryList()
         {
             return ExpIndustryRepository.GetAll();
+        }
+        public List<MartialStatu> GetMartialStatusList()
+        {
+            return MartialStatusRepository.GetAll();
         }
         public List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate)
         {

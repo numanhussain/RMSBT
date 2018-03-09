@@ -29,7 +29,7 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> DOB { get; set; }
         public string CNICNo { get; set; }
         public string BloodGroup { get; set; }
-        public string MartialStatus { get; set; }
+        public Nullable<int> MartialStatusID { get; set; }
         public string Address { get; set; }
         public string City { get; set; }
         public string Country { get; set; }

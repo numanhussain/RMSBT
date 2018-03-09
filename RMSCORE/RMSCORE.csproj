@@ -85,6 +85,9 @@
     <Compile Include="EF\JobDetail.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\MartialStatu.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\MiscellaneousDetail.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

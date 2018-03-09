@@ -50,3 +50,20 @@ function ApplyJob(id) {
         }
     });
 };
+//function FilterSearch() {
+//    SelectAllCheckBox();
+//    $('#btnSave').click(function () {
+//        $.ajax({
+//            url: '/Job/Index',
+//            type: 'POST',
+//            cache: false,
+//            data: $("#frmJobIndex").serialize(),
+//            success: function (data) {
+//                $('#DivContainer').html(data);
+//            },
+//            error: function () {
+//                $("#result").text('an error occured')
+//            }
+//        });
+//    });
+//}

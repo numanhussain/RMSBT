@@ -19,5 +19,6 @@ namespace RMSSERVICES.Generic
         List<SkillLevel> GetSkillLevel();
         List<ExperienceIndustry> GetIndustryList();
         List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate);
+        List<MartialStatu> GetMartialStatusList();
     }
 }

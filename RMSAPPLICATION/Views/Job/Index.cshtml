@@ -7,7 +7,7 @@
 <div class="page-container">
     <!-- Page content -->
     <div class="page-content">
-        <form class="form-horizontal" action="~/Job/Index" enctype="multipart/form-data" id="frmJobIndex" method="post">
+        <form class="form-horizontal" enctype="multipart/form-data" id="frmJobIndex" method="post">
             <!-- Main sidebar -->
             <div class="sidebar sidebar-main sidebar-default sidebar-separate">
                 <div class="sidebar-content">
@@ -68,6 +68,7 @@
                     </div>
                     <!-- /location selection -->
                     <!-- Title selection -->
+                    <div class="panel panel-flat">
                     <div class="panel-body bg-blue-300 border-radius-top text-center" style="height:50px">
                         <h5 style="margin-top:-5px">
                             <strong>Select Catagory</strong>
@@ -94,7 +95,7 @@
                             }
                         </tbody>
                     </table>
-
+                    </div>
                     <!-- /title selection -->
                     <div class="panel panel-white">
                         <div class="panel-body">
@@ -125,6 +126,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         OpenPartialView('/Job/OpenJob')
+        //FilterSearch();
     });
 </script>
 <script type="text/javascript">

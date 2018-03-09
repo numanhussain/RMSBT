@@ -12,6 +12,7 @@ namespace RMSSERVICES.Job
     {
         List<VMOpenJobIndex> GetOpenJob(V_UserCandidate obj);
         List<VMAppliedJobIndex> GetAppliedJob(int cid);
+        List<VMOpenJobIndex> JobIndex();
         VMOpenJobIndex GetJobDetail(int id, V_UserCandidate LoggedInUser);
         
     }

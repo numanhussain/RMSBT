@@ -26,16 +26,17 @@
             <div class="panel-body">
                 <div class="col-md-12">
                     <div class="form-group">
-                        <label class="col-md-2 control-label text-semibold">Monthly Basic Salary</label>
-                        <div class="col-lg-2">
+                        <label class="col-md-3 control-label text-semibold">Monthly Basic Salary</label>
+                        <div class="col-lg-3">
                             @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        <label class="col-md-2 control-label text-semibold">Monthly Gross Salary</label>
-                        <div class="col-lg-6">
+                        <label class="col-md-3 control-label text-semibold">Monthly Gross Salary</label>
+                        <div class="col-lg-3">
                             @Html.EditorFor(model => model.MGSalary, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
+                        <div class="col-md-12"><hr /></div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <div class="col-md-2">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" style="margin-right:10px" for="Bonus">
                                 @Html.CheckBox("Bonus", new { @class = "uniform", @id = "Bonus" })
@@ -64,7 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <div class="col-md-2">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="LFA">
                                 @Html.CheckBox("LFA", new { @class = "uniform", @id = "LFA" })
@@ -93,7 +94,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <div class="col-md-2">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="OT">
                                 @Html.CheckBox("OT", new { @class = "uniform", @id = "OT" })
@@ -118,25 +119,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-control col-md-12 text-bold" style="margin-bottom:10px">Allowance</div>
+                    <div class="form-group col-md-12">
                         <label class="col-md-1 control-label text-semibold">Transport Allowance</label>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.TransportAllowence, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
-                        <div class="col-md-1 control-label text-semibold">Mobile Allowance</div>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <label class="col-md-1 control-label text-semibold">Car Entitlement</label>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.CarEntitlement, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                        <div class="col-md-1 control-label text-semibold">Mobile User Limit</div>
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control" } })
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <div class="col-md-2">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="BuyBackOption">
                                 @Html.CheckBox("BuyBackOption")
@@ -144,6 +132,23 @@
                                 Buy Back Option
                             </label>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-2 control-label text-semibold">Mobile Allowance</div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <label class="col-md-2 control-label text-semibold">Car Entitlement</label>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.CarEntitlement, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="col-md-2 control-label text-semibold">Mobile User Limit</div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+
                         <div class="col-md-2 control-label text-semibold">Accomodation Allowance</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.AccomdAllowence, new { htmlAttributes = new { @class = "form-control" } })
@@ -157,7 +162,8 @@
                             @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-group col-md-12">
                         <div class="col-md-4">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="Food">
                                 @Html.CheckBox("Food")
@@ -180,21 +186,22 @@
                             </label>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-control col-md-12 text-bold" style="margin-bottom:10px">Insurance & Coverage</div>
+                    <div class="form-group col-md-12">
                         <div class="col-md-1 control-label text-semibold">OPD</div>
-                        <div class="col-md-1">
+                        <div class="col-md-3">
                             @Html.EditorFor(model => model.OPDInsurance, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <label class="col-md-1 control-label text-semibold">IP</label>
-                        <div class="col-md-1">
+                        <div class="col-md-3">
                             @Html.EditorFor(model => model.IPInsurance, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <div class="col-md-1 control-label text-semibold">Life</div>
-                        <div class="col-md-7">
+                        <div class="col-md-3">
                             @Html.EditorFor(model => model.LifeInsurance, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <div class="col-md-2">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="ProvidentFund">
                                 @Html.CheckBox("ProvidentFund", new { @class = "uniform", @id = "ProvidentFund" })
@@ -223,7 +230,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <div class="col-md-2">
                             <label class="control-label checkbox-inline checkbox-right text-semibold" for="Gratuity">
                                 @Html.CheckBox("Gratuity", new { @class = "uniform", @id = "Gratuity" })
@@ -248,7 +255,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-control col-md-12 text-bold" style="margin-bottom:10px">Leaves </div>
+                    <div class="form-group col-md-12">
                         <div class="col-md-2 control-label text-semibold">Annual</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.AnnualTAllowence, new { htmlAttributes = new { @class = "form-control" } })
@@ -262,7 +270,7 @@
                             @Html.EditorFor(model => model.MedTAllowence, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group col-md-12">
                         <div class="col-md-2 control-label text-semibold">Transport Allowance Working Days/Week</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.TAllowenceWorkDay, new { htmlAttributes = new { @class = "form-control" } })
@@ -294,3 +302,4 @@
         CompensationDetailHide();
     });
 </script>
+
