@@ -37,6 +37,7 @@ namespace RMSCORE.EF
         public virtual DbSet<HearAbout> HearAbouts { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
         public virtual DbSet<JobDetail> JobDetails { get; set; }
+        public virtual DbSet<MartialStatu> MartialStatus { get; set; }
         public virtual DbSet<MiscellaneousDetail> MiscellaneousDetails { get; set; }
         public virtual DbSet<NotificationDetail> NotificationDetails { get; set; }
         public virtual DbSet<ReferenceDetail> ReferenceDetails { get; set; }

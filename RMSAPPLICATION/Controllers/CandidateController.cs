@@ -17,11 +17,13 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Initialization --
         IEntityService<Candidate> CandidateEntityService;
         ICandidateService CandidateService;
+        IDDService DDService;
         // Controller Constructor
-        public CandidateController(IEntityService<Candidate> candidateEntityService, ICandidateService candidateservice)
+        public CandidateController(IEntityService<Candidate> candidateEntityService, IDDService ddService, ICandidateService candidateservice)
         {
             CandidateEntityService = candidateEntityService;
             CandidateService = candidateservice;
+            DDService = ddService;
         }
         #endregion
         // GET: Candidate
@@ -39,7 +41,8 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
             int? uid = vmf.UserID;
-            Candidate vmOperation = CandidateService.GetCreate(cid,(int)uid);
+            Candidate vmOperation = CandidateService.GetCreate(cid, (int)uid);
+            CreateHelper(vmOperation);
             return View(vmOperation);
         }
         [HttpPost]
@@ -49,7 +52,7 @@ namespace RMSAPPLICATION.Controllers
             {
                 CandidateService.PostCreate(dbOperation);
             }
-            //CreateHelper(dbOperation);
+            CreateHelper(dbOperation);
             return View("Create", dbOperation);
         }
         [HttpPost]
@@ -95,7 +98,11 @@ namespace RMSAPPLICATION.Controllers
             }
         }
 
-        #region--
+        #region-- 
+        private void CreateHelper(Candidate obj)
+        {
+            ViewBag.MartialStatusID = new SelectList(DDService.GetMartialStatusList().ToList().OrderBy(aa => aa.PMID).ToList(), "PMID", "MartialStatusName", obj.MartialStatusID);
+        }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {
             Image img = Image.FromStream(image.InputStream);

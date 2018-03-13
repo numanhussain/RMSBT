@@ -53,7 +53,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.FatherName = dbOperation.FatherName;
             dbCandidate.BloodGroup = dbOperation.BloodGroup;
             dbCandidate.CNICNo = dbOperation.CNICNo;
-            dbCandidate.MartialStatus = dbOperation.MartialStatus;
+            dbCandidate.MartialStatusID = dbOperation.MartialStatusID;
             dbCandidate.DOB = dbOperation.DOB;
             dbCandidate.Domicile = dbOperation.Domicile;
             dbCandidate.Country = dbOperation.Country;

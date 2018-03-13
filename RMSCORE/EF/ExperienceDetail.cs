@@ -26,5 +26,6 @@ namespace RMSCORE.EF
         public string Description { get; set; }
         public int CandidateID { get; set; }
         public Nullable<int> IndustryID { get; set; }
+        public string Country { get; set; }
     }
 }
