@@ -19117,9 +19117,10 @@ thead .htCollapseButton:after {
   padding-top: 40px;
   position: static;
 }
-.login-container .page-container .login-form {
-  width: 320px;
-}
+    .login-container .page-container .login-form {
+        width: 320px;
+        background-color: transparent;
+    }
 .login-container .page-container .login-form .thumb {
   margin: 0 auto 20px auto;
 }
