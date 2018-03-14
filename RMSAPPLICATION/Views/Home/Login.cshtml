@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,10 +31,24 @@
     <!-- Theme JS files -->
     <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
     <!-- /theme JS files -->
-
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 38px;
+            padding: 8px 16px;
+            font-size: 13px;
+            line-height: 1.5384616;
+            color: #0094ff;
+            background-color: transparent;
+            background-image: none;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
 </head>
 
-<body class="login-container login-cover  pace-done">
+<body class="login-container login-cover login-form">
 
     <!-- /main navbar -->
     <!-- Page container -->
@@ -49,37 +64,32 @@
                 <form action="~/Home/Login" enctype="multipart/form-data" method="post">
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
-                    <div style="margin-left:60%; margin-top:4%">
-                        <div class="col-md-7">
-                            <div class="panel panel-body pace-done">
-                                <img src="~/Theme/assets/images/bcl_logo_final.png" style="margin-left:80px" height="90"/>
-                                <h5 class="content-group text-center text-bold" @*style="font-family:Broadway"*@>e-Recruitment <small class="display-block">Enter your credentials below</small></h5>
-
-                                <div class="form-group has-feedback has-feedback-left">
-                                    <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
-                                    <div class="form-control-feedback">
-                                        <i class="icon-user text-muted"></i>
-                                    </div>
+                    <div class="panel panel-body login-form">
+                        <div>
+                            <img src="~/Theme/assets/images/bcl_logo_final.png" class="center-block" height="70" />
+                            <h1 class="content-group text-center text-blue-300 text-black">e-Recruitment Portal<small class="display-block text-white text-bold">Enter your credentials below</small></h1>
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
+                                <div class="form-control-feedback">
+                                    <i class="icon-user text-blue"></i>
                                 </div>
+                            </div>
 
-                                <div class="form-group has-feedback has-feedback-left">
-                                    <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
-                                    <div class="form-control-feedback">
-                                        <i class="icon-lock2 text-muted"></i>
-                                    </div>
+                            <div class="form-group has-feedback has-feedback-left">
+                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                                <div class="form-control-feedback">
+                                    <i class="icon-lock2 text-blue"></i>
                                 </div>
+                                <a href="~/Home/ForgetPassword"><strong class="text-green-400">Forgot Password?</strong> </a>
+                            </div>
 
-                                <a href="~/Home/ForgetPassword"><strong style="color:black">Forgot Password?</strong> </a>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
-                                </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+                            </div>
 
-                                <div class="text-center">
+                            <div class="text-left">
+                                <span class="text-white">New User ?</span> <a href="~/Home/RegisterUser"><strong class="text-green-400 text-bold">Register</strong> </a
 
-                                    <strong style="color:black">New User ?</strong> <a href="~/Home/RegisterUser"><strong style="color:black">Register</strong> </a>
-
-
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -96,7 +106,7 @@
     <!-- /page container -->
     <!-- Footer -->
     <div class="footer text-muted text-center">
-        &copy; 2018. <a href="#">Recruitment Management System</a> by <a href="http://cns.com.pk" target="_blank">Computer & Networking Services</a>
+        &copy; 2018. <a href="#" class="text-white">Recruitment Management System</a> by <a href="http://www.bestway.com.pk/" target="_blank" class="text-white text-bold">Bestway Cement Limited.</a>
     </div>
     <!-- /footer -->
 </body>

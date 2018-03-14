@@ -6,14 +6,21 @@
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.UserID)
     <!-- Page container -->
+    <head>
+        <style>
+            .panel-body{
+                background-color:white;
+            }
+        </style>
+    </head>
     <div style="margin-top:-45px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3><i class="icon-person"></i>&nbsp;&nbsp;Personal Details</h3>
+                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Details</h3>
             </div>
         </div>
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-success-400">
+            <div class="breadcrumb-line bg-green-600">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb">
                     <li><a href="~/Home/Index"> Dashboard</a></li>
@@ -42,7 +49,7 @@
                     <div class="form-group col-md-4">
                         <label class="text-semibold">Martial Status</label>
                         <div>
-                            @Html.DropDownList("MartialStatusID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
+                            @Html.DropDownList("MartialStatusID", null, new { @class = "form-control col-lg-12 col-sm-12 col-md-12" })
                             @Html.ValidationMessageFor(model => model.MartialStatusID, "", new { @class = "text-danger" })
                         </div>
                     </div>
