@@ -4,43 +4,43 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4a28c0046e384d5495cdbfddaf0591a4" Name="Diagram1" ZoomLevel="25">
-        <EntityTypeShape EntityType="BTRMSModel.Candidate" Width="1.5" PointX="0.75" PointY="6" />
-        <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.CandidatePhoto" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.CompensationDetail" Width="1.5" PointX="8.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.EduDegreeLevel" Width="1.5" PointX="0.75" PointY="12" />
-        <EntityTypeShape EntityType="BTRMSModel.EduDetail" Width="1.5" PointX="3" PointY="6.75" />
-        <EntityTypeShape EntityType="BTRMSModel.EduInstitute" Width="1.5" PointX="0.75" PointY="3.625" />
-        <EntityTypeShape EntityType="BTRMSModel.ExperienceDetail" Width="1.5" PointX="10.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.ExperienceIndustry" Width="1.5" PointX="5.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BTRMSModel.HearAbout" Width="1.5" PointX="10.75" PointY="5.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Interview" Width="1.5" PointX="6" PointY="7.125" />
-        <EntityTypeShape EntityType="BTRMSModel.JobDetail" Width="1.5" PointX="3.75" PointY="1.75" />
-        <EntityTypeShape EntityType="BTRMSModel.MartialStatu" Width="1.5" PointX="10.75" PointY="8.75" />
-        <EntityTypeShape EntityType="BTRMSModel.MiscellaneousDetail" Width="1.5" PointX="5.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.NotificationDetail" Width="1.5" PointX="3" PointY="14" />
-        <EntityTypeShape EntityType="BTRMSModel.ReferenceDetail" Width="1.5" PointX="7.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.SkillDetail" Width="1.5" PointX="3" PointY="17.75" />
-        <EntityTypeShape EntityType="BTRMSModel.SkillLevel" Width="1.5" PointX="2.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.sysdiagram" Width="1.5" PointX="9.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.User" Width="1.5" PointX="11.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_AppliedJob" Width="1.5" PointX="12.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_EduDetail" Width="1.5" PointX="12.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Exp" Width="1.5" PointX="13.75" PointY="8.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Miscellaneous" Width="1.5" PointX="13.75" PointY="13.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Reference" Width="1.5" PointX="14.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Skills" Width="1.5" PointX="14.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Interview" Width="1.5" PointX="7.75" PointY="14.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Notification" Width="1.5" PointX="15.75" PointY="8.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_UserCandidate" Width="1.5" PointX="15.75" PointY="12.75" />
-        <AssociationConnector Association="BTRMSModel.FK_EduDetail_Candidate" />
-        <AssociationConnector Association="BTRMSModel.FK_Interview_Candidate" />
-        <AssociationConnector Association="BTRMSModel.FK_Notification_Candidate" />
-        <AssociationConnector Association="BTRMSModel.FK_Skill_Candidate" />
-        <AssociationConnector Association="BTRMSModel.FK_EduDetail_EduDegreeLevel" />
-        <AssociationConnector Association="BTRMSModel.FK_EduDetail_EduInstituate" />
-        <AssociationConnector Association="BTRMSModel.FK_Interview_Job" />
+      <Diagram DiagramId="fccda728a36749fda8719f45029d310e" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="BTRMSModel.Candidate" Width="1.5" PointX="0.75" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.CandidatePhoto" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.CompensationDetail" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.EduDegreeLevel" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.EduDetail" Width="1.5" PointX="3" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.EduInstitute" Width="1.5" PointX="0.75" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.ExperienceDetail" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.ExperienceIndustry" Width="1.5" PointX="5.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.HearAbout" Width="1.5" PointX="10.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.Interview" Width="1.5" PointX="6" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.JobDetail" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.MartialStatu" Width="1.5" PointX="10.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.MiscellaneousDetail" Width="1.5" PointX="5.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.NotificationDetail" Width="1.5" PointX="3" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.ReferenceDetail" Width="1.5" PointX="7.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.SkillDetail" Width="1.5" PointX="3" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.SkillLevel" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.sysdiagram" Width="1.5" PointX="9.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.User" Width="1.5" PointX="11.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_AppliedJob" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_EduDetail" Width="1.5" PointX="12.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Exp" Width="1.5" PointX="13.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Miscellaneous" Width="1.5" PointX="13.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Reference" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Skills" Width="1.5" PointX="14.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Interview" Width="1.5" PointX="7.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Notification" Width="1.5" PointX="15.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BTRMSModel.V_UserCandidate" Width="1.5" PointX="15.75" PointY="12.75" IsExpanded="true" />
+        <AssociationConnector Association="BTRMSModel.FK_EduDetail_Candidate" ManuallyRouted="false" />
+        <AssociationConnector Association="BTRMSModel.FK_Interview_Candidate" ManuallyRouted="false" />
+        <AssociationConnector Association="BTRMSModel.FK_Notification_Candidate" ManuallyRouted="false" />
+        <AssociationConnector Association="BTRMSModel.FK_Skill_Candidate" ManuallyRouted="false" />
+        <AssociationConnector Association="BTRMSModel.FK_EduDetail_EduDegreeLevel" ManuallyRouted="false" />
+        <AssociationConnector Association="BTRMSModel.FK_EduDetail_EduInstituate" ManuallyRouted="false" />
+        <AssociationConnector Association="BTRMSModel.FK_Interview_Job" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -17,7 +17,7 @@ namespace RMSSERVICES.UserDetail
         IRepository<Candidate> CandidateRepository;
         #endregion
         #region -- Service Interface Implementation --
-        public UserService(IUnitOfWork unitOfWork, IRepository<User> userRepository,IRepository<Candidate> candidateRepository)
+        public UserService(IUnitOfWork unitOfWork, IRepository<User> userRepository, IRepository<Candidate> candidateRepository)
         {
             UnitOfWork = unitOfWork;
             UserRepository = userRepository;
@@ -30,9 +30,8 @@ namespace RMSSERVICES.UserDetail
         }
         public ServiceMessage RegisterUser(User dbOperation)
         {
-
-
             dbOperation.DateCreated = DateTime.Today;
+            dbOperation.UserStage = "SignUp";
             UserRepository.Add(dbOperation);
             UserRepository.Save();
             Candidate dbCandidate = new Candidate();
@@ -41,7 +40,6 @@ namespace RMSSERVICES.UserDetail
             dbCandidate.EmailID = dbOperation.Email;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
-
             return new ServiceMessage();
         }
         #endregion

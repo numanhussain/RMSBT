@@ -48,6 +48,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(Candidate dbOperation)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
                 CandidateService.PostCreate(dbOperation);
