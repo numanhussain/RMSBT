@@ -51,11 +51,16 @@ namespace RMSAPPLICATION.Controllers
                 V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                return RedirectToAction("Index", "Job");
-
+                if (vm.UserStage == "ProfileCompleted")
+                {
+                    return RedirectToAction("Index", "Job");
+                }
+                if (vm.UserStage == "SignUp")
+                {
+                    return RedirectToAction("Index", "Candidate");
+                }
             }
-            else
-                return View("Login");
+            return View();
 
         }
         [HttpGet]
@@ -70,7 +75,7 @@ namespace RMSAPPLICATION.Controllers
             {
                 return RedirectToAction("RegisterUser");
             }
-            else    
+            else
             {
                 if (ModelState.IsValid)
                 {
@@ -80,7 +85,7 @@ namespace RMSAPPLICATION.Controllers
                     return RedirectToAction("Index", "Job");
                 }
             }
-           
+
             return View(Obj);
         }
         [HttpGet]
@@ -99,7 +104,7 @@ namespace RMSAPPLICATION.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult ChangePass(FormCollection form )
+        public ActionResult ChangePass(FormCollection form)
         {
             string newPassword = Request.Form["newPassword"].ToString();
             string ConfirmnewPassword = Request.Form["ConfirmnewPassword"].ToString();
