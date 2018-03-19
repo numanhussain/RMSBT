@@ -1241,9 +1241,7 @@ legend .control-arrow {
 
 label {
     margin-bottom: 7px;
-    <<<<<<< HEAD font-weight: 400;
-    ======= font-weight: 500;
-    >>>>>>> 6972f911deaa94612fc090482dab778194229d30
+    font-weight: 500;
 }
 
 select[multiple],
