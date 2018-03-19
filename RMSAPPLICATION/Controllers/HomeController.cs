@@ -1,4 +1,6 @@
 ﻿using RMSCORE.EF;
+using RMSCORE.Models.Helper;
+using RMSCORE.Models.Main;
 using RMSSERVICES.Generic;
 using RMSSERVICES.UserDetail;
 using System;
@@ -15,21 +17,28 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Initialization --
         IEntityService<User> UserEntityService;
         IEntityService<V_UserCandidate> VUserEntityService;
+        IEntityService<Location> LocationService;
+        IEntityService<Catagory> CatagoryService;
         IUserService UserService;
         IDDService DDService;
         // Controller Constructor
-        public HomeController(IEntityService<User> userEntityService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService)
+        public HomeController(IEntityService<User> userEntityService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService)
         {
             UserEntityService = userEntityService;
             UserService = userService;
             DDService = ddService;
             VUserEntityService = vUserEntityService;
+            LocationService = locationService;
+            CatagoryService = catagoryService;
         }
         #endregion
         #region -- Controller ActionResults  -- 
         public ActionResult Index()
         {
-            return View();
+            VMJobPortalIndex vm = new VMJobPortalIndex();
+            vm.LocationList = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
+            vm.CatagoryList = GetCatagoryList(CatagoryService.GetIndex().Select(aa => aa.CatName).Distinct().ToList());
+            return View(vm);
         }
         #region -- Controller Main View Actions  --
         [HttpGet]
@@ -69,6 +78,8 @@ namespace RMSAPPLICATION.Controllers
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult RegisterUser(User Obj)
         {
             if (Obj.Password != Obj.RetypePassword)
@@ -81,8 +92,8 @@ namespace RMSAPPLICATION.Controllers
                 {
                     UserService.RegisterUser(Obj);
                     var code = Obj.SecurityLink;
-                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { User = Obj.UserID, code = code }, protocol: Request.Url.Scheme);
-                    EmailGenerate.SendEmail(Obj.Email,"", "Activate Your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    var callbackUrl = Url.Action("VerifyLink", "Home", new { User = Obj.UserID, code = code }, protocol: Request.Url.Scheme);
+                    EmailGenerate.SendEmail(Obj.Email, "", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>", "Account Activation");
                     Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                     Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                     return RedirectToAction("Index", "Job");
@@ -91,16 +102,18 @@ namespace RMSAPPLICATION.Controllers
 
             return View(Obj);
         }
+        [HttpGet]
+        [AllowAnonymous]
         public ActionResult VerifyLink(string key)
         {
             if (UserService.VerifyLink(key))
             {
                 User user = UserEntityService.GetIndex().Where(aa => aa.SecurityLink == key).First();
-               
-                    V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == user.UserName && aa.Password == user.Password);
-                    Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
-                    Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                        return RedirectToAction("Index", "Job");
+
+                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == user.UserName && aa.Password == user.Password);
+                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
+                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                return RedirectToAction("Index", "Job");
             }
             else
             {
@@ -150,6 +163,33 @@ namespace RMSAPPLICATION.Controllers
         #endregion
         #endregion
         #region -- Controller Private  Methods--
+        private List<CustomModel> GetCatagoryList(List<string> list)
+        {
+            List<CustomModel> cmList = new List<CustomModel>();
+            foreach (var item in list)
+            {
+                CustomModel cm = new CustomModel();
+                cm.ID = item;
+                cm.Name = item;
+                cm.IsSelected = false;
+                cmList.Add(cm);
+            }
+            return cmList;
+        }
+
+        private List<CustomModel> GetLocationList(List<string> list)
+        {
+            List<CustomModel> cmList = new List<CustomModel>();
+            foreach (var item in list)
+            {
+                CustomModel cm = new CustomModel();
+                cm.ID = item;
+                cm.Name = item;
+                cm.IsSelected = false;
+                cmList.Add(cm);
+            }
+            return cmList;
+        }
         #endregion
     }
 }

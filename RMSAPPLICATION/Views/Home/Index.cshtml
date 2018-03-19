@@ -1,8 +1,75 @@
 ﻿@model RMSCORE.Models.Main.VMJobPortalIndex
 @{
     ViewBag.title = "Experience details";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+    Layout = null;
+}<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bestway - e-Recruitment</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/ripple.min.js"></script>
+    <script type="text/javascript" src="/Theme/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="/Theme/assets/js/pages/job_list.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
+    <!-- /theme JS files -->
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 38px;
+            padding: 8px 16px;
+            font-size: 13px;
+            line-height: 1.5384616;
+            color: #0094ff;
+            background-color: transparent;
+            background-image: none;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+</html>
+<div class="navbar navbar-inverse bg-primary">
+    <div class="navbar-header">
+        <div style="padding-left:20px; padding-top:10px;">
+            <a href="~/AttendanceDashboard/MainContainer"><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
+            <span class="h6 text-bold" style="padding-left:10px;"> e-Recruitment</span>
+        </div>
+    </div>
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+        <ul class="nav navbar-nav navbar-right">
+
+            <li><span class="h6 text-bold">For Apply</span>
+                <a href="~/Home/Login"><span class="h6 text-bold">Login</span></a>
+            </li>
+
+        </ul>
+    </div>
+</div>
 <!-- Page container -->
 <div class="page-container">
     <!-- Page content -->
@@ -69,32 +136,32 @@
                     <!-- /location selection -->
                     <!-- Title selection -->
                     <div class="panel panel-flat">
-                    <div class="panel-body bg-blue-300 border-radius-top text-center" style="height:50px">
-                        <h5 style="margin-top:-5px">
-                            <strong>Select Catagory</strong>
-                        </h5>
-                    </div>
-                    <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCatagory">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="chkSelectAllCatagory" /></th>
-                                <th>
-                                    Catagory Name
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model.CatagoryList)
-                            {
+                        <div class="panel-body bg-blue-300 border-radius-top text-center" style="height:50px">
+                            <h5 style="margin-top:-5px">
+                                <strong>Select Catagory</strong>
+                            </h5>
+                        </div>
+                        <table class="table datatable-scroll-y table-striped table-hover table-condensed" id="TableCatagory">
+                            <thead>
                                 <tr>
-                                    <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkCatagorySelect" name="SelectedCatagoryIds" value="@item.ID" /></td>
-                                    <td class="valSelect">
-                                        @item.Name
-                                    </td>
+                                    <th><input type="checkbox" id="chkSelectAllCatagory" /></th>
+                                    <th>
+                                        Catagory Name
+                                    </th>
                                 </tr>
-                            }
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.CatagoryList)
+                                {
+                                    <tr>
+                                        <td class="text-nowrap"><input type="checkbox" @(item.IsSelected == true ? "checked" : "") class="chkCatagorySelect" name="SelectedCatagoryIds" value="@item.ID" /></td>
+                                        <td class="valSelect">
+                                            @item.Name
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
                     </div>
                     <!-- /title selection -->
                     <div class="panel panel-white">
@@ -125,7 +192,7 @@
 <script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        OpenPartialView('/Job/OpenJob')
+        OpenPartialView('/Job/OpenJobIndex')
         //FilterSearch();
     });
 </script>
@@ -148,3 +215,5 @@
         });
     });
 </script>
+
+

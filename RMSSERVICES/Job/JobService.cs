@@ -17,7 +17,7 @@ namespace RMSSERVICES.Job
         IRepository<V_AppliedJob> JobRepository;
         IRepository<JobDetail> OpenJobRepository;
         IRepository<CandidateJob> AppliedJobRepository;
-        public JobService(IUnitOfWork unitOfWork,IRepository<JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository, IRepository<CandidateJob> appliedJobRepository)
+        public JobService(IUnitOfWork unitOfWork, IRepository<JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository, IRepository<CandidateJob> appliedJobRepository)
         {
             UnitOfWork = unitOfWork;
             JobRepository = jobRepository;
@@ -42,7 +42,7 @@ namespace RMSSERVICES.Job
                 vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
                 vmVAppliedJobs.Add(vmVAppliedJob);
             }
-            return vmVAppliedJobs.OrderByDescending(aa=>aa.CJobID).ToList();
+            return vmVAppliedJobs.OrderByDescending(aa => aa.CJobID).ToList();
         }
 
         public VMOpenJobIndex GetJobDetail(int JobID, V_UserCandidate LoggedInUser)
@@ -65,17 +65,30 @@ namespace RMSSERVICES.Job
                 vmJobDetail.IsApplied = false;
             return vmJobDetail;
         }
-
+        public VMOpenJobIndex GetJobDetailIndex(int JobID)
+        {
+            JobDetail dbJobDetail = OpenJobRepository.GetSingle(JobID);
+            VMOpenJobIndex vmJobDetail = new VMOpenJobIndex();
+            vmJobDetail.JobID = dbJobDetail.JobID;
+            vmJobDetail.JobTitle = dbJobDetail.JobTitle;
+            vmJobDetail.CompanyName = dbJobDetail.CompanyName;
+            vmJobDetail.LocName = dbJobDetail.LocName;
+            vmJobDetail.Description = dbJobDetail.Description;
+            vmJobDetail.Resposibilties = dbJobDetail.Resposibilties;
+            vmJobDetail.QualificationReq = dbJobDetail.QualificationReq;
+            vmJobDetail.SkillReq = dbJobDetail.SkillReq;
+            return vmJobDetail;
+        }
         public List<VMOpenJobIndex> GetOpenJob(V_UserCandidate LoggedInUser)
         {
-            Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >=DateTime.Today;
+            Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
             List<JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
             Expression<Func<CandidateJob, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
             List<CandidateJob> dbAppliedJobs = AppliedJobRepository.FindBy(SpecificClient2);
             List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
             foreach (var dbVAppliedJob in dbAllOpenJobs)
             {
-               
+
                 VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
                 vmVAppliedJob.JobID = dbVAppliedJob.JobID;
                 vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
@@ -86,7 +99,26 @@ namespace RMSSERVICES.Job
                     vmVAppliedJob.IsApplied = true;
                 else
                     vmVAppliedJob.IsApplied = false;
-                    vmVAppliedJobs.Add(vmVAppliedJob);
+                vmVAppliedJobs.Add(vmVAppliedJob);
+            }
+            return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
+
+        }
+        public List<VMOpenJobIndex> GetOpenJobIndex()
+        {
+            Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
+            List<JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
+            List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
+            foreach (var dbVAppliedJob in dbAllOpenJobs)
+            {
+
+                VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
+                vmVAppliedJob.JobID = dbVAppliedJob.JobID;
+                vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
+                vmVAppliedJob.LocName = dbVAppliedJob.LocName;
+                vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
+                vmVAppliedJob.Description = dbVAppliedJob.Description;
+                vmVAppliedJobs.Add(vmVAppliedJob);
             }
             return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
 

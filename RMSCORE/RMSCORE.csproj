@@ -58,6 +58,9 @@
     <Compile Include="EF\CandidatePhoto.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Catagory.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\CompensationDetail.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -83,6 +86,9 @@
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\JobDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Location.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\MartialStatu.cs">

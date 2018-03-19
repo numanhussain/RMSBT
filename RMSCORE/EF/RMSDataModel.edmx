@@ -44,6 +44,13 @@
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CandidatePic" Type="image" />
         </EntityType>
+        <EntityType Name="Catagory">
+          <Key>
+            <PropertyRef Name="PCatagoryID" />
+          </Key>
+          <Property Name="PCatagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="CompensationDetail">
           <Key>
             <PropertyRef Name="CID" />
@@ -185,6 +192,13 @@
           <Property Name="Status" Type="bit" />
           <Property Name="SkillReq" Type="nvarchar" MaxLength="3000" />
           <Property Name="DeadlineDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="PLocationID" />
+          </Key>
+          <Property Name="PLocationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="MartialStatus">
           <Key>
@@ -552,6 +566,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateJob" EntityType="Self.CandidateJob" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidatePhoto" EntityType="Self.CandidatePhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Catagory" EntityType="Self.Catagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompensationDetail" EntityType="Self.CompensationDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduDegreeLevel" EntityType="Self.EduDegreeLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduDetail" EntityType="Self.EduDetail" Schema="dbo" store:Type="Tables" />
@@ -561,6 +576,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="HearAbout" EntityType="Self.HearAbout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Interview" EntityType="Self.Interview" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobDetail" EntityType="Self.JobDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MartialStatus" EntityType="Self.MartialStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiscellaneousDetails" EntityType="Self.MiscellaneousDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotificationDetail" EntityType="Self.NotificationDetail" Schema="dbo" store:Type="Tables" />
@@ -739,6 +755,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
           <EntitySet Name="CandidateJobs" EntityType="BTRMSModel.CandidateJob" />
           <EntitySet Name="CandidatePhotoes" EntityType="BTRMSModel.CandidatePhoto" />
+          <EntitySet Name="Catagories" EntityType="BTRMSModel.Catagory" />
           <EntitySet Name="CompensationDetails" EntityType="BTRMSModel.CompensationDetail" />
           <EntitySet Name="EduDegreeLevels" EntityType="BTRMSModel.EduDegreeLevel" />
           <EntitySet Name="EduDetails" EntityType="BTRMSModel.EduDetail" />
@@ -748,6 +765,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="HearAbouts" EntityType="BTRMSModel.HearAbout" />
           <EntitySet Name="Interviews" EntityType="BTRMSModel.Interview" />
           <EntitySet Name="JobDetails" EntityType="BTRMSModel.JobDetail" />
+          <EntitySet Name="Locations" EntityType="BTRMSModel.Location" />
           <EntitySet Name="MartialStatus" EntityType="BTRMSModel.MartialStatu" />
           <EntitySet Name="MiscellaneousDetails" EntityType="BTRMSModel.MiscellaneousDetail" />
           <EntitySet Name="NotificationDetails" EntityType="BTRMSModel.NotificationDetail" />
@@ -836,6 +854,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </Key>
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CandidatePic" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Catagory">
+          <Key>
+            <PropertyRef Name="PCatagoryID" />
+          </Key>
+          <Property Name="PCatagoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CompensationDetail">
           <Key>
@@ -986,6 +1011,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="SkillReq" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Job" FromRole="JobDetail" ToRole="Interview" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="PLocationID" />
+          </Key>
+          <Property Name="PLocationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="MartialStatu">
           <Key>
@@ -1364,6 +1396,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Catagories">
+            <EntityTypeMapping TypeName="BTRMSModel.Catagory">
+              <MappingFragment StoreEntitySet="Catagory">
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="PCatagoryID" ColumnName="PCatagoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CompensationDetails">
             <EntityTypeMapping TypeName="BTRMSModel.CompensationDetail">
               <MappingFragment StoreEntitySet="CompensationDetail">
@@ -1512,6 +1552,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="BTRMSModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="LocName" ColumnName="LocName" />
+                <ScalarProperty Name="PLocationID" ColumnName="PLocationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

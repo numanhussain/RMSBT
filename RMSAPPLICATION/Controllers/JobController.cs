@@ -16,23 +16,27 @@ namespace RMSAPPLICATION.Controllers
     {
         IEntityService<JobDetail> JobEntityService;
         IEntityService<CandidateJob> JobApplyService;
+        IEntityService<Location> LocationService;
+        IEntityService<Catagory> CatagoryService;
         IEntityService<V_AppliedJob> VJobApplyService;
         IJobService JobService;
         public JobController(IEntityService<JobDetail> jobEntityService,
-        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, IJobService jobService)
+        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, IJobService jobService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService)
         {
             JobEntityService = jobEntityService;
             JobService = jobService;
             JobApplyService = jobApplyService;
             VJobApplyService = vJobApplyService;
+            LocationService = locationService;
+            CatagoryService = catagoryService;
         }
         // GET: Job
         [HttpGet]
         public ActionResult Index()
         {
             VMJobPortalIndex vm = new VMJobPortalIndex();
-            vm.LocationList = GetLocationList(JobEntityService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
-            vm.CatagoryList = GetCatagoryList(JobEntityService.GetIndex().Select(aa => aa.CatagoryName).Distinct().ToList());
+            vm.LocationList = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
+            vm.CatagoryList = GetCatagoryList(CatagoryService.GetIndex().Select(aa => aa.CatName).Distinct().ToList());
             return View(vm);
         }
         [HttpPost]
@@ -104,10 +108,20 @@ namespace RMSAPPLICATION.Controllers
             List<VMOpenJobIndex> vmAllJobList = JobService.GetOpenJob(vmf);
             return View(vmAllJobList);
         }
+        public ActionResult OpenJobIndex()
+        {
+            List<VMOpenJobIndex> vmAllJobList = JobService.GetOpenJobIndex();
+            return View(vmAllJobList);
+        }
         public ActionResult JobDetail(int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             VMOpenJobIndex vmJobDetail = JobService.GetJobDetail(JobID, vmf);
+            return View(vmJobDetail);
+        }
+        public ActionResult JobDetailIndex(int JobID)
+        {
+            VMOpenJobIndex vmJobDetail = JobService.GetJobDetailIndex(JobID);
             return View(vmJobDetail);
         }
         [HttpGet]

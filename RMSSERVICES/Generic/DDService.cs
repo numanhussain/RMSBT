@@ -21,11 +21,13 @@ namespace RMSSERVICES.Generic
         IRepository<HearAbout> HearAboutJobRepository;
         IRepository<SkillLevel> SkillLevelRepository;
         IRepository<ExperienceIndustry> ExpIndustryRepository;
+        IRepository<Catagory> CatagoryRepository;
+        IRepository<Location>LocationRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
-            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository)
+            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository,IRepository<Catagory> catagoryRepository)
         {
             _unitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
@@ -37,6 +39,8 @@ namespace RMSSERVICES.Generic
             SkillLevelRepository = skilllevelRepository;
             ExpIndustryRepository = expIndustryRepository;
             MartialStatusRepository = martialStatusRepository;
+            LocationRepository = locationRepository;
+            CatagoryRepository = catagoryRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -77,6 +81,16 @@ namespace RMSSERVICES.Generic
         public List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate)
         {
             return CandidateRepository.FindBy(predicate);
+        }
+
+        public List<Location> GetLocationList()
+        {
+            return LocationRepository.GetAll();
+        }
+
+        public List<Catagory> GetCatagoryList()
+        {
+            return CatagoryRepository.GetAll();
         }
     }
 }

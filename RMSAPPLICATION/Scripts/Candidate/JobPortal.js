@@ -28,9 +28,9 @@ function SelectAllCheckBox() {
     //checkboxes.prop('checked', true);
     // Select/Deselect for Employee
     $("#chkSelectAllCatagory").bind("change", function () {
-        $(".chkSelectCatagory").prop("checked", $(this).prop("checked"));
+        $(".chkCatagorySelect").prop("checked", $(this).prop("checked"));
     });
-    $(".chkSelectCatagory").bind("change", function () {
+    $(".chkCatagorySelect").bind("change", function () {
         if (!$(this).prop("checked"))
             $("#chkSelectAllCatagory").prop("checked", false);
     });
