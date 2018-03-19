@@ -17,15 +17,19 @@ namespace RMSSERVICES.PersonalDetail
     {
         IUnitOfWork UnitOfWork;
         IRepository<Candidate> CandidateRepository;
+        IRepository<V_UserCandidate> VUserRepositiory;
+        IRepository<User> UserRepositiory;
         IRepository<VMCandidateIndex> VMCandidateRepository;
         IRepository<CandidatePhoto> CandidatePhotoRepository;
         public CandidateService(IUnitOfWork unitOfWork,
-        IRepository<CandidatePhoto> candidatePhotoRepository,IRepository<Candidate> candidateRepository, IRepository<VMCandidateIndex> vmCandidateRepository)
+        IRepository<CandidatePhoto> candidatePhotoRepository,IRepository<Candidate> candidateRepository, IRepository<User> userRepositiory, IRepository<VMCandidateIndex> vmCandidateRepository, IRepository<V_UserCandidate> vuserRepositiory)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
             VMCandidateRepository = vmCandidateRepository;
             CandidatePhotoRepository = candidatePhotoRepository;
+           VUserRepositiory = vuserRepositiory;
+            UserRepositiory = userRepositiory;
         }
         public List<Candidate> GetIndex()
         {
@@ -37,8 +41,14 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.UserID = uid;
             return dbCandidate;
         }
-        public ServiceMessage PostCreate(Candidate dbOperation)
+        public ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepositiory.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = "ProfileCompleted";
+            UserRepositiory.Edit(image);
+            UserRepositiory.Save();
             Candidate dbCandidate = new Candidate();
             dbCandidate = ConvertCandidateObject(dbOperation);
             CandidateRepository.Edit(dbCandidate);

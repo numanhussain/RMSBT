@@ -15,7 +15,7 @@ namespace RMSSERVICES.PersonalDetail
     {
         List<Candidate> GetIndex();
         Candidate GetCreate(int cid,int uid);
-        ServiceMessage PostCreate(Candidate dbOperation);
+        ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser);
         byte[] GetImageFromDataBase(int id);
         void SaveImageInDatabase(byte[] img, int empID);
     }

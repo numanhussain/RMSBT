@@ -51,7 +51,7 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
-                CandidateService.PostCreate(dbOperation);
+                 CandidateService.PostCreate(dbOperation,vmf);
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);

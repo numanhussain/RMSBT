@@ -107,7 +107,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult JobDetail(int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            VMOpenJobIndex vmJobDetail = JobService.GetJobDetail(JobID,vmf);
+            VMOpenJobIndex vmJobDetail = JobService.GetJobDetail(JobID, vmf);
             return View(vmJobDetail);
         }
         [HttpGet]
@@ -122,23 +122,24 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult JobApply(CandidateJob obj, int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            //string Name = Request.Form["CandidateID"].ToString();
-            //Expression<Func<V_AppliedJob, bool>> SpecificEntries = c => c.JobID == obj.JobID && c.CandidateID=vmf.CandidateID;
-
-            //List<V_AppliedJob> _emp = VJobApplyService.GetIndexSpecific(SpecificEntries);
-            //if (_emp.Count > 0)
-            //{
-            //    TempData["Error"] = "<script>alert('You are not allowed to do this action');</script>";
-            //}
-            //else
-            //{
-            int cid = vmf.CandidateID;
-            CandidateJob dbCandidateJob = new CandidateJob();
-            dbCandidateJob.CandidateID = cid;
-            dbCandidateJob.JobID = JobID;
-            dbCandidateJob.CJobDate = DateTime.Now;
-            JobApplyService.PostCreate(dbCandidateJob);
-            return Json("OK", JsonRequestBehavior.AllowGet);
+            if (vmf.UserStage == "SignUp")
+            {
+                TempData["Error"] = "<script>alert('You are not allowed to do this action');</script>";
+            }
+            else if (vmf.UserStage == "ProfileCompleted")
+            {
+                if (ModelState.IsValid==true)
+                {
+                    int cid = vmf.CandidateID;
+                    CandidateJob dbCandidateJob = new CandidateJob();
+                    dbCandidateJob.CandidateID = cid;
+                    dbCandidateJob.JobID = JobID;
+                    dbCandidateJob.CJobDate = DateTime.Now;
+                    JobApplyService.PostCreate(dbCandidateJob);
+                    return Json("OK", JsonRequestBehavior.AllowGet);
+                }
+            }
+            return View("JobDetail");
         }
     }
 }
