@@ -80,6 +80,9 @@ namespace RMSAPPLICATION.Controllers
                 if (ModelState.IsValid)
                 {
                     UserService.RegisterUser(Obj);
+                    var code = Obj.SecurityLink;
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new { User = Obj.UserID, code = code }, protocol: Request.Url.Scheme);
+                    EmailGenerate.SendEmail(Obj.Email,"", "Activate Your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
                     Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                     Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                     return RedirectToAction("Index", "Job");
@@ -87,6 +90,22 @@ namespace RMSAPPLICATION.Controllers
             }
 
             return View(Obj);
+        }
+        public ActionResult VerifyLink(string key)
+        {
+            if (UserService.VerifyLink(key))
+            {
+                User user = UserEntityService.GetIndex().Where(aa => aa.SecurityLink == key).First();
+               
+                    V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == user.UserName && aa.Password == user.Password);
+                    Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
+                    Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                        return RedirectToAction("Index", "Job");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpGet]
         public ActionResult ForgetPassword()

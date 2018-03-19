@@ -3067,6 +3067,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\" />
+    <Folder Include="Helper\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

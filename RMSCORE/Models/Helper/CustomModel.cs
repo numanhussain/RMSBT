@@ -18,4 +18,8 @@ namespace RMSCORE.Models.Helper
         public string Notification { get; set; }
         public string NotificationCount { get; set; }
     }
+    public class HiringCustomModel
+    {
+        public string Name { get; set; }
+    }
 }

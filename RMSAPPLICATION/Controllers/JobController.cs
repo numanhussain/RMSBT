@@ -122,13 +122,13 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult JobApply(CandidateJob obj, int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (vmf.UserStage == "SignUp")
+            if (ModelState.IsValid == true)
             {
-                TempData["Error"] = "<script>alert('You are not allowed to do this action');</script>";
-            }
-            else if (vmf.UserStage == "ProfileCompleted")
-            {
-                if (ModelState.IsValid==true)
+                if (vmf.UserStage == "SignUp")
+                {
+                    ModelState.AddModelError("", "Invalid username or password.");
+                }
+                else if (vmf.UserStage == "ProfileCompleted")
                 {
                     int cid = vmf.CandidateID;
                     CandidateJob dbCandidateJob = new CandidateJob();
@@ -137,9 +137,10 @@ namespace RMSAPPLICATION.Controllers
                     dbCandidateJob.CJobDate = DateTime.Now;
                     JobApplyService.PostCreate(dbCandidateJob);
                     return Json("OK", JsonRequestBehavior.AllowGet);
+
                 }
             }
-            return View("JobDetail");
+            return View(obj);
         }
     }
 }

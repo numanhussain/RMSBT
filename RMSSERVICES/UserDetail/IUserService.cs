@@ -11,6 +11,7 @@ namespace RMSSERVICES.UserDetail
     public interface IUserService
     {
         List<User> GetIndex();
+        bool VerifyLink(string key);
         ServiceMessage RegisterUser(User dbOperation);
     }
 }

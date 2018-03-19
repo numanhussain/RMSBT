@@ -28,10 +28,25 @@ namespace RMSSERVICES.UserDetail
         {
             return UserRepository.GetAll();
         }
+
+        public bool VerifyLink(string key)
+        {
+            string kk = StringCipher.Encrypt("5","1234");
+            string email = StringCipher.Decrypt(key,"1234");
+            if (UserRepository.GetAll().Where(aa => aa.Email == email).Count() > 0)
+            {
+                // Todo -- Change User Status to Login
+                return true;
+            }
+            else
+                return false;
+        }
+
         public ServiceMessage RegisterUser(User dbOperation)
         {
             dbOperation.DateCreated = DateTime.Today;
             dbOperation.UserStage = "SignUp";
+            dbOperation.SecurityLink = StringCipher.Encrypt(dbOperation.Email, "1234");
             UserRepository.Add(dbOperation);
             UserRepository.Save();
             Candidate dbCandidate = new Candidate();

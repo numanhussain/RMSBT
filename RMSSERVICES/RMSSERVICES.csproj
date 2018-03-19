@@ -59,9 +59,11 @@
     <Compile Include="Experience\IExperienceDetailService.cs" />
     <Compile Include="Generic\AssistantService.cs" />
     <Compile Include="Generic\DDService.cs" />
+    <Compile Include="Generic\EmailGenerate.cs" />
     <Compile Include="Generic\EntityService.cs" />
     <Compile Include="Generic\IDDService.cs" />
     <Compile Include="Generic\IEntityService.cs" />
+    <Compile Include="Generic\StringCipher.cs" />
     <Compile Include="Job\IJobService.cs" />
     <Compile Include="Job\JobService.cs" />
     <Compile Include="Miscellaneous\IMiscellaneousService.cs" />
