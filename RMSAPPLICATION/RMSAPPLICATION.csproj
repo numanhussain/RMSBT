@@ -241,7 +241,6 @@
     <Content Include="Theme\assets\demo_data\wizard\personal_data.html" />
     <Content Include="Theme\assets\demo_data\wizard\store_in_database.html" />
     <Content Include="Theme\assets\images\backgrounds\boxed_bg.png" />
-    <Content Include="Theme\assets\images\backgrounds\boxed_bg_retina.png" />
     <Content Include="Theme\assets\images\backgrounds\panel_bg.png" />
     <Content Include="Theme\assets\images\backgrounds\seamless.png" />
     <Content Include="Theme\assets\images\brands\adwords.png" />
@@ -3066,6 +3065,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Job\OpenJobIndex.cshtml" />
     <Content Include="Views\Job\JobDetailIndex.cshtml" />
+    <Content Include="Views\Home\EmailSent.cshtml" />
+    <Content Include="Views\Home\VerifyLink.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
