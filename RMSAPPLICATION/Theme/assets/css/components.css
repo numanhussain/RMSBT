@@ -22101,6 +22101,7 @@ thead .htCollapseButton {
 
     .login-container .page-container .login-form {
         width: 320px;
+        background-color:transparent;
     }
 
         .login-container .page-container .login-form .thumb {
