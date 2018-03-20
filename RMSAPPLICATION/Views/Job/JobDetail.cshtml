@@ -3,59 +3,61 @@
     ViewBag.title = "Experience details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- Page container -->
-<div class="page-container">
-    <!-- Page content -->
-    <div class="page-content">
-        <!-- Main content -->
-        <div class="content-wrapper">
-            <!-- Details -->
-            <div class="panel panel-flat">
-                <div class="panel-body">
-                    <div class="media stack-media-on-mobile text-left content-group-lg">
-                        <a href="#" class="media-left media-middle">
-                            <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
-                        </a>
-                        <div class="media-body">
-                            <h5 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h5>
-                            <ul class="list-inline list-inline-separate text-muted no-margin">
-                                <li>@Html.DisplayFor(x => x.LocName)</li>
-                            </ul>
-                        </div>
+@Html.ValidationSummary(true)
+@{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"]; }
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Details -->
+                <div class="panel panel-flat">
+                    <div class="panel-body">
+                        <div class="media stack-media-on-mobile text-left content-group-lg">
+                            <a href="#" class="media-left media-middle">
+                                <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
+                            </a>
+                            <div class="media-body">
+                                <h5 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h5>
+                                <ul class="list-inline list-inline-separate text-muted no-margin">
+                                    <li>@Html.DisplayFor(x => x.LocName)</li>
+                                </ul>
+                            </div>
 
-                        <div class="media-right media-middle text-nowrap">
-                            @if (Model.IsApplied == false)
-                            {
-                                <a href="#" name="submit" onclick="ApplyJob(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
-                            }
-                            else
-                            {
-                                <span class="glyphicon-ok-sign">Already Applied For this Job</span>
-                            }
+                            <div class="media-right media-middle text-nowrap">
+                                @if (Model.IsApplied == false)
+                                {
+                                    <a href="#" name="submit" onclick="ApplyJob(@Model.JobID,'@LoggedInUser.UserStage')" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                }
+                                else
+                                {
+                                    <span class="glyphicon-ok-sign">Already Applied For this Job</span>
+                                }
+                            </div>
+                            <div class="content-group-lg">
+                                <h6 class="text-semibold">Job Description</h6>
+                                <p>@Html.DisplayFor(x => x.Description)</p>
+                            </div>
+                            <div class="content-group-lg">
+                                <h6 class="text-semibold">Responsibilities:</h6>
+                                <p class="content-group-sm">@Html.DisplayFor(x => x.Resposibilties)</p>
+                            </div>
+                            <div class="content-group-lg">
+                                <h6 class="text-semibold">Requirements:</h6>
+                                <p class="content-group-sm">@Html.DisplayFor(x => x.QualificationReq)</p>
+                            </div>
+                            <div class="content-group-lg">
+                                <h6 class="text-semibold">Desired Skills and Experience:</h6>
+                                <p class="content-group-sm">@Html.DisplayFor(x => x.SkillReq)</p>
+                            </div>
                         </div>
-                        <div class="content-group-lg">
-                            <h6 class="text-semibold">Job Description</h6>
-                            <p>@Html.DisplayFor(x => x.Description)</p>
-                        </div>
-                        <div class="content-group-lg">
-                            <h6 class="text-semibold">Responsibilities:</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.Resposibilties)</p>
-                        </div>
-                        <div class="content-group-lg">
-                            <h6 class="text-semibold">Requirements:</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.QualificationReq)</p>
-                        </div>
-                        <div class="content-group-lg">
-                            <h6 class="text-semibold">Desired Skills and Experience:</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.SkillReq)</p>
-                        </div>
+                        <!-- /details -->
                     </div>
-                    <!-- /details -->
+                    <!-- /main content -->
                 </div>
-                <!-- /main content -->
+                <!-- /page content -->
             </div>
-            <!-- /page content -->
         </div>
     </div>
-</div>
-<script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
+    <script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>

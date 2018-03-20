@@ -35,20 +35,23 @@ function SelectAllCheckBox() {
             $("#chkSelectAllCatagory").prop("checked", false);
     });
 }
-function ApplyJob(id) {
-    $.ajax({
-        url: '/Job/JobApply',
-        type: "POST",
-        cache: false,
-        data: { JobID: id }
-    }).done(function (data) {
-        if (data === "OK") {
-            $.jGrowl('You have successfully  Applied for this job.', {
-                header: 'Well done!',
-                theme: 'bg-success-400'
-            });
-        }
-    });
+function ApplyJob(id, usertype) {
+    if (usertype == 'ProfileCompleted') {
+        $.ajax({
+            url: '/Job/JobApply',
+            type: "POST",
+            cache: false,
+            data: { JobID: id }
+        }).done(function (data) {
+            if (data === "OK") {
+                $.jGrowl('You have successfully  Applied for this job.', {
+                    header: 'Well done!',
+                    theme: 'bg-success-400'
+                });
+            }
+        });
+    }
+    else { alert('You profile is not completed') }
 };
 //function FilterSearch() {
 //    SelectAllCheckBox();
