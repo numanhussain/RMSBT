@@ -25,11 +25,14 @@ namespace RMSCORE.EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<BloodGroup> BloodGroups { get; set; }
         public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<CandidateJob> CandidateJobs { get; set; }
         public virtual DbSet<CandidatePhoto> CandidatePhotoes { get; set; }
         public virtual DbSet<Catagory> Catagories { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<CompensationDetail> CompensationDetails { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<EduDegreeLevel> EduDegreeLevels { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }
         public virtual DbSet<EduInstitute> EduInstitutes { get; set; }

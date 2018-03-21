@@ -5,6 +5,13 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BTRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BloodGroup">
+          <Key>
+            <PropertyRef Name="CBID" />
+          </Key>
+          <Property Name="CBID" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="BGroupName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Candidate">
           <Key>
             <PropertyRef Name="CandidateID" />
@@ -14,16 +21,16 @@
           <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="datetime" />
           <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
-          <Property Name="BloodGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroupID" Type="char" MaxLength="2" />
           <Property Name="MartialStatusID" Type="int" />
           <Property Name="Address" Type="nvarchar" MaxLength="500" />
-          <Property Name="City" Type="nvarchar" MaxLength="50" />
-          <Property Name="Country" Type="nvarchar" MaxLength="50" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CountryID" Type="int" />
           <Property Name="LandlineNo" Type="nvarchar" MaxLength="50" />
           <Property Name="CellNo" Type="nvarchar" MaxLength="50" />
           <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
-          <Property Name="Domicile" Type="nvarchar" MaxLength="50" />
-          <Property Name="Nationality" Type="nvarchar" MaxLength="50" />
+          <Property Name="DomicileCityID" Type="int" />
+          <Property Name="NationalityCountryID" Type="int" />
           <Property Name="Objective" Type="nvarchar" MaxLength="500" />
           <Property Name="CImage" Type="int" />
           <Property Name="UserID" Type="int" />
@@ -50,6 +57,14 @@
           </Key>
           <Property Name="PCatagoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
         </EntityType>
         <EntityType Name="CompensationDetail">
           <Key>
@@ -97,6 +112,13 @@
           <Property Name="ExpectedSalary" Type="nvarchar" MaxLength="50" />
           <Property Name="OtherBenifits" Type="nvarchar" MaxLength="50" />
           <Property Name="CandidateID" Type="int" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CCID" />
+          </Key>
+          <Property Name="CCID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="EduDegreeLevel">
           <Key>
@@ -563,11 +585,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BTRMSModelStoreContainer">
+          <EntitySet Name="BloodGroup" EntityType="Self.BloodGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateJob" EntityType="Self.CandidateJob" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidatePhoto" EntityType="Self.CandidatePhoto" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Catagory" EntityType="Self.Catagory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompensationDetail" EntityType="Self.CompensationDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduDegreeLevel" EntityType="Self.EduDegreeLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduDetail" EntityType="Self.EduDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduInstitute" EntityType="Self.EduInstitute" Schema="dbo" store:Type="Tables" />
@@ -752,11 +777,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     <edmx:ConceptualModels>
       <Schema Namespace="BTRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BTRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BloodGroups" EntityType="BTRMSModel.BloodGroup" />
           <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
           <EntitySet Name="CandidateJobs" EntityType="BTRMSModel.CandidateJob" />
           <EntitySet Name="CandidatePhotoes" EntityType="BTRMSModel.CandidatePhoto" />
           <EntitySet Name="Catagories" EntityType="BTRMSModel.Catagory" />
+          <EntitySet Name="Cities" EntityType="BTRMSModel.City" />
           <EntitySet Name="CompensationDetails" EntityType="BTRMSModel.CompensationDetail" />
+          <EntitySet Name="Countries" EntityType="BTRMSModel.Country" />
           <EntitySet Name="EduDegreeLevels" EntityType="BTRMSModel.EduDegreeLevel" />
           <EntitySet Name="EduDetails" EntityType="BTRMSModel.EduDetail" />
           <EntitySet Name="EduInstitutes" EntityType="BTRMSModel.EduInstitute" />
@@ -812,6 +840,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <End Role="Interview" EntitySet="Interviews" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="BloodGroup">
+          <Key>
+            <PropertyRef Name="CBID" />
+          </Key>
+          <Property Name="CBID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="BGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="Candidate">
           <Key>
             <PropertyRef Name="CandidateID" />
@@ -821,16 +856,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
           <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="BloodGroup" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BloodGroupID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="MartialStatusID" Type="Int32" />
           <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" />
           <Property Name="LandlineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CellNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Domicile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Nationality" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DomicileCityID" Type="Int32" />
+          <Property Name="NationalityCountryID" Type="Int32" />
           <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CImage" Type="Int32" />
           <Property Name="UserID" Type="Int32" />
@@ -861,6 +896,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </Key>
           <Property Name="PCatagoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="CityID" />
+          </Key>
+          <Property Name="CityID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
         </EntityType>
         <EntityType Name="CompensationDetail">
           <Key>
@@ -908,6 +951,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="ExpectedSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OtherBenifits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CCID" />
+          </Key>
+          <Property Name="CCID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EduDegreeLevel">
           <Key>
@@ -1354,22 +1404,30 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BTRMSModelStoreContainer" CdmEntityContainer="BTRMSEntities">
+          <EntitySetMapping Name="BloodGroups">
+            <EntityTypeMapping TypeName="BTRMSModel.BloodGroup">
+              <MappingFragment StoreEntitySet="BloodGroup">
+                <ScalarProperty Name="BGroupName" ColumnName="BGroupName" />
+                <ScalarProperty Name="CBID" ColumnName="CBID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Candidates">
             <EntityTypeMapping TypeName="BTRMSModel.Candidate">
               <MappingFragment StoreEntitySet="Candidate">
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CImage" ColumnName="CImage" />
                 <ScalarProperty Name="Objective" ColumnName="Objective" />
-                <ScalarProperty Name="Nationality" ColumnName="Nationality" />
-                <ScalarProperty Name="Domicile" ColumnName="Domicile" />
+                <ScalarProperty Name="NationalityCountryID" ColumnName="NationalityCountryID" />
+                <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="CellNo" ColumnName="CellNo" />
                 <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="MartialStatusID" ColumnName="MartialStatusID" />
-                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
                 <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
                 <ScalarProperty Name="DOB" ColumnName="DOB" />
                 <ScalarProperty Name="FatherName" ColumnName="FatherName" />
@@ -1401,6 +1459,15 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               <MappingFragment StoreEntitySet="Catagory">
                 <ScalarProperty Name="CatName" ColumnName="CatName" />
                 <ScalarProperty Name="PCatagoryID" ColumnName="PCatagoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="BTRMSModel.City">
+              <MappingFragment StoreEntitySet="City">
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1449,6 +1516,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="MGSalary" ColumnName="MGSalary" />
                 <ScalarProperty Name="MBSalary" ColumnName="MBSalary" />
                 <ScalarProperty Name="CID" ColumnName="CID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="BTRMSModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CCID" ColumnName="CCID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

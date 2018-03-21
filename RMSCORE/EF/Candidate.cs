@@ -28,16 +28,16 @@ namespace RMSCORE.EF
         public string FatherName { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string CNICNo { get; set; }
-        public string BloodGroup { get; set; }
+        public string BloodGroupID { get; set; }
         public Nullable<int> MartialStatusID { get; set; }
         public string Address { get; set; }
-        public string City { get; set; }
-        public string Country { get; set; }
+        public Nullable<int> CityID { get; set; }
+        public Nullable<int> CountryID { get; set; }
         public string LandlineNo { get; set; }
         public string CellNo { get; set; }
         public string EmailID { get; set; }
-        public string Domicile { get; set; }
-        public string Nationality { get; set; }
+        public Nullable<int> DomicileCityID { get; set; }
+        public Nullable<int> NationalityCountryID { get; set; }
         public string Objective { get; set; }
         public Nullable<int> CImage { get; set; }
         public Nullable<int> UserID { get; set; }

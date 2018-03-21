@@ -50,11 +50,6 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Login(User Obj)
         {
-            //if (UserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName).Count() > 0)
-            //    return RedirectToAction("Index", "Job");
-            //else
-            //    return View("Login");
-
             if (VUserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password).Count() > 0)
             {
                 V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password);
