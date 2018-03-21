@@ -38,6 +38,16 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(MiscellaneousDetail obj)
         {
+
+            if (obj.CrimanalRecord == null || obj.CrimanalRecord == "")
+                ModelState.AddModelError("CrimanalRecord", "Cannot be empty");
+            if (obj.HearAboutJobID == null)
+                ModelState.AddModelError("HearAboutJobID", "Must select one !");
+            if (obj.TotalExp == null)
+                ModelState.AddModelError("TotalExp", "Cannot be empty !");
+            if (obj.CementExp == null)
+                ModelState.AddModelError("CementExp", "Cannot be empty !");
+
             if (ModelState.IsValid)
             {
                 MiscellaneousService.PostCreate(obj);

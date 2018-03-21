@@ -5,6 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="fccda728a36749fda8719f45029d310e" Name="Diagram1" ZoomLevel="47">
+<<<<<<< HEAD
         <EntityTypeShape EntityType="BTRMSModel.BloodGroup" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="BTRMSModel.Candidate" Width="1.5" PointX="0.75" PointY="6.125" />
         <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -39,6 +40,41 @@
         <EntityTypeShape EntityType="BTRMSModel.V_Interview" Width="1.5" PointX="16.75" PointY="0.75" />
         <EntityTypeShape EntityType="BTRMSModel.V_Notification" Width="1.5" PointX="16.75" PointY="4.75" />
         <EntityTypeShape EntityType="BTRMSModel.V_UserCandidate" Width="1.5" PointX="7.75" PointY="16.75" />
+=======
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 4537ade43b5ec645eb8c65307165b097f1086ecc
         <AssociationConnector Association="BTRMSModel.FK_EduDetail_Candidate" />
         <AssociationConnector Association="BTRMSModel.FK_Interview_Candidate" />
         <AssociationConnector Association="BTRMSModel.FK_Notification_Candidate" />

@@ -16,26 +16,28 @@
     </div>
     <div class="modal-body">
         <div class="form-horizontal">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <div class="form-group col-md-6">
-                        <label class="text-semibold">Reference Name</label>
-                        <div>@Html.EditorFor(model => model.RefName, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    </div>
-                    <div class="form-group col-md-6">
-                        <label class="text-semibold">Reference Designation</label>
-                        <div>@Html.EditorFor(model => model.RefDesignation, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Reference Name</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.RefName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RefName, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group">
-                    <div class="form-group col-md-4">
-                        <label class="text-semibold">Contact</label>
-                        <div>@Html.EditorFor(model => model.RefContact, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    </div>
-                    <div class="form-group col-md-8">
-                        <label class="text-semibold">Email</label>
-                        <div>@Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    </div>
+                <div class="control-label col-md-2 text-semibold text-right"> Designation</div>
+                <div class="col-md-4">
+                    @Html.EditorFor(model => model.RefDesignation, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RefDesignation, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Contact</div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.RefContact, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RefContact, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-2 text-semibold text-right">Email</div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.RefEmail, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>

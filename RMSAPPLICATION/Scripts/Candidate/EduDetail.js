@@ -109,3 +109,63 @@ function EduDetailPostDelete(id) {
         });
     });
 }
+//function DegreeChange() {
+//    $("#InstitutionDD").hide();
+//    $("#CGPATB").hide();
+//    $("#DegreeID").on("change", function () {
+//        if ($("#DegreeID option:selected").val() == 3) {
+//            $("#InstitutionDD").show();
+//            $("#CGPATB").show();
+//        }
+//        if ($("#DegreeID option:selected").val() == 4) {
+//            $("#InstitutionDD").show();
+//            $("#CGPATB").show();
+//        }
+//        if ($("#DegreeID option:selected").val() == 5) {
+//            $("#InstitutionDD").show();
+//            $("#CGPATB").show();
+//        }
+//        if ($("#DegreeID option:selected").val() == 6) {
+//            $("#InstitutionDD").show();
+//            $("#CGPATB").show();
+//        }
+//        else {
+//            $("#InstitutionDD").hide();
+//            $("#CGPATB").hide();
+//        }
+//  });
+
+//}
+function DegreeChange() {
+    ShowHide();
+    $("#DegreeID").on("change", function () {
+        ShowHide();
+    });
+}
+function ShowHide() {
+    $("#InstitutionDD").hide();
+    $("#CGPATB").hide();
+    $("#BoardTB").show();
+    switch ($("#DegreeID").val()) {
+        case "3":
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#BoardTB").hide();
+            break;
+        case "4":
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#BoardTB").hide();
+            break;
+        case "5":
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#BoardTB").hide();
+            break;
+        case "6":
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#BoardTB").hide();
+            break;
+    }
+}
