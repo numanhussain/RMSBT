@@ -15,27 +15,24 @@
     </div>
     <div class="modal-body">
         <div class="form-horizontal">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <div class="form-group col-md-7">
-                        <label class="text-semibold">Enter Skill</label>
-                        <div>@Html.EditorFor(model => model.SkillTitle, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    </div>
-
-
-                    <div class="form-group col-md-5">
-                        <label class="text-semibold">Skill Level</label>
-                        <div>
-                            @Html.DropDownList("SLevelID", null, new { @class = "btn btn-default col-lg-12 col-sm-12 col-md-12" })
-                            @Html.ValidationMessageFor(model => model.SLevelID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Enter Skill</div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.SkillTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SkillTitle, "", new { @class = "text-danger" })
                 </div>
-                <div class="form-group col-md-12">
-                    <label class="text-semibold">Skill Description</label>
-                    <div>@Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 5, @rows = 1 })</div>
+                <div class="control-label col-md-1 text-semibold text-right">Level</div>
+                <div class="col-md-3">
+                    @Html.DropDownList("SLevelID", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SLevelID, "", new { @class = "text-danger" })
                 </div>
-
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Skill Description</div>
+                <div class="col-md-9">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 5, @rows = 1 })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
     </div>

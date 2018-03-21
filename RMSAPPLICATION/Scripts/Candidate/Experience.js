@@ -1,11 +1,11 @@
 ﻿function LoadPVExperienceDetailIndex(id) {
-        $.ajax({
-            url: '/Experience/Index',
-            type: "GET",
-            cache: false,
-        }).done(function (result) {
-            $('#PartialViewContainer').html(result);
-        });
+    $.ajax({
+        url: '/Experience/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+    });
 };
 function ExperienceDetailGetCreate(id) {
     $('#ExperienceGetCreate').click(function () {
@@ -13,7 +13,7 @@ function ExperienceDetailGetCreate(id) {
             type: "GET",
             url: "/Experience/Create",
             contentType: "application/json; charset=utf-8",
-data: { "id": id },
+            data: { "id": id },
             datatype: "json",
             success: function (data) {
                 $('#modelBody').html(data);
@@ -33,8 +33,13 @@ function ExperienceDetailPostCreate(id) {
             url: "/Experience/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                    $('#myModal').modal('hide');
-                     LoadPVExperienceDetailIndex(id)
+                if (data === "OK") {
+                    ('#myModal').modal('hide');
+                    LoadPVExperienceDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -47,7 +52,7 @@ function ExperienceDetailGetEdit(id) {
         type: "GET",
         url: "/Experience/Edit",
         contentType: "application/json; charset=utf-8",
-data: { "id": id },
+        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);
@@ -66,8 +71,8 @@ function ExperienceDetailPostEdit(id) {
             url: "/Experience/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                    $('#myModal').modal('hide');
-                     LoadPVExperienceDetailIndex(id)
+                $('#myModal').modal('hide');
+                LoadPVExperienceDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -80,7 +85,7 @@ function ExperienceDetailGetDelete(id) {
         type: "GET",
         url: "/Experience/Delete",
         contentType: "application/json; charset=utf-8",
-data: { "id": id },
+        data: { "id": id },
         datatype: "json",
         success: function (data) {
             $('#modelBody').html(data);

@@ -44,88 +44,88 @@
     <!-- Fixed navbars wrapper -->
     <div class="navbar-fixed-top">
         @{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
-        <!-- Main navbar -->
-        <div class="navbar navbar-inverse bg-primary">
-            <div class="navbar-header">
-                <div style="padding-left:20px; padding-top:10px;">
-                    <a href="~/Job/index"><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-                    <span class="h6 text-bold" style="padding-left:10px;">careersatBestwayCementLtd.</span>@*<a class="navbar-brand" href="index.html"><img src="~/Theme/assets/images/logo_light.png" alt=""></a>*@
+            <!-- Main navbar -->
+            <div class="navbar navbar-inverse bg-primary">
+                <div class="navbar-header">
+                    <div style="padding-left:20px; padding-top:10px;">
+                        <a href="~/Job/index"><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
+                        <span class="h6 text-bold" style="padding-left:10px;">careersatBestwayCementLtd.</span>@*<a class="navbar-brand" href="index.html"><img src="~/Theme/assets/images/logo_light.png" alt=""></a>*@
+                    </div>
+                    <ul class="nav navbar-nav pull-right visible-xs-block">
+                        <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+                    </ul>
                 </div>
-                <ul class="nav navbar-nav pull-right visible-xs-block">
-                    <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
-                </ul>
-            </div>
 
-            <div class="navbar-collapse collapse" id="navbar-mobile">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                            <i class="icon-bubbles4"></i>
-                            <span class="visible-xs-inline-block position-right">Notifications</span>
-                            <span class="badge bg-warning-400" id="divNotificationCount"></span>
-                        </a>
+                <div class="navbar-collapse collapse" id="navbar-mobile">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                <i class="icon-bubbles4"></i>
+                                <span class="visible-xs-inline-block position-right">Notifications</span>
+                                <span class="badge bg-warning-400" id="divNotificationCount"></span>
+                            </a>
 
-                        <div class="dropdown-menu dropdown-content">
-                            <div class="dropdown-content-heading">
-                                System Notifications
+                            <div class="dropdown-menu dropdown-content">
+                                <div class="dropdown-content-heading">
+                                    System Notifications
+                                </div>
+
+                                <ul class="media-list dropdown-content-body width-350">
+                                    <li id="DivNotifications"></li>
+                                </ul>
+
+                                <div class="dropdown-content-footer">
+                                    <a href="#" data-popup="tooltip" title="" data-original-title="All activity"><i class="icon-menu display-block"></i></a>
+                                </div>
                             </div>
-
-                            <ul class="media-list dropdown-content-body width-350">
-                                <li id="DivNotifications"></li>
+                        </li>
+                        <li class="dropdown dropdown-user">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="~/Candidate/RetrieveImage/@LoggedInUser.CandidateID" />
+                                <span>@LoggedInUser.CName</span>
+                                <i class="caret"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="~/Candidate/Index"><i class="icon-user-plus"></i> My profile</a></li>
+                                <li><a href="~/Home/ChangePass"><i class="icon-cog5"></i> Change Password</a></li>
+                                <li><a href="~/Home/LogOut"><i class="icon-switch2"></i> Logout</a></li>
                             </ul>
-
-                            <div class="dropdown-content-footer">
-                                <a href="#" data-popup="tooltip" title="" data-original-title="All activity"><i class="icon-menu display-block"></i></a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="dropdown dropdown-user">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            <img src="~/Candidate/RetrieveImage/@LoggedInUser.CandidateID"/>
-                            <span>@LoggedInUser.CName</span>
-                            <i class="caret"></i>
-                        </a>
-                        <ul class="dropdown-menu dropdown-menu-right">
-                            <li><a href="~/Candidate/Index"><i class="icon-user-plus"></i> My profile</a></li>
-                            <li><a href="~/Home/ChangePass"><i class="icon-cog5"></i> Change Password</a></li>
-                            <li><a href="~/Home/LogOut"><i class="icon-switch2"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <!-- /main navbar -->
-        <!-- Second navbar -->
-        <div class="navbar navbar-default" id="navbar-second">
-            <ul class="nav navbar-nav no-border visible-xs-block">
-                <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
-            </ul>
-
-            <div class="navbar-collapse collapse" id="navbar-second-toggle">
-                <ul class="nav navbar-nav">
-                    <li><a href="~/Job/Index"><i class="icon-display4 position-left"></i> Dashboard</a></li>
-                    <li><a href="~/Candidate/Index"><i class="icon-profile position-left"></i> Profile</a></li>
-                    <li><a href="~/Job/JobApply"><i class="icon-keyboard position-left"></i> Applied Jobs</a></li>
-                    @*<li><a href="~/Notification/Index"><i class="icon-profile position-left"></i> Interview</a></li>*@
+            <!-- /main navbar -->
+            <!-- Second navbar -->
+            <div class="navbar navbar-default" id="navbar-second">
+                <ul class="nav navbar-nav no-border visible-xs-block">
+                    <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
                 </ul>
 
+                <div class="navbar-collapse collapse" id="navbar-second-toggle">
+                    <ul class="nav navbar-nav">
+                        <li><a href="~/Job/Index"><i class="icon-display4 position-left"></i> Dashboard</a></li>
+                        <li><a href="~/Candidate/Index"><i class="icon-profile position-left"></i> Profile</a></li>
+                        <li><a href="~/Job/JobApply"><i class="icon-keyboard position-left"></i> Applied Jobs</a></li>
+                        @*<li><a href="~/Notification/Index"><i class="icon-profile position-left"></i> Interview</a></li>*@
+                    </ul>
+
+                </div>
             </div>
-        </div>
-        <!-- /second navbar -->
+            <!-- /second navbar -->
         }
     </div>
     @RenderBody()
-
-    <!-- Footer -->
-    @*<div class="footer text-muted">
-            &copy; 2018. <a href="#">Recruitment Management System</a> by <a href="http://cns.com.pk" target="_blank">Computer & Networking Services</a>
-        </div>*@
-    <!-- /footer -->
-    <script type="text/javascript">
-        $(document).ready(function () {
-            OpenNotification();
-        });
-    </script>
-    <script src="~/Scripts/Candidate/NotificationManager.js" type="text/javascript"></script>
 </body>
 </html>
+<!-- Footer -->
+@*<div class="footer text-muted">
+        &copy; 2018. <a href="#">Recruitment Management System</a> by <a href="http://cns.com.pk" target="_blank">Computer & Networking Services</a>
+    </div>*@
+<!-- /footer -->
+<script type="text/javascript">
+    $(document).ready(function () {
+        OpenNotification();
+    });
+</script>
+<script src="~/Scripts/Candidate/NotificationManager.js" type="text/javascript"></script>
+
