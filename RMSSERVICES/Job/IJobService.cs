@@ -10,12 +10,12 @@ namespace RMSSERVICES.Job
 {
     public interface IJobService
     {
-        List<VMOpenJobIndex> GetOpenJob(V_UserCandidate obj);
+        //List<VMOpenJobIndex> GetOpenJob(V_UserCandidate obj);
         List<VMAppliedJobIndex> GetAppliedJob(int cid);
         List<VMOpenJobIndex> JobIndex();
         VMOpenJobIndex GetJobDetail(int id, V_UserCandidate LoggedInUser);
         VMOpenJobIndex GetJobDetailIndex(int id);
-        List<VMOpenJobIndex> GetOpenJobIndex();
+        //List<VMOpenJobIndex> GetOpenJobIndex();
 
     }
 }

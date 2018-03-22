@@ -12,31 +12,25 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class JobDetail
+    public partial class V_JobDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public JobDetail()
-        {
-            this.Interviews = new HashSet<Interview>();
-        }
-    
         public int JobID { get; set; }
         public string JobTitle { get; set; }
         public string Description { get; set; }
         public Nullable<int> CityID { get; set; }
+        public string CityName { get; set; }
         public Nullable<int> LocID { get; set; }
+        public string LocName { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CompanyName { get; set; }
         public string Experience { get; set; }
         public string QualificationReq { get; set; }
         public string Resposibilties { get; set; }
         public Nullable<int> CatagoryID { get; set; }
+        public string CatName { get; set; }
         public Nullable<bool> Status { get; set; }
         public string SkillReq { get; set; }
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interview> Interviews { get; set; }
     }
 }

@@ -22,5 +22,8 @@ namespace RMSSERVICES.Generic
         List<MartialStatu> GetMartialStatusList();
         List<Location> GetLocationList();
         List<Catagory> GetCatagoryList();
+        List<BloodGroup> GetBloodGroupList();
+        List<Country> GetCountryList();
+        List<City> GetCityList();
     }
 }

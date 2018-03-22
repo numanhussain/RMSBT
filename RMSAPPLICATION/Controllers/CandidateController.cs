@@ -44,6 +44,14 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             int? uid = vmf.UserID;
             Candidate vmOperation = CandidateService.GetCreate(cid, (int)uid);
+            if(vmOperation.CountryID==null)
+            {
+                vmOperation.CountryID = DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).First().CCID;
+            }
+            if(vmOperation.CityID == null)
+            {
+                ViewBag.CityID = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID);
+            }
             CreateHelper(vmOperation);
             return View(vmOperation);
         }
@@ -73,7 +81,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CNICNo", "CNIC No cannot be empty");
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
                 ModelState.AddModelError("EmailID", "EmailID name cannot be empty");
-         
+
             if (dbOperation.EmailID != null)
             {
                 Match match = Regex.Match(dbOperation.EmailID, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -138,6 +146,11 @@ namespace RMSAPPLICATION.Controllers
         private void CreateHelper(Candidate obj)
         {
             ViewBag.MartialStatusID = new SelectList(DDService.GetMartialStatusList().ToList().OrderBy(aa => aa.PMID).ToList(), "PMID", "MartialStatusName", obj.MartialStatusID);
+            ViewBag.BloodGroupID = new SelectList(DDService.GetBloodGroupList().ToList().OrderBy(aa => aa.CBID).ToList(), "CBID", "BGroupName", obj.BloodGroupID);
+            ViewBag.CountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.CountryID);
+            ViewBag.NationalityCountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.NationalityCountryID);
+            ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
+            ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
         }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {
@@ -167,6 +180,19 @@ namespace RMSAPPLICATION.Controllers
             var ms = new MemoryStream();
             img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
             return ms.ToArray();
+        }
+        public ActionResult CityList(string ID)
+        {
+            int Code = Convert.ToInt32(ID);
+            var states = DDService.GetCityList().Where(aa => aa.CountryID == Code).OrderBy(aa => aa.CityID);
+            if (HttpContext.Request.IsAjaxRequest())
+                return Json(new SelectList(
+                                states.ToArray(),
+                                "CityID",
+                                "CityName")
+                            , JsonRequestBehavior.AllowGet);
+
+            return RedirectToAction("Index");
         }
         #endregion
     }

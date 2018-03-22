@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\BloodGroup.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Candidate.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -61,7 +64,13 @@
     <Compile Include="EF\Catagory.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\City.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\CompensationDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Country.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\EduDegreeLevel.cs">
@@ -151,6 +160,9 @@
     <Compile Include="EF\V_Interview.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\V_JobDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\V_Notification.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -181,7 +193,9 @@
     <Folder Include="Models\Static\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="EF\RMSDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>RMSDataModel.Designer.cs</LastGenOutput>

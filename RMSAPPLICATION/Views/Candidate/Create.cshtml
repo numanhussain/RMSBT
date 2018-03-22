@@ -79,7 +79,7 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="control-label text-semibold">Blood Group</label>
-                            @Html.EditorFor(model => model.BloodGroup, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -87,12 +87,12 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="control-label text-semibold">Domicile</label>
-                            @Html.EditorFor(model => model.Domicile, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownList("DomicileCityID", null, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group col-md-8">
                         <div>
-                            <label class="control-label text-semibold">Addresss</label>
+                            <label class="control-label text-semibold">Address</label>
                             @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
@@ -103,20 +103,22 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">City</label>
-                            @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+                            <label class="control-label text-semibold">Country</label>
+                            @Html.DropDownList("CountryID", null, new { @class = "form-control" })
+                            @Html.HiddenFor(model => model.CountryID, new { id = "selectedCountryIDHidden" })
                         </div>
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Country</label>
-                            @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control" } })
+                            <label class="control-label text-semibold">City</label>
+                            <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" style=" width:300px;" name="CityID"></select>
+                            @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
                         </div>
                     </div>
                     <div class="form-group col-md-4">
                         <div>
                             <label class="control-label text-semibold">Nationality</label>
-                            @Html.EditorFor(model => model.Nationality, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownList("NationalityCountryID", null, new { @class = "form-control" })
                         </div>
                     </div>
                 </div>
@@ -171,6 +173,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         SavePersonalInfoFunction();
+        LoadDD();
     });
 </script>
 

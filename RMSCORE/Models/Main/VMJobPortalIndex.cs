@@ -23,10 +23,10 @@ namespace RMSCORE.Models.Main
         public int? JobID { get; set; }
         public string JobTitle { get; set; }
     }
-    public class VMOpenJobIndex:JobDetail
+    public class VMOpenJobIndex : V_JobDetail
     {
         public bool IsApplied { get; set; }
-
+        public string FilterBox { get; set; }
 
     }
 }
