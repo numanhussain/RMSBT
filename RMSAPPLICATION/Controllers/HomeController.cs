@@ -121,9 +121,9 @@ namespace RMSAPPLICATION.Controllers
                 if (ModelState.IsValid)
                 {
                     UserService.RegisterUser(Obj);
-                    var code = Obj.SecurityLink;
-                    var callbackUrl = Url.Action("VerifyLink", "Home", new { User = Obj.UserID, code = code }, protocol: Request.Url.Scheme);
-                    EmailGenerate.SendEmail(Obj.Email, "", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>", "Account Activation");
+                    //var code = Obj.SecurityLink;
+                    //var callbackUrl = Url.Action("VerifyLink", "Home", new { User = Obj.UserID, code = code }, protocol: Request.Url.Scheme);
+                    //EmailGenerate.SendEmail(Obj.Email, "", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>", "Account Activation");
                     Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                     Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                     return RedirectToAction("Login", "Home");

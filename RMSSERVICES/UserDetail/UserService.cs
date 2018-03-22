@@ -45,7 +45,7 @@ namespace RMSSERVICES.UserDetail
         public ServiceMessage RegisterUser(User dbOperation)
         {
             dbOperation.DateCreated = DateTime.Today;
-            dbOperation.UserStage = "SignUp";
+            dbOperation.UserStage = "1";
             dbOperation.SecurityLink = StringCipher.Encrypt(dbOperation.Email, "1234");
             UserRepository.Add(dbOperation);
             UserRepository.Save();
