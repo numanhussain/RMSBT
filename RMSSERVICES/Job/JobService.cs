@@ -76,6 +76,9 @@ namespace RMSSERVICES.Job
             vmJobDetail.JobTitle = dbJobDetail.JobTitle;
             vmJobDetail.CompanyName = dbJobDetail.CompanyName;
             vmJobDetail.LocID = dbJobDetail.LocID;
+            vmJobDetail.LocName = dbJobDetail.LocName;
+            vmJobDetail.CityID = dbJobDetail.CityID;
+            vmJobDetail.CityName = dbJobDetail.CityName;
             vmJobDetail.Description = dbJobDetail.Description;
             vmJobDetail.Resposibilties = dbJobDetail.Resposibilties;
             vmJobDetail.QualificationReq = dbJobDetail.QualificationReq;
@@ -107,25 +110,26 @@ namespace RMSSERVICES.Job
         //    return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
 
         //}
-        //public List<VMOpenJobIndex> GetOpenJobIndex()
-        //{
-        //    Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
-        //    List<JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
-        //    List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
-        //    foreach (var dbVAppliedJob in dbAllOpenJobs)
-        //    {
+        public List<VMOpenJobIndex> GetOpenJobIndex()
+        {
+            Expression<Func<V_JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
+            List<V_JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
+            List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
+            foreach (var dbVAppliedJob in dbAllOpenJobs)
+            {
 
-        //        VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
-        //        vmVAppliedJob.JobID = dbVAppliedJob.JobID;
-        //        vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
-        //        vmVAppliedJob.LocName = dbVAppliedJob.LocName;
-        //        vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
-        //        vmVAppliedJob.Description = dbVAppliedJob.Description;
-        //        vmVAppliedJobs.Add(vmVAppliedJob);
-        //    }
-        //    return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
+                VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
+                vmVAppliedJob.JobID = dbVAppliedJob.JobID;
+                vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
+                vmVAppliedJob.LocID = dbVAppliedJob.LocID;
+                vmVAppliedJob.LocName = dbVAppliedJob.LocName;
+                vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
+                vmVAppliedJob.Description = dbVAppliedJob.Description;
+                vmVAppliedJobs.Add(vmVAppliedJob);
+            }
+            return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
 
-        //}
+        }
         public List<VMOpenJobIndex> JobIndex()
         {
             List<V_JobDetail> dbOpenJobs = OpenJobRepository.GetAll();

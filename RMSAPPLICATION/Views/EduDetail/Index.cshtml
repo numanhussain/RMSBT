@@ -11,39 +11,39 @@
 <div style="margin-top:-45px">
     <div class="modal-header">
         <div class="modal-title">
-            <h3><i class="icon-book"></i>&nbsp;&nbsp;Education Details</h3>
+            <h3 class="text-black"><i class="icon-book"></i>&nbsp;&nbsp;Education Details</h3>
         </div>
     </div>
 </div>
 <div class="panel panel-flat">
-    <div class="breadcrumb-line bg-success-400">
+    <div class="breadcrumb-line bg-green-600">
         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-        <ul class="breadcrumb-elements">
+        <ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
             <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add New Detail</a></li>
         </ul>
     </div>
         <table class="table datatable-basic">
             <thead>
                 <tr>
-                    <th>
+                    <th class="text-bold">
                         Degree Level
                     </th>
-                    <th>
+                    <th class="text-bold">
                         Institution
                     </th>
-                    <th>
+                    <th class="text-bold">
                         Completion Date
                     </th>
-                    <th>
+                    <th class="text-bold">
                         Obtained Marks
                     </th>
-                    <th>
+                    <th class="text-bold">
                         Total Marks
                     </th>
-                    <th>
+                    <th class="text-bold">
                         Percentage/CGPA
                     </th>
-                    <th>
+                    <th class="text-bold">
                         Edit | Delete
                     </th>
                 </tr>
@@ -80,6 +80,16 @@
                 }
             </tbody>
         </table>
+</div>
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <!-- Main content -->
 <!-- Basic datatable -->

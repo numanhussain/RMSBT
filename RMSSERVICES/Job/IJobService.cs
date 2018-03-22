@@ -15,7 +15,7 @@ namespace RMSSERVICES.Job
         List<VMOpenJobIndex> JobIndex();
         VMOpenJobIndex GetJobDetail(int id, V_UserCandidate LoggedInUser);
         VMOpenJobIndex GetJobDetailIndex(int id);
-        //List<VMOpenJobIndex> GetOpenJobIndex();
+        List<VMOpenJobIndex> GetOpenJobIndex();
 
     }
 }

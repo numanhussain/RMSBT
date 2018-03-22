@@ -7,15 +7,17 @@
 <div class="page-header">
     <div class="page-header-content">
         <div class="page-title">
-            <h2><span class="text-semibold text-blue">Vacant Positions</span> </h2> <h6 class="text-semibold">See if you find exciting challenges in our company</h6>
+            <h2><span class="text-semibold text-blue">Vacant Positions</span> </h2> <h6 class="text-semibold">See if you find exciting challenges in Bestway</h6>
         </div>
         <div class="heading-elements">
             @using (Html.BeginForm("IndexSubmit", "Job", FormMethod.Post))
             {
-                <input type="text" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
-                @Html.DropDownList("LocationID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth", style = "width: 250px;" })
-                @Html.DropDownList("CatagoryID", null, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth", style = "width: 250px;" })
-                <button type="Submit" class="btn btn-primary">Search</button>
+            <div class="form-group form-inline col-md-12">
+                <input type="text" class="form-control col-md-4" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                @Html.DropDownList("LocationID", null, new { @class = "form-control", style = "width: 250px;" })
+                @Html.DropDownList("CatagoryID", null, new { @class = "form-control", style = "width: 250px;" })
+                <button type="Submit" class="form-control btn btn-primary">Search</button>
+            </div>
             }
         </div>
     </div>
@@ -38,7 +40,7 @@
                         </ul>
                     </div>
                 </div>
-                <table class="table tasks-list table-lg">
+                <table class="table dataTable-basic">
                     <thead>
                         <tr>
                             <th class="text-semibold text-blue-400">Position Title</th>

@@ -29,5 +29,6 @@ namespace RMSCORE.EF
         public Nullable<int> CandidateID { get; set; }
         public Nullable<bool> WorkedBefore { get; set; }
         public Nullable<int> HearAboutJobID { get; set; }
+        public string CrimeDetail { get; set; }
     }
 }

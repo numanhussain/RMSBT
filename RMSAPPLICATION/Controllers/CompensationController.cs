@@ -40,6 +40,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(CompensationDetail obj)
         {
+            if (obj.MGSalary == null || obj.MGSalary == "")
+                ModelState.AddModelError("MGSalary", "Cannot be empty");
             if (ModelState.IsValid)
             {
                 CompensationDetailService.PostCreate(obj);

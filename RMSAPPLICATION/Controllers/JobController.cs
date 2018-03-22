@@ -53,12 +53,16 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
-            if (FilterBox != null)
+            if (FilterBox != "")
                 vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle == FilterBox).ToList();
             if (LocationID > 0)
-                vmAllJobList = vmAllJobList.Where(aa => aa.LocID== LocationID).ToList();
+            {
+                vmAllJobList = vmAllJobList.Where(aa => aa.LocID == LocationID).ToList();
+            }
             if (CatagoryID > 0)
+            {
                 vmAllJobList = vmAllJobList.Where(aa => aa.CatagoryID == CatagoryID).ToList();
+            }
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
             dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
@@ -69,40 +73,40 @@ namespace RMSAPPLICATION.Controllers
             //ViewBag.CatagoryID = GetCatagoryList(CatagoryService.GetIndex().Select(aa => aa.CatName).Distinct().ToList());
             return View("Index", vmAllJobList);
         }
-        //[HttpPost]
-        //public ActionResult Index(VMJobPortalIndex obj, string[] SelectedIds, string[] SelectedCatagoryIds)
-        //{
-        //    List<VMOpenJobIndex> vmlist = JobService.JobIndex();
-        //    List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
-        //    List<VMOpenJobIndex> vmTempList = new List<VMOpenJobIndex>();
-        //    if (obj.FilterBox != null)
-        //    {
-        //        vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle.Contains(obj.FilterBox)).ToList();
-        //    }
-        //    if (SelectedIds != null)
-        //    {
-        //        foreach (var item in SelectedIds)
-        //        {
-        //            vmTempList.AddRange(vmAllJobList.Where(aa => aa.LocName == item).ToList());
-        //        }
-        //        vmAllJobList = vmTempList.ToList();
-        //    }
-        //    else
-        //        vmTempList = vmAllJobList.ToList();
-        //    vmTempList.Clear();
-        //    if (SelectedCatagoryIds != null)
-        //    {
-        //        foreach (var item in SelectedCatagoryIds)
-        //        {
-        //            vmTempList.AddRange(vmAllJobList.Where(aa => aa.CatagoryName == item).ToList());
-        //        }
-        //        vmAllJobList = vmTempList.ToList();
-        //    }
-        //    else
-        //        vmTempList = vmAllJobList.ToList();
-        //    vmTempList.Clear();
-        //    return PartialView("OpenJob", vmAllJobList);
-        //}
+        [HttpPost]
+        public ActionResult Index(VMJobPortalIndex obj, string[] SelectedIds, string[] SelectedCatagoryIds)
+        {
+            List<VMOpenJobIndex> vmlist = JobService.JobIndex();
+            List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
+            List<VMOpenJobIndex> vmTempList = new List<VMOpenJobIndex>();
+            if (obj.FilterBox != null)
+            {
+                vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle.Contains(obj.FilterBox)).ToList();
+            }
+            if (SelectedIds != null)
+            {
+                foreach (var item in SelectedIds)
+                {
+                    vmTempList.AddRange(vmAllJobList.Where(aa => aa.LocName == item).ToList());
+                }
+                vmAllJobList = vmTempList.ToList();
+            }
+            else
+                vmTempList = vmAllJobList.ToList();
+            vmTempList.Clear();
+            if (SelectedCatagoryIds != null)
+            {
+                foreach (var item in SelectedCatagoryIds)
+                {
+                    vmTempList.AddRange(vmAllJobList.Where(aa => aa.CatName == item).ToList());
+                }
+                vmAllJobList = vmTempList.ToList();
+            }
+            else
+                vmTempList = vmAllJobList.ToList();
+            vmTempList.Clear();
+            return PartialView("OpenJob", vmAllJobList);
+        }
 
         //private List<CustomModel> GetCatagoryList(List<string> list)
         //{
@@ -138,11 +142,11 @@ namespace RMSAPPLICATION.Controllers
         //    List<VMOpenJobIndex> vmAllJobList = JobService.GetOpenJob(vmf);
         //    return View(vmAllJobList);
         //}
-        //public ActionResult OpenJobIndex()
-        //{
-        //    List<VMOpenJobIndex> vmAllJobList = JobService.GetOpenJobIndex();
-        //    return View(vmAllJobList);
-        //}
+        public ActionResult OpenJobIndex()
+        {
+            List<VMOpenJobIndex> vmAllJobList = JobService.GetOpenJobIndex();
+            return View(vmAllJobList);
+        }
         public ActionResult JobDetail(int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;

@@ -46,12 +46,27 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(VMExperienceOperation obj)
         {
+            if (obj.PositionTitle == null || obj.PositionTitle == "")
+                ModelState.AddModelError("PositionTitle", "Designation name cannot be empty");
+            if (obj.EmployerName == null || obj.EmployerName == "")
+                ModelState.AddModelError("EmployerName", "Employer name cannot be empty");
+            if (obj.StartDate == null)
+                ModelState.AddModelError("StartDate", "Dates required !!!");
+            if (obj.StartDate != null && obj.EndDate != null)
+            {
+                if (obj.EndDate < obj.StartDate)
+                {
+                    ModelState.AddModelError("StartDate", "Start date can never be greater than end date.");
+                }
+            }
+
             if (ModelState.IsValid)
             {
                 ExperienceDetailService.PostCreate(obj);
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
-            return PartialView(obj);
+            return PartialView("Create", obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
