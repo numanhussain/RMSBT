@@ -88,6 +88,9 @@
     <Compile Include="EF\ExperienceIndustry.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\Gender.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\HearAbout.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

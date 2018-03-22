@@ -46,6 +46,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(VMExperienceOperation obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.PositionTitle == null || obj.PositionTitle == "")
                 ModelState.AddModelError("PositionTitle", "Designation name cannot be empty");
             if (obj.EmployerName == null || obj.EmployerName == "")
@@ -62,7 +63,10 @@ namespace RMSAPPLICATION.Controllers
 
             if (ModelState.IsValid)
             {
-                ExperienceDetailService.PostCreate(obj);
+                vmf.UserStage = "5";
+                ExperienceDetailService.PostCreate(obj, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);

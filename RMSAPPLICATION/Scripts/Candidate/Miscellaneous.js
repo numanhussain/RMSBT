@@ -1,12 +1,17 @@
-﻿function MiscellaneousGetCreate(id) {
-    $("#WorkedBeforeDiv").hide();
-    $.ajax({
-        url: '/Miscellaneous/Create',
-        type: "GET",
-        cache: false,
-    }).done(function (result) {
-        $('#PartialViewContainer').html(result);
-    });
+﻿function MiscellaneousGetCreate(id, item) {
+    if (item > "6") {
+        $("#WorkedBeforeDiv").hide();
+        $.ajax({
+            url: '/Miscellaneous/Create',
+            type: "GET",
+            cache: false,
+        }).done(function (result) {
+            $('#PartialViewContainer').html(result);
+        });
+    }
+    else {
+        alert("You have to save reference details first.");
+    }
 }
 function MiscellaneousDetailHide() {
     //Worked Before Change

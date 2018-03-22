@@ -1,11 +1,16 @@
-﻿function LoadPVExperienceDetailIndex(id) {
-    $.ajax({
-        url: '/Experience/Index',
-        type: "GET",
-        cache: false,
-    }).done(function (result) {
-        $('#PartialViewContainer').html(result);
-    });
+﻿function LoadPVExperienceDetailIndex(id, item) {
+    if (item > "3") {
+        $.ajax({
+            url: '/Experience/Index',
+            type: "GET",
+            cache: false,
+        }).done(function (result) {
+            $('#PartialViewContainer').html(result);
+        });
+    }
+    else {
+        alert("You have to save one education detail first.");
+    }
 };
 function ExperienceDetailGetCreate(id) {
     $('#ExperienceGetCreate').click(function () {

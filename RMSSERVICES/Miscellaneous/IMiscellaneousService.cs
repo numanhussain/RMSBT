@@ -13,6 +13,6 @@ namespace RMSSERVICES.Miscellaneous
     public interface IMiscellaneousService
     {
         MiscellaneousDetail GetCreate(int id);
-        ServiceMessage PostCreate(MiscellaneousDetail obj);
+        ServiceMessage PostCreate(MiscellaneousDetail obj, V_UserCandidate LoggedInUser);
     }
 }

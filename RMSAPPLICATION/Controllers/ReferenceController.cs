@@ -45,9 +45,13 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(VMReferenceOperation obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
-                ReferenceDetailService.PostCreate(obj);
+                vmf.UserStage = "7";
+                ReferenceDetailService.PostCreate(obj, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             return PartialView(obj);
         }

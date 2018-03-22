@@ -1,12 +1,17 @@
-﻿function LoadPVEduDetailIndex(id) {
-    $.ajax({
-        url: '/EduDetail/Index',
-        type: "GET",
-        cache: false,
-        data: { cid: id }
-    }).done(function (result) {
-        $('#PartialViewContainer').html(result);
-    });
+﻿function LoadPVEduDetailIndex(id, item) {
+    if (item >"1") {
+        $.ajax({
+            url: '/EduDetail/Index',
+            type: "GET",
+            cache: false,
+            data: { cid: id }
+        }).done(function (result) {
+            $('#PartialViewContainer').html(result);
+        });
+    }
+    else {
+        alert("You have to Save Personal Details first.");
+    }
 };
 function EduDetailGetCreate(id) {
     $('#EduGetCreate').click(function () {

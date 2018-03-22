@@ -51,7 +51,6 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult IndexSubmit(int? LocationID, int? CatagoryID, string FilterBox)
         {
-            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
             if (FilterBox != "")
                 vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle == FilterBox).ToList();

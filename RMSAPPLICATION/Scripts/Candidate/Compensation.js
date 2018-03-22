@@ -1,11 +1,16 @@
-﻿function CompensationGetCreate(id) {
-    $.ajax({
+﻿function CompensationGetCreate(id,item) {
+if(item>"4"){
+ $.ajax({
         url: '/Compensation/Create',
         type: "GET",
         cache: false,
     }).done(function (result) {
         $('#PartialViewContainer').html(result);
     });
+}
+    else {
+        alert("You have to save  one experience detail first.");
+    }
 }
 function CompensationDetailHide() {
     //Worked Before Change

@@ -88,3 +88,25 @@ function LoadDD() {
 
     });
 }
+function RedirectToIndex() {
+    $.ajax({
+        url: '/Candidate/Index',
+        type: 'POST',
+        success: function (data) {
+            $('#myModal').modal('hide');
+            $('#PartialViewContainer').html(data);
+        },
+        error: function () {
+            $("#result").text('an error occured')
+        }
+    });
+}
+function myFunction() {
+    var txt;
+    if (confirm("Press a button!")) {
+        txt = "You pressed OK!";
+    }
+    else {
+        txt = "You pressed Cancel!";
+    }
+}

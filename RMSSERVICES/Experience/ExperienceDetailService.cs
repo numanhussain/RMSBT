@@ -18,12 +18,14 @@ namespace RMSSERVICES.Experience
         IRepository<V_Candidate_Exp> ExperienceDetailRepository;
         IRepository<ExperienceDetail> ExperienceRepository;
         IRepository<Candidate> CandidateRepository;
-        public ExperienceDetailService(IUnitOfWork unitOfWork, IRepository<V_Candidate_Exp> experiencedetailRepository, IRepository<ExperienceDetail> experienceRepository, IRepository<Candidate> candidateRepository)
+        IRepository<User> UserRepository;
+        public ExperienceDetailService(IUnitOfWork unitOfWork, IRepository<V_Candidate_Exp> experiencedetailRepository, IRepository<ExperienceDetail> experienceRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
             ExperienceDetailRepository = experiencedetailRepository;
             ExperienceRepository = experienceRepository;
+            UserRepository = userRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -59,8 +61,14 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.CandidateID = id;
             return vmExperienceDetail;
         }
-        public ServiceMessage PostCreate(VMExperienceOperation obj)
+        public ServiceMessage PostCreate(VMExperienceOperation obj,V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             ExperienceDetail dbExperienceDetail = new ExperienceDetail();
             dbExperienceDetail.CandidateID = obj.CandidateID;
             dbExperienceDetail = ConvertExperienceObject(obj);

@@ -18,18 +18,18 @@ namespace RMSSERVICES.PersonalDetail
         IUnitOfWork UnitOfWork;
         IRepository<Candidate> CandidateRepository;
         IRepository<V_UserCandidate> VUserRepositiory;
-        IRepository<User> UserRepositiory;
+        IRepository<User> UserRepository;
         IRepository<VMCandidateIndex> VMCandidateRepository;
         IRepository<CandidatePhoto> CandidatePhotoRepository;
         public CandidateService(IUnitOfWork unitOfWork,
-        IRepository<CandidatePhoto> candidatePhotoRepository,IRepository<Candidate> candidateRepository, IRepository<User> userRepositiory, IRepository<VMCandidateIndex> vmCandidateRepository, IRepository<V_UserCandidate> vuserRepositiory)
+        IRepository<CandidatePhoto> candidatePhotoRepository,IRepository<Candidate> candidateRepository, IRepository<User> userRepository, IRepository<VMCandidateIndex> vmCandidateRepository, IRepository<V_UserCandidate> vuserRepositiory)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
             VMCandidateRepository = vmCandidateRepository;
             CandidatePhotoRepository = candidatePhotoRepository;
            VUserRepositiory = vuserRepositiory;
-            UserRepositiory = userRepositiory;
+            UserRepository = userRepository;
         }
         public List<Candidate> GetIndex()
         {
@@ -44,11 +44,11 @@ namespace RMSSERVICES.PersonalDetail
         public ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser)
         {
             Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
-            List<User> images = UserRepositiory.FindBy(SpecificEntries);
+            List<User> images = UserRepository.FindBy(SpecificEntries);
             User image = images.First();
-            image.UserStage = "ProfileCompleted";
-            UserRepositiory.Edit(image);
-            UserRepositiory.Save();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             Candidate dbCandidate = new Candidate();
             dbCandidate = ConvertCandidateObject(dbOperation);
             CandidateRepository.Edit(dbCandidate);
@@ -63,6 +63,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.FatherName = dbOperation.FatherName;
             dbCandidate.BloodGroupID = dbOperation.BloodGroupID;
             dbCandidate.CNICNo = dbOperation.CNICNo;
+            dbCandidate.GenderID = dbOperation.GenderID;
             dbCandidate.MartialStatusID = dbOperation.MartialStatusID;
             dbCandidate.DOB = dbOperation.DOB;
             dbCandidate.DomicileCityID = dbOperation.DomicileCityID;

@@ -1,4 +1,5 @@
-﻿using RMSCORE.Models.Helper;
+﻿using RMSCORE.EF;
+using RMSCORE.Models.Helper;
 using RMSCORE.Models.Main;
 using RMSCORE.Models.Operation;
 using RMSSERVICES.Generic;
@@ -14,7 +15,7 @@ namespace RMSSERVICES.Reference
     {
         List<VMReferenceIndex> GetIndex(int cid);
         VMReferenceOperation GetCreate(int id);
-        ServiceMessage PostCreate(VMReferenceOperation obj);
+        ServiceMessage PostCreate(VMReferenceOperation obj, V_UserCandidate LoggedInUser);
         VMReferenceOperation GetEdit(int id);
         ServiceMessage PostEdit(VMReferenceOperation obj);
         VMReferenceOperation GetDelete(int? id);

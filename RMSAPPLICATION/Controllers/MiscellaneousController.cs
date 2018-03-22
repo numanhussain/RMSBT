@@ -38,7 +38,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(MiscellaneousDetail obj)
         {
-
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.CrimanalRecord == null || obj.CrimanalRecord == "")
                 ModelState.AddModelError("CrimanalRecord", "Cannot be empty");
             if (obj.HearAboutJobID == null)
@@ -50,7 +50,10 @@ namespace RMSAPPLICATION.Controllers
 
             if (ModelState.IsValid)
             {
-                MiscellaneousService.PostCreate(obj);
+                vmf.UserStage = "8";
+                MiscellaneousService.PostCreate(obj, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             CreateHelper(obj);
             return View(obj);

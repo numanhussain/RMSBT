@@ -25,5 +25,6 @@ namespace RMSSERVICES.Generic
         List<BloodGroup> GetBloodGroupList();
         List<Country> GetCountryList();
         List<City> GetCityList();
+        List<Gender> GetGenderList();
     }
 }

@@ -1,4 +1,5 @@
-﻿function LoadPVReferenceDetailIndex(id) {
+﻿function LoadPVReferenceDetailIndex(id, item) {
+    if (item > "5") {
         $.ajax({
             url: '/Reference/Index',
             type: "GET",
@@ -6,6 +7,10 @@
         }).done(function (result) {
             $('#PartialViewContainer').html(result);
         });
+    }
+    else {
+        alert("You have to save compensation detail first.");
+    }
 };
 function ReferenceDetailGetCreate(id) {
     $('#ReferenceGetCreate').click(function () {
@@ -33,8 +38,8 @@ function ReferenceDetailPostCreate(id) {
             url: "/Reference/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                    $('#myModal').modal('hide');
-                    LoadPVReferenceDetailIndex(id)
+                $('#myModal').modal('hide');
+                LoadPVReferenceDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -66,8 +71,8 @@ function ReferenceDetailPostEdit() {
             url: "/Reference/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                    $('#myModal').modal('hide');
-                    LoadPVReferenceDetailIndex(id)
+                $('#myModal').modal('hide');
+                LoadPVReferenceDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");

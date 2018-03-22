@@ -38,6 +38,7 @@ namespace RMSCORE.EF
         public virtual DbSet<EduInstitute> EduInstitutes { get; set; }
         public virtual DbSet<ExperienceDetail> ExperienceDetails { get; set; }
         public virtual DbSet<ExperienceIndustry> ExperienceIndustries { get; set; }
+        public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HearAbout> HearAbouts { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
         public virtual DbSet<JobDetail> JobDetails { get; set; }

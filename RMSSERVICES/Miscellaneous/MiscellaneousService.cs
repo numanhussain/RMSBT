@@ -17,11 +17,13 @@ namespace RMSSERVICES.Miscellaneous
         IUnitOfWork UnitOfWork;
         IRepository<MiscellaneousDetail> MiscellaneousRepository;
         IRepository<Candidate> CandidateRepository;
-        public MiscellaneousService(IUnitOfWork unitOfWork, IRepository<Candidate> candidateRepository, IRepository<MiscellaneousDetail> miscellaneousRepository)
+        IRepository<User> UserRepository;
+        public MiscellaneousService(IUnitOfWork unitOfWork, IRepository<Candidate> candidateRepository, IRepository<MiscellaneousDetail> miscellaneousRepository, IRepository<User> userRepository)
         {
             UnitOfWork = unitOfWork;
             MiscellaneousRepository = miscellaneousRepository;
             CandidateRepository = candidateRepository;
+            UserRepository = userRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -36,8 +38,14 @@ namespace RMSSERVICES.Miscellaneous
             }
             return dbMiscellaneous;
         }
-        public ServiceMessage PostCreate(MiscellaneousDetail obj)
+        public ServiceMessage PostCreate(MiscellaneousDetail obj, V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)

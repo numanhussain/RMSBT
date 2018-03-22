@@ -44,7 +44,11 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("MGSalary", "Cannot be empty");
             if (ModelState.IsValid)
             {
-                CompensationDetailService.PostCreate(obj);
+                V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+                vmf.UserStage = "6";
+                CompensationDetailService.PostCreate(obj, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             return View(obj);
         }

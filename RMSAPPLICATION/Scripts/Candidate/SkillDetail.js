@@ -1,12 +1,12 @@
 ﻿function LoadPVSkillDetailIndex(id) {
-    $.ajax({
-        url: '/Skill/Index',
-        type: "GET",
-        cache: false,
-    }).done(function (result) {
+        $.ajax({
+            url: '/Skill/Index',
+            type: "GET",
+            cache: false,
+        }).done(function (result) {
 
-        $('#PartialViewContainer').html(result);
-    });
+            $('#PartialViewContainer').html(result);
+        });
 };
 function SkillDetailGetCreate(id) {
     $('#SkillGetCreate').click(function () {
