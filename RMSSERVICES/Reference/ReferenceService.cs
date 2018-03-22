@@ -20,12 +20,14 @@ namespace RMSSERVICES.Reference
         IRepository<V_Candidate_Reference> ReferenceDetailRepository;
         IRepository<ReferenceDetail> ReferenceRepository;
         IRepository<Candidate> CandidateRepository;
-        public ReferenceService(IUnitOfWork unitOfWork, IRepository<V_Candidate_Reference> referencedetailRepository, IRepository<ReferenceDetail> referenceRepository, IRepository<Candidate> candidateRepository)
+        IRepository<User> UserRepository;
+        public ReferenceService(IUnitOfWork unitOfWork, IRepository<V_Candidate_Reference> referencedetailRepository, IRepository<ReferenceDetail> referenceRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
             ReferenceDetailRepository = referencedetailRepository;
             ReferenceRepository = referenceRepository;
+            UserRepository = userRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -53,8 +55,14 @@ namespace RMSSERVICES.Reference
             vmReferenceDetail.CandidateID = id;
             return vmReferenceDetail;
         }
-        public ServiceMessage PostCreate(VMReferenceOperation obj)
+        public ServiceMessage PostCreate(VMReferenceOperation obj,V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             ReferenceDetail dbReferenceDetail = new ReferenceDetail();
             dbReferenceDetail.CandidateID = obj.CandidateID;
             dbReferenceDetail = ConvertExperienceObject(obj);

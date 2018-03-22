@@ -34,6 +34,7 @@ namespace RMSAPPLICATION.Controllers
             Candidate obj = new Candidate();
             obj.CandidateID = vmf.CandidateID;
             obj.UserID = vmf.UserID;
+            Session["ProfileStage"] = vmf.UserStage;
             return View(obj);
         }
         [HttpGet]
@@ -94,7 +95,10 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CellNo", "Cell no cannot be empty");
             if (ModelState.IsValid)
             {
+                vmf.UserStage = "2";
                 CandidateService.PostCreate(dbOperation, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);
@@ -151,6 +155,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.NationalityCountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.NationalityCountryID);
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
             ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
+            ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
         }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {

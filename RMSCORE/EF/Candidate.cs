@@ -41,6 +41,7 @@ namespace RMSCORE.EF
         public string Objective { get; set; }
         public Nullable<int> CImage { get; set; }
         public Nullable<int> UserID { get; set; }
+        public Nullable<int> GenderID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EduDetail> EduDetails { get; set; }

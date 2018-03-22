@@ -1,4 +1,5 @@
-﻿using RMSCORE.Models.Helper;
+﻿using RMSCORE.EF;
+using RMSCORE.Models.Helper;
 using RMSCORE.Models.Main;
 using RMSCORE.Models.Operation;
 using RMSSERVICES.Generic;
@@ -14,7 +15,7 @@ namespace RMSSERVICES.Experience
     {
         List<VMExperienceIndex> GetIndex(int cid);
         VMExperienceOperation GetCreate(int id);
-        ServiceMessage PostCreate(VMExperienceOperation obj);
+        ServiceMessage PostCreate(VMExperienceOperation obj, V_UserCandidate LoggedInUser);
         VMExperienceOperation GetEdit(int id);
         ServiceMessage PostEdit(VMExperienceOperation obj);
         VMExperienceOperation GetDelete(int? id);

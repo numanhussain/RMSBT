@@ -46,6 +46,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(VMSkillOperation obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostCreate(obj);

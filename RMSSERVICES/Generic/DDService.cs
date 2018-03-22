@@ -26,11 +26,12 @@ namespace RMSSERVICES.Generic
         IRepository<BloodGroup> BloodGroupRepository;
         IRepository<Country> CountryRepository;
         IRepository<City> CityRepository;
+        IRepository<Gender> GenderRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<BloodGroup> bloodGroupRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
-            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository)
+            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository)
         {
             _unitOfWork = unitOfWork;
             CityRepository = cityRepository;
@@ -47,6 +48,7 @@ namespace RMSSERVICES.Generic
             LocationRepository = locationRepository;
             CatagoryRepository = catagoryRepository;
             CountryRepository = countryRepository;
+            GenderRepository = genderRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -96,19 +98,21 @@ namespace RMSSERVICES.Generic
         {
             return CityRepository.GetAll();
         }
-        public List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate)
-        {
-            return CandidateRepository.FindBy(predicate);
-        }
-
         public List<Location> GetLocationList()
         {
             return LocationRepository.GetAll();
         }
-
         public List<Catagory> GetCatagoryList()
         {
             return CatagoryRepository.GetAll();
+        }
+        public List<Gender> GetGenderList()
+        {
+            return GenderRepository.GetAll();
+        }
+        public List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate)
+        {
+            return CandidateRepository.FindBy(predicate);
         }
     }
 }

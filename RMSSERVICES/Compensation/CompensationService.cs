@@ -17,11 +17,13 @@ namespace RMSSERVICES.Compensation
         IUnitOfWork UnitOfWork;
         IRepository<CompensationDetail> CompensationRepository;
         IRepository<Candidate> CandidateRepository;
-        public CompensationService(IUnitOfWork unitOfWork, IRepository<Candidate> candidateRepository, IRepository<CompensationDetail> compensationRepository)
+        IRepository<User> UserRepository;
+        public CompensationService(IUnitOfWork unitOfWork, IRepository<Candidate> candidateRepository, IRepository<CompensationDetail> compensationRepository, IRepository<User> userRepository)
         {
             UnitOfWork = unitOfWork;
             CompensationRepository = compensationRepository;
             CandidateRepository = candidateRepository;
+            UserRepository = userRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -36,8 +38,14 @@ namespace RMSSERVICES.Compensation
             }
             return dbCompensation;
         }
-        public ServiceMessage PostCreate(CompensationDetail obj)
+        public ServiceMessage PostCreate(CompensationDetail obj,V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             Expression<Func<CompensationDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             CompensationDetail dbCompensation = new CompensationDetail();
             if (CompensationRepository.FindBy(SpecificClient).Count() > 0)

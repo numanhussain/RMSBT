@@ -1,5 +1,4 @@
-﻿@model List<RMSCORE.Models.Main.VMEduDetailIndex>
-
+﻿@model List<RMSCORE.Models.Main.VMEduDetailIndex>   
 <!-- Page container -->
 <head>
     <style>
@@ -22,64 +21,64 @@
             <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add New Detail</a></li>
         </ul>
     </div>
-        <table class="table datatable-basic">
-            <thead>
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th class="text-bold">
+                    Degree Level
+                </th>
+                <th class="text-bold">
+                    Institution
+                </th>
+                <th class="text-bold">
+                    Completion Date
+                </th>
+                <th class="text-bold">
+                    Obtained Marks
+                </th>
+                <th class="text-bold">
+                    Total Marks
+                </th>
+                <th class="text-bold">
+                    Percentage/CGPA
+                </th>
+                <th class="text-bold">
+                    Edit | Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th class="text-bold">
-                        Degree Level
-                    </th>
-                    <th class="text-bold">
-                        Institution
-                    </th>
-                    <th class="text-bold">
-                        Completion Date
-                    </th>
-                    <th class="text-bold">
-                        Obtained Marks
-                    </th>
-                    <th class="text-bold">
-                        Total Marks
-                    </th>
-                    <th class="text-bold">
-                        Percentage/CGPA
-                    </th>
-                    <th class="text-bold">
-                        Edit | Delete
-                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DegreeName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InstitutionName)
+                    </td>
+                    <td>
+                        @item.EndDate.Value.ToString("dd-MMM-yyyy")
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ObtainedMark)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalMark)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Percentage)/ @Html.DisplayFor(modelItem => item.CGPA)
+                    </td>
+                    <td>
+                        <a href="#" type="button" onclick="EduDetailGetEdit(@item.EduID)" value="Edit" class="icon-pencil"></a> &nbsp;&nbsp;&nbsp;
+                        <a href="#" type="button" onclick="EduDetailGetDelete(@item.EduID)" value="Delete" class="icon-trash" style="color:red"></a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DegreeName)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.InstitutionName)
-                        </td>
-                        <td>
-                            @item.EndDate.Value.ToString("dd-MMM-yyyy")
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ObtainedMark)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TotalMark)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Percentage)/ @Html.DisplayFor(modelItem => item.CGPA)
-                        </td>
-                        <td>
-                            <a href="#" type="button" onclick="EduDetailGetEdit(@item.EduID)" value="Edit" class="icon-pencil"></a> &nbsp;&nbsp;&nbsp;
-                            <a href="#" type="button" onclick="EduDetailGetDelete(@item.EduID)" value="Delete" class="icon-trash" style="color:red"></a>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+            }
+        </tbody>
+    </table>
 </div>
 <div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

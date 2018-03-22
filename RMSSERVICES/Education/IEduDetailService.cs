@@ -15,7 +15,7 @@ namespace RMSSERVICES.Education
     {
         List<VMEduDetailIndex> GetIndex( int cid);
         VMEduDetailOperation GetCreate(int id);
-        ServiceMessage PostCreate(VMEduDetailOperation obj);
+        ServiceMessage PostCreate(VMEduDetailOperation obj,V_UserCandidate LoggedInUser);
         VMEduDetailOperation GetEdit(int id);
         ServiceMessage PostEdit(VMEduDetailOperation obj);
         VMEduDetailOperation GetDelete(int? id);

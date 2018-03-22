@@ -15,9 +15,9 @@ namespace RMSSERVICES.Job
         #region -- Service Variables --
         IUnitOfWork UnitOfWork;
         IRepository<V_AppliedJob> JobRepository;
-        IRepository<JobDetail> OpenJobRepository;
+        IRepository<V_JobDetail> OpenJobRepository;
         IRepository<CandidateJob> AppliedJobRepository;
-        public JobService(IUnitOfWork unitOfWork, IRepository<JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository, IRepository<CandidateJob> appliedJobRepository)
+        public JobService(IUnitOfWork unitOfWork, IRepository<V_JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository, IRepository<CandidateJob> appliedJobRepository)
         {
             UnitOfWork = unitOfWork;
             JobRepository = jobRepository;
@@ -49,12 +49,15 @@ namespace RMSSERVICES.Job
         {
             Expression<Func<CandidateJob, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
             List<CandidateJob> dbAppliedJobs = AppliedJobRepository.FindBy(SpecificClient2);
-            JobDetail dbJobDetail = OpenJobRepository.GetSingle(JobID);
+            V_JobDetail dbJobDetail = OpenJobRepository.GetSingle(JobID);
             VMOpenJobIndex vmJobDetail = new VMOpenJobIndex();
             vmJobDetail.JobID = dbJobDetail.JobID;
             vmJobDetail.JobTitle = dbJobDetail.JobTitle;
             vmJobDetail.CompanyName = dbJobDetail.CompanyName;
-            vmJobDetail.LocName = dbJobDetail.LocName;
+            vmJobDetail.LocID = dbJobDetail.LocID;
+            vmJobDetail.CatagoryID = dbJobDetail.CatagoryID;
+            vmJobDetail.CityID = dbJobDetail.CityID;
+            vmJobDetail.DepatmentName = dbJobDetail.DepatmentName;
             vmJobDetail.Description = dbJobDetail.Description;
             vmJobDetail.Resposibilties = dbJobDetail.Resposibilties;
             vmJobDetail.QualificationReq = dbJobDetail.QualificationReq;
@@ -67,47 +70,50 @@ namespace RMSSERVICES.Job
         }
         public VMOpenJobIndex GetJobDetailIndex(int JobID)
         {
-            JobDetail dbJobDetail = OpenJobRepository.GetSingle(JobID);
+            V_JobDetail dbJobDetail = OpenJobRepository.GetSingle(JobID);
             VMOpenJobIndex vmJobDetail = new VMOpenJobIndex();
             vmJobDetail.JobID = dbJobDetail.JobID;
             vmJobDetail.JobTitle = dbJobDetail.JobTitle;
             vmJobDetail.CompanyName = dbJobDetail.CompanyName;
+            vmJobDetail.LocID = dbJobDetail.LocID;
             vmJobDetail.LocName = dbJobDetail.LocName;
+            vmJobDetail.CityID = dbJobDetail.CityID;
+            vmJobDetail.CityName = dbJobDetail.CityName;
             vmJobDetail.Description = dbJobDetail.Description;
             vmJobDetail.Resposibilties = dbJobDetail.Resposibilties;
             vmJobDetail.QualificationReq = dbJobDetail.QualificationReq;
             vmJobDetail.SkillReq = dbJobDetail.SkillReq;
             return vmJobDetail;
         }
-        public List<VMOpenJobIndex> GetOpenJob(V_UserCandidate LoggedInUser)
-        {
-            Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
-            List<JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
-            Expression<Func<CandidateJob, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
-            List<CandidateJob> dbAppliedJobs = AppliedJobRepository.FindBy(SpecificClient2);
-            List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
-            foreach (var dbVAppliedJob in dbAllOpenJobs)
-            {
+        //public List<VMOpenJobIndex> GetOpenJob(V_UserCandidate LoggedInUser)
+        //{
+        //    Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
+        //    List<JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
+        //    Expression<Func<CandidateJob, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
+        //    List<CandidateJob> dbAppliedJobs = AppliedJobRepository.FindBy(SpecificClient2);
+        //    List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
+        //    foreach (var dbVAppliedJob in dbAllOpenJobs)
+        //    {
 
-                VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
-                vmVAppliedJob.JobID = dbVAppliedJob.JobID;
-                vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
-                vmVAppliedJob.LocName = dbVAppliedJob.LocName;
-                vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
-                vmVAppliedJob.Description = dbVAppliedJob.Description;
-                if (dbAppliedJobs.Where(aa => aa.JobID == dbVAppliedJob.JobID).Count() > 0)
-                    vmVAppliedJob.IsApplied = true;
-                else
-                    vmVAppliedJob.IsApplied = false;
-                vmVAppliedJobs.Add(vmVAppliedJob);
-            }
-            return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
+        //        VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
+        //        vmVAppliedJob.JobID = dbVAppliedJob.JobID;
+        //        vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
+        //        vmVAppliedJob.LocName = dbVAppliedJob.LocName;
+        //        vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
+        //        vmVAppliedJob.Description = dbVAppliedJob.Description;
+        //        if (dbAppliedJobs.Where(aa => aa.JobID == dbVAppliedJob.JobID).Count() > 0)
+        //            vmVAppliedJob.IsApplied = true;
+        //        else
+        //            vmVAppliedJob.IsApplied = false;
+        //        vmVAppliedJobs.Add(vmVAppliedJob);
+        //    }
+        //    return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
 
-        }
+        //}
         public List<VMOpenJobIndex> GetOpenJobIndex()
         {
-            Expression<Func<JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
-            List<JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
+            Expression<Func<V_JobDetail, bool>> SpecificClient = c => c.DeadlineDate >= DateTime.Today;
+            List<V_JobDetail> dbAllOpenJobs = OpenJobRepository.FindBy(SpecificClient);
             List<VMOpenJobIndex> vmVAppliedJobs = new List<VMOpenJobIndex>();
             foreach (var dbVAppliedJob in dbAllOpenJobs)
             {
@@ -115,6 +121,7 @@ namespace RMSSERVICES.Job
                 VMOpenJobIndex vmVAppliedJob = new VMOpenJobIndex();
                 vmVAppliedJob.JobID = dbVAppliedJob.JobID;
                 vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
+                vmVAppliedJob.LocID = dbVAppliedJob.LocID;
                 vmVAppliedJob.LocName = dbVAppliedJob.LocName;
                 vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
                 vmVAppliedJob.Description = dbVAppliedJob.Description;
@@ -125,7 +132,7 @@ namespace RMSSERVICES.Job
         }
         public List<VMOpenJobIndex> JobIndex()
         {
-            List<JobDetail> dbOpenJobs = OpenJobRepository.GetAll();
+            List<V_JobDetail> dbOpenJobs = OpenJobRepository.GetAll();
             List<VMOpenJobIndex> vmOpenJobs = new List<VMOpenJobIndex>();
             foreach (var dbOpenJob in dbOpenJobs)
             {
@@ -133,6 +140,7 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.JobID = dbOpenJob.JobID;
                 vmOpenJobIndex.JobTitle = dbOpenJob.JobTitle;
                 vmOpenJobIndex.Description = dbOpenJob.Description;
+                vmOpenJobIndex.LocID = dbOpenJob.LocID;
                 vmOpenJobIndex.LocName = dbOpenJob.LocName;
                 vmOpenJobIndex.CityName = dbOpenJob.CityName;
                 vmOpenJobIndex.CreatedDate = dbOpenJob.CreatedDate;
@@ -140,8 +148,10 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.Experience = dbOpenJob.Experience;
                 vmOpenJobIndex.QualificationReq = dbOpenJob.QualificationReq;
                 vmOpenJobIndex.Resposibilties = dbOpenJob.Resposibilties;
-                vmOpenJobIndex.CatagoryName = dbOpenJob.CatagoryName;
+                vmOpenJobIndex.CatagoryID = dbOpenJob.CatagoryID;
+                vmOpenJobIndex.CatName = dbOpenJob.CatName;
                 vmOpenJobIndex.Status = dbOpenJob.Status;
+                vmOpenJobIndex.DepatmentName = dbOpenJob.DepatmentName;
                 vmOpenJobIndex.SkillReq = dbOpenJob.SkillReq;
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);

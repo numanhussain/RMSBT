@@ -23,7 +23,7 @@
             <div class="breadcrumb-line bg-green-600">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb">
-                    <li><a href="~/Home/Index"> Dashboard</a></li>
+                    <li><a href="~/Job/Index"> Dashboard</a></li>
                     <li><a class="active"> Candidate</a></li>
                     <li class="active"> - Add New</li>
                 </ul>
@@ -61,7 +61,7 @@
                 </div>
 
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">DOB</label>
                             @Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
@@ -70,13 +70,19 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="control-label text-semibold">Gender</label>
+                            @Html.DropDownList("GenderID", null, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Martial Status</label>
                             @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Blood Group</label>
                             @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
@@ -173,6 +179,7 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         SavePersonalInfoFunction();
         LoadDD();
     });

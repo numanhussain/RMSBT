@@ -7,6 +7,9 @@ using RMSSERVICES.PersonalDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mime;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
@@ -33,6 +36,7 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             List<VMEduDetailIndex> vmlist = EduDetailService.GetIndex(cid);
             return View(vmlist);
+
         }
         #region -- Controller Main View Actions  --
         [HttpGet]
@@ -47,9 +51,13 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(VMEduDetailOperation obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
-                EduDetailService.PostCreate(obj);
+                vmf.UserStage = "3";
+                EduDetailService.PostCreate(obj, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             CreateHelper(obj);
             return PartialView(obj);

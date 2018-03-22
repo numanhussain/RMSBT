@@ -19,12 +19,14 @@ namespace RMSSERVICES.Education
         IRepository<V_Candidate_EduDetail> EduDetailRepository;
         IRepository<EduDetail> EducationDetailRepository;
         IRepository<Candidate> CandidateRepository;
-        public EduDetailService(IUnitOfWork unitOfWork, IRepository<EduDetail> educationDetailRepository, IRepository<V_Candidate_EduDetail> edudetailRepository, IRepository<Candidate> candidateRepository)
+        IRepository<User> UserRepository;
+        public EduDetailService(IUnitOfWork unitOfWork, IRepository<EduDetail> educationDetailRepository, IRepository<V_Candidate_EduDetail> edudetailRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
             EduDetailRepository = edudetailRepository;
             EducationDetailRepository = educationDetailRepository;
+            UserRepository = userRepository;
         }
         public List<VMEduDetailIndex> GetIndex(int cid)
         {
@@ -53,8 +55,14 @@ namespace RMSSERVICES.Education
             vmEduDetail.CandidateID = id;
             return vmEduDetail;
         }
-        public ServiceMessage PostCreate(VMEduDetailOperation obj)
+        public ServiceMessage PostCreate(VMEduDetailOperation obj,V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             EduDetail dbEduDetail = new EduDetail();
             dbEduDetail.CandidateID = obj.CandidateID;
             dbEduDetail = ConvertEducationObject(obj);

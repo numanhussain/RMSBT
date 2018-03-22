@@ -67,7 +67,7 @@ namespace RMSSERVICES.Skill
             vmSkillDetail.SkillTitle = dbSkillDetail.Title;
             vmSkillDetail.SLevelID = dbSkillDetail.SLevelID;
             vmSkillDetail.Description = dbSkillDetail.Description;
-            vmSkillDetail.CandidateID = dbSkillDetail.CandidateID;      
+            vmSkillDetail.CandidateID = dbSkillDetail.CandidateID;
             return vmSkillDetail;
         }
         public ServiceMessage PostEdit(VMSkillOperation obj)
