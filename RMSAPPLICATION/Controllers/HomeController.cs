@@ -90,11 +90,11 @@ namespace RMSAPPLICATION.Controllers
                 V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                if (vm.UserStage == "2")
+                if (vm.UserStage == "1")
                 {
                     return RedirectToAction("Index", "Job");
                 }
-                if (vm.UserStage == "1")
+                if (vm.UserStage == "")
                 {
                     return RedirectToAction("Login", "Home");
                 }
