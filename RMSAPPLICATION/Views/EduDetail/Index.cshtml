@@ -72,8 +72,9 @@
                         @Html.DisplayFor(modelItem => item.Percentage)/ @Html.DisplayFor(modelItem => item.CGPA)
                     </td>
                     <td>
-                        <a href="#" type="button" onclick="EduDetailGetEdit(@item.EduID)" value="Edit" class="icon-pencil"></a> &nbsp;&nbsp;&nbsp;
-                        <a href="#" type="button" onclick="EduDetailGetDelete(@item.EduID)" value="Delete" class="icon-trash" style="color:red"></a>
+                        <button type="button" id="btnGetEdit" onclick="EduDetailGetEdit(@item.EduID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                        <button type="button" id="btnGetDelete" onclick="EduDetailGetDelete(@item.EduID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+
                     </td>
                 </tr>
             }
