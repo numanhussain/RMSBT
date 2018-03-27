@@ -31,9 +31,7 @@ namespace RMSSERVICES.UserDetail
 
         public bool VerifyLink(string key)
         {
-            string kk = StringCipher.Encrypt("5","1234");
-            string email = StringCipher.Decrypt(kk,"1234");
-            if (UserRepository.GetAll().Where(aa => aa.Email == email).Count() > 0)
+            if (UserRepository.GetAll().Where(aa => aa.SecurityLink == key).Count() > 0)
             {
                 // Todo -- Change User Status to Login
                 return true;
@@ -41,18 +39,25 @@ namespace RMSSERVICES.UserDetail
             else
                 return false;
         }
-
+        private Random random = new Random();
+        public string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
+        }
         public ServiceMessage RegisterUser(User dbOperation)
         {
             dbOperation.DateCreated = DateTime.Today;
-            dbOperation.UserStage = "1";
-            dbOperation.SecurityLink = StringCipher.Encrypt(dbOperation.Email, "1234");
+            dbOperation.AppliedAs = dbOperation.AppliedAs;
+            dbOperation.UserStage = 1;
+            dbOperation.SecurityLink = RandomString(15);
             UserRepository.Add(dbOperation);
             UserRepository.Save();
             Candidate dbCandidate = new Candidate();
-            dbCandidate.CName = dbOperation.UserName;
             dbCandidate.UserID = dbOperation.UserID;
             dbCandidate.EmailID = dbOperation.Email;
+            dbCandidate.AppliedAs = dbOperation.AppliedAs;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
             return new ServiceMessage();

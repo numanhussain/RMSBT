@@ -12,12 +12,12 @@
         <div class="heading-elements">
             @using (Html.BeginForm("IndexSubmit", "Job", FormMethod.Post))
             {
-            <div class="form-group form-inline col-md-12">
-                <input type="text" class="form-control col-md-4" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
-                @Html.DropDownList("LocationID", null, new { @class = "form-control", style = "width: 250px;" })
-                @Html.DropDownList("CatagoryID", null, new { @class = "form-control", style = "width: 250px;" })
-                <button type="Submit" class="form-control btn btn-primary">Search</button>
-            </div>
+                <div class="form-group form-inline col-md-12">
+                    <input type="text" class="form-control col-md-4" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                    @Html.DropDownList("LocationID", null, new { @class = "form-control", style = "width: 250px;" })
+                    @Html.DropDownList("CatagoryID", null, new { @class = "form-control", style = "width: 250px;" })
+                    <button type="Submit" class="form-control btn btn-primary">Search</button>
+                </div>
             }
         </div>
     </div>
@@ -42,13 +42,13 @@
                 </div>
                 <table class="table dataTable-basic">
                     <thead>
-                        <tr>
-                            <th class="text-semibold text-blue-400">Position Title</th>
-                            <th class="text-semibold text-blue-400">Department</th>
-                            <th class="text-semibold text-blue-400">Catagory</th>
-                            <th class="text-semibold text-blue-400">Location</th>
-                            <th class="text-semibold text-blue-400">Created Date</th>
-                            <th class="text-semibold text-blue-400">Closing Date</th>
+                        <tr class="bg-green-600">
+                            <th class="text-semibold">Position Title</th>
+                            <th class="text-semibold">Department</th>
+                            <th class="text-semibold">Catagory</th>
+                            <th class="text-semibold">Location</th>
+                            <th class="text-semibold">Created Date</th>
+                            <th class="text-semibold">Closing Date</th>
                         </tr>
                     </thead>
                     @foreach (var item in Model)

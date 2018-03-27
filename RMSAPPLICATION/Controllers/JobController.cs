@@ -37,6 +37,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Index()
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            Session["ProfileStage"] = vmf.UserStage;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
             dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All" });

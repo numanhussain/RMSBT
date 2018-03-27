@@ -35,8 +35,8 @@ function SelectAllCheckBox() {
             $("#chkSelectAllCatagory").prop("checked", false);
     });
 }
-function ApplyJob(id, usertype) {
-    if (usertype == 'ProfileCompleted') {
+function ApplyJob(id, item) {
+     if (item > 7) {
         $.ajax({
             url: '/Job/JobApply',
             type: "POST",
@@ -46,12 +46,14 @@ function ApplyJob(id, usertype) {
             if (data === "OK") {
                 $.jGrowl('You have successfully  Applied for this job.', {
                     header: 'Well done!',
-                    theme: 'bg-success-400'
+                    theme: 'bg-success-400',
                 });
             }
         });
     }
-    else { alert('You profile is not completed') }
+    else {
+        alert('You profile is not completed')
+    }
 };
 //function FilterSearch() {
 //    SelectAllCheckBox();

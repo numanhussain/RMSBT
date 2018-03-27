@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,21 @@ namespace RMSCORE.Models.Operation
         public bool? CurrentlyWorking { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public string Description { get; set; }
+        [Required(ErrorMessage = "Not more than 100 words")]
+        [StringLength(100)]
+        public string Responsibility1 { get; set; }
+        [Required(ErrorMessage = "Not more than 100 words")]
+        [StringLength(100)]
+        public string Responsibility2 { get; set; }
+        [Required(ErrorMessage = "Not more than 100 words")]
+        [StringLength(100)]
+        public string Responsibility3 { get; set; }
+        [Required(ErrorMessage = "Not more than 100 words")]
+        [StringLength(100)]
+        public string Responsibility4 { get; set; }
+        [Required(ErrorMessage = "Not more than 100 words")]
+        [StringLength(100)]
+        public string Responsibility5 { get; set; }
         public string Salary { get; set; }
         public int CandidateID { get; set; }
         public string CandidateName { get; set; }

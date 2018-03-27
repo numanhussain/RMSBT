@@ -50,6 +50,7 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostCreate(obj);
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
             return PartialView(obj);

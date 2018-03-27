@@ -1,12 +1,21 @@
 ﻿function LoadPVEduDetailIndex(id, item) {
-    if (item >"1") {
+    if (item > 2) {
+clearClasses();
         $.ajax({
             url: '/EduDetail/Index',
             type: "GET",
             cache: false,
             data: { cid: id }
         }).done(function (result) {
-            $('#PartialViewContainer').html(result);
+            $('#PartialViewContainer').html(result);          
+                $("#hv1").addClass("liInActive");
+                $("#hv2").addClass("liActive");
+                $("#hv3").addClass("liInActive");
+                $("#hv4").addClass("liInActive");
+                $("#hv5").addClass("liInActive");
+                $("#hv6").addClass("liInActive");
+                $("#hv33").addClass("liInActive");
+document.getElementById("UserstageAfterFirst").value = 3;
         });
     }
     else {
@@ -39,8 +48,11 @@ function EduDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVEduDetailIndex(id)
+                if (data == "OK")
+                { location.reload(); }
+                else {
+                    $('#myModal').modal('hide');
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -72,8 +84,11 @@ function EduDetailPostEdit(id) {
             url: "/EduDetail/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVEduDetailIndex(id)
+                 if (data == "OK")
+                { location.reload(); }
+                else {
+                    $('#myModal').modal('hide');
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");

@@ -21,6 +21,7 @@ namespace RMSCORE.EF
         public string Password { get; set; }
         public string EmailID { get; set; }
         public string RetypePassword { get; set; }
-        public string UserStage { get; set; }
+        public Nullable<int> UserStage { get; set; }
+        public Nullable<int> AppliedAs { get; set; }
     }
 }

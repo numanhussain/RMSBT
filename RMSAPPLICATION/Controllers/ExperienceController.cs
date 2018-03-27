@@ -63,7 +63,8 @@ namespace RMSAPPLICATION.Controllers
 
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "5";
+                if (vmf.UserStage == 4)
+                    vmf.UserStage = 5;
                 ExperienceDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;

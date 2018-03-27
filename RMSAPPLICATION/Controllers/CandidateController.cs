@@ -1,4 +1,5 @@
 ﻿using RMSCORE.EF;
+using RMSCORE.Models.Helper;
 using RMSSERVICES.CandidateImage;
 using RMSSERVICES.Generic;
 using RMSSERVICES.PersonalDetail;
@@ -35,6 +36,7 @@ namespace RMSAPPLICATION.Controllers
             obj.CandidateID = vmf.CandidateID;
             obj.UserID = vmf.UserID;
             Session["ProfileStage"] = vmf.UserStage;
+            ViewBag.AppliedAs = new SelectList(GetAppliedAs().ToList(), "ID", "Name", vmf.AppliedAs);
             return View(obj);
         }
         [HttpGet]
@@ -95,10 +97,12 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CellNo", "Cell no cannot be empty");
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "2";
+                if(vmf.UserStage==2)
+                    vmf.UserStage = 3;
                 CandidateService.PostCreate(dbOperation, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK",JsonRequestBehavior.AllowGet);
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);
@@ -198,6 +202,42 @@ namespace RMSAPPLICATION.Controllers
                             , JsonRequestBehavior.AllowGet);
 
             return RedirectToAction("Index");
+        }
+        public List<VMDropDown> GetAppliedAs()
+        {
+            List<VMDropDown> list = new List<VMDropDown>();
+
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 1;
+                vm.Name = "Internship";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 2;
+                vm.Name = "Apprentices";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 3;
+                vm.Name = "MTO";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 4;
+                vm.Name = "Contractual";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 5;
+                vm.Name = "Permanent";
+                list.Add(vm);
+            }
+            return list;
         }
         #endregion
     }

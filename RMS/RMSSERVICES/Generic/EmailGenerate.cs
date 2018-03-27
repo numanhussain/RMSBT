@@ -15,16 +15,17 @@ namespace RMSSERVICES.Generic
             try
             {
                 NetworkCredential cred = new NetworkCredential();
-                MailAddress _from = new MailAddress(AssistantService.Username, "Time Management System");
+                MailAddress _from = new MailAddress("essp.tms@bestway.com.pk", "Time Management System");
                 MailAddress _to = new MailAddress(To, "");
                 MailMessage mail = new MailMessage(_from, _to);
                 SmtpClient client = new SmtpClient();
-                client.Port = AssistantService.Port;
+                client.Port = 25;
                 //client.EnableSsl = true;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
-                client.Credentials = new NetworkCredential(AssistantService.Username, AssistantService.Password);
-                client.Host = AssistantService.Hostname;
+                client.Credentials = new NetworkCredential("essp.tms@bestway.com.pk", "Bcl#0099");
+                client.Host = "mail.bestway.com.pk";
+                client.UseDefaultCredentials = true;
                 mail.IsBodyHtml = true;
                 mail.Subject = Subject;
                 if (CC != null && CC != "")

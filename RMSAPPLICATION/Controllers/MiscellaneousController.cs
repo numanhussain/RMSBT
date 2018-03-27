@@ -50,10 +50,12 @@ namespace RMSAPPLICATION.Controllers
 
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "8";
+                if (vmf.UserStage == 7)
+                    vmf.UserStage = 8;
                 MiscellaneousService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
             return View(obj);

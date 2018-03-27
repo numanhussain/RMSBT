@@ -3,7 +3,7 @@
 <!-- Page container -->
 <!-- Basic datatable -->
 <div class="tab-pane" id="tabs_education">
-    <div style="margin-top:-45px">
+    <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
                 <h3 class="text-black"><i class="icon-people"></i>&nbsp;&nbsp;Reference Details</h3>
@@ -17,53 +17,51 @@
                     <li><a href="#" id="ReferenceGetCreate"><i class="icon-add position-left"></i> Add New Reference</a></li>
                 </ul>
             </div>
-            <div class="panel-body">
-                <table class="table datatable-basic ">
-                    <thead>
+            <table class="table datatable-basic ">
+                <thead>
+                    <tr>
+                        <th class="text-bold">
+                            Ref Name
+                        </th>
+                        <th class="text-bold">
+                            Ref Designation
+                        </th>
+                        <th class="text-bold">
+                            Ref Contact
+                        </th>
+                        <th class="text-bold">
+                            Ref Email
+                        </th>
+                        <th class="text-bold">
+                            Edit | Delete
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th class="text-bold">
-                                Ref Name
-                            </th>
-                            <th class="text-bold">
-                                Ref Designation
-                            </th>
-                            <th class="text-bold">
-                                Ref Contact
-                            </th>
-                            <th class="text-bold">
-                                Ref Email
-                            </th>
-                            <th class="text-bold">
-                                Edit | Delete
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RefName)
-                                </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RefName)
+                            </td>
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RefDesignation)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RefContact)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.RefEmail)
-                                </td>
-                                <td>
-                                    <a href="#" input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="icon-pencil" />&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                                    <a href="#" input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" style="color:red" />
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RefDesignation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RefContact)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RefEmail)
+                            </td>
+                            <td>
+                                <a href="#" input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="icon-pencil" />&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
+                                <a href="#" input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" style="color:red" />
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

@@ -54,10 +54,12 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "3";
+                if (vmf.UserStage == 3)
+                    vmf.UserStage = 4;
                 EduDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
             return PartialView(obj);
