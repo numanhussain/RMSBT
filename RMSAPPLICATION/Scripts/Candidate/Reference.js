@@ -1,25 +1,19 @@
 ﻿function LoadPVReferenceDetailIndex(id, item) {
-    if (item > 5) {
-        clearClasses();
-        $.ajax({
-            url: '/Reference/Index',
-            type: "GET",
-            cache: false,
-        }).done(function (result) {
-            $('#PartialViewContainer').html(result);
-                $("#hv1").addClass("liInActive");
-                $("#hv2").addClass("liInActive");
-                $("#hv3").addClass("liInActive");
-                $("#hv4").addClass("liInActive");
-                $("#hv5").addClass("liActive");
-                $("#hv6").addClass("liInActive");
-                $("#hv33").addClass("liInActive");
-            document.getElementById("UserstageAfterFirst").value = 6;
-        });
-    }
-    else {
-        alert("You have to save compensation detail first.");
-    }
+    clearClasses();
+    $.ajax({
+        url: '/Reference/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+        $('#PartialViewContainer').html(result);
+    });
 };
 function ReferenceDetailGetCreate(id) {
     $('#ReferenceGetCreate').click(function () {

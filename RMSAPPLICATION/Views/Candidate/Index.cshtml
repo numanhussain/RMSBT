@@ -123,7 +123,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         var val = document.getElementById("Userstage").value;
-        if (val == 8) {
+        if (val == 7) {
             if (document.getElementById("UserstageAfterFirst").value == "") {
                 val = "2";
             }
@@ -145,9 +145,6 @@
                 CompensationGetCreate(@Model.CandidateID, document.getElementById("Userstage").value);
                 break;
             case "6":
-                LoadPVReferenceDetailIndex(@Model.CandidateID, document.getElementById("Userstage").value);
-                break;
-            case "7":
                 MiscellaneousGetCreate(@Model.CandidateID, document.getElementById("Userstage").value);
                 break;
         }

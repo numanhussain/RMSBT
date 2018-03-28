@@ -7,6 +7,7 @@ using RMSSERVICES.PersonalDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Mime;
 using System.Text;
@@ -18,7 +19,7 @@ namespace RMSAPPLICATION.Controllers
     public class EduDetailController : Controller
     {
         #region -- Controller Initialization --
-        //IEntityService<VMEduDetailIndex> EduDetailEntityService;
+        //IEntityService<V_Candidate_EduDetail> EduDetailEntityService;
         IEduDetailService EduDetailService;
         IDDService DDService;
         // Controller Constructor
@@ -36,7 +37,6 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             List<VMEduDetailIndex> vmlist = EduDetailService.GetIndex(cid);
             return View(vmlist);
-
         }
         #region -- Controller Main View Actions  --
         [HttpGet]
@@ -52,6 +52,18 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMEduDetailOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (obj.DegreeID == 0 || obj.DegreeName == "")
+                ModelState.AddModelError("DegreeID", "Select Degree title");
+            if (obj.StartDate == null)
+                ModelState.AddModelError("StartDate", "StartDate cannot be empty");
+            if (obj.EndDate == null)
+                ModelState.AddModelError("EndDate", "EndDate cannot be empty");
+            if (obj.ObtainedMark == null)
+                ModelState.AddModelError("ObtainedMark", "ObtainedMark cannot be empty");
+            if (obj.TotalMark == null)
+                ModelState.AddModelError("TotalMark", "TotalMark cannot be empty");
+            if (obj.Percentage == null)
+                ModelState.AddModelError("Percentage", "Percentage cannot be empty");
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 3)
@@ -98,7 +110,11 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Private  Methods--
         private void CreateHelper(VMEduDetailOperation obj)
         {
+            //List<EduDegreeLevel> dbEdulevels = DDService.GetEduLevel().ToList().OrderBy(aa => aa.DegreeLevel).ToList();
+            //dbEdulevels.Insert(0, new EduDegreeLevel { DLevelID = 0, DegreeLevel = "" });
             ViewBag.DegreeID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeID);
+            //List<EduInstitute> dbInstitutes = DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteName).ToList();
+            //dbInstitutes.Insert(0, new EduInstitute { InstituteID = 0, InstituteName = "" });
             ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName", obj.InstitutionID);
         }
         private void EditHelper(VMEduDetailOperation obj)

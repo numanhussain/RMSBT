@@ -1,5 +1,5 @@
 ﻿ function MiscellaneousGetCreate(id, item) {
-        if (item > 6) {
+        if (item > 5) {
         clearClasses();
             $("#WorkedBeforeDiv").hide();
             $.ajax({
@@ -19,7 +19,7 @@
             });
         }
         else {
-            alert("You have to save reference details first.");
+            alert("You have to save compensation details first.");
         }
     }
 function MiscellaneousDetailHide() {

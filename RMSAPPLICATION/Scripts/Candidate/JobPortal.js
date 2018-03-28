@@ -36,7 +36,7 @@ function SelectAllCheckBox() {
     });
 }
 function ApplyJob(id, item) {
-     if (item > 7) {
+     if (item > 6) {
         $.ajax({
             url: '/Job/JobApply',
             type: "POST",

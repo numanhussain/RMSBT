@@ -44,9 +44,7 @@ function SkillDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data == "OK") {
-                    LoadPVSkillDetailIndex(id);
-                }
+               if (data == "OK") { location.reload(); }
                 else {
                     $('#myModal').modal('hide');
                 }

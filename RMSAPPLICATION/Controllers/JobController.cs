@@ -40,9 +40,9 @@ namespace RMSAPPLICATION.Controllers
             Session["ProfileStage"] = vmf.UserStage;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
-            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All" });
+            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All" });
+            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
             ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());

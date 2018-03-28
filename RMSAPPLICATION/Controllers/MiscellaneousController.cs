@@ -50,8 +50,8 @@ namespace RMSAPPLICATION.Controllers
 
             if (ModelState.IsValid)
             {
-                if (vmf.UserStage == 7)
-                    vmf.UserStage = 8;
+                if (vmf.UserStage == 6)
+                    vmf.UserStage = 7;
                 MiscellaneousService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;

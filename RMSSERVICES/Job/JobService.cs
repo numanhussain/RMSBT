@@ -156,7 +156,7 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);
             }
-            return vmOpenJobs.OrderByDescending(aa => aa.JobID).ToList();
+            return vmOpenJobs.ToList();
         }
         #endregion
         #region -- Service Private Methods --

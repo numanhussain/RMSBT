@@ -48,11 +48,7 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
-                if (vmf.UserStage == 6)
-                    vmf.UserStage = 7;
                 ReferenceDetailService.PostCreate(obj, vmf);
-                Session["LoggedInUser"] = vmf;
-                Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return PartialView(obj);

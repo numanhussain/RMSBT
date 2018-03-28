@@ -1,42 +1,41 @@
 ﻿function LoadPVExperienceDetailIndex(id, item) {
     if (item > 3) {
-clearClasses();
+        clearClasses();
         $.ajax({
             url: '/Experience/Index',
             type: "GET",
             cache: false,
         }).done(function (result) {
             $('#PartialViewContainer').html(result);
-                $("#hv1").addClass("liInActive");
-                $("#hv2").addClass("liInActive");
-                $("#hv3").addClass("liActive");
-                $("#hv4").addClass("liInActive");
-                $("#hv5").addClass("liInActive");
-                $("#hv6").addClass("liInActive");
-                $("#hv33").addClass("liInActive");
-document.getElementById("UserstageAfterFirst").value = 4;
+            $("#hv1").addClass("liInActive");
+            $("#hv2").addClass("liInActive");
+            $("#hv3").addClass("liActive");
+            $("#hv4").addClass("liInActive");
+            $("#hv5").addClass("liInActive");
+            $("#hv6").addClass("liInActive");
+            $("#hv33").addClass("liInActive");
+            document.getElementById("UserstageAfterFirst").value = 4;
         });
     }
     else {
         alert("You have to save one education detail first.");
     }
 };
-function clearClasses()
-{
-                $("#hv1").removeClass("liInActive");
-                $("#hv2").removeClass("liInActive");
-                $("#hv33").removeClass("liInActive");
-                $("#hv3").removeClass("liInActive");
-                $("#hv4").removeClass("liInActive");
-                $("#hv5").removeClass("liInActive");
-                $("#hv6").removeClass("liInActive");
-                $("#hv1").removeClass("liActive");
-                $("#hv2").removeClass("liActive");
-                $("#hv33").removeClass("liActive");
-                $("#hv3").removeClass("liActive");
-                $("#hv4").removeClass("liActive");
-                $("#hv5").removeClass("liActive");
-                $("#hv6").removeClass("liActive");
+function clearClasses() {
+    $("#hv1").removeClass("liInActive");
+    $("#hv2").removeClass("liInActive");
+    $("#hv33").removeClass("liInActive");
+    $("#hv3").removeClass("liInActive");
+    $("#hv4").removeClass("liInActive");
+    $("#hv5").removeClass("liInActive");
+    $("#hv6").removeClass("liInActive");
+    $("#hv1").removeClass("liActive");
+    $("#hv2").removeClass("liActive");
+    $("#hv33").removeClass("liActive");
+    $("#hv3").removeClass("liActive");
+    $("#hv4").removeClass("liActive");
+    $("#hv5").removeClass("liActive");
+    $("#hv6").removeClass("liActive");
 }
 function ExperienceDetailGetCreate(id) {
     $('#ExperienceGetCreate').click(function () {
@@ -63,7 +62,7 @@ function ExperienceDetailPostCreate(id) {
             url: "/Experience/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                 if (data == "OK") { location.reload(); }
+                if (data == "OK") { location.reload(); }
                 else {
                     $('#modelBody').html(data);
                 }

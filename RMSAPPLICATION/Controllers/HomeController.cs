@@ -43,12 +43,13 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
-            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All" });
+            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All" });
+            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
             ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
@@ -143,7 +144,7 @@ namespace RMSAPPLICATION.Controllers
                         UserService.RegisterUser(Obj);
                         var code = Obj.SecurityLink;
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
-                        EmailGenerate.SendEmail(Obj.Email, "", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>", "Account Activation");
+                        EmailGenerate.SendEmail(Obj.Email, "", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>", "Email Verification");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");
@@ -170,7 +171,7 @@ namespace RMSAPPLICATION.Controllers
                 UserEntityService.PostEdit(user);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                return RedirectToAction("Index", "Job");
+                return RedirectToAction("ConfirmedEmail", "Home");
             }
             else
             {
@@ -220,6 +221,11 @@ namespace RMSAPPLICATION.Controllers
         }
         [HttpGet]
         public ActionResult EmailSent()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult ConfirmedEmail()
         {
             return View();
         }

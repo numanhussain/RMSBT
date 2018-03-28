@@ -3067,6 +3067,7 @@
     <Content Include="Views\Job\JobDetailIndex.cshtml" />
     <Content Include="Views\Home\EmailSent.cshtml" />
     <Content Include="Views\Home\VerifyLink.cshtml" />
+    <Content Include="Views\Home\ConfirmedEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

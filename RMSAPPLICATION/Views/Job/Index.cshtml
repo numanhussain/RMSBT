@@ -31,18 +31,10 @@
         <div class="content-wrapper">
             <!-- Task manager table -->
             <div class="panel panel-white">
-                <div class="panel-heading">
-                    <h4 class="panel-title text-bold">Open Vacancies</h4>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
-                </div>
                 <table class="table dataTable-basic">
                     <thead>
                         <tr class="bg-green-600">
+                            <th class="text-semibold">Job-ID</th>
                             <th class="text-semibold">Position Title</th>
                             <th class="text-semibold">Department</th>
                             <th class="text-semibold">Catagory</th>
@@ -55,6 +47,9 @@
                     {
                         <tbody>
                             <tr>
+                                <td>
+                                    <div class="text-semibold">@item.JobID</div>
+                                </td>
                                 <td>
                                     <div class="text-semibold"><a href="~/Job/JobDetail?JobID=@item.JobID">@item.JobTitle</a></div>
                                     <div class="text-muted">Click on title for more information..</div>

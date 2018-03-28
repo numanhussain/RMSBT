@@ -15,16 +15,14 @@ namespace RMSSERVICES.Generic
             try
             {
                 NetworkCredential cred = new NetworkCredential();
-                MailAddress _from = new MailAddress(AssistantService.Username, "Time Management System");
+                MailAddress _from = new MailAddress(AssistantService.Username, "Careers at Bestway Cement Ltd.");
                 MailAddress _to = new MailAddress(To, "");
                 MailMessage mail = new MailMessage(_from, _to);
-                SmtpClient client = new SmtpClient();
-                client.Port = AssistantService.Port;
+                SmtpClient client = new SmtpClient(AssistantService.Hostname, AssistantService.Port);
                 //client.EnableSsl = true;
                 client.DeliveryMethod = SmtpDeliveryMethod.Network;
                 client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential(AssistantService.Username, AssistantService.Password);
-                client.Host = AssistantService.Hostname;
                 mail.IsBodyHtml = true;
                 mail.Subject = Subject;
                 if (CC != null && CC != "")
@@ -33,7 +31,6 @@ namespace RMSSERVICES.Generic
                 client.Send(mail);
                 mail.Dispose();
                 client.Dispose();
-
                 //MyCustomFunctions.WriteToLogFile("Email send TO:" + item.EmailAddress + ", CC: " + item.CCAddress);
             }
             catch (Exception ex)

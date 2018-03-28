@@ -37,14 +37,15 @@
 <div class="navbar navbar-inverse bg-primary">
     <div class="navbar-header">
         <div style="padding-left:20px; padding-top:10px;">
-            <a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-            <span class="h6 text-bold" style="padding-left:10px;"> Careers&nbsp; at &nbsp; Bestway&nbsp;Cement&nbsp;Ltd.</span>
+            @*<a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
+            <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
+            <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Ltd.</span>
         </div>
     </div>
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="~/Home/Login"><span class="h6 text-bold">Apply Online</span></a>
+                <a href="~/Home/Login"><small class="h6 text-bold">Apply Online</small></a>
 
             </li>
 
@@ -80,18 +81,10 @@
         <div class="content-wrapper">
             <!-- Task manager table -->
             <div class="panel panel-white">
-                <div class="panel-heading">
-                    <h4 class="panel-title text-bold">Open Vacancies</h4>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
-                </div>
                 <table class="table dataTable-basic">
                     <thead>
                         <tr class="bg-green-600">
+                            <th class="text-semibold">JOB-ID</th>
                             <th class="text-semibold">Position Title</th>
                             <th class="text-semibold">Department</th>
                             <th class="text-semibold">Catagory</th>
@@ -104,6 +97,9 @@
                     {
                         <tbody>
                             <tr>
+                                <td>
+                                    <div class="text-semibold">@item.JobID</div>
+                                </td>
                                 <td>
                                     <div class="text-semibold"><a href="~/Job/JobDetailIndex?JobID=@item.JobID">@item.JobTitle</a></div>
                                     <div class="text-muted">Click on title for more information..</div>
