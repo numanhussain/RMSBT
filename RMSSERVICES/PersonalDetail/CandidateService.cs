@@ -39,6 +39,7 @@ namespace RMSSERVICES.PersonalDetail
         {
             Candidate dbCandidate = CandidateRepository.GetSingle(cid);
             dbCandidate.UserID = uid;
+
             return dbCandidate;
         }
         public ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser)
@@ -77,6 +78,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.UserID = dbOperation.UserID;
             dbCandidate.CellNo =dbOperation.CellNo;
             dbCandidate.LandlineNo = dbOperation.LandlineNo;
+            dbCandidate.ReligionID = dbOperation.ReligionID;
             return dbCandidate;
         }  
         public byte[] GetImageFromDataBase(int id)

@@ -41,7 +41,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(CompensationDetail obj)
         {
             if (obj.MGSalary == null || obj.MGSalary == "")
-                ModelState.AddModelError("MGSalary", "Cannot be empty");
+                ModelState.AddModelError("MGSalary", "This is mandatory field");
             if (ModelState.IsValid)
             {
                 V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;

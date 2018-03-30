@@ -63,38 +63,38 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (dbOperation.CName == null || dbOperation.CName == "")
-                ModelState.AddModelError("CName", "Candidate name cannot be empty");
+                ModelState.AddModelError("CName", "This is mandatory field");
             if (dbOperation.FatherName == null || dbOperation.CName == "")
-                ModelState.AddModelError("FatherName", "Father name cannot be empty");
+                ModelState.AddModelError("FatherName", "This is mandatory field");
             if (dbOperation.DOB == null)
-                ModelState.AddModelError("DOB", "DOB cannot be empty");
+                ModelState.AddModelError("DOB", "This is mandatory field");
             if (dbOperation.Address == null || dbOperation.Address == "")
-                ModelState.AddModelError("Address", "Address cannot be empty");
-            if (dbOperation.CNICNo != null)
-            {
-                if (dbOperation.CNICNo.Length > 15)
-                    ModelState.AddModelError("CNICNo", "String length exceeds!");
-                Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
-                if (!match.Success)
-                {
-                    ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
-                }
-            }
+                ModelState.AddModelError("Address", "This is mandatory field");
+            //if (dbOperation.CNICNo != null)
+            //{
+            //    if (dbOperation.CNICNo.Length > 15)
+            //        ModelState.AddModelError("CNICNo", "String length exceeds!");
+            //    Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
+            //    if (!match.Success)
+            //    {
+            //        ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
+            //    }
+            //}
             if (dbOperation.CNICNo == null)
-                ModelState.AddModelError("CNICNo", "CNIC No cannot be empty");
+                ModelState.AddModelError("CNICNo", "This is mandatory field");
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
-                ModelState.AddModelError("EmailID", "EmailID name cannot be empty");
+                ModelState.AddModelError("EmailID", "This is mandatory field");
 
             if (dbOperation.EmailID != null)
             {
                 Match match = Regex.Match(dbOperation.EmailID, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 if (!match.Success)
                 {
-                    ModelState.AddModelError("EmailID", "Enter a valid Email ID");
+                    ModelState.AddModelError("EmailID", "This is mandatory field");
                 }
             }
             if (dbOperation.CellNo == null || dbOperation.CellNo == "")
-                ModelState.AddModelError("CellNo", "Cell no cannot be empty");
+                ModelState.AddModelError("CellNo", "This is mandatory field");
             if (ModelState.IsValid)
             {
                 if(vmf.UserStage==2)
@@ -160,6 +160,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
             ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
+            ViewBag.ReligionID = new SelectList(DDService.GetReligion().ToList().OrderBy(aa => aa.CReligionID).ToList(), "CReligionID", "ReligionName", obj.ReligionID);
         }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {

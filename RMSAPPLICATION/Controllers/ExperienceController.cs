@@ -48,11 +48,11 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.PositionTitle == null || obj.PositionTitle == "")
-                ModelState.AddModelError("PositionTitle", "Designation name cannot be empty");
+                ModelState.AddModelError("PositionTitle", "This is mandatory field");
             if (obj.EmployerName == null || obj.EmployerName == "")
-                ModelState.AddModelError("EmployerName", "Employer name cannot be empty");
+                ModelState.AddModelError("EmployerName", "This is mandatory field");
             if (obj.StartDate == null)
-                ModelState.AddModelError("StartDate", "Dates required !!!");
+                ModelState.AddModelError("StartDate", "This is mandatory field");
             if (obj.StartDate != null && obj.EndDate != null)
             {
                 if (obj.EndDate < obj.StartDate)

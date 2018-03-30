@@ -127,7 +127,7 @@ namespace RMSSERVICES.Job
                 vmVAppliedJob.Description = dbVAppliedJob.Description;
                 vmVAppliedJobs.Add(vmVAppliedJob);
             }
-            return vmVAppliedJobs.OrderByDescending(aa => aa.JobID).ToList();
+            return vmVAppliedJobs.OrderByDescending(aa => aa.CreatedDate).ToList();
 
         }
         public List<VMOpenJobIndex> JobIndex()
@@ -153,10 +153,11 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.Status = dbOpenJob.Status;
                 vmOpenJobIndex.DepatmentName = dbOpenJob.DepatmentName;
                 vmOpenJobIndex.SkillReq = dbOpenJob.SkillReq;
+
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);
             }
-            return vmOpenJobs.ToList();
+            return vmOpenJobs.OrderByDescending(aa=>aa.CreatedDate).ToList();
         }
         #endregion
         #region -- Service Private Methods --

@@ -34,6 +34,7 @@ namespace RMSCORE.EF
         public virtual DbSet<CompensationDetail> CompensationDetails { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<EduDegreeLevel> EduDegreeLevels { get; set; }
+        public virtual DbSet<EduDegreeType> EduDegreeTypes { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }
         public virtual DbSet<EduInstitute> EduInstitutes { get; set; }
         public virtual DbSet<ExperienceDetail> ExperienceDetails { get; set; }
@@ -47,6 +48,7 @@ namespace RMSCORE.EF
         public virtual DbSet<MiscellaneousDetail> MiscellaneousDetails { get; set; }
         public virtual DbSet<NotificationDetail> NotificationDetails { get; set; }
         public virtual DbSet<ReferenceDetail> ReferenceDetails { get; set; }
+        public virtual DbSet<Religion> Religions { get; set; }
         public virtual DbSet<SkillDetail> SkillDetails { get; set; }
         public virtual DbSet<SkillLevel> SkillLevels { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }

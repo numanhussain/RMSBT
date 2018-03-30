@@ -43,6 +43,8 @@ namespace RMSCORE.EF
         public Nullable<int> UserID { get; set; }
         public Nullable<int> GenderID { get; set; }
         public Nullable<int> AppliedAs { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<int> ReligionID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EduDetail> EduDetails { get; set; }

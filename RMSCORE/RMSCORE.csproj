@@ -76,6 +76,9 @@
     <Compile Include="EF\EduDegreeLevel.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\EduDegreeType.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\EduDetail.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -113,6 +116,9 @@
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\ReferenceDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\Religion.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\RMSDataModel.Context.cs">

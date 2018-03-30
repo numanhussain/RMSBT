@@ -10,7 +10,7 @@
     @Html.HiddenFor(model => model.EduID)
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.InstitutionID)
-    @Html.HiddenFor(model => model.BoardName)
+    @Html.HiddenFor(model => model.MajorSubject)
     @Html.HiddenFor(model => model.ObtainedMark)
     @Html.HiddenFor(model => model.TotalMark)
     @Html.HiddenFor(model => model.Percentage)
@@ -45,10 +45,10 @@
                         @Html.DisplayFor(model => model.InstitutionID)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.BoardName)
+                        @Html.DisplayNameFor(model => model.MajorSubject)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.BoardName)
+                        @Html.DisplayFor(model => model.MajorSubject)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.ObtainedMark)

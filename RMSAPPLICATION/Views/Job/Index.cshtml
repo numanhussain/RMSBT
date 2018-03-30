@@ -7,7 +7,7 @@
 <div class="page-header">
     <div class="page-header-content">
         <div class="page-title">
-            <h2><span class="text-semibold text-blue">Vacant Positions</span> </h2> <h6 class="text-semibold">See if you find exciting challenges in Bestway</h6>
+            <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
         </div>
         <div class="heading-elements">
             @using (Html.BeginForm("IndexSubmit", "Job", FormMethod.Post))
@@ -29,9 +29,22 @@
     <div class="page-content">
         <!-- Main content -->
         <div class="content-wrapper">
-            <!-- Task manager table -->
-            <div class="panel panel-white">
-                <table class="table dataTable-basic">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                @*<div class="panel-heading">
+                        <h5 class="panel-title">Basic datatable</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
+                    </div>*@
+                <table class="table datatable-basic">
                     <thead>
                         <tr class="bg-green-600">
                             <th class="text-semibold">Job-ID</th>
@@ -39,13 +52,13 @@
                             <th class="text-semibold">Department</th>
                             <th class="text-semibold">Catagory</th>
                             <th class="text-semibold">Location</th>
-                            <th class="text-semibold">Created Date</th>
+                            <th class="text-semibold">Opening Date</th>
                             <th class="text-semibold">Closing Date</th>
                         </tr>
                     </thead>
-                    @foreach (var item in Model)
-                    {
-                        <tbody>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
                                 <td>
                                     <div class="text-semibold">@item.JobID</div>
@@ -64,18 +77,17 @@
                                     <div class="text-semibold">@item.LocName</div>
                                 </td>
                                 <td>
-                                    <div class="text-semibold">@item.CreatedDate</div>
+                                    <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
                                 </td>
                                 <td>
-                                    <div class="text-semibold">@item.DeadlineDate</div>
+                                    <div class="text-semibold">@item.DeadlineDate.Value.ToString("MM/dd/yyyy")</div>
                                 </td>
                             </tr>
-
-                        </tbody>
-                    }
+                        }
+                    </tbody>
                 </table>
             </div>
-            <!-- /task manager table -->
+            <!-- /basic datatable -->
         </div>
         <!-- /main content -->
     </div>

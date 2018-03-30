@@ -40,13 +40,13 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.CrimanalRecord == null || obj.CrimanalRecord == "")
-                ModelState.AddModelError("CrimanalRecord", "Cannot be empty");
+                ModelState.AddModelError("CrimanalRecord", "This is mandatory field");
             if (obj.HearAboutJobID == null)
-                ModelState.AddModelError("HearAboutJobID", "Must select one !");
+                ModelState.AddModelError("HearAboutJobID", "This is mandatory field");
             if (obj.TotalExp == null)
-                ModelState.AddModelError("TotalExp", "Cannot be empty !");
+                ModelState.AddModelError("TotalExp", "This is mandatory field");
             if (obj.CementExp == null)
-                ModelState.AddModelError("CementExp", "Cannot be empty !");
+                ModelState.AddModelError("CementExp", "This is mandatory field");
 
             if (ModelState.IsValid)
             {

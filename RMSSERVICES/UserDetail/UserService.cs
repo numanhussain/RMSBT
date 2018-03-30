@@ -58,6 +58,7 @@ namespace RMSSERVICES.UserDetail
             dbCandidate.UserID = dbOperation.UserID;
             dbCandidate.EmailID = dbOperation.Email;
             dbCandidate.AppliedAs = dbOperation.AppliedAs;
+            dbCandidate.DateCreated = DateTime.Today;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
             return new ServiceMessage();

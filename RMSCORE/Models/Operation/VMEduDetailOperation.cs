@@ -12,8 +12,8 @@ namespace RMSCORE.Models.Operation
         public int EduID { get; set; }
         public int CandidateID { get; set; }
         public string CandidateName { get; set; }
-        public int? DegreeID { get; set; }
-        public string DegreeName { get; set; }
+        public int? DegreeLevelID { get; set; }
+        public string DegreeLevelName { get; set; }
         public int? InstitutionID { get; set; }
         public string InstitutionName { get; set; }
         [DataType(DataType.Date)]
@@ -24,7 +24,12 @@ namespace RMSCORE.Models.Operation
         public string TotalMark { get; set; }
         public string Percentage { get; set; }
         public string CGPA { get; set; }
-        public string BoardName { get; set; }
+        public string MajorSubject { get; set; }
         public string PassingYear { get; set; }
+        public string DegreeTitle { get; set; }
+        public string OtherInstitute { get; set; }
+        public bool? InProgress { get; set; }
+        public int? DegreeTypeID { get; set; }
+        public string DegreeTypeName { get; set; }
     }
 }

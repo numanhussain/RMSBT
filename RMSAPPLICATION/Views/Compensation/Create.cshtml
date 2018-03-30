@@ -17,7 +17,7 @@
     <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-user-plus"></i>&nbsp;&nbsp;Compensation Details &nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+                <h3 class="text-black"><i class="icon-user-plus"></i>&nbsp;&nbsp;Compensation Details &nbsp;<small class="text-grey-400">(Please mention your current compensation)</small></h3>
             </div>
         </div>
         <!-- Page container -->
@@ -152,11 +152,11 @@
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">Car Entitlement</div>
+                    <div class="col-md-2 control-label text-semibold">Vehical Entitlement</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.CarEntitlement, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Mobile User Limit</div>
+                    <div class="col-md-2 control-label text-semibold">Mobile  Limit</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
@@ -202,15 +202,15 @@
                     <hr />
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-1 control-label text-semibold">OPD</div>
+                    <div class="col-md-1 control-label text-semibold">OPD Limit</div>
                     <div class="col-md-3">
                         @Html.EditorFor(model => model.OPDInsurance, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <label class="col-md-1 control-label text-semibold">IP</label>
+                    <label class="col-md-1 control-label text-semibold">IP Limit</label>
                     <div class="col-md-3">
                         @Html.EditorFor(model => model.IPInsurance, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Life</div>
+                    <div class="col-md-1 control-label text-semibold">Life Insurance</div>
                     <div class="col-md-3">
                         @Html.EditorFor(model => model.LifeInsurance, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
@@ -288,7 +288,7 @@
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">Transport Allowance Working Days/Week</div>
+                    <div class="col-md-2 control-label text-semibold">Working Days/Week</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.TAllowenceWorkDay, new { htmlAttributes = new { @class = "form-control" } })
                     </div>

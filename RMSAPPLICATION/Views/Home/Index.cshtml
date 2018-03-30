@@ -8,7 +8,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Careers&nbsp; at &nbsp; Bestway&nbsp;Cement&nbsp;Ltd.</title>
+    <title>Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Ltd.</title>
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -26,19 +26,17 @@
     <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
     <!-- /core JS files -->
     <!-- Theme JS files -->
-    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery_ui/widgets.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/plugins/tables/datatables/datatables.min.js"></script>
-    <script type="text/javascript" src="~/Theme/assets/js/plugins/tables/datatables/extensions/natural_sort.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
-    <script type="text/javascript" src="~/Theme/assets/js/pages/tasks_list.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
     <!-- /theme JS files -->
 </head>
 <div class="navbar navbar-inverse bg-primary">
     <div class="navbar-header">
         <div style="padding-left:20px; padding-top:10px;">
             @*<a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-            <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
+                <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
             <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Ltd.</span>
         </div>
     </div>
@@ -57,7 +55,7 @@
 <div class="page-header">
     <div class="page-header-content">
         <div class="page-title">
-            <h2><span class="text-semibold text-blue">Vacant Positions</span> </h2> <h6 class="text-semibold">See if you find exciting challenges in Bestway</h6>
+            <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
         </div>
         <div class="heading-elements">
             @using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
@@ -79,23 +77,36 @@
     <div class="page-content">
         <!-- Main content -->
         <div class="content-wrapper">
-            <!-- Task manager table -->
-            <div class="panel panel-white">
-                <table class="table dataTable-basic">
+            <!-- Basic datatable -->
+            <div class="panel panel-flat">
+                @*<div class="panel-heading">
+                        <h5 class="panel-title">Basic datatable</h5>
+                        <div class="heading-elements">
+                            <ul class="icons-list">
+                                <li><a data-action="collapse"></a></li>
+                                <li><a data-action="reload"></a></li>
+                                <li><a data-action="close"></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
+                    </div>*@
+                <table class="table datatable-basic">
                     <thead>
                         <tr class="bg-green-600">
-                            <th class="text-semibold">JOB-ID</th>
+                            <th class="text-semibold">Job-ID</th>
                             <th class="text-semibold">Position Title</th>
                             <th class="text-semibold">Department</th>
                             <th class="text-semibold">Catagory</th>
                             <th class="text-semibold">Location</th>
-                            <th class="text-semibold">Created Date</th>
+                            <th class="text-semibold">Opening Date</th>
                             <th class="text-semibold">Closing Date</th>
                         </tr>
                     </thead>
-                    @foreach (var item in Model)
-                    {
-                        <tbody>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
                                 <td>
                                     <div class="text-semibold">@item.JobID</div>
@@ -114,18 +125,17 @@
                                     <div class="text-semibold">@item.LocName</div>
                                 </td>
                                 <td>
-                                    <div class="text-semibold">@item.CreatedDate</div>
+                                    <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
                                 </td>
                                 <td>
-                                    <div class="text-semibold">@item.DeadlineDate</div>
+                                    <div class="text-semibold">@item.DeadlineDate.Value.ToString("MM/dd/yyyy")</div>
                                 </td>
                             </tr>
-
-                        </tbody>
-                    }
+                        }
+                    </tbody>
                 </table>
             </div>
-            <!-- /task manager table -->
+            <!-- /basic datatable -->
         </div>
         <!-- /main content -->
     </div>

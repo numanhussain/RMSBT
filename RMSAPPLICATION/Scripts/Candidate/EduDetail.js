@@ -48,8 +48,7 @@ function EduDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data == "OK")
-                { location.reload(); }
+                if (data == "OK") { location.reload(); }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -157,34 +156,155 @@ function EduDetailPostDelete(id) {
 //}
 function DegreeChange() {
     ShowHide();
-    $("#DegreeID").on("change", function () {
+    $("#DegreeLevelID").on("change", function () {
         ShowHide();
     });
 }
 function ShowHide() {
     $("#InstitutionDD").hide();
     $("#CGPATB").hide();
-    $("#BoardTB").show();
-    switch ($("#DegreeID").val()) {
+    $("#DegreeTypeDD").hide();
+    $("#DegreeTitleTB").show();
+    $("#OtherInstitute").hide();
+    $("#MajorSubjectDD").hide();
+    switch ($("#DegreeLevelID").val()) {
+        case "1":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+             $("#DegreeTypeDD").hide();
+             $("#MajorSubjectDD").show();
+            break;
+        case "2":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide(); 
+$("#DegreeTypeDD").show();
+             $("#MajorSubjectDD").show();
+            break;
         case "3":
-            $("#InstitutionDD").show();
-            $("#CGPATB").show();
-            $("#BoardTB").hide();
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").show();
+             $("#MajorSubjectDD").show();
             break;
         case "4":
+            $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
-            $("#BoardTB").hide();
-            break;
+            $("#DegreeTypeDD").show();
+             $("#MajorSubjectDD").show();
         case "5":
+            $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
-            $("#BoardTB").hide();
+            $("#DegreeTypeDD").show();
+             $("#MajorSubjectDD").show();
             break;
         case "6":
+            $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
-            $("#BoardTB").hide();
+            $("#DegreeTypeDD").hide();
+             $("#MajorSubjectDD").show();
+            break;
+        case "7":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#DegreeTypeDD").hide();
+             $("#MajorSubjectDD").show();
+            break;
+        case "8":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").show();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").show();
+             $("#MajorSubjectDD").show();
+            break;
+case "9":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").hide();
+             $("#MajorSubjectDD").show();
+            break;
+case "10":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").hide();
+             $("#MajorSubjectDD").show();
             break;
     }
+}
+function InstituteChange() {
+$("#hidedatediv").show();
+    if (document.getElementById('InProgress').checked) 
+{
+        $("#hidedatediv").hide();
+    }
+    //LFA Selected
+    $('#InProgress').click(function () {
+        if ($(this).is(":checked")) {
+            $("#hidedatediv").hide();
+        }
+else { $("#hidedatediv").show();
+}
+
+    });
+    ShowInstituteHide();
+    $("#InstitutionID").on("change", function () {
+        ShowInstituteHide();
+    });
+}
+function ShowInstituteHide() {
+    $("#OtherInstitute").hide();
+    if ($("#InstitutionID").val() == 148) {
+        $("#OtherInstitute").show();
+    }
+}
+function LoadDegreeTypeDD() {
+    //Load City
+    $('#DegreeTypeID').empty();
+    var convalue = $('#selectedDegreeLevelIDHidden').val();
+    var URL = '/EduDetail/DegreeTypeList';
+    $.getJSON(URL + '/' + convalue, function (data) {
+        var items;
+        if (document.getElementById("selectedCityIdHidden").value != null)
+            var selectedItemID = document.getElementById("selectedCityIdHidden").value;
+
+        $.each(data, function (i, state) {
+            if (state.Value == selectedItemID)
+                items += "<option selected value='" + state.Value + "'>" + state.Text + "</option>";
+            else
+                items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+            // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
+        });
+        $('#DegreeTypeID').html(items);
+    });
+    //Selection City:
+    $("#DegreeLevelID").on('change', function () {
+        $('#DegreeTypeID').empty();
+        var convalue = $('#DegreeLevelID').val();
+        var URL = '/EduDetail/DegreeTypeList';
+        //var URL = '/Emp/LocationList';
+        $.getJSON(URL + '/' + convalue, function (data) {
+            var items;
+            if (document.getElementById("selectedCityIdHidden").value != null)
+                var selectedItemID = document.getElementById("selectedCityIdHidden").value;
+
+            $.each(data, function (i, state) {
+                if (state.Value == selectedItemID)
+                    items += "<option selected value='" + state.Value + "'>" + state.Text + "</option>";
+                else
+                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+                // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
+            });
+            $('#DegreeTypeID').html(items);
+        });
+
+
+    });
 }

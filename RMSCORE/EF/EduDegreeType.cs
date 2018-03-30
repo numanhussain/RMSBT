@@ -12,9 +12,10 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class EduInstitute
+    public partial class EduDegreeType
     {
-        public int InstituteID { get; set; }
-        public string InstituteName { get; set; }
+        public int EduTypeID { get; set; }
+        public string EduTypeName { get; set; }
+        public Nullable<int> EduDegreeLevelID { get; set; }
     }
 }
