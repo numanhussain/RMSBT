@@ -17,7 +17,6 @@
             <li><a href="#" id="SkillGetCreate"><i class="icon-add position-left"></i> Add New Skills</a></li>
         </ul>
     </div>
-    <div class="panel-body">
         <table class="table datatable-basic">
             <thead>
                 <tr>
@@ -50,15 +49,15 @@
                             @Html.DisplayFor(modelItem => item.Description)
                         </td>
                         <td>
-                            <a href="#" type="button" onclick="SkillDetailGetEdit(@item.SkillID)" value="Edit" class="icon-pencil"></a> &nbsp;|
-                            <a href="#" type="button" onclick="SkillDetailGetDelete(@item.SkillID)" value="Delete" class="icon-trash" style="color:red"></a>
-                        </td>
+                            <button type="button" id="btnGetEdit" onclick="SkillDetailGetEdit(@item.SkillID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                            <button type="button" id="btnGetDelete" onclick="SkillDetailGetDelete(@item.SkillID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+
+                           </td>
                     </tr>
                 }
             </tbody>
         </table>
     </div>
-</div>
 <script type="text/javascript" src="~/Scripts/Candidate/SkillDetail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

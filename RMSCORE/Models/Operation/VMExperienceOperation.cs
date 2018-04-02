@@ -27,12 +27,6 @@ namespace RMSCORE.Models.Operation
         [Required(ErrorMessage = "This is mandatory field")]
         [StringLength(100)]
         public string Responsibility3 { get; set; }
-        [Required(ErrorMessage = "This is mandatory field")]
-        [StringLength(100)]
-        public string Responsibility4 { get; set; }
-        [Required(ErrorMessage = "This is mandatory field")]
-        [StringLength(100)]
-        public string Responsibility5 { get; set; }
         public string Salary { get; set; }
         public int CandidateID { get; set; }
         public string CandidateName { get; set; }
