@@ -107,6 +107,37 @@ function CompensationDetailHide() {
             $("#Gratuitydiv").hide();
         }
     });
+    $("#buybackdiv").hide();
+    if (document.getElementById('BuyBackOption').checked) {
+        $("#buybackdiv").show();
+    }
+    else {
+        $("#buybackdiv").hide();
+    }
+    //LFA Selected
+    $('#BuyBackOption').click(function () {
+        if ($(this).is(":checked")) {
+            $("#buybackdiv").show();
+        }
+        else {
+            $("#buybackdiv").hide();
+        }
+    }); $("#fooddiv").hide();
+    if (document.getElementById('Food').checked) {
+        $("#fooddiv").show();
+    }
+    else {
+        $("#fooddiv").hide();
+    }
+    //LFA Selected
+    $('#Food').click(function () {
+        if ($(this).is(":checked")) {
+            $("#fooddiv").show();
+        }
+        else {
+            $("#fooddiv").hide();
+        }
+    });
 };
 function SaveCompensationFunction() {
     $('#btnPostCreate').click(function () {
@@ -145,5 +176,23 @@ function FormControlsScriptEdit(model) {
     }
     if (model.GOT == true) {
         $('input:radio[id=GOT]').prop('checked', true);
+    }
+    if (model.BProvidentFund == true) {
+        $('input:radio[id=BProvidentFund]').prop('checked', true);
+    }
+    if (model.GProvidentFund == true) {
+        $('input:radio[id=GProvidentFund]').prop('checked', true);
+    }
+    if (model.BGratuity == true) {
+        $('input:radio[id=BGratuity]').prop('checked', true);
+    }
+    if (model.GGratuity == true) {
+        $('input:radio[id=GGratuity]').prop('checked', true);
+    }
+    if (model.Free == true) {
+        $('input:radio[id=Free]').prop('checked', true);
+    }
+    if (model.Subsidized == true) {
+        $('input:radio[id=Subsidized]').prop('checked', true);
     }
 }

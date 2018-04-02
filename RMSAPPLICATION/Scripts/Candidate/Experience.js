@@ -141,23 +141,37 @@ function ExperienceDetailPostDelete(id) {
 }
 function HaveExperience() {
     $('#HaveExperience').click(function () {
-        var id = ($(this).is(":checked"));
-        alert(id);
+        var id = false;
         if ($(this).is(":checked")) {
-
-            $.ajax({
-                type: "POST",
-                url: "/Experience/SaveExperienceDetail",
-                cache: false,
-                data: { id: id },
-                datatype: "json",
-                success: function (data) {
-                    $('#myModal').modal('show');
-                },
-                error: function () {
-                    alert("Dynamic content load failed.");
-                }
-            });
+            id = true;
         }
+        else {
+            id = false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Experience/SaveExperienceDetail",
+            cache: false,
+            data: { HaveExperience: id },
+            datatype: "json",
+            success: function (data) {
+                if (data == "OK") { location.reload(); }
+                else {
+                    $('#modelBody').html(data);
+                }
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
     });
 }
+function LoadPVExperienceDetailIndex2(id) {
+    $.ajax({
+        url: '/Experience/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+    });
+};

@@ -16,12 +16,16 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Initialization --
         //IEntityService<VMEduDetailIndex> EduDetailEntityService;
         IExperienceDetailService ExperienceDetailService;
+        IEntityService<Candidate> CandidateEntityService;
+        IEntityService<User> UserEntityService;
         IDDService DDService;
         // Controller Constructor
-        public ExperienceController(IExperienceDetailService experiencedetailService, IDDService ddService)
+        public ExperienceController(IExperienceDetailService experiencedetailService, IEntityService<User> userEntityService, IEntityService<Candidate> candidateEntityService, IDDService ddService)
         {
             DDService = ddService;
             ExperienceDetailService = experiencedetailService;
+            CandidateEntityService = candidateEntityService;
+            UserEntityService = userEntityService;
         }
         #endregion
         #region -- Controller ActionResults  --
@@ -103,13 +107,21 @@ namespace RMSAPPLICATION.Controllers
             return PartialView(obj);
         }
         [HttpPost]
-        public ActionResult SaveExperienceDetail(bool HaveExperience)
+        public ActionResult SaveExperienceDetail(bool? HaveExperience)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            int cid = vmf.CandidateID;
-            Candidate dbcandidate = new Candidate();
-            dbcandidate.CandidateID = cid;
-            dbcandidate.HaveExperience = HaveExperience;
+            if (ModelState.IsValid)
+            {
+                Candidate obj = CandidateEntityService.GetEdit(vmf.CandidateID);
+                obj.HaveExperience = HaveExperience;
+                CandidateEntityService.PostEdit(obj);
+                User dbuser = UserEntityService.GetEdit((int)vmf.UserID);
+                dbuser.HaveExperience = HaveExperience;
+                UserEntityService.PostEdit(dbuser);
+                vmf.HaveExperience = obj.HaveExperience;
+                Session["LoggedInUser"] = vmf;
+                return Json("OK", JsonRequestBehavior.AllowGet);
+            }
             return View();
         }
         #endregion
