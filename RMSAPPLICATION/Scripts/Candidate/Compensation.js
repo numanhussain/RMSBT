@@ -1,20 +1,20 @@
 ﻿function CompensationGetCreate(id, item) {
     if (item > 4) {
-clearClasses();
+        clearClasses();
         $.ajax({
             url: '/Compensation/Create',
             type: "GET",
             cache: false,
         }).done(function (result) {
-            $('#PartialViewContainer').html(result); 
-                $("#hv1").addClass("liInActive");
-                $("#hv2").addClass("liInActive");
-                $("#hv3").addClass("liInActive");
-                $("#hv4").addClass("liActive");
-                $("#hv5").addClass("liInActive");
-                $("#hv6").addClass("liInActive");
-                $("#hv33").addClass("liInActive");
-        document.getElementById("UserstageAfterFirst").value = 5;
+            $('#PartialViewContainer').html(result);
+            $("#hv1").addClass("liInActive");
+            $("#hv2").addClass("liInActive");
+            $("#hv3").addClass("liInActive");
+            $("#hv4").addClass("liActive");
+            $("#hv5").addClass("liInActive");
+            $("#hv6").addClass("liInActive");
+            $("#hv33").addClass("liInActive");
+            document.getElementById("UserstageAfterFirst").value = 5;
         });
     }
     else {
@@ -126,4 +126,24 @@ function SaveCompensationFunction() {
             }
         });
     });
+}
+function FormControlsScriptEdit(model) {
+    if (model.BBonus == true) {
+        $('input:radio[id=BBonus]').prop('checked', true);
+    }
+    if (model.GBonus == true) {
+        $('input:radio[id=GBonus]').prop('checked', true);
+    }
+    if (model.BLFA == true) {
+        $('input:radio[id=BLFA]').prop('checked', true);
+    }
+    if (model.GLFA == true) {
+        $('input:radio[id=GLFA]').prop('checked', true);
+    }
+    if (model.BOT == true) {
+        $('input:radio[id=BOT]').prop('checked', true);
+    }
+    if (model.GOT == true) {
+        $('input:radio[id=GOT]').prop('checked', true);
+    }
 }

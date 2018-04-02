@@ -139,3 +139,25 @@ function ExperienceDetailPostDelete(id) {
         });
     });
 }
+function HaveExperience() {
+    $('#HaveExperience').click(function () {
+        var id = ($(this).is(":checked"));
+        alert(id);
+        if ($(this).is(":checked")) {
+
+            $.ajax({
+                type: "POST",
+                url: "/Experience/SaveExperienceDetail",
+                cache: false,
+                data: { id: id },
+                datatype: "json",
+                success: function (data) {
+                    $('#myModal').modal('show');
+                },
+                error: function () {
+                    alert("Dynamic content load failed.");
+                }
+            });
+        }
+    });
+}

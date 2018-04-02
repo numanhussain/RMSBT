@@ -28,5 +28,6 @@ namespace RMSCORE.Models.Main
         public int? IndustryID { get; set; }
         public string ExpIndustryName { get; set; }
         public int CareerLevelID { get; set; }
+        public bool? HaveExperience { get; set; }
     }
 }

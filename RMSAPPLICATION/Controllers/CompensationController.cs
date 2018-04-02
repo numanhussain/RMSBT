@@ -33,6 +33,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create()
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+
             int cid = vmf.CandidateID;
             CompensationDetail obj = CompensationDetailService.GetCreate(cid);
             return View(obj);
@@ -40,6 +41,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(CompensationDetail obj)
         {
+            ReadFromRadioButton(obj);
             if (obj.MGSalary == null || obj.MGSalary == "")
                 ModelState.AddModelError("MGSalary", "This is mandatory field");
             if (ModelState.IsValid)
@@ -56,6 +58,63 @@ namespace RMSAPPLICATION.Controllers
         }
         #endregion
         #region -- Controller Private  Methods--
+        private void ReadFromRadioButton(CompensationDetail obj)
+        {
+
+            #region -- Radio Buttons--
+            // Adjust Bonus of Leave Radio Button
+            string radioBonusValue = "";
+            var BonusValue = ValueProvider.GetValue("BonusSelection");
+            if (radioBonusValue != null)
+            {
+                radioBonusValue = BonusValue.AttemptedValue;
+            }
+            if (radioBonusValue == "BBonus")
+            {
+                obj.BBonus = true;
+                obj.GBonus = false;
+            }
+            if (radioBonusValue == "GBonus")
+            {
+                obj.BBonus = false;
+                obj.GBonus = true;
+            }
+            // Adjust LFA of Leave Radio Button
+            string radioLFAValue = "";
+            var LFAValue = ValueProvider.GetValue("LFASelection");
+            if (radioLFAValue != null)
+            {
+                radioLFAValue = LFAValue.AttemptedValue;
+            }
+            if (radioLFAValue == "BLFA")
+            {
+                obj.BLFA = true;
+                obj.GLFA = false;
+            }
+            if (radioLFAValue == "GLFA")
+            {
+                obj.BLFA = false;
+                obj.GLFA = true;
+            }
+            // Adjust OT of Leave Radio Button
+            string radioOTValue = "";
+            var OTValue = ValueProvider.GetValue("OTselection");
+            if (radioOTValue != null)
+            {
+                radioOTValue = OTValue.AttemptedValue;
+            }
+            if (radioOTValue == "BOT")
+            {
+                obj.BOT = true;
+                obj.GOT = false;
+            }
+            if (radioOTValue == "GOT")
+            {
+                obj.BOT = false;
+                obj.GOT = true;
+            }
+            #endregion
+        }
         #endregion
     }
 }

@@ -261,7 +261,7 @@ else { $("#hidedatediv").show();
 }
 function ShowInstituteHide() {
     $("#OtherInstitute").hide();
-    if ($("#InstitutionID").val() == 148) {
+    if ($("#InstitutionID").val() == 150) {
         $("#OtherInstitute").show();
     }
 }

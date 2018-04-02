@@ -38,6 +38,7 @@
           <Property Name="AppliedAs" Type="int" />
           <Property Name="DateCreated" Type="date" />
           <Property Name="ReligionID" Type="int" />
+          <Property Name="HaveExperience" Type="bit" />
         </EntityType>
         <EntityType Name="CandidateJob">
           <Key>
@@ -1000,6 +1001,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="AppliedAs" Type="Int32" />
           <Property Name="DateCreated" Type="DateTime" Precision="0" />
           <Property Name="ReligionID" Type="Int32" />
+          <Property Name="HaveExperience" Type="Boolean" />
           <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="Candidate" ToRole="EduDetail" />
           <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Candidate" ToRole="Interview" />
           <NavigationProperty Name="NotificationDetails" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="Candidate" ToRole="NotificationDetail" />
@@ -1625,6 +1627,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="Candidates">
             <EntityTypeMapping TypeName="BTRMSModel.Candidate">
               <MappingFragment StoreEntitySet="Candidate">
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
                 <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />

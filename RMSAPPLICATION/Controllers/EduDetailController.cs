@@ -60,40 +60,22 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMEduDetailOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            //if (obj.DegreeLevelID == 2 && obj.DegreeTitle == null)
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 3 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 4 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 5 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 6 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 7 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 8 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.DegreeLevelID == 9 && obj.DegreeTitle == "")
-            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            //if (obj.StartDate == null)
-            //    ModelState.AddModelError("StartDate", "This is mandatory field");
-            //if (obj.EndDate == null)
-            //    ModelState.AddModelError("EndDate", "This is mandatory field");
-            //if (obj.ObtainedMark == null)
-            //    ModelState.AddModelError("ObtainedMark", "This is mandatory field");
-            //if (obj.TotalMark == null)
-            //    ModelState.AddModelError("TotalMark", "This is mandatory field");
-            //if (obj.Percentage == null)
-            //    ModelState.AddModelError("Percentage", "This is mandatory field");
-            //if (obj.DegreeLevelID == 4 && obj.CGPA == "")
-            //    ModelState.AddModelError("CGPA", "This is mandatory field");
-            //if (obj.DegreeLevelID == 5 && obj.CGPA == "")
-            //    ModelState.AddModelError("CGPA", "This is mandatory field");
-            //if (obj.DegreeLevelID == 6 && obj.CGPA == "")
-            //    ModelState.AddModelError("CGPA", "This is mandatory field");
-            //if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
-            //    ModelState.AddModelError("OtherInstitute", "This is mandatory field");
+            if (obj.DegreeTitle == null)
+                ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            if (obj.StartDate == null)
+                ModelState.AddModelError("StartDate", "This is mandatory field");
+            if (obj.EndDate == null)
+                ModelState.AddModelError("EndDate", "This is mandatory field");
+            if (obj.ObtainedMark == null)
+                ModelState.AddModelError("ObtainedMark", "This is mandatory field");
+            if (obj.TotalMark == null)
+                ModelState.AddModelError("TotalMark", "This is mandatory field");
+            if (obj.Percentage == null)
+                ModelState.AddModelError("Percentage", "This is mandatory field");
+            if (obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 && obj.CGPA == null)
+                ModelState.AddModelError("CGPA", "This is mandatory field");
+            if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
+                ModelState.AddModelError("OtherInstitute", "This is mandatory field");
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 3)

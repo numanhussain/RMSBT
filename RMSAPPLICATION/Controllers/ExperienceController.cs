@@ -102,6 +102,16 @@ namespace RMSAPPLICATION.Controllers
             ExperienceDetailService.PostDelete(obj);
             return PartialView(obj);
         }
+        [HttpPost]
+        public ActionResult SaveExperienceDetail(bool HaveExperience)
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            Candidate dbcandidate = new Candidate();
+            dbcandidate.CandidateID = cid;
+            dbcandidate.HaveExperience = HaveExperience;
+            return View();
+        }
         #endregion
         #endregion
         #region -- Controller Private  Methods--

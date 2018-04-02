@@ -45,27 +45,23 @@
                     </div>
                     <div class="col-md-12"><hr /></div>
                 </div>
-
                 <div class="form-group col-md-12">
                     <div class="col-md-3">
                         <label class=" checkbox-inline checkbox-right text-semibold col-md-5" for="Bonus">
                             @Html.CheckBox("Bonus", new { @class = "styled", @id = "Bonus" })
-                            @Html.ValidationMessageFor(model => model.Bonus, "", new { @class = "text-danger" })
                             Bonus
                         </label>
                     </div>
                     <div id="Bonusdiv">
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="BBonus">
-                                @Html.CheckBox("BBonus", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.BBonus, "", new { @class = "text-danger" })
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("BonusSelection", "BBonus", false, new { @class = "styled", id = "BBonus", @checked = "checked" })
                                 Basic
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="GBonus">
-                                @Html.CheckBox("GBonus", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.GBonus, "", new { @class = "text-danger" })
+                            <label class="radio-inline text-semibold" for="GBonus">
+                                @Html.RadioButton("BonusSelection", "GBonus", false, new { @class = "styled", id = "GBonus", @checked = "checked" })
                                 Gross
                             </label>
                         </div>
@@ -85,16 +81,14 @@
                     </div>
                     <div id="LFAdiv">
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="BLFA">
-                                @Html.CheckBox("BLFA", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.BLFA, "", new { @class = "text-danger" })
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("LFASelection", "BLFA", false, new { @class = "styled", id = "BLFA" })
                                 Basic
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="GLFA">
-                                @Html.CheckBox("GLFA", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.GLFA, "", new { @class = "text-danger" })
+                            <label class="radio-inline text-semibold" for="GLFA">
+                                @Html.RadioButton("LFASelection", "GLFA", false, new { @class = "styled", id = "GLFA" })
                                 Gross
                             </label>
                         </div>
@@ -114,15 +108,15 @@
                     </div>
                     <div id="OTdiv">
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="BOT">
-                                @Html.CheckBox("BOT", new { @class = "styled" })
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("OTselection", "BOT", new { @class = "styled", id = "BOT" })
                                 @Html.ValidationMessageFor(model => model.BOT, "", new { @class = "text-danger" })
                                 Basic
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="GOT">
-                                @Html.CheckBox("GOT", new { @class = "styled" })
+                            <label class="radio-inline text-semibold" for="GOT">
+                                @Html.RadioButton("OTselection", "GOT", new { @class = "styled", id = "GOT" })
                                 @Html.ValidationMessageFor(model => model.GOT, "", new { @class = "text-danger" })
                                 Gross
                             </label>
@@ -312,11 +306,19 @@
         </div>
     </div>
 }
-
 <script type="text/javascript">
     $(document).ready(function () {
         SaveCompensationFunction();
-        CompensationDetailHide();
+            var model = {
+                "BBonus": @Html.Raw(Json.Encode(Model.BBonus)),
+                "GBonus": @Html.Raw(Json.Encode(Model.GBonus)),
+                "BLFA": @Html.Raw(Json.Encode(Model.BLFA)),
+                "GLFA": @Html.Raw(Json.Encode(Model.GLFA)),
+                "BOT": @Html.Raw(Json.Encode(Model.BOT)),
+                "GOT": @Html.Raw(Json.Encode(Model.GOT))
+                };
+            FormControlsScriptEdit(model);
+            CompensationDetailHide();
     });
 </script>
 
