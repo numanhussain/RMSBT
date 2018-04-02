@@ -16,7 +16,7 @@ namespace RMSCORE.Models.Operation
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public bool? CurrentlyWorking { get; set; }
-        public string City { get; set; }
+        public int? CityID { get; set; }
         public string Address { get; set; }
         [Required(ErrorMessage = "This is mandatory field")]
         [StringLength(100)]
@@ -38,5 +38,6 @@ namespace RMSCORE.Models.Operation
         public string CandidateName { get; set; }
         public int? IndustryID { get; set; }
         public string IndustryName { get; set; }
+        public int CareerLevelID { get; set; }
     }
 }

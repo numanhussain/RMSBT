@@ -15,7 +15,7 @@ namespace RMSCORE.Models.Main
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public bool? CurrentlyWorking { get; set; }
-        public string City { get; set; }
+        public int? CityID { get; set; }
         public string Address { get; set; }
         public string Reaponsibility1 { get; set; }
         public string Reaponsibility2 { get; set; }
@@ -27,5 +27,6 @@ namespace RMSCORE.Models.Main
         public string CandidateName { get; set; }
         public int? IndustryID { get; set; }
         public string ExpIndustryName { get; set; }
+        public int CareerLevelID { get; set; }
     }
 }

@@ -28,5 +28,6 @@ namespace RMSSERVICES.Generic
         List<Country> GetCountryList();
         List<City> GetCityList();
         List<Gender> GetGenderList();
+        List<ExpCareerLevel> GetCareerLevelList();
     }
 }

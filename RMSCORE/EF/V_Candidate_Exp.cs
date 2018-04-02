@@ -21,7 +21,6 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> CurrentlyWorking { get; set; }
-        public string City { get; set; }
         public string Address { get; set; }
         public int CandidateID { get; set; }
         public string CName { get; set; }
@@ -31,7 +30,7 @@ namespace RMSCORE.EF
         public string Responsibility1 { get; set; }
         public string Responsibility2 { get; set; }
         public string Responsibility3 { get; set; }
-        public string Responsibility4 { get; set; }
-        public string Responsibility5 { get; set; }
+        public Nullable<int> CityID { get; set; }
+        public string CityName { get; set; }
     }
 }
