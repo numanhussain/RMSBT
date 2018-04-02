@@ -1,12 +1,19 @@
-﻿function LoadPVSkillDetailIndex(id) {
-        $.ajax({
-            url: '/Skill/Index',
-            type: "GET",
-            cache: false,
-        }).done(function (result) {
-
-            $('#PartialViewContainer').html(result);
-        });
+﻿function LoadPVSkillDetailIndex(id, item) {
+clearClasses();
+    $.ajax({
+        url: '/Skill/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+                $("#hv1").addClass("liInActive");
+                $("#hv2").addClass("liInActive");
+                $("#hv3").addClass("liInActive");
+                $("#hv4").addClass("liInActive");
+                $("#hv5").addClass("liInActive");
+                $("#hv6").addClass("liInActive");
+                $("#hv33").addClass("liActive");
+        $('#PartialViewContainer').html(result);
+    });
 };
 function SkillDetailGetCreate(id) {
     $('#SkillGetCreate').click(function () {
@@ -19,7 +26,6 @@ function SkillDetailGetCreate(id) {
             success: function (data) {
                 $('#modelBody').html(data);
                 $('#myModal').modal('show');
-
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -38,8 +44,10 @@ function SkillDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVSkillDetailIndex(id)
+               if (data == "OK") { location.reload(); }
+                else {
+                    $('#myModal').modal('hide');
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");

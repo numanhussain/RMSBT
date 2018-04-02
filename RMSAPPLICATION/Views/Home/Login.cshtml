@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RMSCORE.EF.User>
+﻿@model RMSCORE.EF.User
 @{
     ViewBag.title = "Login";
     Layout = null;
@@ -55,7 +55,8 @@
                             <img src="~/Theme/assets/images/bcl_logo_final.png" class="center-block" height="70" />
                             <h3 class="content-group text-center text-blue-300 text-black">Bestway &nbsp; Cement&nbsp; Ltd.<small class="display-block text-white text-bold">Enter your credentials below</small></h3>
                             <div class="form-group has-feedback has-feedback-left">
-                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Username">
+                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Enter Email Address"> 
+                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                 <div class="form-control-feedback">
                                     <i class="icon-user text-blue"></i>
                                 </div>
@@ -74,7 +75,7 @@
                             </div>
 
                             <div class="text-left">
-                                <span class="text-blue text-bold">New User ?</span> <a href="~/Home/RegisterUser"><strong class="text-blue text-bold">Register</strong></a>
+                                <span class="text-blue text-bold">New User ?</span> <a href="~/Home/RegisterUser"><strong class="text-blue">Register</strong></a>
 
                             </div>
                         </div>

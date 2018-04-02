@@ -16,7 +16,7 @@
     @Html.HiddenFor(model => model.City)
     @Html.HiddenFor(model => model.Address)
     @Html.HiddenFor(model => model.CurrentlyWorking)
-    @Html.HiddenFor(model => model.Description)
+    @Html.HiddenFor(model => model.Responsibility1)
     <div class="modal-header bg-warning">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
@@ -76,10 +76,10 @@
                         @Html.DisplayFor(model => model.City)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Description)
+                        @Html.DisplayNameFor(model => model.Responsibility1)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.Description)
+                        @Html.DisplayFor(model => model.Responsibility1)
                     </dd>
                 </dl>
             </div>

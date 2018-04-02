@@ -1,16 +1,19 @@
 ﻿function LoadPVReferenceDetailIndex(id, item) {
-    if (item > "5") {
-        $.ajax({
-            url: '/Reference/Index',
-            type: "GET",
-            cache: false,
-        }).done(function (result) {
-            $('#PartialViewContainer').html(result);
-        });
-    }
-    else {
-        alert("You have to save compensation detail first.");
-    }
+    clearClasses();
+    $.ajax({
+        url: '/Reference/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+        $('#PartialViewContainer').html(result);
+    });
 };
 function ReferenceDetailGetCreate(id) {
     $('#ReferenceGetCreate').click(function () {
@@ -23,7 +26,6 @@ function ReferenceDetailGetCreate(id) {
             success: function (data) {
                 $('#modelBody').html(data);
                 $('#myModal').modal('show');
-
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -38,8 +40,11 @@ function ReferenceDetailPostCreate(id) {
             url: "/Reference/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVReferenceDetailIndex(id)
+                if (data == "OK") { location.reload(); }
+                else {
+                    $('#myModal').modal('hide');
+                    LoadPVReferenceDetailIndex(id)
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");

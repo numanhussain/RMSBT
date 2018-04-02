@@ -12,16 +12,9 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class V_UserCandidate
+    public partial class ExpCareerLevel
     {
-        public int CandidateID { get; set; }
-        public string CName { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string EmailID { get; set; }
-        public string RetypePassword { get; set; }
-        public Nullable<int> UserStage { get; set; }
-        public Nullable<int> AppliedAs { get; set; }
+        public int CLevelID { get; set; }
+        public string CareerLevelName { get; set; }
     }
 }

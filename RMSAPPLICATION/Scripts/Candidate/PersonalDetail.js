@@ -1,21 +1,33 @@
 ﻿function CandidateGetCreate() {
+    clearClasses();
     $.ajax({
         url: '/Candidate/Create',
         type: "GET",
         cache: false,
     }).done(function (result) {
         $('#PartialViewContainer').html(result);
+        $("#hv1").addClass("liActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+        document.getElementById("UserstageAfterFirst").value = 2;
     });
 };
 function SavePersonalInfoFunction() {
     $('#btnPostCreate').click(function () {
+
         $.ajax({
             url: '/Candidate/Create',
             type: 'POST',
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                $('#PartialViewContainer').html(data);
+                if (data == "OK") { location.reload(); }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
             },
             error: function () {
                 $("#result").text('an error occured')
@@ -109,4 +121,16 @@ function myFunction() {
     else {
         txt = "You pressed Cancel!";
     }
+}
+function UpdateAppliedAs() {
+    $("#AppliedAs").on('change', function () {
+        var id = $(this).val();
+        $.ajax({
+            url: '/Home/UpdateAppliedAs',
+            type: "POST",
+            cache: false,
+            data: { id: id }
+        }).done(function (result) {
+        });
+    });
 }

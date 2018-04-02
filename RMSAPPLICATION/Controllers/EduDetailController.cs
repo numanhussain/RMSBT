@@ -7,6 +7,7 @@ using RMSSERVICES.PersonalDetail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Net.Mime;
 using System.Text;
@@ -18,7 +19,7 @@ namespace RMSAPPLICATION.Controllers
     public class EduDetailController : Controller
     {
         #region -- Controller Initialization --
-        //IEntityService<VMEduDetailIndex> EduDetailEntityService;
+        //IEntityService<V_Candidate_EduDetail> EduDetailEntityService;
         IEduDetailService EduDetailService;
         IDDService DDService;
         // Controller Constructor
@@ -36,7 +37,6 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             List<VMEduDetailIndex> vmlist = EduDetailService.GetIndex(cid);
             return View(vmlist);
-
         }
         #region -- Controller Main View Actions  --
         [HttpGet]
@@ -45,6 +45,14 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
             VMEduDetailOperation obj = EduDetailService.GetCreate(cid);
+            if (obj.DegreeLevelID == null)
+            {
+                obj.DegreeLevelID = DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).First().DLevelID;
+            }
+            if (obj.DegreeTypeID == null)
+            {
+                ViewBag.DegreeTypeID = DDService.GetEduDegreeType().ToList().OrderBy(aa => aa.EduDegreeLevelID);
+            }
             CreateHelper(obj);
             return View(obj);
         }
@@ -52,12 +60,48 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMEduDetailOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            //if (obj.DegreeLevelID == 2 && obj.DegreeTitle == null)
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 3 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 4 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 5 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 6 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 7 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 8 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.DegreeLevelID == 9 && obj.DegreeTitle == "")
+            //    ModelState.AddModelError("DegreeTitle", "This is mandatory field");
+            //if (obj.StartDate == null)
+            //    ModelState.AddModelError("StartDate", "This is mandatory field");
+            //if (obj.EndDate == null)
+            //    ModelState.AddModelError("EndDate", "This is mandatory field");
+            //if (obj.ObtainedMark == null)
+            //    ModelState.AddModelError("ObtainedMark", "This is mandatory field");
+            //if (obj.TotalMark == null)
+            //    ModelState.AddModelError("TotalMark", "This is mandatory field");
+            //if (obj.Percentage == null)
+            //    ModelState.AddModelError("Percentage", "This is mandatory field");
+            //if (obj.DegreeLevelID == 4 && obj.CGPA == "")
+            //    ModelState.AddModelError("CGPA", "This is mandatory field");
+            //if (obj.DegreeLevelID == 5 && obj.CGPA == "")
+            //    ModelState.AddModelError("CGPA", "This is mandatory field");
+            //if (obj.DegreeLevelID == 6 && obj.CGPA == "")
+            //    ModelState.AddModelError("CGPA", "This is mandatory field");
+            //if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
+            //    ModelState.AddModelError("OtherInstitute", "This is mandatory field");
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "3";
+                if (vmf.UserStage == 3)
+                    vmf.UserStage = 4;
                 EduDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
             return PartialView(obj);
@@ -96,13 +140,31 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Private  Methods--
         private void CreateHelper(VMEduDetailOperation obj)
         {
-            ViewBag.DegreeID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeID);
+            //List<EduDegreeLevel> dbEdulevels = DDService.GetEduLevel().ToList().OrderBy(aa => aa.DegreeLevel).ToList();
+            //dbEdulevels.Insert(0, new EduDegreeLevel { DLevelID = 0, DegreeLevel = "" });
+            ViewBag.DegreeLevelID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeLevelID);
+            //List<EduInstitute> dbInstitutes = DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteName).ToList();
+            //dbInstitutes.Insert(0, new EduInstitute { InstituteID = 0, InstituteName = "" });
             ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName", obj.InstitutionID);
+            ViewBag.DegreeTypeID = new SelectList(DDService.GetEduDegreeType().ToList().OrderBy(aa => aa.EduDegreeLevelID).ToList(), "EduDegreeLevelID", "EduTypeName", obj.DegreeTypeID);
         }
         private void EditHelper(VMEduDetailOperation obj)
         {
-            ViewBag.DegreeID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeID);
+            ViewBag.DegreeLevelID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeLevelID);
             ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName", obj.InstitutionID);
+        }
+        public ActionResult DegreeTypeList(string ID)
+        {
+            int Code = Convert.ToInt32(ID);
+            var states = DDService.GetEduDegreeType().Where(aa => aa.EduDegreeLevelID == Code).OrderBy(aa => aa.EduDegreeLevelID);
+            if (HttpContext.Request.IsAjaxRequest())
+                return Json(new SelectList(
+                                states.ToArray(),
+                                "EduDegreeLevelID",
+                                "EduTypeName")
+                            , JsonRequestBehavior.AllowGet);
+
+            return RedirectToAction("Index");
         }
         #endregion
     }

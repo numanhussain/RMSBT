@@ -4,10 +4,10 @@
 <!-- Page content -->
 <!-- Main content -->
 <!-- Basic datatable -->
-<div style="margin-top:-45px">
+<div style="margin-top:-25px">
     <div class="modal-header">
         <div class="modal-title">
-            <h3 class="text-black"><i class="icon-stairs-up"></i>&nbsp;&nbsp;Experience Details</h3>
+            <h3 class="text-black"><i class="icon-stairs-up"></i>&nbsp;&nbsp;Experience Details<small class="text-grey-600">(You have to add at least one education to proceed further)</small></h3>
         </div>
     </div>
 </div>
@@ -21,67 +21,75 @@
             <li><a href="#" id="ExperienceGetCreate"><i class="icon-add position-left"></i> Add New Experience</a></li>
         </ul>
     </div>
-    <div class="panel-body">
-        <table class="table datatable-basic">
-            <thead>
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th class="text-bold">
+                    Designation
+                </th>
+                <th class="text-bold">
+                    Employer
+                </th>
+                <th class="text-bold">
+                    StartDate
+                </th>
+                <th class="text-bold">
+                    EndDate
+                </th>
+                <th class="text-bold">
+                    Working
+                </th>
+                <th class="text-bold">
+                    Edit | Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th class="text-bold">
-                        Designation
-                    </th>
-                    <th class="text-bold">
-                        Employer
-                    </th>
-                    <th class="text-bold">
-                        StartDate
-                    </th>
-                    <th class="text-bold">
-                        EndDate
-                    </th>
-                    <th class="text-bold">
-                        Working
-                    </th>
-                    <th class="text-bold">
-                        Edit | Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PositionTitle)
-                        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PositionTitle)
+                    </td>
 
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EmployerName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    @if (item.CurrentlyWorking == true)
+                    {
                         <td>
-                            @Html.DisplayFor(modelItem => item.EmployerName)
+                            <span class="label label-success">Active</span>
                         </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StartDate)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EndDate)
-                        </td>
-                        @if (item.CurrentlyWorking == true)
-                        {
-                            <td>
-                                <span class="label label-success">Active</span>
-                            </td>
-                        }
-                       @if (item.CurrentlyWorking == false)
-                       {
+                    }
+                    @if (item.CurrentlyWorking == false)
+                    {
                         <td>
                             <span class="label label-danger">Inactive</span>
                         </td>
-                        }
-                        <td>
-                            <button type="button" id="btnGetEdit"onclick="ExperienceDetailGetEdit(@item.ExpID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
-                            <button type="button" id="btnGetDelete"  onclick="ExperienceDetailGetDelete(@item.ExpID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                    }
+                    <td>
+                        <button type="button" id="btnGetEdit" onclick="ExperienceDetailGetEdit(@item.ExpID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                        <button type="button" id="btnGetDelete" onclick="ExperienceDetailGetDelete(@item.ExpID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<div>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="modelBody">
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript" src="~/Scripts/Candidate/Experience.js"></script>

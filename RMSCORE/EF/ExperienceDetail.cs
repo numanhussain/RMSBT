@@ -21,11 +21,14 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public Nullable<bool> CurrentlyWorking { get; set; }
-        public string City { get; set; }
+        public Nullable<int> CityID { get; set; }
         public string Address { get; set; }
-        public string Description { get; set; }
         public int CandidateID { get; set; }
         public Nullable<int> IndustryID { get; set; }
         public string Country { get; set; }
+        public string Responsibility1 { get; set; }
+        public string Responsibility2 { get; set; }
+        public string Responsibility3 { get; set; }
+        public Nullable<int> CareerLevelID { get; set; }
     }
 }

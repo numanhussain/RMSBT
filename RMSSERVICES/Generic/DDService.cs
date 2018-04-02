@@ -15,6 +15,7 @@ namespace RMSSERVICES.Generic
         IRepository<Candidate> CandidateRepository;
         IRepository<EduDegreeLevel> EduDetailRepository;
         IRepository<EduInstitute> EduInstituteRepository;
+        IRepository<EduDegreeType> EduDegreeTypeRepository;
         IRepository<MartialStatu> MartialStatusRepository;
         IRepository<User> UserRepository;
         IRepository<JobDetail> JobRepository;
@@ -27,11 +28,14 @@ namespace RMSSERVICES.Generic
         IRepository<Country> CountryRepository;
         IRepository<City> CityRepository;
         IRepository<Gender> GenderRepository;
+        IRepository<Religion> ReligionRepository;
+        IRepository<ExpCareerLevel> CareerLevelRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<BloodGroup> bloodGroupRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
-            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository)
+            IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository,
+        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository,IRepository<ExpCareerLevel> careerLevelRepository)
         {
             _unitOfWork = unitOfWork;
             CityRepository = cityRepository;
@@ -49,6 +53,9 @@ namespace RMSSERVICES.Generic
             CatagoryRepository = catagoryRepository;
             CountryRepository = countryRepository;
             GenderRepository = genderRepository;
+            ReligionRepository = religionRepository;
+            EduDegreeTypeRepository = eduDegreeTypeRepository;
+            CareerLevelRepository = careerLevelRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -113,6 +120,18 @@ namespace RMSSERVICES.Generic
         public List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate)
         {
             return CandidateRepository.FindBy(predicate);
+        }
+        public List<Religion> GetReligion()
+        {
+            return ReligionRepository.GetAll();
+        }
+        public List<EduDegreeType> GetEduDegreeType()
+        {
+            return EduDegreeTypeRepository.GetAll();
+        }
+        public List<ExpCareerLevel> GetCareerLevelList()
+        {
+            return CareerLevelRepository.GetAll();
         }
     }
 }

@@ -48,11 +48,11 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.PositionTitle == null || obj.PositionTitle == "")
-                ModelState.AddModelError("PositionTitle", "Designation name cannot be empty");
+                ModelState.AddModelError("PositionTitle", "This is mandatory field");
             if (obj.EmployerName == null || obj.EmployerName == "")
-                ModelState.AddModelError("EmployerName", "Employer name cannot be empty");
+                ModelState.AddModelError("EmployerName", "This is mandatory field");
             if (obj.StartDate == null)
-                ModelState.AddModelError("StartDate", "Dates required !!!");
+                ModelState.AddModelError("StartDate", "This is mandatory field");
             if (obj.StartDate != null && obj.EndDate != null)
             {
                 if (obj.EndDate < obj.StartDate)
@@ -63,7 +63,8 @@ namespace RMSAPPLICATION.Controllers
 
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "5";
+                if (vmf.UserStage == 4)
+                    vmf.UserStage = 5;
                 ExperienceDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
@@ -107,6 +108,8 @@ namespace RMSAPPLICATION.Controllers
         private void CreateHelper(VMExperienceOperation obj)
         {
             ViewBag.IndustryID = new SelectList(DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName", obj.IndustryID);
+            ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
+            ViewBag.CareerLevelID = new SelectList(DDService.GetCareerLevelList().ToList().OrderBy(aa => aa.CLevelID).ToList(), "CLevelID", "CareerLevelName", obj.CareerLevelID);
         }
         private void EditHelper(VMExperienceOperation obj)
         {

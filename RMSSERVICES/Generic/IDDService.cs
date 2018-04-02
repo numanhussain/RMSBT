@@ -11,7 +11,9 @@ namespace RMSSERVICES.Generic
     public interface IDDService
     {
         List<Candidate> GetCandidate();
+        List<Religion> GetReligion();
         List<EduDegreeLevel> GetEduLevel();
+        List<EduDegreeType> GetEduDegreeType();
         List<User> GetUser();
         List<JobDetail> GetJob();
         List<HearAbout> GetHearAboutJob();
@@ -26,5 +28,6 @@ namespace RMSSERVICES.Generic
         List<Country> GetCountryList();
         List<City> GetCityList();
         List<Gender> GetGenderList();
+        List<ExpCareerLevel> GetCareerLevelList();
     }
 }

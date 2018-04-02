@@ -26,7 +26,8 @@ namespace RMSCORE.EF
         public Nullable<bool> CanAdd { get; set; }
         public string Email { get; set; }
         public string RetypePassword { get; set; }
-        public string UserStage { get; set; }
+        public Nullable<int> UserStage { get; set; }
         public string SecurityLink { get; set; }
+        public Nullable<int> AppliedAs { get; set; }
     }
 }

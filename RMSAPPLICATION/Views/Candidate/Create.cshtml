@@ -11,12 +11,18 @@
             .panel-body {
                 background-color: white;
             }
+
+            .required:after {
+                content: "*";
+                font-weight: bold;
+                color: red;
+            }
         </style>
     </head>
-    <div style="margin-top:-45px">
+    <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Details</h3>
+                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Details&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
             </div>
         </div>
         <div class="panel panel-flat">
@@ -33,7 +39,7 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Name</label>
+                            <label class=" required control-label text-semibold">Name</label>
                             @Html.TextBoxFor(model => model.CName, new { @class = "form-control " })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CName, "", new { @class = "text-danger" })
@@ -42,7 +48,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Father Name</label>
+                            <label class="required control-label text-semibold">Father Name/Husband Name</label>
                             @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
@@ -51,8 +57,8 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">CNIC #</label>
-                            @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control" } })
+                            <label class="required control-label text-semibold">CNIC#/Passport#</label>
+                            @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control",placeholder="xxxxx-xxxxxxx-x" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CNICNo, "", new { @class = "text-danger" })
                             </div>
@@ -63,23 +69,29 @@
                 <div class="row">
                     <div class="form-group col-md-3">
                         <div>
-                            <label class="control-label text-semibold">DOB</label>
+                            <label class="required control-label text-semibold">DOB</label>
                             @Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <div>
                             <label class="control-label text-semibold">Gender</label>
                             @Html.DropDownList("GenderID", null, new { @class = "form-control" })
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-2">
                         <div>
                             <label class="control-label text-semibold">Martial Status</label>
                             @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
+                        </div>
+                    </div> 
+                    <div class="form-group col-md-2">
+                        <div>
+                            <label class="control-label text-semibold">Religion</label>
+                            @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-group col-md-3">
@@ -98,7 +110,7 @@
                     </div>
                     <div class="form-group col-md-8">
                         <div>
-                            <label class="control-label text-semibold">Address</label>
+                            <label class="required control-label text-semibold">Address</label>
                             @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
@@ -137,8 +149,8 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Cell #</label>
-                            @Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control" } })
+                            <label class="required control-label text-semibold">Cell #</label>
+                            @Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control"} })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CellNo, "", new { @class = "text-danger" })
                             </div>
@@ -154,14 +166,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                @*<div class="row">
                     <div class="form-group col-md-12">
                         <div>
                             <label class="control-label text-semibold">Objective</label>
                             @Html.TextAreaFor(model => model.Objective, new { @class = "form-control", @cols = 5, @rows = 1 })
                         </div>
                     </div>
-                </div>
+                </div>*@
             </div>
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
@@ -179,7 +191,6 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
-
         SavePersonalInfoFunction();
         LoadDD();
     });

@@ -5,15 +5,22 @@
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.PMiscellaneousID)
-<head>
-    <script type="text/javascript" src="assets/js/pages/form_checkboxes_radios.js"></script>
-</head>
-    <div style="margin-top:-45px">
+    <head>
+        <script type="text/javascript" src="assets/js/pages/form_checkboxes_radios.js"></script>
+        <style>
+            .required:after {
+                content: "*";
+                font-weight: bold;
+                color: red;
+            }
+        </style>
+    </head>
+    <div style="margin-top:-25px">
         <!-- Page container -->
         <!-- Basic datatable -->
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous Details</h3>
+                <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous Details &nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
             </div>
         </div>
         <div class="panel panel-flat">
@@ -30,7 +37,12 @@
                     <div class="form-group">
                         <label class="col-md-4 control-label text-semibold">Have you ever been convicted of crime?(Yes / No )</label>
                         <div class="col-md-1">
-                            @Html.EditorFor(model => model.CrimanalRecord, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.DropDownList("CrimanalRecord", new List<SelectListItem>
+                                                {
+                                                    new SelectListItem { Text = "Yes", Value = "Yes"},
+                                                    new SelectListItem { Text = "No", Value = "No"}
+                                                }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+
                             @Html.ValidationMessageFor(model => model.CrimanalRecord, "", new { @class = "text-danger" })
                         </div>
                         <div class="col-md-2 control-label text-semibold">If(Yes) Provide Details </div>
@@ -83,23 +95,23 @@
                             @Html.DropDownList("HearAboutJobID", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.HearAboutJobID, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-md-2 control-label text-semibold text-right">Total Experience</div>
+                        <div class="required col-md-2 control-label text-semibold text-right">Total Experience</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.TotalExp, "", new { @class = "text-danger" })
                         </div>
-                        <div class="col-md-2 control-label text-semibold text-right">Cement Experience</div>
+                        <div class="required col-md-2 control-label text-semibold text-right">Cement Experience</div>
                         <div class="col-md-1">
                             @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                        <div class="form-group">
-                            <div class="col-md-5 control-label text-semibold">How much notice you need to give to your current Employer?</div>
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days" } })
-                            </div>
+                    <div class="form-group">
+                        <div class="col-md-5 control-label text-semibold">How much notice you need to give to your current Employer?</div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days" } })
                         </div>
+                    </div>
                 </div>
                 <div class="panel-footer">
                     <a class="heading-elements-toggle"><i class="icon-more"></i></a>

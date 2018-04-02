@@ -1,4 +1,5 @@
 ﻿using RMSCORE.EF;
+using RMSCORE.Models.Helper;
 using RMSSERVICES.CandidateImage;
 using RMSSERVICES.Generic;
 using RMSSERVICES.PersonalDetail;
@@ -35,6 +36,7 @@ namespace RMSAPPLICATION.Controllers
             obj.CandidateID = vmf.CandidateID;
             obj.UserID = vmf.UserID;
             Session["ProfileStage"] = vmf.UserStage;
+            ViewBag.AppliedAs = new SelectList(GetAppliedAs().ToList(), "ID", "Name", vmf.AppliedAs);
             return View(obj);
         }
         [HttpGet]
@@ -61,44 +63,46 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (dbOperation.CName == null || dbOperation.CName == "")
-                ModelState.AddModelError("CName", "Candidate name cannot be empty");
+                ModelState.AddModelError("CName", "This is mandatory field");
             if (dbOperation.FatherName == null || dbOperation.CName == "")
-                ModelState.AddModelError("FatherName", "Father name cannot be empty");
+                ModelState.AddModelError("FatherName", "This is mandatory field");
             if (dbOperation.DOB == null)
-                ModelState.AddModelError("DOB", "DOB cannot be empty");
+                ModelState.AddModelError("DOB", "This is mandatory field");
             if (dbOperation.Address == null || dbOperation.Address == "")
-                ModelState.AddModelError("Address", "Address cannot be empty");
-            if (dbOperation.CNICNo != null)
-            {
-                if (dbOperation.CNICNo.Length > 15)
-                    ModelState.AddModelError("CNICNo", "String length exceeds!");
-                Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
-                if (!match.Success)
-                {
-                    ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
-                }
-            }
+                ModelState.AddModelError("Address", "This is mandatory field");
+            //if (dbOperation.CNICNo != null)
+            //{
+            //    if (dbOperation.CNICNo.Length > 15)
+            //        ModelState.AddModelError("CNICNo", "String length exceeds!");
+            //    Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
+            //    if (!match.Success)
+            //    {
+            //        ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
+            //    }
+            //}
             if (dbOperation.CNICNo == null)
-                ModelState.AddModelError("CNICNo", "CNIC No cannot be empty");
+                ModelState.AddModelError("CNICNo", "This is mandatory field");
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
-                ModelState.AddModelError("EmailID", "EmailID name cannot be empty");
+                ModelState.AddModelError("EmailID", "This is mandatory field");
 
             if (dbOperation.EmailID != null)
             {
                 Match match = Regex.Match(dbOperation.EmailID, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 if (!match.Success)
                 {
-                    ModelState.AddModelError("EmailID", "Enter a valid Email ID");
+                    ModelState.AddModelError("EmailID", "This is mandatory field");
                 }
             }
             if (dbOperation.CellNo == null || dbOperation.CellNo == "")
-                ModelState.AddModelError("CellNo", "Cell no cannot be empty");
+                ModelState.AddModelError("CellNo", "This is mandatory field");
             if (ModelState.IsValid)
             {
-                vmf.UserStage = "2";
+                if(vmf.UserStage==2)
+                    vmf.UserStage = 3;
                 CandidateService.PostCreate(dbOperation, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK",JsonRequestBehavior.AllowGet);
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);
@@ -156,6 +160,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
             ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
+            ViewBag.ReligionID = new SelectList(DDService.GetReligion().ToList().OrderBy(aa => aa.CReligionID).ToList(), "CReligionID", "ReligionName", obj.ReligionID);
         }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {
@@ -198,6 +203,42 @@ namespace RMSAPPLICATION.Controllers
                             , JsonRequestBehavior.AllowGet);
 
             return RedirectToAction("Index");
+        }
+        public List<VMDropDown> GetAppliedAs()
+        {
+            List<VMDropDown> list = new List<VMDropDown>();
+
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 1;
+                vm.Name = "Internship";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 2;
+                vm.Name = "Apprentices";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 3;
+                vm.Name = "MTO";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 4;
+                vm.Name = "Contractual";
+                list.Add(vm);
+            }
+            {
+                VMDropDown vm = new VMDropDown();
+                vm.ID = 5;
+                vm.Name = "Permanent";
+                list.Add(vm);
+            }
+            return list;
         }
         #endregion
     }

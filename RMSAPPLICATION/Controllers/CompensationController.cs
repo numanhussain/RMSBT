@@ -20,7 +20,7 @@ namespace RMSAPPLICATION.Controllers
         IDDService DDService;
         //IDDService DDService;
         // Controller Constructor
-        public CompensationController(ICompensationService compensationService,IEntityService<CompensationDetail> compensationEntityService,IDDService ddService)
+        public CompensationController(ICompensationService compensationService, IEntityService<CompensationDetail> compensationEntityService, IDDService ddService)
         {
             CompensationEntityService = compensationEntityService;
             CompensationDetailService = compensationService;
@@ -41,14 +41,16 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(CompensationDetail obj)
         {
             if (obj.MGSalary == null || obj.MGSalary == "")
-                ModelState.AddModelError("MGSalary", "Cannot be empty");
+                ModelState.AddModelError("MGSalary", "This is mandatory field");
             if (ModelState.IsValid)
             {
                 V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-                vmf.UserStage = "6";
+                if (vmf.UserStage == 5)
+                    vmf.UserStage = 6;
                 CompensationDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return View(obj);
         }

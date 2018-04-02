@@ -1,13 +1,22 @@
-﻿function CompensationGetCreate(id,item) {
-if(item>"4"){
- $.ajax({
-        url: '/Compensation/Create',
-        type: "GET",
-        cache: false,
-    }).done(function (result) {
-        $('#PartialViewContainer').html(result);
-    });
-}
+﻿function CompensationGetCreate(id, item) {
+    if (item > 4) {
+clearClasses();
+        $.ajax({
+            url: '/Compensation/Create',
+            type: "GET",
+            cache: false,
+        }).done(function (result) {
+            $('#PartialViewContainer').html(result); 
+                $("#hv1").addClass("liInActive");
+                $("#hv2").addClass("liInActive");
+                $("#hv3").addClass("liInActive");
+                $("#hv4").addClass("liActive");
+                $("#hv5").addClass("liInActive");
+                $("#hv6").addClass("liInActive");
+                $("#hv33").addClass("liInActive");
+        document.getElementById("UserstageAfterFirst").value = 5;
+        });
+    }
     else {
         alert("You have to save  one experience detail first.");
     }
@@ -30,7 +39,7 @@ function CompensationDetailHide() {
             $("#Bonusdiv").hide();
         }
     });
- //LFA  Change
+    //LFA  Change
     $("#LFAdiv").hide();
     if (document.getElementById('LFA').checked) {
         $("#LFAdiv").show();
@@ -47,7 +56,7 @@ function CompensationDetailHide() {
             $("#LFAdiv").hide();
         }
     });
-//OT  Change
+    //OT  Change
     $("#OTdiv").hide();
     if (document.getElementById('OT').checked) {
         $("#OTdiv").show();
@@ -64,7 +73,7 @@ function CompensationDetailHide() {
             $("#OTdiv").hide();
         }
     });
-//Provident  Change
+    //Provident  Change
     $("#Providentdiv").hide();
     if (document.getElementById('ProvidentFund').checked) {
         $("#Providentdiv").show();
@@ -81,7 +90,7 @@ function CompensationDetailHide() {
             $("#Providentdiv").hide();
         }
     });
-//Gratuity Change
+    //Gratuity Change
     $("#Gratuitydiv").hide();
     if (document.getElementById('Gratuity').checked) {
         $("#Gratuitydiv").show();
@@ -106,8 +115,11 @@ function SaveCompensationFunction() {
             type: 'POST',
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                $('#PartialViewContainer').html(data);
+                if (data == "OK") { location.reload(); }
+                else {
+                    $('#myModal').modal('hide');
+                    $('#PartialViewContainer').html(data);
+                }
             },
             error: function () {
                 $("#result").text('an error occured')

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -17,6 +18,7 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         IEntityService<User> UserEntityService;
+        IEntityService<Candidate> CandidateEntityService;
         IEntityService<V_UserCandidate> VUserEntityService;
         IEntityService<Location> LocationService;
         IEntityService<Catagory> CatagoryService;
@@ -24,7 +26,8 @@ namespace RMSAPPLICATION.Controllers
         IJobService JobService;
         IDDService DDService;
         // Controller Constructor
-        public HomeController(IEntityService<User> userEntityService, IJobService jobService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService)
+        public HomeController(IEntityService<User> userEntityService, IJobService jobService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService,
+            IEntityService<Candidate> candidateEntityService)
         {
             UserEntityService = userEntityService;
             UserService = userService;
@@ -33,18 +36,20 @@ namespace RMSAPPLICATION.Controllers
             LocationService = locationService;
             CatagoryService = catagoryService;
             JobService = jobService;
+            CandidateEntityService = candidateEntityService;
         }
         #endregion
         #region -- Controller ActionResults  -- 
         [HttpGet]
         public ActionResult Index()
         {
+
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
-            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All" });
+            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All" });
+            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
             ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
@@ -66,9 +71,9 @@ namespace RMSAPPLICATION.Controllers
                 vmAllJobList = vmAllJobList.Where(aa => aa.CatagoryID == CatagoryID).ToList();
             }
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
-            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All" });
+            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All" });
+            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
             ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName", LocationID);
             ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName", CatagoryID);
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
@@ -85,23 +90,35 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Login(User Obj)
         {
-            if (VUserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password).Count() > 0)
+            if (Obj.UserName == null || Obj.UserName == "")
+                ModelState.AddModelError("UserName", "Email address name cannot be empty.");
+            if (Obj.UserName != null)
             {
-                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password);
-                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
-                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                if (vm.UserStage == "2")
+                Match match = Regex.Match(Obj.UserName, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
                 {
-                    return RedirectToAction("Index", "Job");
-                }
-                if (vm.UserStage == "1")
-                {
-                    return RedirectToAction("Login", "Home");
+                    ModelState.AddModelError("UserName", "Enter a valid Email address.");
                 }
             }
-            return View();
+            Expression<Func<User, bool>> SpecificEntries1 = aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password && aa.UserStage > 1;
+            if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count > 0)
+            {
+
+                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.EmailID == Obj.UserName && aa.Password == Obj.Password);
+                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
+                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                return RedirectToAction("Index", "Job");
+            }
+            else
+            {
+                ModelState.AddModelError("UserName", "Please Activate You Email address");
+            }
+            return RedirectToAction("Login", "Home");
 
         }
+        // 1: SignUp
+        // 2: Login
+        // 3: Personal Profile
         [HttpGet]
         public ActionResult RegisterUser()
         {
@@ -120,16 +137,25 @@ namespace RMSAPPLICATION.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    UserService.RegisterUser(Obj);
-                    //var code = Obj.SecurityLink;
-                    //var callbackUrl = Url.Action("VerifyLink", "Home", new { User = Obj.UserID, code = code }, protocol: Request.Url.Scheme);
-                    //EmailGenerate.SendEmail(Obj.Email, "", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>", "Account Activation");
-                    Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
-                    Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                    return RedirectToAction("Login", "Home");
+                    Obj.UserName = Obj.Email;
+                    Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
+                    if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
+                    {
+                        UserService.RegisterUser(Obj);
+                        var code = Obj.SecurityLink;
+                        var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
+                        EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>From Bestway Career Portal</p><p>Dear Candidate " + " </p><p>This is with reference to your request for creating online profile at Bestway Career Portal. </p><p>Please click the following link to activate your profile.</p>" + "<p><a href=\"Link:" + callbackUrl + "\" target=\"_blank\">" + callbackUrl + "</a></p><div>Best regards:</div><div>Bestway Talent Acquisition Team</div><div>Bestway Cement Limited</div><p>Do not forward " + "this email. The verify link is private.</p></body></html>", "Email Verification");
+                        Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
+                        Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                        return RedirectToAction("EmailSent", "Home");
+                    }
+                    else
+                    {
+                        // Show Message
+                    }
+
                 }
             }
-
             return View(Obj);
         }
         [HttpGet]
@@ -138,16 +164,18 @@ namespace RMSAPPLICATION.Controllers
         {
             if (UserService.VerifyLink(User))
             {
-                User user = UserEntityService.GetIndex().Where(aa => aa.SecurityLink == User).First();
+                User user = UserEntityService.GetIndex().Where(aa => aa.UserStage == 1 && aa.SecurityLink == User).First();
 
                 V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == user.UserName && aa.Password == user.Password);
-                vm.UserStage = "1";
+                user.UserStage = 2;
+                UserEntityService.PostEdit(user);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                return RedirectToAction("EmailConfirm", "Home");
+                return RedirectToAction("ConfirmedEmail", "Home");
             }
             else
             {
+                ViewBag.Message = "Link is not valid or expired";
                 return View();
             }
         }
@@ -195,6 +223,26 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult EmailSent()
         {
             return View();
+        }
+        [HttpGet]
+        public ActionResult ConfirmedEmail()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UpdateAppliedAs(int? id)
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            vmf.AppliedAs = id;
+            Session["LoggedInUser"] = vmf;
+            Expression<Func<User, bool>> SpecificEntries1 = c => c.UserID == vmf.UserID;
+            User user = UserEntityService.GetEdit((int)vmf.UserID);
+            user.AppliedAs = id;
+            UserEntityService.PostEdit(user);
+            Candidate candidate = CandidateEntityService.GetEdit((int)vmf.CandidateID);
+            candidate.AppliedAs = id;
+            CandidateEntityService.PostEdit(candidate);
+            return Json("OK", JsonRequestBehavior.AllowGet);
         }
         #endregion
         #endregion
