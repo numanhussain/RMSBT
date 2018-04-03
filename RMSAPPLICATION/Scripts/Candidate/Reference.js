@@ -12,6 +12,7 @@
         $("#hv5").addClass("liActive");
         $("#hv6").addClass("liInActive");
         $("#hv33").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
         $('#PartialViewContainer').html(result);
     });
 };

@@ -1,5 +1,4 @@
 ﻿ function MiscellaneousGetCreate(id, item) {
-        if (item > 5) {
         clearClasses();
             $("#WorkedBeforeDiv").hide();
             $.ajax({
@@ -15,12 +14,9 @@
                 $("#hv5").addClass("liInActive");
                 $("#hv6").addClass("liActive");
                 $("#hv33").addClass("liInActive");
+$("#hv7").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 7;
             });
-        }
-        else {
-            alert("You have to save compensation details first.");
-        }
     }
 function MiscellaneousDetailHide() {
     //Worked Before Change

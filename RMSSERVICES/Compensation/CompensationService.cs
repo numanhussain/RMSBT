@@ -84,6 +84,7 @@ namespace RMSSERVICES.Compensation
             dbCompensation.BOT = obj.BOT;
             dbCompensation.GOT = obj.GOT;
             dbCompensation.TransportAllowence = obj.TransportAllowence;
+            dbCompensation.FuelAllowance = obj.FuelAllowance;
             dbCompensation.MobileAllowence = obj.MobileAllowence;
             dbCompensation.MobileUserLimit = obj.MobileUserLimit;
             dbCompensation.CarEntitlement = obj.CarEntitlement;
@@ -111,6 +112,7 @@ namespace RMSSERVICES.Compensation
             dbCompensation.ExpectedSalary = obj.ExpectedSalary;
             dbCompensation.OtherBenifits = obj.OtherBenifits;
             dbCompensation.CandidateID = obj.CandidateID;
+            dbCompensation.SpecifyYears = obj.SpecifyYears;
             return dbCompensation;
         }
         #endregion

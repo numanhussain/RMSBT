@@ -29,6 +29,7 @@ namespace RMSCORE.EF
         public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<CandidateJob> CandidateJobs { get; set; }
         public virtual DbSet<CandidatePhoto> CandidatePhotoes { get; set; }
+        public virtual DbSet<CandidateStrength> CandidateStrengths { get; set; }
         public virtual DbSet<Catagory> Catagories { get; set; }
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<CompensationDetail> CompensationDetails { get; set; }

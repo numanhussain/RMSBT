@@ -13,6 +13,7 @@
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
         $("#hv33").addClass("liInActive");
+$("#hv7").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 2;
     });
 };
@@ -24,10 +25,7 @@ function SavePersonalInfoFunction() {
             type: 'POST',
             data: $("#formEditID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
-                else {
-                    $('#PartialViewContainer').html(data);
-                }
+                $('#PartialViewContainer').html(data);
             },
             error: function () {
                 $("#result").text('an error occured')

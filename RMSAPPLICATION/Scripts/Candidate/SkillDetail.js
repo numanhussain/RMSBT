@@ -1,17 +1,18 @@
 ﻿function LoadPVSkillDetailIndex(id, item) {
-clearClasses();
+    clearClasses();
     $.ajax({
         url: '/Skill/Index',
         type: "GET",
         cache: false,
     }).done(function (result) {
-                $("#hv1").addClass("liInActive");
-                $("#hv2").addClass("liInActive");
-                $("#hv3").addClass("liInActive");
-                $("#hv4").addClass("liInActive");
-                $("#hv5").addClass("liInActive");
-                $("#hv6").addClass("liInActive");
-                $("#hv33").addClass("liActive");
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liActive");
+        $("#hv7").addClass("liInActive");
         $('#PartialViewContainer').html(result);
     });
 };
@@ -44,7 +45,7 @@ function SkillDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-               if (data == "OK") { location.reload(); }
+                if (data == "OK") { location.reload(); }
                 else {
                     $('#myModal').modal('hide');
                 }

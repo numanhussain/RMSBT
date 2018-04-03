@@ -91,7 +91,7 @@
             <div class="form-group">
                 <div class="required control-label col-md-2 text-semibold">Responsibility#1:</div>
                 <div class="col-md-6 text-left">
-                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
+                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", textmode = "MultiLine", @cols = 3, @rows = 10 })
                     @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
                 </div>
             </div>

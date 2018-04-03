@@ -175,6 +175,7 @@
     <Compile Include="Controllers\MiscellaneousController.cs" />
     <Compile Include="Controllers\NotificationController.cs" />
     <Compile Include="Controllers\ReferenceController.cs" />
+    <Compile Include="Controllers\SelfAssessmentController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -207,6 +208,7 @@
     <Content Include="Scripts\Candidate\NotificationManager.js" />
     <Content Include="Scripts\Candidate\PersonalDetail.js" />
     <Content Include="Scripts\Candidate\Reference.js" />
+    <Content Include="Scripts\Candidate\SelfAssessment.js" />
     <Content Include="Scripts\Candidate\SkillDetail.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -3068,6 +3070,7 @@
     <Content Include="Views\Home\EmailSent.cshtml" />
     <Content Include="Views\Home\VerifyLink.cshtml" />
     <Content Include="Views\Home\ConfirmedEmail.cshtml" />
+    <Content Include="Views\SelfAssessment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

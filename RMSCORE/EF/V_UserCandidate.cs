@@ -19,9 +19,10 @@ namespace RMSCORE.EF
         public Nullable<int> UserID { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string EmailID { get; set; }
         public string RetypePassword { get; set; }
         public Nullable<int> UserStage { get; set; }
+        public string Email { get; set; }
+        public Nullable<bool> HaveExperience { get; set; }
         public Nullable<int> AppliedAs { get; set; }
     }
 }

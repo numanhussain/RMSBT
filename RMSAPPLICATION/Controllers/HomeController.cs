@@ -104,7 +104,7 @@ namespace RMSAPPLICATION.Controllers
             if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count > 0)
             {
 
-                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.EmailID == Obj.UserName && aa.Password == Obj.Password);
+                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.Email== Obj.UserName && aa.Password == Obj.Password);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                 return RedirectToAction("Index", "Job");

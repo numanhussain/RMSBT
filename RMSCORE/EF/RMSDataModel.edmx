@@ -56,6 +56,16 @@
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CandidatePic" Type="image" />
         </EntityType>
+        <EntityType Name="CandidateStrength">
+          <Key>
+            <PropertyRef Name="StrengthID" />
+          </Key>
+          <Property Name="StrengthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Strengths" Type="nvarchar" MaxLength="500" />
+          <Property Name="AreaOfImprovement" Type="nvarchar" MaxLength="500" />
+          <Property Name="MeetRequirements" Type="nvarchar" MaxLength="500" />
+          <Property Name="CandidateID" Type="int" />
+        </EntityType>
         <EntityType Name="Catagory">
           <Key>
             <PropertyRef Name="PCatagoryID" />
@@ -81,22 +91,22 @@
           <Property Name="Bonus" Type="bit" />
           <Property Name="BBonus" Type="bit" />
           <Property Name="GBonus" Type="bit" />
-          <Property Name="BonusPerYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="BonusPerYear" Type="int" />
           <Property Name="LFA" Type="bit" />
           <Property Name="BLFA" Type="bit" />
           <Property Name="GLFA" Type="bit" />
-          <Property Name="LFAPerYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="LFAPerYear" Type="int" />
           <Property Name="OT" Type="bit" />
           <Property Name="BOT" Type="bit" />
           <Property Name="GOT" Type="bit" />
-          <Property Name="TransportAllowence" Type="nvarchar" MaxLength="50" />
-          <Property Name="MobileAllowence" Type="nvarchar" MaxLength="50" />
-          <Property Name="CarEntitlement" Type="nvarchar" MaxLength="50" />
-          <Property Name="MobileUserLimit" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransportAllowence" Type="int" />
+          <Property Name="MobileAllowence" Type="int" />
+          <Property Name="CarEntitlement" Type="nvarchar" MaxLength="100" />
+          <Property Name="MobileUserLimit" Type="int" />
           <Property Name="BuyBackOption" Type="bit" />
-          <Property Name="AccomdAllowence" Type="nvarchar" MaxLength="50" />
-          <Property Name="COLA" Type="nvarchar" MaxLength="50" />
-          <Property Name="Other" Type="nvarchar" MaxLength="50" />
+          <Property Name="AccomdAllowence" Type="int" />
+          <Property Name="COLA" Type="int" />
+          <Property Name="Other" Type="int" />
           <Property Name="Food" Type="bit" />
           <Property Name="Free" Type="bit" />
           <Property Name="Subsidized" Type="bit" />
@@ -106,17 +116,19 @@
           <Property Name="ProvidentFund" Type="bit" />
           <Property Name="GProvidentFund" Type="bit" />
           <Property Name="BProvidentFund" Type="bit" />
-          <Property Name="ProvidentFundPerYear" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProvidentFundPerYear" Type="int" />
           <Property Name="Gratuity" Type="bit" />
           <Property Name="BGratuity" Type="bit" />
           <Property Name="GGratuity" Type="bit" />
-          <Property Name="AnnualTAllowence" Type="nvarchar" MaxLength="50" />
-          <Property Name="CasualTAllowence" Type="nvarchar" MaxLength="50" />
-          <Property Name="MedTAllowence" Type="nvarchar" MaxLength="50" />
-          <Property Name="TAllowenceWorkDay" Type="nvarchar" MaxLength="50" />
-          <Property Name="ExpectedSalary" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnnualTAllowence" Type="int" />
+          <Property Name="CasualTAllowence" Type="int" />
+          <Property Name="MedTAllowence" Type="int" />
+          <Property Name="TAllowenceWorkDay" Type="int" />
+          <Property Name="ExpectedSalary" Type="int" />
           <Property Name="OtherBenifits" Type="nvarchar" MaxLength="50" />
           <Property Name="CandidateID" Type="int" />
+          <Property Name="SpecifyYears" Type="int" />
+          <Property Name="FuelAllowance" Type="int" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -370,6 +382,7 @@
           <Property Name="UserStage" Type="int" />
           <Property Name="SecurityLink" Type="nvarchar(max)" />
           <Property Name="AppliedAs" Type="int" />
+          <Property Name="HaveExperience" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'BTRMS.dbo.UserTest' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -581,9 +594,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="UserID" Type="int" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" />
-          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
           <Property Name="RetypePassword" Type="nvarchar" MaxLength="50" />
           <Property Name="UserStage" Type="int" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="HaveExperience" Type="bit" />
           <Property Name="AppliedAs" Type="int" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
@@ -675,6 +689,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateJob" EntityType="Self.CandidateJob" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidatePhoto" EntityType="Self.CandidatePhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidateStrength" EntityType="Self.CandidateStrength" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Catagory" EntityType="Self.Catagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CompensationDetail" EntityType="Self.CompensationDetail" Schema="dbo" store:Type="Tables" />
@@ -859,9 +874,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_UserCandidate].[UserID] AS [UserID], 
     [V_UserCandidate].[UserName] AS [UserName], 
     [V_UserCandidate].[Password] AS [Password], 
-    [V_UserCandidate].[EmailID] AS [EmailID], 
     [V_UserCandidate].[RetypePassword] AS [RetypePassword], 
     [V_UserCandidate].[UserStage] AS [UserStage], 
+    [V_UserCandidate].[Email] AS [Email], 
+    [V_UserCandidate].[HaveExperience] AS [HaveExperience], 
     [V_UserCandidate].[AppliedAs] AS [AppliedAs]
     FROM [dbo].[V_UserCandidate] AS [V_UserCandidate]</DefiningQuery>
           </EntitySet>
@@ -903,6 +919,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
           <EntitySet Name="CandidateJobs" EntityType="BTRMSModel.CandidateJob" />
           <EntitySet Name="CandidatePhotoes" EntityType="BTRMSModel.CandidatePhoto" />
+          <EntitySet Name="CandidateStrengths" EntityType="BTRMSModel.CandidateStrength" />
           <EntitySet Name="Catagories" EntityType="BTRMSModel.Catagory" />
           <EntitySet Name="Cities" EntityType="BTRMSModel.City" />
           <EntitySet Name="CompensationDetails" EntityType="BTRMSModel.CompensationDetail" />
@@ -1023,6 +1040,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CandidatePic" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
+        <EntityType Name="CandidateStrength">
+          <Key>
+            <PropertyRef Name="StrengthID" />
+          </Key>
+          <Property Name="StrengthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Strengths" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AreaOfImprovement" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="MeetRequirements" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" />
+        </EntityType>
         <EntityType Name="Catagory">
           <Key>
             <PropertyRef Name="PCatagoryID" />
@@ -1048,22 +1075,22 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Bonus" Type="Boolean" />
           <Property Name="BBonus" Type="Boolean" />
           <Property Name="GBonus" Type="Boolean" />
-          <Property Name="BonusPerYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BonusPerYear" Type="Int32" />
           <Property Name="LFA" Type="Boolean" />
           <Property Name="BLFA" Type="Boolean" />
           <Property Name="GLFA" Type="Boolean" />
-          <Property Name="LFAPerYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LFAPerYear" Type="Int32" />
           <Property Name="OT" Type="Boolean" />
           <Property Name="BOT" Type="Boolean" />
           <Property Name="GOT" Type="Boolean" />
-          <Property Name="TransportAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MobileAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CarEntitlement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MobileUserLimit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransportAllowence" Type="Int32" />
+          <Property Name="MobileAllowence" Type="Int32" />
+          <Property Name="CarEntitlement" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MobileUserLimit" Type="Int32" />
           <Property Name="BuyBackOption" Type="Boolean" />
-          <Property Name="AccomdAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="COLA" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Other" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccomdAllowence" Type="Int32" />
+          <Property Name="COLA" Type="Int32" />
+          <Property Name="Other" Type="Int32" />
           <Property Name="Food" Type="Boolean" />
           <Property Name="Free" Type="Boolean" />
           <Property Name="Subsidized" Type="Boolean" />
@@ -1073,17 +1100,19 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="ProvidentFund" Type="Boolean" />
           <Property Name="GProvidentFund" Type="Boolean" />
           <Property Name="BProvidentFund" Type="Boolean" />
-          <Property Name="ProvidentFundPerYear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProvidentFundPerYear" Type="Int32" />
           <Property Name="Gratuity" Type="Boolean" />
           <Property Name="BGratuity" Type="Boolean" />
           <Property Name="GGratuity" Type="Boolean" />
-          <Property Name="AnnualTAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CasualTAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MedTAllowence" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TAllowenceWorkDay" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ExpectedSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnnualTAllowence" Type="Int32" />
+          <Property Name="CasualTAllowence" Type="Int32" />
+          <Property Name="MedTAllowence" Type="Int32" />
+          <Property Name="TAllowenceWorkDay" Type="Int32" />
+          <Property Name="ExpectedSalary" Type="Int32" />
           <Property Name="OtherBenifits" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
+          <Property Name="SpecifyYears" Type="Int32" />
+          <Property Name="FuelAllowance" Type="Int32" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -1347,6 +1376,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="UserStage" Type="Int32" />
           <Property Name="SecurityLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AppliedAs" Type="Int32" />
+          <Property Name="HaveExperience" Type="Boolean" />
         </EntityType>
         <EntityType Name="V_AppliedJob">
           <Key>
@@ -1521,9 +1551,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="UserID" Type="Int32" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="RetypePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserStage" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HaveExperience" Type="Boolean" />
           <Property Name="AppliedAs" Type="Int32" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
@@ -1671,6 +1702,17 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CandidateStrengths">
+            <EntityTypeMapping TypeName="BTRMSModel.CandidateStrength">
+              <MappingFragment StoreEntitySet="CandidateStrength">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="MeetRequirements" ColumnName="MeetRequirements" />
+                <ScalarProperty Name="AreaOfImprovement" ColumnName="AreaOfImprovement" />
+                <ScalarProperty Name="Strengths" ColumnName="Strengths" />
+                <ScalarProperty Name="StrengthID" ColumnName="StrengthID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Catagories">
             <EntityTypeMapping TypeName="BTRMSModel.Catagory">
               <MappingFragment StoreEntitySet="Catagory">
@@ -1691,6 +1733,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="CompensationDetails">
             <EntityTypeMapping TypeName="BTRMSModel.CompensationDetail">
               <MappingFragment StoreEntitySet="CompensationDetail">
+                <ScalarProperty Name="FuelAllowance" ColumnName="FuelAllowance" />
+                <ScalarProperty Name="SpecifyYears" ColumnName="SpecifyYears" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="OtherBenifits" ColumnName="OtherBenifits" />
                 <ScalarProperty Name="ExpectedSalary" ColumnName="ExpectedSalary" />
@@ -1994,6 +2038,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BTRMSModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
                 <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
                 <ScalarProperty Name="SecurityLink" ColumnName="SecurityLink" />
                 <ScalarProperty Name="UserStage" ColumnName="UserStage" />
@@ -2185,9 +2230,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <EntityTypeMapping TypeName="BTRMSModel.V_UserCandidate">
               <MappingFragment StoreEntitySet="V_UserCandidate">
                 <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserStage" ColumnName="UserStage" />
                 <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
