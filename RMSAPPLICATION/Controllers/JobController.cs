@@ -171,12 +171,20 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            CandidateJob dbCandidateJob = new CandidateJob();
-            dbCandidateJob.CandidateID = cid;
-            dbCandidateJob.JobID = JobID;
-            dbCandidateJob.CJobDate = DateTime.Now;
-            JobApplyService.PostCreate(dbCandidateJob);
-            return Json("OK", JsonRequestBehavior.AllowGet);
+            string Message = JobService.CheckForProfileCompletion(vmf);
+            if (Message == "")
+            {
+                CandidateJob dbCandidateJob = new CandidateJob();
+                dbCandidateJob.CandidateID = cid;
+                dbCandidateJob.JobID = JobID;
+                dbCandidateJob.CJobDate = DateTime.Now;
+                JobApplyService.PostCreate(dbCandidateJob);
+                return Json("OK", JsonRequestBehavior.AllowGet);
+            }
+            else
+            {
+                return Json(Message, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

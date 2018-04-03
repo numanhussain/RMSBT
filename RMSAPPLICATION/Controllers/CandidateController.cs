@@ -47,11 +47,11 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             int? uid = vmf.UserID;
             Candidate vmOperation = CandidateService.GetCreate(cid, (int)uid);
-            if(vmOperation.CountryID==null)
+            if (vmOperation.CountryID == null)
             {
                 vmOperation.CountryID = DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).First().CCID;
             }
-            if(vmOperation.CityID == null)
+            if (vmOperation.CityID == null)
             {
                 ViewBag.CityID = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID);
             }
@@ -97,12 +97,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CellNo", "This is mandatory field");
             if (ModelState.IsValid)
             {
-                if(vmf.UserStage==2)
-                    vmf.UserStage = 3;
                 CandidateService.PostCreate(dbOperation, vmf);
-                Session["LoggedInUser"] = vmf;
-                Session["ProfileStage"] = vmf.UserStage;
-                return Json("OK",JsonRequestBehavior.AllowGet);
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);

@@ -36,7 +36,6 @@ function SelectAllCheckBox() {
     });
 }
 function ApplyJob(id, item) {
-     if (item > 6) {
         $.ajax({
             url: '/Job/JobApply',
             type: "POST",
@@ -49,11 +48,8 @@ function ApplyJob(id, item) {
                     theme: 'bg-success-400',
                 });
             }
+            else { alert(data); }
         });
-    }
-    else {
-        alert('You profile is not completed')
-    }
 };
 //function FilterSearch() {
 //    SelectAllCheckBox();

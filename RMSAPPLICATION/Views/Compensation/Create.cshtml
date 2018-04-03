@@ -55,13 +55,13 @@
                     <div id="Bonusdiv">
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
-                                @Html.RadioButton("BonusSelection", "BBonus", false, new { @class = "styled", id = "BBonus", @checked = "checked" })
+                                @Html.RadioButton("BonusSelection", "BBonus", new { @class = "checked", @id = "BBonus" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label class="radio-inline text-semibold" for="GBonus">
-                                @Html.RadioButton("BonusSelection", "GBonus", false, new { @class = "styled", id = "GBonus", @checked = "checked" })
+                                @Html.RadioButton("BonusSelection", "GBonus", new { @class = "checked", @id = "GBonus" })
                                 Gross
                             </label>
                         </div>
@@ -82,13 +82,13 @@
                     <div id="LFAdiv">
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
-                                @Html.RadioButton("LFASelection", "BLFA", false, new { @class = "styled", id = "BLFA" })
+                                @Html.RadioButton("LFASelection", "BLFA", new { @class = "checked", id = "BLFA" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label class="radio-inline text-semibold" for="GLFA">
-                                @Html.RadioButton("LFASelection", "GLFA", false, new { @class = "styled", id = "GLFA" })
+                                @Html.RadioButton("LFASelection", "GLFA", new { @class = "checked", id = "GLFA" })
                                 Gross
                             </label>
                         </div>
@@ -109,15 +109,13 @@
                     <div id="OTdiv">
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
-                                @Html.RadioButton("OTselection", "BOT", new { @class = "styled", id = "BOT" })
-                                @Html.ValidationMessageFor(model => model.BOT, "", new { @class = "text-danger" })
+                                @Html.RadioButton("OTselection", "BOT", new { @class = "checked", id = "BOT" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label class="radio-inline text-semibold" for="GOT">
-                                @Html.RadioButton("OTselection", "GOT", new { @class = "styled", id = "GOT" })
-                                @Html.ValidationMessageFor(model => model.GOT, "", new { @class = "text-danger" })
+                                @Html.RadioButton("OTselection", "GOT", new { @class = "checked", id = "GOT" })
                                 Gross
                             </label>
                         </div>
@@ -129,66 +127,77 @@
                 </div>
 
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">Transport Allowance</div>
+                    <div class="col-md-1 control-label text-semibold">Transport Allowance</div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.TransportAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.TransportAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
                     </div>
-                    <div class="col-md-4">
-                        <label class="checkbox-inline checkbox-right text-semibold col-md-7" for="BuyBackOption">
+                    <div class="col-md-1 control-label text-semibold">Vehical Entitlement</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.CarEntitlement, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g Honda 1300CC" } })
+                    </div>
+                    <div class="col-md-3">
+                        <label class="checkbox-inline checkbox-right text-semibold col-md-10" for="BuyBackOption">
                             @Html.CheckBox("BuyBackOption", new { @class = "styled" })
-                            @Html.ValidationMessageFor(model => model.BuyBackOption, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.BuyBackOption, "", new { @class = "text-danger", @id = "BuyBackOption" })
                             Buy Back Option
                         </label>
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Mobile Allowance</div>
-                    <div class="col-md-2">
-                        @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                    <div id="buybackdiv">
+                        <div class="col-md-1 control-label text-semibold">Specify Years</div>
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.SpecifyYears, new { htmlAttributes = new { @class = "form-control", @placeholder = "Years" } })
+                        </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">Vehical Entitlement</div>
+
+                    <div class="col-md-1 control-label text-semibold">Fuel Allowance</div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.CarEntitlement, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.FuelAllowance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Amount/Litres" } })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Mobile  Limit</div>
+                    <div class="col-md-1 control-label text-semibold">Accomod Allowance</div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.AccomdAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify Amount" } })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Accomodation Allowance</div>
+                    <div class="col-md-1 control-label text-semibold">Mobile  Allowance</div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.AccomdAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                    </div>
+                    <div class="col-md-1 control-label text-semibold">Mobile  User Limit</div>
+                    <div class="col-md-2">
+                        @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
                     </div>
                 </div>
 
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">COLA</div>
+                    <div class="col-md-1 control-label text-semibold">COLA</div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.COLA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.COLA, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Others</div>
+                    <div class="col-md-1 control-label text-semibold">Others</div>
                     <div class="col-md-2">
-                        @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control", @placeholder = "If any" } })
                     </div>
-                    <div class="col-md-1">
-                        <label class="control-label checkbox-inline checkbox-right text-semibold" for="Food">
+                    <div class="col-md-2">
+                        <label class="control-label checkbox-inline checkbox-right text-semibold col-md-10" for="Food">
                             @Html.CheckBox("Food", new { @class = "styled" })
                             @Html.ValidationMessageFor(model => model.Food, "", new { @class = "text-danger" })
                             Food
                         </label>
                     </div>
-                    <div class="col-md-1">
-                        <label class="control-label checkbox-inline checkbox-right text-semibold" for="Free">
-                            @Html.CheckBox("Free", new { @class = "styled" })
-                            @Html.ValidationMessageFor(model => model.Free, "", new { @class = "text-danger" })
-                            Free
-                        </label>
-                    </div>
-                    <div class="col-md-2">
-                        <label class="control-label checkbox-inline checkbox-right text-semibold" for="Subsidized">
-                            @Html.CheckBox("Subsidized", new { @class = "styled" })
-                            @Html.ValidationMessageFor(model => model.Subsidized, "", new { @class = "text-danger" })
-                            Subsidized
-                        </label>
+                    <div id="fooddiv">
+                        <div class="col-md-2">
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("FoodSelection", "Free", new { @class = "checked", id = "Free" })
+                                Free
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="radio-inline text-semibold" for="Subsidized">
+                                @Html.RadioButton("FoodSelection", "Subsidized", new { @class = "checked", id = "Subsidized" })
+                                Subsidized
+                            </label>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
@@ -198,15 +207,15 @@
                 <div class="form-group col-md-12">
                     <div class="col-md-1 control-label text-semibold">OPD Limit</div>
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.OPDInsurance, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.OPDInsurance, new { htmlAttributes = new { @class = "form-control",@placeholder="Specify the Limit" } })
                     </div>
                     <label class="col-md-1 control-label text-semibold">IP Limit</label>
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.IPInsurance, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.IPInsurance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify the Limit" } })
                     </div>
                     <div class="col-md-1 control-label text-semibold">Life Insurance</div>
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.LifeInsurance, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.LifeInsurance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify the Limit" } })
                     </div>
                 </div>
                 <div class="form-group col-md-12">
@@ -219,18 +228,16 @@
                     </div>
                     <div id="Providentdiv">
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="BProvidentFund">
-                                @Html.CheckBox("BProvidentFund", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.BProvidentFund, "", new { @class = "text-danger" })
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("Providentselection", "BProvidentFund", new { @class = "checked", id = "BProvidentFund" })
                                 Basic
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="GProvidentFund">
-                                @Html.CheckBox("GProvidentFund", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.GProvidentFund, "", new { @class = "text-danger" })
-                                Gross
-                            </label>
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("Providentselection", "GProvidentFund", new { @class = "checked", id = "GProvidentFund" })
+                                Basic
+                            </div>
                         </div>
                         <div class="control-label col-md-2 text-semibold">If Yes then %</div>
                         <div class="col-md-2">
@@ -248,18 +255,16 @@
                     </div>
                     <div id="Gratuitydiv">
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="BGratuity">
-                                @Html.CheckBox("BGratuity", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.BGratuity, "", new { @class = "text-danger" })
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("GratuitySelection", "BGratuity", new { @class = "checked", id = "BGratuity" })
                                 Basic
-                            </label>
+                            </div>
                         </div>
                         <div class="col-md-2">
-                            <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="GGratuity">
-                                @Html.CheckBox("GGratuity", new { @class = "styled" })
-                                @Html.ValidationMessageFor(model => model.GGratuity, "", new { @class = "text-danger" })
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("GratuitySelection", "GGratuity", new { @class = "checked", id = "GGratuity" })
                                 Gross
-                            </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -276,7 +281,7 @@
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.CasualTAllowence, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Medical</div>
+                    <div class="col-md-2 control-label text-semibold">Sick</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MedTAllowence, new { htmlAttributes = new { @class = "form-control" } })
                     </div>
@@ -315,7 +320,13 @@
                 "BLFA": @Html.Raw(Json.Encode(Model.BLFA)),
                 "GLFA": @Html.Raw(Json.Encode(Model.GLFA)),
                 "BOT": @Html.Raw(Json.Encode(Model.BOT)),
-                "GOT": @Html.Raw(Json.Encode(Model.GOT))
+                "GOT": @Html.Raw(Json.Encode(Model.GOT)),
+                "BProvidentFund": @Html.Raw(Json.Encode(Model.BProvidentFund)),
+                "GProvidentFund": @Html.Raw(Json.Encode(Model.GProvidentFund)),
+                "BGratuity": @Html.Raw(Json.Encode(Model.BGratuity)),
+                "GGratuity": @Html.Raw(Json.Encode(Model.GGratuity)),
+                "Free": @Html.Raw(Json.Encode(Model.Free)),
+                "Subsidized": @Html.Raw(Json.Encode(Model.Subsidized)),
                 };
             FormControlsScriptEdit(model);
             CompensationDetailHide();

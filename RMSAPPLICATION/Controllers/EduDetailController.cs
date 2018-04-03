@@ -78,12 +78,9 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("OtherInstitute", "This is mandatory field");
             if (ModelState.IsValid)
             {
-                if (vmf.UserStage == 3)
-                    vmf.UserStage = 4;
                 EduDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
-                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
             return PartialView(obj);

@@ -27,6 +27,8 @@ namespace RMSCORE.Models.Main
     {
         public bool IsApplied { get; set; }
         public string FilterBox { get; set; }
+        public bool IsCompletedProfile { get; set; }
+        public string ProfileMessage { get; set; }
 
     }
 }

@@ -1,26 +1,22 @@
-﻿function LoadPVEduDetailIndex(id, item) {
-    if (item > 2) {
-        clearClasses();
-        $.ajax({
-            url: '/EduDetail/Index',
-            type: "GET",
-            cache: false,
-            data: { cid: id }
-        }).done(function (result) {
-            $('#PartialViewContainer').html(result);
-            $("#hv1").addClass("liInActive");
-            $("#hv2").addClass("liActive");
-            $("#hv3").addClass("liInActive");
-            $("#hv4").addClass("liInActive");
-            $("#hv5").addClass("liInActive");
-            $("#hv6").addClass("liInActive");
-            $("#hv33").addClass("liInActive");
-            document.getElementById("UserstageAfterFirst").value = 3;
-        });
-    }
-    else {
-        alert("You have to Save Personal Details first.");
-    }
+﻿function LoadPVEduDetailIndex(id) {
+    clearClasses();
+    $.ajax({
+        url: '/EduDetail/Index',
+        type: "GET",
+        cache: false,
+        data: { cid: id }
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+$("#hv7").addClass("liInActive");
+        document.getElementById("UserstageAfterFirst").value = 3;
+    });
 };
 function EduDetailGetCreate(id) {
     $('#EduGetCreate').click(function () {
@@ -48,10 +44,8 @@ function EduDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
-                else {
-                    $('#modelBody').html(data);
-                }
+                $('#myModal').modal('hide');
+                LoadPVEduDetailIndex(id);
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -172,77 +166,76 @@ function ShowHide() {
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
             $("#CGPATB").hide();
-             $("#DegreeTypeDD").hide();
-             $("#MajorSubjectDD").show();
+            $("#DegreeTypeDD").hide();
+            $("#MajorSubjectDD").show();
             break;
         case "2":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
-            $("#CGPATB").hide(); 
-$("#DegreeTypeDD").show();
-             $("#MajorSubjectDD").show();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").show();
+            $("#MajorSubjectDD").show();
             break;
         case "3":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
         case "4":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
             $("#DegreeTypeDD").show();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
         case "5":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
             $("#DegreeTypeDD").show();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
         case "6":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
         case "7":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
         case "8":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
-case "9":
+        case "9":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").hide();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
-case "10":
+        case "10":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").hide();
-             $("#MajorSubjectDD").show();
+            $("#MajorSubjectDD").show();
             break;
     }
 }
 function InstituteChange() {
-$("#hidedatediv").show();
-    if (document.getElementById('InProgress').checked) 
-{
+    $("#hidedatediv").show();
+    if (document.getElementById('InProgress').checked) {
         $("#hidedatediv").hide();
     }
     //LFA Selected
@@ -250,8 +243,9 @@ $("#hidedatediv").show();
         if ($(this).is(":checked")) {
             $("#hidedatediv").hide();
         }
-else { $("#hidedatediv").show();
-}
+        else {
+            $("#hidedatediv").show();
+        }
 
     });
     ShowInstituteHide();

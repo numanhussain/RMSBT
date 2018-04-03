@@ -61,6 +61,9 @@
     <Compile Include="EF\CandidatePhoto.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\CandidateStrength.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\Catagory.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -71,9 +74,6 @@
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Country.cs">
-      <DependentUpon>RMSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\EduBoard.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\EduDegreeLevel.cs">

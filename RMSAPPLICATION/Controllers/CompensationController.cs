@@ -62,7 +62,7 @@ namespace RMSAPPLICATION.Controllers
         {
 
             #region -- Radio Buttons--
-            // Adjust Bonus of Leave Radio Button
+            // Adjust Bonus of Compensation Radio Button
             string radioBonusValue = "";
             var BonusValue = ValueProvider.GetValue("BonusSelection");
             if (radioBonusValue != null)
@@ -79,7 +79,7 @@ namespace RMSAPPLICATION.Controllers
                 obj.BBonus = false;
                 obj.GBonus = true;
             }
-            // Adjust LFA of Leave Radio Button
+            // Adjust LFA of Compensation Radio Button
             string radioLFAValue = "";
             var LFAValue = ValueProvider.GetValue("LFASelection");
             if (radioLFAValue != null)
@@ -96,7 +96,7 @@ namespace RMSAPPLICATION.Controllers
                 obj.BLFA = false;
                 obj.GLFA = true;
             }
-            // Adjust OT of Leave Radio Button
+            // Adjust OT of Compensation Radio Button
             string radioOTValue = "";
             var OTValue = ValueProvider.GetValue("OTselection");
             if (radioOTValue != null)
@@ -112,6 +112,57 @@ namespace RMSAPPLICATION.Controllers
             {
                 obj.BOT = false;
                 obj.GOT = true;
+            }
+            // Adjust ProvidentFund of Compensation Radio Button
+            string radioProvidentValue = "";
+            var ProvidentValue = ValueProvider.GetValue("ProvidentSelection");
+            if (radioProvidentValue != null)
+            {
+                radioProvidentValue = ProvidentValue.AttemptedValue;
+            }
+            if (radioProvidentValue == "BProvidentFund")
+            {
+                obj.BProvidentFund = true;
+                obj.GProvidentFund = false;
+            }
+            if (radioProvidentValue == "GProvidentFund")
+            {
+                obj.BProvidentFund = false;
+                obj.GProvidentFund = true;
+            }
+            // Adjust Gratuity of Compensation Radio Button
+            string radioGratuityValue = "";
+            var GratuityValue = ValueProvider.GetValue("GratuitySelection");
+            if (radioGratuityValue != null)
+            {
+                radioGratuityValue = GratuityValue.AttemptedValue;
+            }
+            if (radioGratuityValue == "BGratuity")
+            {
+                obj.BGratuity = true;
+                obj.GGratuity = false;
+            }
+            if (radioGratuityValue == "GGratuity")
+            {
+                obj.BGratuity = false;
+                obj.GGratuity = true;
+            }
+            // Adjust Food of Compensation Radio Button
+            string radioFoodValue = "";
+            var FoodValue = ValueProvider.GetValue("FoodSelection");
+            if (radioFoodValue != null)
+            {
+                radioFoodValue = FoodValue.AttemptedValue;
+            }
+            if (radioFoodValue == "Free")
+            {
+                obj.Free = true;
+                obj.Subsidized = false;
+            }
+            if (radioFoodValue == "Subsidized")
+            {
+                obj.Free = false;
+                obj.Subsidized = true;
             }
             #endregion
         }

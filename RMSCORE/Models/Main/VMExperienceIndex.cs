@@ -20,8 +20,6 @@ namespace RMSCORE.Models.Main
         public string Reaponsibility1 { get; set; }
         public string Reaponsibility2 { get; set; }
         public string Reaponsibility3 { get; set; }
-        public string Reaponsibility4 { get; set; }
-        public string Reaponsibility5 { get; set; }
         public string Salary { get; set; }
         public long? CandidateID { get; set; }
         public string CandidateName { get; set; }

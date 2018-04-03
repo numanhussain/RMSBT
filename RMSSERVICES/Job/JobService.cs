@@ -17,12 +17,29 @@ namespace RMSSERVICES.Job
         IRepository<V_AppliedJob> JobRepository;
         IRepository<V_JobDetail> OpenJobRepository;
         IRepository<CandidateJob> AppliedJobRepository;
-        public JobService(IUnitOfWork unitOfWork, IRepository<V_JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository, IRepository<CandidateJob> appliedJobRepository)
+        IRepository<Candidate> CandidateProfileReporsitory;
+        IRepository<EduDetail> EduDetailReporsitory;
+        IRepository<ExperienceDetail> ExperienceDetailReporsitory;
+        IRepository<CompensationDetail> CompensationDetailReporsitory;
+        IRepository<MiscellaneousDetail> MiscellaneousDetailReporsitory;
+        IRepository<CandidateStrength> CandidateStrengthReporsitory;
+        public JobService(IUnitOfWork unitOfWork, IRepository<V_JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository,
+            IRepository<CandidateJob> appliedJobRepository, IRepository<Candidate> candidateProfileReporsitory,
+        IRepository<EduDetail> eduDetailReporsitory, IRepository<ExperienceDetail> experienceDetailReporsitory,
+        IRepository<CompensationDetail> compensationDetailReporsitory,
+        IRepository<MiscellaneousDetail> miscellaneousDetailReporsitory,
+        IRepository<CandidateStrength> candidateStrengthReporsitory)
         {
             UnitOfWork = unitOfWork;
             JobRepository = jobRepository;
             OpenJobRepository = openJobRepository;
             AppliedJobRepository = appliedJobRepository;
+            CandidateProfileReporsitory = candidateProfileReporsitory;
+            EduDetailReporsitory = eduDetailReporsitory;
+            ExperienceDetailReporsitory = experienceDetailReporsitory;
+            CompensationDetailReporsitory = compensationDetailReporsitory;
+            MiscellaneousDetailReporsitory = miscellaneousDetailReporsitory;
+            CandidateStrengthReporsitory = candidateStrengthReporsitory;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -68,6 +85,29 @@ namespace RMSSERVICES.Job
                 vmJobDetail.IsApplied = false;
             return vmJobDetail;
         }
+
+        public string CheckForProfileCompletion(V_UserCandidate LoggedInUser)
+        {
+            string message = "";
+            Expression<Func<EduDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
+            if (EduDetailReporsitory.FindBy(SpecificClient).Count == 0)
+            {
+                message = "Kindly enter your educations in profile";
+            }
+            Expression<Func<Candidate, bool>> SpecificClient1 = c => c.CandidateID == LoggedInUser.CandidateID;
+            Candidate candidate = CandidateProfileReporsitory.GetSingle(LoggedInUser.CandidateID);
+            if (candidate.CName == null || candidate.CName=="")
+            {
+                message = "";
+            }
+            Expression<Func<MiscellaneousDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
+            if (MiscellaneousDetailReporsitory.FindBy(SpecificClient2).Count == 0)
+            {
+                message = "Kindly enter your miscellaneous details in profile";
+            }
+            return message;
+        }
+
         public VMOpenJobIndex GetJobDetailIndex(int JobID)
         {
             V_JobDetail dbJobDetail = OpenJobRepository.GetSingle(JobID);

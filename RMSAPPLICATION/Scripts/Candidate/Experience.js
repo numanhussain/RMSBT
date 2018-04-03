@@ -1,5 +1,4 @@
 ﻿function LoadPVExperienceDetailIndex(id, item) {
-    if (item > 3) {
         clearClasses();
         $.ajax({
             url: '/Experience/Index',
@@ -14,12 +13,9 @@
             $("#hv5").addClass("liInActive");
             $("#hv6").addClass("liInActive");
             $("#hv33").addClass("liInActive");
+$("#hv7").addClass("liInActive");
             document.getElementById("UserstageAfterFirst").value = 4;
         });
-    }
-    else {
-        alert("You have to save one education detail first.");
-    }
 };
 function clearClasses() {
     $("#hv1").removeClass("liInActive");
@@ -29,6 +25,7 @@ function clearClasses() {
     $("#hv4").removeClass("liInActive");
     $("#hv5").removeClass("liInActive");
     $("#hv6").removeClass("liInActive");
+ $("#hv7").removeClass("liInActive");
     $("#hv1").removeClass("liActive");
     $("#hv2").removeClass("liActive");
     $("#hv33").removeClass("liActive");
@@ -36,6 +33,7 @@ function clearClasses() {
     $("#hv4").removeClass("liActive");
     $("#hv5").removeClass("liActive");
     $("#hv6").removeClass("liActive");
+ $("#hv7").addClass("liActive");
 }
 function ExperienceDetailGetCreate(id) {
     $('#ExperienceGetCreate').click(function () {
@@ -141,23 +139,37 @@ function ExperienceDetailPostDelete(id) {
 }
 function HaveExperience() {
     $('#HaveExperience').click(function () {
-        var id = ($(this).is(":checked"));
-        alert(id);
+        var id = false;
         if ($(this).is(":checked")) {
-
-            $.ajax({
-                type: "POST",
-                url: "/Experience/SaveExperienceDetail",
-                cache: false,
-                data: { id: id },
-                datatype: "json",
-                success: function (data) {
-                    $('#myModal').modal('show');
-                },
-                error: function () {
-                    alert("Dynamic content load failed.");
-                }
-            });
+            id = true;
         }
+        else {
+            id = false;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/Experience/SaveExperienceDetail",
+            cache: false,
+            data: { HaveExperience: id },
+            datatype: "json",
+            success: function (data) {
+                if (data == "OK") { location.reload(); }
+                else {
+                    $('#modelBody').html(data);
+                }
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
     });
 }
+function LoadPVExperienceDetailIndex2(id) {
+    $.ajax({
+        url: '/Experience/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+    });
+};

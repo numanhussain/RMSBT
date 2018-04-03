@@ -73,6 +73,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reference\IReferenceService.cs" />
     <Compile Include="Reference\ReferenceService.cs" />
+    <Compile Include="Self Assessment\ISelfAssessmentService.cs" />
+    <Compile Include="Self Assessment\SelfAssessmentService.cs" />
     <Compile Include="Skill\ISkillService.cs" />
     <Compile Include="Skill\SkillService.cs" />
     <Compile Include="UserDetail\IUserService.cs" />
