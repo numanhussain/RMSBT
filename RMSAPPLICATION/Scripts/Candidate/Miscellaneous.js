@@ -67,6 +67,7 @@ function MiscellaneousDetailHide() {
             $("#HearAboutDetailtb").hide();
         }
     });
+
     //get script of above when value is saved
     if (document.getElementById('WorkingRelative').value == "Yes") {
         $("#WorkingRelativeDetailtb ").show();
@@ -98,7 +99,7 @@ function MiscellaneousDetailHide() {
     else {
         $("#WorkedBeforeDetailtb").hide();
     }
-};
+}
 function SaveMiscellaneousInfoFunction() {
     $('#btnPostCreate').click(function () {
         $.ajax({

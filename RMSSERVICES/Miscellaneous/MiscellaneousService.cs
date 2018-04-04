@@ -84,9 +84,9 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.InterviewedDate = obj.InterviewedDate;
             dbMiscellaneous.InterviewedLocation = obj.InterviewedLocation;
             dbMiscellaneous.AppliedPosition = obj.AppliedPosition;
-            dbMiscellaneous.HearAboutDetail = obj.HearAboutDetail;
-            dbMiscellaneous.Disability = obj.InterviewedLocation;
-            dbMiscellaneous.DisabilityDetail = obj.AppliedPosition;
+            dbMiscellaneous.HearAboutDetail= obj.HearAboutDetail;
+            dbMiscellaneous.Disability = obj.Disability;
+            dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
             return dbMiscellaneous;
         }
         #endregion

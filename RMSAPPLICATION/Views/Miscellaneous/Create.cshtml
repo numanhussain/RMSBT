@@ -38,12 +38,11 @@
                         <label class="col-md-4 control-label text-semibold">Have you ever been convicted of crime?</label>
                         <div class="col-md-1">
                             @Html.DropDownList("CrimanalRecord", new List<SelectListItem>
-                                                        {
+                                            {
 
-                                                            new SelectListItem { Text = "No", Value = "No"},
-                                                              new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                        }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                                new SelectListItem { Text = "No", Value = "No"},
+                                                  new SelectListItem { Text = "Yes", Value = "Yes"}
+                                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                             @Html.ValidationMessageFor(model => model.CrimanalRecord, "", new { @class = "text-danger" })
                         </div>
                         <div id="CriminalDetailtb">
@@ -57,12 +56,11 @@
                         <label class="col-md-4 control-label text-semibold">Do you have any relative working in Bestway group?</label>
                         <div class="col-md-1">
                             @Html.DropDownList("WorkingRelative", new List<SelectListItem>
-                                                        {
+                                            {
 
-                                                            new SelectListItem { Text = "No", Value = "No"},
-                                                            new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                        }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                                new SelectListItem { Text = "No", Value = "No"},
+                                                new SelectListItem { Text = "Yes", Value = "Yes"}
+                                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                             @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
                         </div>
                         <div id="WorkingRelativeDetailtb">
@@ -76,12 +74,11 @@
                         <label class="col-md-4 control-label text-semibold">Do you have any disability?</label>
                         <div class="col-md-1">
                             @Html.DropDownList("Disability", new List<SelectListItem>
-                                                        {
+                                            {
 
-                                                            new SelectListItem { Text = "No", Value = "No"},
-                                                            new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                        }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                                new SelectListItem { Text = "No", Value = "No"},
+                                                new SelectListItem { Text = "Yes", Value = "Yes"}
+                                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                             @Html.ValidationMessageFor(model => model.Disability, "", new { @class = "text-danger" })
                         </div>
                         <div id="DisabilityDetailtb">
@@ -95,11 +92,11 @@
                         <label class="col-md-4 control-label text-semibold">Have you been interviewed at Bestway Group before?</label>
                         <div class="col-md-1">
                             @Html.DropDownList("InterviewedBefore", new List<SelectListItem>
-                                        {
+                            {
 
-                                            new SelectListItem { Text = "No", Value = "No"},
-                                            new SelectListItem { Text = "Yes", Value = "Yes"}
-                                        }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                new SelectListItem { Text = "No", Value = "No"},
+                                new SelectListItem { Text = "Yes", Value = "Yes"}
+                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
 
                             @Html.ValidationMessageFor(model => model.InterviewedBefore, "", new { @class = "text-danger" })
                         </div>
@@ -129,12 +126,12 @@
                         <label class="col-md-4 control-label text-semibold">Have you Worked before with Bestway Group?</label>
                         <div class="col-md-1">
                             @Html.DropDownList("WorkedBefore", new List<SelectListItem>
-                                        {
+                            {
 
-                                            new SelectListItem { Text = "No", Value = "No"},
-                                            new SelectListItem { Text = "Yes", Value = "Yes"}
-                                        }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                new SelectListItem { Text = "No", Value = "No"},
+                                new SelectListItem { Text = "Yes", Value = "Yes"}
+                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                     
                             @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
                         </div>
                     </div>
