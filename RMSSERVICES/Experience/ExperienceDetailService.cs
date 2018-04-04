@@ -31,6 +31,8 @@ namespace RMSSERVICES.Experience
         #region -- Service Interface Implementation --
         public List<VMExperienceIndex> GetIndex(int cid)
         {
+            Expression<Func<Candidate, bool>> HaveExperience= c => c.CandidateID == cid;
+            Candidate dbCandidates = CandidateRepository.GetSingle(cid);
             Expression<Func<V_Candidate_Exp, bool>> SpecificCandidateExperience = c => c.CandidateID == cid;
             List<V_Candidate_Exp> dbVExperienceDetails = ExperienceDetailRepository.FindBy(SpecificCandidateExperience);
             List<VMExperienceIndex> vmExperienceDetails = new List<VMExperienceIndex>();
@@ -53,6 +55,7 @@ namespace RMSSERVICES.Experience
                 vmExperienceDetail.CandidateName = dbExperienceDetail.CName;
                 vmExperienceDetail.IndustryID = dbExperienceDetail.IndustryID;
                 vmExperienceDetail.ExpIndustryName = dbExperienceDetail.ExpIndustryName;
+                vmExperienceDetail.HaveExperience = dbCandidates.HaveExperience;
                 vmExperienceDetails.Add(vmExperienceDetail);
             }
             return vmExperienceDetails.OrderByDescending(aa => aa.ExpID).ToList();
