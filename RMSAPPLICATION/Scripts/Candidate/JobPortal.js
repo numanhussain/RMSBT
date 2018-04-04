@@ -58,7 +58,6 @@ function ApplyJob(id, item) {
                 header: 'Well done!',
                 theme: 'bg-success-400',
             });
-            location.reload();
         }
         else { alert(data); }
     });
