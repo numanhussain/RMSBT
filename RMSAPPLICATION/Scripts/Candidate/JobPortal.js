@@ -34,6 +34,16 @@ function SelectAllCheckBox() {
         if (!$(this).prop("checked"))
             $("#chkSelectAllCatagory").prop("checked", false);
     });
+    $("#ApproveDecline").hide();
+    $('#ask').change(function () {
+        if ($(this).is(":checked")) {
+            $("#ApproveDecline").show();
+        }
+        else {
+            $("#ApproveDecline").hide();
+        }
+    });
+
 }
 function ApplyJob(id, item) {
     $.ajax({

@@ -14,16 +14,7 @@ namespace RMSCORE.EF
     
     public partial class EduInstitute
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EduInstitute()
-        {
-            this.EduDetails = new HashSet<EduDetail>();
-        }
-    
         public int InstituteID { get; set; }
         public string InstituteName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EduDetail> EduDetails { get; set; }
     }
 }

@@ -11,32 +11,39 @@
             <i class="icon-menu7"></i> &nbsp;DECLARATION
         </h4>
     </div>
-    <div class="media-heading col-md-12">
-        <div class="col-md-10">
-            <h3 class="modal-title">
-                You are applying for the position: <span class="text-black text-bold"> @Html.DisplayFor(model => model.JobTitle) </span>
-            </h3>
-            <div class="label label-lg label-info arrowed-right">
-                <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
-            </div>
+    <div class="modal-header">
+        <h3 class="modal-title">
+            You are applying for the position of: <span class="text-black text-bold"> @Html.DisplayFor(model => model.JobTitle) </span>
+        </h3>
+        <div class="label label-lg label-info arrowed-right">
+            <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
         </div>
     </div>
     <div class="col-md-12">
         <hr />
     </div>
     <div class="modal-body">
-        <div class="col-md-10">
-            <h5><a id="OfficialInfo" class="text-black">Statement to be Accepted by candidate -  after completing profile </a></h5>
-        </div>
-        <div class="col-md-10">
+        <h4><a id="OfficialInfo" class="text-black">Statement to be Accepted by candidate -  after completing profile </a></h4>
+        <p class=" text-highlight h5">
             I certify that the information provided by me in this form and all other documents provided herewith or in connection with this application for employment are accurate and true, and may be subject to verification, I understand that falsification or concealment of any information, may disqualify my application and/or be ground for disciplinary action up to and including termination and/or legal action. Unless otherwise indicated, I agree and give my consent that any person, firm or organization listed herein is authorized to furnish Bestway with reference material concerning my character, past employment or any other information requested.
+        </p>
+        <div class="checkbox-inline col-md-8">
+            <input type="checkbox" class="styled" id="ask" name="ask" value="ask">
+            <label class="control-label text-bold" for="ask" >Click here if you Accept the above terms and conditions</label>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Agree</button>
-        <button type="button" class=" btn btn-primary bg-danger-400" name="Close" data-dismiss="modal">Decline</button>
+        <div id="ApproveDecline">
+            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Agree</button>
+            <button type="button" class=" btn btn-danger" name="Close" data-dismiss="modal">Decline</button>
+        </div>
     </div>
 }
+<script type="text/javascript">
+    $(document).ready(function () {
+        SelectAllCheckBox();
+    });
+</script>
 @*<script type="text/javascript">
         $(document).ready(function () {
             ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')
