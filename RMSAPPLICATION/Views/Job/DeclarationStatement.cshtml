@@ -1,0 +1,46 @@
+﻿@model RMSCORE.Models.Main.VMOpenJobIndex
+@{
+    ViewBag.title = "Declaration Statement";
+    Layout = null;
+}
+@{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
+    @Html.HiddenFor(model => model.JobID)
+    <div class="modal-header bg-blue">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">
+            <i class="icon-menu7"></i> &nbsp;DECLARATION
+        </h4>
+    </div>
+    <div class="media-heading col-md-12">
+        <div class="col-md-10">
+            <h3 class="modal-title">
+                You are applying for the position: <span class="text-black text-bold"> @Html.DisplayFor(model => model.JobTitle) </span>
+            </h3>
+            <div class="label label-lg label-info arrowed-right">
+                <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <hr />
+    </div>
+    <div class="modal-body">
+        <div class="col-md-10">
+            <h5><a id="OfficialInfo" class="text-black">Statement to be Accepted by candidate -  after completing profile </a></h5>
+        </div>
+        <div class="col-md-10">
+            I certify that the information provided by me in this form and all other documents provided herewith or in connection with this application for employment are accurate and true, and may be subject to verification, I understand that falsification or concealment of any information, may disqualify my application and/or be ground for disciplinary action up to and including termination and/or legal action. Unless otherwise indicated, I agree and give my consent that any person, firm or organization listed herein is authorized to furnish Bestway with reference material concerning my character, past employment or any other information requested.
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Agree</button>
+        <button type="button" class=" btn btn-primary bg-danger-400" name="Close" data-dismiss="modal">Decline</button>
+    </div>
+}
+@*<script type="text/javascript">
+        $(document).ready(function () {
+            ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')
+        });
+    </script>*@
+
+

@@ -36,35 +36,36 @@ function SelectAllCheckBox() {
     });
 }
 function ApplyJob(id, item) {
-        $.ajax({
-            url: '/Job/JobApply',
-            type: "POST",
-            cache: false,
-            data: { JobID: id }
-        }).done(function (data) {
-            if (data === "OK") {
-                $.jGrowl('You have successfully  Applied for this job.', {
-                    header: 'Well done!',
-                    theme: 'bg-success-400',
-                });
-            }
-            else { alert(data); }
-        });
-};
-//function FilterSearch() {
-//    SelectAllCheckBox();
-//    $('#btnSave').click(function () {
-//        $.ajax({
-//            url: '/Job/Index',
-//            type: 'POST',
-//            cache: false,
-//            data: $("#frmJobIndex").serialize(),
-//            success: function (data) {
-//                $('#DivContainer').html(data);
-//            },
-//            error: function () {
-//                $("#result").text('an error occured')
-//            }
-//        });
-//    });
-//}
+    $.ajax({
+        url: '/Job/JobApply',
+        type: "POST",
+        cache: false,
+        data: { JobID: id }
+    }).done(function (data) {
+        if (data === "OK") {
+            $('#myModal1').modal('hide');
+            $.jGrowl('You have successfully  Applied for this job.', {
+                header: 'Well done!',
+                theme: 'bg-success-400',
+            });
+            location.reload();
+        }
+        else { alert(data); }
+    });
+}
+function DeclarationStatement(id) {
+    $.ajax({
+        type: "GET",
+        url: "/Job/DeclarationStatement",
+        contentType: "application/json; charset=utf-8",
+        data: { JobID: id },
+        datatype: "json",
+        success: function (data) {
+            $('#modelBody1').html(data);
+            $('#myModal1').modal('show');
+        },
+        error: function () {
+            alert("Dynamic content load failed.");
+        }
+    });
+}

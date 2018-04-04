@@ -81,9 +81,10 @@ namespace RMSAPPLICATION.Controllers
                 EduDetailService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
-            return PartialView(obj);
+            return PartialView("Create", obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -95,12 +96,16 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Edit(VMEduDetailOperation obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 && obj.CGPA == null||obj.CGPA=="")
+                ModelState.AddModelError("CGPA", "This is mandatory field");
             if (ModelState.IsValid)
             {
                 EduDetailService.PostEdit(obj);
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             EditHelper(obj);
-            return PartialView(obj);
+            return PartialView("Edit", obj);
         }
         [HttpGet]
         public ActionResult Delete(int? id)

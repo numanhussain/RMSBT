@@ -53,7 +53,7 @@ namespace RMSAPPLICATION.Controllers
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
-            return PartialView(obj);
+            return PartialView("Create",obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -68,6 +68,7 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostEdit(obj);
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             EditHelper(obj);
             return PartialView(obj);

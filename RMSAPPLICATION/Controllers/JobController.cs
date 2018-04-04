@@ -186,5 +186,11 @@ namespace RMSAPPLICATION.Controllers
                 return Json(Message, JsonRequestBehavior.AllowGet);
             }
         }
+        [HttpGet]
+        public ActionResult DeclarationStatement(int? JobID)
+        {
+            VMOpenJobIndex vmJobDetail = JobService.GetJobDetailIndex((int)JobID);
+            return View(vmJobDetail);
+        }
     }
 }

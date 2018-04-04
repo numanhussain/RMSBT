@@ -1,23 +1,23 @@
-﻿ function MiscellaneousGetCreate(id, item) {
-        clearClasses();
-            $("#WorkedBeforeDiv").hide();
-            $.ajax({
-                url: '/Miscellaneous/Create',
-                type: "GET",
-                cache: false,
-            }).done(function (result) {
-                $('#PartialViewContainer').html(result);
-                $("#hv1").addClass("liInActive");
-                $("#hv2").addClass("liInActive");
-                $("#hv3").addClass("liInActive");
-                $("#hv4").addClass("liInActive");
-                $("#hv5").addClass("liInActive");
-                $("#hv6").addClass("liActive");
-                $("#hv33").addClass("liInActive");
-$("#hv7").addClass("liInActive");
+﻿function MiscellaneousGetCreate(id, item) {
+    clearClasses();
+    $("#WorkedBeforeDiv").hide();
+    $.ajax({
+        url: '/Miscellaneous/Create',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liActive");
+        $("#hv33").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 7;
-            });
-    }
+    });
+}
 function MiscellaneousDetailHide() {
     $('#CriminalDetailtb').hide();
     $('#CrimanalRecord').change(function () {
@@ -67,6 +67,7 @@ function MiscellaneousDetailHide() {
             $("#HearAboutDetailtb").hide();
         }
     });
+
     //get script of above when value is saved
     if (document.getElementById('WorkingRelative').value == "Yes") {
         $("#WorkingRelativeDetailtb ").show();
@@ -98,7 +99,7 @@ function MiscellaneousDetailHide() {
     else {
         $("#WorkedBeforeDetailtb").hide();
     }
-};
+}
 function SaveMiscellaneousInfoFunction() {
     $('#btnPostCreate').click(function () {
         $.ajax({
@@ -106,11 +107,12 @@ function SaveMiscellaneousInfoFunction() {
             url: "/Miscellaneous/Create",
             data: $("#formEditID").serialize(),
             success: function (data) {
- if (data == "OK") { location.reload(); }
+                if (data == "OK") {
+                    MiscellaneousGetCreate(id)
+                }
                 else {
-                $('#myModal').modal('hide');
-                $('#PartialViewContainer').html(data);
-}
+                    $('#PartialViewContainer').html(data);
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");

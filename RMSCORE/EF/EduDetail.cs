@@ -20,6 +20,7 @@ namespace RMSCORE.EF
         public string TotalMark { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public Nullable<int> Institution { get; set; }
         public string MajorSubject { get; set; }
         public int CandidateID { get; set; }
         public string Percentage { get; set; }
@@ -27,11 +28,11 @@ namespace RMSCORE.EF
         public string PassingYear { get; set; }
         public string DegreeTitle { get; set; }
         public string OtherInstitute { get; set; }
-        public Nullable<int> Institution { get; set; }
         public Nullable<bool> InProgress { get; set; }
         public Nullable<int> DegreeTypeID { get; set; }
     
         public virtual Candidate Candidate { get; set; }
         public virtual EduDegreeLevel EduDegreeLevel { get; set; }
+        public virtual EduInstitute EduInstitute { get; set; }
     }
 }

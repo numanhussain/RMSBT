@@ -40,12 +40,6 @@ namespace RMSSERVICES.Miscellaneous
         }
         public ServiceMessage PostCreate(MiscellaneousDetail obj, V_UserCandidate LoggedInUser)
         {
-            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
-            List<User> images = UserRepository.FindBy(SpecificEntries);
-            User image = images.First();
-            image.UserStage = LoggedInUser.UserStage;
-            UserRepository.Edit(image);
-            UserRepository.Save();
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
@@ -91,8 +85,8 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.InterviewedLocation = obj.InterviewedLocation;
             dbMiscellaneous.AppliedPosition = obj.AppliedPosition;
             dbMiscellaneous.HearAboutDetail= obj.HearAboutDetail;
-            dbMiscellaneous.Disability = obj.InterviewedLocation;
-            dbMiscellaneous.DisabilityDetail = obj.AppliedPosition;
+            dbMiscellaneous.Disability = obj.Disability;
+            dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
             return dbMiscellaneous;
         }
         #endregion

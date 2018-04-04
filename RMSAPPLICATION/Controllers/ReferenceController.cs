@@ -51,7 +51,7 @@ namespace RMSAPPLICATION.Controllers
                 ReferenceDetailService.PostCreate(obj, vmf);
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
-            return PartialView(obj);
+            return PartialView("Create",obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -62,9 +62,11 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Edit(VMReferenceOperation obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostEdit(obj);
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return PartialView(obj);
         }

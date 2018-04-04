@@ -43,7 +43,6 @@
                                                 new SelectListItem { Text = "No", Value = "No"},
                                                   new SelectListItem { Text = "Yes", Value = "Yes"}
                                             }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
                             @Html.ValidationMessageFor(model => model.CrimanalRecord, "", new { @class = "text-danger" })
                         </div>
                         <div id="CriminalDetailtb">
@@ -62,7 +61,6 @@
                                                 new SelectListItem { Text = "No", Value = "No"},
                                                 new SelectListItem { Text = "Yes", Value = "Yes"}
                                             }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
                             @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
                         </div>
                         <div id="WorkingRelativeDetailtb">
@@ -81,7 +79,6 @@
                                                 new SelectListItem { Text = "No", Value = "No"},
                                                 new SelectListItem { Text = "Yes", Value = "Yes"}
                                             }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
                             @Html.ValidationMessageFor(model => model.Disability, "", new { @class = "text-danger" })
                         </div>
                         <div id="DisabilityDetailtb">
@@ -134,7 +131,7 @@
                                 new SelectListItem { Text = "No", Value = "No"},
                                 new SelectListItem { Text = "Yes", Value = "Yes"}
                             }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                     
                             @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
                         </div>
                     </div>

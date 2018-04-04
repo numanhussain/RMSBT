@@ -65,7 +65,7 @@ namespace RMSAPPLICATION.Controllers
             // Adjust Bonus of Compensation Radio Button
             string radioBonusValue = "";
             var BonusValue = ValueProvider.GetValue("BonusSelection");
-            if (radioBonusValue != null)
+            if (radioBonusValue != null||radioBonusValue=="")
             {
                 radioBonusValue = BonusValue.AttemptedValue;
             }

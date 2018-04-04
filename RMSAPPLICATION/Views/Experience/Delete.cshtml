@@ -13,7 +13,7 @@
     @Html.HiddenFor(model => model.StartDate)
     @Html.HiddenFor(model => model.EndDate)
     @Html.HiddenFor(model => model.EmployerName)
-    @Html.HiddenFor(model => model.City)
+    @Html.HiddenFor(model => model.CityID)
     @Html.HiddenFor(model => model.Address)
     @Html.HiddenFor(model => model.CurrentlyWorking)
     @Html.HiddenFor(model => model.Responsibility1)
@@ -70,10 +70,10 @@
                         @Html.DisplayFor(model => model.Address)
                     </dd>
                     <dt>
-                        @Html.DisplayNameFor(model => model.City)
+                        @Html.DisplayNameFor(model => model.CityID)
                     </dt>
                     <dd>
-                        @Html.DisplayFor(model => model.City)
+                        @Html.DisplayFor(model => model.CityID)
                     </dd>
                     <dt>
                         @Html.DisplayNameFor(model => model.Responsibility1)

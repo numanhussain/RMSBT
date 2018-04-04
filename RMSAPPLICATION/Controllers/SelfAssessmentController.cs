@@ -49,6 +49,7 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 CandidateStrengthService.PostIndex(dbOperation);
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return View("Index", dbOperation);
         }

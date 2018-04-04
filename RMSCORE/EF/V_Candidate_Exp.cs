@@ -30,7 +30,7 @@ namespace RMSCORE.EF
         public string Responsibility1 { get; set; }
         public string Responsibility2 { get; set; }
         public string Responsibility3 { get; set; }
-        public string CityName { get; set; }
         public Nullable<int> CityID { get; set; }
+        public string CityName { get; set; }
     }
 }
