@@ -14,7 +14,7 @@
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
         $("#hv33").addClass("liInActive");
-$("#hv7").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 3;
     });
 };
@@ -44,10 +44,10 @@ function EduDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-               if (data == "OK") { 
+                if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVEduDetailIndex(id)
-                      }
+                }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -82,10 +82,10 @@ function EduDetailPostEdit(id) {
             url: "/EduDetail/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                    if (data == "OK") { 
+                if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVEduDetailIndex(id)
-                      }
+                }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -104,8 +104,8 @@ function EduDetailGetDelete(id) {
         data: { "id": id },
         datatype: "json",
         success: function (data) {
-              $('#modelBody').html(data);
-              $('#myModal').modal('show');
+            $('#modelBody').html(data);
+            $('#myModal').modal('show');
         },
         error: function () {
             alert("Dynamic content load failed.");
@@ -165,7 +165,7 @@ function ShowHide() {
     $("#InstitutionDD").hide();
     $("#CGPATB").hide();
     $("#DegreeTypeDD").hide();
-    $("#DegreeTitleTB").show();
+    $("#DegreeTitleTB").hide();
     $("#OtherInstitute").hide();
     $("#MajorSubjectDD").hide();
     switch ($("#DegreeLevelID").val()) {
@@ -225,10 +225,10 @@ function ShowHide() {
             $("#MajorSubjectDD").show();
             break;
         case "9":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
+            $("#DegreeTitleTB").hide();
+            $("#InstitutionDD").show();
             $("#CGPATB").hide();
-            $("#DegreeTypeDD").hide();
+            $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             break;
         case "10":
@@ -304,7 +304,7 @@ function LoadDegreeTypeDD() {
                 // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
             });
             $('#DegreeTypeID').html(items);
-        }); 
+        });
 
 
     });

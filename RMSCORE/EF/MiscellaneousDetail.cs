@@ -27,7 +27,7 @@ namespace RMSCORE.EF
         public string CementExp { get; set; }
         public Nullable<int> NoticeTime { get; set; }
         public Nullable<int> CandidateID { get; set; }
-        public Nullable<bool> WorkedBefore { get; set; }
+        public string WorkedBefore { get; set; }
         public Nullable<int> HearAboutJobID { get; set; }
         public string CrimeDetail { get; set; }
         public string WorkingRelativeDetail { get; set; }

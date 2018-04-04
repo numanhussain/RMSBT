@@ -179,6 +179,7 @@ namespace RMSAPPLICATION.Controllers
                 dbCandidateJob.JobID = JobID;
                 dbCandidateJob.CJobDate = DateTime.Now;
                 JobApplyService.PostCreate(dbCandidateJob);
+                EmailGenerate.SendEmail(vmf.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>From Bestway Career Portal:</p><p>Dear Candidate " + vmf.CName + "  : </p><div><p>Thank you for your keen interest in applying for the position.We have received your application for this post. </p><p>Our Talent Acquisition Team will meticulously evaluate your profile in line with the requirements of the post you have applied for. Since, we receive a large number of</p><p> applications for different positions, it is not possible to communicate with every candidate individually. Therefore, only the short-listed candidates will be contacted by the Talent Acquisition Team for interview and other assessments as deemed appropriate. </p></div><div><p>You can check your status from our career portal.</p></div>" + "<div><p>Wish you best of luck in your quest to find a suitable career in accordance with your professional and academic qualifications.</p></div><div>Best regards:</div><div>Bestway Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Job Application");
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             else
