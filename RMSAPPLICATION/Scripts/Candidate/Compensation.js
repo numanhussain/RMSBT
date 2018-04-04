@@ -1,21 +1,21 @@
 ﻿function CompensationGetCreate(id, item) {
-        clearClasses();
-        $.ajax({
-            url: '/Compensation/Create',
-            type: "GET",
-            cache: false,
-        }).done(function (result) {
-            $('#PartialViewContainer').html(result);
-            $("#hv1").addClass("liInActive");
-            $("#hv2").addClass("liInActive");
-            $("#hv3").addClass("liInActive");
-            $("#hv4").addClass("liActive");
-            $("#hv5").addClass("liInActive");
-            $("#hv6").addClass("liInActive");
-            $("#hv33").addClass("liInActive");
-$("#hv7").addClass("liInActive");
-            document.getElementById("UserstageAfterFirst").value = 5;
-        });
+    clearClasses();
+    $.ajax({
+        url: '/Compensation/Create',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
+        document.getElementById("UserstageAfterFirst").value = 5;
+    });
 }
 function CompensationDetailHide() {
     //Worked Before Change
@@ -142,9 +142,10 @@ function SaveCompensationFunction() {
             type: 'POST',
             data: $("#formEditID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
+                if (data == "OK") {
+                    CompensationGetCreate(id)
+                }
                 else {
-                    $('#myModal').modal('hide');
                     $('#PartialViewContainer').html(data);
                 }
             },

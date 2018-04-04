@@ -3071,6 +3071,7 @@
     <Content Include="Views\Home\VerifyLink.cshtml" />
     <Content Include="Views\Home\ConfirmedEmail.cshtml" />
     <Content Include="Views\SelfAssessment\Index.cshtml" />
+    <Content Include="Views\Job\DeclarationStatement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

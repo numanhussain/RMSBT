@@ -41,10 +41,12 @@ function ReferenceDetailPostCreate(id) {
             url: "/Reference/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
-                else {
+                if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVReferenceDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
                 }
             },
             error: function () {
@@ -63,7 +65,6 @@ function ReferenceDetailGetEdit(id) {
         success: function (data) {
             $('#modelBody').html(data);
             $('#myModal').modal('show');
-
         },
         error: function () {
             alert("Dynamic content load failed.");
@@ -77,8 +78,10 @@ function ReferenceDetailPostEdit() {
             url: "/Reference/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVReferenceDetailIndex(id)
+                if (data == "OK") {
+                    $('#myModal').modal('hide');
+                    LoadPVReferenceDetailIndex(id)
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -111,7 +114,7 @@ function ReferenceDetailPostDelete(id) {
             data: $("#formDeleteID").serialize(),
             success: function (data) {
                 $('#myModal').modal('hide');
-                LoadPVSkillDetailIndex(id)
+                LoadPVReferenceDetailIndex(id)
             },
             error: function () {
                 alert("Dynamic content load failed.");

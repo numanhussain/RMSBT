@@ -26,15 +26,15 @@
                         </div>
 
                         <div class="media-right media-middle text-nowrap">
-                                @if (Model.IsApplied == false)
-                                {
-                                    <a href="#" name="submit" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
-                                }
-                                else
-                                {
-                                    <span class="glyphicon-ok-sign">Already Applied For this Job</span>
-                                }
-                            
+                            @if (Model.IsApplied == false)
+                            {
+                                <a href="#" name="submit" onclick="DeclarationStatement(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                            }
+                            else
+                            {
+                                <span class="glyphicon-ok-sign">Already Applied For this Job</span>
+                            }
+
                         </div>
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Job Description</h6>
@@ -58,6 +58,16 @@
                 <!-- /main content -->
             </div>
             <!-- /page content -->
+        </div>
+    </div>
+</div>
+<div>
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div id="modelBody1">
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -44,8 +44,13 @@ function EduDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVEduDetailIndex(id);
+               if (data == "OK") { 
+                    $('#myModal').modal('hide');
+                    LoadPVEduDetailIndex(id)
+                      }
+                else {
+                    $('#modelBody').html(data);
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");
@@ -77,9 +82,12 @@ function EduDetailPostEdit(id) {
             url: "/EduDetail/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
-                else {
+                    if (data == "OK") { 
                     $('#myModal').modal('hide');
+                    LoadPVEduDetailIndex(id)
+                      }
+                else {
+                    $('#modelBody').html(data);
                 }
             },
             error: function () {
@@ -96,9 +104,8 @@ function EduDetailGetDelete(id) {
         data: { "id": id },
         datatype: "json",
         success: function (data) {
-            $('#modelBody').html(data);
-            $('#myModal').modal('show');
-
+              $('#modelBody').html(data);
+              $('#myModal').modal('show');
         },
         error: function () {
             alert("Dynamic content load failed.");
@@ -297,7 +304,7 @@ function LoadDegreeTypeDD() {
                 // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
             });
             $('#DegreeTypeID').html(items);
-        });
+        }); 
 
 
     });

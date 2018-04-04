@@ -89,21 +89,31 @@ namespace RMSSERVICES.Job
         public string CheckForProfileCompletion(V_UserCandidate LoggedInUser)
         {
             string message = "";
-            Expression<Func<EduDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (EduDetailReporsitory.FindBy(SpecificClient).Count == 0)
+            Expression<Func<MiscellaneousDetail, bool>> SpecificClient4 = c => c.CandidateID == LoggedInUser.CandidateID;
+            if (MiscellaneousDetailReporsitory.FindBy(SpecificClient4).Count == 0)
+            {
+                message = "Kindly enter your miscellaneous details in profile";
+            }
+            Expression<Func<CompensationDetail, bool>> SpecificClient3 = c => c.CandidateID == LoggedInUser.CandidateID;
+            if (CompensationDetailReporsitory.FindBy(SpecificClient3).Count == 0)
+            {
+                message = "Kindly enter your compensation details in profile";
+            }
+            Expression<Func<ExperienceDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
+            if (ExperienceDetailReporsitory.FindBy(SpecificClient2).Count == 0)
+            {
+                message = "Kindly enter your experience details in profile";
+            }
+            Expression<Func<EduDetail, bool>> SpecificClient1 = c => c.CandidateID == LoggedInUser.CandidateID;
+            if (EduDetailReporsitory.FindBy(SpecificClient1).Count == 0)
             {
                 message = "Kindly enter your educations in profile";
             }
-            Expression<Func<Candidate, bool>> SpecificClient1 = c => c.CandidateID == LoggedInUser.CandidateID;
+            Expression<Func<Candidate, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
             Candidate candidate = CandidateProfileReporsitory.GetSingle(LoggedInUser.CandidateID);
-            if (candidate.CName == null || candidate.CName=="")
+            if (candidate.CName == null || candidate.CName == "")
             {
-                message = "";
-            }
-            Expression<Func<MiscellaneousDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (MiscellaneousDetailReporsitory.FindBy(SpecificClient2).Count == 0)
-            {
-                message = "Kindly enter your miscellaneous details in profile";
+                message = "Kindly enter your personal details in profile";
             }
             return message;
         }
@@ -197,7 +207,7 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);
             }
-            return vmOpenJobs.OrderByDescending(aa=>aa.CreatedDate).ToList();
+            return vmOpenJobs.OrderByDescending(aa => aa.CreatedDate).ToList();
         }
         #endregion
         #region -- Service Private Methods --

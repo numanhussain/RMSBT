@@ -76,6 +76,9 @@
     <Compile Include="EF\Country.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\EduBoard.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\EduDegreeLevel.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

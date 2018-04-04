@@ -60,7 +60,10 @@ function ExperienceDetailPostCreate(id) {
             url: "/Experience/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
+                                  if (data == "OK") { 
+                    $('#myModal').modal('hide');
+                    LoadPVExperienceDetailIndex(id)
+                      }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -95,8 +98,13 @@ function ExperienceDetailPostEdit(id) {
             url: "/Experience/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVExperienceDetailIndex(id)
+                                    if (data == "OK") { 
+                    $('#myModal').modal('hide');
+                    LoadPVExperienceDetailIndex(id)
+                      }
+                else {
+                    $('#modelBody').html(data);
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");

@@ -45,9 +45,12 @@ function SkillDetailPostCreate(id) {
             cache: false,
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                if (data == "OK") { location.reload(); }
-                else {
+                if (data == "OK") {
                     $('#myModal').modal('hide');
+                    LoadPVSkillDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
                 }
             },
             error: function () {
@@ -83,8 +86,13 @@ function SkillDetailPostEdit(id) {
             url: "/Skill/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $('#myModal').modal('hide');
-                LoadPVSkillDetailIndex(id)
+                if (data == "OK") {
+                    $('#myModal').modal('hide');
+                    LoadPVSkillDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
+                }
             },
             error: function () {
                 alert("Dynamic content load failed.");

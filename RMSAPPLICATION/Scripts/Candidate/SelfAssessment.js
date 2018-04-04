@@ -23,7 +23,12 @@ function SelfAssessmentPostCreate() {
             type: 'POST',
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                $('#PartialViewContainer').html(data);
+                if (data == "OK") {
+                    SelfAssessmentGetCreate(id)
+                }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
             },
             error: function () {
                 $("#result").text('an error occured')

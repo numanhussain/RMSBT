@@ -29,5 +29,6 @@ namespace RMSCORE.EF
         public string Responsibility1 { get; set; }
         public string Responsibility2 { get; set; }
         public string Responsibility3 { get; set; }
+        public Nullable<int> CareerLevelID { get; set; }
     }
 }
