@@ -83,6 +83,16 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.CementExp = obj.CementExp;
             dbMiscellaneous.NoticeTime = obj.NoticeTime;
             dbMiscellaneous.CandidateID = obj.CandidateID;
+            dbMiscellaneous.CrimeDetail = obj.CrimeDetail;
+            dbMiscellaneous.WorkingRelative = obj.WorkingRelative;
+            dbMiscellaneous.WorkingRelativeDetail = obj.WorkingRelativeDetail;
+            dbMiscellaneous.InterviewedBefore = obj.InterviewedBefore;
+            dbMiscellaneous.InterviewedDate = obj.InterviewedDate;
+            dbMiscellaneous.InterviewedLocation = obj.InterviewedLocation;
+            dbMiscellaneous.AppliedPosition = obj.AppliedPosition;
+            dbMiscellaneous.HearAboutDetail= obj.HearAboutDetail;
+            dbMiscellaneous.Disability = obj.InterviewedLocation;
+            dbMiscellaneous.DisabilityDetail = obj.AppliedPosition;
             return dbMiscellaneous;
         }
         #endregion

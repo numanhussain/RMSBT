@@ -295,6 +295,14 @@
           <Property Name="WorkedBefore" Type="bit" />
           <Property Name="HearAboutJobID" Type="int" />
           <Property Name="CrimeDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelativeDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="InterviewedBefore" Type="nvarchar" MaxLength="50" />
+          <Property Name="InterviewedDate" Type="datetime" />
+          <Property Name="InterviewedLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="AppliedPosition" Type="nvarchar" MaxLength="50" />
+          <Property Name="Disability" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisabilityDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="HearAboutDetail" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="NotificationDetail">
           <Key>
@@ -1255,6 +1263,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="WorkedBefore" Type="Boolean" />
           <Property Name="HearAboutJobID" Type="Int32" />
           <Property Name="CrimeDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewedBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewedDate" Type="DateTime" Precision="3" />
+          <Property Name="InterviewedLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppliedPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Disability" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisabilityDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HearAboutDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NotificationDetail">
           <Key>
@@ -1890,6 +1906,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="MiscellaneousDetails">
             <EntityTypeMapping TypeName="BTRMSModel.MiscellaneousDetail">
               <MappingFragment StoreEntitySet="MiscellaneousDetails">
+                <ScalarProperty Name="HearAboutDetail" ColumnName="HearAboutDetail" />
+                <ScalarProperty Name="DisabilityDetail" ColumnName="DisabilityDetail" />
+                <ScalarProperty Name="Disability" ColumnName="Disability" />
+                <ScalarProperty Name="AppliedPosition" ColumnName="AppliedPosition" />
+                <ScalarProperty Name="InterviewedLocation" ColumnName="InterviewedLocation" />
+                <ScalarProperty Name="InterviewedDate" ColumnName="InterviewedDate" />
+                <ScalarProperty Name="InterviewedBefore" ColumnName="InterviewedBefore" />
+                <ScalarProperty Name="WorkingRelativeDetail" ColumnName="WorkingRelativeDetail" />
                 <ScalarProperty Name="CrimeDetail" ColumnName="CrimeDetail" />
                 <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
                 <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />

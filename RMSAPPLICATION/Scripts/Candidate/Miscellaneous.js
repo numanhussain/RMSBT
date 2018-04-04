@@ -19,24 +19,85 @@ $("#hv7").addClass("liInActive");
             });
     }
 function MiscellaneousDetailHide() {
-    //Worked Before Change
-    $("#WorkedBeforeDiv").hide();
-    if (document.getElementById('WorkedBefore').checked) {
-        $("#WorkedBeforeDiv").show();
-    }
-    else {
-        $("#WorkedBeforeDiv").hide();
-    }
-    //Worked Before Selected
-    $('#WorkedBefore').click(function () {
-        if ($(this).is(":checked")) {
-            $("#WorkedBeforeDiv").show();
-        }
-        else {
-            $("#WorkedBeforeDiv").hide();
+    $('#CriminalDetailtb').hide();
+    $('#CrimanalRecord').change(function () {
+        if ($("#CrimanalRecord").val() == "Yes") {
+            $("#CriminalDetailtb").show();
+        } else {
+            $("#CriminalDetailtb").hide();
         }
     });
-
+    $('#WorkingRelativeDetailtb').hide();
+    $('#WorkingRelative').change(function () {
+        if ($("#WorkingRelative").val() == "Yes") {
+            $("#WorkingRelativeDetailtb").show();
+        } else {
+            $("#WorkingRelativeDetailtb").hide();
+        }
+    });
+    $('#InterviewedBeforeDetailtb').hide();
+    $('#InterviewedBefore').change(function () {
+        if ($("#InterviewedBefore").val() == "Yes") {
+            $("#InterviewedBeforeDetailtb").show();
+        } else {
+            $("#InterviewedBeforeDetailtb").hide();
+        }
+    });
+    $('#WorkedBeforeDetailtb').hide();
+    $('#WorkedBefore').change(function () {
+        if ($("#WorkedBefore").val() == "Yes") {
+            $("#WorkedBeforeDetailtb").show();
+        } else {
+            $("#WorkedBeforeDetailtb").hide();
+        }
+    });
+    $('#DisabilityDetailtb').hide();
+    $('#Disability').change(function () {
+        if ($("#Disability").val() == "Yes") {
+            $("#DisabilityDetailtb").show();
+        } else {
+            $("#DisabilityDetailtb").hide();
+        }
+    });
+    $('#HearAboutDetailtb').hide();
+    $('#HearAboutJobID').change(function () {
+        if ($("#HearAboutJobID").val() == "8") {
+            $("#HearAboutDetailtb").show();
+        } else {
+            $("#HearAboutDetailtb").hide();
+        }
+    });
+    //get script of above when value is saved
+    if (document.getElementById('WorkingRelative').value == "Yes") {
+        $("#WorkingRelativeDetailtb ").show();
+    }
+    else {
+        $("#WorkingRelativeDetailtb").hide();
+    }
+    if (document.getElementById('CrimanalRecord').value == "Yes") {
+        $("#CriminalDetailtb ").show();
+    }
+    else {
+        $("#CriminalDetailtb").hide();
+    }
+    if (document.getElementById('InterviewedBefore').value == "Yes") {
+        $("#InterviewedBeforelDetailtb ").show();
+    }
+    else {
+        $("#InterviewedBeforetb").hide();
+    }
+    if (document.getElementById('Disability').value == "Yes") {
+        $("#DisabilityDetailtb ").show();
+    }
+    else {
+        $("#DisabilityDetailtb").hide();
+    }
+    if (document.getElementById('WorkedBefore').value == "Yes") {
+        $("#WorkedBeforeDetailtb ").show();
+    }
+    else {
+        $("#WorkedBeforeDetailtb").hide();
+    }
 };
 function SaveMiscellaneousInfoFunction() {
     $('#btnPostCreate').click(function () {
