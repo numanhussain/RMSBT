@@ -68,6 +68,7 @@ function MiscellaneousDetailHide() {
         }
     });
 
+
     //get script of above when value is saved
     if (document.getElementById('WorkingRelative').value == "Yes") {
         $("#WorkingRelativeDetailtb ").show();
@@ -82,10 +83,10 @@ function MiscellaneousDetailHide() {
         $("#CriminalDetailtb").hide();
     }
     if (document.getElementById('InterviewedBefore').value == "Yes") {
-        $("#InterviewedBeforelDetailtb ").show();
+        $("#InterviewedBeforeDetailtb ").show();
     }
     else {
-        $("#InterviewedBeforetb").hide();
+        $("#InterviewedBeforeDetailtb").hide();
     }
     if (document.getElementById('Disability').value == "Yes") {
         $("#DisabilityDetailtb ").show();
