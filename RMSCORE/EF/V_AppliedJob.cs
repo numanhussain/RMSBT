@@ -14,7 +14,7 @@ namespace RMSCORE.EF
     
     public partial class V_AppliedJob
     {
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public int CJobID { get; set; }
         public Nullable<System.DateTime> CJobDate { get; set; }
         public string CName { get; set; }

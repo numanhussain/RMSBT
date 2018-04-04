@@ -33,6 +33,11 @@
                     <li><a class="active"> Candidate</a></li>
                     <li class="active"> - Add New</li>
                 </ul>
+                <ul class="breadcrumb-elements">
+                    <li>
+                        <button onclick="CandidateProfile(@Model.CandidateID)">Candidate Profile</button>
+                    </li>
+                </ul>
             </div>
 
             <div class="panel-body">
@@ -58,7 +63,7 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="required control-label text-semibold">CNIC#/Passport#</label>
-                            @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control",placeholder="xxxxx-xxxxxxx-x" } })
+                            @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control", placeholder = "xxxxx-xxxxxxx-x" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CNICNo, "", new { @class = "text-danger" })
                             </div>
@@ -87,7 +92,7 @@
                             <label class="control-label text-semibold">Martial Status</label>
                             @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
                         </div>
-                    </div> 
+                    </div>
                     <div class="form-group col-md-2">
                         <div>
                             <label class="control-label text-semibold">Religion</label>
@@ -150,7 +155,7 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="required control-label text-semibold">Cell #</label>
-                            @Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control"} })
+                            @Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CellNo, "", new { @class = "text-danger" })
                             </div>
@@ -167,13 +172,13 @@
                     </div>
                 </div>
                 @*<div class="row">
-                    <div class="form-group col-md-12">
-                        <div>
-                            <label class="control-label text-semibold">Objective</label>
-                            @Html.TextAreaFor(model => model.Objective, new { @class = "form-control", @cols = 5, @rows = 1 })
+                        <div class="form-group col-md-12">
+                            <div>
+                                <label class="control-label text-semibold">Objective</label>
+                                @Html.TextAreaFor(model => model.Objective, new { @class = "form-control", @cols = 5, @rows = 1 })
+                            </div>
                         </div>
-                    </div>
-                </div>*@
+                    </div>*@
             </div>
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>

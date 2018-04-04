@@ -22,7 +22,8 @@ namespace RMSAPPLICATION.Controllers
         IJobService JobService;
         IDDService DDService;
         public JobController(IEntityService<JobDetail> jobEntityService,
-        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, IDDService ddService, IJobService jobService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService)
+        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, IDDService ddService, IJobService jobService,
+        IEntityService<Location> locationService, IEntityService<Catagory> catagoryService)
         {
             JobEntityService = jobEntityService;
             JobService = jobService;
@@ -192,5 +193,7 @@ namespace RMSAPPLICATION.Controllers
             VMOpenJobIndex vmJobDetail = JobService.GetJobDetailIndex((int)JobID);
             return View(vmJobDetail);
         }
+
+      
     }
 }

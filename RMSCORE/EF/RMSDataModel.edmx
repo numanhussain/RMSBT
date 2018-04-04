@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BTRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BTRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BloodGroup">
           <Key>
             <PropertyRef Name="CBID" />
@@ -406,9 +406,10 @@ warning 6013: The table/view 'BTRMS.dbo.UserTest' does not have a primary key de
 warning 6002: The table/view 'BTRMS.dbo.V_AppliedJob' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_AppliedJob">
           <Key>
+            <PropertyRef Name="CandidateID" />
             <PropertyRef Name="CJobID" />
           </Key>
-          <Property Name="CandidateID" Type="int" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CJobID" Type="int" Nullable="false" />
           <Property Name="CJobDate" Type="datetime" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
@@ -525,6 +526,36 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Skills' does not have a prim
           <Property Name="SkillLevelName" Type="nvarchar" MaxLength="50" />
           <Property Name="CandidateID" Type="int" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_CandidateProfile' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_CandidateProfile">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroupID" Type="nvarchar" MaxLength="50" />
+          <Property Name="MartialStatusID" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="LandlineNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DomicileCityID" Type="int" />
+          <Property Name="NationalityCountryID" Type="int" />
+          <Property Name="Objective" Type="nvarchar" MaxLength="500" />
+          <Property Name="CImage" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="GenderID" Type="int" />
+          <Property Name="AppliedAs" Type="int" />
+          <Property Name="DateCreated" Type="date" />
+          <Property Name="ReligionID" Type="int" />
+          <Property Name="HaveExperience" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Interview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -809,6 +840,33 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_Skills].[CName] AS [CName]
     FROM [dbo].[V_Candidate_Skills] AS [V_Candidate_Skills]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="V_CandidateProfile" EntityType="Self.V_CandidateProfile" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_CandidateProfile].[CandidateID] AS [CandidateID], 
+    [V_CandidateProfile].[CName] AS [CName], 
+    [V_CandidateProfile].[FatherName] AS [FatherName], 
+    [V_CandidateProfile].[DOB] AS [DOB], 
+    [V_CandidateProfile].[CNICNo] AS [CNICNo], 
+    [V_CandidateProfile].[BloodGroupID] AS [BloodGroupID], 
+    [V_CandidateProfile].[MartialStatusID] AS [MartialStatusID], 
+    [V_CandidateProfile].[Address] AS [Address], 
+    [V_CandidateProfile].[CityID] AS [CityID], 
+    [V_CandidateProfile].[CountryID] AS [CountryID], 
+    [V_CandidateProfile].[LandlineNo] AS [LandlineNo], 
+    [V_CandidateProfile].[CellNo] AS [CellNo], 
+    [V_CandidateProfile].[EmailID] AS [EmailID], 
+    [V_CandidateProfile].[DomicileCityID] AS [DomicileCityID], 
+    [V_CandidateProfile].[NationalityCountryID] AS [NationalityCountryID], 
+    [V_CandidateProfile].[Objective] AS [Objective], 
+    [V_CandidateProfile].[CImage] AS [CImage], 
+    [V_CandidateProfile].[UserID] AS [UserID], 
+    [V_CandidateProfile].[GenderID] AS [GenderID], 
+    [V_CandidateProfile].[AppliedAs] AS [AppliedAs], 
+    [V_CandidateProfile].[DateCreated] AS [DateCreated], 
+    [V_CandidateProfile].[ReligionID] AS [ReligionID], 
+    [V_CandidateProfile].[HaveExperience] AS [HaveExperience]
+    FROM [dbo].[V_CandidateProfile] AS [V_CandidateProfile]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_Interview" EntityType="Self.V_Interview" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [V_Interview].[InterviewID] AS [InterviewID], 
@@ -898,16 +956,82 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <End Role="SkillDetail" EntitySet="SkillDetail" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BTRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BTRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BloodGroups" EntityType="BTRMSModel.BloodGroup" />
+          <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
+          <EntitySet Name="CandidateJobs" EntityType="BTRMSModel.CandidateJob" />
+          <EntitySet Name="CandidatePhotoes" EntityType="BTRMSModel.CandidatePhoto" />
+          <EntitySet Name="CandidateStrengths" EntityType="BTRMSModel.CandidateStrength" />
+          <EntitySet Name="Catagories" EntityType="BTRMSModel.Catagory" />
+          <EntitySet Name="Cities" EntityType="BTRMSModel.City" />
+          <EntitySet Name="CompensationDetails" EntityType="BTRMSModel.CompensationDetail" />
+          <EntitySet Name="Countries" EntityType="BTRMSModel.Country" />
+          <EntitySet Name="EduDegreeLevels" EntityType="BTRMSModel.EduDegreeLevel" />
+          <EntitySet Name="EduDegreeTypes" EntityType="BTRMSModel.EduDegreeType" />
+          <EntitySet Name="EduDetails" EntityType="BTRMSModel.EduDetail" />
+          <EntitySet Name="EduInstitutes" EntityType="BTRMSModel.EduInstitute" />
+          <EntitySet Name="ExpCareerLevels" EntityType="BTRMSModel.ExpCareerLevel" />
+          <EntitySet Name="ExperienceDetails" EntityType="BTRMSModel.ExperienceDetail" />
+          <EntitySet Name="ExperienceIndustries" EntityType="BTRMSModel.ExperienceIndustry" />
+          <EntitySet Name="Genders" EntityType="BTRMSModel.Gender" />
+          <EntitySet Name="HearAbouts" EntityType="BTRMSModel.HearAbout" />
+          <EntitySet Name="Interviews" EntityType="BTRMSModel.Interview" />
+          <EntitySet Name="JobDetails" EntityType="BTRMSModel.JobDetail" />
+          <EntitySet Name="Locations" EntityType="BTRMSModel.Location" />
+          <EntitySet Name="MartialStatus" EntityType="BTRMSModel.MartialStatu" />
+          <EntitySet Name="MiscellaneousDetails" EntityType="BTRMSModel.MiscellaneousDetail" />
+          <EntitySet Name="NotificationDetails" EntityType="BTRMSModel.NotificationDetail" />
+          <EntitySet Name="ReferenceDetails" EntityType="BTRMSModel.ReferenceDetail" />
+          <EntitySet Name="Religions" EntityType="BTRMSModel.Religion" />
+          <EntitySet Name="SkillDetails" EntityType="BTRMSModel.SkillDetail" />
+          <EntitySet Name="SkillLevels" EntityType="BTRMSModel.SkillLevel" />
+          <EntitySet Name="sysdiagrams" EntityType="BTRMSModel.sysdiagram" />
+          <EntitySet Name="Users" EntityType="BTRMSModel.User" />
+          <EntitySet Name="V_AppliedJob" EntityType="BTRMSModel.V_AppliedJob" />
+          <EntitySet Name="V_Candidate_EduDetail" EntityType="BTRMSModel.V_Candidate_EduDetail" />
+          <EntitySet Name="V_Candidate_Exp" EntityType="BTRMSModel.V_Candidate_Exp" />
+          <EntitySet Name="V_Candidate_Miscellaneous" EntityType="BTRMSModel.V_Candidate_Miscellaneous" />
+          <EntitySet Name="V_Candidate_Reference" EntityType="BTRMSModel.V_Candidate_Reference" />
+          <EntitySet Name="V_Candidate_Skills" EntityType="BTRMSModel.V_Candidate_Skills" />
+          <EntitySet Name="V_CandidateProfile" EntityType="BTRMSModel.V_CandidateProfile" />
+          <EntitySet Name="V_Interview" EntityType="BTRMSModel.V_Interview" />
+          <EntitySet Name="V_JobDetail" EntityType="BTRMSModel.V_JobDetail" />
+          <EntitySet Name="V_Notification" EntityType="BTRMSModel.V_Notification" />
+          <EntitySet Name="V_UserCandidate" EntityType="BTRMSModel.V_UserCandidate" />
+          <AssociationSet Name="FK_EduDetail_Candidate" Association="BTRMSModel.FK_EduDetail_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="EduDetail" EntitySet="EduDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Candidate" Association="BTRMSModel.FK_Interview_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_Candidate" Association="BTRMSModel.FK_Notification_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="NotificationDetail" EntitySet="NotificationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Candidate" Association="BTRMSModel.FK_Skill_Candidate">
+            <End Role="Candidate" EntitySet="Candidates" />
+            <End Role="SkillDetail" EntitySet="SkillDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EduDetail_EduDegreeLevel" Association="BTRMSModel.FK_EduDetail_EduDegreeLevel">
+            <End Role="EduDegreeLevel" EntitySet="EduDegreeLevels" />
+            <End Role="EduDetail" EntitySet="EduDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Interview_Job" Association="BTRMSModel.FK_Interview_Job">
+            <End Role="JobDetail" EntitySet="JobDetails" />
+            <End Role="Interview" EntitySet="Interviews" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="BloodGroup">
           <Key>
             <PropertyRef Name="CBID" />
           </Key>
-          <Property Name="CBID" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="CBID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
           <Property Name="BGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Candidate">
@@ -937,10 +1061,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="DateCreated" Type="DateTime" Precision="0" />
           <Property Name="ReligionID" Type="Int32" />
           <Property Name="HaveExperience" Type="Boolean" />
-          <NavigationProperty Name="EduDetails" Relationship="Self.FK_EduDetail_Candidate" FromRole="Candidate" ToRole="EduDetail" />
-          <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_Candidate" FromRole="Candidate" ToRole="Interview" />
-          <NavigationProperty Name="NotificationDetails" Relationship="Self.FK_Notification_Candidate" FromRole="Candidate" ToRole="NotificationDetail" />
-          <NavigationProperty Name="SkillDetails" Relationship="Self.FK_Skill_Candidate" FromRole="Candidate" ToRole="SkillDetail" />
+          <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="Candidate" ToRole="EduDetail" />
+          <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Candidate" ToRole="Interview" />
+          <NavigationProperty Name="NotificationDetails" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="Candidate" ToRole="NotificationDetail" />
+          <NavigationProperty Name="SkillDetails" Relationship="BTRMSModel.FK_Skill_Candidate" FromRole="Candidate" ToRole="SkillDetail" />
         </EntityType>
         <EntityType Name="CandidateJob">
           <Key>
@@ -1045,7 +1169,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </Key>
           <Property Name="DLevelID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DegreeLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EduDetails" Relationship="Self.FK_EduDetail_EduDegreeLevel" FromRole="EduDegreeLevel" ToRole="EduDetail" />
+          <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_EduDegreeLevel" FromRole="EduDegreeLevel" ToRole="EduDetail" />
         </EntityType>
         <EntityType Name="EduDegreeType">
           <Key>
@@ -1075,8 +1199,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Institution" Type="Int32" />
           <Property Name="InProgress" Type="Boolean" />
           <Property Name="DegreeTypeID" Type="Int32" />
-          <NavigationProperty Name="Candidate" Relationship="Self.FK_EduDetail_Candidate" FromRole="EduDetail" ToRole="Candidate" />
-          <NavigationProperty Name="EduDegreeLevel" Relationship="Self.FK_EduDetail_EduDegreeLevel" FromRole="EduDetail" ToRole="EduDegreeLevel" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="EduDetail" ToRole="Candidate" />
+          <NavigationProperty Name="EduDegreeLevel" Relationship="BTRMSModel.FK_EduDetail_EduDegreeLevel" FromRole="EduDetail" ToRole="EduDegreeLevel" />
         </EntityType>
         <EntityType Name="EduInstitute">
           <Key>
@@ -1146,8 +1270,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="StartTime" Type="Time" Precision="7" />
           <Property Name="EndDateTime" Type="DateTime" Precision="3" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Candidate" Relationship="Self.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
-          <NavigationProperty Name="JobDetail" Relationship="Self.FK_Interview_Job" FromRole="Interview" ToRole="JobDetail" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
+          <NavigationProperty Name="JobDetail" Relationship="BTRMSModel.FK_Interview_Job" FromRole="Interview" ToRole="JobDetail" />
         </EntityType>
         <EntityType Name="JobDetail">
           <Key>
@@ -1168,7 +1292,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="SkillReq" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <Property Name="DepatmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Interviews" Relationship="Self.FK_Interview_Job" FromRole="JobDetail" ToRole="Interview" />
+          <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Job" FromRole="JobDetail" ToRole="Interview" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -1226,7 +1350,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="JobID" Type="Int32" />
           <Property Name="JobStatus" Type="Boolean" />
           <Property Name="InterviewID" Type="Int32" />
-          <NavigationProperty Name="Candidate" Relationship="Self.FK_Notification_Candidate" FromRole="NotificationDetail" ToRole="Candidate" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="NotificationDetail" ToRole="Candidate" />
         </EntityType>
         <EntityType Name="ReferenceDetail">
           <Key>
@@ -1255,7 +1379,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="SLevelID" Type="Int32" />
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Candidate" Relationship="Self.FK_Skill_Candidate" FromRole="SkillDetail" ToRole="Candidate" />
+          <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Skill_Candidate" FromRole="SkillDetail" ToRole="Candidate" />
         </EntityType>
         <EntityType Name="SkillLevel">
           <Key>
@@ -1268,7 +1392,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="principal_id" Type="Int32" Nullable="false" />
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
@@ -1297,9 +1421,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
         </EntityType>
         <EntityType Name="V_AppliedJob">
           <Key>
+            <PropertyRef Name="CandidateID" />
             <PropertyRef Name="CJobID" />
           </Key>
-          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CJobID" Type="Int32" Nullable="false" />
           <Property Name="CJobDate" Type="DateTime" Precision="3" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1407,6 +1532,34 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CandidateID" Type="Int32" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="V_CandidateProfile">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BloodGroupID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MartialStatusID" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="LandlineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DomicileCityID" Type="Int32" />
+          <Property Name="NationalityCountryID" Type="Int32" />
+          <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CImage" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="AppliedAs" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="ReligionID" Type="Int32" />
+          <Property Name="HaveExperience" Type="Boolean" />
+        </EntityType>
         <EntityType Name="V_Interview">
           <Key>
             <PropertyRef Name="InterviewID" />
@@ -1477,8 +1630,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
-          <End Role="EduDetail" Type="Self.EduDetail" Multiplicity="*" />
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="BTRMSModel.EduDetail" Role="EduDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
               <PropertyRef Name="CandidateID" />
@@ -1489,8 +1642,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Interview_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
-          <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="BTRMSModel.Interview" Role="Interview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
               <PropertyRef Name="CandidateID" />
@@ -1501,8 +1654,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Notification_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
-          <End Role="NotificationDetail" Type="Self.NotificationDetail" Multiplicity="*" />
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="BTRMSModel.NotificationDetail" Role="NotificationDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
               <PropertyRef Name="CandidateID" />
@@ -1513,8 +1666,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Skill_Candidate">
-          <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
-          <End Role="SkillDetail" Type="Self.SkillDetail" Multiplicity="*" />
+          <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
+          <End Type="BTRMSModel.SkillDetail" Role="SkillDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Candidate">
               <PropertyRef Name="CandidateID" />
@@ -1525,8 +1678,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_EduDetail_EduDegreeLevel">
-          <End Role="EduDegreeLevel" Type="Self.EduDegreeLevel" Multiplicity="0..1" />
-          <End Role="EduDetail" Type="Self.EduDetail" Multiplicity="*" />
+          <End Type="BTRMSModel.EduDegreeLevel" Role="EduDegreeLevel" Multiplicity="0..1" />
+          <End Type="BTRMSModel.EduDetail" Role="EduDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="EduDegreeLevel">
               <PropertyRef Name="DLevelID" />
@@ -1537,8 +1690,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Interview_Job">
-          <End Role="JobDetail" Type="Self.JobDetail" Multiplicity="0..1" />
-          <End Role="Interview" Type="Self.Interview" Multiplicity="*" />
+          <End Type="BTRMSModel.JobDetail" Role="JobDetail" Multiplicity="0..1" />
+          <End Type="BTRMSModel.Interview" Role="Interview" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="JobDetail">
               <PropertyRef Name="JobID" />
@@ -1548,72 +1701,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="BTRMSEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="BloodGroups" EntityType="Self.BloodGroup" />
-          <EntitySet Name="Candidates" EntityType="Self.Candidate" />
-          <EntitySet Name="CandidateJobs" EntityType="Self.CandidateJob" />
-          <EntitySet Name="CandidatePhotoes" EntityType="Self.CandidatePhoto" />
-          <EntitySet Name="CandidateStrengths" EntityType="Self.CandidateStrength" />
-          <EntitySet Name="Catagories" EntityType="Self.Catagory" />
-          <EntitySet Name="Cities" EntityType="Self.City" />
-          <EntitySet Name="CompensationDetails" EntityType="Self.CompensationDetail" />
-          <EntitySet Name="Countries" EntityType="Self.Country" />
-          <EntitySet Name="EduDegreeLevels" EntityType="Self.EduDegreeLevel" />
-          <EntitySet Name="EduDegreeTypes" EntityType="Self.EduDegreeType" />
-          <EntitySet Name="EduDetails" EntityType="Self.EduDetail" />
-          <EntitySet Name="EduInstitutes" EntityType="Self.EduInstitute" />
-          <EntitySet Name="ExpCareerLevels" EntityType="Self.ExpCareerLevel" />
-          <EntitySet Name="ExperienceDetails" EntityType="Self.ExperienceDetail" />
-          <EntitySet Name="ExperienceIndustries" EntityType="Self.ExperienceIndustry" />
-          <EntitySet Name="Genders" EntityType="Self.Gender" />
-          <EntitySet Name="HearAbouts" EntityType="Self.HearAbout" />
-          <EntitySet Name="Interviews" EntityType="Self.Interview" />
-          <EntitySet Name="JobDetails" EntityType="Self.JobDetail" />
-          <EntitySet Name="Locations" EntityType="Self.Location" />
-          <EntitySet Name="MartialStatus" EntityType="Self.MartialStatu" />
-          <EntitySet Name="MiscellaneousDetails" EntityType="Self.MiscellaneousDetail" />
-          <EntitySet Name="NotificationDetails" EntityType="Self.NotificationDetail" />
-          <EntitySet Name="ReferenceDetails" EntityType="Self.ReferenceDetail" />
-          <EntitySet Name="Religions" EntityType="Self.Religion" />
-          <EntitySet Name="SkillDetails" EntityType="Self.SkillDetail" />
-          <EntitySet Name="SkillLevels" EntityType="Self.SkillLevel" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
-          <EntitySet Name="V_AppliedJob" EntityType="Self.V_AppliedJob" />
-          <EntitySet Name="V_Candidate_EduDetail" EntityType="Self.V_Candidate_EduDetail" />
-          <EntitySet Name="V_Candidate_Exp" EntityType="Self.V_Candidate_Exp" />
-          <EntitySet Name="V_Candidate_Miscellaneous" EntityType="Self.V_Candidate_Miscellaneous" />
-          <EntitySet Name="V_Candidate_Reference" EntityType="Self.V_Candidate_Reference" />
-          <EntitySet Name="V_Candidate_Skills" EntityType="Self.V_Candidate_Skills" />
-          <EntitySet Name="V_Interview" EntityType="Self.V_Interview" />
-          <EntitySet Name="V_JobDetail" EntityType="Self.V_JobDetail" />
-          <EntitySet Name="V_Notification" EntityType="Self.V_Notification" />
-          <EntitySet Name="V_UserCandidate" EntityType="Self.V_UserCandidate" />
-          <AssociationSet Name="FK_EduDetail_Candidate" Association="Self.FK_EduDetail_Candidate">
-            <End Role="Candidate" EntitySet="Candidates" />
-            <End Role="EduDetail" EntitySet="EduDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Interview_Candidate" Association="Self.FK_Interview_Candidate">
-            <End Role="Candidate" EntitySet="Candidates" />
-            <End Role="Interview" EntitySet="Interviews" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Notification_Candidate" Association="Self.FK_Notification_Candidate">
-            <End Role="Candidate" EntitySet="Candidates" />
-            <End Role="NotificationDetail" EntitySet="NotificationDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_Candidate" Association="Self.FK_Skill_Candidate">
-            <End Role="Candidate" EntitySet="Candidates" />
-            <End Role="SkillDetail" EntitySet="SkillDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_EduDetail_EduDegreeLevel" Association="Self.FK_EduDetail_EduDegreeLevel">
-            <End Role="EduDegreeLevel" EntitySet="EduDegreeLevels" />
-            <End Role="EduDetail" EntitySet="EduDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Interview_Job" Association="Self.FK_Interview_Job">
-            <End Role="JobDetail" EntitySet="JobDetails" />
-            <End Role="Interview" EntitySet="Interviews" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1623,597 +1710,626 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="BloodGroups">
             <EntityTypeMapping TypeName="BTRMSModel.BloodGroup">
               <MappingFragment StoreEntitySet="BloodGroup">
-                <ScalarProperty Name="CBID" ColumnName="CBID" />
                 <ScalarProperty Name="BGroupName" ColumnName="BGroupName" />
+                <ScalarProperty Name="CBID" ColumnName="CBID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Candidates">
             <EntityTypeMapping TypeName="BTRMSModel.Candidate">
               <MappingFragment StoreEntitySet="Candidate">
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
-                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
-                <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
-                <ScalarProperty Name="MartialStatusID" ColumnName="MartialStatusID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
-                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
-                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
-                <ScalarProperty Name="NationalityCountryID" ColumnName="NationalityCountryID" />
-                <ScalarProperty Name="Objective" ColumnName="Objective" />
-                <ScalarProperty Name="CImage" ColumnName="CImage" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
-                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
                 <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CImage" ColumnName="CImage" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="NationalityCountryID" ColumnName="NationalityCountryID" />
+                <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MartialStatusID" ColumnName="MartialStatusID" />
+                <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CandidateJobs">
             <EntityTypeMapping TypeName="BTRMSModel.CandidateJob">
               <MappingFragment StoreEntitySet="CandidateJob">
-                <ScalarProperty Name="CJobID" ColumnName="CJobID" />
-                <ScalarProperty Name="CJobDate" ColumnName="CJobDate" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CJobDate" ColumnName="CJobDate" />
+                <ScalarProperty Name="CJobID" ColumnName="CJobID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CandidatePhotoes">
             <EntityTypeMapping TypeName="BTRMSModel.CandidatePhoto">
               <MappingFragment StoreEntitySet="CandidatePhoto">
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="CandidatePic" ColumnName="CandidatePic" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CandidateStrengths">
             <EntityTypeMapping TypeName="BTRMSModel.CandidateStrength">
               <MappingFragment StoreEntitySet="CandidateStrength">
-                <ScalarProperty Name="StrengthID" ColumnName="StrengthID" />
-                <ScalarProperty Name="Strengths" ColumnName="Strengths" />
-                <ScalarProperty Name="AreaOfImprovement" ColumnName="AreaOfImprovement" />
-                <ScalarProperty Name="MeetRequirements" ColumnName="MeetRequirements" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="MeetRequirements" ColumnName="MeetRequirements" />
+                <ScalarProperty Name="AreaOfImprovement" ColumnName="AreaOfImprovement" />
+                <ScalarProperty Name="Strengths" ColumnName="Strengths" />
+                <ScalarProperty Name="StrengthID" ColumnName="StrengthID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Catagories">
             <EntityTypeMapping TypeName="BTRMSModel.Catagory">
               <MappingFragment StoreEntitySet="Catagory">
-                <ScalarProperty Name="PCatagoryID" ColumnName="PCatagoryID" />
                 <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="PCatagoryID" ColumnName="PCatagoryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Cities">
             <EntityTypeMapping TypeName="BTRMSModel.City">
               <MappingFragment StoreEntitySet="City">
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="CompensationDetails">
             <EntityTypeMapping TypeName="BTRMSModel.CompensationDetail">
               <MappingFragment StoreEntitySet="CompensationDetail">
-                <ScalarProperty Name="CID" ColumnName="CID" />
-                <ScalarProperty Name="MBSalary" ColumnName="MBSalary" />
-                <ScalarProperty Name="MGSalary" ColumnName="MGSalary" />
-                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
-                <ScalarProperty Name="BBonus" ColumnName="BBonus" />
-                <ScalarProperty Name="GBonus" ColumnName="GBonus" />
-                <ScalarProperty Name="BonusPerYear" ColumnName="BonusPerYear" />
-                <ScalarProperty Name="LFA" ColumnName="LFA" />
-                <ScalarProperty Name="BLFA" ColumnName="BLFA" />
-                <ScalarProperty Name="GLFA" ColumnName="GLFA" />
-                <ScalarProperty Name="LFAPerYear" ColumnName="LFAPerYear" />
-                <ScalarProperty Name="OT" ColumnName="OT" />
-                <ScalarProperty Name="BOT" ColumnName="BOT" />
-                <ScalarProperty Name="GOT" ColumnName="GOT" />
-                <ScalarProperty Name="TransportAllowence" ColumnName="TransportAllowence" />
-                <ScalarProperty Name="MobileAllowence" ColumnName="MobileAllowence" />
-                <ScalarProperty Name="CarEntitlement" ColumnName="CarEntitlement" />
-                <ScalarProperty Name="MobileUserLimit" ColumnName="MobileUserLimit" />
-                <ScalarProperty Name="BuyBackOption" ColumnName="BuyBackOption" />
-                <ScalarProperty Name="AccomdAllowence" ColumnName="AccomdAllowence" />
-                <ScalarProperty Name="COLA" ColumnName="COLA" />
-                <ScalarProperty Name="Other" ColumnName="Other" />
-                <ScalarProperty Name="Food" ColumnName="Food" />
-                <ScalarProperty Name="Free" ColumnName="Free" />
-                <ScalarProperty Name="Subsidized" ColumnName="Subsidized" />
-                <ScalarProperty Name="OPDInsurance" ColumnName="OPDInsurance" />
-                <ScalarProperty Name="IPInsurance" ColumnName="IPInsurance" />
-                <ScalarProperty Name="LifeInsurance" ColumnName="LifeInsurance" />
-                <ScalarProperty Name="ProvidentFund" ColumnName="ProvidentFund" />
-                <ScalarProperty Name="GProvidentFund" ColumnName="GProvidentFund" />
-                <ScalarProperty Name="BProvidentFund" ColumnName="BProvidentFund" />
-                <ScalarProperty Name="ProvidentFundPerYear" ColumnName="ProvidentFundPerYear" />
-                <ScalarProperty Name="Gratuity" ColumnName="Gratuity" />
-                <ScalarProperty Name="BGratuity" ColumnName="BGratuity" />
-                <ScalarProperty Name="GGratuity" ColumnName="GGratuity" />
-                <ScalarProperty Name="AnnualTAllowence" ColumnName="AnnualTAllowence" />
-                <ScalarProperty Name="CasualTAllowence" ColumnName="CasualTAllowence" />
-                <ScalarProperty Name="MedTAllowence" ColumnName="MedTAllowence" />
-                <ScalarProperty Name="TAllowenceWorkDay" ColumnName="TAllowenceWorkDay" />
-                <ScalarProperty Name="ExpectedSalary" ColumnName="ExpectedSalary" />
-                <ScalarProperty Name="OtherBenifits" ColumnName="OtherBenifits" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="SpecifyYears" ColumnName="SpecifyYears" />
                 <ScalarProperty Name="FuelAllowance" ColumnName="FuelAllowance" />
+                <ScalarProperty Name="SpecifyYears" ColumnName="SpecifyYears" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="OtherBenifits" ColumnName="OtherBenifits" />
+                <ScalarProperty Name="ExpectedSalary" ColumnName="ExpectedSalary" />
+                <ScalarProperty Name="TAllowenceWorkDay" ColumnName="TAllowenceWorkDay" />
+                <ScalarProperty Name="MedTAllowence" ColumnName="MedTAllowence" />
+                <ScalarProperty Name="CasualTAllowence" ColumnName="CasualTAllowence" />
+                <ScalarProperty Name="AnnualTAllowence" ColumnName="AnnualTAllowence" />
+                <ScalarProperty Name="GGratuity" ColumnName="GGratuity" />
+                <ScalarProperty Name="BGratuity" ColumnName="BGratuity" />
+                <ScalarProperty Name="Gratuity" ColumnName="Gratuity" />
+                <ScalarProperty Name="ProvidentFundPerYear" ColumnName="ProvidentFundPerYear" />
+                <ScalarProperty Name="BProvidentFund" ColumnName="BProvidentFund" />
+                <ScalarProperty Name="GProvidentFund" ColumnName="GProvidentFund" />
+                <ScalarProperty Name="ProvidentFund" ColumnName="ProvidentFund" />
+                <ScalarProperty Name="LifeInsurance" ColumnName="LifeInsurance" />
+                <ScalarProperty Name="IPInsurance" ColumnName="IPInsurance" />
+                <ScalarProperty Name="OPDInsurance" ColumnName="OPDInsurance" />
+                <ScalarProperty Name="Subsidized" ColumnName="Subsidized" />
+                <ScalarProperty Name="Free" ColumnName="Free" />
+                <ScalarProperty Name="Food" ColumnName="Food" />
+                <ScalarProperty Name="Other" ColumnName="Other" />
+                <ScalarProperty Name="COLA" ColumnName="COLA" />
+                <ScalarProperty Name="AccomdAllowence" ColumnName="AccomdAllowence" />
+                <ScalarProperty Name="BuyBackOption" ColumnName="BuyBackOption" />
+                <ScalarProperty Name="MobileUserLimit" ColumnName="MobileUserLimit" />
+                <ScalarProperty Name="CarEntitlement" ColumnName="CarEntitlement" />
+                <ScalarProperty Name="MobileAllowence" ColumnName="MobileAllowence" />
+                <ScalarProperty Name="TransportAllowence" ColumnName="TransportAllowence" />
+                <ScalarProperty Name="GOT" ColumnName="GOT" />
+                <ScalarProperty Name="BOT" ColumnName="BOT" />
+                <ScalarProperty Name="OT" ColumnName="OT" />
+                <ScalarProperty Name="LFAPerYear" ColumnName="LFAPerYear" />
+                <ScalarProperty Name="GLFA" ColumnName="GLFA" />
+                <ScalarProperty Name="BLFA" ColumnName="BLFA" />
+                <ScalarProperty Name="LFA" ColumnName="LFA" />
+                <ScalarProperty Name="BonusPerYear" ColumnName="BonusPerYear" />
+                <ScalarProperty Name="GBonus" ColumnName="GBonus" />
+                <ScalarProperty Name="BBonus" ColumnName="BBonus" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+                <ScalarProperty Name="MGSalary" ColumnName="MGSalary" />
+                <ScalarProperty Name="MBSalary" ColumnName="MBSalary" />
+                <ScalarProperty Name="CID" ColumnName="CID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Countries">
             <EntityTypeMapping TypeName="BTRMSModel.Country">
               <MappingFragment StoreEntitySet="Country">
-                <ScalarProperty Name="CCID" ColumnName="CCID" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CCID" ColumnName="CCID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EduDegreeLevels">
             <EntityTypeMapping TypeName="BTRMSModel.EduDegreeLevel">
               <MappingFragment StoreEntitySet="EduDegreeLevel">
-                <ScalarProperty Name="DLevelID" ColumnName="DLevelID" />
                 <ScalarProperty Name="DegreeLevel" ColumnName="DegreeLevel" />
+                <ScalarProperty Name="DLevelID" ColumnName="DLevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EduDegreeTypes">
             <EntityTypeMapping TypeName="BTRMSModel.EduDegreeType">
               <MappingFragment StoreEntitySet="EduDegreeType">
-                <ScalarProperty Name="EduTypeID" ColumnName="EduTypeID" />
-                <ScalarProperty Name="EduTypeName" ColumnName="EduTypeName" />
                 <ScalarProperty Name="EduDegreeLevelID" ColumnName="EduDegreeLevelID" />
+                <ScalarProperty Name="EduTypeName" ColumnName="EduTypeName" />
+                <ScalarProperty Name="EduTypeID" ColumnName="EduTypeID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EduDetails">
             <EntityTypeMapping TypeName="BTRMSModel.EduDetail">
               <MappingFragment StoreEntitySet="EduDetail">
-                <ScalarProperty Name="EduID" ColumnName="EduID" />
-                <ScalarProperty Name="DegreeLevelID" ColumnName="DegreeLevelID" />
-                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
-                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
-                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
-                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
-                <ScalarProperty Name="DegreeTitle" ColumnName="DegreeTitle" />
-                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
-                <ScalarProperty Name="Institution" ColumnName="Institution" />
-                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
                 <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
+                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
+                <ScalarProperty Name="DegreeTitle" ColumnName="DegreeTitle" />
+                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
+                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
+                <ScalarProperty Name="DegreeLevelID" ColumnName="DegreeLevelID" />
+                <ScalarProperty Name="EduID" ColumnName="EduID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EduInstitutes">
             <EntityTypeMapping TypeName="BTRMSModel.EduInstitute">
               <MappingFragment StoreEntitySet="EduInstitute">
-                <ScalarProperty Name="InstituteID" ColumnName="InstituteID" />
                 <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
+                <ScalarProperty Name="InstituteID" ColumnName="InstituteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExpCareerLevels">
             <EntityTypeMapping TypeName="BTRMSModel.ExpCareerLevel">
               <MappingFragment StoreEntitySet="ExpCareerLevel">
-                <ScalarProperty Name="CLevelID" ColumnName="CLevelID" />
                 <ScalarProperty Name="CareerLevelName" ColumnName="CareerLevelName" />
+                <ScalarProperty Name="CLevelID" ColumnName="CLevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExperienceDetails">
             <EntityTypeMapping TypeName="BTRMSModel.ExperienceDetail">
               <MappingFragment StoreEntitySet="ExperienceDetail">
-                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
-                <ScalarProperty Name="PostionTitle" ColumnName="PostionTitle" />
-                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="CurrentlyWorking" ColumnName="CurrentlyWorking" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Responsibility1" ColumnName="Responsibility1" />
-                <ScalarProperty Name="Responsibility2" ColumnName="Responsibility2" />
-                <ScalarProperty Name="Responsibility3" ColumnName="Responsibility3" />
                 <ScalarProperty Name="CareerLevelID" ColumnName="CareerLevelID" />
+                <ScalarProperty Name="Responsibility3" ColumnName="Responsibility3" />
+                <ScalarProperty Name="Responsibility2" ColumnName="Responsibility2" />
+                <ScalarProperty Name="Responsibility1" ColumnName="Responsibility1" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CurrentlyWorking" ColumnName="CurrentlyWorking" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+                <ScalarProperty Name="PostionTitle" ColumnName="PostionTitle" />
+                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExperienceIndustries">
             <EntityTypeMapping TypeName="BTRMSModel.ExperienceIndustry">
               <MappingFragment StoreEntitySet="ExperienceIndustry">
-                <ScalarProperty Name="ExpIndustryID" ColumnName="ExpIndustryID" />
                 <ScalarProperty Name="ExpIndustryName" ColumnName="ExpIndustryName" />
+                <ScalarProperty Name="ExpIndustryID" ColumnName="ExpIndustryID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Genders">
             <EntityTypeMapping TypeName="BTRMSModel.Gender">
               <MappingFragment StoreEntitySet="Gender">
-                <ScalarProperty Name="CGenderID" ColumnName="CGenderID" />
                 <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="CGenderID" ColumnName="CGenderID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="HearAbouts">
             <EntityTypeMapping TypeName="BTRMSModel.HearAbout">
               <MappingFragment StoreEntitySet="HearAbout">
-                <ScalarProperty Name="HearAboutID" ColumnName="HearAboutID" />
                 <ScalarProperty Name="HearAboutSource" ColumnName="HearAboutSource" />
+                <ScalarProperty Name="HearAboutID" ColumnName="HearAboutID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Interviews">
             <EntityTypeMapping TypeName="BTRMSModel.Interview">
               <MappingFragment StoreEntitySet="Interview">
-                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="JobDetails">
             <EntityTypeMapping TypeName="BTRMSModel.JobDetail">
               <MappingFragment StoreEntitySet="JobDetail">
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="LocID" ColumnName="LocID" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="QualificationReq" ColumnName="QualificationReq" />
-                <ScalarProperty Name="Resposibilties" ColumnName="Resposibilties" />
-                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SkillReq" ColumnName="SkillReq" />
-                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
                 <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+                <ScalarProperty Name="SkillReq" ColumnName="SkillReq" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+                <ScalarProperty Name="Resposibilties" ColumnName="Resposibilties" />
+                <ScalarProperty Name="QualificationReq" ColumnName="QualificationReq" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Locations">
             <EntityTypeMapping TypeName="BTRMSModel.Location">
               <MappingFragment StoreEntitySet="Location">
-                <ScalarProperty Name="PLocationID" ColumnName="PLocationID" />
                 <ScalarProperty Name="LocName" ColumnName="LocName" />
+                <ScalarProperty Name="PLocationID" ColumnName="PLocationID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MartialStatus">
             <EntityTypeMapping TypeName="BTRMSModel.MartialStatu">
               <MappingFragment StoreEntitySet="MartialStatus">
-                <ScalarProperty Name="PMID" ColumnName="PMID" />
                 <ScalarProperty Name="MartialStatusName" ColumnName="MartialStatusName" />
+                <ScalarProperty Name="PMID" ColumnName="PMID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MiscellaneousDetails">
             <EntityTypeMapping TypeName="BTRMSModel.MiscellaneousDetail">
               <MappingFragment StoreEntitySet="MiscellaneousDetails">
-                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
-                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
-                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
-                <ScalarProperty Name="DateJoining" ColumnName="DateJoining" />
-                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
-                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
-                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
-                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
-                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
-                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
-                <ScalarProperty Name="CrimeDetail" ColumnName="CrimeDetail" />
-                <ScalarProperty Name="WorkingRelativeDetail" ColumnName="WorkingRelativeDetail" />
-                <ScalarProperty Name="InterviewedBefore" ColumnName="InterviewedBefore" />
-                <ScalarProperty Name="InterviewedDate" ColumnName="InterviewedDate" />
-                <ScalarProperty Name="InterviewedLocation" ColumnName="InterviewedLocation" />
-                <ScalarProperty Name="AppliedPosition" ColumnName="AppliedPosition" />
-                <ScalarProperty Name="Disability" ColumnName="Disability" />
-                <ScalarProperty Name="DisabilityDetail" ColumnName="DisabilityDetail" />
                 <ScalarProperty Name="HearAboutDetail" ColumnName="HearAboutDetail" />
+                <ScalarProperty Name="DisabilityDetail" ColumnName="DisabilityDetail" />
+                <ScalarProperty Name="Disability" ColumnName="Disability" />
+                <ScalarProperty Name="AppliedPosition" ColumnName="AppliedPosition" />
+                <ScalarProperty Name="InterviewedLocation" ColumnName="InterviewedLocation" />
+                <ScalarProperty Name="InterviewedDate" ColumnName="InterviewedDate" />
+                <ScalarProperty Name="InterviewedBefore" ColumnName="InterviewedBefore" />
+                <ScalarProperty Name="WorkingRelativeDetail" ColumnName="WorkingRelativeDetail" />
+                <ScalarProperty Name="CrimeDetail" ColumnName="CrimeDetail" />
+                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
+                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
+                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
+                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
+                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
+                <ScalarProperty Name="DateJoining" ColumnName="DateJoining" />
+                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
+                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
+                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="NotificationDetails">
             <EntityTypeMapping TypeName="BTRMSModel.NotificationDetail">
               <MappingFragment StoreEntitySet="NotificationDetail">
-                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
-                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
                 <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ReferenceDetails">
             <EntityTypeMapping TypeName="BTRMSModel.ReferenceDetail">
               <MappingFragment StoreEntitySet="ReferenceDetail">
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="RefName" ColumnName="RefName" />
-                <ScalarProperty Name="RefDesignation" ColumnName="RefDesignation" />
-                <ScalarProperty Name="RefEmail" ColumnName="RefEmail" />
-                <ScalarProperty Name="RefContact" ColumnName="RefContact" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="RefContact" ColumnName="RefContact" />
+                <ScalarProperty Name="RefEmail" ColumnName="RefEmail" />
+                <ScalarProperty Name="RefDesignation" ColumnName="RefDesignation" />
+                <ScalarProperty Name="RefName" ColumnName="RefName" />
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Religions">
             <EntityTypeMapping TypeName="BTRMSModel.Religion">
               <MappingFragment StoreEntitySet="Religion">
-                <ScalarProperty Name="CReligionID" ColumnName="CReligionID" />
                 <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
+                <ScalarProperty Name="CReligionID" ColumnName="CReligionID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SkillDetails">
             <EntityTypeMapping TypeName="BTRMSModel.SkillDetail">
               <MappingFragment StoreEntitySet="SkillDetail">
-                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="SLevelID" ColumnName="SLevelID" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SLevelID" ColumnName="SLevelID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="SkillLevels">
             <EntityTypeMapping TypeName="BTRMSModel.SkillLevel">
               <MappingFragment StoreEntitySet="SkillLevel">
-                <ScalarProperty Name="SkillLevelID" ColumnName="SkillLevelID" />
                 <ScalarProperty Name="SkillLevelName" ColumnName="SkillLevelName" />
+                <ScalarProperty Name="SkillLevelID" ColumnName="SkillLevelID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="BTRMSModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BTRMSModel.User">
               <MappingFragment StoreEntitySet="User">
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
-                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
-                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
-                <ScalarProperty Name="CanView" ColumnName="CanView" />
-                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
-                <ScalarProperty Name="UserStage" ColumnName="UserStage" />
-                <ScalarProperty Name="SecurityLink" ColumnName="SecurityLink" />
-                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
                 <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="SecurityLink" ColumnName="SecurityLink" />
+                <ScalarProperty Name="UserStage" ColumnName="UserStage" />
+                <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_AppliedJob">
             <EntityTypeMapping TypeName="BTRMSModel.V_AppliedJob">
               <MappingFragment StoreEntitySet="V_AppliedJob">
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CJobID" ColumnName="CJobID" />
-                <ScalarProperty Name="CJobDate" ColumnName="CJobDate" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CJobDate" ColumnName="CJobDate" />
+                <ScalarProperty Name="CJobID" ColumnName="CJobID" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Candidate_EduDetail">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_EduDetail">
               <MappingFragment StoreEntitySet="V_Candidate_EduDetail">
-                <ScalarProperty Name="DegreeLevel" ColumnName="DegreeLevel" />
-                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="EduID" ColumnName="EduID" />
-                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
-                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
-                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
-                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
-                <ScalarProperty Name="Institution" ColumnName="Institution" />
-                <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="DegreeTitle" ColumnName="DegreeTitle" />
-                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
-                <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
-                <ScalarProperty Name="DegreeLevelID" ColumnName="DegreeLevelID" />
-                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
-                <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
                 <ScalarProperty Name="EduTypeName" ColumnName="EduTypeName" />
+                <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
+                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
+                <ScalarProperty Name="DegreeLevelID" ColumnName="DegreeLevelID" />
+                <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
+                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
+                <ScalarProperty Name="DegreeTitle" ColumnName="DegreeTitle" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
+                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
+                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="EduID" ColumnName="EduID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
+                <ScalarProperty Name="DegreeLevel" ColumnName="DegreeLevel" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Candidate_Exp">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Exp">
               <MappingFragment StoreEntitySet="V_Candidate_Exp">
-                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
-                <ScalarProperty Name="PostionTitle" ColumnName="PostionTitle" />
-                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
-                <ScalarProperty Name="CurrentlyWorking" ColumnName="CurrentlyWorking" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
-                <ScalarProperty Name="ExpIndustryName" ColumnName="ExpIndustryName" />
-                <ScalarProperty Name="Country" ColumnName="Country" />
-                <ScalarProperty Name="Responsibility1" ColumnName="Responsibility1" />
-                <ScalarProperty Name="Responsibility2" ColumnName="Responsibility2" />
-                <ScalarProperty Name="Responsibility3" ColumnName="Responsibility3" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="CareerLevelID" ColumnName="CareerLevelID" />
                 <ScalarProperty Name="CareerLevelName" ColumnName="CareerLevelName" />
+                <ScalarProperty Name="CareerLevelID" ColumnName="CareerLevelID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="Responsibility3" ColumnName="Responsibility3" />
+                <ScalarProperty Name="Responsibility2" ColumnName="Responsibility2" />
+                <ScalarProperty Name="Responsibility1" ColumnName="Responsibility1" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="ExpIndustryName" ColumnName="ExpIndustryName" />
+                <ScalarProperty Name="IndustryID" ColumnName="IndustryID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CurrentlyWorking" ColumnName="CurrentlyWorking" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="EmployerName" ColumnName="EmployerName" />
+                <ScalarProperty Name="PostionTitle" ColumnName="PostionTitle" />
+                <ScalarProperty Name="ExpID" ColumnName="ExpID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Candidate_Miscellaneous">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Miscellaneous">
               <MappingFragment StoreEntitySet="V_Candidate_Miscellaneous">
-                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
-                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
-                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
-                <ScalarProperty Name="DateJoining" ColumnName="DateJoining" />
-                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
-                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
-                <ScalarProperty Name="Designation" ColumnName="Designation" />
-                <ScalarProperty Name="Location" ColumnName="Location" />
-                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
-                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
-                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
-                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
-                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
-                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
                 <ScalarProperty Name="HearAboutSource" ColumnName="HearAboutSource" />
+                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
+                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
+                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
+                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
+                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
+                <ScalarProperty Name="DateJoining" ColumnName="DateJoining" />
+                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
+                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
+                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Candidate_Reference">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Reference">
               <MappingFragment StoreEntitySet="V_Candidate_Reference">
-                <ScalarProperty Name="RefID" ColumnName="RefID" />
-                <ScalarProperty Name="RefName" ColumnName="RefName" />
-                <ScalarProperty Name="RefDesignation" ColumnName="RefDesignation" />
-                <ScalarProperty Name="RefEmail" ColumnName="RefEmail" />
-                <ScalarProperty Name="RefContact" ColumnName="RefContact" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
                 <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="RefContact" ColumnName="RefContact" />
+                <ScalarProperty Name="RefEmail" ColumnName="RefEmail" />
+                <ScalarProperty Name="RefDesignation" ColumnName="RefDesignation" />
+                <ScalarProperty Name="RefName" ColumnName="RefName" />
+                <ScalarProperty Name="RefID" ColumnName="RefID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Candidate_Skills">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Skills">
               <MappingFragment StoreEntitySet="V_Candidate_Skills">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-                <ScalarProperty Name="SLevelID" ColumnName="SLevelID" />
-                <ScalarProperty Name="SkillLevelName" ColumnName="SkillLevelName" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="SkillLevelName" ColumnName="SkillLevelName" />
+                <ScalarProperty Name="SLevelID" ColumnName="SLevelID" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_CandidateProfile">
+            <EntityTypeMapping TypeName="BTRMSModel.V_CandidateProfile">
+              <MappingFragment StoreEntitySet="V_CandidateProfile">
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CImage" ColumnName="CImage" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="NationalityCountryID" ColumnName="NationalityCountryID" />
+                <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MartialStatusID" ColumnName="MartialStatusID" />
+                <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Interview">
             <EntityTypeMapping TypeName="BTRMSModel.V_Interview">
               <MappingFragment StoreEntitySet="V_Interview">
-                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
-                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_JobDetail">
             <EntityTypeMapping TypeName="BTRMSModel.V_JobDetail">
               <MappingFragment StoreEntitySet="V_JobDetail">
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
-                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="LocID" ColumnName="LocID" />
-                <ScalarProperty Name="LocName" ColumnName="LocName" />
-                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Experience" ColumnName="Experience" />
-                <ScalarProperty Name="QualificationReq" ColumnName="QualificationReq" />
-                <ScalarProperty Name="Resposibilties" ColumnName="Resposibilties" />
-                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
-                <ScalarProperty Name="CatName" ColumnName="CatName" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="SkillReq" ColumnName="SkillReq" />
-                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
-                <ScalarProperty Name="CityID" ColumnName="CityID" />
-                <ScalarProperty Name="CityName" ColumnName="CityName" />
                 <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
+                <ScalarProperty Name="SkillReq" ColumnName="SkillReq" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+                <ScalarProperty Name="Resposibilties" ColumnName="Resposibilties" />
+                <ScalarProperty Name="QualificationReq" ColumnName="QualificationReq" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="LocName" ColumnName="LocName" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_Notification">
             <EntityTypeMapping TypeName="BTRMSModel.V_Notification">
               <MappingFragment StoreEntitySet="V_Notification">
-                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="JobID" ColumnName="JobID" />
-                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
                 <ScalarProperty Name="InterviewID" ColumnName="InterviewID" />
+                <ScalarProperty Name="JobStatus" ColumnName="JobStatus" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="IsViewed" ColumnName="IsViewed" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="NotifyID" ColumnName="NotifyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="V_UserCandidate">
             <EntityTypeMapping TypeName="BTRMSModel.V_UserCandidate">
               <MappingFragment StoreEntitySet="V_UserCandidate">
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="UserID" ColumnName="UserID" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
-                <ScalarProperty Name="UserStage" ColumnName="UserStage" />
-                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
-                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="UserStage" ColumnName="UserStage" />
+                <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
