@@ -55,8 +55,8 @@
                                 @Html.DisplayFor(modelItem => item.RefEmail)
                             </td>
                             <td>
-                                <a href="#" input type="button" onclick="ReferenceDetailGetEdit(@item.RefID)" value="Edit" class="icon-pencil" />&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;
-                                <a href="#" input type="button" onclick="ReferenceDetailGetDelete(@item.RefID)" value="Delete" class="icon-trash" style="color:red" />
+                                <button type="button" id="btnGetEdit" onclick="ReferenceDetailGetEdit(@item.RefID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                <button type="button" id="btnGetDelete" onclick="ReferenceDetailGetDelete(@item.RefID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
                             </td>
                         </tr>
                     }
