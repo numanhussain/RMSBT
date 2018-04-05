@@ -147,14 +147,7 @@ namespace RMSAPPLICATION.Controllers
                 throw;
             }
         }
-        [HttpGet]
-        public ActionResult CandidateProfile(int? CID)
-        {
-            V_CandidateProfile list = VCandidateProfileService.GetEdit((int)CID);
-           
-            return PartialView(list);
-        }
-
+ 
         #region-- 
         private void CreateHelper(Candidate obj)
         {
