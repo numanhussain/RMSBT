@@ -3072,6 +3072,7 @@
     <Content Include="Views\Home\ConfirmedEmail.cshtml" />
     <Content Include="Views\SelfAssessment\Index.cshtml" />
     <Content Include="Views\Job\DeclarationStatement.cshtml" />
+    <Content Include="Views\Candidate\CandidateProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

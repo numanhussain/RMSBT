@@ -18,13 +18,16 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         IEntityService<Candidate> CandidateEntityService;
+        IEntityService<V_CandidateProfile> VCandidateProfileService;
         ICandidateService CandidateService;
         IDDService DDService;
         // Controller Constructor
-        public CandidateController(IEntityService<Candidate> candidateEntityService, IDDService ddService, ICandidateService candidateservice)
+        public CandidateController(IEntityService<Candidate> candidateEntityService, IDDService ddService, ICandidateService candidateservice,
+                    IEntityService<V_CandidateProfile> vCandidateProfileService)
         {
             CandidateEntityService = candidateEntityService;
             CandidateService = candidateservice;
+            VCandidateProfileService = vCandidateProfileService;
             DDService = ddService;
         }
         #endregion
@@ -143,6 +146,13 @@ namespace RMSAPPLICATION.Controllers
 
                 throw;
             }
+        }
+        [HttpGet]
+        public ActionResult CandidateProfile(int? CID)
+        {
+            V_CandidateProfile list = VCandidateProfileService.GetEdit((int)CID);
+           
+            return PartialView(list);
         }
 
         #region-- 

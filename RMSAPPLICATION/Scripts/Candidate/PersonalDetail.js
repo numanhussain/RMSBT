@@ -13,7 +13,7 @@
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
         $("#hv33").addClass("liInActive");
-$("#hv7").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 2;
     });
 };
@@ -130,5 +130,22 @@ function UpdateAppliedAs() {
             data: { id: id }
         }).done(function (result) {
         });
+    });
+}
+function CandidateProfile(id) {
+    $.ajax({
+        type: "GET",
+        url: "/Candidate/CandidateProfile",
+        contentType: "application/json; charset=utf-8",
+        data: { CID: id },
+        datatype: "json",
+        success: function (data) {
+            $('#modelBody').html(data);
+            $('#myModal').modal('show');
+
+        },
+        error: function () {
+            alert("Dynamic content load failed.");
+        }
     });
 }
