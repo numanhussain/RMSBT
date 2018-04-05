@@ -71,7 +71,7 @@ function ReferenceDetailGetEdit(id) {
         }
     });
 }
-function ReferenceDetailPostEdit() {
+function ReferenceDetailPostEdit(id) {
     $('#btnPostEdit').click(function () {
         $.ajax({
             type: "POST",
@@ -81,6 +81,9 @@ function ReferenceDetailPostEdit() {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVReferenceDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
                 }
             },
             error: function () {
@@ -110,7 +113,7 @@ function ReferenceDetailPostDelete(id) {
     $('#btnPostDelete').click(function () {
         $.ajax({
             type: "POST",
-            url: "/Skill/Delete",
+            url: "/Reference/Delete",
             data: $("#formDeleteID").serialize(),
             success: function (data) {
                 $('#myModal').modal('hide');

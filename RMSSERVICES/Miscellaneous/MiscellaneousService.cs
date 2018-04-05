@@ -4,6 +4,7 @@ using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -54,7 +55,7 @@ namespace RMSSERVICES.Miscellaneous
                 MiscellaneousRepository.Add(dbMiscellaneous);
                 MiscellaneousRepository.Save();
             }
-                
+
             return new ServiceMessage();
         }
         #endregion
@@ -84,7 +85,7 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.InterviewedDate = obj.InterviewedDate;
             dbMiscellaneous.InterviewedLocation = obj.InterviewedLocation;
             dbMiscellaneous.AppliedPosition = obj.AppliedPosition;
-            dbMiscellaneous.HearAboutDetail= obj.HearAboutDetail;
+            dbMiscellaneous.HearAboutDetail = obj.HearAboutDetail;
             dbMiscellaneous.Disability = obj.Disability;
             dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
             return dbMiscellaneous;
