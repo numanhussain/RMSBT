@@ -5,7 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
 <<<<<<< HEAD
-      <Diagram DiagramId="952e2af2049e40c9a04ac9e365df8e82" Name="Diagram1">
+      <Diagram DiagramId="952e2af2049e40c9a04ac9e365df8e82" Name="Diagram1" ZoomLevel="57">
         <EntityTypeShape EntityType="BTRMSModel.BloodGroup" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="BTRMSModel.Candidate" Width="1.5" PointX="0.75" PointY="5.875" />
         <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="5.75" PointY="0.75" />
