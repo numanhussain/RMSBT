@@ -144,7 +144,7 @@ namespace RMSAPPLICATION.Controllers
                         UserService.RegisterUser(Obj);
                         var code = Obj.SecurityLink;
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
-                        EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>From Bestway Career Portal</p><p>Dear Candidate " + " </p><p>This is with reference to your request for creating online profile at Bestway Career Portal. </p><p>Please click the following link to activate your profile.</p>" + "<p><a href=\"Link:" + callbackUrl + "\">here</a>" +"</p><div>Best regards:</div><div>Bestway Talent Acquisition Team</div><div>Bestway Cement Limited</div><p>Do not forward " + "this email. The verify link is private.</p></body></html>", "Email Verification");
+                        EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate " + " </p><p>This is with reference to your request for creating online profile at Bestway Career Portal. </p><p>Following link to activate your profile.</p>" + "<p>Link:Please click <a href=\"" + callbackUrl + "\">here</a>" +"</p><div>Best regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");

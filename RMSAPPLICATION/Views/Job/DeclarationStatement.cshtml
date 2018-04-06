@@ -24,17 +24,21 @@
     </div>
     <div class="modal-body">
         <h4><a id="OfficialInfo" class="text-black">Statement to be Accepted by candidate -  after completing profile </a></h4>
-        <p class=" text-highlight h5">
+        <p class="text-highlight h5">
             I certify that the information provided by me in this form and all other documents provided herewith or in connection with this application for employment are accurate and true, and may be subject to verification, I understand that falsification or concealment of any information, may disqualify my application and/or be ground for disciplinary action up to and including termination and/or legal action. Unless otherwise indicated, I agree and give my consent that any person, firm or organization listed herein is authorized to furnish Bestway with reference material concerning my character, past employment or any other information requested.
         </p>
+        <lable class=" col-md-1 text-bold">Signature=</lable>
+        <div class="col-md-3 text-bold">
+            @Html.DisplayFor(model => LoggedInUser.CName)
+        </div>
         <div class="checkbox-inline col-md-8">
             <input type="checkbox" class="styled" id="ask" name="ask" value="ask">
-            <label class="control-label text-bold" for="ask" >Click here if you Accept the above terms and conditions</label>
+            <label class="control-label text-bold" for="ask">Click here if you Accept the above terms and conditions</label>
         </div>
     </div>
     <div class="modal-footer">
         <div id="ApproveDecline">
-            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Agree</button>
+            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Accept</button>
             <button type="button" class=" btn btn-danger" name="Close" data-dismiss="modal">Decline</button>
         </div>
     </div>

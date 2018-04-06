@@ -1,21 +1,21 @@
 ﻿function LoadPVExperienceDetailIndex(id, item) {
-        clearClasses();
-        $.ajax({
-            url: '/Experience/Index',
-            type: "GET",
-            cache: false,
-        }).done(function (result) {
-            $('#PartialViewContainer').html(result);
-            $("#hv1").addClass("liInActive");
-            $("#hv2").addClass("liInActive");
-            $("#hv3").addClass("liActive");
-            $("#hv4").addClass("liInActive");
-            $("#hv5").addClass("liInActive");
-            $("#hv6").addClass("liInActive");
-            $("#hv33").addClass("liInActive");
-$("#hv7").addClass("liInActive");
-            document.getElementById("UserstageAfterFirst").value = 4;
-        });
+    clearClasses();
+    $.ajax({
+        url: '/Experience/Index',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+        $("#hv1").addClass("liInActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
+        document.getElementById("UserstageAfterFirst").value = 4;
+    });
 };
 function clearClasses() {
     $("#hv1").removeClass("liInActive");
@@ -25,7 +25,7 @@ function clearClasses() {
     $("#hv4").removeClass("liInActive");
     $("#hv5").removeClass("liInActive");
     $("#hv6").removeClass("liInActive");
- $("#hv7").removeClass("liInActive");
+    $("#hv7").removeClass("liInActive");
     $("#hv1").removeClass("liActive");
     $("#hv2").removeClass("liActive");
     $("#hv33").removeClass("liActive");
@@ -33,7 +33,7 @@ function clearClasses() {
     $("#hv4").removeClass("liActive");
     $("#hv5").removeClass("liActive");
     $("#hv6").removeClass("liActive");
- $("#hv7").addClass("liActive");
+    $("#hv7").addClass("liActive");
 }
 function ExperienceDetailGetCreate(id) {
     $('#ExperienceGetCreate').click(function () {
@@ -60,10 +60,10 @@ function ExperienceDetailPostCreate(id) {
             url: "/Experience/Create",
             data: $("#formCreateID").serialize(),
             success: function (data) {
-                                  if (data == "OK") { 
+                if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVExperienceDetailIndex(id)
-                      }
+                }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -98,10 +98,10 @@ function ExperienceDetailPostEdit(id) {
             url: "/Experience/Edit",
             data: $("#formEditID").serialize(),
             success: function (data) {
-                                    if (data == "OK") { 
+                if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVExperienceDetailIndex(id)
-                      }
+                }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -161,7 +161,10 @@ function HaveExperience() {
             data: { HaveExperience: id },
             datatype: "json",
             success: function (data) {
-                if (data == "OK") { location.reload(); }
+                if (data == "OK") {
+                    LoadPVExperienceDetailIndex(id)
+
+                }
                 else {
                     $('#modelBody').html(data);
                 }
@@ -172,12 +175,3 @@ function HaveExperience() {
         });
     });
 }
-function LoadPVExperienceDetailIndex2(id) {
-    $.ajax({
-        url: '/Experience/Index',
-        type: "GET",
-        cache: false,
-    }).done(function (result) {
-        $('#PartialViewContainer').html(result);
-    });
-};

@@ -54,7 +54,7 @@ function ApplyJob(id, item) {
     }).done(function (data) {
         if (data === "OK") {
             $('#myModal1').modal('hide');
-            $.jGrowl('You have successfully  Applied for this job.', {
+            $.jGrowl('You have successfully applied for this job.  You can check the status of your application later by logging into your account at Bestway Career Portal', {
                 header: 'Well done!',
                 theme: 'bg-success-400',
             });
