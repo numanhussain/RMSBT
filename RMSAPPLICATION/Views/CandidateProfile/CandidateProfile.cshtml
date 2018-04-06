@@ -1,4 +1,5 @@
 ﻿
+
 @model RMSCORE.EF.V_CandidateProfile
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
@@ -18,7 +19,7 @@
             <div class="form-group">
                 <div class="control-label col-md-2 text-semibold">Candidate Name</div>
                 <div class="col-md-5">
-                   @Model.CName
+                    @Model.CName
                 </div>
             </div>
             @*<div class="form-group">

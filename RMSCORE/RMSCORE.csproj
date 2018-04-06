@@ -76,6 +76,9 @@
     <Compile Include="EF\Country.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\EduBoard.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\EduDegreeLevel.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -155,9 +158,6 @@
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\V_AppliedJob.cs">
-      <DependentUpon>RMSDataModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EF\V_CandidateProfile.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\V_Candidate_EduDetail.cs">
