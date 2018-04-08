@@ -131,8 +131,4 @@ function UpdateAppliedAs() {
         }).done(function (result) {
         });
     });
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> ca08e18b2b171cb06f7402c0d9e297ac6f305e86
