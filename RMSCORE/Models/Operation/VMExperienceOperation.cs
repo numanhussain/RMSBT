@@ -34,5 +34,6 @@ namespace RMSCORE.Models.Operation
         public string IndustryName { get; set; }
         public int CareerLevelID { get; set; }
         public string HaveExperience { get; set; }
+        public bool? ContactEmployer { get; set; }
     }
 }

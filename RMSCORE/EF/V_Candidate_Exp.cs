@@ -34,5 +34,6 @@ namespace RMSCORE.EF
         public string CityName { get; set; }
         public Nullable<int> CareerLevelID { get; set; }
         public string CareerLevelName { get; set; }
+        public Nullable<bool> ContactEmployer { get; set; }
     }
 }

@@ -97,7 +97,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(VMEduDetailOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 && obj.CGPA == null||obj.CGPA=="")
+            if (obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 && obj.CGPA == null || obj.CGPA == "")
                 ModelState.AddModelError("CGPA", "This is mandatory field");
             if (ModelState.IsValid)
             {
@@ -124,13 +124,15 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Private  Methods--
         private void CreateHelper(VMEduDetailOperation obj)
         {
-            //List<EduDegreeLevel> dbEdulevels = DDService.GetEduLevel().ToList().OrderBy(aa => aa.DegreeLevel).ToList();
-            //dbEdulevels.Insert(0, new EduDegreeLevel { DLevelID = 0, DegreeLevel = "" });
-            ViewBag.DegreeLevelID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeLevelID);
-            //List<EduInstitute> dbInstitutes = DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteName).ToList();
-            //dbInstitutes.Insert(0, new EduInstitute { InstituteID = 0, InstituteName = "" });
-            ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName", obj.InstitutionID);
-            ViewBag.DegreeTypeID = new SelectList(DDService.GetEduDegreeType().ToList().OrderBy(aa => aa.EduDegreeLevelID).ToList(), "EduDegreeLevelID", "EduTypeName", obj.DegreeTypeID);
+            List<EduDegreeLevel> dbEdulevels = DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList();
+            dbEdulevels.Insert(0, new EduDegreeLevel { DLevelID = 0, DegreeLevel = "All" });
+            ViewBag.DegreeLevelID = new SelectList(dbEdulevels.ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel");
+            List<EduInstitute> dbInstitutes = DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList();
+            dbInstitutes.Insert(0, new EduInstitute { InstituteID = 0, InstituteName = "All" });
+            ViewBag.InstitutionID = new SelectList(dbInstitutes.ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName");
+            List<EduDegreeType> dbDegreeTypes = DDService.GetEduDegreeType().ToList().OrderBy(aa => aa.EduTypeID).ToList();
+            dbDegreeTypes.Insert(0, new EduDegreeType { EduTypeID = 0, EduTypeName = "All" });
+            ViewBag.DegreeTypeID = new SelectList(dbDegreeTypes.ToList().OrderBy(aa => aa.EduTypeID).ToList(), "EduTypeID", "EduTypeName");
         }
         private void EditHelper(VMEduDetailOperation obj)
         {

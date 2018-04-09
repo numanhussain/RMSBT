@@ -31,13 +31,10 @@
                     Institution
                 </th>
                 <th class="text-bold">
+                    Degree Title
+                </th>
+                <th class="text-bold">
                     Completion Date
-                </th>
-                <th class="text-bold">
-                    Obtained Marks
-                </th>
-                <th class="text-bold">
-                    Total Marks
                 </th>
                 <th class="text-bold">
                     %age/CGPA
@@ -58,6 +55,9 @@
                     <td>
                         @Html.DisplayFor(modelItem => item.InstitutionName)
                     </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DegreeTitle)
+                    </td>
                     @if (item.InProgress == false)
                     {
                         <td>
@@ -71,13 +71,6 @@
                             <span class="label label-success">Currently Studying</span>
                         </td>
                     }
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ObtainedMark)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.TotalMark)
-                    </td>
-
                     <td>
                         @Html.DisplayFor(modelItem => item.Percentage)/ @Html.DisplayFor(modelItem => item.CGPA)
                     </td>
@@ -93,13 +86,13 @@
 </div>
 <div>
     @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div id="modelBody">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div id="modelBody">
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>*@
+        </div>*@
 </div>
 <!-- Main content -->
 <!-- Basic datatable -->
