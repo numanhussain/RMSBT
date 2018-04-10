@@ -111,5 +111,20 @@
     $(document).ready(function () {
         ExperienceDetailGetCreate();
         HaveExperience();
+        if (document.getElementById('HaveExperience').checked) {
+            $("#hv4").show();
+        }
+        else {
+            $("#hv4").hide();
+        }
+        //Worked Before Selected
+        $('#HaveExperience').click(function () {
+            if ($(this).is(":checked")) {
+                $("#hv4").show();
+            }
+            else {
+                $("#hv4").hide();
+            }
+        });
     });
 </script>

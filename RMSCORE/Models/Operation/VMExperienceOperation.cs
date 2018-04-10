@@ -18,13 +18,13 @@ namespace RMSCORE.Models.Operation
         public bool? CurrentlyWorking { get; set; }
         public int? CityID { get; set; }
         public string Address { get; set; }
-        [Required(ErrorMessage = "This is mandatory field")]
+        [Required(ErrorMessage = "Mandatory !!")]
         [StringLength(100)]
         public string Responsibility1 { get; set; }
-        [Required(ErrorMessage = "This is mandatory field")]
+        [Required(ErrorMessage = "Mandatory !!")]
         [StringLength(100)]
         public string Responsibility2 { get; set; }
-        [Required(ErrorMessage = "This is mandatory field")]
+        [Required(ErrorMessage = "Mandatory !!")]
         [StringLength(100)]
         public string Responsibility3 { get; set; }
         public string Salary { get; set; }
@@ -35,5 +35,6 @@ namespace RMSCORE.Models.Operation
         public int CareerLevelID { get; set; }
         public string HaveExperience { get; set; }
         public bool? ContactEmployer { get; set; }
+        public string AreaofInterest { get; set; }
     }
 }

@@ -30,5 +30,6 @@ namespace RMSCORE.EF
         public string SecurityLink { get; set; }
         public Nullable<int> AppliedAs { get; set; }
         public Nullable<bool> HaveExperience { get; set; }
+        public Nullable<bool> HasCV { get; set; }
     }
 }

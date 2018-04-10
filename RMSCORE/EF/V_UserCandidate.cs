@@ -24,5 +24,6 @@ namespace RMSCORE.EF
         public string Email { get; set; }
         public Nullable<bool> HaveExperience { get; set; }
         public Nullable<int> AppliedAs { get; set; }
+        public Nullable<bool> HasCV { get; set; }
     }
 }

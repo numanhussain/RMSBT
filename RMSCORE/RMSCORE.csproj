@@ -191,6 +191,7 @@
     <Compile Include="Models\Helper\ValidationMessage.cs" />
     <Compile Include="Models\Helper\VMDropDown.cs" />
     <Compile Include="Models\Main\VMCandidateIndex.cs" />
+    <Compile Include="Models\Main\VMCandidateProfile.cs" />
     <Compile Include="Models\Main\VMEduDetailIndex.cs" />
     <Compile Include="Models\Main\VMExperienceIndex.cs" />
     <Compile Include="Models\Main\VMJobPortalIndex.cs" />

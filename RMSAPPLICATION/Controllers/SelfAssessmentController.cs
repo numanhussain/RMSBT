@@ -36,15 +36,25 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (dbOperation.Strengths == null)
-                ModelState.AddModelError("Strengths", "This is mandatory field");
+                ModelState.AddModelError("Strengths", "Mandatory !!");
             if (dbOperation.AreaOfImprovement == null)
-                ModelState.AddModelError("AreaOfImprovement", "This is mandatory field");
+                ModelState.AddModelError("AreaOfImprovement", "Mandatory !!");
             if (dbOperation.MeetRequirements == null)
-                ModelState.AddModelError("MeetRequirements", "This is mandatory field");
+                ModelState.AddModelError("MeetRequirements", "Mandatory !!");
             if (dbOperation.Strengths != null)
             {
-                if (dbOperation.Strengths.Length > 15)
+                if (dbOperation.Strengths.Length > 250)
                     ModelState.AddModelError("Strengths", "String length exceeds!");
+            }
+            if (dbOperation.AreaOfImprovement != null)
+            {
+                if (dbOperation.AreaOfImprovement.Length > 250)
+                    ModelState.AddModelError("AreaOfImprovement", "String length exceeds!");
+            }
+            if (dbOperation.MeetRequirements != null)
+            {
+                if (dbOperation.MeetRequirements.Length > 250)
+                    ModelState.AddModelError("MeetRequirements", "String length exceeds!");
             }
             if (ModelState.IsValid)
             {

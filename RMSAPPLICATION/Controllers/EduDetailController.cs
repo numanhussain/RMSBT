@@ -60,28 +60,37 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMEduDetailOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (obj.DegreeTitle == null)
-                ModelState.AddModelError("DegreeTitle", "This is mandatory field");
-            if (obj.StartDate == null)
-                ModelState.AddModelError("StartDate", "This is mandatory field");
-            if (obj.EndDate == null)
-                ModelState.AddModelError("EndDate", "This is mandatory field");
-            if (obj.ObtainedMark == null)
-                ModelState.AddModelError("ObtainedMark", "This is mandatory field");
-            if (obj.TotalMark == null)
-                ModelState.AddModelError("TotalMark", "This is mandatory field");
-            if (obj.Percentage == null)
-                ModelState.AddModelError("Percentage", "This is mandatory field");
-            if (obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 && obj.CGPA == null)
-                ModelState.AddModelError("CGPA", "This is mandatory field");
-            if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
-                ModelState.AddModelError("OtherInstitute", "This is mandatory field");
-            if (ModelState.IsValid)
+            if (obj.DegreeLevelID == 0)
             {
-                EduDetailService.PostCreate(obj, vmf);
-                Session["LoggedInUser"] = vmf;
-                Session["ProfileStage"] = vmf.UserStage;
-                return Json("OK", JsonRequestBehavior.AllowGet);
+                ModelState.AddModelError("DegreeLevelID", "Mandatory !!");
+            }
+            else
+            {
+                if (obj.DegreeTitle == null)
+                    ModelState.AddModelError("DegreeTitle", "Mandatory !!");
+                if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0)
+                    ModelState.AddModelError("InstitutionID", "Mandatory !!");
+                if (obj.StartDate == null)
+                    ModelState.AddModelError("StartDate", "Mandatory !!");
+                if (obj.EndDate == null)
+                    ModelState.AddModelError("EndDate", "Mandatory !!");
+                if (obj.ObtainedMark == null)
+                    ModelState.AddModelError("ObtainedMark", "Mandatory !!");
+                if (obj.TotalMark == null)
+                    ModelState.AddModelError("TotalMark", "Mandatory !!");
+                if (obj.Percentage == null)
+                    ModelState.AddModelError("Percentage", "Mandatory !!");
+                if (obj.DegreeLevelID == 4 && obj.CGPA == null || obj.DegreeLevelID == 5 && obj.CGPA == null || obj.DegreeLevelID == 6 && obj.CGPA == null)
+                    ModelState.AddModelError("CGPA", "Mandatory !!");
+                if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
+                    ModelState.AddModelError("OtherInstitute", "Mandatory !!");
+                if (ModelState.IsValid)
+                {
+                    EduDetailService.PostCreate(obj, vmf);
+                    Session["LoggedInUser"] = vmf;
+                    Session["ProfileStage"] = vmf.UserStage;
+                    return Json("OK", JsonRequestBehavior.AllowGet);
+                }
             }
             CreateHelper(obj);
             return PartialView("Create", obj);

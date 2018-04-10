@@ -17,29 +17,29 @@ namespace RMSSERVICES.Job
         IRepository<V_AppliedJob> JobRepository;
         IRepository<V_JobDetail> OpenJobRepository;
         IRepository<CandidateJob> AppliedJobRepository;
-        IRepository<Candidate> CandidateProfileReporsitory;
-        IRepository<EduDetail> EduDetailReporsitory;
-        IRepository<ExperienceDetail> ExperienceDetailReporsitory;
-        IRepository<CompensationDetail> CompensationDetailReporsitory;
-        IRepository<MiscellaneousDetail> MiscellaneousDetailReporsitory;
-        IRepository<CandidateStrength> CandidateStrengthReporsitory;
+        IRepository<Candidate> CandidateRepository;
+        IRepository<EduDetail> EduDetailRepository;
+        IRepository<ExperienceDetail> ExperienceDetailRepository;
+        IRepository<CompensationDetail> CompensationDetailRepository;
+        IRepository<MiscellaneousDetail> MiscellaneousDetailRepository;
+        IRepository<CandidateStrength> CandidateStrengthRepository;
         public JobService(IUnitOfWork unitOfWork, IRepository<V_JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository,
-            IRepository<CandidateJob> appliedJobRepository, IRepository<Candidate> candidateProfileReporsitory,
-        IRepository<EduDetail> eduDetailReporsitory, IRepository<ExperienceDetail> experienceDetailReporsitory,
-        IRepository<CompensationDetail> compensationDetailReporsitory,
-        IRepository<MiscellaneousDetail> miscellaneousDetailReporsitory,
-        IRepository<CandidateStrength> candidateStrengthReporsitory)
+            IRepository<CandidateJob> appliedJobRepository, IRepository<Candidate> candidateProfileRepository,
+        IRepository<EduDetail> eduDetailRepository, IRepository<ExperienceDetail> experienceDetailRepository,
+        IRepository<CompensationDetail> compensationDetailRepository,
+        IRepository<MiscellaneousDetail> miscellaneousDetailRepository,
+        IRepository<CandidateStrength> candidateStrengthRepository)
         {
             UnitOfWork = unitOfWork;
             JobRepository = jobRepository;
             OpenJobRepository = openJobRepository;
             AppliedJobRepository = appliedJobRepository;
-            CandidateProfileReporsitory = candidateProfileReporsitory;
-            EduDetailReporsitory = eduDetailReporsitory;
-            ExperienceDetailReporsitory = experienceDetailReporsitory;
-            CompensationDetailReporsitory = compensationDetailReporsitory;
-            MiscellaneousDetailReporsitory = miscellaneousDetailReporsitory;
-            CandidateStrengthReporsitory = candidateStrengthReporsitory;
+            CandidateRepository = candidateProfileRepository;
+            EduDetailRepository = eduDetailRepository;
+            ExperienceDetailRepository = experienceDetailRepository;
+            CompensationDetailRepository = compensationDetailRepository;
+            MiscellaneousDetailRepository = miscellaneousDetailRepository;
+            CandidateStrengthRepository = candidateStrengthRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -90,27 +90,27 @@ namespace RMSSERVICES.Job
         {
             string message = "";
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient4 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (MiscellaneousDetailReporsitory.FindBy(SpecificClient4).Count == 0)
+            if (MiscellaneousDetailRepository.FindBy(SpecificClient4).Count == 0)
             {
                 message = "Kindly enter your miscellaneous details in profile";
             }
             Expression<Func<CompensationDetail, bool>> SpecificClient3 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (CompensationDetailReporsitory.FindBy(SpecificClient3).Count == 0)
+            if (CompensationDetailRepository.FindBy(SpecificClient3).Count == 0)
             {
                 message = "Kindly enter your compensation details in profile";
             }
             Expression<Func<ExperienceDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (ExperienceDetailReporsitory.FindBy(SpecificClient2).Count == 0)
+            if (ExperienceDetailRepository.FindBy(SpecificClient2).Count == 0)
             {
                 message = "Kindly enter your experience details in profile";
             }
             Expression<Func<EduDetail, bool>> SpecificClient1 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (EduDetailReporsitory.FindBy(SpecificClient1).Count == 0)
+            if (EduDetailRepository.FindBy(SpecificClient1).Count == 0)
             {
                 message = "Kindly enter your educations in profile";
             }
             Expression<Func<Candidate, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
-            Candidate candidate = CandidateProfileReporsitory.GetSingle(LoggedInUser.CandidateID);
+            Candidate candidate = CandidateRepository.GetSingle(LoggedInUser.CandidateID);
             if (candidate.CName == null || candidate.CName == "")
             {
                 message = "Kindly enter your personal details in profile";
@@ -208,6 +208,11 @@ namespace RMSSERVICES.Job
                 vmOpenJobs.Add(vmOpenJobIndex);
             }
             return vmOpenJobs.OrderByDescending(aa => aa.CreatedDate).ToList();
+        }
+        public Candidate GetCandidateDetailIndex(int CID)
+        {
+            Candidate dbCandidate = CandidateRepository.GetSingle(CID);
+            return dbCandidate;
         }
         #endregion
         #region -- Service Private Methods --

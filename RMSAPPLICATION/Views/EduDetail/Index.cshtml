@@ -37,7 +37,10 @@
                     Completion Date
                 </th>
                 <th class="text-bold">
-                    %age/CGPA
+                    Percentage
+                </th>
+                <th class="text-bold">
+                    CGPA
                 </th>
                 <th class="text-bold">
                     Edit | Delete
@@ -72,7 +75,10 @@
                         </td>
                     }
                     <td>
-                        @Html.DisplayFor(modelItem => item.Percentage)/ @Html.DisplayFor(modelItem => item.CGPA)
+                        @Html.DisplayFor(modelItem => item.Percentage)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CGPA)
                     </td>
                     <td>
                         <button type="button" id="btnGetEdit" onclick="EduDetailGetEdit(@item.EduID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>

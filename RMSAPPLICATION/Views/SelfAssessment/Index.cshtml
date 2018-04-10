@@ -39,7 +39,7 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <div class="control-label col-md-12 text-semibold">Strengths </div>
+                    <div class="required control-label col-md-12 text-semibold">Strengths </div>
                     <div class="col-md-8">
                         @Html.TextAreaFor(model => model.Strengths, new { @class = "form-control", @cols = 5, @rows = 3 })
                         @Html.ValidationMessageFor(m => m.Strengths, null, new { @class = "text-danger" })
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="control-label col-md-12 text-semibold">Briefly Explain how you relate your skills and experience meets the requirement of the job applies for : </div>
+                    <div class="required control-label col-md-12 text-semibold">Briefly Explain how you relate your skills and experience meets the requirement of the job applies for : </div>
                     <div class="col-md-8">
                         @Html.TextAreaFor(model => model.MeetRequirements, new { @class = "form-control", @cols = 5, @rows = 3 })
                         @Html.ValidationMessageFor(m => m.MeetRequirements, null, new { @class = "text-danger" })

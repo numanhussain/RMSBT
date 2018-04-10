@@ -52,11 +52,13 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.PositionTitle == null || obj.PositionTitle == "")
-                ModelState.AddModelError("PositionTitle", "This is mandatory field");
+                ModelState.AddModelError("PositionTitle", "Mandatory !!");
             if (obj.EmployerName == null || obj.EmployerName == "")
-                ModelState.AddModelError("EmployerName", "This is mandatory field");
+                ModelState.AddModelError("EmployerName", "Mandatory !!");
             if (obj.StartDate == null)
-                ModelState.AddModelError("StartDate", "This is mandatory field");
+                ModelState.AddModelError("StartDate", "Mandatory !!");
+            if (obj.StartDate > DateTime.Today)
+                ModelState.AddModelError("StartDate","Start date greater then current date");
             if (obj.StartDate != null && obj.EndDate != null)
             {
                 if (obj.EndDate < obj.StartDate)
@@ -64,7 +66,8 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("StartDate", "Start date can never be greater than end date.");
                 }
             }
-
+            if (obj.AreaofInterest == null || obj.AreaofInterest == "")
+                ModelState.AddModelError("AreaofInterest", "Mandatory !!");
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 4)
@@ -130,9 +133,15 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Private  Methods--
         private void CreateHelper(VMExperienceOperation obj)
         {
-            ViewBag.IndustryID = new SelectList(DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName", obj.IndustryID);
-            ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
-            ViewBag.CareerLevelID = new SelectList(DDService.GetCareerLevelList().ToList().OrderBy(aa => aa.CLevelID).ToList(), "CLevelID", "CareerLevelName", obj.CareerLevelID);
+            List<ExperienceIndustry> dbExpIndutries = DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList();
+            dbExpIndutries.Insert(0, new ExperienceIndustry { ExpIndustryID = 0, ExpIndustryName = "All" });
+            ViewBag.IndustryID = new SelectList(dbExpIndutries.ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName");
+            List<City> dbCities = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList();
+            dbCities.Insert(0, new City { CityID = 0, CityName = "All" });
+            ViewBag.CityID = new SelectList(dbCities.ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName");
+            List<ExpCareerLevel> dbCareerlevels = DDService.GetCareerLevelList().ToList().OrderBy(aa => aa.CLevelID).ToList();
+            dbCareerlevels.Insert(0, new ExpCareerLevel { CLevelID = 0, CareerLevelName = "All" });
+            ViewBag.CareerLevelID = new SelectList(dbCareerlevels.ToList().OrderBy(aa => aa.CLevelID).ToList(), "CLevelID", "CareerLevelName");
         }
         private void EditHelper(VMExperienceOperation obj)
         {

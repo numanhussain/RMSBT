@@ -41,6 +41,10 @@ namespace RMSSERVICES.Miscellaneous
         }
         public ServiceMessage PostCreate(MiscellaneousDetail obj, V_UserCandidate LoggedInUser)
         {
+            User dbUser = UserRepository.GetSingle((int)LoggedInUser.UserID);
+            dbUser.HasCV = true;
+            UserRepository.Edit(dbUser);
+            UserRepository.Save();
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
@@ -80,7 +84,9 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.CandidateID = obj.CandidateID;
             dbMiscellaneous.CrimeDetail = obj.CrimeDetail;
             dbMiscellaneous.WorkingRelative = obj.WorkingRelative;
-            dbMiscellaneous.WorkingRelativeDetail = obj.WorkingRelativeDetail;
+            dbMiscellaneous.WorkingRelativeName = obj.WorkingRelativeName;
+            dbMiscellaneous.WorkingRelativeRelation = obj.WorkingRelativeRelation;
+            dbMiscellaneous.WorkingRelativeDepartment = obj.WorkingRelativeDepartment;
             dbMiscellaneous.InterviewedBefore = obj.InterviewedBefore;
             dbMiscellaneous.InterviewedDate = obj.InterviewedDate;
             dbMiscellaneous.InterviewedLocation = obj.InterviewedLocation;
