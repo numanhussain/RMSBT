@@ -23,7 +23,7 @@ namespace RMSAPPLICATION.Controllers
         IDDService DDService;
         // Controller Constructor
         public CandidateController(IEntityService<Candidate> candidateEntityService, IDDService ddService, ICandidateService candidateservice)
-                    
+
         {
             CandidateEntityService = candidateEntityService;
             CandidateService = candidateservice;
@@ -72,7 +72,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("DOB", "Mandatory !!");
             if (dbOperation.Address == null || dbOperation.Address == "")
                 ModelState.AddModelError("Address", "Mandatory !!");
-            if (dbOperation.CityID==0)
+            if (dbOperation.CityID == 0)
                 ModelState.AddModelError("CityID", "Mandatory !!");
             if (dbOperation.CountryID == 0)
                 ModelState.AddModelError("CountryID", "Mandatory !!");
@@ -103,7 +103,11 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CellNo", "Mandatory !!");
             if (ModelState.IsValid)
             {
+                if (vmf.UserStage == 2)
+                    vmf.UserStage = 3;
                 CandidateService.PostCreate(dbOperation, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);

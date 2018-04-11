@@ -63,6 +63,12 @@ namespace RMSSERVICES.Education
         }
         public ServiceMessage PostCreate(VMEduDetailOperation obj,V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             EduDetail dbEduDetail = new EduDetail();
             dbEduDetail.CandidateID = obj.CandidateID;
             dbEduDetail = ConvertEducationObject(obj);

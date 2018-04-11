@@ -11,6 +11,6 @@ namespace RMSSERVICES.Self_Assessment
     public interface ISelfAssessmentService
     {
         CandidateStrength GetIndex(int id);
-        ServiceMessage PostIndex(CandidateStrength dbOperation);
+        ServiceMessage PostIndex(CandidateStrength dbOperation, V_UserCandidate LoggedInUser);
     }
 }

@@ -86,6 +86,8 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("OtherInstitute", "Mandatory !!");
                 if (ModelState.IsValid)
                 {
+                    if (vmf.UserStage == 3)
+                        vmf.UserStage = 4;
                     EduDetailService.PostCreate(obj, vmf);
                     Session["LoggedInUser"] = vmf;
                     Session["ProfileStage"] = vmf.UserStage;

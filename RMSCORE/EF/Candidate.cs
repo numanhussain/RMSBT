@@ -28,7 +28,7 @@ namespace RMSCORE.EF
         public string FatherName { get; set; }
         public Nullable<System.DateTime> DOB { get; set; }
         public string CNICNo { get; set; }
-        public string BloodGroupID { get; set; }
+        public Nullable<int> BloodGroupID { get; set; }
         public Nullable<int> MartialStatusID { get; set; }
         public string Address { get; set; }
         public Nullable<int> CityID { get; set; }

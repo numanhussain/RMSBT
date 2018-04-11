@@ -92,15 +92,15 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.ReligionID = dbOperation.ReligionID;
             return dbCandidate;
         }
-        public VMCandidateProfileView GetProfileDetails(int? CandidateID,int? JobID)
+        public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)
         {
             VMCandidateProfileView vmProfileView = new VMCandidateProfileView();
             Expression<Func<Candidate, bool>> SpecificPosition = c => c.CandidateID == CandidateID;
             vmProfileView.PersonalDetails = CandidateRepository.GetSingle((int)CandidateID);
             Expression<Func<V_Candidate_EduDetail, bool>> SpecificPosition2 = c => c.CandidateID == CandidateID;
-            vmProfileView.EducationalDetails = VEducationRepository.GetAll();
+            vmProfileView.EducationalDetails = VEducationRepository.FindBy(SpecificPosition2);
             Expression<Func<V_Candidate_Exp, bool>> SpecificPosition3 = c => c.CandidateID == CandidateID;
-            vmProfileView.ExperienceDetails = VCandidateExpRepository.GetAll();
+            vmProfileView.ExperienceDetails = VCandidateExpRepository.FindBy(SpecificPosition3);
             Expression<Func<CompensationDetail, bool>> SpecificPosition4 = c => c.CandidateID == CandidateID;
             vmProfileView.CompensationDetails = CompensationDetailRepository.FindBy(SpecificPosition4).First();
             Expression<Func<MiscellaneousDetail, bool>> SpecificPosition5 = c => c.CandidateID == CandidateID;

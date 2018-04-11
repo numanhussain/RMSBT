@@ -15,10 +15,12 @@ namespace RMSSERVICES.Self_Assessment
         #region -- Service Variables --
         IUnitOfWork UnitOfWork;
         IRepository<CandidateStrength> CandidateStrengthRepository;
-        public SelfAssessmentService(IUnitOfWork unitOfWork, IRepository<CandidateStrength> candidateStrengthRepository)
+        IRepository<User> UserRepository;
+        public SelfAssessmentService(IUnitOfWork unitOfWork, IRepository<CandidateStrength> candidateStrengthRepository, IRepository<User> userRepository)
         {
             UnitOfWork = unitOfWork;
             CandidateStrengthRepository = candidateStrengthRepository;
+            UserRepository = userRepository;
         }
         #endregion
         #region -- Service Interface Implementation --    
@@ -33,8 +35,14 @@ namespace RMSSERVICES.Self_Assessment
             }
             return dbCandidate;
         }
-        public ServiceMessage PostIndex(CandidateStrength obj)
+        public ServiceMessage PostIndex(CandidateStrength obj, V_UserCandidate LoggedInUser)
         {
+            Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
+            List<User> images = UserRepository.FindBy(SpecificEntries);
+            User image = images.First();
+            image.UserStage = LoggedInUser.UserStage;
+            UserRepository.Edit(image);
+            UserRepository.Save();
             Expression<Func<CandidateStrength, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
             CandidateStrength dbCandidate = new CandidateStrength();
             if (CandidateStrengthRepository.FindBy(SpecificClient).Count() > 0)
