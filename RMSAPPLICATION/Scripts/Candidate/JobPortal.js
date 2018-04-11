@@ -4,7 +4,7 @@
         type: 'GET',
         cache: false,
         success: function (data) {
-            $('#DivContainer').html(data);
+            location.reload();
         },
         error: function () {
             $("#result").text('an error occured')
@@ -53,19 +53,38 @@ function ApplyJob(id, item) {
         data: { JobID: id }
     }).done(function (data) {
         if (data === "OK") {
+
             $('#myModal1').modal('hide');
             $.jGrowl('You have successfully applied for this job.  You can check the status of your application later by logging into your account at Bestway Career Portal', {
                 header: 'Well done!',
                 theme: 'bg-success-400',
             });
+ $("#DivJobApplied").show();
+ $("#DivJobApply").hide();
         }
         else { alert(data); }
     });
 }
-function DeclarationStatement(id) {
+//function DeclarationStatement(id) {
+//    $.ajax({
+//        type: "GET",
+//        url: "/Job/DeclarationStatement",
+//        contentType: "application/json; charset=utf-8",
+//        data: { JobID: id },
+//        datatype: "json",
+//        success: function (data) {
+//            $('#modelBody1').html(data);
+//            $('#myModal1').modal('show');
+//        },
+//        error: function () {
+//            alert("Dynamic content load failed.");
+//        }
+//    });
+//}
+function ViewProfileIndex(id) {
     $.ajax({
         type: "GET",
-        url: "/Job/DeclarationStatement",
+        url: "/Job/ViewProfileIndex",
         contentType: "application/json; charset=utf-8",
         data: { JobID: id },
         datatype: "json",

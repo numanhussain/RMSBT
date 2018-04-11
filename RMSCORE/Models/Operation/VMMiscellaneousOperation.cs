@@ -23,8 +23,8 @@ namespace RMSCORE.Models.Operation
         public string Designation { get; set; }
         public string Location { get; set; }
         public string ReasonLeaving { get; set; }
-        public string TotalExp { get; set; }
-        public string CementExp { get; set; }
+        public int? TotalExp { get; set; }
+        public int? CementExp { get; set; }
         public int NoticeTime { get; set; }
         public int HearAboutJobID{ get; set; }
         public string HearAboutSource { get; set; }

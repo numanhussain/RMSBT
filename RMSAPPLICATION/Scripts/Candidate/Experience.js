@@ -17,24 +17,6 @@
         document.getElementById("UserstageAfterFirst").value = 4;
     });
 };
-function clearClasses() {
-    $("#hv1").removeClass("liInActive");
-    $("#hv2").removeClass("liInActive");
-    $("#hv33").removeClass("liInActive");
-    $("#hv3").removeClass("liInActive");
-    $("#hv4").removeClass("liInActive");
-    $("#hv5").removeClass("liInActive");
-    $("#hv6").removeClass("liInActive");
-    $("#hv7").removeClass("liInActive");
-    $("#hv1").removeClass("liActive");
-    $("#hv2").removeClass("liActive");
-    $("#hv33").removeClass("liActive");
-    $("#hv3").removeClass("liActive");
-    $("#hv4").removeClass("liActive");
-    $("#hv5").removeClass("liActive");
-    $("#hv6").removeClass("liActive");
-    $("#hv7").addClass("liActive");
-}
 function ExperienceDetailGetCreate(id) {
     $('#ExperienceGetCreate').click(function () {
         $.ajax({

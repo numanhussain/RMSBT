@@ -28,13 +28,9 @@
                         <div class="media-right media-middle text-nowrap">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" onclick="DeclarationStatement(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
-                            else
-                            {
-                                <span class="glyphicon-ok-sign">Already Applied For this Job</span>
-                            }
-                           
+                            <span id="DivJobApplied" class="glyphicon-ok-sign">Already Applied For this Job</span>
                         </div>
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Job Description</h6>
@@ -72,3 +68,13 @@
     </div>
 </div>
 <script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
+<script>
+
+   
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ('@(Model.IsApplied ==false)'=='True')
+            $("#DivJobApplied").hide();
+    });
+</script>

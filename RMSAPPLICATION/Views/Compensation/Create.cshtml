@@ -34,9 +34,10 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
-                    <div class="control-label col-md-2 text-semibold">Monthly Basic Salary </div>
+                    <div class="required control-label col-md-2 text-semibold">Monthly Basic Salary </div>
                     <div class="col-md-4">
                         @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MBSalary, "", new { @class = "text-danger" })
                     </div>
                     <label class="required col-md-2 control-label text-semibold">Monthly Gross Salary</label>
                     <div class="col-md-4">
@@ -47,60 +48,68 @@
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-3">
-                        <label class=" checkbox-inline checkbox-right text-semibold col-md-5" for="Bonus">
+                        <label class="required  checkbox-inline checkbox-right text-semibold col-md-5" for="Bonus">
                             @Html.CheckBox("Bonus", new { @class = "styled", @id = "Bonus" })
+                            @Html.ValidationMessageFor(model => model.Bonus, "", new { @class = "text-danger" })
                             Bonus
                         </label>
                     </div>
                     <div id="Bonusdiv">
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
-                                @Html.RadioButton("BonusSelection", "BBonus", new { @class = "checked", @id = "BBonus" })
+                                @Html.RadioButton("BonusSelection", "BBonus", new { @checked = "checked", @id = "BBonus" })
+                                @Html.ValidationMessageFor(model => model.BBonus,"", new { @class = "text-danger" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label class="radio-inline text-semibold" for="GBonus">
                                 @Html.RadioButton("BonusSelection", "GBonus", new { @class = "checked", @id = "GBonus" })
+                                @Html.ValidationMessageFor(model => model.GBonus, "", new { @class = "text-danger" })
                                 Gross
                             </label>
                         </div>
-                        <label class="control-label col-md-2 text-semibold">No of Bonuses per year</label>
+                        <label class="required control-label col-md-2 text-semibold">No of Bonuses per year</label>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.BonusPerYear, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.BonusPerYear, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-3">
-                        <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="LFA">
+                        <label class="required checkbox-inline checkbox-right text-semibold col-md-5" for="LFA">
                             @Html.CheckBox("LFA", new { @class = "styled", @id = "LFA" })
                             @Html.ValidationMessageFor(model => model.LFA, "", new { @class = "text-danger" })
                             LFA
                         </label>
+                        <span class="help-block">(Leave Fare Assistance)</span>
                     </div>
                     <div id="LFAdiv">
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
-                                @Html.RadioButton("LFASelection", "BLFA", new { @class = "checked", id = "BLFA" })
+                                @Html.RadioButton("LFASelection", "BLFA", new { @checked = "checked", id = "BLFA" })
+                                @Html.ValidationMessageFor(model => model.BLFA, "", new { @class = "text-danger" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label class="radio-inline text-semibold" for="GLFA">
                                 @Html.RadioButton("LFASelection", "GLFA", new { @class = "checked", id = "GLFA" })
+                                @Html.ValidationMessageFor(model => model.GLFA, "", new { @class = "text-danger" })
                                 Gross
                             </label>
                         </div>
-                        <label class="control-label col-md-2 text-semibold">No of LFA's per year</label>
+                        <label class="required control-label col-md-2 text-semibold">No of LFA's per year</label>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.LFAPerYear, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.LFAPerYear, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-3">
-                        <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="OT">
+                        <label class="required checkbox-inline checkbox-right text-semibold col-md-5" for="OT">
                             @Html.CheckBox("OT", new { @class = "styled", @id = "OT" })
                             @Html.ValidationMessageFor(model => model.OT, "", new { @class = "text-danger" })
                             Overtime
@@ -109,77 +118,89 @@
                     <div id="OTdiv">
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
-                                @Html.RadioButton("OTselection", "BOT", new { @class = "checked", id = "BOT" })
+                                @Html.RadioButton("OTselection", "BOT", new { @checked = "checked", id = "BOT" })
+                                @Html.ValidationMessageFor(model => model.BOT, "", new { @class = "text-danger" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
                             <label class="radio-inline text-semibold" for="GOT">
                                 @Html.RadioButton("OTselection", "GOT", new { @class = "checked", id = "GOT" })
+                                @Html.ValidationMessageFor(model => model.GOT, "", new { @class = "text-danger" })
                                 Gross
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
-                    <div class="control-label text-black h5" style="font-weight:900">Allowance</div>
+                    <div class="control-label text-black h5" style="font-weight:900">Allowances</div>
                     <hr />
                 </div>
 
                 <div class="form-group col-md-12">
-                    <div class="col-md-1 control-label text-semibold">Transport Allowance</div>
+                    <div class="required col-md-1 control-label text-semibold">Transport Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.TransportAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                        @Html.ValidationMessageFor(model => model.TransportAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Vehical Entitlement</div>
+                    <div class="required col-md-1 control-label text-semibold">Vehical Entitlement</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.CarEntitlement, new { htmlAttributes = new { @class = "form-control", @placeholder = "e.g Honda 1300CC" } })
+                        @Html.ValidationMessageFor(model => model.CarEntitlement, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-3">
-                        <label class="checkbox-inline checkbox-right text-semibold col-md-10" for="BuyBackOption">
+                        <label class="required checkbox-inline checkbox-right text-semibold col-md-10" for="BuyBackOption">
                             @Html.CheckBox("BuyBackOption", new { @class = "styled" })
                             @Html.ValidationMessageFor(model => model.BuyBackOption, "", new { @class = "text-danger", @id = "BuyBackOption" })
                             Buy Back Option
                         </label>
                     </div>
                     <div id="buybackdiv">
-                        <div class="col-md-1 control-label text-semibold">Specify Years</div>
+                        <div class="required col-md-1 control-label text-semibold">Specify Years</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.SpecifyYears, new { htmlAttributes = new { @class = "form-control", @placeholder = "Years" } })
+                            @Html.ValidationMessageFor(model => model.SpecifyYears, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
 
-                    <div class="col-md-1 control-label text-semibold">Fuel Allowance</div>
+                    <div class="required col-md-1 control-label text-semibold">Fuel Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.FuelAllowance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Amount/Litres" } })
+                        @Html.ValidationMessageFor(model => model.FuelAllowance, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Accomod Allowance</div>
+                    <div class="required col-md-1 control-label text-semibold">Accomod Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.AccomdAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify Amount" } })
+                        @Html.ValidationMessageFor(model => model.AccomdAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Mobile  Allowance</div>
+                    <div class="required col-md-1 control-label text-semibold">Mobile  Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                        @Html.ValidationMessageFor(model => model.MobileAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Mobile  User Limit</div>
+                    <div class="required col-md-1 control-label text-semibold">Mobile  User Limit</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                        @Html.ValidationMessageFor(model => model.MobileUserLimit, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group col-md-12">
-                    <div class="col-md-1 control-label text-semibold">COLA</div>
+                    <div class="required col-md-1 control-label text-semibold">COLA</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.COLA, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                        @Html.ValidationMessageFor(model => model.COLA, "", new { @class = "text-danger" })
+                        <span class="help-block">(Cost of living Allowance)</span>
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Others</div>
+                    <div class="required col-md-1 control-label text-semibold">Others</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control", @placeholder = "If any" } })
+                        @Html.ValidationMessageFor(model => model.Other, "", new { @class = "text-danger" })
                     </div>
                     <div class="col-md-2">
-                        <label class="control-label checkbox-inline checkbox-right text-semibold col-md-10" for="Food">
+                        <label class="required control-label checkbox-inline checkbox-right text-semibold col-md-10" for="Food">
                             @Html.CheckBox("Food", new { @class = "styled" })
                             @Html.ValidationMessageFor(model => model.Food, "", new { @class = "text-danger" })
                             Food
@@ -187,40 +208,45 @@
                     </div>
                     <div id="fooddiv">
                         <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
-                                @Html.RadioButton("FoodSelection", "Free", new { @class = "checked", id = "Free" })
+                            <div class="required radio-inline text-semibold">
+                                @Html.RadioButton("FoodSelection", "Free", new { @checked = "checked", id = "Free" })
+                                @Html.ValidationMessageFor(model => model.Free, "", new { @class = "text-danger" })
                                 Free
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <label class="radio-inline text-semibold" for="Subsidized">
+                            <label class="required radio-inline text-semibold" for="Subsidized">
                                 @Html.RadioButton("FoodSelection", "Subsidized", new { @class = "checked", id = "Subsidized" })
+                                @Html.ValidationMessageFor(model => model.Subsidized, "", new { @class = "text-danger" })
                                 Subsidized
                             </label>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
-                    <div class="control-label text-black h5" style="font-weight:900">Insurance and Coverage</div>
+                    <div class="required control-label text-black h5" style="font-weight:900">Insurance and Coverage</div>
                     <hr />
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-1 control-label text-semibold">OPD Limit</div>
+                    <div class="required col-md-1 control-label text-semibold">OPD Limit</div>
                     <div class="col-md-3">
-                        @Html.EditorFor(model => model.OPDInsurance, new { htmlAttributes = new { @class = "form-control",@placeholder="Specify the Limit" } })
+                        @Html.EditorFor(model => model.OPDInsurance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify the Limit" } })
+                        @Html.ValidationMessageFor(model => model.OPDInsurance, "", new { @class = "text-danger" })
                     </div>
-                    <label class="col-md-1 control-label text-semibold">IP Limit</label>
+                    <label class="required col-md-1 control-label text-semibold">IP Limit</label>
                     <div class="col-md-3">
                         @Html.EditorFor(model => model.IPInsurance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify the Limit" } })
+                        @Html.ValidationMessageFor(model => model.IPInsurance, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-1 control-label text-semibold">Life Insurance</div>
+                    <div class="required col-md-1 control-label text-semibold">Life Insurance</div>
                     <div class="col-md-3">
                         @Html.EditorFor(model => model.LifeInsurance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify the Limit" } })
+                        @Html.ValidationMessageFor(model => model.LifeInsurance, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-4">
-                        <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="ProvidentFund">
+                        <label class="required checkbox-inline checkbox-right text-semibold col-md-5" for="ProvidentFund">
                             @Html.CheckBox("ProvidentFund", new { @class = "styled", @id = "ProvidentFund" })
                             @Html.ValidationMessageFor(model => model.ProvidentFund, "", new { @class = "text-danger" })
                             Provident Fund
@@ -228,26 +254,29 @@
                     </div>
                     <div id="Providentdiv">
                         <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
-                                @Html.RadioButton("Providentselection", "BProvidentFund", new { @class = "checked", id = "BProvidentFund" })
+                            <div class="required radio-inline text-semibold">
+                                @Html.RadioButton("Providentselection", "BProvidentFund", new { @checked = "checked", id = "BProvidentFund" })
+                                @Html.ValidationMessageFor(model => model.BProvidentFund, "", new { @class = "text-danger" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
+                            <div class="required radio-inline text-semibold">
                                 @Html.RadioButton("Providentselection", "GProvidentFund", new { @class = "checked", id = "GProvidentFund" })
+                                @Html.ValidationMessageFor(model => model.GProvidentFund, "", new { @class = "text-danger" })
                                 Gross
                             </div>
                         </div>
-                        <div class="control-label col-md-2 text-semibold">If Yes then %</div>
+                        <div class="required control-label col-md-2 text-semibold">If Yes then %</div>
                         <div class="col-md-2">
                             @Html.EditorFor(model => model.ProvidentFundPerYear, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ProvidentFundPerYear, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-12">
                     <div class="col-md-4">
-                        <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="Gratuity">
+                        <label class="required checkbox-inline checkbox-right text-semibold col-md-5" for="Gratuity">
                             @Html.CheckBox("Gratuity", new { @class = "styled", @id = "Gratuity" })
                             @Html.ValidationMessageFor(model => model.Gratuity, "", new { @class = "text-danger" })
                             Gratuity
@@ -255,14 +284,16 @@
                     </div>
                     <div id="Gratuitydiv">
                         <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
-                                @Html.RadioButton("GratuitySelection", "BGratuity", new { @class = "checked", id = "BGratuity" })
+                            <div class="required radio-inline text-semibold">
+                                @Html.RadioButton("GratuitySelection", "BGratuity", new { @checked = "checked", id = "BGratuity" })
+                                @Html.ValidationMessageFor(model => model.BGratuity, "", new { @class = "text-danger" })
                                 Basic
                             </div>
                         </div>
                         <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
+                            <div class="required radio-inline text-semibold">
                                 @Html.RadioButton("GratuitySelection", "GGratuity", new { @class = "checked", id = "GGratuity" })
+                                @Html.ValidationMessageFor(model => model.GGratuity, "", new { @class = "text-danger" })
                                 Gross
                             </div>
                         </div>
@@ -273,31 +304,37 @@
                     <hr />
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">Annual</div>
+                    <div class="required col-md-2 control-label text-semibold">Annual</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.AnnualTAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.AnnualTAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <label class="col-md-2 control-label text-semibold">Casual</label>
+                    <label class="required col-md-2 control-label text-semibold">Casual</label>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.CasualTAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CasualTAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Sick</div>
+                    <div class="required col-md-2 control-label text-semibold">Sick</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MedTAllowence, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MedTAllowence, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group col-md-12">
-                    <div class="col-md-2 control-label text-semibold">Working Days/Week</div>
+                    <div class="required col-md-2 control-label text-semibold">Working Days/Week</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.TAllowenceWorkDay, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TAllowenceWorkDay, "", new { @class = "text-danger" })
                     </div>
-                    <label class="col-md-2 control-label text-semibold">Expected Salary</label>
+                    <label class="required col-md-2 control-label text-semibold">Expected Salary</label>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.ExpectedSalary, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ExpectedSalary, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-2 control-label text-semibold">Any other Benifit</div>
+                    <div class="required col-md-2 control-label text-semibold">Any other Benifit</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.OtherBenifits, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OtherBenifits, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>

@@ -1,5 +1,6 @@
 ﻿using RMSCORE.EF;
 using RMSCORE.Models.Helper;
+using RMSCORE.Models.Main;
 using RMSSERVICES.CandidateImage;
 using RMSSERVICES.Generic;
 using RMSSERVICES.PersonalDetail;
@@ -64,13 +65,17 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (dbOperation.CName == null || dbOperation.CName == "")
-                ModelState.AddModelError("CName", "This is mandatory field");
+                ModelState.AddModelError("CName", "Mandatory !!");
             if (dbOperation.FatherName == null || dbOperation.CName == "")
-                ModelState.AddModelError("FatherName", "This is mandatory field");
+                ModelState.AddModelError("FatherName", "Mandatory !!");
             if (dbOperation.DOB == null)
-                ModelState.AddModelError("DOB", "This is mandatory field");
+                ModelState.AddModelError("DOB", "Mandatory !!");
             if (dbOperation.Address == null || dbOperation.Address == "")
-                ModelState.AddModelError("Address", "This is mandatory field");
+                ModelState.AddModelError("Address", "Mandatory !!");
+            if (dbOperation.CityID==0)
+                ModelState.AddModelError("CityID", "Mandatory !!");
+            if (dbOperation.CountryID == 0)
+                ModelState.AddModelError("CountryID", "Mandatory !!");
             //if (dbOperation.CNICNo != null)
             //{
             //    if (dbOperation.CNICNo.Length > 15)
@@ -82,20 +87,20 @@ namespace RMSAPPLICATION.Controllers
             //    }
             //}
             if (dbOperation.CNICNo == null)
-                ModelState.AddModelError("CNICNo", "This is mandatory field");
+                ModelState.AddModelError("CNICNo", "Mandatory !!");
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
-                ModelState.AddModelError("EmailID", "This is mandatory field");
+                ModelState.AddModelError("EmailID", "Mandatory !!");
 
             if (dbOperation.EmailID != null)
             {
                 Match match = Regex.Match(dbOperation.EmailID, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 if (!match.Success)
                 {
-                    ModelState.AddModelError("EmailID", "This is mandatory field");
+                    ModelState.AddModelError("EmailID", "Mandatory !!");
                 }
             }
             if (dbOperation.CellNo == null || dbOperation.CellNo == "")
-                ModelState.AddModelError("CellNo", "This is mandatory field");
+                ModelState.AddModelError("CellNo", "Mandatory !!");
             if (ModelState.IsValid)
             {
                 CandidateService.PostCreate(dbOperation, vmf);
@@ -144,6 +149,14 @@ namespace RMSAPPLICATION.Controllers
 
                 throw;
             }
+        }
+        [HttpGet]
+        public ActionResult ViewProfileIndex(int? JobID)
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            VMCandidateProfileView vmViewProfile = CandidateService.GetProfileDetails(cid, JobID);
+            return View(vmViewProfile);
         }
         #region-- 
         private void CreateHelper(Candidate obj)

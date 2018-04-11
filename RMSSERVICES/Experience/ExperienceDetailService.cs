@@ -57,6 +57,7 @@ namespace RMSSERVICES.Experience
                 vmExperienceDetail.ExpIndustryName = dbExperienceDetail.ExpIndustryName;
                 vmExperienceDetail.HaveExperience = dbCandidates.HaveExperience;
                 vmExperienceDetail.ContactEmployer = dbExperienceDetail.ContactEmployer;
+                vmExperienceDetail.AreaofInterest = dbExperienceDetail.AreaofInterest;
                 vmExperienceDetails.Add(vmExperienceDetail);
             }
             return vmExperienceDetails.OrderByDescending(aa => aa.ExpID).ToList();
@@ -101,6 +102,7 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.CandidateID = dbExperienceDetail.CandidateID;
             vmExperienceDetail.IndustryID = dbExperienceDetail.IndustryID;
             vmExperienceDetail.ContactEmployer = dbExperienceDetail.ContactEmployer;
+            vmExperienceDetail.AreaofInterest = dbExperienceDetail.AreaofInterest;
             return vmExperienceDetail;
         }
         public ServiceMessage PostEdit(VMExperienceOperation obj)
@@ -131,6 +133,7 @@ namespace RMSSERVICES.Experience
             obj.CandidateID = dbExperienceDetail.CandidateID;
             obj.IndustryID = dbExperienceDetail.IndustryID;
             obj.ContactEmployer = dbExperienceDetail.ContactEmployer;
+            obj.AreaofInterest = dbExperienceDetail.AreaofInterest;
             return obj;
         }
         public ServiceMessage PostDelete(VMExperienceOperation obj)
@@ -164,8 +167,10 @@ namespace RMSSERVICES.Experience
             dbExperiencedetail.CandidateID = obj.CandidateID;
             dbExperiencedetail.IndustryID = obj.IndustryID;
             dbExperiencedetail.ContactEmployer = obj.ContactEmployer;
+            dbExperiencedetail.AreaofInterest = obj.AreaofInterest;
             return dbExperiencedetail;
         }
         #endregion
     }
 }
+

@@ -167,7 +167,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
-    <Compile Include="Controllers\CandidateProfileController.cs" />
     <Compile Include="Controllers\CompensationController.cs" />
     <Compile Include="Controllers\EduDetailController.cs" />
     <Compile Include="Controllers\ExperienceController.cs" />
@@ -3074,7 +3073,8 @@
     <Content Include="Views\Home\ConfirmedEmail.cshtml" />
     <Content Include="Views\SelfAssessment\Index.cshtml" />
     <Content Include="Views\Job\DeclarationStatement.cshtml" />
-    <Content Include="Views\CandidateProfile\CandidateProfile.cshtml" />
+    <Content Include="Views\Job\ViewProfileIndex.cshtml" />
+    <Content Include="Views\Candidate\ViewProfileIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

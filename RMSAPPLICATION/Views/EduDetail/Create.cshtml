@@ -63,7 +63,7 @@
                     </div>
                 </div>
                 <div id="InstitutionDD">
-                        <div class=" control-label text-semibold col-md-1">Institution</div>
+                        <div class="required control-label text-semibold col-md-1">Institution</div>
                         <div class="col-md-3">
                             @Html.DropDownList("InstitutionID", null, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })

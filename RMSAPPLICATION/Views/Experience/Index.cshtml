@@ -36,74 +36,75 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <table class="table datatable-basic">
-            <thead>
-                <tr>
-                    <th class="text-bold">
-                        Employer
-                    </th>
-                    <th class="text-bold">
-                        Nature of business
-                    </th>
-                    <th class="text-bold">
-                        Position/Designation
-                    </th>
-                    <th class="text-bold">
-                        Joining Date
-                    </th>
-                    <th class="text-bold">
-                        Leaving Date
-                    </th>
-                    <th class="text-bold">
-                        Contact Employeer
-                    </th>
-                    <th class="text-bold">
-                        Edit | Delete
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
+            <table class="table datatable-basic">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.EmployerName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ExpIndustryName)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PositionTitle)
-                        </td>
-                        <td>
-                            @if (item.StartDate != null)
-                            {@item.StartDate.Value.ToString("dd-MM-yyyy");
-                        }
-                        </td>
-                        <td>
-                            @if (item.EndDate != null)
-                            {@item.EndDate.Value.ToString("dd-MM-yyyy");
-                        }
-                        </td>
-                        <td>
-                            @if (item.ContactEmployer == true)
-                            {
-                                <span class="label label-success">Yes</span>
-                            }
-                            @if (item.ContactEmployer == false)
-                            {
-                                <span class="label label-danger">No</span>
-                            }
-                        </td>
-                        <td>
-                            <button type="button" id="btnGetEdit" onclick="ExperienceDetailGetEdit(@item.ExpID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
-                            <button type="button" id="btnGetDelete" onclick="ExperienceDetailGetDelete(@item.ExpID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
-                        </td>
+                        <th class="text-bold">
+                            Employer
+                        </th>
+                        <th class="text-bold">
+                            Nature of business
+                        </th>
+                        <th class="text-bold">
+                            Position/Designation
+                        </th>
+                        <th class="text-bold">
+                            Joining Date
+                        </th>
+                        <th class="text-bold">
+                            Leaving Date
+                        </th>
+                        <th class="text-bold">
+                            Contact Employeer
+                        </th>
+                        <th class="text-bold">
+                            Edit | Delete
+                        </th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EmployerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ExpIndustryName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PositionTitle)
+                            </td>
+                            <td>
+                                @if (item.StartDate != null)
+                                {@item.StartDate.Value.ToString("dd-MM-yyyy");
+                            }
+                            </td>
+                            <td>
+                                @if (item.EndDate != null)
+                                {@item.EndDate.Value.ToString("dd-MM-yyyy");
+                            }
+                            </td>
+                            <td>
+                                @if (item.ContactEmployer == true)
+                                {
+                                    <span class="label label-success">Yes</span>
+                                }
+                                @if (item.ContactEmployer == false)
+                                {
+                                    <span class="label label-danger">No</span>
+                                }
+                            </td>
+                            <td>
+                                <button type="button" id="btnGetEdit" onclick="ExperienceDetailGetEdit(@item.ExpID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                                <button type="button" id="btnGetDelete" onclick="ExperienceDetailGetDelete(@item.ExpID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+        </div>
     }
 }
 <script type="text/javascript" src="~/Scripts/Candidate/Experience.js"></script>
@@ -111,5 +112,20 @@
     $(document).ready(function () {
         ExperienceDetailGetCreate();
         HaveExperience();
+        if (document.getElementById('HaveExperience').checked) {
+            $("#hv4").show();
+        }
+        else {
+            $("#hv4").hide();
+        }
+        //Worked Before Selected
+        $('#HaveExperience').click(function () {
+            if ($(this).is(":checked")) {
+                $("#hv4").show();
+            }
+            else {
+                $("#hv4").hide();
+            }
+        });
     });
 </script>

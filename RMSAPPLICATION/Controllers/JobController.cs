@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using RMSCORE.Models.Helper;
 using RMSSERVICES.Job;
 using System.Linq.Expressions;
+using RMSSERVICES.PersonalDetail;
 
 namespace RMSAPPLICATION.Controllers
 {
@@ -19,11 +20,13 @@ namespace RMSAPPLICATION.Controllers
         IEntityService<Location> LocationService;
         IEntityService<Catagory> CatagoryService;
         IEntityService<V_AppliedJob> VJobApplyService;
+        IEntityService<Candidate> CandidateEntityService;
         IJobService JobService;
         IDDService DDService;
+        ICandidateService CandidateService;
         public JobController(IEntityService<JobDetail> jobEntityService,
-        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, IDDService ddService, IJobService jobService,
-        IEntityService<Location> locationService, IEntityService<Catagory> catagoryService)
+        IEntityService<V_AppliedJob> vJobApplyService, IEntityService<CandidateJob> jobApplyService, ICandidateService candidateService, IDDService ddService, IJobService jobService,
+        IEntityService<Location> locationService, IEntityService<Catagory> catagoryService, IEntityService<Candidate> candidateEntityService)
         {
             JobEntityService = jobEntityService;
             JobService = jobService;
@@ -32,6 +35,8 @@ namespace RMSAPPLICATION.Controllers
             LocationService = locationService;
             CatagoryService = catagoryService;
             DDService = ddService;
+            CandidateService = candidateService;
+            CandidateEntityService = candidateEntityService;
         }
         // GET: Job
         [HttpGet]
@@ -171,23 +176,35 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult JobApply(CandidateJob obj, int JobID)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            //CandidateJob dbAppliedJob = JobEntityService.GetEdit(JobID);
             int cid = vmf.CandidateID;
             JobDetail dbJob = JobEntityService.GetEdit(JobID);
-            string Message = JobService.CheckForProfileCompletion(vmf);
-            if (Message == "")
+            Expression<Func<CandidateJob, bool>> SpecificClient2 = c => c.CandidateID == vmf.CandidateID && c.JobID == JobID;
+            if (JobApplyService.GetIndexSpecific(SpecificClient2).Count == 0)
             {
-                CandidateJob dbCandidateJob = new CandidateJob();
-                dbCandidateJob.CandidateID = cid;
-                dbCandidateJob.JobID = JobID;
-                dbCandidateJob.CJobDate = DateTime.Now;
-                JobApplyService.PostCreate(dbCandidateJob);
-                EmailGenerate.SendEmail(vmf.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear <strong><u>" + vmf.CName + " </u></strong>  </p><div><p>Thank you for your keen interest in applying for the position: <strong><u>" + dbJob.JobTitle + "</u></strong>.</p>We have received your application for this post. </p><p>Our Talent Acquisition Team will meticulously evaluate your profile in line with the requirements of the post you have applied for. Since, we receive a large number of applications for different positions, it is not possible to communicate with every candidate individually. Therefore, only the short-listed candidates will be contacted by the Talent Acquisition Team for interview and other assessments as deemed appropriate. </p></div><div><p>You can check your status from our career portal.</p></div>" + "<div><p>Wish you best of luck in your quest to find a suitable career in accordance with your professional and academic qualifications.</p></div><div>Best Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Job Application");
-                return Json("OK", JsonRequestBehavior.AllowGet);
+                string Message = JobService.CheckForProfileCompletion(vmf);
+                if (Message == "")
+                {
+                    CandidateJob dbCandidateJob = new CandidateJob();
+                    dbCandidateJob.CandidateID = cid;
+                    dbCandidateJob.JobID = JobID;
+                    dbCandidateJob.CJobDate = DateTime.Now;
+                    JobApplyService.PostCreate(dbCandidateJob);
+                    //var callbackUrl = "10.227.0.52";
+                    //EmailGenerate.SendEmail(vmf.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear <strong><u>" + vmf.CName + " </u></strong>  </p><div><p>Thank you for your keen interest in applying for the position: <strong><u>" + dbJob.JobTitle + "</u></strong>.We have received your application for this post. </p>" +
+                    //    "<p>Our Talent Acquisition Team will meticulously evaluate your profile in line with the requirements of the post you have applied for. Since, we receive a large number of applications for different positions, it is not possible to communicate with every candidate individually. Therefore, only the short-listed candidates will be contacted for interview and other assessments as deemed appropriate. </p></div>" +
+                    //    "<div>You can check the status of your application by logging into your account at Bestway Career Portal.</div>" + "<p>Link:<u><a href=\"" + callbackUrl + "\">10.227.0.52</a></u>" + "</p>" +
+                    //    "<div>Wish you best of luck in your quest to find a suitable career in accordance with your professional and academic qualifications.</div>" +
+                    //    "<div>Kindly note if you have applied for multiple positions, you will receive a separate notification for each position</div>" +
+                    //    "<div>Best Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Job Application");
+                    return Json("OK", JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(Message, JsonRequestBehavior.AllowGet);
+                }
             }
-            else
-            {
-                return Json(Message, JsonRequestBehavior.AllowGet);
-            }
+            return Json("Already Applied", JsonRequestBehavior.AllowGet);
         }
         [HttpGet]
         public ActionResult DeclarationStatement(int? JobID)
@@ -195,7 +212,14 @@ namespace RMSAPPLICATION.Controllers
             VMOpenJobIndex vmJobDetail = JobService.GetJobDetailIndex((int)JobID);
             return View(vmJobDetail);
         }
-
-
+        [HttpGet]
+        public ActionResult ViewProfileIndex(int? JobID)
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            VMCandidateProfileView vmViewProfile = CandidateService.GetProfileDetails(cid, JobID);
+            vmViewProfile.JobID = JobID;
+            return View(vmViewProfile);
+        }
     }
 }

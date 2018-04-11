@@ -50,9 +50,14 @@
                     @Html.ValidationMessageFor(model => model.CareerLevelID, "", new { @class = "text-danger" })
                 </div>
                 <div class="control-label col-md-1 text-semibold">JobTitle</div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-1 text-semibold">Area of Interest</div>
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.AreaofInterest, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.AreaofInterest, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
@@ -90,40 +95,32 @@
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-2 text-semibold">Responsibility#1:</div>
-                <div class="col-md-6 text-left">
-                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 3 })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
                     @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-2 text-semibold">Responsibility#2:</div>
-                <div class="col-md-6">
-                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 3 })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
                     @Html.ValidationMessageFor(m => m.Responsibility2, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-
                 <div class="required control-label col-md-2 text-semibold">Responsibility#3:</div>
-                <div class="col-md-6">
-                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 3 })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
                     @Html.ValidationMessageFor(m => m.Responsibility3, null, new { @class = "text-danger" })
                 </div>
             </div>
-            @*<div class="form-group">
-                    <div class="required control-label col-md-1 text-semibold">Responsibility#4:</div>
-                    <div class="col-md-9">
-                        @Html.TextAreaFor(model => model.Responsibility4, new { @class = "form-control multi-line", @cols = 5, @rows = 1 })
-                        @Html.ValidationMessageFor(m => m.Responsibility4, null, new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="required control-label col-md-1 text-semibold">Responsibility#5:</div>
-                    <div class="col-md-9">
-                        @Html.TextAreaFor(model => model.Responsibility5, new { @class = "form-control multi-line", @cols = 5, @rows = 1 })
-                        @Html.ValidationMessageFor(m => m.Responsibility5, null, new { @class = "text-danger" })
-                    </div>
-                </div>*@
+            <div class="form-group col-md-12">
+                <label class="checkbox-inline control-label checkbox-right text-semibold col-md-3" for="ContactEmployer">
+                    @Html.CheckBox("ContactEmployer", new { @class = "styled", @id = "ContactEmployer" })
+                    @Html.ValidationMessageFor(model => model.ContactEmployer, "", new { @class = "text-danger" })
+                    May we contact the employer?
+                </label>
+            </div>
         </div>
     </div>
     <div class="modal-footer">

@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="770d6fbb5c954205a7d711ef09f6161c" Name="Diagram1" ZoomLevel="74">
+      <Diagram DiagramId="12a19874377a4eb4bc10fdff30b393d8" Name="Diagram1" ZoomLevel="29">
         <EntityTypeShape EntityType="BTRMSModel.BloodGroup" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="BTRMSModel.Candidate" Width="1.5" PointX="0.75" PointY="6" />
         <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="4.75" PointY="0.75" />

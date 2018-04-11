@@ -35,7 +35,7 @@ namespace RMSSERVICES.Generic
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<BloodGroup> bloodGroupRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
             IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository,
-        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository,IRepository<ExpCareerLevel> careerLevelRepository)
+        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository)
         {
             _unitOfWork = unitOfWork;
             CityRepository = cityRepository;
@@ -99,11 +99,17 @@ namespace RMSSERVICES.Generic
         }
         public List<Country> GetCountryList()
         {
-            return CountryRepository.GetAll();
+            List<Country> list = new List<Country>();
+            list.Add(new Country { CCID = 0, CountryName = "----" });
+            list.AddRange(CountryRepository.GetAll());
+            return list;
         }
         public List<City> GetCityList()
         {
-            return CityRepository.GetAll();
+            List<City> list = new List<City>();
+            list.Add(new City { CityID = 0, CityName = "----" });
+            list.AddRange(CityRepository.GetAll());
+            return list;
         }
         public List<Location> GetLocationList()
         {

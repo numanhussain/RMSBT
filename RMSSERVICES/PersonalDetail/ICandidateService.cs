@@ -18,5 +18,6 @@ namespace RMSSERVICES.PersonalDetail
         ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser);
         byte[] GetImageFromDataBase(int id);
         void SaveImageInDatabase(byte[] img, int empID);
+        VMCandidateProfileView GetProfileDetails(int? cid,int? JobID);
     }
 }

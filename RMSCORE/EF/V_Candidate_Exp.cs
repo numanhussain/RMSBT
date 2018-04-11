@@ -35,5 +35,6 @@ namespace RMSCORE.EF
         public Nullable<int> CareerLevelID { get; set; }
         public string CareerLevelName { get; set; }
         public Nullable<bool> ContactEmployer { get; set; }
+        public string AreaofInterest { get; set; }
     }
 }
