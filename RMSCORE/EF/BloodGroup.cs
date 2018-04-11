@@ -14,7 +14,7 @@ namespace RMSCORE.EF
     
     public partial class BloodGroup
     {
-        public string CBID { get; set; }
+        public int CBID { get; set; }
         public string BGroupName { get; set; }
     }
 }

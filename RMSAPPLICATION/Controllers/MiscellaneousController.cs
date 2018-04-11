@@ -68,8 +68,8 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("EmploymentNo", "Mandatory !!");
             if (obj.WorkedBefore == "Yes" && obj.Location == null)
                 ModelState.AddModelError("Location", "Mandatory !!");
-            if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
-                ModelState.AddModelError("HearAboutDetail", "Mandatory !!");
+            if (obj.InternshipDuration == "0")
+                ModelState.AddModelError("InternshipDuration", "Mandatory !!");
             if (obj.TotalExp == null)
                 ModelState.AddModelError("TotalExp", "Mandatory !!");
             if (obj.CementExp == null)
@@ -82,6 +82,7 @@ namespace RMSAPPLICATION.Controllers
                 MiscellaneousService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
@@ -139,7 +140,7 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
 
-            return new FilePathResult(string.Format(@"~\UploadFiles\"+ vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
+            return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

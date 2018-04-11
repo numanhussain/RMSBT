@@ -39,12 +39,7 @@
                         <div class="form-group">
                             <label class="required col-md-4 control-label text-semibold">Have you ever been convicted of crime?</label>
                             <div class="col-md-1">
-                                @Html.DropDownList("CrimanalRecord", new List<SelectListItem>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                {
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                    new SelectListItem { Text = "No", Value = "No"},
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                                                                                                                                                                                                                                                                                                                                                                                                                }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                @Html.DropDownList("CrimanalRecord", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.CrimanalRecord, "", new { @class = "text-danger" })
                             </div>
                             <div id="CriminalDetailtb">
@@ -61,7 +56,6 @@
                                 @Html.DropDownList("WorkingRelative", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
                             </div>
-
                         </div>
                         <div class="form-group">
                             <div id="WorkingRelativeDetailtb">
@@ -85,12 +79,7 @@
                         <div class="form-group">
                             <label class="required col-md-4 control-label text-semibold">Do you have any disability?</label>
                             <div class="col-md-1">
-                                @Html.DropDownList("Disability", new List<SelectListItem>
-                                                                                                                                                                                                                                                                                                                                                                                                                                            {
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                                new SelectListItem { Text = "No", Value = "No"},
-                                                                                                                                                                                                                                                                                                                                                                                                                                                new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                                                                                                                                                                                                                                                                                                                                                                                                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                @Html.DropDownList("Disability", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.Disability, "", new { @class = "text-danger" })
                             </div>
                             <div id="DisabilityDetailtb">
@@ -104,13 +93,7 @@
                         <div class="form-group">
                             <label class="required col-md-5 control-label text-semibold">Have you been interviewed at Bestway Group before?</label>
                             <div class="col-md-1 col-lg-pull-1">
-                                @Html.DropDownList("InterviewedBefore", new List<SelectListItem>
-                                                                                                                                                                                                                                                                                                                                                                                                                            {
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                new SelectListItem { Text = "No", Value = "No"},
-                                                                                                                                                                                                                                                                                                                                                                                                                                new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                                                                                                                                                                                                                                                                                                                                                                                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                @Html.DropDownList("InterviewedBefore", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.InterviewedBefore, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -138,13 +121,7 @@
                         <div class="form-group">
                             <label class="required col-md-4 control-label text-semibold">Have you Worked before with Bestway Group?</label>
                             <div class="col-md-1">
-                                @Html.DropDownList("WorkedBefore", new List<SelectListItem>
-                                                                                                                                                                                                                                                                                                                                                                                                                            {
-
-                                                                                                                                                                                                                                                                                                                                                                                                                                new SelectListItem { Text = "No", Value = "No"},
-                                                                                                                                                                                                                                                                                                                                                                                                                                new SelectListItem { Text = "Yes", Value = "Yes"}
-                                                                                                                                                                                                                                                                                                                                                                                                                            }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-
+                                @Html.DropDownList("WorkedBefore", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -189,6 +166,23 @@
 
                             </div>
                         </div>
+                        @if (LoggedInUser.AppliedAs == 1)
+                        {
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    <label class="required  checkbox-inline checkbox-right text-semibold col-md-12" for="InternshipRequirement">
+                                        @Html.CheckBox("InternshipRequirement", new { @class = "styled", @id = "InternshipRequirement" })
+                                        @Html.ValidationMessageFor(model => model.InternshipRequirement, "", new { @class = "text-danger" })
+                                        This internship is my university requirement
+                                    </label>
+                                </div>
+                                <label class="required col-md-3 control-label text-semibold">Internship Duration</label>
+                                <div class="col-md-1 col-lg-pull-1">
+                                    @Html.DropDownList("InternshipDuration", new List<SelectListItem> { new SelectListItem { Text = "---------", Value = "0" }, new SelectListItem { Text = "1 Month", Value = "1 Month" }, new SelectListItem { Text = "2 Month", Value = "2 Month" }, new SelectListItem { Text = "3 Month", Value = "3 Month" }, new SelectListItem { Text = "4 Month", Value = "4 Month" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                    @Html.ValidationMessageFor(model => model.InternshipDuration, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        }
                         <div class="form-group">
                             <div class="required col-md-3 control-label text-semibold">Where do you hear about the job?</div>
                             <div class="col-md-3">

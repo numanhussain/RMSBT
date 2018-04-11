@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="CBID" />
           </Key>
-          <Property Name="CBID" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="CBID" Type="int" Nullable="false" />
           <Property Name="BGroupName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Candidate">
@@ -1014,7 +1014,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Key>
             <PropertyRef Name="CBID" />
           </Key>
-          <Property Name="CBID" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Name="CBID" Type="Int32" Nullable="false" />
           <Property Name="BGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Candidate">
