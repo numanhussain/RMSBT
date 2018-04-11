@@ -315,6 +315,8 @@
           <Property Name="Disability" Type="nvarchar" MaxLength="50" />
           <Property Name="DisabilityDetail" Type="nvarchar" MaxLength="50" />
           <Property Name="HearAboutDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="InternshipRequirement" Type="bit" />
+          <Property Name="InternshipDuration" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="NotificationDetail">
           <Key>
@@ -1330,6 +1332,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Disability" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DisabilityDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HearAboutDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InternshipRequirement" Type="Boolean" />
+          <Property Name="InternshipDuration" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="NotificationDetail">
           <Key>
@@ -1994,6 +1998,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="MiscellaneousDetails">
             <EntityTypeMapping TypeName="BTRMSModel.MiscellaneousDetail">
               <MappingFragment StoreEntitySet="MiscellaneousDetails">
+                <ScalarProperty Name="InternshipDuration" ColumnName="InternshipDuration" />
+                <ScalarProperty Name="InternshipRequirement" ColumnName="InternshipRequirement" />
                 <ScalarProperty Name="HearAboutDetail" ColumnName="HearAboutDetail" />
                 <ScalarProperty Name="DisabilityDetail" ColumnName="DisabilityDetail" />
                 <ScalarProperty Name="Disability" ColumnName="Disability" />

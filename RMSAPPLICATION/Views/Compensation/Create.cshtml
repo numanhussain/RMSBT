@@ -58,7 +58,7 @@
                         <div class="col-md-2">
                             <div class="radio-inline text-semibold">
                                 @Html.RadioButton("BonusSelection", "BBonus", new { @checked = "checked", @id = "BBonus" })
-                                @Html.ValidationMessageFor(model => model.BBonus,"", new { @class = "text-danger" })
+                                @Html.ValidationMessageFor(model => model.BBonus, "", new { @class = "text-danger" })
                                 Basic
                             </div>
                         </div>
@@ -82,8 +82,8 @@
                             @Html.CheckBox("LFA", new { @class = "styled", @id = "LFA" })
                             @Html.ValidationMessageFor(model => model.LFA, "", new { @class = "text-danger" })
                             LFA
+                            <span class="help-block">(Leave Fare Assistance)</span>
                         </label>
-                        <span class="help-block">(Leave Fare Assistance)</span>
                     </div>
                     <div id="LFAdiv">
                         <div class="col-md-2">
@@ -165,41 +165,41 @@
                 </div>
                 <div class="form-group col-md-12">
 
-                    <div class="required col-md-1 control-label text-semibold">Fuel Allowance</div>
+                    <div class="required col-md-2 control-label text-semibold">Fuel Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.FuelAllowance, new { htmlAttributes = new { @class = "form-control", @placeholder = "Amount/Litres" } })
                         @Html.ValidationMessageFor(model => model.FuelAllowance, "", new { @class = "text-danger" })
                     </div>
-                    <div class="required col-md-1 control-label text-semibold">Accomod Allowance</div>
+                    <div class="required col-md-2 control-label text-semibold">Accomodation Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.AccomdAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Specify Amount" } })
                         @Html.ValidationMessageFor(model => model.AccomdAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <div class="required col-md-1 control-label text-semibold">Mobile  Allowance</div>
+                    <div class="required col-md-2 control-label text-semibold">Mobile  Allowance</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MobileAllowence, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
                         @Html.ValidationMessageFor(model => model.MobileAllowence, "", new { @class = "text-danger" })
                     </div>
-                    <div class="required col-md-1 control-label text-semibold">Mobile  User Limit</div>
+                </div>
+                <div class="form-group col-md-12">
+                    <div class="required col-md-2 control-label text-semibold">Mobile  User Limit</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.MobileUserLimit, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
                         @Html.ValidationMessageFor(model => model.MobileUserLimit, "", new { @class = "text-danger" })
                     </div>
-                </div>
-
-                <div class="form-group col-md-12">
-                    <div class="required col-md-1 control-label text-semibold">COLA</div>
+                    <div class="required col-md-2 control-label text-semibold">COLA<span class="help-block">(Cost of living Allowance)</span></div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.COLA, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
                         @Html.ValidationMessageFor(model => model.COLA, "", new { @class = "text-danger" })
-                        <span class="help-block">(Cost of living Allowance)</span>
                     </div>
-                    <div class="required col-md-1 control-label text-semibold">Others</div>
+                    <div class="required col-md-2 control-label text-semibold">Others</div>
                     <div class="col-md-2">
                         @Html.EditorFor(model => model.Other, new { htmlAttributes = new { @class = "form-control", @placeholder = "If any" } })
                         @Html.ValidationMessageFor(model => model.Other, "", new { @class = "text-danger" })
                     </div>
-                    <div class="col-md-2">
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
                         <label class="required control-label checkbox-inline checkbox-right text-semibold col-md-10" for="Food">
                             @Html.CheckBox("Food", new { @class = "styled" })
                             @Html.ValidationMessageFor(model => model.Food, "", new { @class = "text-danger" })
@@ -224,7 +224,7 @@
                     </div>
                 </div>
                 <div class="col-md-12 form-group">
-                    <div class="required control-label text-black h5" style="font-weight:900">Insurance and Coverage</div>
+                    <div class="control-label text-black h5" style="font-weight:900">Insurance and Coverage</div>
                     <hr />
                 </div>
                 <div class="form-group col-md-12">

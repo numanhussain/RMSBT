@@ -94,6 +94,8 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.HearAboutDetail = obj.HearAboutDetail;
             dbMiscellaneous.Disability = obj.Disability;
             dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
+            dbMiscellaneous.InternshipRequirement = obj.InternshipRequirement;
+            dbMiscellaneous.InternshipDuration = obj.InternshipDuration;
             return dbMiscellaneous;
         }
         #endregion
