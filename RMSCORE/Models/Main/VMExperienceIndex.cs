@@ -29,5 +29,6 @@ namespace RMSCORE.Models.Main
         public bool? HaveExperience { get; set; }
         public bool? ContactEmployer { get; set; }
         public string AreaofInterest { get; set; }
+        public string ReasonOfLeaving { get; set; }
     }
 }

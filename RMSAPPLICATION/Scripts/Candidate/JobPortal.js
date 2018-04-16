@@ -34,8 +34,23 @@ function SelectAllCheckBox() {
         if (!$(this).prop("checked"))
             $("#chkSelectAllCatagory").prop("checked", false);
     });
+    $("#declarationdivhide").hide();
     $("#ApproveDecline").hide();
-    $('#ask').change(function () {
+    $('#ask2').change(function () {
+        if ($(this).is(":checked")) {
+            $("#titlehide").hide();
+            $("#hrhide").hide();
+            $("#profiledivhide").hide();
+            $("#declarationdivhide").show();
+        }
+        else {
+            $("#titlehide").show();
+            $("#hrhide").show();
+            $("#profiledivhide").show();
+            $("#declarationdivhide").hide();
+        }
+    });
+$('#ask').change(function () {
         if ($(this).is(":checked")) {
             $("#ApproveDecline").show();
         }

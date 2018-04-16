@@ -103,13 +103,17 @@ function MiscellaneousDetailHide() {
 }
 function SaveMiscellaneousInfoFunction(id) {
     $('#btnPostCreate').click(function () {
-SaveCV();
+        SaveCV();
         $.ajax({
             type: "POST",
             url: "/Miscellaneous/Create",
             data: $("#formEditID").serialize(),
             success: function (data) {
                 if (data == "OK") {
+                    $.jGrowl('You have successfully saved your miscellaneous details.Kindly go to to sel-assessment.', {
+                        header: 'Well done!',
+                        theme: 'bg-success-400',
+                    });
                     MiscellaneousGetCreate(id)
                 }
                 else {

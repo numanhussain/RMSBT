@@ -33,6 +33,8 @@ namespace RMSCORE.EF
         public string WorkingRelativeName { get; set; }
         public string WorkingRelativeRelation { get; set; }
         public string WorkingRelativeDepartment { get; set; }
+        public string WorkingRelativeDesignation { get; set; }
+        public string WorkingRelativeLocation { get; set; }
         public string InterviewedBefore { get; set; }
         public Nullable<System.DateTime> InterviewedDate { get; set; }
         public string InterviewedLocation { get; set; }

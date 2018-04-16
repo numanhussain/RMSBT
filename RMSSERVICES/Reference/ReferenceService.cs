@@ -45,6 +45,8 @@ namespace RMSSERVICES.Reference
                 vmReferenceDetail.RefContact = dbReferenceDetail.RefContact;
                 vmReferenceDetail.RefEmail = dbReferenceDetail.RefEmail;
                 vmReferenceDetail.CandidateID = dbReferenceDetail.CandidateID;
+                vmReferenceDetail.HowLongKnown = dbReferenceDetail.HowLongKnown;
+                vmReferenceDetail.Organization = dbReferenceDetail.Organization;
                 vmReferenceDetails.Add(vmReferenceDetail);
             }
             return vmReferenceDetails.OrderByDescending(aa => aa.RefID).ToList();
@@ -80,6 +82,8 @@ namespace RMSSERVICES.Reference
             vmReferenceDetail.RefContact = dbReferenceDetail.RefContact;
             vmReferenceDetail.RefEmail = dbReferenceDetail.RefEmail;
             vmReferenceDetail.CandidateID = dbReferenceDetail.CandidateID;
+            vmReferenceDetail.HowLongKnown = dbReferenceDetail.HowLongKnown;
+            vmReferenceDetail.Organization = dbReferenceDetail.Organization;
             return vmReferenceDetail;
         }
         public ServiceMessage PostEdit(VMReferenceOperation obj)
@@ -101,6 +105,8 @@ namespace RMSSERVICES.Reference
             obj.RefContact = dbReferenceDetail.RefContact;
             obj.RefEmail = dbReferenceDetail.RefEmail;
             obj.CandidateID = dbReferenceDetail.CandidateID;
+            obj.HowLongKnown = dbReferenceDetail.HowLongKnown;
+            obj.Organization = dbReferenceDetail.Organization;
             return obj;
         }
         public ServiceMessage PostDelete(VMReferenceOperation obj)
@@ -129,6 +135,8 @@ namespace RMSSERVICES.Reference
             dbReferenceDetail.RefContact = obj.RefContact;
             dbReferenceDetail.RefEmail = obj.RefEmail;
             dbReferenceDetail.CandidateID = obj.CandidateID;
+            dbReferenceDetail.HowLongKnown = obj.HowLongKnown;
+            dbReferenceDetail.Organization = obj.Organization;
             return dbReferenceDetail;
         }
         #endregion

@@ -12,13 +12,9 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class CandidateStrength
+    public partial class EduBoard
     {
-        public int StrengthID { get; set; }
-        public string Strengths { get; set; }
-        public string AreaOfImprovement { get; set; }
-        public string MeetRequirements { get; set; }
-        public Nullable<int> CandidateID { get; set; }
-        public string Objective { get; set; }
+        public int BISEID { get; set; }
+        public string BiseName { get; set; }
     }
 }

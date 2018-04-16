@@ -68,6 +68,8 @@ namespace RMSAPPLICATION.Controllers
             {
                 if (obj.DegreeTitle == null)
                     ModelState.AddModelError("DegreeTitle", "Mandatory !!");
+                if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0|| obj.DegreeLevelID == 2 && obj.InstitutionID == 0|| obj.DegreeLevelID == 3 && obj.InstitutionID == 0)
+                    obj.InstitutionID = null;
                 if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0)
                     ModelState.AddModelError("InstitutionID", "Mandatory !!");
                 if (obj.StartDate == null)

@@ -44,25 +44,27 @@ namespace RMSSERVICES.Self_Assessment
             UserRepository.Edit(image);
             UserRepository.Save();
             Expression<Func<CandidateStrength, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
-            CandidateStrength dbCandidate = new CandidateStrength();
+            CandidateStrength dbcandidateStrength = new CandidateStrength();
             if (CandidateStrengthRepository.FindBy(SpecificClient).Count() > 0)
             {
-                dbCandidate.StrengthID = obj.StrengthID;
-                dbCandidate.Strengths = obj.Strengths;
-                dbCandidate.AreaOfImprovement = obj.AreaOfImprovement;
-                dbCandidate.MeetRequirements = obj.MeetRequirements;
-                dbCandidate.CandidateID = obj.CandidateID;
-                CandidateStrengthRepository.Edit(dbCandidate);
+                dbcandidateStrength.StrengthID = obj.StrengthID;
+                dbcandidateStrength.Strengths = obj.Strengths;
+                dbcandidateStrength.AreaOfImprovement = obj.AreaOfImprovement;
+                dbcandidateStrength.MeetRequirements = obj.MeetRequirements;
+                dbcandidateStrength.Objective = obj.Objective;
+                dbcandidateStrength.CandidateID = obj.CandidateID;
+                CandidateStrengthRepository.Edit(dbcandidateStrength);
                 CandidateStrengthRepository.Save();
             }
             else
             {
-                dbCandidate.StrengthID = obj.StrengthID;
-                dbCandidate.Strengths = obj.Strengths;
-                dbCandidate.AreaOfImprovement = obj.AreaOfImprovement;
-                dbCandidate.MeetRequirements = obj.MeetRequirements;
-                dbCandidate.CandidateID = obj.CandidateID;
-                CandidateStrengthRepository.Add(dbCandidate);
+                dbcandidateStrength.StrengthID = obj.StrengthID;
+                dbcandidateStrength.Strengths = obj.Strengths;
+                dbcandidateStrength.AreaOfImprovement = obj.AreaOfImprovement;
+                dbcandidateStrength.MeetRequirements = obj.MeetRequirements;
+                dbcandidateStrength.Objective = obj.Objective;
+                dbcandidateStrength.CandidateID = obj.CandidateID;
+                CandidateStrengthRepository.Add(dbcandidateStrength);
                 CandidateStrengthRepository.Save();
             }
             return new ServiceMessage();

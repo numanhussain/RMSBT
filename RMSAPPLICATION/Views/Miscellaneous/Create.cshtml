@@ -148,12 +148,7 @@
 
                             </div>
                             <div class="form-group">
-                                <div class="required col-md-2 control-label text-semibold">Reason of leaving</div>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ReasonLeaving, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="required col-md-2 control-label text-semibold">Employement No</div>
+                                <div class="required col-md-2 control-label text-semibold">Employment No.</div>
                                 <div class="col-md-1">
                                     @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.EmploymentNo, "", new { @class = "text-danger" })
@@ -163,7 +158,11 @@
                                     @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                                 </div>
-
+                                <div class="required col-md-2 control-label text-semibold">Reason of leaving</div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.ReasonLeaving, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
                         @if (LoggedInUser.AppliedAs == 1)
@@ -199,17 +198,17 @@
                         <div class="form-group">
                             <div class="required col-md-4 control-label text-semibold">How much notice you need to give to your current Employer?</div>
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days" } })
+                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days" , @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.NoticeTime, "", new { @class = "text-danger" })
                             </div>
                             <div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
                             <div class="col-md-1">
-                                @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.TotalExp, "", new { @class = "text-danger" })
                             </div>
                             <div class="required required col-md-2 control-label text-semibold text-right">Cement Experience</div>
                             <div class="col-md-1">
-                                @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
                             </div>
                         </div>

@@ -35,7 +35,7 @@ namespace RMSCORE.EF
         public Nullable<bool> BuyBackOption { get; set; }
         public Nullable<int> AccomdAllowence { get; set; }
         public Nullable<int> COLA { get; set; }
-        public Nullable<int> Other { get; set; }
+        public string Other { get; set; }
         public Nullable<bool> Food { get; set; }
         public Nullable<bool> Free { get; set; }
         public Nullable<bool> Subsidized { get; set; }
@@ -57,6 +57,7 @@ namespace RMSCORE.EF
         public string OtherBenifits { get; set; }
         public Nullable<int> CandidateID { get; set; }
         public Nullable<int> SpecifyYears { get; set; }
-        public Nullable<int> FuelAllowance { get; set; }
+        public string FuelAllowance { get; set; }
+        public Nullable<int> MobileNoOfYears { get; set; }
     }
 }

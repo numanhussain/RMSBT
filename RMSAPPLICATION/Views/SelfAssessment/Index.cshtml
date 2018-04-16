@@ -39,26 +39,32 @@
             </div>
             <div class="panel-body">
                 <div class="form-group">
+                    <div class="required control-label col-md-12 text-semibold">Objective</div>
+                    <div class="col-md-8">
+                        @Html.TextAreaFor(model => model.Objective, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
+                        @Html.ValidationMessageFor(m => m.Objective, null, new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
                     <div class="required control-label col-md-12 text-semibold">Strengths </div>
                     <div class="col-md-8">
-                        @Html.TextAreaFor(model => model.Strengths, new { @class = "form-control", @cols = 5, @rows = 3 })
+                        @Html.TextAreaFor(model => model.Strengths, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
                         @Html.ValidationMessageFor(m => m.Strengths, null, new { @class = "text-danger" })
                     </div>
-                    <label class="required col-md-12 control-label text-semibold">Area Of Improvement</label>
+                    <label class="required col-md-12 control-label text-semibold">Areas of improvement</label>
                     <div class="col-md-8">
-                        @Html.TextAreaFor(model => model.AreaOfImprovement, new { @class = "form-control", @cols = 5, @rows = 3 })
+                        @Html.TextAreaFor(model => model.AreaOfImprovement, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
                         @Html.ValidationMessageFor(m => m.AreaOfImprovement, null, new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="required control-label col-md-12 text-semibold">Briefly Explain how you relate your skills and experience meets the requirement of the job applies for : </div>
+                    <div class="required control-label col-md-12 text-semibold">Briefly explain your skills and experience: </div>
                     <div class="col-md-8">
-                        @Html.TextAreaFor(model => model.MeetRequirements, new { @class = "form-control", @cols = 5, @rows = 3 })
+                        @Html.TextAreaFor(model => model.MeetRequirements, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
                         @Html.ValidationMessageFor(m => m.MeetRequirements, null, new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
-
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 <div class="heading-elements">
@@ -68,10 +74,10 @@
         </div>
     </div>
 }
-    <script type="text/javascript">
+<script type="text/javascript">
     $(document).ready(function () {
         SelfAssessmentPostCreate();
     });
-    </script>
+</script>
 
 

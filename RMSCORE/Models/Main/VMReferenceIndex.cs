@@ -13,7 +13,9 @@ namespace RMSCORE.Models.Main
         public string RefEmail { get; set; }
         public string RefContact { get; set; }
         public string RefDesignation { get; set; }
-        public long? CandidateID { get; set; }
+        public int? CandidateID { get; set; }
         public string CadidateName { get; set; }
+        public string Organization {get; set; }
+        public string HowLongKnown { get; set; }
     }
 }
