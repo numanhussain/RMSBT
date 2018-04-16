@@ -58,7 +58,11 @@ namespace RMSAPPLICATION.Controllers
             }
             if (ModelState.IsValid)
             {
-                CandidateStrengthService.PostIndex(dbOperation);
+                if (vmf.UserStage == 7)
+                    vmf.UserStage = 8;
+                CandidateStrengthService.PostIndex(dbOperation, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return View("Index", dbOperation);

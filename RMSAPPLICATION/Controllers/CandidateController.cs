@@ -23,7 +23,7 @@ namespace RMSAPPLICATION.Controllers
         IDDService DDService;
         // Controller Constructor
         public CandidateController(IEntityService<Candidate> candidateEntityService, IDDService ddService, ICandidateService candidateservice)
-                    
+
         {
             CandidateEntityService = candidateEntityService;
             CandidateService = candidateservice;
@@ -70,12 +70,28 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("FatherName", "Mandatory !!");
             if (dbOperation.DOB == null)
                 ModelState.AddModelError("DOB", "Mandatory !!");
+            if (dbOperation.GenderID == 0)
+                ModelState.AddModelError("GenderID", "Mandatory !!");
+            if (dbOperation.MartialStatusID == 0)
+                ModelState.AddModelError("MartialStatusID", "Mandatory !!");
+            if (dbOperation.ReligionID == 0)
+                ModelState.AddModelError("ReligionID", "Mandatory !!");
+            if (dbOperation.BloodGroupID == 0 )
+                ModelState.AddModelError("BloodGroupID", "Mandatory !!");
+            if (dbOperation.DomicileCityID == 0)
+                ModelState.AddModelError("DomicileCityID", "Mandatory !!");
             if (dbOperation.Address == null || dbOperation.Address == "")
                 ModelState.AddModelError("Address", "Mandatory !!");
-            if (dbOperation.CityID==0)
+            if (dbOperation.CityID == 0)
                 ModelState.AddModelError("CityID", "Mandatory !!");
             if (dbOperation.CountryID == 0)
                 ModelState.AddModelError("CountryID", "Mandatory !!");
+            if (dbOperation.NationalityCountryID== 0 )
+                ModelState.AddModelError("NationalityCountryID", "Mandatory !!");
+            if (dbOperation.CNICNo == null || dbOperation.CNICNo=="")
+                ModelState.AddModelError("CNICNo", "Mandatory !!");
+
+
             //if (dbOperation.CNICNo != null)
             //{
             //    if (dbOperation.CNICNo.Length > 15)
@@ -86,8 +102,6 @@ namespace RMSAPPLICATION.Controllers
             //        ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
             //    }
             //}
-            if (dbOperation.CNICNo == null)
-                ModelState.AddModelError("CNICNo", "Mandatory !!");
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
                 ModelState.AddModelError("EmailID", "Mandatory !!");
 
@@ -103,7 +117,11 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CellNo", "Mandatory !!");
             if (ModelState.IsValid)
             {
+                if (vmf.UserStage == 2)
+                    vmf.UserStage = 3;
                 CandidateService.PostCreate(dbOperation, vmf);
+                Session["LoggedInUser"] = vmf;
+                Session["ProfileStage"] = vmf.UserStage;
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);

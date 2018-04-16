@@ -54,11 +54,7 @@
                             <div class="content-divider text-muted form-group"><span class="text-blue">Your credentials</span></div>
                             <div class="form-group has-feedback has-feedback-left">
                                 <label class="text-semibold text-blue">Applied As</label> &nbsp;
-                                @Html.DropDownList("AppliedAs", new List<SelectListItem>
-                                                      {
-                                                       new SelectListItem { Text = "Internship", Value = "1"},new SelectListItem { Text = "MTO", Value = "2"},new SelectListItem { Text = "Trainee Engineer", Value = "3"},
-                                                       new SelectListItem { Text = "Apprentice", Value = "4"},new SelectListItem { Text = "Full Time Employee", Value = "5"},new SelectListItem { Text = "Contractual Employee", Value = "5" },
-                                                      }, new { @class = "form-control" })
+                                @Html.DropDownList("AppliedAs", new List<SelectListItem> { new SelectListItem { Text = "Internship", Value = "1" }, new SelectListItem { Text = "MTO", Value = "2" }, new SelectListItem { Text = "Trainee Engineer", Value = "3" }, new SelectListItem { Text = "Apprentice", Value = "4" }, new SelectListItem { Text = "Full Time Employee", Value = "5" }, new SelectListItem { Text = "Contractual Employee", Value = "6" }, }, new { @class = "form-control" })
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
                                 <label class="text-bold text-blue">Email</label>

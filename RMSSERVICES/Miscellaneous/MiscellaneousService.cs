@@ -43,6 +43,7 @@ namespace RMSSERVICES.Miscellaneous
         {
             User dbUser = UserRepository.GetSingle((int)LoggedInUser.UserID);
             dbUser.HasCV = true;
+            dbUser.UserStage = LoggedInUser.UserStage;
             UserRepository.Edit(dbUser);
             UserRepository.Save();
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
@@ -94,6 +95,8 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.HearAboutDetail = obj.HearAboutDetail;
             dbMiscellaneous.Disability = obj.Disability;
             dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
+            dbMiscellaneous.InternshipRequirement = obj.InternshipRequirement;
+            dbMiscellaneous.InternshipDuration = obj.InternshipDuration;
             return dbMiscellaneous;
         }
         #endregion

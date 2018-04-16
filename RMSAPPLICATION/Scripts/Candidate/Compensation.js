@@ -143,6 +143,10 @@ function SaveCompensationFunction() {
             data: $("#formEditID").serialize(),
             success: function (data) {
                 if (data == "OK") {
+                    $.jGrowl('You have successfully saved your compensation details.Kindly go to to miscellaneous.', {
+                        header: 'Well done!',
+                        theme: 'bg-success-400',
+                    });
                     CompensationGetCreate(id)
                 }
                 else {

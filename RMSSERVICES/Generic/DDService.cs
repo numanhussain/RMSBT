@@ -79,7 +79,10 @@ namespace RMSSERVICES.Generic
         }
         public List<HearAbout> GetHearAboutJob()
         {
-            return HearAboutJobRepository.GetAll();
+            List<HearAbout> list = new List<HearAbout>();
+            list.Add(new HearAbout { HearAboutID = 0, HearAboutSource = "--------" });
+            list.AddRange(HearAboutJobRepository.GetAll());
+            return list;
         }
         public List<SkillLevel> GetSkillLevel()
         {
@@ -91,23 +94,29 @@ namespace RMSSERVICES.Generic
         }
         public List<MartialStatu> GetMartialStatusList()
         {
-            return MartialStatusRepository.GetAll();
+            List<MartialStatu> list = new List<MartialStatu>();
+            list.Add(new MartialStatu { PMID = 0, MartialStatusName = "--------" });
+            list.AddRange(MartialStatusRepository.GetAll());
+            return list;
         }
         public List<BloodGroup> GetBloodGroupList()
         {
-            return BloodGroupRepository.GetAll();
+            List<BloodGroup> list = new List<BloodGroup>();
+            list.Add(new BloodGroup { CBID = 0, BGroupName = "--------" });
+            list.AddRange(BloodGroupRepository.GetAll());
+            return list;
         }
         public List<Country> GetCountryList()
         {
             List<Country> list = new List<Country>();
-            list.Add(new Country { CCID = 0, CountryName = "----" });
+            list.Add(new Country { CCID = 0, CountryName = "--------" });
             list.AddRange(CountryRepository.GetAll());
             return list;
         }
         public List<City> GetCityList()
         {
             List<City> list = new List<City>();
-            list.Add(new City { CityID = 0, CityName = "----" });
+            list.Add(new City { CityID = 0, CityName = "--------" });
             list.AddRange(CityRepository.GetAll());
             return list;
         }
@@ -121,7 +130,10 @@ namespace RMSSERVICES.Generic
         }
         public List<Gender> GetGenderList()
         {
-            return GenderRepository.GetAll();
+            List<Gender> list = new List<Gender>();
+            list.Add(new Gender { CGenderID = 0, GenderName = "--------" });
+            list.AddRange(GenderRepository.GetAll());
+            return list;
         }
         public List<Candidate> GetSpecificCandidate(Expression<Func<Candidate, bool>> predicate)
         {
@@ -129,7 +141,10 @@ namespace RMSSERVICES.Generic
         }
         public List<Religion> GetReligion()
         {
-            return ReligionRepository.GetAll();
+            List<Religion> list = new List<Religion>();
+            list.Add(new Religion { CReligionID = 0, ReligionName = "--------" });
+            list.AddRange(ReligionRepository.GetAll());
+            return list;
         }
         public List<EduDegreeType> GetEduDegreeType()
         {

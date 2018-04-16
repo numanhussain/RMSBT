@@ -47,6 +47,10 @@ function EduDetailPostCreate(id) {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVEduDetailIndex(id)
+                    $.jGrowl('You have successfully saved your educational details.Kindly go to to experience details.', {
+                        header: 'Well done!',
+                        theme: 'bg-success-400',
+                    });
                 }
                 else {
                     $('#modelBody').html(data);
@@ -168,6 +172,7 @@ function ShowHide() {
     $("#DegreeTitleTB").hide();
     $("#OtherInstitute").hide();
     $("#MajorSubjectDD").hide();
+    $("#marksdiv").hide();
     switch ($("#DegreeLevelID").val()) {
         case "1":
             $("#DegreeTitleTB").show();
@@ -223,6 +228,7 @@ function ShowHide() {
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
             break;
         case "9":
             $("#DegreeTitleTB").hide();
@@ -237,6 +243,7 @@ function ShowHide() {
             $("#CGPATB").hide();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
             break;
     }
 }

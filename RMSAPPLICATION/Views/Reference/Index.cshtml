@@ -6,7 +6,7 @@
     <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-people"></i>&nbsp;&nbsp;Reference Details</h3>
+                <h3 class="text-black"><i class="icon-people"></i>&nbsp;&nbsp;Reference Details &nbsp;<small class="text-grey-600">(Personal should not be immediate relative/Person you know in a professional capacity)</small></h3>
             </div>
         </div>
 
@@ -21,16 +21,22 @@
                 <thead>
                     <tr>
                         <th class="text-bold">
+                            Organization
+                        </th>
+                        <th class="text-bold">
                             Ref Name
                         </th>
                         <th class="text-bold">
                             Ref Designation
                         </th>
                         <th class="text-bold">
+                            Ref Email
+                        </th>
+                        <th class="text-bold">
                             Ref Contact
                         </th>
                         <th class="text-bold">
-                            Ref Email
+                            Known period
                         </th>
                         <th class="text-bold">
                             Edit | Delete
@@ -42,17 +48,22 @@
                     {
                         <tr>
                             <td>
+                                @Html.DisplayFor(modelItem => item.RefDesignation)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => item.RefName)
                             </td>
-
                             <td>
-                                @Html.DisplayFor(modelItem => item.RefDesignation)
+                                @Html.DisplayFor(modelItem => item.Organization)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.RefContact)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.RefEmail)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.HowLongKnown)
                             </td>
                             <td>
                                 <button type="button" id="btnGetEdit" onclick="ReferenceDetailGetEdit(@item.RefID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>

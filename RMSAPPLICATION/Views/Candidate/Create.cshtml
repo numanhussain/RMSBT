@@ -48,7 +48,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="required control-label text-semibold">Father's Name/Husband's Name</label>
+                            <label class="required control-label text-semibold">Father's/Husband's Name</label>
                             @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
@@ -57,7 +57,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="required control-label text-semibold">CNIC#/Passport#</label>
+                            <label class="required control-label text-semibold">CNIC/Passport No</label>
                             @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control", placeholder = "xxxxx-xxxxxxx-x" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CNICNo, "", new { @class = "text-danger" })
@@ -81,11 +81,17 @@
                             <label class="control-label text-semibold">Gender</label>
                             @Html.DropDownList("GenderID", null, new { @class = "form-control" })
                         </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <div class="form-group col-md-2">
                         <div>
                             <label class="control-label text-semibold">Martial Status</label>
                             @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.MartialStatusID, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group col-md-2">
@@ -93,11 +99,17 @@
                             <label class="control-label text-semibold">Religion</label>
                             @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
                         </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.ReligionID, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Blood Group</label>
                             @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -106,6 +118,9 @@
                         <div>
                             <label class="control-label text-semibold">Domicile</label>
                             @Html.DropDownList("DomicileCityID", null, new { @class = "form-control" })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.DomicileCityID, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group col-md-8">
@@ -125,6 +140,9 @@
                             @Html.DropDownList("CountryID", null, new { @class = "form-control" })
                             @Html.HiddenFor(model => model.CountryID, new { id = "selectedCountryIDHidden" })
                         </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <div>
@@ -132,11 +150,17 @@
                             <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" style=" width:300px;" name="CityID"></select>
                             @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
                         </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                     <div class="form-group col-md-4">
                         <div>
                             <label class="control-label text-semibold">Nationality</label>
                             @Html.DropDownList("NationalityCountryID", null, new { @class = "form-control" })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.NationalityCountryID, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
@@ -150,7 +174,7 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="required control-label text-semibold">Cell #</label>
-                            @Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.CellNo, new { htmlAttributes = new { @class = "form-control", placeholder = "+92-3001234567" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CellNo, "", new { @class = "text-danger" })
                             </div>

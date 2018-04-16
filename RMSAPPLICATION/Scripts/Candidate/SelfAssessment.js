@@ -16,7 +16,7 @@
         $("#hv7").addClass("liActive");
     });
 };
-function SelfAssessmentPostCreate() {
+function SelfAssessmentPostCreate(item) {
     $('#btnPostCreate').click(function () {
         $.ajax({
             url: '/SelfAssessment/Index',
@@ -24,6 +24,10 @@ function SelfAssessmentPostCreate() {
             data: $("#formCreateID").serialize(),
             success: function (data) {
                 if (data == "OK") {
+                        $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
+                            header: 'Well done!',
+                            theme: 'bg-success-400',
+                        });
                     SelfAssessmentGetCreate(id)
                 }
                 else {

@@ -34,8 +34,23 @@ function SelectAllCheckBox() {
         if (!$(this).prop("checked"))
             $("#chkSelectAllCatagory").prop("checked", false);
     });
+    $("#declarationdivhide").hide();
     $("#ApproveDecline").hide();
-    $('#ask').change(function () {
+    $('#ask2').change(function () {
+        if ($(this).is(":checked")) {
+            $("#titlehide").hide();
+            $("#hrhide").hide();
+            $("#profiledivhide").hide();
+            $("#declarationdivhide").show();
+        }
+        else {
+            $("#titlehide").show();
+            $("#hrhide").show();
+            $("#profiledivhide").show();
+            $("#declarationdivhide").hide();
+        }
+    });
+$('#ask').change(function () {
         if ($(this).is(":checked")) {
             $("#ApproveDecline").show();
         }
@@ -53,14 +68,13 @@ function ApplyJob(id, item) {
         data: { JobID: id }
     }).done(function (data) {
         if (data === "OK") {
-
             $('#myModal1').modal('hide');
             $.jGrowl('You have successfully applied for this job.  You can check the status of your application later by logging into your account at Bestway Career Portal', {
                 header: 'Well done!',
                 theme: 'bg-success-400',
             });
- $("#DivJobApplied").show();
- $("#DivJobApply").hide();
+            $("#DivJobApplied").show();
+            $("#DivJobApply").hide();
         }
         else { alert(data); }
     });

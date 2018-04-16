@@ -113,6 +113,7 @@ namespace RMSSERVICES.Compensation
             dbCompensation.OtherBenifits = obj.OtherBenifits;
             dbCompensation.CandidateID = obj.CandidateID;
             dbCompensation.SpecifyYears = obj.SpecifyYears;
+            dbCompensation.MobileNoOfYears = obj.MobileNoOfYears;
             return dbCompensation;
         }
         #endregion

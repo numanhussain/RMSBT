@@ -43,6 +43,10 @@ function ReferenceDetailPostCreate(id) {
             success: function (data) {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
+                    $.jGrowl('You have successfully saved your reference details.', {
+                        header: 'Well done!',
+                        theme: 'bg-success-400',
+                    });
                     LoadPVReferenceDetailIndex(id)
                 }
                 else {

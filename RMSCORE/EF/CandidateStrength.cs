@@ -19,5 +19,6 @@ namespace RMSCORE.EF
         public string AreaOfImprovement { get; set; }
         public string MeetRequirements { get; set; }
         public Nullable<int> CandidateID { get; set; }
+        public string Objective { get; set; }
     }
 }

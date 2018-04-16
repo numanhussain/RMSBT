@@ -58,5 +58,6 @@ namespace RMSCORE.EF
         public Nullable<int> CandidateID { get; set; }
         public Nullable<int> SpecifyYears { get; set; }
         public Nullable<int> FuelAllowance { get; set; }
+        public Nullable<int> MobileNoOfYears { get; set; }
     }
 }

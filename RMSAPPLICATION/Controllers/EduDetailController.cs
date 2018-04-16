@@ -68,10 +68,22 @@ namespace RMSAPPLICATION.Controllers
             {
                 if (obj.DegreeTitle == null)
                     ModelState.AddModelError("DegreeTitle", "Mandatory !!");
+                if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0|| obj.DegreeLevelID == 2 && obj.InstitutionID == 0|| obj.DegreeLevelID == 3 && obj.InstitutionID == 0)
+                    obj.InstitutionID = null;
                 if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0)
                     ModelState.AddModelError("InstitutionID", "Mandatory !!");
                 if (obj.StartDate == null)
                     ModelState.AddModelError("StartDate", "Mandatory !!");
+                if (obj.MajorSubject == null || obj.MajorSubject=="")
+                    ModelState.AddModelError("MajorSubject", "Mandatory !!");
+                if (obj.StartDate != null)
+                {
+                    if (obj.StartDate >= obj.EndDate)
+                        ModelState.AddModelError("StartDate", "Must be smaller than end date!!");
+                }
+                if (obj.InstitutionID == 0)
+                    ModelState.AddModelError("InstitutionID", "Mandatory !!");
+
                 if (obj.EndDate == null)
                     ModelState.AddModelError("EndDate", "Mandatory !!");
                 if (obj.ObtainedMark == null)
@@ -86,6 +98,8 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("OtherInstitute", "Mandatory !!");
                 if (ModelState.IsValid)
                 {
+                    if (vmf.UserStage == 3)
+                        vmf.UserStage = 4;
                     EduDetailService.PostCreate(obj, vmf);
                     Session["LoggedInUser"] = vmf;
                     Session["ProfileStage"] = vmf.UserStage;
@@ -106,8 +120,43 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(VMEduDetailOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (obj.DegreeLevelID == 0)
+            {
+                ModelState.AddModelError("DegreeLevelID", "Mandatory !!");
+            }
             if (obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 && obj.CGPA == null || obj.CGPA == "")
                 ModelState.AddModelError("CGPA", "This is mandatory field");
+            if (obj.DegreeTitle == null)
+                ModelState.AddModelError("DegreeTitle", "Mandatory !!");
+            if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0 || obj.DegreeLevelID == 2 && obj.InstitutionID == 0 || obj.DegreeLevelID == 3 && obj.InstitutionID == 0)
+                obj.InstitutionID = null;
+            if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0)
+                ModelState.AddModelError("InstitutionID", "Mandatory !!");
+            if (obj.StartDate == null)
+                ModelState.AddModelError("StartDate", "Mandatory !!");
+            if (obj.MajorSubject == null || obj.MajorSubject == "")
+                ModelState.AddModelError("MajorSubject", "Mandatory !!");
+            if (obj.StartDate != null)
+            {
+                if (obj.StartDate >= obj.EndDate)
+                    ModelState.AddModelError("StartDate", "Must be smaller than end date!!");
+            }
+            if (obj.InstitutionID == 0)
+                ModelState.AddModelError("InstitutionID", "Mandatory !!");
+
+            if (obj.EndDate == null)
+                ModelState.AddModelError("EndDate", "Mandatory !!");
+            if (obj.ObtainedMark == null)
+                ModelState.AddModelError("ObtainedMark", "Mandatory !!");
+            if (obj.TotalMark == null)
+                ModelState.AddModelError("TotalMark", "Mandatory !!");
+            if (obj.Percentage == null)
+                ModelState.AddModelError("Percentage", "Mandatory !!");
+            if (obj.DegreeLevelID == 4 && obj.CGPA == null || obj.DegreeLevelID == 5 && obj.CGPA == null || obj.DegreeLevelID == 6 && obj.CGPA == null)
+                ModelState.AddModelError("CGPA", "Mandatory !!");
+            if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
+                ModelState.AddModelError("OtherInstitute", "Mandatory !!");
+
             if (ModelState.IsValid)
             {
                 EduDetailService.PostEdit(obj);

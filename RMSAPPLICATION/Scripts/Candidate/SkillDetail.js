@@ -47,6 +47,10 @@ function SkillDetailPostCreate(id) {
             success: function (data) {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
+                    $.jGrowl('You have successfully saved your skills details.', {
+                        header: 'Well done!',
+                        theme: 'bg-success-400',
+                    });
                     LoadPVSkillDetailIndex(id)
                 }
                 else {

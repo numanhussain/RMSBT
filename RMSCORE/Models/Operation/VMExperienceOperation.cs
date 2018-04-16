@@ -19,13 +19,13 @@ namespace RMSCORE.Models.Operation
         public int? CityID { get; set; }
         public string Address { get; set; }
         [Required(ErrorMessage = "Mandatory !!")]
-        [StringLength(100)]
+        [StringLength(250)]
         public string Responsibility1 { get; set; }
         [Required(ErrorMessage = "Mandatory !!")]
-        [StringLength(100)]
+        [StringLength(250)]
         public string Responsibility2 { get; set; }
         [Required(ErrorMessage = "Mandatory !!")]
-        [StringLength(100)]
+        [StringLength(250)]
         public string Responsibility3 { get; set; }
         public string Salary { get; set; }
         public int CandidateID { get; set; }
@@ -36,5 +36,6 @@ namespace RMSCORE.Models.Operation
         public string HaveExperience { get; set; }
         public bool? ContactEmployer { get; set; }
         public string AreaofInterest { get; set; }
+        public string ReasonOfLeaving { get; set; }
     }
 }

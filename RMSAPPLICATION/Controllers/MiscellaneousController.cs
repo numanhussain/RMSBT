@@ -42,34 +42,34 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.CrimanalRecord == "Yes" && obj.CrimeDetail == null)
                 ModelState.AddModelError("CrimeDetail", "Mandatory !!");
-            if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeName == null)
-                ModelState.AddModelError("WorkingRelativeName", "Mandatory !!");
-            if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeRelation == null)
-                ModelState.AddModelError("WorkingRelativeRelation", "Mandatory !!");
-            if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeDepartment == null)
-                ModelState.AddModelError("WorkingRelativeDepartment", "Mandatory !!");
-            if (obj.Disability == "Yes" && obj.DisabilityDetail == null)
-                ModelState.AddModelError("DisabilityDetail", "Mandatory !!");
-            if (obj.InterviewedBefore == "Yes" && obj.AppliedPosition == null)
-                ModelState.AddModelError("AppliedPosition", "Mandatory !!");
-            if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
-                ModelState.AddModelError("InterviewedDate", "Mandatory !!");
-            if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
-                ModelState.AddModelError("InterviewedLocation", "Mandatory !!");
-            if (obj.WorkedBefore == "Yes" && obj.DateJoining == null)
-                ModelState.AddModelError("DateJoining", "Mandatory !!");
-            if (obj.WorkedBefore == "Yes" && obj.DateLeavig == null)
-                ModelState.AddModelError("DateLeavig", "Mandatory !!");
-            if (obj.WorkedBefore == "Yes" && obj.Designation == null)
-                ModelState.AddModelError("Designation", "Mandatory !!");
-            if (obj.WorkedBefore == "Yes" && obj.ReasonLeaving == null)
-                ModelState.AddModelError("ReasonLeaving", "Mandatory !!");
-            if (obj.WorkedBefore == "Yes" && obj.EmploymentNo == null)
-                ModelState.AddModelError("EmploymentNo", "Mandatory !!");
-            if (obj.WorkedBefore == "Yes" && obj.Location == null)
-                ModelState.AddModelError("Location", "Mandatory !!");
-            if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
-                ModelState.AddModelError("HearAboutDetail", "Mandatory !!");
+            //if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeName == null)
+            //    ModelState.AddModelError("WorkingRelativeName", "Mandatory !!");
+            //if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeRelation == null)
+            //    ModelState.AddModelError("WorkingRelativeRelation", "Mandatory !!");
+            //if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeDepartment == null)
+            //    ModelState.AddModelError("WorkingRelativeDepartment", "Mandatory !!");
+            //if (obj.Disability == "Yes" && obj.DisabilityDetail == null)
+            //    ModelState.AddModelError("DisabilityDetail", "Mandatory !!");
+            //if (obj.InterviewedBefore == "Yes" && obj.AppliedPosition == null)
+            //    ModelState.AddModelError("AppliedPosition", "Mandatory !!");
+            //if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
+            //    ModelState.AddModelError("InterviewedDate", "Mandatory !!");
+            //if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
+            //    ModelState.AddModelError("InterviewedLocation", "Mandatory !!");
+            //if (obj.WorkedBefore == "Yes" && obj.DateJoining == null)
+            //    ModelState.AddModelError("DateJoining", "Mandatory !!");
+            //if (obj.WorkedBefore == "Yes" && obj.DateLeavig == null)
+            //    ModelState.AddModelError("DateLeavig", "Mandatory !!");
+            //if (obj.WorkedBefore == "Yes" && obj.Designation == null)
+            //    ModelState.AddModelError("Designation", "Mandatory !!");
+            //if (obj.WorkedBefore == "Yes" && obj.ReasonLeaving == null)
+            //    ModelState.AddModelError("ReasonLeaving", "Mandatory !!");
+            //if (obj.WorkedBefore == "Yes" && obj.EmploymentNo == null)
+            //    ModelState.AddModelError("EmploymentNo", "Mandatory !!");
+            //if (obj.WorkedBefore == "Yes" && obj.Location == null)
+            //    ModelState.AddModelError("Location", "Mandatory !!");
+            //if (obj.InternshipDuration == "0")
+            //    ModelState.AddModelError("InternshipDuration", "Mandatory !!");
             if (obj.TotalExp == null)
                 ModelState.AddModelError("TotalExp", "Mandatory !!");
             if (obj.CementExp == null)
@@ -139,7 +139,7 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
 
-            return new FilePathResult(string.Format(@"~\UploadFiles\"+ vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
+            return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

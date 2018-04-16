@@ -40,5 +40,7 @@ namespace RMSCORE.EF
         public string Disability { get; set; }
         public string DisabilityDetail { get; set; }
         public string HearAboutDetail { get; set; }
+        public Nullable<bool> InternshipRequirement { get; set; }
+        public string InternshipDuration { get; set; }
     }
 }

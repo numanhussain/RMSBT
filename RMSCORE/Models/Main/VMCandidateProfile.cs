@@ -13,9 +13,11 @@ namespace RMSCORE.Models.Main
         public int? JobID { get; set; }
         public Candidate PersonalDetails { get; set; }
         public List<V_Candidate_EduDetail> EducationalDetails { get; set; }
+        public MiscellaneousDetail MiscellaneousDetails { get; set; }
         public List<V_Candidate_Exp> ExperienceDetails { get; set; }
         public CompensationDetail CompensationDetails { get; set; }
-        public MiscellaneousDetail MiscellaneousDetails { get; set; }
         public CandidateStrength SelfAssessment { get; set; }
+        public List<V_Candidate_Reference> Referrence { get; set; }
+        public List<V_Candidate_Skills> Skill { get; set; }
     }
 }

@@ -18,39 +18,42 @@
             <div class="panel panel-flat">
                 <div class="modal-header bg-green-600" style="padding:20px">
                 </div>
-                    <table class="table datatable-basic">
-                        <thead>
+                <table class="table datatable-basic">
+                    <thead>
+                        <tr>
+                            <th>
+                                Candidate Name
+                            </th>
+                            <th>
+                                Job Title
+                            </th>
+                            <th>
+                                Applied Date
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
                             <tr>
-                                <th>
-                                    Candidate Name
-                                </th>
-                                <th>
-                                    Job Title
-                                </th>
-                                <th>
-                                    Applied Date
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CName)
-                                    </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CName)
+                                </td>
 
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.JobTitle)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.CJobDate)
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
-                    </table>
-                </div>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.JobTitle)
+                                </td>
+                                <td>
+                                    @if (item.CJobDate != null)
+                                    {
+                                        @item.CJobDate.Value.ToString("dd-MM-yyyy");
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
+</div>

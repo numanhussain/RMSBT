@@ -14,7 +14,7 @@
     </div>
     <div class="modal-header">
         <h3 class="modal-title">
-            <h3 class="panel-title text-bold">Candidate Profile of :<span class="text-black"> @Html.DisplayFor(model => model.PersonalDetails.CName)</span></h3>
+            <h3 id="titlehide" class="panel-title text-bold">Candidate Profile of :<span class="text-black"> @Html.DisplayFor(model => model.PersonalDetails.CName)</span></h3>
         </h3>
         <div class="label label-lg label-info arrowed-right">
             <b><strong>Note: </strong>Please check your profile carefully.</b>
@@ -23,15 +23,17 @@
     <div class="modal-body">
         <div class=" col-lg-12">
             <!-- Basic tabs -->
-            <div class="row">
+            <div class="row" id="profiledivhide">
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#basic-tab1" data-toggle="tab">Personal Details</a></li>
                         <li><a href="#basic-tab2" data-toggle="tab">Educational Details</a></li>
-                        <li><a href="#basic-tab3" data-toggle="tab">Experience Details</a></li>
-                        <li><a href="#basic-tab4" data-toggle="tab">Compensation Details</a></li>
-                        <li><a href="#basic-tab5" data-toggle="tab">Miscellaneous Details</a></li>
+                        <li><a href="#basic-tab3" data-toggle="tab">Miscellaneous Details</a></li>
+                        <li><a href="#basic-tab4" data-toggle="tab">Experience Details</a></li>
+                        <li><a href="#basic-tab5" data-toggle="tab">Compensation Details</a></li>
                         <li><a href="#basic-tab6" data-toggle="tab">Self-Assessment</a></li>
+                        <li><a href="#basic-tab7" data-toggle="tab">Referrence</a></li>
+                        <li><a href="#basic-tab8" data-toggle="tab">Skill</a></li>
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="basic-tab1">
@@ -56,14 +58,14 @@
                                                     @Html.DisplayFor(model => model.PersonalDetails.FatherName)
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                    Date Of Birth
-                                                </th>
-                                                <td>
-                                                    @Model.PersonalDetails.DOB.Value.ToString("dd-MMM-yyyy")
-                                                </td>
-                                            </tr>
+                                            @*<tr>
+                                                    <th class="profile-info-name">
+                                                        Date Of Birth
+                                                    </th>
+                                                    <td>@if (Model.PersonalDetails.DOB != null) { }
+                                                        @Model.PersonalDetails.DOB.Value.ToString("dd-MMM-yyyy")}
+                                                    </td>
+                                                </tr>*@
                                             <tr>
                                                 <th class="profile-info-name">
                                                     CNIC
@@ -152,129 +154,6 @@
                             </table>
                         </div>
                         <div class="tab-pane" id="basic-tab3">
-                            <table class="table datatable-basic">
-                                <thead>
-                                    <tr>
-                                        <th class="text-bold">
-                                            Employer
-                                        </th>
-                                        <th class="text-bold">
-                                            Nature of business
-                                        </th>
-                                        <th class="text-bold">
-                                            Position/Designation
-                                        </th>
-                                        <th class="text-bold">
-                                            Joining Date
-                                        </th>
-                                        <th class="text-bold">
-                                            Leaving Date
-                                        </th>
-                                        <th class="text-bold">
-                                            Contact Employeer
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.ExperienceDetails)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.EmployerName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.ExpIndustryName)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.PostionTitle)
-                                            </td>
-                                            <td>
-                                                @if (item.StartDate != null)
-                                                {@item.StartDate.Value.ToString("dd-MM-yyyy");
-                                            }
-                                            </td>
-                                            <td>
-                                                @if (item.EndDate != null)
-                                                {@item.EndDate.Value.ToString("dd-MM-yyyy");
-                                            }
-                                            </td>
-                                            <td>
-                                                @if (item.ContactEmployer == true)
-                                                {
-                                                    <span class="label label-success">Yes</span>
-                                                }
-                                                @if (item.ContactEmployer == false)
-                                                {
-                                                    <span class="label label-danger">No</span>
-                                                }
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="tab-pane" id="basic-tab4">
-                            <div class="profile-user-info-striped">
-                                <div class="profile-user-info-striped">
-                                    <h2><a id="OfficialInfo" class="text-black">Compensation Information</a></h2>
-                                    <table class="table table-hover">
-                                        <tbody>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                    Monthly basic Salary
-                                                </th>
-                                                <td class="profile-info-value">
-                                                    @Html.DisplayFor(model => model.CompensationDetails.MBSalary)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                    Monthly Gross Salary
-                                                </th>
-                                                <td class="profile-info-value">
-                                                    @Html.DisplayFor(model => model.CompensationDetails.MGSalary)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                   Bonus
-                                                </th>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.CompensationDetails.Bonus)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                    LFA
-                                                </th>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.CompensationDetails.LFA)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                    Overtime
-                                                </th>
-                                                <td>
-                                                    @Html.DisplayFor(model => model.CompensationDetails.OT)
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="profile-info-name">
-                                                    Provident Fund
-                                                </th>
-                                                <td>
-                                                    <span>
-                                                        @Html.DisplayFor(model => model.CompensationDetails.ProvidentFund)
-                                                    </span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane" id="basic-tab5">
                             <div class="profile-user-info-striped">
                                 <div class="profile-user-info-striped">
                                     <h2><a id="OfficialInfo" class="text-black">Miscellaneous Information</a></h2>
@@ -347,6 +226,129 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="tab-pane" id="basic-tab4">
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th class="text-bold">
+                                            Employer
+                                        </th>
+                                        <th class="text-bold">
+                                            Nature of business
+                                        </th>
+                                        <th class="text-bold">
+                                            Position/Designation
+                                        </th>
+                                        <th class="text-bold">
+                                            Joining Date
+                                        </th>
+                                        <th class="text-bold">
+                                            Leaving Date
+                                        </th>
+                                        <th class="text-bold">
+                                            Contact Employeer
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.ExperienceDetails)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.EmployerName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.ExpIndustryName)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.PostionTitle)
+                                            </td>
+                                            <td>
+                                                @if (item.StartDate != null)
+                                                {@item.StartDate.Value.ToString("dd-MM-yyyy");
+                                            }
+                                            </td>
+                                            <td>
+                                                @if (item.EndDate != null)
+                                                {@item.EndDate.Value.ToString("dd-MM-yyyy");
+                                            }
+                                            </td>
+                                            <td>
+                                                @if (item.ContactEmployer == true)
+                                                {
+                                                    <span class="label label-success">Yes</span>
+                                                }
+                                                @if (item.ContactEmployer == false)
+                                                {
+                                                    <span class="label label-danger">No</span>
+                                                }
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="basic-tab5">
+                            <div class="profile-user-info-striped">
+                                <div class="profile-user-info-striped">
+                                    <h2><a id="OfficialInfo" class="text-black">Compensation Information</a></h2>
+                                    <table class="table table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    Monthly basic Salary
+                                                </th>
+                                                <td class="profile-info-value">
+                                                    @Html.DisplayFor(model => model.CompensationDetails.MBSalary)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    Monthly Gross Salary
+                                                </th>
+                                                <td class="profile-info-value">
+                                                    @Html.DisplayFor(model => model.CompensationDetails.MGSalary)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    Bonus
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.CompensationDetails.Bonus)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    LFA
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.CompensationDetails.LFA)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    Overtime
+                                                </th>
+                                                <td>
+                                                    @Html.DisplayFor(model => model.CompensationDetails.OT)
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    Provident Fund
+                                                </th>
+                                                <td>
+                                                    <span>
+                                                        @Html.DisplayFor(model => model.CompensationDetails.ProvidentFund)
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         <div class="tab-pane" id="basic-tab6">
                             <div class="profile-user-info-striped">
                                 <div class="profile-user-info-striped">
@@ -382,15 +384,106 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="tab-pane" id="basic-tab7">
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th class="text-bold">
+                                            Ref Name
+                                        </th>
+                                        <th class="text-bold">
+                                            Designation
+                                        </th>
+                                        <th class="text-bold">
+                                            Email
+                                        </th>
+                                        <th class="text-bold">
+                                            Contact No.
+                                        </th>
+                                        <th class="text-bold">
+                                            Known Period
+                                        </th>
+                                        <th class="text-bold">
+                                            Organization
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Referrence)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RefName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RefDesignation)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RefEmail)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.RefContact)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.HowLongKnown)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Organization)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="tab-pane" id="basic-tab8">
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th class="text-bold">
+                                            skill level
+                                        </th>
+                                        <th class="text-bold">
+                                            skill Name
+                                        </th>
+                                        <th class="text-bold">
+                                            Description
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Skill)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SkillLevelName)
+                                            </td>
+
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12">
+            <div class="col-md-12" id="hrhide">
                 <hr />
             </div>
+            <div class="checkbox-inline col-md-12" id="ask2divhide">
+                <input type="checkbox" class="styled" id="ask2" name="ask2" value="ask2">
+                <label class="control-label text-bold" for="ask2">Do you want to apply with this profile</label>
+            </div>
             <!-- /basic tabs -->
-            <div class="row">
-                <h4><a id="OfficialInfo" class="text-black">Statement to be Accepted by candidate -  after completing profile </a></h4>
+            <div class="row" id="declarationdivhide">
+                <h4><a id="OfficialInfo" class="text-black">Declaration</a></h4>
                 <div class="label label-lg label-info arrowed-right">
                     <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
                 </div>
@@ -403,7 +496,7 @@
                 </div>
                 <div class="checkbox-inline col-md-8">
                     <input type="checkbox" class="styled" id="ask" name="ask" value="ask">
-                    <label class="control-label text-bold" for="ask">Click here if you Accept the above terms and conditions</label>
+                    <label class="control-label text-bold" for="ask">I have read and accept the above terms and conditions</label>
                 </div>
             </div>
         </div>

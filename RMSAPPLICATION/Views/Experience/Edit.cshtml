@@ -27,41 +27,42 @@
     <div class="modal-body">
         <div class="form-horizontal">
             <div class="form-group">
-                <div class="control-label col-md-1 text-semibold text-right">Industry</div>
+                <div class="control-label col-md-1 text-semibold">Industry</div>
                 <div class="col-md-2">
                     @Html.DropDownList("IndustryID", null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.IndustryID, "", new { @class = "text-danger" })
-                </div>
-                <div class="required control-label col-md-2 text-semibold text-right">Designation</div>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.PositionTitle, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.PositionTitle, "", new { @class = "text-danger" })
                 </div>
                 <div class="required control-label col-md-1 text-semibold text-right">Employer</div>
                 <div class="col-md-3">
                     @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
                 </div>
+                <div class="required control-label col-md-2 text-semibold text-right">Designation</div>
+                <div class="col-md-3">
+                    @Html.EditorFor(model => model.PositionTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PositionTitle, "", new { @class = "text-danger" })
+                </div>
+
             </div>
             <div class="form-group">
-                <div class="control-label col-md-1 text-semibold text-right">Career Level</div>
+                <div class="control-label col-md-1 text-semibold ">Career&nbsp;level</div>
                 <div class="col-md-3">
                     @Html.DropDownList("CareerLevelID", null, new { @class = "form-control" })
                     @Html.ValidationMessageFor(model => model.CareerLevelID, "", new { @class = "text-danger" })
                 </div>
-                <div class="control-label col-md-1 text-semibold">JobTitle</div>
+                <div class="control-label col-md-1 text-semibold">Job Title</div>
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
                 </div>
-                <div class="control-label col-md-1 text-semibold">Area of Interest</div>
+                <div class="required label-control col-md-1 text-semibold">Area of Interest</div>
                 <div class="col-md-2">
                     @Html.EditorFor(model => model.AreaofInterest, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.AreaofInterest, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="required control-label col-md-1 text-semibold text-right">Start Date</div>
+                <div class="required control-label col-md-1 text-semibold">Start&nbsp;Date</div>
                 <div class="col-md-3">
                     @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                     @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
@@ -82,10 +83,10 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-1 text-semibold text-left">Address</div>
-                <div class="col-md-7">
-                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @cols = 5, @rows = 2 })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                <div class="control-label col-md-2 text-semibold">Reason of Leaving</div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.ReasonOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
                 </div>
                 <div class="control-label col-md-1 text-semibold text-right">City</div>
                 <div class="col-md-3">
@@ -94,23 +95,34 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="required control-label col-md-2 text-semibold">Responsibility#1:</div>
+                <div class="control-label col-md-2 text-semibold text-left">Address</div>
+                <div class="col-md-6">
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @cols = 5, @rows = 2 })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class=" text-black h6" style="font-weight:900">Reponsibilities:</div>
+                <hr />
+            </div>
+            <div class="form-group">
+                <div class="required control-label col-md-1 text-semibold">1:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
+                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "max 250 character" })
                     @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="required control-label col-md-2 text-semibold">Responsibility#2:</div>
+                <div class="required control-label col-md-1 text-semibold">2:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
+                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "max 250 character" })
                     @Html.ValidationMessageFor(m => m.Responsibility2, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="required control-label col-md-2 text-semibold">Responsibility#3:</div>
+                <div class="required control-label col-md-1 text-semibold">3:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2 })
+                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "max 250 character" })
                     @Html.ValidationMessageFor(m => m.Responsibility3, null, new { @class = "text-danger" })
                 </div>
             </div>
