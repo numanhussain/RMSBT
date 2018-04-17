@@ -35,12 +35,19 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Index(CandidateStrength dbOperation)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (dbOperation.Objective == null)
+                ModelState.AddModelError("Objective", "Mandatory !!");
             if (dbOperation.Strengths == null)
                 ModelState.AddModelError("Strengths", "Mandatory !!");
             if (dbOperation.AreaOfImprovement == null)
                 ModelState.AddModelError("AreaOfImprovement", "Mandatory !!");
             if (dbOperation.MeetRequirements == null)
                 ModelState.AddModelError("MeetRequirements", "Mandatory !!");
+            if (dbOperation.Objective != null)
+            {
+                if (dbOperation.Objective.Length > 250)
+                    ModelState.AddModelError("Objective ", "String length exceeds!");
+            }
             if (dbOperation.Strengths != null)
             {
                 if (dbOperation.Strengths.Length > 250)

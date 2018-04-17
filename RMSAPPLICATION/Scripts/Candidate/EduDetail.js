@@ -187,6 +187,7 @@ function ShowHide() {
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
             break;
         case "3":
             $("#DegreeTitleTB").show();
@@ -194,6 +195,7 @@ function ShowHide() {
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
             break;
         case "4":
             $("#DegreeTitleTB").show();
@@ -201,12 +203,14 @@ function ShowHide() {
             $("#CGPATB").show();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
         case "5":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").show();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
             break;
         case "6":
             $("#DegreeTitleTB").show();
@@ -214,6 +218,7 @@ function ShowHide() {
             $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
             break;
         case "7":
             $("#DegreeTitleTB").show();
@@ -221,6 +226,7 @@ function ShowHide() {
             $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
             break;
         case "8":
             $("#DegreeTitleTB").show();
@@ -236,6 +242,7 @@ function ShowHide() {
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
             break;
         case "10":
             $("#DegreeTitleTB").show();

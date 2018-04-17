@@ -86,7 +86,10 @@ namespace RMSSERVICES.Generic
         }
         public List<SkillLevel> GetSkillLevel()
         {
-            return SkillLevelRepository.GetAll();
+            List<SkillLevel> list = new List<SkillLevel>();
+            list.Add(new SkillLevel { SkillLevelID = 0, SkillLevelName = "--------" });
+            list.AddRange(SkillLevelRepository.GetAll());
+            return list;
         }
         public List<ExperienceIndustry> GetIndustryList()
         {

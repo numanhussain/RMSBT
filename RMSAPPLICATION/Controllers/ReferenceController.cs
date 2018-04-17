@@ -46,12 +46,24 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMReferenceOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (obj.RefName == null||obj.RefName == "")
+                ModelState.AddModelError("RefName", "Mandatory !!");
+            if (obj.RefDesignation == null || obj.RefDesignation == "")
+                ModelState.AddModelError("RefDesignation", "Mandatory !!");
+            if (obj.Organization == null || obj.Organization == "")
+                ModelState.AddModelError("Organization", "Mandatory !!");
+            if (obj.RefContact == null || obj.RefContact == "")
+                ModelState.AddModelError("RefContact", "Mandatory !!");
+            if (obj.HowLongKnown == null || obj.HowLongKnown == "")
+                ModelState.AddModelError("HowLongKnown", "Mandatory !!");
+            if (obj.RefEmail == null || obj.RefEmail == "")
+                ModelState.AddModelError("RefEmail", "Mandatory !!");
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostCreate(obj, vmf);
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
-            return PartialView("Create",obj);
+            return PartialView("Create", obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)

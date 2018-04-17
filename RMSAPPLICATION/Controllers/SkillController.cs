@@ -47,13 +47,19 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMSkillOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (obj.SkillTitle == null || obj.SkillTitle == "")
+                ModelState.AddModelError("SkillTitle", "Mandatory !!");
+            if (obj.SLevelID == 0)
+                ModelState.AddModelError("SLevelID", "Mandatory !!");
+            if (obj.Description == null || obj.Description == "")
+                ModelState.AddModelError("Description", "Mandatory !!");
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostCreate(obj);
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);
-            return PartialView("Create",obj);
+            return PartialView("Create", obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)

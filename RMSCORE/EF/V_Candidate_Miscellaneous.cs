@@ -23,24 +23,14 @@ namespace RMSCORE.EF
         public string Designation { get; set; }
         public string Location { get; set; }
         public string ReasonLeaving { get; set; }
-        public Nullable<int> TotalExp { get; set; }
-        public Nullable<int> CementExp { get; set; }
+        public string TotalExp { get; set; }
+        public string CementExp { get; set; }
         public Nullable<int> NoticeTime { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public Nullable<long> CandidateID { get; set; }
         public string CName { get; set; }
         public string CNICNo { get; set; }
-        public string WorkedBefore { get; set; }
+        public Nullable<bool> WorkedBefore { get; set; }
         public Nullable<int> HearAboutJobID { get; set; }
         public string HearAboutSource { get; set; }
-        public string CrimeDetail { get; set; }
-        public string InterviewedBefore { get; set; }
-        public Nullable<System.DateTime> InterviewedDate { get; set; }
-        public string InterviewedLocation { get; set; }
-        public string AppliedPosition { get; set; }
-        public string Disability { get; set; }
-        public string DisabilityDetail { get; set; }
-        public string HearAboutDetail { get; set; }
-        public Nullable<bool> InternshipRequirement { get; set; }
-        public string InternshipDuration { get; set; }
     }
 }

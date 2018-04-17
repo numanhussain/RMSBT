@@ -12,17 +12,9 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class V_Candidate_Reference
+    public partial class EduBoard
     {
-        public int RefID { get; set; }
-        public string RefName { get; set; }
-        public string RefDesignation { get; set; }
-        public string RefEmail { get; set; }
-        public string RefContact { get; set; }
-        public string CName { get; set; }
-        public string CNICNo { get; set; }
-        public string Organization { get; set; }
-        public string HowLongKnown { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int BISEID { get; set; }
+        public string BiseName { get; set; }
     }
 }

@@ -17,11 +17,11 @@
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="control-label col-md-2 text-semibold">Reference Name</div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     @Html.EditorFor(model => model.RefName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.RefName, "", new { @class = "text-danger" })
                 </div>
-                <div class="control-label col-md-2 text-semibold text-right"> Designation</div>
+                <div class="control-label col-md-1 text-semibold text-right"> Designation</div>
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.RefDesignation, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.RefDesignation, "", new { @class = "text-danger" })
