@@ -47,8 +47,9 @@ function EduDetailPostCreate(id) {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
                     LoadPVEduDetailIndex(id)
-                    $.jGrowl('You have successfully saved your educational details.Kindly go to to experience details.', {
-                        header: 'Well done!',
+                    $.jGrowl('You have successfully saved your details.', {
+                        header: '',
+                        position: 'center',
                         theme: 'bg-success-400',
                     });
                 }

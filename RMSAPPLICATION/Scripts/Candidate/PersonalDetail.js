@@ -43,11 +43,17 @@ function SavePersonalInfoFunction() {
             type: 'POST',
             data: $("#formEditID").serialize(),
             success: function (data) {
-                $.jGrowl('You have successfully saved your personal details.Kindly go to to education details.', {
-                    header: 'Well done!',
-                    theme: 'bg-success-400',
-                });
-                $('#PartialViewContainer').html(data);
+                if (data == "OK") {
+                    $.jGrowl('You have successfully saved your details.', {
+                        header: '',
+                        position: 'center',
+                        theme: 'bg-success-400',
+                    });
+                    CandidateGetCreate(id)
+                }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
             },
             error: function () {
                 $("#result").text('an error occured')

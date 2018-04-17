@@ -24,10 +24,11 @@ function SelfAssessmentPostCreate(item) {
             data: $("#formCreateID").serialize(),
             success: function (data) {
                 if (data == "OK") {
-                        $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
-                            header: 'Well done!',
-                            theme: 'bg-success-400',
-                        });
+                    $.jGrowl('You have successfully saved your details.', {
+                        header: '',
+                        position: 'center',
+                        theme: 'bg-success-400',
+                    });
                     SelfAssessmentGetCreate(id)
                 }
                 else {

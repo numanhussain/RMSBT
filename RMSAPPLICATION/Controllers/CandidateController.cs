@@ -76,7 +76,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("MartialStatusID", "Mandatory !!");
             if (dbOperation.ReligionID == 0)
                 ModelState.AddModelError("ReligionID", "Mandatory !!");
-            if (dbOperation.BloodGroupID == 0 )
+            if (dbOperation.BloodGroupID == 0)
                 ModelState.AddModelError("BloodGroupID", "Mandatory !!");
             if (dbOperation.DomicileCityID == 0)
                 ModelState.AddModelError("DomicileCityID", "Mandatory !!");
@@ -86,9 +86,9 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CityID", "Mandatory !!");
             if (dbOperation.CountryID == 0)
                 ModelState.AddModelError("CountryID", "Mandatory !!");
-            if (dbOperation.NationalityCountryID== 0 )
+            if (dbOperation.NationalityCountryID == 0)
                 ModelState.AddModelError("NationalityCountryID", "Mandatory !!");
-            if (dbOperation.CNICNo == null || dbOperation.CNICNo=="")
+            if (dbOperation.CNICNo == null || dbOperation.CNICNo == "")
                 ModelState.AddModelError("CNICNo", "Mandatory !!");
 
 
@@ -122,6 +122,7 @@ namespace RMSAPPLICATION.Controllers
                 CandidateService.PostCreate(dbOperation, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
+                return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(dbOperation);
             return View("Create", dbOperation);

@@ -110,8 +110,9 @@ function SaveMiscellaneousInfoFunction(id) {
             data: $("#formEditID").serialize(),
             success: function (data) {
                 if (data == "OK") {
-                    $.jGrowl('You have successfully saved your miscellaneous details.Kindly go to to sel-assessment.', {
-                        header: 'Well done!',
+                    $.jGrowl('You have successfully saved your details.', {
+                        header: '',
+                        position: 'center',
                         theme: 'bg-success-400',
                     });
                     MiscellaneousGetCreate(id)

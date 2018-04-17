@@ -44,8 +44,9 @@ function ExperienceDetailPostCreate(id) {
             success: function (data) {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
-                    $.jGrowl('You have successfully saved your experience details.Kindly go to to compensation.', {
-                        header: 'Well done!',
+                    $.jGrowl('You have successfully saved your details.', {
+                        header: '',
+                        position: 'center',
                         theme: 'bg-success-400',
                     });
                     LoadPVExperienceDetailIndex(id)
