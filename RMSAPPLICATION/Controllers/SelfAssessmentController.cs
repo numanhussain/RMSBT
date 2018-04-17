@@ -35,13 +35,13 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Index(CandidateStrength dbOperation)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (dbOperation.Objective == null)
+            if (dbOperation.Objective == null || dbOperation.Objective == "")
                 ModelState.AddModelError("Objective", "Mandatory !!");
-            if (dbOperation.Strengths == null)
+            if (dbOperation.Strengths == null || dbOperation.Strengths == "")
                 ModelState.AddModelError("Strengths", "Mandatory !!");
-            if (dbOperation.AreaOfImprovement == null)
+            if (dbOperation.AreaOfImprovement == null || dbOperation.AreaOfImprovement == "")
                 ModelState.AddModelError("AreaOfImprovement", "Mandatory !!");
-            if (dbOperation.MeetRequirements == null)
+            if (dbOperation.MeetRequirements == null || dbOperation.MeetRequirements == "")
                 ModelState.AddModelError("MeetRequirements", "Mandatory !!");
             if (dbOperation.Objective != null)
             {

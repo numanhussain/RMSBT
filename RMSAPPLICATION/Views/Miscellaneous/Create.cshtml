@@ -6,9 +6,8 @@
         @Html.AntiForgeryToken()
         @Html.HiddenFor(model => model.CandidateID)
         @Html.HiddenFor(model => model.PMiscellaneousID)
-        @Html.HiddenFor(model => model.HearAboutJobID)
         <head>
-            <script type="text/javascript" src="assets/js/pages/form_checkboxes_radios.js"></script>
+            @*<script type="text/javascript" src="assets/js/pages/form_checkboxes_radios.js"></script>*@
             <style>
                 .required:after {
                     content: "*";
@@ -57,23 +56,38 @@
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div id="WorkingRelativeDetailtb">
-                                <div class="required col-md-1 control-label text-semibold">Name </div>
-                                <div class="col-md-3">
+
+                        <div id="WorkingRelativeDetailtb">
+                            <div class="form-group">
+                                <div class=" col-md-1 control-label text-semibold">Name </div>
+                                <div class="col-md-4">
                                     @Html.EditorFor(model => model.WorkingRelativeName, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Name " } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeName, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-2 control-label text-semibold"> Relationship </div>
+                                <div class=" col-md-1 control-label text-semibold"> Relationship </div>
                                 <div class="col-md-2">
-                                    @Html.EditorFor(model => model.WorkingRelativeRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Explain relation with employee" } })
+                                    @Html.EditorFor(model => model.WorkingRelativeRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rlation with employee" } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeRelation, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-2 control-label text-semibold">Department </div>
-                                <div class="col-md-2">
+                                <div class=" col-md-1 control-label text-semibold">Department </div>
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.WorkingRelativeDepartment, new { htmlAttributes = new { @class = "form-control", @placeholder = "State department" } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeDepartment, "", new { @class = "text-danger" })
                                 </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class=" col-md-1 control-label text-semibold">Location </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.WorkingRelativeLocation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State location" } })
+                                    @Html.ValidationMessageFor(model => model.WorkingRelativeLocation, "", new { @class = "text-danger" })
+                                </div>
+                                <div class=" col-md-1 control-label text-semibold">Designation </div>
+                                <div class="col-md-4">
+                                    @Html.EditorFor(model => model.WorkingRelativeLocation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Designation" } })
+                                    @Html.ValidationMessageFor(model => model.WorkingRelativeLocation, "", new { @class = "text-danger" })
+                                </div>
+
                             </div>
                         </div>
                         <div class="form-group">
@@ -158,7 +172,7 @@
                                     @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-2 control-label text-semibold">Reason of leaving</div>
+                                <div class="required col-md-2 control-label text-semibold text-right">Reason of leaving</div>
                                 <div class="col-md-3">
                                     @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.ReasonLeaving, "", new { @class = "text-danger" })
@@ -183,7 +197,7 @@
                             </div>
                         }
                         <div class="form-group">
-                            <div class="required col-md-3 control-label text-semibold">Where do you hear about the job?</div>
+                            <div class="required col-md-4 control-label text-semibold">Where do you hear about the job?</div>
                             <div class="col-md-3">
                                 @Html.DropDownList("HearAboutJobID", null, new { @class = "form-control" })
                             </div>
@@ -196,9 +210,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="required col-md-4 control-label text-semibold">How much notice you need to give to your current Employer?</div>
+                            <div class="required col-md-4 control-label text-semibold">How much notice you need to give to your current employer?</div>
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days" , @min = "0" } })
+                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days", @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.NoticeTime, "", new { @class = "text-danger" })
                             </div>
                             <div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
