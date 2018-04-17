@@ -88,6 +88,8 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.WorkingRelativeName = obj.WorkingRelativeName;
             dbMiscellaneous.WorkingRelativeRelation = obj.WorkingRelativeRelation;
             dbMiscellaneous.WorkingRelativeDepartment = obj.WorkingRelativeDepartment;
+            dbMiscellaneous.WorkingRelativeDesignation = obj.WorkingRelativeDesignation;
+            dbMiscellaneous.WorkingRelativeLocation = obj.WorkingRelativeLocation;
             dbMiscellaneous.InterviewedBefore = obj.InterviewedBefore;
             dbMiscellaneous.InterviewedDate = obj.InterviewedDate;
             dbMiscellaneous.InterviewedLocation = obj.InterviewedLocation;

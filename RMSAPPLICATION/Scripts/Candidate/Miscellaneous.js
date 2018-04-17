@@ -100,6 +100,12 @@ function MiscellaneousDetailHide() {
     else {
         $("#WorkedBeforeDetailtb").hide();
     }
+    if (document.getElementById('HearAboutJobID').value == "8") {
+        $("#HearAboutDetailtb ").show();
+    }
+    else {
+        $("#HearAboutDetailtb").hide();
+    }
 }
 function SaveMiscellaneousInfoFunction(id) {
     $('#btnPostCreate').click(function () {

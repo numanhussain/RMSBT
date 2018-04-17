@@ -48,10 +48,18 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("WorkingRelativeRelation", "Mandatory !!");
             if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeDepartment == null)
                 ModelState.AddModelError("WorkingRelativeDepartment", "Mandatory !!");
+            if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeDesignation == null)
+                ModelState.AddModelError("WorkingRelativeDesignation", "Mandatory !!");
+            if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeLocation == null)
+                ModelState.AddModelError("WorkingRelativeLocation", "Mandatory !!");
             if (obj.Disability == "Yes" && obj.DisabilityDetail == null)
                 ModelState.AddModelError("DisabilityDetail", "Mandatory !!");
             if (obj.InterviewedBefore == "Yes" && obj.AppliedPosition == null)
                 ModelState.AddModelError("AppliedPosition", "Mandatory !!");
+            if (obj.HearAboutJobID == 0)
+                ModelState.AddModelError("HearAboutJobID", "Mandatory !!");
+            if ( obj.HearAboutJobID == 8)
+                ModelState.AddModelError("HearAboutDetail", "Mandatory !!");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
                 ModelState.AddModelError("InterviewedDate", "Mandatory !!");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
