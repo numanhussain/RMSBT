@@ -51,7 +51,7 @@
                         <div class="media-middle media-middle text-nowrap" align="center">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
                             <span id="DivJobApplied2" class="glyphicon-ok">Already Applied For this Job</span>
                         </div>
@@ -83,6 +83,7 @@
     $(document).ready(function () {
         if ('@(Model.IsApplied ==false)'=='True')
             $("#DivJobApplied").hide();
-        $("#DivJobApplied2").hide();
+        if ('@(Model.IsApplied ==false)' == 'True')
+            $("#DivJobApplied2").hide();
     });
 </script>

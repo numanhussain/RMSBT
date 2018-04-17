@@ -66,7 +66,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("AccomdAllowence", "Mandatory !!");
             if (obj.MobileAllowence == null)
                 ModelState.AddModelError("MobileAllowence", "Mandatory !!");
-            if (obj.MobileUserLimit == null)
+            if (obj.MobileUserLimit == null||obj.MobileUserLimit=="")
                 ModelState.AddModelError("MobileUserLimit", "Mandatory !!");
             if (obj.COLA == null)
                 ModelState.AddModelError("SpecifyYears", "Mandatory !!");

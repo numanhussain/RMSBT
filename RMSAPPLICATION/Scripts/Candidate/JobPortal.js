@@ -76,6 +76,8 @@ function ApplyJob(id, item) {
             });
             $("#DivJobApplied").show();
             $("#DivJobApply").hide();
+            $("#DivJobApplied2").show();
+            $("#DivJobApply2").hide();
         }
         else { alert(data); }
     });
