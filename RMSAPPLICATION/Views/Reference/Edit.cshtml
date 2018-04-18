@@ -44,7 +44,7 @@
             <div class="form-group">
                 <div class="control-label col-md-2 text-semibold">How long known?</div>
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.HowLongKnown, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.HowLongKnown, new { htmlAttributes = new { @class = "form-control",placeholder="years" } })
                     @Html.ValidationMessageFor(model => model.HowLongKnown, "", new { @class = "text-danger" })
                 </div>
                 <div class="control-label col-md-1 text-semibold">Email</div>

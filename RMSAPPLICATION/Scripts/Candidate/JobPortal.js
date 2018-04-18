@@ -50,7 +50,7 @@ function SelectAllCheckBox() {
             $("#declarationdivhide").hide();
         }
     });
-$('#ask').change(function () {
+    $('#ask').change(function () {
         if ($(this).is(":checked")) {
             $("#ApproveDecline").show();
         }
@@ -114,3 +114,20 @@ function ViewProfileIndex(id) {
         }
     });
 }
+function CandidateGetCreate() {
+    $.ajax({
+        url: '/Candidate/Create',
+        type: "GET",
+        cache: false,
+    }).done(function (result) {
+        $('#PartialViewContainer').html(result);
+        $("#hv1").addClass("liActive");
+        $("#hv2").addClass("liInActive");
+        $("#hv3").addClass("liInActive");
+        $("#hv4").addClass("liInActive");
+        $("#hv5").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv33").addClass("liInActive");
+        $("#hv7").addClass("liInActive");
+    });
+};

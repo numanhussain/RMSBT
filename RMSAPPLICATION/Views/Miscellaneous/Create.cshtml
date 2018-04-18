@@ -66,7 +66,7 @@
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold"> Relationship </div>
                                 <div class="col-md-2">
-                                    @Html.EditorFor(model => model.WorkingRelativeRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rlation with employee" } })
+                                    @Html.EditorFor(model => model.WorkingRelativeRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Relation with employee" } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeRelation, "", new { @class = "text-danger" })
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold">Department </div>
@@ -84,8 +84,8 @@
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold">Designation </div>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.WorkingRelativeLocation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Designation" } })
-                                    @Html.ValidationMessageFor(model => model.WorkingRelativeLocation, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.WorkingRelativeDesignation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Designation" } })
+                                    @Html.ValidationMessageFor(model => model.WorkingRelativeDesignation, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -149,7 +149,7 @@
                                         @type = "date"@*@Value = @DateTime.Today.ToString("yyyy-MM-dd")*@})
                                     @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-1 control-label text-semibold">Date&nbsp;Leaving</div>
+                                <div class="required col-md-1 control-label text-semibold">Date Leaving</div>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                                     @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
@@ -218,11 +218,13 @@
                             <div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
                             <div class="col-md-1">
                                 @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                                <small class="text-grey-300">Years</small>
                                 @Html.ValidationMessageFor(model => model.TotalExp, "", new { @class = "text-danger" })
                             </div>
                             <div class="required required col-md-2 control-label text-semibold text-right">Cement Experience</div>
                             <div class="col-md-1">
                                 @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                                <small class="text-grey-300">Years</small>
                                 @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -230,7 +232,7 @@
                             <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
                             <div class="col-md-3 pull-left col-lg-pull-1">
                                 <input type="file" id="CVUpload" name="resume" class="file-styled">
-                                <span class="help-block">Accepted formats: pdf, doc. Max file size 1Mb</span>
+                                <span class="help-block">Accepted formats: pdf, Max file size 1Mb</span>
                             </div>
                             @if (LoggedInUser.HasCV == true)
                             {

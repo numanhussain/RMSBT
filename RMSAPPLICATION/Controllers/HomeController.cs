@@ -104,7 +104,7 @@ namespace RMSAPPLICATION.Controllers
             if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count > 0)
             {
 
-                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.Email== Obj.UserName && aa.Password == Obj.Password);
+                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.Email == Obj.UserName && aa.Password == Obj.Password);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                 return RedirectToAction("Index", "Job");
@@ -146,7 +146,7 @@ namespace RMSAPPLICATION.Controllers
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
                         EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate " + " </p>" +
                             "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
-                            "<p>Please click the following link to activate your profile.</p>" + "<p>Link:Please click <a href=\"" + callbackUrl + "\">here</a>" +"</p>" +
+                            "<p>Please click the following link to activate your profile.</p>" + "<p>Link:Please click <a href=\"" + callbackUrl + "\">here</a>" + "</p>" +
                             "<div>Best regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
@@ -237,7 +237,6 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             vmf.AppliedAs = id;
-            Session["LoggedInUser"] = vmf;
             Expression<Func<User, bool>> SpecificEntries1 = c => c.UserID == vmf.UserID;
             User user = UserEntityService.GetEdit((int)vmf.UserID);
             user.AppliedAs = id;
@@ -245,6 +244,7 @@ namespace RMSAPPLICATION.Controllers
             Candidate candidate = CandidateEntityService.GetEdit((int)vmf.CandidateID);
             candidate.AppliedAs = id;
             CandidateEntityService.PostEdit(candidate);
+            Session["LoggedInUser"] = vmf;
             return Json("OK", JsonRequestBehavior.AllowGet);
         }
         #endregion

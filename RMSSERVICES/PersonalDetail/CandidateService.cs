@@ -96,6 +96,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.CellNo = dbOperation.CellNo;
             dbCandidate.LandlineNo = dbOperation.LandlineNo;
             dbCandidate.ReligionID = dbOperation.ReligionID;
+            dbCandidate.AreaOfInterest = dbOperation.AreaOfInterest;
             return dbCandidate;
         }
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)
@@ -108,17 +109,17 @@ namespace RMSSERVICES.PersonalDetail
             Expression<Func<V_Candidate_Exp, bool>> SpecificPosition3 = c => c.CandidateID == CandidateID;
             vmProfileView.ExperienceDetails = VCandidateExpRepository.FindBy(SpecificPosition3);
             Expression<Func<CompensationDetail, bool>> SpecificPosition4 = c => c.CandidateID == CandidateID;
-            if (CompensationDetailRepository.GetAll().Count() == 0)
+            if (CompensationDetailRepository.GetAll().Count() > 0)
             {
                 vmProfileView.CompensationDetails = CompensationDetailRepository.FindBy(SpecificPosition4).First();
             }
             Expression<Func<MiscellaneousDetail, bool>> SpecificPosition5 = c => c.CandidateID == CandidateID;
-            if (MiscellaneousDetailRepository.GetAll().Count() == 0)
+            if (MiscellaneousDetailRepository.GetAll().Count() > 0)
             {
                 vmProfileView.MiscellaneousDetails = MiscellaneousDetailRepository.FindBy(SpecificPosition5).First();
             }
             Expression<Func<CandidateStrength, bool>> SpecificPosition6 = c => c.CandidateID == CandidateID;
-            if (CandidateStrengthRepository.GetAll().Count() == 0)
+            if (CandidateStrengthRepository.GetAll().Count() > 0)
             {
                 vmProfileView.SelfAssessment = CandidateStrengthRepository.FindBy(SpecificPosition6).First();
             }

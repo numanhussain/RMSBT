@@ -78,6 +78,8 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("ReligionID", "Mandatory !!");
             if (dbOperation.BloodGroupID == 0)
                 ModelState.AddModelError("BloodGroupID", "Mandatory !!");
+            if (dbOperation.AreaOfInterest == null || dbOperation.AreaOfInterest == "")
+                ModelState.AddModelError("AreaOfInterest", "Mandatory !!");
             if (dbOperation.DomicileCityID == 0)
                 ModelState.AddModelError("DomicileCityID", "Mandatory !!");
             if (dbOperation.Address == null || dbOperation.Address == "")

@@ -78,7 +78,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <div>
-                            <label class="control-label text-semibold">Gender</label>
+                            <label class="required control-label text-semibold">Gender</label>
                             @Html.DropDownList("GenderID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -87,7 +87,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <div>
-                            <label class="control-label text-semibold">Martial Status</label>
+                            <label class="required control-label text-semibold">Martial Status</label>
                             @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -96,7 +96,7 @@
                     </div>
                     <div class="form-group col-md-2">
                         <div>
-                            <label class="control-label text-semibold">Religion</label>
+                            <label class="required control-label text-semibold">Religion</label>
                             @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -105,7 +105,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <div>
-                            <label class="control-label text-semibold">Blood Group</label>
+                            <label class="required control-label text-semibold">Blood Group</label>
                             @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -114,18 +114,27 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <div>
-                            <label class="control-label text-semibold">Domicile</label>
+                            <label class="required control-label text-semibold">Area Of Interest</label>
+                            @Html.EditorFor(model => model.AreaOfInterest, new { htmlAttributes = new { @class = "form-control" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.AreaOfInterest, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Domicile</label>
                             @Html.DropDownList("DomicileCityID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
                             @Html.ValidationMessageFor(model => model.DomicileCityID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-8">
+                    <div class="form-group col-md-6">
                         <div>
-                            <label class="required control-label text-semibold">Address</label>
+                            <label class="required required control-label text-semibold">Address</label>
                             @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
@@ -136,7 +145,7 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Country</label>
+                            <label class="required control-label text-semibold">Country</label>
                             @Html.DropDownList("CountryID", null, new { @class = "form-control" })
                             @Html.HiddenFor(model => model.CountryID, new { id = "selectedCountryIDHidden" })
                         </div>
@@ -146,7 +155,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">City</label>
+                            <label class="required control-label text-semibold">City</label>
                             <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" style=" width:300px;" name="CityID"></select>
                             @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
                         </div>
@@ -156,7 +165,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Nationality</label>
+                            <label class="required control-label text-semibold">Nationality</label>
                             @Html.DropDownList("NationalityCountryID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -167,7 +176,7 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Landline #</label>
+                            <label class="required control-label text-semibold">Landline #</label>
                             @Html.EditorFor(model => model.LandlineNo, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
@@ -182,7 +191,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="control-label text-semibold">Email</label>
+                            <label class="required control-label text-semibold">Email</label>
                             @Html.EditorFor(model => model.EmailID, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.EmailID, "", new { @class = "text-danger" })

@@ -39,7 +39,6 @@
                         <div class="tab-pane active" id="basic-tab1">
                             <div class="profile-user-info-striped">
                                 <div class="profile-user-info-striped">
-                                    <h2><a id="OfficialInfo" class="text-black">Personal Information</a></h2>
                                     <table class="table">
                                         <tbody>
                                             <tr>
@@ -156,7 +155,6 @@
                         <div class="tab-pane" id="basic-tab3">
                             <div class="profile-user-info-striped">
                                 <div class="profile-user-info-striped">
-                                    <h2><a id="OfficialInfo" class="text-black">Miscellaneous Information</a></h2>
                                     <table class="table table-hover">
                                         <tbody>
                                             <tr>
@@ -291,7 +289,6 @@
                         <div class="tab-pane" id="basic-tab5">
                             <div class="profile-user-info-striped">
                                 <div class="profile-user-info-striped">
-                                    <h2><a id="OfficialInfo" class="text-black">Compensation Information</a></h2>
                                     <table class="table table-hover">
                                         <tbody>
                                             <tr>
@@ -352,9 +349,16 @@
                         <div class="tab-pane" id="basic-tab6">
                             <div class="profile-user-info-striped">
                                 <div class="profile-user-info-striped">
-                                    <h2><a id="OfficialInfo" class="text-black">Self-Assessment</a></h2>
                                     <table class="table table-hover">
                                         <tbody>
+                                            <tr>
+                                                <th class="profile-info-name">
+                                                    Objective
+                                                </th>
+                                                <td class="profile-info-value">
+                                                    @Html.DisplayFor(model => model.SelfAssessment.Objective)
+                                                </td>
+                                            </tr>
                                             <tr>
                                                 <th class="profile-info-name">
                                                     Candidate's Strengths
@@ -477,20 +481,31 @@
             <div class="col-md-12" id="hrhide">
                 <hr />
             </div>
-            <div class="checkbox-inline col-md-12" id="ask2divhide">
-                <input type="checkbox" class="styled" id="ask2" name="ask2" value="ask2">
-                <label class="control-label text-bold" for="ask2">Do you want to apply with this profile</label>
+            <div class="form-group">
+                <div class="checkbox col-md-10">
+                    <label>
+                        <input type="checkbox" id="ask2" name="ask2">
+                        Do you want to apply with this profile
+                    </label>
+                    <label class="text-semibold text pull-right-md">
+                        OR
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    @Html.ActionLink("Update Profile", "Index", "Candidate", null, new { @class = "btn btn-success btn-large" })
+                </div>
             </div>
+
             <!-- /basic tabs -->
             <div class="row" id="declarationdivhide">
                 <h4><a id="OfficialInfo" class="text-black">Declaration:</a></h4>
                 <div class="label label-lg label-info arrowed-right">
                     <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
                 </div>
-                <p class="text-highlight h6">
-                    I certify that the information provided by me in this form and all other documents provided herewith or in connection with this application for employment are accurate and true, and may be subject to verification, I understand that falsification or concealment of any information, may disqualify my application and/or be ground for disciplinary action up to and including termination and/or legal action. Unless otherwise indicated, I agree and give my consent that any person, firm or organization listed herein is authorized to furnish Bestway with reference material concerning my character, past employment or any other information requested.
+                <p class="text-highlight">
+                    I certify that the information provided by me in this form and all other documents provided here with or in connection with this application for employment are accurate and true, and may be subject to verification, I understand that falsification or concealment of any information, may disqualify my application and/or be ground for disciplinary action up to and including termination and/or legal action. Unless otherwise indicated, I agree and give my consent that any person, firm or organization listed herein is authorized to furnish Bestway with reference material concerning my character, past employment or any other information requested.
                 </p>
-                <lable class=" col-md-1 text-bold">Signature=</lable>
+                <lable class="col-md-1 text-bold">Signature=</lable>
                 <div class="col-md-3 text-bold">
                     @Html.DisplayFor(model => LoggedInUser.CName)
                 </div>

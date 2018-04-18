@@ -58,7 +58,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("AppliedPosition", "Mandatory !!");
             if (obj.HearAboutJobID == 0)
                 ModelState.AddModelError("HearAboutJobID", "Mandatory !!");
-            if ( obj.HearAboutJobID == 8)
+            if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
                 ModelState.AddModelError("HearAboutDetail", "Mandatory !!");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
                 ModelState.AddModelError("InterviewedDate", "Mandatory !!");
@@ -148,6 +148,10 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
 
             return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
+        }
+        public ActionResult RetrieveImage()
+        {
+            return File(@"d:\test.pdf", "application/pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

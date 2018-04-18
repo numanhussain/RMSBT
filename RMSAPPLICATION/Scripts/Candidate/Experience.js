@@ -162,3 +162,10 @@ function HaveExperience() {
         });
     });
 }
+function FormControlsScriptEdit(model) {
+    if (model.ContactEmployer == true) {
+        $('input:radio[id=ContactEmployerYes]').prop('checked', true);
+    } if (model.ContactEmployer == false) {
+        $('input:radio[id=ContactEmployerNo]').prop('checked', true);
+    }
+}

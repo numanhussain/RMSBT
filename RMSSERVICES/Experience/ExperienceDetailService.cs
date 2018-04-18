@@ -59,6 +59,7 @@ namespace RMSSERVICES.Experience
                 vmExperienceDetail.ContactEmployer = dbExperienceDetail.ContactEmployer;
                 vmExperienceDetail.AreaofInterest = dbExperienceDetail.AreaofInterest;
                 vmExperienceDetail.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
+                vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
                 vmExperienceDetails.Add(vmExperienceDetail);
             }
             return vmExperienceDetails.OrderByDescending(aa => aa.ExpID).ToList();
@@ -105,6 +106,7 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.ContactEmployer = dbExperienceDetail.ContactEmployer;
             vmExperienceDetail.AreaofInterest = dbExperienceDetail.AreaofInterest;
             vmExperienceDetail.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
+            vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
             return vmExperienceDetail;
         }
         public ServiceMessage PostEdit(VMExperienceOperation obj)
@@ -137,6 +139,7 @@ namespace RMSSERVICES.Experience
             obj.ContactEmployer = dbExperienceDetail.ContactEmployer;
             obj.AreaofInterest = dbExperienceDetail.AreaofInterest;
             obj.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
+            obj.SupervisorName = dbExperienceDetail.SupervisorName;
             return obj;
         }
         public ServiceMessage PostDelete(VMExperienceOperation obj)
@@ -172,6 +175,7 @@ namespace RMSSERVICES.Experience
             dbExperiencedetail.ContactEmployer = obj.ContactEmployer;
             dbExperiencedetail.AreaofInterest = obj.AreaofInterest;
             dbExperiencedetail.ReasonOfLeaving = obj.ReasonOfLeaving;
+            dbExperiencedetail.SupervisorName = obj.SupervisorName;
             return dbExperiencedetail;
         }
         #endregion

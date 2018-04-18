@@ -43,10 +43,13 @@
                             Employer
                         </th>
                         <th class="text-bold">
+                            Manager's Name
+                        </th>
+                        <th class="text-bold">
                             Nature of business
                         </th>
                         <th class="text-bold">
-                            Position/Designation
+                            Position Held/Designation
                         </th>
                         <th class="text-bold">
                             Joining Date
@@ -68,6 +71,9 @@
                         <tr>
                             <td>
                                 @Html.DisplayFor(modelItem => item.EmployerName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.SupervisorName)
                             </td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.ExpIndustryName)

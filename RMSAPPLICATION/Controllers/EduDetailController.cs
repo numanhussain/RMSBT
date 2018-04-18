@@ -90,11 +90,9 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("ObtainedMark", "Mandatory !!");
                 if (obj.TotalMark == null)
                     ModelState.AddModelError("TotalMark", "Mandatory !!");
-                if (obj.Percentage == null)
+                if (obj.Percentage == null && obj.CGPA==null)
                     ModelState.AddModelError("Percentage", "Mandatory !!");
-                if (obj.DegreeLevelID == 4 && obj.CGPA == null || obj.DegreeLevelID == 5 && obj.CGPA == null || obj.DegreeLevelID == 6 && obj.CGPA == null)
-                    ModelState.AddModelError("CGPA", "Mandatory !!");
-                if (obj.InstitutionID == 150 && obj.OtherInstitute == null)
+                if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory !!");
                 if (ModelState.IsValid)
                 {

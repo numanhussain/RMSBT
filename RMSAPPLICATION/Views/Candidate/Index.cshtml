@@ -72,9 +72,9 @@
                                                 <input type="file" class="file-input" id="imgupload" onchange="fileCheck(this);" value="Open" data-browse-class="btn btn-primary btn-xs" data-show-caption="false" data-remove-class="btn btn-default btn-xs" data-show-upload="false" />
                                             </div>
                                             @*@if (LoggedInUser.UserStage == 8)
-                                            {
-                                                <button class="btn btn-group bg-blue-600" onclick="ViewProfileIndex(@Model.CandidateID)" type="button"> Print </button>
-                                            }*@
+                                                {
+                                                    <button class="btn btn-group bg-blue-600" onclick="ViewProfileIndex(@Model.CandidateID)" type="button"> Print </button>
+                                                }*@
                                         </div>
                                     </div>
                                 </section>
@@ -85,11 +85,14 @@
                                     @if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
                                     {
                                         <li id="hv3" class="hv" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white"><i class="icon-stairs-up"></i>Experience</a></li>
+                                    }
+                                    <li id="hv33" class="hv" onclick="LoadPVSkillDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block bg-green-800 text-bold text-white"><i class="glyphicon glyphicon-wrench"></i>Skills</a></li>
+                                    @if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
+                                    {
                                         <li id="hv4" class="hv" onclick="CompensationGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn text-bold text-white"><i class="icon-user-plus"></i>Compensation</a></li>
                                     }
                                     <li id="hv7" class="hv" onclick="SelfAssessmentGetCreate(@Model.CandidateID)"><a href="#" class="btn text-bold text-white"><i class="icon-user-plus"></i>Self Assessment</a></li>
                                     <li id="hv5" class="hv" onclick="LoadPVReferenceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white"><i class="icon-people"></i>Reference</a></li>
-                                    <li id="hv33" class="hv" onclick="LoadPVSkillDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block bg-green-800 text-bold text-white"><i class="glyphicon glyphicon-wrench"></i>Skills</a></li>
                                 </ul>
                                 <div class="form-group">
                                     <div class="col-md-12">

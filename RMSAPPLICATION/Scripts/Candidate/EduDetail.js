@@ -277,7 +277,7 @@ function InstituteChange() {
 }
 function ShowInstituteHide() {
     $("#OtherInstitute").hide();
-    if ($("#InstitutionID").val() == 150) {
+    if ($("#InstitutionID").val() == 148) {
         $("#OtherInstitute").show();
     }
 }
