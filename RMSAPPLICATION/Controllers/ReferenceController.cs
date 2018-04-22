@@ -6,6 +6,7 @@ using RMSSERVICES.Reference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -46,7 +47,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMReferenceOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (obj.RefName == null||obj.RefName == "")
+            if (obj.RefName == null || obj.RefName == "")
                 ModelState.AddModelError("RefName", "Mandatory !!");
             if (obj.RefDesignation == null || obj.RefDesignation == "")
                 ModelState.AddModelError("RefDesignation", "Mandatory !!");
@@ -58,12 +59,28 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("HowLongKnown", "Mandatory !!");
             if (obj.RefEmail == null || obj.RefEmail == "")
                 ModelState.AddModelError("RefEmail", "Mandatory !!");
+            if (obj.RefEmail != null)
+            {
+                Match match = Regex.Match(obj.RefEmail, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("RefEmail", "Invalid Formate !!");
+                }
+            }
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostCreate(obj, vmf);
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return PartialView("Create", obj);
+        }
+        [HttpGet]
+        public ActionResult Create2()
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            VMReferenceOperation obj = ReferenceDetailService.GetCreate(cid);
+            return View(obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)

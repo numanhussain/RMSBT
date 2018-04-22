@@ -51,30 +51,30 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMExperienceOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (obj.IndustryID == 0 )
+            if (obj.CurrentlyWorking == true)
+            {
+                obj.EndDate = null;
+            }
+            if (obj.IndustryID == 0)
                 ModelState.AddModelError("IndustryID", "Mandatory !!");
-            if (obj.PositionTitle == null || obj.PositionTitle == "")
+            if (obj.JobTitle == null || obj.JobTitle == "")
                 ModelState.AddModelError("PositionTitle", "Mandatory !!");
-            if (obj.JobTitle == null || obj.JobTitle== "")
-                ModelState.AddModelError("JobTitle", "Mandatory !!");
             if (obj.EmployerName == null || obj.EmployerName == "")
                 ModelState.AddModelError("EmployerName", "Mandatory !!");
             if (obj.StartDate == null)
                 ModelState.AddModelError("StartDate", "Mandatory !!");
-            if (obj.StartDate > DateTime.Today)
-                ModelState.AddModelError("StartDate","Start date greater then current date");
+            if (obj.StartDate > DateTime.Today.Date)
+                ModelState.AddModelError("StartDate", "Cannot be current date");
             if (obj.StartDate != null)
             {
                 if (obj.StartDate >= obj.EndDate)
-                    ModelState.AddModelError("StartDate", "Must be smaller than end date!!");
+                    ModelState.AddModelError("StartDate", "Must be smaller than end date");
             }
             if (obj.CareerLevelID == 0)
                 ModelState.AddModelError("CareerLevelID", "Mandatory !!");
-            if (obj.AreaofInterest == null || obj.AreaofInterest == "")
-                ModelState.AddModelError("AreaofInterest", "Mandatory !!");
             if (obj.ReasonOfLeaving == null || obj.ReasonOfLeaving == "")
                 ModelState.AddModelError("ReasonOfLeaving", "Mandatory !!");
-            if (obj.Address == null || obj.Address== "")
+            if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory !!");
             if (obj.CityID == 0)
                 ModelState.AddModelError("CityID", "Mandatory !!");
@@ -101,27 +101,27 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Edit(VMExperienceOperation obj)
         {
+            if (obj.CurrentlyWorking == true)
+            {
+                obj.EndDate = null;
+            }
             if (obj.IndustryID == 0)
                 ModelState.AddModelError("IndustryID", "Mandatory !!");
-            if (obj.PositionTitle == null || obj.PositionTitle == "")
-                ModelState.AddModelError("PositionTitle", "Mandatory !!");
             if (obj.JobTitle == null || obj.JobTitle == "")
-                ModelState.AddModelError("JobTitle", "Mandatory !!");
+                ModelState.AddModelError("PositionTitle", "Mandatory !!");
             if (obj.EmployerName == null || obj.EmployerName == "")
                 ModelState.AddModelError("EmployerName", "Mandatory !!");
             if (obj.StartDate == null)
                 ModelState.AddModelError("StartDate", "Mandatory !!");
-            if (obj.StartDate > DateTime.Today)
-                ModelState.AddModelError("StartDate", "Start date greater then current date");
+            if (obj.StartDate > DateTime.Today.Date)
+                ModelState.AddModelError("StartDate", "Cannot be current date");
             if (obj.StartDate != null)
             {
                 if (obj.StartDate >= obj.EndDate)
-                    ModelState.AddModelError("StartDate", "Must be smaller than end date!!");
+                    ModelState.AddModelError("StartDate", "Must be smaller than end date");
             }
             if (obj.CareerLevelID == 0)
                 ModelState.AddModelError("CareerLevelID", "Mandatory !!");
-            if (obj.AreaofInterest == null || obj.AreaofInterest == "")
-                ModelState.AddModelError("AreaofInterest", "Mandatory !!");
             if (obj.ReasonOfLeaving == null || obj.ReasonOfLeaving == "")
                 ModelState.AddModelError("ReasonOfLeaving", "Mandatory !!");
             if (obj.Address == null || obj.Address == "")

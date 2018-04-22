@@ -27,16 +27,16 @@
             <div class="panel panel-flat">
                 <div class="breadcrumb-line bg-green-600">
                     <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                    <ul class="breadcrumb">
+                    @*<ul class="breadcrumb">
                         <li><a href="~/Job/Index"> Dashboard</a></li>
                         <li><a class="active"> Miscellaneous</a></li>
                         <li class="active"> - Add New</li>
-                    </ul>
+                    </ul>*@
                 </div>
                 <div class="form-horizontal">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Have you ever been convicted of crime?</label>
+                            <label class="required col-md-4 control-label text-semibold">Have you ever been convicted of any crime?</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("CrimanalRecord", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.CrimanalRecord, "", new { @class = "text-danger" })
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Do you have any relative working in Bestway group?</label>
+                            <label class="required col-md-4 control-label text-semibold">Do You have any relatives working with Bestway group ?</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("WorkingRelative", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Have you Worked before with Bestway Group?</label>
+                            <label class="required col-md-4 control-label text-semibold">Have you worked before with Bestway Group</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("WorkedBefore", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
@@ -149,7 +149,7 @@
                                         @type = "date"@*@Value = @DateTime.Today.ToString("yyyy-MM-dd")*@})
                                     @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-1 control-label text-semibold">Date Leaving</div>
+                                <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                                     @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
@@ -197,7 +197,7 @@
                             </div>
                         }
                         <div class="form-group">
-                            <div class="required col-md-4 control-label text-semibold">Where do you hear about the job?</div>
+                            <div class="required col-md-4 control-label text-semibold">From where did you hear about the job?</div>
                             <div class="col-md-3">
                                 @Html.DropDownList("HearAboutJobID", null, new { @class = "form-control" })
                             </div>
@@ -244,8 +244,10 @@
                     </div>
                     <div class="panel-footer">
                         <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                        <div class="heading-elements">
-                            <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Save</button>
+                        <div class="heading-elements btn-toolbar pull-right">
+                            <button type="button" onclick="LoadPVEduDetailIndex()" class="btn btn-success">Previous</button>
+                            <button type="button" id="btnPostCreate" class="btn btn-success">Save</button>
+                            <button type="button" onclick="LoadPVExperienceDetailIndex()" class="btn btn-success ">Next</button>
                         </div>
                     </div>
                 </div>

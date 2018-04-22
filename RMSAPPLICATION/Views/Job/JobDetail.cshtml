@@ -33,20 +33,20 @@
                             <span id="DivJobApplied" class="glyphicon-ok">Already Applied For this Job</span>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Job Description</h6>
-                            <p>@Html.DisplayFor(x => x.Description)</p>
+                            <h6 class="text-semibold">Position Purpose:</h6>
+                            <p>@Html.DisplayFor(x => x.PositionPurpose)</p>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Responsibilities:</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.Resposibilties)</p>
+                            <h6 class="text-semibold">Job description</h6>
+                            <p class="content-group-sm">@Html.DisplayFor(x => x.JobDescription)</p>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Requirements:</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.QualificationReq)</p>
+                            <h6 class="text-semibold">Experience and Qualification</h6>
+                            <p class="content-group-sm">@Html.DisplayFor(x => x.ExperienceAndQualification)</p>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Desired Skills and Experience:</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.SkillReq)</p>
+                            <h6 class="text-semibold">Specific Requirements</h6>
+                            <p class="content-group-sm">@Html.DisplayFor(x => x.SpecificRequirement)</p>
                         </div>
                         <div class="media-middle media-middle text-nowrap" align="center">
                             @if (Model.IsApplied == false)

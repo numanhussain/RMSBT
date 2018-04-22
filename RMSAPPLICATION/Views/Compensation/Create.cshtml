@@ -26,11 +26,11 @@
         <div class="panel panel-flat">
             <div class="breadcrumb-line bg-green-600">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                <ul class="breadcrumb">
+                @*<ul class="breadcrumb">
                     <li><a href="~/Job/Index">Dashboard</a></li>
                     <li><a class="active">Compensation</a></li>
                     <li class="active">- Add New</li>
-                </ul>
+                </ul>*@
             </div>
             <div class="panel-body">
                 <div class="form-group">
@@ -344,8 +344,10 @@
 
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                <div class="heading-elements">
-                    <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Save</button>
+                <div class="heading-elements btn-toolbar pull-right">
+                    <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn btn-success">Previous</button>
+                    <button type="button" id="btnPostCreate" class="btn btn-success">Save</button>
+                    <button type="button" onclick="SelfAssessmentGetCreate()" class="btn btn-success">Next</button>
                 </div>
             </div>
         </div>

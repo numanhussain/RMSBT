@@ -1,5 +1,7 @@
 ﻿@model RMSCORE.Models.Operation.VMReferenceOperation
 @{
+    /**/
+
     ViewBag.title = "Reference details";
     Layout = null;
 }
@@ -11,10 +13,10 @@
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
             <i class="icon-menu7"></i> &nbsp;Add Reference Detail
-            <small class="text-grey-400">(1:Personal should not be immediate relative & 2:Person you know in a professional capacity)</small>
         </h4>
     </div>
     <div class="modal-body">
+        <small class="text-grey-400">Reference#1:Personal should not be immediate relative</small>
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="control-label col-md-2 text-semibold">Reference Name</div>
@@ -48,7 +50,7 @@
                 </div>
                 <div class="control-label col-md-1 text-semibold">Email</div>
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
                     @Html.ValidationMessageFor(model => model.RefEmail, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -56,7 +58,7 @@
     </div>
     <div class="modal-footer">
         <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
-        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>
+        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Next</button>
     </div>
 }
 <script type="text/javascript">

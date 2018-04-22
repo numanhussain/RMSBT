@@ -3075,6 +3075,7 @@
     <Content Include="Views\Job\DeclarationStatement.cshtml" />
     <Content Include="Views\Job\ViewProfileIndex.cshtml" />
     <Content Include="Views\Candidate\ViewProfileIndex.cshtml" />
+    <Content Include="Views\Reference\Create2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

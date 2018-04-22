@@ -24,15 +24,16 @@ namespace RMSSERVICES.PersonalDetail
         IRepository<V_Candidate_EduDetail> VEducationRepository;
         IRepository<V_Candidate_Exp> VCandidateExpRepository;
         IRepository<CompensationDetail> CompensationDetailRepository;
-        IRepository<MiscellaneousDetail> MiscellaneousDetailRepository;
+        IRepository<V_Candidate_Miscellaneous> MiscellaneousDetailRepository;
         IRepository<CandidateStrength> CandidateStrengthRepository;
         IRepository<V_Candidate_Reference> VCandidateReferenceRepositiory;
         IRepository<V_Candidate_Skills> VCandidateSkillsRepositiory;
+        IRepository<V_CandidateProfile> VCandidateRepositiory;
         public CandidateService(IUnitOfWork unitOfWork,
         IRepository<CandidatePhoto> candidatePhotoRepository, IRepository<V_Candidate_EduDetail> vEducationRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository, IRepository<VMCandidateIndex> vmCandidateRepository, IRepository<V_UserCandidate> vuserRepositiory,
-        IRepository<V_Candidate_Exp> vCandidateExpRepository, IRepository<CompensationDetail> compensationDetailRepository, IRepository<MiscellaneousDetail> miscellaneousDetailRepository, IRepository<CandidateStrength> candidateStrengthRepository,
+        IRepository<V_Candidate_Exp> vCandidateExpRepository, IRepository<CompensationDetail> compensationDetailRepository, IRepository<V_Candidate_Miscellaneous> miscellaneousDetailRepository, IRepository<CandidateStrength> candidateStrengthRepository,
         IRepository<V_Candidate_Reference> vCandidateReferenceRepositiory,
-        IRepository<V_Candidate_Skills> vCandidateSkillsRepositiory)
+        IRepository<V_Candidate_Skills> vCandidateSkillsRepositiory, IRepository<V_CandidateProfile> vCandidateRepositiory)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
@@ -47,6 +48,7 @@ namespace RMSSERVICES.PersonalDetail
             CandidateStrengthRepository = candidateStrengthRepository;
             VCandidateReferenceRepositiory = vCandidateReferenceRepositiory;
             VCandidateSkillsRepositiory = vCandidateSkillsRepositiory;
+            VCandidateRepositiory = vCandidateRepositiory;
         }
         public List<Candidate> GetIndex()
         {
@@ -102,31 +104,31 @@ namespace RMSSERVICES.PersonalDetail
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)
         {
             VMCandidateProfileView vmProfileView = new VMCandidateProfileView();
-            Expression<Func<Candidate, bool>> SpecificPosition = c => c.CandidateID == CandidateID;
-            vmProfileView.PersonalDetails = CandidateRepository.GetSingle((int)CandidateID);
+            Expression<Func<V_CandidateProfile, bool>> SpecificPosition = c => c.CandidateID == CandidateID;
+            vmProfileView.PersonalDetails = VCandidateRepositiory.GetSingle((int)CandidateID);
             Expression<Func<V_Candidate_EduDetail, bool>> SpecificPosition2 = c => c.CandidateID == CandidateID;
             vmProfileView.EducationalDetails = VEducationRepository.FindBy(SpecificPosition2);
-            Expression<Func<V_Candidate_Exp, bool>> SpecificPosition3 = c => c.CandidateID == CandidateID;
-            vmProfileView.ExperienceDetails = VCandidateExpRepository.FindBy(SpecificPosition3);
-            Expression<Func<CompensationDetail, bool>> SpecificPosition4 = c => c.CandidateID == CandidateID;
-            if (CompensationDetailRepository.GetAll().Count() > 0)
+            Expression<Func<V_Candidate_Miscellaneous, bool>> SpecificPosition3 = c => c.CandidateID == CandidateID;
+            if (MiscellaneousDetailRepository.FindBy(SpecificPosition3).Count > 0)
             {
-                vmProfileView.CompensationDetails = CompensationDetailRepository.FindBy(SpecificPosition4).First();
+                vmProfileView.MiscellaneousDetails = MiscellaneousDetailRepository.FindBy(SpecificPosition3).First();
             }
-            Expression<Func<MiscellaneousDetail, bool>> SpecificPosition5 = c => c.CandidateID == CandidateID;
-            if (MiscellaneousDetailRepository.GetAll().Count() > 0)
+            Expression<Func<V_Candidate_Skills, bool>> SpecificPosition4 = c => c.CandidateID == CandidateID;
+            vmProfileView.Skill = VCandidateSkillsRepositiory.FindBy(SpecificPosition4);
+            Expression<Func<V_Candidate_Exp, bool>> SpecificPosition5 = c => c.CandidateID == CandidateID;
+            vmProfileView.ExperienceDetails = VCandidateExpRepository.FindBy(SpecificPosition5);
+            Expression<Func<CompensationDetail, bool>> SpecificPosition6 = c => c.CandidateID == CandidateID;
+            if (CompensationDetailRepository.FindBy(SpecificPosition6).Count > 0)
             {
-                vmProfileView.MiscellaneousDetails = MiscellaneousDetailRepository.FindBy(SpecificPosition5).First();
+                vmProfileView.CompensationDetails = CompensationDetailRepository.FindBy(SpecificPosition6).First();
             }
-            Expression<Func<CandidateStrength, bool>> SpecificPosition6 = c => c.CandidateID == CandidateID;
-            if (CandidateStrengthRepository.GetAll().Count() > 0)
+            Expression<Func<CandidateStrength, bool>> SpecificPosition7 = c => c.CandidateID == CandidateID;
+            if (CandidateStrengthRepository.FindBy(SpecificPosition7).Count > 0)
             {
-                vmProfileView.SelfAssessment = CandidateStrengthRepository.FindBy(SpecificPosition6).First();
+                vmProfileView.SelfAssessment = CandidateStrengthRepository.FindBy(SpecificPosition7).First();
             }
-            Expression<Func<V_Candidate_Reference, bool>> SpecificPosition7 = c => c.CandidateID == CandidateID;
-            vmProfileView.Referrence = VCandidateReferenceRepositiory.FindBy(SpecificPosition7);
-            Expression<Func<V_Candidate_Skills, bool>> SpecificPosition8 = c => c.CandidateID == CandidateID;
-            vmProfileView.Skill = VCandidateSkillsRepositiory.FindBy(SpecificPosition8);
+            Expression<Func<V_Candidate_Reference, bool>> SpecificPosition8 = c => c.CandidateID == CandidateID;
+            vmProfileView.Referrence = VCandidateReferenceRepositiory.FindBy(SpecificPosition8);
             return vmProfileView;
         }
         public byte[] GetImageFromDataBase(int id)

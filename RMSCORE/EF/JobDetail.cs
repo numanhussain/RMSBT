@@ -22,17 +22,17 @@ namespace RMSCORE.EF
     
         public int JobID { get; set; }
         public string JobTitle { get; set; }
-        public string Description { get; set; }
+        public string JobDescription { get; set; }
         public Nullable<int> CityID { get; set; }
         public Nullable<int> LocID { get; set; }
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CompanyName { get; set; }
         public string Experience { get; set; }
-        public string QualificationReq { get; set; }
-        public string Resposibilties { get; set; }
+        public string ExperienceAndQualification { get; set; }
+        public string PositionPurpose { get; set; }
         public Nullable<int> CatagoryID { get; set; }
         public Nullable<bool> Status { get; set; }
-        public string SkillReq { get; set; }
+        public string SpecificRequirement { get; set; }
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }
     

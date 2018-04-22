@@ -70,10 +70,13 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <label class="checkbox-inline checkbox-right text-semibold col-md-12 col-lg-pull-4 text-right " for="CurrentlyWorking">
-                        @Html.CheckBox("CurrentlyWorking", new { @class = "styled", @id = "CurrentlyWorking" })
-                        @Html.ValidationMessageFor(model => model.CurrentlyWorking, "", new { @class = "text-danger" })
+                    <label class="checkbox text-semibold col-md-8 " for="CurrentlyWorking">
                         Currently Working
+
+                        <div class="col-md-4">
+                            @Html.CheckBox("CurrentlyWorking", new { @class = "styled", @id = "CurrentlyWorking" })
+                            @Html.ValidationMessageFor(model => model.CurrentlyWorking, "", new { @class = "text-danger" })
+                        </div>
                     </label>
                 </div>
             </div>
@@ -103,26 +106,26 @@
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">1:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "max 250 character" })
+                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
                     @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">2:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "max 250 character" })
+                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
                     @Html.ValidationMessageFor(m => m.Responsibility2, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">3:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "max 250 character" })
+                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
                     @Html.ValidationMessageFor(m => m.Responsibility3, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-4 text-semibold">May we Contact the employeer?</div>
+                <div class="control-label col-md-4 text-semibold">May we Contact the employer?</div>
                 <div class="col-md-2">
                     <div class="radio-inline text-semibold">
                         @Html.RadioButton("activation", "ActiveAfterJoinDate", true, new { id = "Yes" }) Yes

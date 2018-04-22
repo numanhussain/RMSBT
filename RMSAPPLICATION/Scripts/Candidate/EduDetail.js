@@ -219,7 +219,7 @@ function ShowHide() {
             $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
-            $("#marksdiv").hide();
+            $("#marksdiv").show();
             break;
         case "7":
             $("#DegreeTitleTB").show();

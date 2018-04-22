@@ -1,29 +1,31 @@
 ﻿@model RMSCORE.Models.Operation.VMReferenceOperation
 @{
+    /**/
+
     ViewBag.title = "Reference details";
     Layout = null;
 }
-@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
+@using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.CandidateID)
-    @Html.HiddenFor(model => model.RefID)
     <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Edit Reference Detail
+            <i class="icon-menu7"></i> &nbsp;Add Reference Detail
+            <small class="text-grey-400"></small>
         </h4>
     </div>
     <div class="modal-body">
+        <small class="text-grey-400">Refernece#2:Person you know in a professional capacity</small>
         <div class="form-horizontal">
             <div class="form-group">
                 <div class="control-label col-md-2 text-semibold">Reference Name</div>
-                <div class="col-md-4">
+                <div class="col-md-5">
                     @Html.EditorFor(model => model.RefName, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.RefName, "", new { @class = "text-danger" })
                 </div>
-                <div class="control-label col-md-2 text-semibold text-right"> Designation</div>
+                <div class="control-label col-md-1 text-semibold text-right"> Designation</div>
                 <div class="col-md-4">
                     @Html.EditorFor(model => model.RefDesignation, new { htmlAttributes = new { @class = "form-control" } })
                     @Html.ValidationMessageFor(model => model.RefDesignation, "", new { @class = "text-danger" })
@@ -44,25 +46,26 @@
             <div class="form-group">
                 <div class="control-label col-md-2 text-semibold">How long known?</div>
                 <div class="col-md-5">
-                    @Html.EditorFor(model => model.HowLongKnown, new { htmlAttributes = new { @class = "form-control",placeholder="years" } })
+                    @Html.EditorFor(model => model.HowLongKnown, new { htmlAttributes = new { @class = "form-control", placeholder = "years" } })
                     @Html.ValidationMessageFor(model => model.HowLongKnown, "", new { @class = "text-danger" })
                 </div>
                 <div class="control-label col-md-1 text-semibold">Email</div>
                 <div class="col-md-3">
-                    @Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control" , placeholder = "abc@gmail.com" } })
+                    @Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
                     @Html.ValidationMessageFor(model => model.RefEmail, "", new { @class = "text-danger" })
                 </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-         <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
-        <button type="button" id="btnPostEdit" class="btn btn-success bg-success-800" value="Save">Save</button>
+        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+        <button type="button" id="btnPostCreate2" class="btn btn-success bg-success-800" value="Save">Save</button>
     </div>
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        ReferenceDetailPostEdit(@Model.CandidateID);
+        ReferenceDetailPostCreate2(@Model.CandidateID);
     });
 </script>
+
 

@@ -3,7 +3,13 @@
 <div style="margin-top:-25px">
     <div class="modal-header">
         <div class="modal-title">
-            <h3 class="text-black"><i class="glyphicon glyphicon-wrench"></i>&nbsp;&nbsp;Skill Details</h3>
+            <h3 class="text-black">
+                <i class="glyphicon glyphicon-wrench"></i>&nbsp;&nbsp;Skill Details
+                <div class="btn btn-toolbar pull-right">
+                    <button type="button" onclick="LoadPVExperienceDetailIndex()" class="btn btn-success">Previous</button>
+                    <button type="button" onclick="CompensationGetCreate()" class="btn btn-success">Next</button>
+                    </div>
+            </h3>
         </div>
     </div>
 </div>
@@ -17,47 +23,47 @@
             <li><a href="#" id="SkillGetCreate"><i class="icon-add position-left"></i> Add New Skills</a></li>
         </ul>
     </div>
-        <table class="table datatable-basic">
-            <thead>
+    <table class="table datatable-basic">
+        <thead>
+            <tr>
+                <th class="text-bold">
+                    Skill Name
+                </th>
+                <th class="text-bold">
+                    Skill Level
+                </th>
+                <th class="text-bold">
+                    Description
+                </th>
+                <th class="text-bold">
+                    Edit | Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th class="text-bold">
-                        Skill Name
-                    </th>
-                    <th class="text-bold">
-                        Skill Level
-                    </th>
-                    <th class="text-bold">
-                        Description
-                    </th>
-                    <th class="text-bold">
-                        Edit | Delete
-                    </th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.SkillTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.skillLevelName)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <button type="button" id="btnGetEdit" onclick="SkillDetailGetEdit(@item.SkillID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
+                        <button type="button" id="btnGetDelete" onclick="SkillDetailGetDelete(@item.SkillID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.SkillTitle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.skillLevelName)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Description)
-                        </td>
-                        <td>
-                            <button type="button" id="btnGetEdit" onclick="SkillDetailGetEdit(@item.SkillID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
-                            <button type="button" id="btnGetDelete" onclick="SkillDetailGetDelete(@item.SkillID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
-
-                           </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-    </div>
+            }
+        </tbody>
+    </table>
+</div>
 <script type="text/javascript" src="~/Scripts/Candidate/SkillDetail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

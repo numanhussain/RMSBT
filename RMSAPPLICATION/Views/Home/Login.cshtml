@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Careers&nbsp; at &nbsp; Bestway&nbsp;Cement&nbsp;Ltd.</title>
+    <title>Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</title>
 
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
@@ -52,10 +52,10 @@
                     @Html.ValidationSummary(true)
                     <div class="panel panel-body login-form">
                         <div>
-                            <img src="~/Theme/assets/images/bcl_logo_final.png" class="center-block" height="70" />
-                            <h3 class="content-group text-center text-blue-300 text-black">Bestway &nbsp; Cement&nbsp; Ltd.<small class="display-block text-white text-bold">Enter your credentials below</small></h3>
+                            <img src="~/Theme/assets/images/bcl_logo_final.png" class="center-block" height="65" />
+                            <h4 class="content-group text-center text-blue-300 text-black">Bestway&nbsp;Cement&nbsp;Limited<small class="display-block text-white text-bold">Already have account? Please sign in.</small></h4>
                             <div class="form-group has-feedback has-feedback-left">
-                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Enter Email Address"> 
+                                <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Enter Email Address">
                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                                 <div class="form-control-feedback">
                                     <i class="icon-user text-blue"></i>
@@ -67,7 +67,7 @@
                                 <div class="form-control-feedback">
                                     <i class="icon-lock2 text-blue"></i>
                                 </div>
-                                <a href="~/Home/ForgetPassword"><strong class="text-blue">Forgot Password?</strong> </a>
+                                <a href="~/Home/ForgetPassword"><strong class="text-white">Forgot Password?</strong> </a>
                             </div>
 
                             <div class="form-group">
@@ -75,8 +75,7 @@
                             </div>
 
                             <div class="text-left">
-                                <span class="text-blue text-bold">New User ?</span> <a href="~/Home/RegisterUser"><strong class="text-blue">Register</strong></a>
-
+                                <span class="text-white text-bold">New User ?</span> <a href="~/Home/RegisterUser"><strong class="text-blue">Register</strong></a>
                             </div>
                         </div>
                     </div>
@@ -98,3 +97,12 @@
     <!-- /footer -->
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $.jGrowl('You have successfully saved your details.', {
+            header: '',
+            position: 'center',
+            theme: 'bg-success-400',
+        });
+    });
+</script>

@@ -42,8 +42,40 @@ function ReferenceDetailPostCreate(id) {
             data: $("#formCreateID").serialize(),
             success: function (data) {
                 if (data == "OK") {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Reference/Create2",
+                        contentType: "application/json; charset=utf-8",
+                        datatype: "json",
+                        success: function (data) {
+                            $('#modelBody').html(data);
+                            $('#myModal').modal('show');
+                        },
+                        error: function () {
+                            alert("Dynamic content load failed.");
+                        }
+                    });
+                }
+                else {
+                    $('#modelBody').html(data);
+                }
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+}
+function ReferenceDetailPostCreate2(id) {
+    $('#btnPostCreate2').click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Reference/Create",
+            data: $("#formCreateID").serialize(),
+            success: function (data) {
+                if (data == "OK") {
                     $('#myModal').modal('hide');
-                    $.jGrowl('You have successfully saved your details.', {
+                    $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',

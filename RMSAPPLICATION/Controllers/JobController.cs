@@ -48,7 +48,7 @@ namespace RMSAPPLICATION.Controllers
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
             dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
+            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Categories" });
             ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
@@ -196,7 +196,7 @@ namespace RMSAPPLICATION.Controllers
                         "<div>You can check the status of your application by logging into your account at Bestway Career Portal.</div>" + "<p>Link:<u><a href=\"" + callbackUrl + "\">10.227.0.52</a></u>" + "</p>" +
                         "<div>Wish you best of luck in your quest to find a suitable career in accordance with your professional and academic qualifications.</div>" +
                         "<div>Kindly note if you have applied for multiple positions, you will receive a separate notification for each position</div>" +
-                        "<div>Best Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Job Application");
+                        "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Job Application " +  dbJob.JobTitle );
                     return Json("OK", JsonRequestBehavior.AllowGet);
                 }
                 else

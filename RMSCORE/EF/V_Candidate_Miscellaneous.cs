@@ -33,12 +33,17 @@ namespace RMSCORE.EF
         public Nullable<int> HearAboutJobID { get; set; }
         public string HearAboutSource { get; set; }
         public string CrimeDetail { get; set; }
+        public string WorkingRelativeName { get; set; }
+        public string WorkingRelativeRelation { get; set; }
+        public string WorkingRelativeDepartment { get; set; }
+        public string WorkingRelativeDesignation { get; set; }
+        public string WorkingRelativeLocation { get; set; }
         public string InterviewedBefore { get; set; }
         public Nullable<System.DateTime> InterviewedDate { get; set; }
         public string InterviewedLocation { get; set; }
         public string AppliedPosition { get; set; }
-        public string Disability { get; set; }
         public string DisabilityDetail { get; set; }
+        public string Disability { get; set; }
         public string HearAboutDetail { get; set; }
         public Nullable<bool> InternshipRequirement { get; set; }
         public string InternshipDuration { get; set; }

@@ -7,10 +7,25 @@
         }
     </style>
 </head>
+<head>
+    <style>
+        .dataTable .dataTables_empty {
+            text-align: center;
+            content: "Nomi",
+        }
+    </style>
+</head>
 <div style="margin-top:-25px">
     <div class="modal-header">
         <div class="modal-title">
-            <h3 class="text-black"><i class="icon-book"></i>&nbsp;&nbsp;Education Details&nbsp;<small class="text-grey-600">(You have to add at least one education to proceed further)</small></h3>
+            <h3 class="text-black">
+                <i class="icon-book"></i>&nbsp;&nbsp;Educational Details&nbsp;<small class="text-grey-600">(You have to add at least one education to proceed further)</small>
+                <div class="btn btn-toolbar pull-right">
+                    <button type="button" onclick="CandidateGetCreate()" class="btn btn-success">Previous</button>
+                    <button type="button" onclick="MiscellaneousGetCreate()" class="btn btn-success">Next</button>
+                </div>
+            </h3>
+
         </div>
     </div>
 </div>
@@ -18,7 +33,7 @@
     <div class="breadcrumb-line bg-green-600">
         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
         <ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
-            <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add New Detail</a></li>
+            <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add new Detail</a></li>
         </ul>
     </div>
     <table class="table datatable-basic">
@@ -89,16 +104,7 @@
             }
         </tbody>
     </table>
-</div>
-<div>
-    @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div id="modelBody">
-                    </div>
-                </div>
-            </div>
-        </div>*@
+
 </div>
 <!-- Main content -->
 <!-- Basic datatable -->

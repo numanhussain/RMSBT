@@ -70,6 +70,11 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("FatherName", "Mandatory !!");
             if (dbOperation.DOB == null)
                 ModelState.AddModelError("DOB", "Mandatory !!");
+            if (dbOperation.DOB!= null)
+            {
+                if (dbOperation.DOB >=DateTime.Today)
+                    ModelState.AddModelError("DOB", "Must be smaller than current date!!");
+            }
             if (dbOperation.GenderID == 0)
                 ModelState.AddModelError("GenderID", "Mandatory !!");
             if (dbOperation.MartialStatusID == 0)

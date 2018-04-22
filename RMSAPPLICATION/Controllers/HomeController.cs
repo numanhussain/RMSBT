@@ -49,7 +49,7 @@ namespace RMSAPPLICATION.Controllers
             List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
             dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
             List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
+            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Categories" });
             ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
@@ -144,10 +144,10 @@ namespace RMSAPPLICATION.Controllers
                         UserService.RegisterUser(Obj);
                         var code = Obj.SecurityLink;
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
-                        EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate " + " </p>" +
+                        EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
                             "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
                             "<p>Please click the following link to activate your profile.</p>" + "<p>Link:Please click <a href=\"" + callbackUrl + "\">here</a>" + "</p>" +
-                            "<div>Best regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification");
+                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");
