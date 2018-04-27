@@ -31,7 +31,7 @@ namespace RMSCORE.EF
         public Nullable<int> TransportAllowence { get; set; }
         public Nullable<int> MobileAllowence { get; set; }
         public string CarEntitlement { get; set; }
-        public Nullable<int> MobileUserLimit { get; set; }
+        public string MobileUserLimit { get; set; }
         public Nullable<bool> BuyBackOption { get; set; }
         public Nullable<int> AccomdAllowence { get; set; }
         public Nullable<int> COLA { get; set; }
