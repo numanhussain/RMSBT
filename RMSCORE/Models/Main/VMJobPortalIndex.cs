@@ -14,7 +14,7 @@ namespace RMSCORE.Models.Main
         public List<CustomModel> LocationList { get; set; }
         public List<CustomModel> CatagoryList { get; set; }
     }
-    public class VMAppliedJobIndex
+    public class VMAppliedJobIndex:V_JobDetail
     {
         public int CJobID { get; set; }
         public int? CandidateID { get; set; }

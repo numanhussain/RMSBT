@@ -2459,6 +2459,7 @@ body[class*=navbar-bottom] .footer:not(.navbar) {
         word-break: break-word;
         border-bottom-left-radius: 3px;
         border-top-left-radius: 3px;
+        content: "Joe's Task:";
     }
 
     .uploader .action {

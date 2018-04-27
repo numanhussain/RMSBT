@@ -94,11 +94,11 @@ namespace RMSSERVICES.Job
             {
                 message = "Kindly enter your miscellaneous details in profile";
             }
-            Expression<Func<CompensationDetail, bool>> SpecificClient3 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (CompensationDetailRepository.FindBy(SpecificClient3).Count == 0)
-            {
-                message = "Kindly enter your compensation details in profile";
-            }
+            //Expression<Func<CompensationDetail, bool>> SpecificClient3 = c => c.CandidateID == LoggedInUser.CandidateID;
+            //if (CompensationDetailRepository.FindBy(SpecificClient3).Count == 0)
+            //{
+            //    message = "Kindly enter your compensation details in profile";
+            //}
             Expression<Func<ExperienceDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
             if (ExperienceDetailRepository.FindBy(SpecificClient2).Count == 0)
             {

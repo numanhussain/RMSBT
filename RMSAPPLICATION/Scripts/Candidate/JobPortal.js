@@ -69,10 +69,11 @@ function ApplyJob(id, item) {
     }).done(function (data) {
         if (data === "OK") {
             $('#myModal1').modal('hide');
-            $.jGrowl('You have successfully applied for this job.You can check the status of your application later by logging into your account at Bestway Career Portal', {
+            $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully applied for this job. You can check the status of your application later by logging into your account at Bestway Career Portal.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                 header: '',
                 position: 'center',
                 theme: 'bg-success-400',
+                life: 7000
             });
             $("#DivJobApplied").show();
             $("#DivJobApply").hide();
@@ -98,21 +99,31 @@ function ApplyJob(id, item) {
 //        }
 //    });
 //}
-function ViewProfileIndex(id) {
-    $.ajax({
-        type: "GET",
-        url: "/Job/ViewProfileIndex",
-        contentType: "application/json; charset=utf-8",
-        data: { JobID: id },
-        datatype: "json",
-        success: function (data) {
-            $('#modelBody1').html(data);
-            $('#myModal1').modal('show');
-        },
-        error: function () {
-            alert("Dynamic content load failed.");
-        }
-    });
+function ViewProfileIndex(id, item) {
+    if (item<8) {
+        $.jGrowl('<div><strong>Warning!</div><div>You have to complete your profile first.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div></strong>', {
+            header: '',
+            position: 'center',
+            theme: 'bg-success-400',
+            life: 9000
+        });
+    }
+    else {
+        $.ajax({
+            type: "GET",
+            url: "/Job/ViewProfileIndex",
+            contentType: "application/json; charset=utf-8",
+            data: { JobID: id },
+            datatype: "json",
+            success: function (data) {
+                $('#modelBody1').html(data);
+                $('#myModal1').modal('show');
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    }
 }
 function CandidateGetCreate() {
     $.ajax({

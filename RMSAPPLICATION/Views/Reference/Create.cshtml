@@ -1,7 +1,5 @@
 ﻿@model RMSCORE.Models.Operation.VMReferenceOperation
 @{
-    /**/
-
     ViewBag.title = "Reference details";
     Layout = null;
 }
@@ -9,56 +7,129 @@
 {
     @Html.AntiForgeryToken()
     @Html.HiddenFor(model => model.CandidateID)
-    <div class="modal-header bg-blue">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Add Reference Detail
-        </h4>
-    </div>
-    <div class="modal-body">
-        <small class="text-grey-400">Reference#1:Personal should not be immediate relative</small>
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="control-label col-md-2 text-semibold">Reference Name</div>
-                <div class="col-md-5">
-                    @Html.EditorFor(model => model.RefName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RefName, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.RefID1)
+    @Html.HiddenFor(model => model.RefID2)
+    <head>
+        <style>
+            .panel-body {
+                background-color: white;
+            }
+
+            .required:after {
+                content: "*";
+                font-weight: bold;
+                color: red;
+            }
+        </style>
+    </head>
+    <div style="margin-top:-25px">
+        <div class="modal-header">
+            <div class="modal-title">
+                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;References&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+            </div>
+        </div>
+        <div class="panel panel-flat">
+            <div class="breadcrumb-line bg-green-600" style="height:41px">
+                <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
+                <ul class="breadcrumb">
+                    @*<li><a href="~/Job/Index"> Dashboard</a></li>
+                        <li><a class="active"> Miscellaneous</a></li>
+                        <li class="active"> - Add New</li>*@
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="label label-info arrowed-right">Reference#1:Personal(Should not be immediate relative)</div>
+                <hr />
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="required control-label col-md-2 text-semibold">Reference Name</div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.RefName1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RefName1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="required control-label col-md-1 text-semibold text-right"> Designation</div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.RefDesignation1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RefDesignation1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="required control-label col-md-2 text-semibold">Organization</div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.Organization1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Organization1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="required control-label col-md-1 text-semibold">Contact</div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.RefContact1, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RefContact1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="required control-label col-md-2 text-semibold">How long known?</div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.HowLongKnown1, new { htmlAttributes = new { @class = "form-control", placeholder = "years" } })
+                            @Html.ValidationMessageFor(model => model.HowLongKnown1, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="required control-label col-md-1 text-semibold">Email</div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.RefEmail1, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
+                            @Html.ValidationMessageFor(model => model.RefEmail1, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
-                <div class="control-label col-md-1 text-semibold text-right"> Designation</div>
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.RefDesignation, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RefDesignation, "", new { @class = "text-danger" })
+                <div class="label label-info arrowed-right">Reference#2:Person you know in a professional capacity</div>
+                <hr />
+                <div class="form-horizontal">
+                    <div class="form-group">
+                        <div class="required control-label col-md-2 text-semibold">Reference Name</div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.RefName2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RefName2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="required control-label col-md-1 text-semibold text-right"> Designation</div>
+                        <div class="col-md-4">
+                            @Html.EditorFor(model => model.RefDesignation2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RefDesignation2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="required control-label col-md-2 text-semibold">Organization</div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.Organization2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Organization2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="required control-label col-md-1 text-semibold">Contact</div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.RefContact2, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.RefContact2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="required control-label col-md-2 text-semibold">How long known?</div>
+                        <div class="col-md-5">
+                            @Html.EditorFor(model => model.HowLongKnown2, new { htmlAttributes = new { @class = "form-control", placeholder = "years" } })
+                            @Html.ValidationMessageFor(model => model.HowLongKnown2, "", new { @class = "text-danger" })
+                        </div>
+                        <div class="required control-label col-md-1 text-semibold">Email</div>
+                        <div class="col-md-3">
+                            @Html.EditorFor(model => model.RefEmail2, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
+                            @Html.ValidationMessageFor(model => model.RefEmail2, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="control-label col-md-2 text-semibold">Organization</div>
-                <div class="col-md-5">
-                    @Html.EditorFor(model => model.Organization, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Organization, "", new { @class = "text-danger" })
-                </div>
-                <div class="control-label col-md-1 text-semibold">Contact</div>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.RefContact, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.RefContact, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="control-label col-md-2 text-semibold">How long known?</div>
-                <div class="col-md-5">
-                    @Html.EditorFor(model => model.HowLongKnown, new { htmlAttributes = new { @class = "form-control", placeholder = "years" } })
-                    @Html.ValidationMessageFor(model => model.HowLongKnown, "", new { @class = "text-danger" })
-                </div>
-                <div class="control-label col-md-1 text-semibold">Email</div>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.RefEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
-                    @Html.ValidationMessageFor(model => model.RefEmail, "", new { @class = "text-danger" })
+            <div class="panel-footer">
+                <a class="heading-elements-toggle"><i class="icon-more"></i></a>
+                <div class="heading-elements">
+                    <button type="button" onclick="SelfAssessmentGetCreate()" class="btn btn-success heading-btn pull-right">Previous</button>
+                    <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Save</button>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
-        <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Next</button>
+        <!-- /basic datatable -->
+        <!-- /main content -->
+        <!-- /page content -->
     </div>
 }
 <script type="text/javascript">

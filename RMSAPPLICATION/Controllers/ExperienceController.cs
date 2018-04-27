@@ -72,8 +72,11 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.CareerLevelID == 0)
                 ModelState.AddModelError("CareerLevelID", "Mandatory !!");
-            if (obj.ReasonOfLeaving == null || obj.ReasonOfLeaving == "")
-                ModelState.AddModelError("ReasonOfLeaving", "Mandatory !!");
+            if (obj.CurrentlyWorking == false)
+            {
+                if (obj.ReasonOfLeaving == null || obj.ReasonOfLeaving == "")
+                    ModelState.AddModelError("ReasonOfLeaving", "Mandatory !!");
+            }
             if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory !!");
             if (obj.CityID == 0)
@@ -122,8 +125,11 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.CareerLevelID == 0)
                 ModelState.AddModelError("CareerLevelID", "Mandatory !!");
-            if (obj.ReasonOfLeaving == null || obj.ReasonOfLeaving == "")
-                ModelState.AddModelError("ReasonOfLeaving", "Mandatory !!");
+            if (obj.CurrentlyWorking == false)
+            {
+                if (obj.ReasonOfLeaving == null || obj.ReasonOfLeaving == "")
+                    ModelState.AddModelError("ReasonOfLeaving", "Mandatory !!");
+            }
             if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory !!");
             if (obj.CityID == 0)
@@ -141,12 +147,14 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Delete(int? id)
         {
             VMExperienceOperation vmOperation = ExperienceDetailService.GetDelete((int)id);
+            EditHelper(vmOperation);
             return View(vmOperation);
         }
         [HttpPost]
         public ActionResult Delete(VMExperienceOperation obj)
         {
             ExperienceDetailService.PostDelete(obj);
+            EditHelper(obj);
             return PartialView(obj);
         }
         [HttpPost]
@@ -172,15 +180,9 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Private  Methods--
         private void CreateHelper(VMExperienceOperation obj)
         {
-            List<ExperienceIndustry> dbExpIndutries = DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList();
-            dbExpIndutries.Insert(0, new ExperienceIndustry { ExpIndustryID = 0, ExpIndustryName = "All" });
-            ViewBag.IndustryID = new SelectList(dbExpIndutries.ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName");
-            List<City> dbCities = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList();
-            dbCities.Insert(0, new City { CityID = 0, CityName = "All" });
-            ViewBag.CityID = new SelectList(dbCities.ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName");
-            List<ExpCareerLevel> dbCareerlevels = DDService.GetCareerLevelList().ToList().OrderBy(aa => aa.CLevelID).ToList();
-            dbCareerlevels.Insert(0, new ExpCareerLevel { CLevelID = 0, CareerLevelName = "All" });
-            ViewBag.CareerLevelID = new SelectList(dbCareerlevels.ToList().OrderBy(aa => aa.CLevelID).ToList(), "CLevelID", "CareerLevelName");
+            ViewBag.IndustryID = new SelectList(DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName");
+            ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName");
+            ViewBag.CareerLevelID = new SelectList(DDService.GetCareerLevelList().ToList().OrderBy(aa => aa.CLevelID).ToList(), "CLevelID", "CareerLevelName");
         }
         private void EditHelper(VMExperienceOperation obj)
         {

@@ -46,12 +46,8 @@ namespace RMSAPPLICATION.Controllers
 
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
-            List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
-            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
-            List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Categories" });
-            ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
-            ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
+            ViewBag.LocationID = new SelectList(DDService.GetLocationList().ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
+            ViewBag.CatagoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
             //ViewBag.CatagoryID = GetCatagoryList(CatagoryService.GetIndex().Select(aa => aa.CatName).Distinct().ToList());
             return View(vm);
@@ -70,12 +66,8 @@ namespace RMSAPPLICATION.Controllers
             {
                 vmAllJobList = vmAllJobList.Where(aa => aa.CatagoryID == CatagoryID).ToList();
             }
-            List<Location> dbLocations = DDService.GetLocationList().ToList().OrderBy(aa => aa.LocName).ToList();
-            dbLocations.Insert(0, new Location { PLocationID = 0, LocName = "All Locations" });
-            List<Catagory> dbCatagories = DDService.GetCatagoryList().ToList().OrderBy(aa => aa.CatName).ToList();
-            dbCatagories.Insert(0, new Catagory { PCatagoryID = 0, CatName = "All Catagories" });
-            ViewBag.LocationID = new SelectList(dbLocations.ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName", LocationID);
-            ViewBag.CatagoryID = new SelectList(dbCatagories.ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName", CatagoryID);
+            ViewBag.LocationID = new SelectList(DDService.GetLocationList().ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName", LocationID);
+            ViewBag.CatagoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName", CatagoryID);
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
             //ViewBag.CatagoryID = GetCatagoryList(CatagoryService.GetIndex().Select(aa => aa.CatName).Distinct().ToList());
             return View("Index", vmAllJobList);
@@ -103,11 +95,17 @@ namespace RMSAPPLICATION.Controllers
             Expression<Func<User, bool>> SpecificEntries1 = aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password && aa.UserStage > 1;
             if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count > 0)
             {
-
                 V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.Email == Obj.UserName && aa.Password == Obj.Password);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                return RedirectToAction("Index", "Job");
+                if (vm.UserStage == 8)
+                {
+                    return RedirectToAction("Index", "Job");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Candidate");
+                }
             }
             else
             {
@@ -146,8 +144,8 @@ namespace RMSAPPLICATION.Controllers
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
                         EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
                             "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
-                            "<p>Please click the following link to activate your profile.</p>" + "<p>Link:Please click <a href=\"" + callbackUrl + "\">here</a>" + "</p>" +
-                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification");
+                            "<p>Please click <a href=\"" + callbackUrl + "\">here</a> to activate your profile.</p>" +
+                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification", "");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");

@@ -21,17 +21,17 @@
             <!-- Basic datatable -->
             <div class="modal-header">
                 <div class="modal-title">
-                    <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous Details &nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+                    <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small><small class="label label-info arrowed-right pull-right" style="margin-top:10px">If some field is not applicable simply write NIL and for numerical value write zero</small></h3>
                 </div>
             </div>
             <div class="panel panel-flat">
-                <div class="breadcrumb-line bg-green-600">
+                <div class="breadcrumb-line bg-green-600" style="height:41px">
                     <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                    @*<ul class="breadcrumb">
-                        <li><a href="~/Job/Index"> Dashboard</a></li>
-                        <li><a class="active"> Miscellaneous</a></li>
-                        <li class="active"> - Add New</li>
-                    </ul>*@
+                    <ul class="breadcrumb">
+                        @*<li><a href="~/Job/Index"> Dashboard</a></li>
+                            <li><a class="active"> Miscellaneous</a></li>
+                            <li class="active"> - Add New</li>*@
+                    </ul>
                 </div>
                 <div class="form-horizontal">
                     <div class="panel-body">
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Do You have any relatives working with Bestway group ?</label>
+                            <label class="required col-md-4 control-label text-semibold">Do you have any relatives working presently with Bestway Group?</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("WorkingRelative", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
@@ -229,10 +229,24 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="required col-md-2 control-label text-semibold">Monthly Basic Salary</div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                                @Html.ValidationMessageFor(model => model.MBSalary, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="required required col-md-2 control-label text-semibold">Expected Salary</div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ExpectedSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                                @Html.ValidationMessageFor(model => model.ExpectedSalary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
+
                             <div class="col-md-3 pull-left col-lg-pull-1">
-                                <input type="file" id="CVUpload" name="resume" class="file-styled">
+                                <input type="file" placeholder="resume" value="resume" name="resume" title="Noi" class="file-styled" id="CVUpload" />
                                 <span class="help-block">Accepted formats: pdf, Max file size 1Mb</span>
+
                             </div>
                             @if (LoggedInUser.HasCV == true)
                             {

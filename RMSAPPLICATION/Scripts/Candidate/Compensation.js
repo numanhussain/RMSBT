@@ -147,6 +147,7 @@ function SaveCompensationFunction() {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 6000
                     });
                     CompensationGetCreate(id)
                 }

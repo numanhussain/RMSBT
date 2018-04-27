@@ -17,26 +17,26 @@
     <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-user-plus"></i>&nbsp;&nbsp;Compensation Details &nbsp;<small class="text-grey-400">(Mention your most-recent compensation)</small></h3>
+                <h3 class="text-black"><i class="icon-user-plus"></i>&nbsp;&nbsp;Compensation&nbsp;<small class="text-grey-400">(Mention your most-recent compensation)</small><small class="label label-info arrowed-right pull-right" style="margin-top:10px">If some field is not applicable simply write NIL and for numerical value write zero</small></h3>
             </div>
         </div>
         <!-- Page container -->
         <!-- Main content -->
         <!-- Basic datatable -->
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-green-600">
+            <div class="breadcrumb-line bg-green-600" style="height:41px">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                @*<ul class="breadcrumb">
-                    <li><a href="~/Job/Index">Dashboard</a></li>
-                    <li><a class="active">Compensation</a></li>
-                    <li class="active">- Add New</li>
-                </ul>*@
+                <ul class="breadcrumb">
+                    @*<li><a href="~/Job/Index">Dashboard</a></li>
+                        <li><a class="active">Compensation</a></li>
+                        <li class="active">- Add New</li>*@
+                </ul>
             </div>
             <div class="panel-body">
                 <div class="form-group">
                     <div class="required control-label col-md-2 text-semibold">Monthly Basic Salary </div>
                     <div class="col-md-4">
-                        @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 10000$/10000Rs." } })
                         @Html.ValidationMessageFor(model => model.MBSalary, "", new { @class = "text-danger" })
                     </div>
                     <label class="required col-md-2 control-label text-semibold">Monthly Gross Salary</label>

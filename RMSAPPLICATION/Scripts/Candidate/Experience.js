@@ -48,6 +48,7 @@ function ExperienceDetailPostCreate(id) {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 6000
                     });
                     LoadPVExperienceDetailIndex(id)
                 }

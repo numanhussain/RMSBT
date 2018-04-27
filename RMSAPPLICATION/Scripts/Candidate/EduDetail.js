@@ -51,6 +51,7 @@ function EduDetailPostCreate(id) {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 6000
                     });
                 }
                 else {
@@ -290,7 +291,6 @@ function LoadDegreeTypeDD() {
         var items;
         if (document.getElementById("selectedCityIdHidden").value != null)
             var selectedItemID = document.getElementById("selectedCityIdHidden").value;
-
         $.each(data, function (i, state) {
             if (state.Value == selectedItemID)
                 items += "<option selected value='" + state.Value + "'>" + state.Text + "</option>";

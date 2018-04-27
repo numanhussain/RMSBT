@@ -38,7 +38,7 @@ namespace RMSAPPLICATION.Controllers
             obj.CandidateID = vmf.CandidateID;
             obj.UserID = vmf.UserID;
             Session["ProfileStage"] = vmf.UserStage;
-            ViewBag.AppliedAs = new SelectList(GetAppliedAs().ToList(), "ID", "Name", vmf.AppliedAs);
+            ViewBag.CategoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa=>aa.PCatagoryID), "PCatagoryID", "CatName", vmf.AppliedAs);
             return View(obj);
         }
         [HttpGet]
@@ -81,10 +81,10 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("MartialStatusID", "Mandatory !!");
             if (dbOperation.ReligionID == 0)
                 ModelState.AddModelError("ReligionID", "Mandatory !!");
-            if (dbOperation.BloodGroupID == 0)
-                ModelState.AddModelError("BloodGroupID", "Mandatory !!");
-            if (dbOperation.AreaOfInterest == null || dbOperation.AreaOfInterest == "")
-                ModelState.AddModelError("AreaOfInterest", "Mandatory !!");
+            //if (dbOperation.BloodGroupID == 0)
+            //    ModelState.AddModelError("BloodGroupID", "Mandatory !!");
+            if (dbOperation.AreaOfInterestID == 0 )
+                ModelState.AddModelError("AreaOfInterestID", "Mandatory !!");
             if (dbOperation.DomicileCityID == 0)
                 ModelState.AddModelError("DomicileCityID", "Mandatory !!");
             if (dbOperation.Address == null || dbOperation.Address == "")
@@ -93,8 +93,8 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CityID", "Mandatory !!");
             if (dbOperation.CountryID == 0)
                 ModelState.AddModelError("CountryID", "Mandatory !!");
-            if (dbOperation.NationalityCountryID == 0)
-                ModelState.AddModelError("NationalityCountryID", "Mandatory !!");
+            //if (dbOperation.NationalityCountryID == 0)
+            //    ModelState.AddModelError("NationalityCountryID", "Mandatory !!");
             if (dbOperation.CNICNo == null || dbOperation.CNICNo == "")
                 ModelState.AddModelError("CNICNo", "Mandatory !!");
 
@@ -195,6 +195,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
             ViewBag.ReligionID = new SelectList(DDService.GetReligion().ToList().OrderBy(aa => aa.CReligionID).ToList(), "CReligionID", "ReligionName", obj.ReligionID);
+            ViewBag.AreaOfInterestID = new SelectList(DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName", obj.AreaOfInterestID);
         }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {

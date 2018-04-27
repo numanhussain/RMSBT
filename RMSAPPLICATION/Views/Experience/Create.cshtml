@@ -21,7 +21,7 @@
     <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Add Experience Detail&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small>
+            <i class="icon-menu7"></i> &nbsp;Add Experience &nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small>
         </h4>
     </div>
     <div class="modal-body">
@@ -72,7 +72,6 @@
                 <div class="col-md-4">
                     <label class="checkbox text-semibold col-md-8 " for="CurrentlyWorking">
                         Currently Working
-
                         <div class="col-md-4">
                             @Html.CheckBox("CurrentlyWorking", new { @class = "styled", @id = "CurrentlyWorking" })
                             @Html.ValidationMessageFor(model => model.CurrentlyWorking, "", new { @class = "text-danger" })
@@ -81,10 +80,12 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-2 text-semibold">Reason of Leaving</div>
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.ReasonOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
+                <div id="hidereasonofleaving">
+                    <div class="control-label col-md-2 text-semibold">Reason of Leaving</div>
+                    <div class="col-md-6">
+                        @Html.EditorFor(model => model.ReasonOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
+                    </div>
                 </div>
                 <div class="control-label col-md-1 text-semibold text-right">City</div>
                 <div class="col-md-3">
@@ -100,32 +101,32 @@
                 </div>
             </div>
             <div class="col-md-12 form-group">
-                <div class=" text-black h6" style="font-weight:900">Reponsibilities:</div>
+                <div class="text-semibold text-left">Reponsibilities:</div>
                 <hr />
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">1:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
+                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to maximum length of 250 characters" })
                     @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">2:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
+                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to maximum length of 250 characters" })
                     @Html.ValidationMessageFor(m => m.Responsibility2, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">3:</div>
                 <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
+                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to maximum length of 250 characters" })
                     @Html.ValidationMessageFor(m => m.Responsibility3, null, new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-4 text-semibold">May we Contact the employer?</div>
+                <div class="control-label col-md-4 text-semibold">May we contact the employer?</div>
                 <div class="col-md-2">
                     <div class="radio-inline text-semibold">
                         @Html.RadioButton("activation", "ActiveAfterJoinDate", true, new { id = "Yes" }) Yes
@@ -150,17 +151,20 @@
          var model = {
                 "ContactEmployer": @Html.Raw(Json.Encode(Model.ContactEmployer)),
                 };
-        $("#hidedatediv").show();
+         $("#hidedatediv").show();
+         $("#hidereasonofleaving").show();
         if (document.getElementById('CurrentlyWorking').checked) {
             $("#hidedatediv").hide();
+            $("#hidereasonofleaving").hide();
         }
         //LFA Selected
         $('#CurrentlyWorking').click(function () {
             if ($(this).is(":checked")) {
                 $("#hidedatediv").hide();
+                $("#hidereasonofleaving").hide();
             }
             else {
-                $("#hidedatediv").show();
+                $("#hidereasonofleaving").show();
             }
         });
         ExperienceDetailPostCreate(@Model.CandidateID);

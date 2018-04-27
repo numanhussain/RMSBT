@@ -63,11 +63,17 @@ namespace RMSSERVICES.Generic
         }
         public List<EduDegreeLevel> GetEduLevel()
         {
-            return EduDetailRepository.GetAll();
+            List<EduDegreeLevel> list = new List<EduDegreeLevel>();
+            list.Add(new EduDegreeLevel { DLevelID = 0, DegreeLevel= "--------" });
+            list.AddRange(EduDetailRepository.GetAll());
+            return list;
         }
         public List<EduInstitute> GetInstitute()
         {
-            return EduInstituteRepository.GetAll();
+            List<EduInstitute> list = new List<EduInstitute>();
+            list.Add(new EduInstitute { InstituteID = 0, InstituteName= "--------" });
+            list.AddRange(EduInstituteRepository.GetAll());
+            return list;
         }
         public List<User> GetUser()
         {
@@ -93,7 +99,10 @@ namespace RMSSERVICES.Generic
         }
         public List<ExperienceIndustry> GetIndustryList()
         {
-            return ExpIndustryRepository.GetAll();
+            List<ExperienceIndustry> list = new List<ExperienceIndustry>();
+            list.Add(new ExperienceIndustry { ExpIndustryID = 0, ExpIndustryName= "--------" });
+            list.AddRange(ExpIndustryRepository.GetAll());
+            return list;
         }
         public List<MartialStatu> GetMartialStatusList()
         {
@@ -125,11 +134,17 @@ namespace RMSSERVICES.Generic
         }
         public List<Location> GetLocationList()
         {
-            return LocationRepository.GetAll();
+            List<Location> list = new List<Location>();
+            list.Add(new Location { PLocationID = 0, LocName = "All Locations" });
+            list.AddRange(LocationRepository.GetAll());
+            return list;
         }
         public List<Catagory> GetCatagoryList()
         {
-            return CatagoryRepository.GetAll();
+            List<Catagory> list = new List<Catagory>();
+            list.Add(new Catagory { PCatagoryID = 0, CatName = "All Categories" });
+            list.AddRange(CatagoryRepository.GetAll());
+            return list;
         }
         public List<Gender> GetGenderList()
         {
@@ -151,11 +166,17 @@ namespace RMSSERVICES.Generic
         }
         public List<EduDegreeType> GetEduDegreeType()
         {
-            return EduDegreeTypeRepository.GetAll();
+            List<EduDegreeType> list = new List<EduDegreeType>();
+            list.Add(new EduDegreeType { EduDegreeLevelID = 0, EduTypeName= "--------" });
+            list.AddRange(EduDegreeTypeRepository.GetAll());
+            return list;
         }
         public List<ExpCareerLevel> GetCareerLevelList()
         {
-            return CareerLevelRepository.GetAll();
+            List<ExpCareerLevel> list = new List<ExpCareerLevel>();
+            list.Add(new ExpCareerLevel { CLevelID = 0, CareerLevelName= "--------" });
+            list.AddRange(CareerLevelRepository.GetAll());
+            return list;
         }
     }
 }

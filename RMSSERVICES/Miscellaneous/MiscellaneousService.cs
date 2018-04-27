@@ -99,6 +99,8 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
             dbMiscellaneous.InternshipRequirement = obj.InternshipRequirement;
             dbMiscellaneous.InternshipDuration = obj.InternshipDuration;
+            dbMiscellaneous.MBSalary = obj.MBSalary;
+            dbMiscellaneous.ExpectedSalary = obj.ExpectedSalary;
             return dbMiscellaneous;
         }
         #endregion

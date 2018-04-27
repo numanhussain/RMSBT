@@ -28,12 +28,12 @@
                         <div class="media-right media-middle text-nowrap">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
-                            <span id="DivJobApplied" class="glyphicon-ok">Already Applied For this Job</span>
+                            <span id="DivJobApplied"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Position Purpose:</h6>
+                            <h6 class="text-semibold">Position Purpose</h6>
                             <p>@Html.DisplayFor(x => x.PositionPurpose)</p>
                         </div>
                         <div class="content-group-lg">
@@ -53,7 +53,7 @@
                             {
                                 <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
-                            <span id="DivJobApplied2" class="glyphicon-ok">Already Applied For this Job</span>
+                            <span id="DivJobApplied2"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>
                     </div>
                     <!-- /details -->

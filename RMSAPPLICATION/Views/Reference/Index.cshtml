@@ -7,10 +7,7 @@
         <div class="modal-header">
             <div class="modal-title">
                 <h3 class="text-black">
-                    <i class="icon-people"></i>&nbsp;&nbsp;Reference Details &nbsp;<small class="text-grey-600">(Add at-least two references.)</small>
-                    <div class="btn btn-toolbar pull-right">
-                        <button type="button" onclick="SelfAssessmentGetCreate()" class="btn btn-success">Previous</button>
-                    </div>
+                    <i class="icon-people"></i>&nbsp;&nbsp;Reference&nbsp;<small class="text-grey-600">(Add at-least two references.)</small>
                 </h3>
             </div>
         </div>
@@ -18,8 +15,8 @@
         <div class="panel panel-flat">
             <div class="breadcrumb-line bg-green-600">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-                <ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
-                    <li><a href="#" id="ReferenceGetCreate"><i class="icon-add position-left"></i> Add New Reference</a></li>
+                <ul class="breadcrumb-elements pull-left bg-green-800" style="margin-left:-20px">
+                    <li><a href="#" id="ReferenceGetCreate"><i class="icon-add"></i> Add New Reference</a></li>
                 </ul>
             </div>
             <table class="table datatable-basic ">
@@ -44,7 +41,7 @@
                             Known period
                         </th>
                         <th class="text-bold">
-                            Edit | Delete
+                           Action
                         </th>
                     </tr>
                 </thead>
@@ -72,12 +69,15 @@
                             </td>
                             <td>
                                 <button type="button" id="btnGetEdit" onclick="ReferenceDetailGetEdit(@item.RefID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
-                                <button type="button" id="btnGetDelete" onclick="ReferenceDetailGetDelete(@item.RefID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                               @* <button type="button" id="btnGetDelete" onclick="ReferenceDetailGetDelete(@item.RefID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>*@
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+            <div class="btn btn-toolbar pull-right">
+                <button type="button" onclick="SelfAssessmentGetCreate()" class="btn btn-success">Previous</button>
+            </div>
         </div>
     </div>
 </div>

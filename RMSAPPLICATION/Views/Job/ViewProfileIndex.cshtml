@@ -19,13 +19,13 @@
                 <div class="tabbable">
                     <ul class="nav nav-tabs">
                         <li class="active"><a href="#basic-tab1" data-toggle="tab">Personal</a></li>
-                        <li><a href="#basic-tab2" data-toggle="tab">Educational</a></li>
-                        <li><a href="#basic-tab3" data-toggle="tab">Miscellaneous</a></li>
+                        <li><a href="#basic-tab2" data-toggle="tab">Education</a></li>
                         <li><a href="#basic-tab4" data-toggle="tab">Experience</a></li>
-                        <li><a href="#basic-tab5" data-toggle="tab">Compensation</a></li>
+                        <li><a href="#basic-tab8" data-toggle="tab">Skill</a></li>
                         <li><a href="#basic-tab6" data-toggle="tab">Self-Assessment</a></li>
                         <li><a href="#basic-tab7" data-toggle="tab">Referrence</a></li>
-                        <li><a href="#basic-tab8" data-toggle="tab">Skill</a></li>
+                        <li><a href="#basic-tab3" data-toggle="tab">Miscellaneous</a></li>
+                        @*<li><a href="#basic-tab5" data-toggle="tab">Compensation</a></li>*@
                     </ul>
                     <div class="tab-content">
                         <div class="tab-pane active" id="basic-tab1">
@@ -40,7 +40,7 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <div>
-                                                <label class="text-semibold">FAther's/Husband's Name</label>
+                                                <label class="text-semibold">Father's/Husband's Name</label>
                                             </div>
                                             @Html.DisplayFor(model => model.PersonalDetails.FatherName, new { @class = "form-control " })
                                         </div>
@@ -52,9 +52,11 @@
                                         </div>
                                         <div class="form-group col-md-3">
                                             <div>
-                                                <label class="text-semibold">DOB</label>
+                                                <label class="text-semibold">Date of Birth</label>
                                             </div>
-                                            @Html.DisplayFor(model => model.PersonalDetails.DOB, new { @class = "form-control " })
+                                            @if (Model.PersonalDetails.DOB != null)
+                                            {@Model.PersonalDetails.DOB.Value.ToString("MM/dd/yyyy")}
+
                                         </div>
                                     </div>
 
@@ -92,7 +94,7 @@
                                             <div>
                                                 <label class="text-semibold">Area Of Interest</label>
                                             </div>
-                                            @Html.DisplayFor(model => model.PersonalDetails.AreaOfInterest, new { @class = "form-control " })
+                                            @Html.DisplayFor(model => model.PersonalDetails.ExpIndustryName, new { @class = "form-control " })
                                         </div>
 
                                         <div class="form-group col-md-3">
@@ -147,6 +149,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="tab-pane" id="basic-tab2">
                             <table class="table datatable-basic">
                                 <thead>
@@ -189,7 +192,7 @@
                                             {
                                                 <td>
                                                     @if (item.EndDate != null)
-                                                    {@item.EndDate.Value.ToString("dd-MMM-yyyy")}
+                                                    {@item.EndDate.Value.ToString("MM/dd/yyyy")}
                                                 </td>
                                             }
                                             @if (item.InProgress == true)
@@ -206,68 +209,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="basic-tab3">
-                            <div class="profile-user-info-striped">
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label class="text-semibold">Have you ever been convicted of any crime?</label>
-                                        <div>
-                                            @Html.DisplayFor(model => model.MiscellaneousDetails.CrimanalRecord, new { @class = "form-control " })
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-5">
-                                        <div>
-                                            <label class="text-semibold">Do You have any relatives working with Bestway group?</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.WorkingRelative, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Do you have any disability?</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.Disability, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <div>
-                                            <label class="text-semibold">Have you been interviewed at Bestway Group before?</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.InterviewedBefore, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <div>
-                                            <label class="text-semibold">Have you worked before with Bestway Group?</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.WorkedBefore, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <div>
-                                            <label class="text-semibold">From where did you hear about the job?</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.HearAboutSource, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <div>
-                                            <label class="text-semibold">How much notice you need to give to your current employer?</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.NoticeTime, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <div>
-                                            <label class="text-semibold">Total Experience</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.TotalExp, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-2">
-                                        <div>
-                                            <label class="text-semibold">Cement Experience</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.CementExp, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                         <div class="tab-pane" id="basic-tab4">
                             <table class="table datatable-basic">
                                 <thead>
@@ -276,13 +218,13 @@
                                             Employer
                                         </th>
                                         <th class="text-bold">
-                                            Manager Name
+                                            Manager's Name
                                         </th>
                                         <th class="text-bold">
                                             Nature of business
                                         </th>
                                         <th class="text-bold">
-                                            Position/Designation
+                                            Job Title
                                         </th>
                                         <th class="text-bold">
                                             Joining Date
@@ -291,7 +233,7 @@
                                             Leaving Date
                                         </th>
                                         <th class="text-bold">
-                                            Contact Employeer
+                                            Contact Employer
                                         </th>
                                     </tr>
                                 </thead>
@@ -313,12 +255,12 @@
                                             </td>
                                             <td>
                                                 @if (item.StartDate != null)
-                                                {@item.StartDate.Value.ToString("dd-MM-yyyy");
+                                                {@item.StartDate.Value.ToString("MM/dd/yyyy");
                                             }
                                             </td>
                                             <td>
                                                 @if (item.EndDate != null)
-                                                {@item.EndDate.Value.ToString("dd-MM-yyyy");
+                                                {@item.EndDate.Value.ToString("MM/dd/yyyy");
                                             }
                                             </td>
                                             <td>
@@ -336,203 +278,44 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="basic-tab5">
-                            <div class="profile-user-info-striped">
-                                <div class="row">
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Monthly Basic Salary </label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.MBSalary, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Monthly Gross Salary</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.MGSalary, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Bonus</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.Bonus, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">LFA(Leave Fare Assistance)</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.LFA, new { @class = "form-control " })
-                                    </div>
-                                </div>
 
 
-                                <div class="row">
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Overtime</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.OT, new { @class = "form-control " })
-                                    </div>
+                        <div class="tab-pane" id="basic-tab8">
+                            <table class="table datatable-basic">
+                                <thead>
+                                    <tr>
+                                        <th class="text-bold">
+                                            Skill level
+                                        </th>
+                                        <th class="text-bold">
+                                            Skill Name
+                                        </th>
+                                        <th class="text-bold">
+                                            Description
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var item in Model.Skill)
+                                    {
+                                        <tr>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.SkillLevelName)
+                                            </td>
 
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Transport Allowance</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.TransportAllowence, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Vehicle Entitlement</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.CarEntitlement, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Buy Back Option</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.BuyBackOption, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Fuel Allowance</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.FuelAllowance, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Accomodation Allowance</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.AccomdAllowence, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Mobile  Allowance</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.MobileAllowence, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Monthly Usage Limit</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.MobileUserLimit, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                                <div class="row">
-
-
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Mobile Renewal Period</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.MobileNoOfYears, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">COLA(Cost of living Allowance)</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.COLA, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Others</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.Other, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Food</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.Food, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">OPD Limit</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.OPDInsurance, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">IP Limit</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.IPInsurance, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Life Insurance</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.LifeInsurance, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Provident Fund</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.ProvidentFund, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Gratuity</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.Gratuity, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Annual Leaves</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.AnnualTAllowence, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Casual Leaves</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.CasualTAllowence, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Sick Leaves</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.MedTAllowence, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                                <div class="row">
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Working Days/Week</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.TAllowenceWorkDay, new { @class = "form-control " })
-                                    </div>
-
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Expected Salary</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.ExpectedSalary, new { @class = "form-control " })
-                                    </div>
-                                    <div class="form-group col-md-3">
-                                        <div>
-                                            <label class="text-semibold">Any other Benefit</label>
-                                        </div>
-                                        @Html.DisplayFor(model => model.CompensationDetails.OtherBenifits, new { @class = "form-control " })
-                                    </div>
-                                </div>
-                            </div>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Title)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Description)
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
                         </div>
+
+
                         <div class="tab-pane" id="basic-tab6">
                             <div class="profile-user-info-striped">
                                 <div class="row">
@@ -615,47 +398,299 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="tab-pane" id="basic-tab8">
-                            <table class="table datatable-basic">
-                                <thead>
-                                    <tr>
-                                        <th class="text-bold">
-                                            skill level
-                                        </th>
-                                        <th class="text-bold">
-                                            skill Name
-                                        </th>
-                                        <th class="text-bold">
-                                            Description
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.Skill)
-                                    {
-                                        <tr>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.SkillLevelName)
-                                            </td>
 
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Title)
-                                            </td>
-                                            <td>
-                                                @Html.DisplayFor(modelItem => item.Description)
-                                            </td>
-                                        </tr>
-                                    }
-                                </tbody>
-                            </table>
+
+                        <div class="tab-pane" id="basic-tab3">
+                            <div class="profile-user-info-striped">
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <label class="text-semibold">Have you ever been convicted of any crime?</label>
+                                        <div>
+                                            @Html.DisplayFor(model => model.MiscellaneousDetails.CrimanalRecord, new { @class = "form-control " })
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-5">
+                                        <div>
+                                            <label class="text-semibold">Do you have any relatives working presently with Bestway Group?</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.WorkingRelative, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <div>
+                                            <label class="text-semibold">Do you have any disability?</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.Disability, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <div>
+                                            <label class="text-semibold">Have you been interviewed at Bestway Group before?</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.InterviewedBefore, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <div>
+                                            <label class="text-semibold">Have you worked before with Bestway Group?</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.WorkedBefore, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <div>
+                                            <label class="text-semibold">From where did you hear about the job?</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.HearAboutSource, new { @class = "form-control " })
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-4">
+                                        <div>
+                                            <label class="text-semibold">How much notice you need to give to your current employer?</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.NoticeTime, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <div>
+                                            <label class="text-semibold">Total Experience</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.TotalExp, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <div>
+                                            <label class="text-semibold">Cement Experience</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.CementExp, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <div>
+                                            <label class="text-semibold">Monthly Basic Salary</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.MBSalary, new { @class = "form-control " })
+                                    </div>
+                                    <div class="form-group col-md-2">
+                                        <div>
+                                            <label class="text-semibold">Expected Salary</label>
+                                        </div>
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.ExpectedSalary, new { @class = "form-control " })
+                                    </div>
+                                </div>
+                            </div>
                         </div>
+
+
+                        @*<div class="tab-pane" id="basic-tab5">
+                                <div class="profile-user-info-striped">
+                                    <div class="row">
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Monthly Basic Salary </label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.MBSalary, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Monthly Gross Salary</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.MGSalary, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Bonus</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.Bonus, new { @class = "form-control " })
+
+
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">LFA(Leave Fare Assistance)</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.LFA, new { @class = "form-control " })
+
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Overtime</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.OT, new { @class = "form-control " })
+
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Transport Allowance</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.TransportAllowence, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Vehicle Entitlement</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.CarEntitlement, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Buy Back Option</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.BuyBackOption, new { @class = "form-control " })
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Fuel Allowance</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.FuelAllowance, new { @class = "form-control " })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Accomodation Allowance</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.AccomdAllowence, new { @class = "form-control " })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Mobile  Allowance</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.MobileAllowence, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Monthly Usage Limit</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.MobileUserLimit, new { @class = "form-control " })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Mobile Renewal Period</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.MobileNoOfYears, new { @class = "form-control " })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">COLA(Cost of living Allowance)</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.COLA, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Others</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.Other, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Food</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.Food, new { @class = "form-control " })
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">OPD Limit</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.OPDInsurance, new { @class = "form-control " })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">IP Limit</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.IPInsurance, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Life Insurance</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.LifeInsurance, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Provident Fund</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.ProvidentFund, new { @class = "form-control " })
+
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Gratuity</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.Gratuity, new { @class = "form-control " })
+
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Annual Leaves</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.AnnualTAllowence, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Casual Leaves</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.CasualTAllowence, new { @class = "form-control " })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Sick Leaves</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.MedTAllowence, new { @class = "form-control " })
+                                        </div>
+                                    </div>
+                                    <div class="row">
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Working Days/Week</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.TAllowenceWorkDay, new { @class = "form-control " })
+                                        </div>
+
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Expected Salary</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.ExpectedSalary, new { @class = "form-control " })
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <div>
+                                                <label class="text-semibold">Any other Benefit</label>
+                                            </div>
+                                            @Html.DisplayFor(model => model.CompensationDetails.OtherBenifits, new { @class = "form-control " })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>*@
                     </div>
                 </div>
             </div>
+            @*<div class="col-md-12">
+                <input type='button' id='hideshow1' class="btn btn-info pull-right" value='Apply'>
+            </div>*@
             <div class="col-md-12" id="hrhide">
                 <hr />
             </div>
-            <div class="form-group">
+            <div class="form-group" id="hideshow2">
                 <div class="checkbox col-md-5">
                     <label>
                         <input type="checkbox" id="ask2" name="ask2">
@@ -665,7 +700,7 @@
                         OR
                     </label>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-7">
                     @Html.ActionLink("Update Profile", "Index", "Candidate", null, new { @class = "btn btn-success btn-large" })
                 </div>
             </div>
@@ -692,13 +727,17 @@
     </div>
     <div class="modal-footer">
         <div id="ApproveDecline">
-            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Accept</button>
+            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Apply</button>
             <button type="button" class=" btn btn-danger" name="Close" data-dismiss="modal">Decline</button>
         </div>
     </div>
 }
 <script type="text/javascript">
     $(document).ready(function () {
+        //$("#hideshow2").hide();
+        //$("#hideshow1").click(function () {
+        //    $("#hideshow2").toggle();
+        //});
         SelectAllCheckBox();
     });
 </script>

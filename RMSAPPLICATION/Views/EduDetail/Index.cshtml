@@ -19,11 +19,7 @@
     <div class="modal-header">
         <div class="modal-title">
             <h3 class="text-black">
-                <i class="icon-book"></i>&nbsp;&nbsp;Educational Details&nbsp;<small class="text-grey-600">(You have to add at least one education to proceed further)</small>
-                <div class="btn btn-toolbar pull-right">
-                    <button type="button" onclick="CandidateGetCreate()" class="btn btn-success">Previous</button>
-                    <button type="button" onclick="MiscellaneousGetCreate()" class="btn btn-success">Next</button>
-                </div>
+                <i class="icon-book"></i>&nbsp;&nbsp;Education&nbsp;<small class="text-grey-600">(You have to add at least one education to proceed further)</small>
             </h3>
 
         </div>
@@ -32,8 +28,8 @@
 <div class="panel panel-flat">
     <div class="breadcrumb-line bg-green-600">
         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
-        <ul class="breadcrumb-elements bg-green-800" style="margin-right:-20px">
-            <li><a href="#" id="EduGetCreate"><i class="icon-add position-left"></i> Add new Detail</a></li>
+        <ul class="breadcrumb-elements pull-left bg-green-800" style="margin-left:-20px">
+            <li><a href="#" id="EduGetCreate"><i class="icon-add"></i> Add New Education</a></li>
         </ul>
     </div>
     <table class="table datatable-basic">
@@ -58,7 +54,7 @@
                     CGPA
                 </th>
                 <th class="text-bold">
-                    Edit | Delete
+                    Action
                 </th>
             </tr>
         </thead>
@@ -80,7 +76,7 @@
                     {
                         <td>
                             @if (item.EndDate != null)
-                            {@item.EndDate.Value.ToString("dd-MMM-yyyy")}
+                            {@item.EndDate.Value.ToString("MM/dd/yyyy")}
                         </td>
                     }
                     @if (item.InProgress == true)
@@ -97,14 +93,17 @@
                     </td>
                     <td>
                         <button type="button" id="btnGetEdit" onclick="EduDetailGetEdit(@item.EduID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
-                        <button type="button" id="btnGetDelete" onclick="EduDetailGetDelete(@item.EduID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>
+                        @*<button type="button" id="btnGetDelete" onclick="EduDetailGetDelete(@item.EduID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>*@
 
                     </td>
                 </tr>
             }
         </tbody>
     </table>
-
+    <div class="btn btn-toolbar pull-right">
+        <button type="button" onclick="CandidateGetCreate()" class="btn btn-success">Previous</button>
+        <button type="button" onclick="MiscellaneousGetCreate()" class="btn btn-success">Next</button>
+    </div>
 </div>
 <!-- Main content -->
 <!-- Basic datatable -->
