@@ -126,18 +126,21 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-4 text-semibold">May we contact the employer?</div>
+                <div class="control-label col-md-3 text-semibold">May we contact the employer?</div>
                 <div class="col-md-2">
                     <div class="radio-inline text-semibold">
-                        @Html.RadioButton("activation", "ActiveAfterJoinDate", true, new { id = "Yes" }) Yes
+                        @Html.RadioButton("ContactSelection", "ContactEmployerYes", new { @checked = "checked", @id = "ContactEmployerYes" })
+                        @Html.ValidationMessageFor(model => model.ContactEmployerYes, "", new { @class = "text-danger" })
+                        Yes
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="radio-inline text-semibold">
-                        @Html.RadioButton("activation", "ActiveAfterProbation", new { id = "No" }) No
-                    </div>
+                    <label class="radio-inline text-semibold">
+                        @Html.RadioButton("ContactSelection", "ContactEmployerNo", new { @class = "checked", @id = "ContactEmployerNo" })
+                        @Html.ValidationMessageFor(model => model.ContactEmployerNo, "", new { @class = "text-danger" })
+                        No
+                    </label>
                 </div>
-
             </div>
         </div>
     </div>
@@ -149,7 +152,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
          var model = {
-                "ContactEmployer": @Html.Raw(Json.Encode(Model.ContactEmployer)),
+               "ContactEmployerYes": @Html.Raw(Json.Encode(Model.ContactEmployerYes)),
+                "ContactEmployerNo": @Html.Raw(Json.Encode(Model.ContactEmployerNo)),
                 };
          $("#hidedatediv").show();
          $("#hidereasonofleaving").show();
@@ -168,7 +172,7 @@
             }
         });
         ExperienceDetailPostCreate(@Model.CandidateID);
-        FormControlsScriptEdit(model);
+        FormControlsScriptEditExperieince(model);
     });
 </script>
 

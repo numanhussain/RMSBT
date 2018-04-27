@@ -15,14 +15,37 @@
                     <i class="icon-stairs-up"></i>&nbsp;&nbsp;Experience
                 </h3>
                 <div class="col-md-6 pull-left">
-                    <label class=" checkbox-inline checkbox-right text-semibold col-md-6" for="HaveExperience">
-                        @if (LoggedInUser.HaveExperience == true)
-                        {@Html.CheckBox("HaveExperience", new { @class = "styled", @id = "HaveExperience", @checked = "checked" })}
+                    <div class="control-label col-md-7 text-semibold">Do you have any working experience?</div>
+                    @if (LoggedInUser.HaveExperience == true)
+                    {
+                        <div class="col-md-2">
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("HaveExperience", "ContactEmployerYes", new { @checked = "checked", @id = "ContactEmployerYes" })
+                                Yes
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <label class="radio-inline text-semibold">
+                                @Html.RadioButton("HaveExperience", "ContactEmployerNo", new { @class = "checked", @id = "ContactEmployerNo" })
+                                No
+                            </label>
+                        </div>
+                    }
                     else
-                    { @Html.CheckBox("HaveExperience", new { @class = "styled", @id = "HaveExperience" })}
-
-                        Do have any working experience?
-                    </label>
+                    {
+                        <div class="col-md-2">
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("ContactSelection", "ContactEmployerYes", new { @checked = "checked", @id = "ContactEmployerYes" })
+                                Yes
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="radio-inline text-semibold">
+                                @Html.RadioButton("ContactSelection", "ContactEmployerNo", new { @class = "checked", @id = "ContactEmployerNo" })
+                                No
+                            </label>
+                        </div>
+                    }
                 </div>
             </div>
         </div>
@@ -127,12 +150,12 @@
     $(document).ready(function () {
         ExperienceDetailGetCreate();
         HaveExperience();
-        if (document.getElementById('HaveExperience').checked) {
-            $("#hv4").show();
-        }
-        else {
-            $("#hv4").hide();
-        }
+        ////if (document.getElementById('HaveExperience').checked) {
+        ////    $("#hv4").show();
+        ////}
+        //else {
+        //    $("#hv4").hide();
+        //}
         //Worked Before Selected
         $('#HaveExperience').click(function () {
             if ($(this).is(":checked")) {

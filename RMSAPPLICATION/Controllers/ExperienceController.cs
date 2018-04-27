@@ -50,6 +50,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(VMExperienceOperation obj)
         {
+            ReadFromRadioButton(obj);
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.CurrentlyWorking == true)
             {
@@ -104,6 +105,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Edit(VMExperienceOperation obj)
         {
+            ReadFromRadioButton(obj);
             if (obj.CurrentlyWorking == true)
             {
                 obj.EndDate = null;
@@ -178,6 +180,38 @@ namespace RMSAPPLICATION.Controllers
         #endregion
         #endregion
         #region -- Controller Private  Methods--
+        private void ReadFromRadioButton(VMExperienceOperation obj)
+        {
+
+            #region -- Radio Buttons--
+            // Adjust Bonus of Compensation Radio Button
+            string radioContactEmployerValue = "";
+
+            var ContactEmployerValue = ValueProvider.GetValue("ContactSelection");
+            if (ContactEmployerValue != null)
+            {
+                if (radioContactEmployerValue != null)
+                {
+                    radioContactEmployerValue = ContactEmployerValue.AttemptedValue;
+                }
+                if (radioContactEmployerValue == "ContactEmployerYes")
+                {
+                    obj.ContactEmployerYes = "YES";
+                    obj.ContactEmployerNo = "NO";
+                }
+                if (radioContactEmployerValue == "ContactEmployerNo")
+                {
+                    obj.ContactEmployerYes = "NO";
+                    obj.ContactEmployerNo = "YES";
+                }
+            }
+            else
+            {
+                obj.ContactEmployerYes = "NO";
+                obj.ContactEmployerNo = "NO";
+            }
+            #endregion
+        }
         private void CreateHelper(VMExperienceOperation obj)
         {
             ViewBag.IndustryID = new SelectList(DDService.GetIndustryList().ToList().OrderBy(aa => aa.ExpIndustryID).ToList(), "ExpIndustryID", "ExpIndustryName");

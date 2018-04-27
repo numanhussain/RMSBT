@@ -161,7 +161,7 @@ function SaveCompensationFunction() {
         });
     });
 }
-function FormControlsScriptEdit(model) {
+function FormControlsScriptEditCompensation(model) {
     if (model.BBonus == true) {
         $('input:radio[id=BBonus]').prop('checked', true);
     }

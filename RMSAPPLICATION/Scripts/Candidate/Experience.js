@@ -138,6 +138,7 @@ function HaveExperience() {
         var id = false;
         if ($(this).is(":checked")) {
             id = true;
+            alert("Ok")
         }
         else {
             id = false;
@@ -163,10 +164,10 @@ function HaveExperience() {
         });
     });
 }
-function FormControlsScriptEdit(model) {
-    if (model.ContactEmployer == true) {
+function FormControlsScriptEditExperieince(ContactEmployerYes,ContactEmployerNo) {
+    if (model.ContactEmployerYes == "YES") {
         $('input:radio[id=ContactEmployerYes]').prop('checked', true);
-    } if (model.ContactEmployer == false) {
+    } if (model.ContactEmployerNo == "NO") {
         $('input:radio[id=ContactEmployerNo]').prop('checked', true);
     }
 }

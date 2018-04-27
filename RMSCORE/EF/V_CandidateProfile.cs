@@ -41,8 +41,8 @@ namespace RMSCORE.EF
         public string ReligionName { get; set; }
         public Nullable<System.DateTime> DateCreated { get; set; }
         public string FatherName { get; set; }
-        public string ExpIndustryName { get; set; }
-        public Nullable<int> AreaOfInterestID { get; set; }
         public Nullable<int> CategoryID { get; set; }
+        public Nullable<int> AreaOfInterestID { get; set; }
+        public string AreaOfInterestName { get; set; }
     }
 }

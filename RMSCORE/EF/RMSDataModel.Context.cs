@@ -25,6 +25,7 @@ namespace RMSCORE.EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AreaOfInterest> AreaOfInterests { get; set; }
         public virtual DbSet<BloodGroup> BloodGroups { get; set; }
         public virtual DbSet<Candidate> Candidates { get; set; }
         public virtual DbSet<CandidateJob> CandidateJobs { get; set; }
@@ -34,6 +35,7 @@ namespace RMSCORE.EF
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<CompensationDetail> CompensationDetails { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
+        public virtual DbSet<EduBoard> EduBoards { get; set; }
         public virtual DbSet<EduDegreeLevel> EduDegreeLevels { get; set; }
         public virtual DbSet<EduDegreeType> EduDegreeTypes { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }

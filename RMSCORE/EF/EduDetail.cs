@@ -33,5 +33,6 @@ namespace RMSCORE.EF
     
         public virtual Candidate Candidate { get; set; }
         public virtual EduDegreeLevel EduDegreeLevel { get; set; }
+        public virtual EduInstitute EduInstitute { get; set; }
     }
 }

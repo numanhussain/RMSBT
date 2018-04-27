@@ -104,7 +104,15 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.EmployerName = dbExperienceDetail.EmployerName;
             vmExperienceDetail.CandidateID = dbExperienceDetail.CandidateID;
             vmExperienceDetail.IndustryID = dbExperienceDetail.IndustryID;
-            vmExperienceDetail.ContactEmployer = dbExperienceDetail.ContactEmployer;
+            if (dbExperienceDetail.ContactEmployer== true)
+            {
+
+                vmExperienceDetail.ContactEmployerYes = "YES";
+            }
+            else
+            {
+                vmExperienceDetail.ContactEmployerNo = "NO";
+            }
             vmExperienceDetail.AreaofInterest = dbExperienceDetail.AreaofInterest;
             vmExperienceDetail.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
             vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
@@ -138,7 +146,15 @@ namespace RMSSERVICES.Experience
             obj.EmployerName = dbExperienceDetail.EmployerName;
             obj.CandidateID = dbExperienceDetail.CandidateID;
             obj.IndustryID = dbExperienceDetail.IndustryID;
-            obj.ContactEmployer = dbExperienceDetail.ContactEmployer;
+            if (obj.ContactEmployerYes == "YES")
+            {
+
+                //dbExperiencedetail.ContactEmployer = true;
+            }
+            else
+            {
+                //dbExperiencedetail.ContactEmployer = false;
+            }
             obj.AreaofInterest = dbExperienceDetail.AreaofInterest;
             obj.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
             obj.SupervisorName = dbExperienceDetail.SupervisorName;
@@ -175,7 +191,15 @@ namespace RMSSERVICES.Experience
             dbExperiencedetail.Responsibility3 = obj.Responsibility3;
             dbExperiencedetail.CandidateID = obj.CandidateID;
             dbExperiencedetail.IndustryID = obj.IndustryID;
-            dbExperiencedetail.ContactEmployer = obj.ContactEmployer;
+            if (obj.ContactEmployerYes == "YES")
+            {
+
+                dbExperiencedetail.ContactEmployer = true;
+            }
+            else
+            {
+                dbExperiencedetail.ContactEmployer = false;
+            }
             dbExperiencedetail.AreaofInterest = obj.AreaofInterest;
             dbExperiencedetail.ReasonOfLeaving = obj.ReasonOfLeaving;
             dbExperiencedetail.SupervisorName = obj.SupervisorName;
