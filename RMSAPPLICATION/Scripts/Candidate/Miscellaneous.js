@@ -109,17 +109,18 @@ function MiscellaneousDetailHide() {
 }
 function SaveMiscellaneousInfoFunction(id) {
     $('#btnPostCreate').click(function () {
-        SaveCV();
         $.ajax({
             type: "POST",
             url: "/Miscellaneous/Create",
             data: $("#formEditID").serialize(),
             success: function (data) {
                 if (data == "OK") {
-                    $.jGrowl('You have successfully saved your details.', {
+                    SaveCV();
+                    $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 7000
                     });
                     MiscellaneousGetCreate(id)
                 }

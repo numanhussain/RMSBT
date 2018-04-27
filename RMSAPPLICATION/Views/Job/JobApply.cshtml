@@ -22,13 +22,13 @@
                     <thead>
                         <tr>
                             <th>
-                                Candidate Name
-                            </th>
-                            <th>
                                 Job Title
                             </th>
                             <th>
                                 Applied Date
+                            </th>
+                            <th>
+                                Status
                             </th>
                         </tr>
                     </thead>
@@ -36,9 +36,6 @@
                         @foreach (var item in Model)
                         {
                             <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CName)
-                                </td>
 
                                 <td>
                                     @Html.DisplayFor(modelItem => item.JobTitle)
@@ -48,6 +45,9 @@
                                     {
                                         @item.CJobDate.Value.ToString("dd-MM-yyyy");
                                     }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Status)
                                 </td>
                             </tr>
                         }

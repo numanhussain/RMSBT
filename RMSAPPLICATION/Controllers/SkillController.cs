@@ -71,6 +71,12 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Edit(VMSkillOperation obj)
         {
+            if (obj.SkillTitle == null || obj.SkillTitle == "")
+                ModelState.AddModelError("SkillTitle", "Mandatory !!");
+            if (obj.SLevelID == 0)
+                ModelState.AddModelError("SLevelID", "Mandatory !!");
+            if (obj.Description == null || obj.Description == "")
+                ModelState.AddModelError("Description", "Mandatory !!");
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostEdit(obj);
@@ -83,12 +89,14 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Delete(int? id)
         {
             VMSkillOperation vmOperation = SkillDetailService.GetDelete((int)id);
+            EditHelper(vmOperation);
             return View(vmOperation);
         }
         [HttpPost]
         public ActionResult Delete(VMSkillOperation obj)
         {
             SkillDetailService.PostDelete(obj);
+            EditHelper(obj);
             return PartialView(obj);
         }
         #endregion

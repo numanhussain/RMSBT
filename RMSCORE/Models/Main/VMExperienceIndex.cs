@@ -25,10 +25,11 @@ namespace RMSCORE.Models.Main
         public string CandidateName { get; set; }
         public int? IndustryID { get; set; }
         public string ExpIndustryName { get; set; }
-        public int CareerLevelID { get; set; }
+        public int? CareerLevelID { get; set; }
         public bool? HaveExperience { get; set; }
         public bool? ContactEmployer { get; set; }
         public string AreaofInterest { get; set; }
         public string ReasonOfLeaving { get; set; }
+        public string SupervisorName { get; set; }
     }
 }

@@ -21,22 +21,22 @@
             <!-- Basic datatable -->
             <div class="modal-header">
                 <div class="modal-title">
-                    <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous Details &nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+                    <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small><small class="label label-info arrowed-right pull-right" style="margin-top:10px">If some field is not applicable simply write NIL and for numerical value write zero</small></h3>
                 </div>
             </div>
             <div class="panel panel-flat">
-                <div class="breadcrumb-line bg-green-600">
+                <div class="breadcrumb-line bg-green-600" style="height:41px">
                     <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                     <ul class="breadcrumb">
-                        <li><a href="~/Job/Index"> Dashboard</a></li>
-                        <li><a class="active"> Miscellaneous</a></li>
-                        <li class="active"> - Add New</li>
+                        @*<li><a href="~/Job/Index"> Dashboard</a></li>
+                            <li><a class="active"> Miscellaneous</a></li>
+                            <li class="active"> - Add New</li>*@
                     </ul>
                 </div>
                 <div class="form-horizontal">
                     <div class="panel-body">
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Have you ever been convicted of crime?</label>
+                            <label class="required col-md-4 control-label text-semibold">Have you ever been convicted of any crime?</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("CrimanalRecord", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.CrimanalRecord, "", new { @class = "text-danger" })
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Do you have any relative working in Bestway group?</label>
+                            <label class="required col-md-4 control-label text-semibold">Do you have any relatives working presently with Bestway Group?</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("WorkingRelative", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold"> Relationship </div>
                                 <div class="col-md-2">
-                                    @Html.EditorFor(model => model.WorkingRelativeRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rlation with employee" } })
+                                    @Html.EditorFor(model => model.WorkingRelativeRelation, new { htmlAttributes = new { @class = "form-control", @placeholder = "Relation with employee" } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeRelation, "", new { @class = "text-danger" })
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold">Department </div>
@@ -84,8 +84,8 @@
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold">Designation </div>
                                 <div class="col-md-4">
-                                    @Html.EditorFor(model => model.WorkingRelativeLocation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Designation" } })
-                                    @Html.ValidationMessageFor(model => model.WorkingRelativeLocation, "", new { @class = "text-danger" })
+                                    @Html.EditorFor(model => model.WorkingRelativeDesignation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Designation" } })
+                                    @Html.ValidationMessageFor(model => model.WorkingRelativeDesignation, "", new { @class = "text-danger" })
                                 </div>
 
                             </div>
@@ -133,7 +133,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Have you Worked before with Bestway Group?</label>
+                            <label class="required col-md-4 control-label text-semibold">Have you worked before with Bestway Group</label>
                             <div class="col-md-1">
                                 @Html.DropDownList("WorkedBefore", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
@@ -149,7 +149,7 @@
                                         @type = "date"@*@Value = @DateTime.Today.ToString("yyyy-MM-dd")*@})
                                     @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-1 control-label text-semibold">Date&nbsp;Leaving</div>
+                                <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
                                 <div class="col-md-2">
                                     @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                                     @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
@@ -197,7 +197,7 @@
                             </div>
                         }
                         <div class="form-group">
-                            <div class="required col-md-4 control-label text-semibold">Where do you hear about the job?</div>
+                            <div class="required col-md-4 control-label text-semibold">From where did you hear about the job?</div>
                             <div class="col-md-3">
                                 @Html.DropDownList("HearAboutJobID", null, new { @class = "form-control" })
                             </div>
@@ -218,19 +218,35 @@
                             <div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
                             <div class="col-md-1">
                                 @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                                <small class="text-grey-300">Years</small>
                                 @Html.ValidationMessageFor(model => model.TotalExp, "", new { @class = "text-danger" })
                             </div>
                             <div class="required required col-md-2 control-label text-semibold text-right">Cement Experience</div>
                             <div class="col-md-1">
                                 @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                                <small class="text-grey-300">Years</small>
                                 @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="required col-md-2 control-label text-semibold">Monthly Basic Salary</div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.MBSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                                @Html.ValidationMessageFor(model => model.MBSalary, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="required required col-md-2 control-label text-semibold">Expected Salary</div>
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.ExpectedSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                                @Html.ValidationMessageFor(model => model.ExpectedSalary, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
+
                             <div class="col-md-3 pull-left col-lg-pull-1">
-                                <input type="file" id="CVUpload" name="resume" class="file-styled">
-                                <span class="help-block">Accepted formats: pdf, doc. Max file size 1Mb</span>
+                                <input type="file" placeholder="resume" value="resume" name="resume" title="Noi" class="file-styled" id="CVUpload" />
+                                <span class="help-block">Accepted formats: pdf, Max file size 1Mb</span>
+
                             </div>
                             @if (LoggedInUser.HasCV == true)
                             {
@@ -242,8 +258,10 @@
                     </div>
                     <div class="panel-footer">
                         <a class="heading-elements-toggle"><i class="icon-more"></i></a>
-                        <div class="heading-elements">
-                            <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Save</button>
+                        <div class="heading-elements btn-toolbar pull-right">
+                            <button type="button" onclick="LoadPVEduDetailIndex()" class="btn btn-success">Previous</button>
+                            <button type="button" id="btnPostCreate" class="btn btn-success">Save</button>
+                            <button type="button" onclick="LoadPVExperienceDetailIndex()" class="btn btn-success ">Next</button>
                         </div>
                     </div>
                 </div>

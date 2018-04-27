@@ -193,6 +193,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -221,6 +223,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Theme\assets\css\bootstrap-datetimepicker.css" />
+    <Content Include="Theme\assets\css\bootstrap-datetimepicker.min.css" />
     <Content Include="Theme\assets\css\bootstrap.css" />
     <Content Include="Theme\assets\css\bootstrap.min.css" />
     <Content Include="Theme\assets\css\colors.css" />
@@ -3075,6 +3079,7 @@
     <Content Include="Views\Job\DeclarationStatement.cshtml" />
     <Content Include="Views\Job\ViewProfileIndex.cshtml" />
     <Content Include="Views\Candidate\ViewProfileIndex.cshtml" />
+    <Content Include="Views\Reference\Create2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

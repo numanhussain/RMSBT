@@ -20,7 +20,7 @@
     <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Edit Education Detail &nbsp;<small class="text-grey-800">(All fields with an asterisk (*) are mandatory)</small>
+            <i class="icon-menu7"></i> &nbsp;Edit Education &nbsp;<small class="text-grey-800">(All fields with an asterisk (*) are mandatory)</small>
         </h4>
     </div>
     <div class="modal-body">
@@ -134,7 +134,8 @@
     <div class="modal-footer">
         <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
         @*<button type="submit" class="btn btn-success bg-success-800" value="Save">Save</button>*@
-        <button type="button" id="btnPostEdit" class="btn btn-success bg-success-800" value="Save">Save</button>
+        <button type="button" id="btnPostEdit" class="btn btn-success bg-success-800" value="Save">Edit</button>
+        <button type="button" id="btnGetDelete" onclick="EduDetailGetDelete(@Model.EduID)" class="btn btn-danger bg-danger-800">Delete</button>
     </div>
 }
 <script type="text/javascript">

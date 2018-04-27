@@ -10,7 +10,7 @@ namespace RMSSERVICES.Generic
 {
     public static class EmailGenerate
     {
-        public static void SendEmail(string To, string CC, string Body, string Subject)
+        public static void SendEmail(string To, string CC, string Body, string Subject, string name)
         {
             try
             {
@@ -24,7 +24,14 @@ namespace RMSSERVICES.Generic
                 client.UseDefaultCredentials = false;
                 client.Credentials = new NetworkCredential(AssistantService.Username, AssistantService.Password);
                 mail.IsBodyHtml = true;
-                mail.Subject = Subject;
+                if (Subject == null || Subject == "")
+                {
+                    mail.Subject = name;
+                }
+                else
+                {
+                    mail.Subject = Subject;
+                }
                 if (CC != null && CC != "")
                     mail.CC.Add(CC);
                 mail.Body = Body;

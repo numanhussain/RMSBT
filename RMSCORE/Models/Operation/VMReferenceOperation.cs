@@ -8,14 +8,21 @@ namespace RMSCORE.Models.Operation
 {
     public class VMReferenceOperation
     {
-        public int RefID { get; set; }
-        public string RefName { get; set; }
-        public string RefEmail { get; set; }
-        public string RefContact { get; set; }
-        public string RefDesignation { get; set; }
-        public int? CandidateID { get; set; }
+        public int RefID1 { get; set; }
+        public string RefName1 { get; set; }
+        public string RefEmail1 { get; set; }
+        public string RefContact1 { get; set; }
+        public string RefDesignation1 { get; set; }
+        public int? CandidateID{ get; set; }
         public string CandidateName { get; set; }
-        public string Organization { get; set; }
-        public string HowLongKnown { get; set; }
+        public string Organization1 { get; set; }
+        public string HowLongKnown1 { get; set; }
+        public int RefID2 { get; set; }
+        public string RefName2 { get; set; }
+        public string RefEmail2 { get; set; }
+        public string RefContact2 { get; set; }
+        public string RefDesignation2 { get; set; }
+        public string Organization2 { get; set; }
+        public string HowLongKnown2 { get; set; }
     }
 }

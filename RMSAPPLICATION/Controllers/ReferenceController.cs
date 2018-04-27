@@ -6,6 +6,7 @@ using RMSSERVICES.Reference;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
@@ -46,24 +47,60 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(VMReferenceOperation obj)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (obj.RefName == null||obj.RefName == "")
-                ModelState.AddModelError("RefName", "Mandatory !!");
-            if (obj.RefDesignation == null || obj.RefDesignation == "")
-                ModelState.AddModelError("RefDesignation", "Mandatory !!");
-            if (obj.Organization == null || obj.Organization == "")
-                ModelState.AddModelError("Organization", "Mandatory !!");
-            if (obj.RefContact == null || obj.RefContact == "")
-                ModelState.AddModelError("RefContact", "Mandatory !!");
-            if (obj.HowLongKnown == null || obj.HowLongKnown == "")
-                ModelState.AddModelError("HowLongKnown", "Mandatory !!");
-            if (obj.RefEmail == null || obj.RefEmail == "")
-                ModelState.AddModelError("RefEmail", "Mandatory !!");
+            if (obj.RefName1 == null || obj.RefName1 == "")
+                ModelState.AddModelError("RefName1", "Mandatory !!");
+            if (obj.RefDesignation1 == null || obj.RefDesignation1 == "")
+                ModelState.AddModelError("RefDesignation1", "Mandatory !!");
+            if (obj.Organization1 == null || obj.Organization1 == "")
+                ModelState.AddModelError("Organization1", "Mandatory !!");
+            if (obj.RefContact1 == null || obj.RefContact1 == "")
+                ModelState.AddModelError("RefContact1", "Mandatory !!");
+            if (obj.HowLongKnown1 == null || obj.HowLongKnown1 == "")
+                ModelState.AddModelError("HowLongKnown1", "Mandatory !!");
+            if (obj.RefEmail1 == null || obj.RefEmail1 == "")
+                ModelState.AddModelError("RefEmail1", "Mandatory !!");
+            if (obj.RefEmail1 != null)
+            {
+                Match match = Regex.Match(obj.RefEmail1, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("RefEmail1", "Invalid Formate !!");
+                }
+            }
+            if (obj.RefName2 == null || obj.RefName2 == "")
+                ModelState.AddModelError("RefName2", "Mandatory !!");
+            if (obj.RefDesignation2 == null || obj.RefDesignation1 == "")
+                ModelState.AddModelError("RefDesignation2", "Mandatory !!");
+            if (obj.Organization2 == null || obj.Organization2 == "")
+                ModelState.AddModelError("Organization2", "Mandatory !!");
+            if (obj.RefContact2 == null || obj.RefContact2 == "")
+                ModelState.AddModelError("RefContact2", "Mandatory !!");
+            if (obj.HowLongKnown2 == null || obj.HowLongKnown2 == "")
+                ModelState.AddModelError("HowLongKnown2", "Mandatory !!");
+            if (obj.RefEmail2 == null || obj.RefEmail2 == "")
+                ModelState.AddModelError("RefEmail2", "Mandatory !!");
+            if (obj.RefEmail2 != null)
+            {
+                Match match = Regex.Match(obj.RefEmail2, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("RefEmail2", "Invalid Formate !!");
+                }
+            }
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostCreate(obj, vmf);
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return PartialView("Create", obj);
+        }
+        [HttpGet]
+        public ActionResult Create2()
+        {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            int cid = vmf.CandidateID;
+            VMReferenceOperation obj = ReferenceDetailService.GetCreate(cid);
+            return View(obj);
         }
         [HttpGet]
         public ActionResult Edit(int id)
@@ -74,7 +111,46 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Edit(VMReferenceOperation obj)
         {
-            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate; if (obj.RefName1 == null || obj.RefName1 == "")
+                ModelState.AddModelError("RefName1", "Mandatory !!");
+            if (obj.RefDesignation1 == null || obj.RefDesignation1 == "")
+                ModelState.AddModelError("RefDesignation1", "Mandatory !!");
+            if (obj.Organization1 == null || obj.Organization1 == "")
+                ModelState.AddModelError("Organization1", "Mandatory !!");
+            if (obj.RefContact1 == null || obj.RefContact1 == "")
+                ModelState.AddModelError("RefContact1", "Mandatory !!");
+            if (obj.HowLongKnown1 == null || obj.HowLongKnown1 == "")
+                ModelState.AddModelError("HowLongKnown1", "Mandatory !!");
+            if (obj.RefEmail1 == null || obj.RefEmail1 == "")
+                ModelState.AddModelError("RefEmail1", "Mandatory !!");
+            if (obj.RefEmail1 != null)
+            {
+                Match match = Regex.Match(obj.RefEmail1, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("RefEmail1", "Invalid Formate !!");
+                }
+            }
+            if (obj.RefName2 == null || obj.RefName2 == "")
+                ModelState.AddModelError("RefName2", "Mandatory !!");
+            if (obj.RefDesignation2 == null || obj.RefDesignation1 == "")
+                ModelState.AddModelError("RefDesignation2", "Mandatory !!");
+            if (obj.Organization2 == null || obj.Organization2 == "")
+                ModelState.AddModelError("Organization2", "Mandatory !!");
+            if (obj.RefContact2 == null || obj.RefContact2 == "")
+                ModelState.AddModelError("RefContact2", "Mandatory !!");
+            if (obj.HowLongKnown2 == null || obj.HowLongKnown2 == "")
+                ModelState.AddModelError("HowLongKnown2", "Mandatory !!");
+            if (obj.RefEmail2 == null || obj.RefEmail2 == "")
+                ModelState.AddModelError("RefEmail2", "Mandatory !!");
+            if (obj.RefEmail2 != null)
+            {
+                Match match = Regex.Match(obj.RefEmail2, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("RefEmail2", "Invalid Formate !!");
+                }
+            }
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostEdit(obj);

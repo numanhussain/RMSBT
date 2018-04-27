@@ -12,46 +12,41 @@
     @Html.HiddenFor(model => model.SkillTitle)
     @Html.HiddenFor(model => model.SLevelName)
     @Html.HiddenFor(model => model.Description)
-    <div class="modal-header bg-warning">
+    @Html.HiddenFor(model => model.SLevelID)
+    <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Delete Skill Detail
+            <i class="icon-menu7"></i> &nbsp;Delete Skill
         </h4>
     </div>
     <div class="modal-body">
         <div class="form-horizontal">
-            <div class="col-md-12">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SkillID)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.SkillID)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SkillTitle)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.SkillTitle)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.SLevelName)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.SLevelName)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Description)
-                    </dd>
-                </dl>
+            <div class="form-group">
+                <div class="control-label col-md-2 text-semibold">Enter Skill</div>
+                <div class="col-md-6">
+                    @Html.EditorFor(model => model.SkillTitle, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.SkillTitle, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-1 text-semibold text-right">Level</div>
+                <div class="col-md-3">
+                    @Html.DropDownList("SLevelID", null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.SLevelID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="control-label col-md-3 text-semibold">Skill Description</div>
+                <div class="col-md-9">
+                    @Html.TextAreaFor(model => model.Description, new { @class = "form-control", @cols = 5, @rows = 1 })
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+        <label class="text-black">Are you sure you want to delete?</label>
+        &nbsp;&nbsp;
+        <button type="button" id="btnGetEdit" onclick="SkillDetailGetEdit(@Model.SkillID)" class="btn btn-info">Back</button>
+        @*<button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>*@
         <button type="button" id="btnPostDelete" class="btn btn-warning bg-warning-800" value="Delete">Delete</button>
     </div>
 }

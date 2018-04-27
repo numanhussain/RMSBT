@@ -96,6 +96,7 @@ namespace RMSSERVICES.Education
             vmEduDetail.OtherInstitute = dbEduDetail.OtherInstitute;
             vmEduDetail.InProgress = dbEduDetail.InProgress;
             vmEduDetail.DegreeTypeID = dbEduDetail.DegreeTypeID;
+            vmEduDetail.DegreeLevelID = dbEduDetail.DegreeLevelID;
             return vmEduDetail;
         }
         public ServiceMessage PostEdit(VMEduDetailOperation obj)

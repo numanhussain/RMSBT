@@ -58,7 +58,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("AppliedPosition", "Mandatory !!");
             if (obj.HearAboutJobID == 0)
                 ModelState.AddModelError("HearAboutJobID", "Mandatory !!");
-            if ( obj.HearAboutJobID == 8)
+            if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
                 ModelState.AddModelError("HearAboutDetail", "Mandatory !!");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
                 ModelState.AddModelError("InterviewedDate", "Mandatory !!");
@@ -68,6 +68,11 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("DateJoining", "Mandatory !!");
             if (obj.WorkedBefore == "Yes" && obj.DateLeavig == null)
                 ModelState.AddModelError("DateLeavig", "Mandatory !!");
+            if (obj.DateLeavig != null)
+            {
+                if (obj.DateLeavig >= DateTime.Today)
+                    ModelState.AddModelError("DateLeavig", "Must be smaller than current date!!");
+            }
             if (obj.WorkedBefore == "Yes" && obj.Designation == null)
                 ModelState.AddModelError("Designation", "Mandatory !!");
             if (obj.WorkedBefore == "Yes" && obj.ReasonLeaving == null)
@@ -78,6 +83,10 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("Location", "Mandatory !!");
             if (obj.InternshipDuration == "0")
                 ModelState.AddModelError("InternshipDuration", "Mandatory !!");
+            if (obj.MBSalary == null || obj.MBSalary== "")
+                ModelState.AddModelError("MBSalary", "Mandatory !!");
+            if(obj.ExpectedSalary == null)
+                ModelState.AddModelError("ExpectedSalary", "Mandatory !!");
             if (obj.TotalExp == null)
                 ModelState.AddModelError("TotalExp", "Mandatory !!");
             if (obj.CementExp == null)
@@ -148,6 +157,10 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
 
             return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
+        }
+        public ActionResult RetrieveImage()
+        {
+            return File(@"d:\test.pdf", "application/pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

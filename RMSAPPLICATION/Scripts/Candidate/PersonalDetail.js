@@ -48,6 +48,7 @@ function SavePersonalInfoFunction() {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 6000
                     });
                     CandidateGetCreate(id)
                 }
@@ -149,14 +150,21 @@ function myFunction() {
     }
 }
 function UpdateAppliedAs() {
-    $("#AppliedAs").on('change', function () {
+    $("#CategoryID").on('change', function () {
         var id = $(this).val();
         $.ajax({
             url: '/Home/UpdateAppliedAs',
             type: "POST",
             cache: false,
             data: { id: id }
-        }).done(function (result) {
+        }).done(function (data)
+                { 
+                if (data == "OK") {
+                   location.reload()
+                }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
         });
     });
 }

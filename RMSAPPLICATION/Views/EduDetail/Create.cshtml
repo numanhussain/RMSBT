@@ -19,7 +19,7 @@
     <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Add Education Detail &nbsp;<small class="text-grey-800">(All fields with an asterisk (*) are mandatory)</small>
+            <i class="icon-menu7"></i> &nbsp;Add Education &nbsp;<small class="text-grey-800">(All fields with an asterisk (*) are mandatory)</small>
         </h4>
     </div>
     <div class="modal-body">
@@ -63,12 +63,12 @@
                     </div>
                 </div>
                 <div id="InstitutionDD">
-                        <div class="required control-label text-semibold col-md-1">Institution</div>
-                        <div class="col-md-3">
-                            @Html.DropDownList("InstitutionID", null, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
-                        </div>
-                    
+                    <div class="required control-label text-semibold col-md-1">Institution</div>
+                    <div class="col-md-3">
+                        @Html.DropDownList("InstitutionID", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
+                    </div>
+
                 </div>
                 <div id="OtherInstitute">
                     <div class="required control-label text-semibold col-md-1"> Institute Name  </div>
@@ -93,7 +93,7 @@
                 </div>
                 <div class="col-md-4">
                     <label class="checkbox-inline checkbox-right text-semibold col-md-5" for="InProgress">
-                        @Html.CheckBox("InProgress", new { @class = "styled", @id = "InProgress",@name="InProgress" })
+                        @Html.CheckBox("InProgress", new { @class = "styled", @id = "InProgress", @name = "InProgress" })
                         @Html.ValidationMessageFor(model => model.InProgress, "", new { @class = "text-danger" })
                         In Progress
                     </label>
@@ -115,7 +115,7 @@
 
                 <div class="form-group col-md-3">
                     <label class="required text-semibold">Percentage</label>
-                    <div>@Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" , placeholder = "e.g 70%" } })</div>
+                    <div>@Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control", placeholder = "e.g 70%" } })</div>
                     @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
                 </div>
                 <div id="CGPATB">

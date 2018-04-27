@@ -75,10 +75,10 @@ namespace RMSSERVICES.Job
             vmJobDetail.CatagoryID = dbJobDetail.CatagoryID;
             vmJobDetail.CityID = dbJobDetail.CityID;
             vmJobDetail.DepatmentName = dbJobDetail.DepatmentName;
-            vmJobDetail.Description = dbJobDetail.Description;
-            vmJobDetail.Resposibilties = dbJobDetail.Resposibilties;
-            vmJobDetail.QualificationReq = dbJobDetail.QualificationReq;
-            vmJobDetail.SkillReq = dbJobDetail.SkillReq;
+            vmJobDetail.JobDescription= dbJobDetail.JobDescription;
+            vmJobDetail.PositionPurpose = dbJobDetail.PositionPurpose;
+            vmJobDetail.ExperienceAndQualification = dbJobDetail.ExperienceAndQualification;
+            vmJobDetail.SpecificRequirement = dbJobDetail.SpecificRequirement;
             if (dbAppliedJobs.Where(aa => aa.JobID == dbJobDetail.JobID).Count() > 0)
                 vmJobDetail.IsApplied = true;
             else
@@ -94,11 +94,11 @@ namespace RMSSERVICES.Job
             {
                 message = "Kindly enter your miscellaneous details in profile";
             }
-            Expression<Func<CompensationDetail, bool>> SpecificClient3 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (CompensationDetailRepository.FindBy(SpecificClient3).Count == 0)
-            {
-                message = "Kindly enter your compensation details in profile";
-            }
+            //Expression<Func<CompensationDetail, bool>> SpecificClient3 = c => c.CandidateID == LoggedInUser.CandidateID;
+            //if (CompensationDetailRepository.FindBy(SpecificClient3).Count == 0)
+            //{
+            //    message = "Kindly enter your compensation details in profile";
+            //}
             Expression<Func<ExperienceDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
             if (ExperienceDetailRepository.FindBy(SpecificClient2).Count == 0)
             {
@@ -129,10 +129,10 @@ namespace RMSSERVICES.Job
             vmJobDetail.LocName = dbJobDetail.LocName;
             vmJobDetail.CityID = dbJobDetail.CityID;
             vmJobDetail.CityName = dbJobDetail.CityName;
-            vmJobDetail.Description = dbJobDetail.Description;
-            vmJobDetail.Resposibilties = dbJobDetail.Resposibilties;
-            vmJobDetail.QualificationReq = dbJobDetail.QualificationReq;
-            vmJobDetail.SkillReq = dbJobDetail.SkillReq;
+            vmJobDetail.JobDescription = dbJobDetail.JobDescription;
+            vmJobDetail.PositionPurpose = dbJobDetail.PositionPurpose;
+            vmJobDetail.ExperienceAndQualification = dbJobDetail.ExperienceAndQualification;
+            vmJobDetail.SpecificRequirement = dbJobDetail.SpecificRequirement;
             return vmJobDetail;
         }
         //public List<VMOpenJobIndex> GetOpenJob(V_UserCandidate LoggedInUser)
@@ -174,7 +174,7 @@ namespace RMSSERVICES.Job
                 vmVAppliedJob.LocID = dbVAppliedJob.LocID;
                 vmVAppliedJob.LocName = dbVAppliedJob.LocName;
                 vmVAppliedJob.CompanyName = dbVAppliedJob.CompanyName;
-                vmVAppliedJob.Description = dbVAppliedJob.Description;
+                vmVAppliedJob.JobDescription = dbVAppliedJob.JobDescription;
                 vmVAppliedJobs.Add(vmVAppliedJob);
             }
             return vmVAppliedJobs.OrderByDescending(aa => aa.CreatedDate).ToList();
@@ -189,20 +189,20 @@ namespace RMSSERVICES.Job
                 VMOpenJobIndex vmOpenJobIndex = new VMOpenJobIndex();
                 vmOpenJobIndex.JobID = dbOpenJob.JobID;
                 vmOpenJobIndex.JobTitle = dbOpenJob.JobTitle;
-                vmOpenJobIndex.Description = dbOpenJob.Description;
+                vmOpenJobIndex.JobDescription = dbOpenJob.JobDescription;
                 vmOpenJobIndex.LocID = dbOpenJob.LocID;
                 vmOpenJobIndex.LocName = dbOpenJob.LocName;
                 vmOpenJobIndex.CityName = dbOpenJob.CityName;
                 vmOpenJobIndex.CreatedDate = dbOpenJob.CreatedDate;
                 vmOpenJobIndex.CompanyName = dbOpenJob.CompanyName;
                 vmOpenJobIndex.Experience = dbOpenJob.Experience;
-                vmOpenJobIndex.QualificationReq = dbOpenJob.QualificationReq;
-                vmOpenJobIndex.Resposibilties = dbOpenJob.Resposibilties;
+                vmOpenJobIndex.ExperienceAndQualification = dbOpenJob.ExperienceAndQualification;
+                vmOpenJobIndex.PositionPurpose = dbOpenJob.PositionPurpose;
                 vmOpenJobIndex.CatagoryID = dbOpenJob.CatagoryID;
                 vmOpenJobIndex.CatName = dbOpenJob.CatName;
                 vmOpenJobIndex.Status = dbOpenJob.Status;
                 vmOpenJobIndex.DepatmentName = dbOpenJob.DepatmentName;
-                vmOpenJobIndex.SkillReq = dbOpenJob.SkillReq;
+                vmOpenJobIndex.SpecificRequirement = dbOpenJob.SpecificRequirement;
 
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);

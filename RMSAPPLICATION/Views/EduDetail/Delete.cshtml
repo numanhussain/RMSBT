@@ -16,76 +16,119 @@
     @Html.HiddenFor(model => model.Percentage)
     @Html.HiddenFor(model => model.CGPA)
     @Html.HiddenFor(model => model.PassingYear)
-    <div class="modal-header bg-warning">
+    @Html.HiddenFor(model => model.InProgress)
+    <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Delete Education Detail
+            <i class="icon-menu7"></i> &nbsp;Delete Education
         </h4>
     </div>
     <div class="modal-body">
         <div class="form-horizontal">
-            <div class="col-md-12">
-                <dl class="dl-horizontal">
-                    <dt>
-                        @Html.DisplayNameFor(model => model.EduID)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.EduID)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CandidateID)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CandidateID)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.InstitutionID)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.InstitutionID)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.MajorSubject)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.MajorSubject)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.ObtainedMark)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.ObtainedMark)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.TotalMark)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.TotalMark)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.Percentage)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.Percentage)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.CGPA)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.CGPA)
-                    </dd>
-                    <dt>
-                        @Html.DisplayNameFor(model => model.PassingYear)
-                    </dt>
-                    <dd>
-                        @Html.DisplayFor(model => model.PassingYear)
-                    </dd>
-                </dl>
+            <div class="form-group">
+                <div class="required control-label col-md-1 text-semibold">Level</div>
+                <div class="col-md-3">
+                    @Html.DropDownList("DegreeLevelID", null, new { @class = "form-control" })
+                    @Html.HiddenFor(model => model.DegreeLevelID, new { id = "selectedDegreeLevelIDHidden" })
+                    <div class="small">
+                        @Html.ValidationMessageFor(model => model.DegreeLevelID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div id="DegreeTypeDD">
+                    <div class=" label-control text-semibold col-md-1">Degree Type</div>
+                    <div class="col-md-3">
+                        <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="DegreeTypeID" @*style=" width:300px;"*@ name="DegreeTypeID"></select>
+                        @Html.HiddenFor(model => model.DegreeTypeID, new { id = "selectedCityIdHidden" })
+                        @Html.ValidationMessageFor(model => model.DegreeTypeID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div id="DegreeTB">
+                    <div class="required label-control text-semibold col-md-1"> Degree Title  </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.DegreeTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
+                        <small class="text-grey-300">Example: BSc (Hon's) in CS</small>
+                        @Html.ValidationMessageFor(model => model.DegreeTitle, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div id="MajorSubjectDD">
+                    <div class="required control-label text-semibold col-md-1"> Major  </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.MajorSubject, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MajorSubject, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div id="InstitutionDD">
+                    <div class="control-label text-semibold col-md-1">Institution</div>
+                    <div class="col-md-3">
+                        @Html.DropDownList("InstitutionID", null, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div id="OtherInstitute">
+                    <div class="required label-control text-semibold col-md-1"> Institute Name  </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.OtherInstitute, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.OtherInstitute, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="required control-label col-md-1 text-semibold">Start&nbsp;Date</div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                </div>
+                <div id="hidedatediv">
+                    <div class="required control-label col-md-1 text-semibold">End&nbsp; Date</div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label class=" checkbox-inline checkbox-right text-semibold col-md-5" for="InProgress">
+                        @Html.CheckBox("InProgress", new { @class = "styled", @id = "InProgress" })
+                        @Html.ValidationMessageFor(model => model.InProgress, "", new { @class = "text-danger" })
+                        In Progress
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-group col-md-3">
+                    <label class="required text-semibold">Total Marks</label>
+                    <div>
+                        @Html.EditorFor(model => model.TotalMark, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalMark, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+                    <label class="required text-semibold">Obtained Marks</label>
+                    <div>@Html.EditorFor(model => model.ObtainedMark, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    @Html.ValidationMessageFor(model => model.ObtainedMark, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="form-group col-md-3">
+                    <label class="required text-semibold">Percentage</label>
+                    <div>@Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })</div>
+                    @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                </div>
+                <div id="CGPATB">
+                    <div class="form-group col-md-3">
+                        <label class="required text-semibold">CGPA</label>
+                        <div>
+                            @Html.EditorFor(model => model.CGPA, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CGPA, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>
+        <label class="text-black">Are you sure you want to delete?</label>
+        &nbsp;&nbsp;
+        <button type="button" id="btnGetEdit"  class="btn btn-info" onclick="EduDetailGetEdit(@Model.EduID)">Back</button>
+        @*<button type="button" class=" btn btn-primary bg-primary-300" name="Close" data-dismiss="modal">Close</button>*@
         <button type="button" id="btnDeletePost" class="btn btn-danger " value="Save">Delete</button>
         @*<button type="button" id="btnPostDelete" class="btn btn-success bg-success-800" value="Delete">Delete</button>*@
     </div>
@@ -93,5 +136,8 @@
 <script type="text/javascript">
     $(document).ready(function () {
         EduDetailPostDelete(@Model.CandidateID);
+        DegreeChange();
+        InstituteChange();
+        LoadDegreeTypeDD();
     });
 </script>

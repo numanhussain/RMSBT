@@ -51,6 +51,7 @@ function EduDetailPostCreate(id) {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 6000
                     });
                 }
                 else {
@@ -219,7 +220,7 @@ function ShowHide() {
             $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
-            $("#marksdiv").hide();
+            $("#marksdiv").show();
             break;
         case "7":
             $("#DegreeTitleTB").show();
@@ -277,7 +278,7 @@ function InstituteChange() {
 }
 function ShowInstituteHide() {
     $("#OtherInstitute").hide();
-    if ($("#InstitutionID").val() == 150) {
+    if ($("#InstitutionID").val() == 148) {
         $("#OtherInstitute").show();
     }
 }
@@ -290,7 +291,6 @@ function LoadDegreeTypeDD() {
         var items;
         if (document.getElementById("selectedCityIdHidden").value != null)
             var selectedItemID = document.getElementById("selectedCityIdHidden").value;
-
         $.each(data, function (i, state) {
             if (state.Value == selectedItemID)
                 items += "<option selected value='" + state.Value + "'>" + state.Text + "</option>";

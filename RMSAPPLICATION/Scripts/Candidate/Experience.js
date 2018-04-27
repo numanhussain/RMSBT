@@ -48,6 +48,7 @@ function ExperienceDetailPostCreate(id) {
                         header: '',
                         position: 'center',
                         theme: 'bg-success-400',
+                        life: 6000
                     });
                     LoadPVExperienceDetailIndex(id)
                 }
@@ -161,4 +162,11 @@ function HaveExperience() {
             }
         });
     });
+}
+function FormControlsScriptEdit(model) {
+    if (model.ContactEmployer == true) {
+        $('input:radio[id=ContactEmployerYes]').prop('checked', true);
+    } if (model.ContactEmployer == false) {
+        $('input:radio[id=ContactEmployerNo]').prop('checked', true);
+    }
 }
