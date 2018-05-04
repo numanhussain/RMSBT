@@ -51,6 +51,7 @@ namespace RMSSERVICES.Education
                 vmEduDetail.DegreeTypeName = dbEduDetail.EduTypeName;
                 vmEduDetail.InProgress = dbEduDetail.InProgress;
                 vmEduDetail.CGPA = dbEduDetail.CGPA;
+
                 vmEduDetails.Add(vmEduDetail);
             }
             return vmEduDetails.OrderByDescending(aa => aa.EndDate).ToList();
@@ -97,6 +98,7 @@ namespace RMSSERVICES.Education
             vmEduDetail.InProgress = dbEduDetail.InProgress;
             vmEduDetail.DegreeTypeID = dbEduDetail.DegreeTypeID;
             vmEduDetail.DegreeLevelID = dbEduDetail.DegreeLevelID;
+            vmEduDetail.OtherDegreeType = dbEduDetail.OtherDegreeType;
             return vmEduDetail;
         }
         public ServiceMessage PostEdit(VMEduDetailOperation obj)
@@ -128,6 +130,7 @@ namespace RMSSERVICES.Education
             obj.OtherInstitute = dbEduDetail.OtherInstitute;
             obj.InProgress = dbEduDetail.InProgress;
             obj.DegreeTypeID = dbEduDetail.DegreeTypeID;
+            obj.OtherDegreeType = dbEduDetail.OtherDegreeType;
             return obj;
         }
         public ServiceMessage PostDelete(VMEduDetailOperation vmOperation)
@@ -160,6 +163,7 @@ namespace RMSSERVICES.Education
             dbEdudetail.OtherInstitute = obj.OtherInstitute;
             dbEdudetail.InProgress = obj.InProgress;
             dbEdudetail.DegreeTypeID = obj.DegreeTypeID;
+            dbEdudetail.OtherDegreeType = obj.OtherDegreeType;
             return dbEdudetail;
         }
     }

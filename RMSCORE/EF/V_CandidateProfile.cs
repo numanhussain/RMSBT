@@ -44,5 +44,8 @@ namespace RMSCORE.EF
         public Nullable<int> CategoryID { get; set; }
         public Nullable<int> AreaOfInterestID { get; set; }
         public string AreaOfInterestName { get; set; }
+        public string OtherCityName { get; set; }
+        public Nullable<int> SalutationID { get; set; }
+        public string SalutationName { get; set; }
     }
 }

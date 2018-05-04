@@ -83,7 +83,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Login(User Obj)
         {
             if (Obj.UserName == null || Obj.UserName == "")
-                ModelState.AddModelError("UserName", "Mandatory !!");
+                ModelState.AddModelError("UserName", "Mandatory");
             if (Obj.UserName != null)
             {
                 Match match = Regex.Match(Obj.UserName, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
@@ -127,6 +127,7 @@ namespace RMSAPPLICATION.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterUser(User Obj)
         {
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (Obj.Password != Obj.RetypePassword)
             {
                 return RedirectToAction("RegisterUser");
@@ -139,7 +140,7 @@ namespace RMSAPPLICATION.Controllers
                     Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
                     if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
                     {
-                        UserService.RegisterUser(Obj);
+                        UserService.RegisterUser(Obj,vmf);
                         var code = Obj.SecurityLink;
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
                         EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +

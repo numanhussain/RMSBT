@@ -14,46 +14,98 @@
                 <h3 class="text-black">
                     <i class="icon-stairs-up"></i>&nbsp;&nbsp;Experience
                 </h3>
-                <div class="col-md-6 pull-left">
-                    <div class="control-label col-md-7 text-semibold">Do you have any working experience?</div>
-                    @if (LoggedInUser.HaveExperience == true)
-                    {
-                        <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
-                                @Html.RadioButton("HaveExperience", "ContactEmployerYes", new { @checked = "checked", @id = "ContactEmployerYes" })
-                                Yes
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="radio-inline text-semibold">
-                                @Html.RadioButton("HaveExperience", "ContactEmployerNo", new { @class = "checked", @id = "ContactEmployerNo" })
-                                No
-                            </label>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="col-md-2">
-                            <div class="radio-inline text-semibold">
-                                @Html.RadioButton("ContactSelection", "ContactEmployerYes", new { @checked = "checked", @id = "ContactEmployerYes" })
-                                Yes
-                            </div>
-                        </div>
+                @*<div class="col-md-6 pull-left">
+                        <label class=" checkbox-inline checkbox-right text-semibold col-md-6" for="HaveExperience">
+                            @if (LoggedInUser.HaveExperience == true)
+                            {@Html.CheckBox("HaveExperience", new { @class = "styled", @id = "HaveExperience", @checked = "checked" })}
+                        else
+                        { @Html.CheckBox("HaveExperience", new { @class = "styled", @id = "HaveExperience" })}
+
+                            Do have any working experience?
+                        </label>
+                    </div>*@
+
+                <div class="form-group ">
+                    <div class="col-md-12">
                         <div class="col-md-4">
+                            <label class="control-label text-semibold">Do you have any working experience?</label>
+                        </div>
+                        <div class="col-md-1">
                             <label class="radio-inline text-semibold">
-                                @Html.RadioButton("ContactSelection", "ContactEmployerNo", new { @class = "checked", @id = "ContactEmployerNo" })
+                                @Html.RadioButton("ExperienceSelection", "HaveExperienceYes", new { @checked = "checked", @id = "HaveExperienceYes" })
+                                Yes
+                            </label>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="radio-inline text-semibold">
+                                @Html.RadioButton("ExperienceSelection", "HaveExperienceNo", new { @id = "HaveExperienceNo" })
                                 No
                             </label>
                         </div>
-                    }
+                        @if (LoggedInUser.HaveExperience == true)
+                        {
+                            using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+                            {
+                                <div class="col-md-1 text-semibold">
+                                    <label class="control-label">Experience </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
+                                </div>
+                                <div class="col-md-2 text-semibold">
+                                    <label class="control-label">Cement Experience </label>
+                                </div>
+                                <div class="col-md-1">
+                                    <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
+                                </div>
+                                <div class="col-md-1">
+                                    <button type="button" id="btnPostCreate" class="btn btn-success" style="font-family:'Times New Roman'" value="Save">Save</button>
+                                </div>
+                            }
+                        }
+                    </div>
                 </div>
+
+                @*<div class="col-md-6 pull-left">
+                    <div class="control-label col-md-7 text-semibold">Do you have any working experience?</div>
+                    <div class="col-md-2">
+                        <div class="radio-inline text-semibold">
+                            @Html.RadioButton("ExperienceSelection", "HaveExperienceYes", new { @checked = "checked", @id = "HaveExperienceYes" })
+                            Yes
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="radio-inline text-semibold">
+                            @Html.RadioButton("ExperienceSelection", "HaveExperienceNo", new { @id = "HaveExperienceNo" })
+                            No
+                        </label>
+                    </div>
+                </div>*@
             </div>
+            @*@if (LoggedInUser.HaveExperience == true)
+            {
+                using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+                {
+                    <div class="form-group">
+                        <div class="col-md-2">
+                            <label class="control-label">Experience </label>
+                            <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
+                        </div>
+                        <div class="col-md-2">
+                            <label class="control-label">Cement Experience </label>
+                            <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>
+                        </div>
+                    </div>
+                }
+            }*@
         </div>
     </div>
     <!-- Page content -->
     <!-- Main content -->
     <!-- Basic datatable -->
-
     if (LoggedInUser.HaveExperience == true)
     {
         <div class="panel panel-flat">
@@ -61,7 +113,7 @@
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb-elements pull-left bg-green-800" style="margin-left:-20px">
                     <li>
-                        <a href="#" id="ExperienceGetCreate"><i class="icon-add"></i> Add New Experience</a>
+                        <a href="#" id="ExperienceGetCreate"><i class="icon-add"></i> Add Job Detail</a>
                     </li>
                 </ul>
             </div>
@@ -138,32 +190,21 @@
                     }
                 </tbody>
             </table>
-            <div class="btn btn-toolbar pull-right">
-                <button type="button" onclick="MiscellaneousGetCreate()" class="btn btn-success">Previous</button>
-                <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn btn-success">Next</button>
-            </div>
         </div>
     }
+
+    <div class="btn btn-toolbar pull-right">
+        <button type="button" onclick="LoadPVEduDetailIndex()" class="btn btn-success icon-arrow-left15">Previous</button>
+        <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn btn-success icon-arrow-right15">Next</button>
+    </div>
+
 }
 <script type="text/javascript" src="~/Scripts/Candidate/Experience.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
         ExperienceDetailGetCreate();
+        PostIndex();
         HaveExperience();
-        ////if (document.getElementById('HaveExperience').checked) {
-        ////    $("#hv4").show();
-        ////}
-        //else {
-        //    $("#hv4").hide();
-        //}
-        //Worked Before Selected
-        $('#HaveExperience').click(function () {
-            if ($(this).is(":checked")) {
-                $("#hv4").show();
-            }
-            else {
-                $("#hv4").hide();
-            }
-        });
+        LoadExperienceRadioButtons('@LoggedInUser.HaveExperience',@LoggedInUser.CandidateID);
     });
 </script>

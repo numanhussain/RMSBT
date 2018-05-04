@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RMSCORE.EF;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,5 +32,10 @@ namespace RMSCORE.Models.Main
         public string AreaofInterest { get; set; }
         public string ReasonOfLeaving { get; set; }
         public string SupervisorName { get; set; }
+        public string HaveExperienceYes { get; set; }
+        public string HaveExperienceNo { get; set; }
+        public int? Experience { get; set; }
+        public int? CementExperience { get; set; }
+        public MiscellaneousDetail MiscellaneousDetail { get; set; }
     }
 }

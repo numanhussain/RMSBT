@@ -30,9 +30,9 @@ namespace RMSCORE.EF
         public string OtherInstitute { get; set; }
         public Nullable<bool> InProgress { get; set; }
         public Nullable<int> DegreeTypeID { get; set; }
+        public string OtherDegreeType { get; set; }
     
         public virtual Candidate Candidate { get; set; }
         public virtual EduDegreeLevel EduDegreeLevel { get; set; }
-        public virtual EduInstitute EduInstitute { get; set; }
     }
 }

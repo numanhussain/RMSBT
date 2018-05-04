@@ -14,7 +14,6 @@
     @Html.HiddenFor(model => model.StartDate)
     @Html.HiddenFor(model => model.EndDate)
     @Html.HiddenFor(model => model.EmployerName)
-    @Html.HiddenFor(model => model.CityID)
     @Html.HiddenFor(model => model.Address)
     @Html.HiddenFor(model => model.CurrentlyWorking)
     @Html.HiddenFor(model => model.Responsibility1)
@@ -25,10 +24,11 @@
     @Html.HiddenFor(model => model.ContactEmployerNo)
     @Html.HiddenFor(model => model.ReasonOfLeaving)
     @Html.HiddenFor(model => model.SupervisorName)
+    @Html.HiddenFor(model => model.CountryID)
     <div class="modal-header bg-blue">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
-            <i class="icon-menu7"></i> &nbsp;Delete Experience
+            <i class="icon-menu7"></i> &nbsp;Delete Job Detail
         </h4>
     </div>
     <div class="modal-body">
@@ -85,22 +85,31 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-2 text-semibold">Reason of Leaving</div>
-                <div class="col-md-6">
-                    @Html.EditorFor(model => model.ReasonOfLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
+                <div id="hidereasonofleaving">
+                    <div class="control-label col-md-1 text-semibold">Reason of Leaving</div>
+                    <div class="col-md-5">
+                        @Html.TextAreaFor(model => model.ReasonOfLeaving, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div class="control-label col-md-1 text-semibold text-right">City</div>
-                <div class="col-md-3">
-                    @Html.DropDownList("CityID", null, new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
+                <div class="control-label col-md-1 text-semibold text-left">Address</div>
+                <div class="col-md-5">
+                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="form-group">
-                <div class="control-label col-md-2 text-semibold text-left">Address</div>
-                <div class="col-md-6">
-                    @Html.TextAreaFor(model => model.Address, new { @class = "form-control", @cols = 5, @rows = 2 })
-                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                <div class="control-label col-md-1 text-semibold text-right">Country</div>
+                <div class="col-md-3">
+                    @Html.DropDownList("CountryID", null, new { @class = "form-control" })
+                    @Html.HiddenFor(model => model.CountryID, new { id = "selectedCountryIDHidden" })
+                    @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
+                </div>
+                <div class="control-label col-md-1 text-semibold text-right">City</div>
+                <div class="col-md-3">
+                    <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" name="CityID"></select>
+                    @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
+                    @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
                 </div>
             </div>
             <div class="col-md-12 form-group">
@@ -160,8 +169,9 @@
             var model = {
                "ContactEmployerYes": @Html.Raw(Json.Encode(Model.ContactEmployerYes)),
                 "ContactEmployerNo": @Html.Raw(Json.Encode(Model.ContactEmployerNo)),
-                };
+            };
+            LoadDD2();
         ExperienceDetailPostDelete(@Model.CandidateID);
-        FormControlsScriptEditExperieince(model);
+        FormControlsScriptEditExperience('@Model.ContactEmployerYes', '@Model.ContactEmployerNo');
     });
 </script>

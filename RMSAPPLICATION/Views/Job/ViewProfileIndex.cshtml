@@ -36,6 +36,7 @@
                                             <div>
                                                 <label class="text-semibold">Name</label>
                                             </div>
+                                            @Html.DisplayFor(model => model.PersonalDetails.SalutationName, new { @class = "form-control " })
                                             @Html.DisplayFor(model => model.PersonalDetails.CName, new { @class = "form-control " })
                                         </div>
                                         <div class="form-group col-md-3">
@@ -94,7 +95,7 @@
                                             <div>
                                                 <label class="text-semibold">Area Of Interest</label>
                                             </div>
-                                            @Html.DisplayFor(model => model.PersonalDetails.ExpIndustryName, new { @class = "form-control " })
+                                            @Html.DisplayFor(model => model.PersonalDetails.AreaOfInterestName, new { @class = "form-control " })
                                         </div>
 
                                         <div class="form-group col-md-3">
@@ -461,9 +462,9 @@
                                     </div>
                                     <div class="form-group col-md-2">
                                         <div>
-                                            <label class="text-semibold">Monthly Basic Salary</label>
+                                            <label class="text-semibold">Monthly Gross Salary</label>
                                         </div>
-                                        @Html.DisplayFor(model => model.MiscellaneousDetails.MBSalary, new { @class = "form-control " })
+                                        @Html.DisplayFor(model => model.MiscellaneousDetails.MGSalary, new { @class = "form-control " })
                                     </div>
                                     <div class="form-group col-md-2">
                                         <div>
@@ -708,7 +709,7 @@
             <!-- /basic tabs -->
             <div class="row" id="declarationdivhide">
                 <h4><a id="OfficialInfo" class="text-black">Declaration:</a></h4>
-                <div class="label label-lg label-info arrowed-right">
+                <div class="text-black">
                     <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
                 </div>
                 <p class="text-highlight">

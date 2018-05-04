@@ -25,7 +25,7 @@ namespace RMSCORE.EF
         public string Address { get; set; }
         public int CandidateID { get; set; }
         public Nullable<int> IndustryID { get; set; }
-        public string Country { get; set; }
+        public Nullable<int> CountryID { get; set; }
         public string Responsibility1 { get; set; }
         public string Responsibility2 { get; set; }
         public string Responsibility3 { get; set; }
@@ -34,5 +34,6 @@ namespace RMSCORE.EF
         public string AreaofInterest { get; set; }
         public string ReasonOfLeaving { get; set; }
         public string SupervisorName { get; set; }
+        public string OtherCity { get; set; }
     }
 }

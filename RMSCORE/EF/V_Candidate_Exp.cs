@@ -26,17 +26,19 @@ namespace RMSCORE.EF
         public string CName { get; set; }
         public Nullable<int> IndustryID { get; set; }
         public string ExpIndustryName { get; set; }
-        public string Country { get; set; }
         public string Responsibility1 { get; set; }
         public string Responsibility2 { get; set; }
         public string Responsibility3 { get; set; }
-        public Nullable<int> CityID { get; set; }
         public string CityName { get; set; }
+        public Nullable<int> CityID { get; set; }
         public Nullable<int> CareerLevelID { get; set; }
         public string CareerLevelName { get; set; }
         public Nullable<bool> ContactEmployer { get; set; }
         public string AreaofInterest { get; set; }
         public string ReasonOfLeaving { get; set; }
         public string SupervisorName { get; set; }
+        public string OtherCity { get; set; }
+        public Nullable<int> CountryID { get; set; }
+        public string CountryName { get; set; }
     }
 }

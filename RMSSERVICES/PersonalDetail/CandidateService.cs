@@ -58,7 +58,6 @@ namespace RMSSERVICES.PersonalDetail
         {
             Candidate dbCandidate = CandidateRepository.GetSingle(cid);
             dbCandidate.UserID = uid;
-
             return dbCandidate;
         }
         public ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser)
@@ -99,6 +98,8 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.LandlineNo = dbOperation.LandlineNo;
             dbCandidate.ReligionID = dbOperation.ReligionID;
             dbCandidate.AreaOfInterestID = dbOperation.AreaOfInterestID;
+            dbCandidate.OtherCityName = dbOperation.OtherCityName;
+            dbCandidate.SalutationID = dbOperation.SalutationID;
             return dbCandidate;
         }
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)

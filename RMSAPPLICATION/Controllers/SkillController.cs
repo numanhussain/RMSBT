@@ -48,11 +48,11 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.SkillTitle == null || obj.SkillTitle == "")
-                ModelState.AddModelError("SkillTitle", "Mandatory !!");
+                ModelState.AddModelError("SkillTitle", "Mandatory ");
             if (obj.SLevelID == 0)
-                ModelState.AddModelError("SLevelID", "Mandatory !!");
+                ModelState.AddModelError("SLevelID", "Mandatory ");
             if (obj.Description == null || obj.Description == "")
-                ModelState.AddModelError("Description", "Mandatory !!");
+                ModelState.AddModelError("Description", "Mandatory ");
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostCreate(obj);
@@ -72,11 +72,11 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(VMSkillOperation obj)
         {
             if (obj.SkillTitle == null || obj.SkillTitle == "")
-                ModelState.AddModelError("SkillTitle", "Mandatory !!");
+                ModelState.AddModelError("SkillTitle", "Mandatory ");
             if (obj.SLevelID == 0)
-                ModelState.AddModelError("SLevelID", "Mandatory !!");
+                ModelState.AddModelError("SLevelID", "Mandatory ");
             if (obj.Description == null || obj.Description == "")
-                ModelState.AddModelError("Description", "Mandatory !!");
+                ModelState.AddModelError("Description", "Mandatory ");
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostEdit(obj);

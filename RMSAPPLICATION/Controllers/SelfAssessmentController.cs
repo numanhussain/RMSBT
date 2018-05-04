@@ -36,32 +36,32 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (dbOperation.Objective == null || dbOperation.Objective == "")
-                ModelState.AddModelError("Objective", "Mandatory !!");
+                ModelState.AddModelError("Objective", "Mandatory ");
             if (dbOperation.Strengths == null || dbOperation.Strengths == "")
-                ModelState.AddModelError("Strengths", "Mandatory !!");
+                ModelState.AddModelError("Strengths", "Mandatory ");
             if (dbOperation.AreaOfImprovement == null || dbOperation.AreaOfImprovement == "")
-                ModelState.AddModelError("AreaOfImprovement", "Mandatory !!");
+                ModelState.AddModelError("AreaOfImprovement", "Mandatory ");
             if (dbOperation.MeetRequirements == null || dbOperation.MeetRequirements == "")
-                ModelState.AddModelError("MeetRequirements", "Mandatory !!");
+                ModelState.AddModelError("MeetRequirements", "Mandatory ");
             if (dbOperation.Objective != null)
             {
                 if (dbOperation.Objective.Length > 250)
-                    ModelState.AddModelError("Objective ", "String length exceeds!");
+                    ModelState.AddModelError("Objective ", "String length exceeds");
             }
             if (dbOperation.Strengths != null)
             {
                 if (dbOperation.Strengths.Length > 250)
-                    ModelState.AddModelError("Strengths", "String length exceeds!");
+                    ModelState.AddModelError("Strengths", "String length exceeds");
             }
             if (dbOperation.AreaOfImprovement != null)
             {
                 if (dbOperation.AreaOfImprovement.Length > 250)
-                    ModelState.AddModelError("AreaOfImprovement", "String length exceeds!");
+                    ModelState.AddModelError("AreaOfImprovement", "String length exceeds");
             }
             if (dbOperation.MeetRequirements != null)
             {
                 if (dbOperation.MeetRequirements.Length > 250)
-                    ModelState.AddModelError("MeetRequirements", "String length exceeds!");
+                    ModelState.AddModelError("MeetRequirements", "String length exceeds");
             }
             if (ModelState.IsValid)
             {

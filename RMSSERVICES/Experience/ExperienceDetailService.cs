@@ -19,19 +19,22 @@ namespace RMSSERVICES.Experience
         IRepository<ExperienceDetail> ExperienceRepository;
         IRepository<Candidate> CandidateRepository;
         IRepository<User> UserRepository;
-        public ExperienceDetailService(IUnitOfWork unitOfWork, IRepository<V_Candidate_Exp> experiencedetailRepository, IRepository<ExperienceDetail> experienceRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository)
+        IRepository<MiscellaneousDetail> MiscellaneousRepository;
+        public ExperienceDetailService(IUnitOfWork unitOfWork, IRepository<V_Candidate_Exp> experiencedetailRepository, IRepository<ExperienceDetail> experienceRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository,
+            IRepository<MiscellaneousDetail> miscellaneousRepository)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
             ExperienceDetailRepository = experiencedetailRepository;
             ExperienceRepository = experienceRepository;
             UserRepository = userRepository;
+            MiscellaneousRepository = miscellaneousRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
         public List<VMExperienceIndex> GetIndex(int cid)
         {
-            Expression<Func<Candidate, bool>> HaveExperience= c => c.CandidateID == cid;
+            Expression<Func<Candidate, bool>> HaveExperience = c => c.CandidateID == cid;
             Candidate dbCandidates = CandidateRepository.GetSingle(cid);
             Expression<Func<V_Candidate_Exp, bool>> SpecificCandidateExperience = c => c.CandidateID == cid;
             List<V_Candidate_Exp> dbVExperienceDetails = ExperienceDetailRepository.FindBy(SpecificCandidateExperience);
@@ -61,6 +64,7 @@ namespace RMSSERVICES.Experience
                 vmExperienceDetail.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
                 vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
                 vmExperienceDetail.CareerLevelID = dbExperienceDetail.CareerLevelID;
+                //vmExperienceDetail.Experience=dbCementExperienceDetail.
                 vmExperienceDetails.Add(vmExperienceDetail);
             }
             return vmExperienceDetails.OrderByDescending(aa => aa.ExpID).ToList();
@@ -71,7 +75,7 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.CandidateID = id;
             return vmExperienceDetail;
         }
-        public ServiceMessage PostCreate(VMExperienceOperation obj,V_UserCandidate LoggedInUser)
+        public ServiceMessage PostCreate(VMExperienceOperation obj, V_UserCandidate LoggedInUser)
         {
             Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
             List<User> images = UserRepository.FindBy(SpecificEntries);
@@ -104,7 +108,7 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.EmployerName = dbExperienceDetail.EmployerName;
             vmExperienceDetail.CandidateID = dbExperienceDetail.CandidateID;
             vmExperienceDetail.IndustryID = dbExperienceDetail.IndustryID;
-            if (dbExperienceDetail.ContactEmployer== true)
+            if (dbExperienceDetail.ContactEmployer == true)
             {
 
                 vmExperienceDetail.ContactEmployerYes = "YES";
@@ -117,6 +121,8 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
             vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
             vmExperienceDetail.CareerLevelID = dbExperienceDetail.CareerLevelID;
+            vmExperienceDetail.CountryID = dbExperienceDetail.CountryID;
+            vmExperienceDetail.OtherCityName = dbExperienceDetail.OtherCity;
             return vmExperienceDetail;
         }
         public ServiceMessage PostEdit(VMExperienceOperation obj)
@@ -146,19 +152,21 @@ namespace RMSSERVICES.Experience
             obj.EmployerName = dbExperienceDetail.EmployerName;
             obj.CandidateID = dbExperienceDetail.CandidateID;
             obj.IndustryID = dbExperienceDetail.IndustryID;
-            if (obj.ContactEmployerYes == "YES")
+            if (dbExperienceDetail.ContactEmployer == true)
             {
 
-                //dbExperiencedetail.ContactEmployer = true;
+                obj.ContactEmployerYes = "YES";
             }
             else
             {
-                //dbExperiencedetail.ContactEmployer = false;
+                obj.ContactEmployerNo = "NO";
             }
             obj.AreaofInterest = dbExperienceDetail.AreaofInterest;
             obj.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
             obj.SupervisorName = dbExperienceDetail.SupervisorName;
             obj.CareerLevelID = dbExperienceDetail.CareerLevelID;
+            obj.CountryID = dbExperienceDetail.CountryID;
+            obj.OtherCityName = dbExperienceDetail.OtherCity;
             return obj;
         }
         public ServiceMessage PostDelete(VMExperienceOperation obj)
@@ -170,6 +178,32 @@ namespace RMSSERVICES.Experience
                 ExperienceRepository.Delete(dbExperienceDetail);
                 ExperienceRepository.Save();
             }
+            return new ServiceMessage();
+        }
+        public ServiceMessage PostIndex(int? TotalExp, int? CementExp, V_UserCandidate LoggedInUser)
+        {
+            Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
+            List<MiscellaneousDetail> dbVRMPositions = MiscellaneousRepository.FindBy(SpecificClient);
+            MiscellaneousDetail dbCementExp = new MiscellaneousDetail();
+            if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
+            {
+                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
+                dbCementExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
+                dbCementExp.CandidateID = LoggedInUser.CandidateID;
+                dbCementExp.TotalExp = TotalExp;
+                dbCementExp.CementExp = CementExp;
+                MiscellaneousRepository.Edit(dbCementExp);
+                MiscellaneousRepository.Save();
+            }
+            else
+            {
+                dbCementExp.CandidateID = LoggedInUser.CandidateID;
+                dbCementExp.TotalExp = TotalExp;
+                dbCementExp.CementExp = CementExp;
+                MiscellaneousRepository.Add(dbCementExp);
+                MiscellaneousRepository.Save();
+            }
+
             return new ServiceMessage();
         }
         #endregion
@@ -204,6 +238,8 @@ namespace RMSSERVICES.Experience
             dbExperiencedetail.ReasonOfLeaving = obj.ReasonOfLeaving;
             dbExperiencedetail.SupervisorName = obj.SupervisorName;
             dbExperiencedetail.CareerLevelID = obj.CareerLevelID;
+            dbExperiencedetail.CountryID = obj.CountryID;
+            dbExperiencedetail.OtherCity = obj.OtherCityName;
             return dbExperiencedetail;
         }
         #endregion

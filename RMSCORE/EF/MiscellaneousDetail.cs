@@ -44,7 +44,12 @@ namespace RMSCORE.EF
         public string HearAboutDetail { get; set; }
         public Nullable<bool> InternshipRequirement { get; set; }
         public string InternshipDuration { get; set; }
-        public string MBSalary { get; set; }
+        public string MGSalary { get; set; }
         public Nullable<int> ExpectedSalary { get; set; }
+        public Nullable<bool> UploadCV { get; set; }
+        public Nullable<System.DateTime> DateCompleted { get; set; }
+        public Nullable<int> BloodGroupID { get; set; }
+        public Nullable<int> MaritalStatusID { get; set; }
+        public Nullable<int> ReligionID { get; set; }
     }
 }

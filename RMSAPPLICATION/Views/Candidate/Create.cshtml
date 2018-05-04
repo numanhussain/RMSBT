@@ -7,6 +7,24 @@
     @Html.HiddenFor(model => model.UserID)
     <!-- Page container -->
     <head>
+        @*<script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/core/libraries/bootstrap.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/blockui.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
+            <!-- /core JS files -->
+            <!-- Theme JS files -->
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/jgrowl.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/moment/moment.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/daterangepicker.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/anytime.min.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/picker.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/picker.date.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/picker.time.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/legacy.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+            <script type="text/javascript" src="~/Theme/assets/js/pages/picker_date.js"></script>*@
         <style>
             .panel-body {
                 background-color: white;
@@ -22,7 +40,7 @@
     <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Detail&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Details&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
             </div>
         </div>
         <div class="panel panel-flat">
@@ -36,7 +54,16 @@
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-1">
+                        <div>
+                            <label class="required control-label text-semibold">Religion</label>
+                            @Html.DropDownList("SalutationID", null, new { @class = "form-control" })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.SalutationID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
                         <div>
                             <label class=" required control-label text-semibold">Name</label>
                             @Html.TextBoxFor(model => model.CName, new { @class = "form-control " })
@@ -56,7 +83,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <div>
-                            <label class="required control-label text-semibold">CNIC/Passport No</label>
+                            <label class="required control-label text-semibold">CNIC/Passport No.</label>
                             @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control", placeholder = "xxxxx-xxxxxxx-x" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CNICNo, "", new { @class = "text-danger" })
@@ -85,35 +112,6 @@
                             @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-2">
-                        <div>
-                            <label class=" required control-label text-semibold">Marital Status</label>
-                            @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
-                        </div>
-                        <div class="small">
-                            @Html.ValidationMessageFor(model => model.MartialStatusID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <div>
-                            <label class="required control-label text-semibold">Religion</label>
-                            @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
-                        </div>
-                        <div class="small">
-                            @Html.ValidationMessageFor(model => model.ReligionID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="form-group col-md-3">
-                        <div>
-                            <label class="control-label text-semibold">Blood Group</label>
-                            @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
-                        </div>
-                        <div class="small">
-                            @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Area of interest</label>
@@ -132,6 +130,35 @@
                             @Html.ValidationMessageFor(model => model.DomicileCityID, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    @*<div class="form-group col-md-2">
+                            <div>
+                                <label class=" required control-label text-semibold">Marital Status</label>
+                                @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
+                            </div>
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.MartialStatusID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <div>
+                                <label class="required control-label text-semibold">Religion</label>
+                                @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
+                            </div>
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.ReligionID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-3">
+                            <div>
+                                <label class="control-label text-semibold">Blood Group</label>
+                                @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
+                            </div>
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>*@
+                </div>
+                <div class="row">
                     <div class="form-group col-md-6">
                         <div>
                             <label class="required required control-label text-semibold">Address</label>
@@ -141,8 +168,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Country</label>
@@ -153,7 +178,7 @@
                             @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-3" id="CityDivHide">
                         <div>
                             <label class="required control-label text-semibold">City</label>
                             <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" name="CityID"></select>
@@ -163,6 +188,17 @@
                             @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
                         </div>
                     </div>
+                    <div class="form-group col-md-3" id="OtherCityDivHide">
+                        <div>
+                            <label class="required control-label text-semibold">City </label>
+                            @Html.EditorFor(model => model.OtherCityName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.OtherCityName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Nationality</label>
@@ -172,8 +208,6 @@
                             @Html.ValidationMessageFor(model => model.NationalityCountryID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Landline #</label>
@@ -211,9 +245,9 @@
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 <div class="heading-elements">
-                    <button type="button" onclick="LoadPVEduDetailIndex(@Model.CandidateID)" class="btn btn-success heading-btn pull-right">Next</button>
+                    <button type="button" onclick="LoadPVEduDetailIndex(@Model.CandidateID)" class="btn btn-success heading-btn pull-right icon-arrow-right15">Next</button>
                     @*<button type="button" id="btnPostEdit" class="btn btn-success bg-success-800 pull" value="Save">Save</button>*@
-                    <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right">Save</button>
+                    <button type="button" id="btnPostCreate" class="btn btn-success heading-btn pull-right" style="font-family:'Times New Roman'">Save</button>
                 </div>
             </div>
         </div>
@@ -222,7 +256,6 @@
         <!-- /page content -->
     </div>
 }
-
 <script type="text/javascript">
     $(document).ready(function () {
         SavePersonalInfoFunction();

@@ -45,51 +45,51 @@ namespace RMSAPPLICATION.Controllers
             ReadFromRadioButton(obj);
             RemoveCheckboxValues(obj);
             if (obj.MBSalary == null || obj.MBSalary == "")
-                ModelState.AddModelError("MBSalary", "Mandatory !!");
+                ModelState.AddModelError("MBSalary", "Mandatory ");
             if (obj.MGSalary == null || obj.MGSalary == "")
-                ModelState.AddModelError("MGSalary", "Mandatory !!");
+                ModelState.AddModelError("MGSalary", "Mandatory ");
             if (obj.Bonus == true && obj.BonusPerYear == null)
-                ModelState.AddModelError("BonusPerYear", "Mandatory !!");
+                ModelState.AddModelError("BonusPerYear", "Mandatory ");
             if (obj.LFA == true && obj.LFAPerYear == null)
-                ModelState.AddModelError("LFAPerYear", "Mandatory !!");
+                ModelState.AddModelError("LFAPerYear", "Mandatory ");
             if (obj.ProvidentFund == true && obj.ProvidentFundPerYear == null)
-                ModelState.AddModelError("ProvidentFundPerYear", "Mandatory !!");
+                ModelState.AddModelError("ProvidentFundPerYear", "Mandatory ");
             if (obj.TransportAllowence == null)
-                ModelState.AddModelError("TransportAllowence", "Mandatory !!");
+                ModelState.AddModelError("TransportAllowence", "Mandatory");
             if (obj.CarEntitlement == null || obj.CarEntitlement == "")
-                ModelState.AddModelError("CarEntitlement", "Mandatory !!");
+                ModelState.AddModelError("CarEntitlement", "Mandatory ");
             if (obj.BuyBackOption == true && obj.SpecifyYears == null)
-                ModelState.AddModelError("SpecifyYears", "Mandatory !!");
+                ModelState.AddModelError("SpecifyYears", "Mandatory ");
             if (obj.FuelAllowance == null)
-                ModelState.AddModelError("FuelAllowance", "Mandatory !!");
+                ModelState.AddModelError("FuelAllowance", "Mandatory ");
             if (obj.AccomdAllowence == null)
-                ModelState.AddModelError("AccomdAllowence", "Mandatory !!");
+                ModelState.AddModelError("AccomdAllowence", "Mandatory");
             if (obj.MobileAllowence == null)
-                ModelState.AddModelError("MobileAllowence", "Mandatory !!");
+                ModelState.AddModelError("MobileAllowence", "Mandatory ");
             if (obj.MobileUserLimit == null||obj.MobileUserLimit=="")
-                ModelState.AddModelError("MobileUserLimit", "Mandatory !!");
+                ModelState.AddModelError("MobileUserLimit", "Mandatory");
             if (obj.COLA == null)
-                ModelState.AddModelError("SpecifyYears", "Mandatory !!");
+                ModelState.AddModelError("SpecifyYears", "Mandatory ");
             if (obj.Other == null)
-                ModelState.AddModelError("Other", "Mandatory !!");
+                ModelState.AddModelError("Other", "Mandatory ");
             if (obj.OPDInsurance == null || obj.OPDInsurance == "")
-                ModelState.AddModelError("OPDInsurance", "Mandatory !!");
+                ModelState.AddModelError("OPDInsurance", "Mandatory ");
             if (obj.IPInsurance == null || obj.IPInsurance == "")
-                ModelState.AddModelError("IPInsurance", "Mandatory !!");
+                ModelState.AddModelError("IPInsurance", "Mandatory ");
             if (obj.LifeInsurance == null || obj.LifeInsurance == "")
-                ModelState.AddModelError("LifeInsurance", "Mandatory !!");
+                ModelState.AddModelError("LifeInsurance", "Mandatory ");
             if (obj.AnnualTAllowence == null)
-                ModelState.AddModelError("AnnualTAllowence", "Mandatory !!");
+                ModelState.AddModelError("AnnualTAllowence", "Mandatory ");
             if (obj.CasualTAllowence == null)
-                ModelState.AddModelError("CasualTAllowence", "Mandatory !!");
+                ModelState.AddModelError("CasualTAllowence", "Mandatory ");
             if (obj.MedTAllowence == null)
-                ModelState.AddModelError("MedTAllowence", "Mandatory !!");
+                ModelState.AddModelError("MedTAllowence", "Mandatory ");
             if (obj.TAllowenceWorkDay == null)
-                ModelState.AddModelError("TAllowenceWorkDay", "Mandatory !!");
+                ModelState.AddModelError("TAllowenceWorkDay", "Mandatory ");
             if (obj.ExpectedSalary == null)
-                ModelState.AddModelError("ExpectedSalary", "Mandatory !!");
+                ModelState.AddModelError("ExpectedSalary", "Mandatory ");
             if (obj.OtherBenifits == null || obj.OtherBenifits == "")
-                ModelState.AddModelError("OtherBenifits", "Mandatory !!");
+                ModelState.AddModelError("OtherBenifits", "Mandatory ");
             if (ModelState.IsValid)
             {
                 V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;

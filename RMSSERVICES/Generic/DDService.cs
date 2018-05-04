@@ -31,12 +31,13 @@ namespace RMSSERVICES.Generic
         IRepository<Religion> ReligionRepository;
         IRepository<ExpCareerLevel> CareerLevelRepository;
         IRepository<AreaOfInterest> AreaOfInterestRepository;
+        IRepository<Salutation> SalutationRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<BloodGroup> bloodGroupRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
             IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository,
-        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository, IRepository<AreaOfInterest> areaOfInterestRepository)
+        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository, IRepository<AreaOfInterest> areaOfInterestRepository, IRepository<Salutation> salutationRepository)
         {
             _unitOfWork = unitOfWork;
             CityRepository = cityRepository;
@@ -58,6 +59,7 @@ namespace RMSSERVICES.Generic
             EduDegreeTypeRepository = eduDegreeTypeRepository;
             CareerLevelRepository = careerLevelRepository;
             AreaOfInterestRepository = areaOfInterestRepository;
+            SalutationRepository = salutationRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -186,6 +188,13 @@ namespace RMSSERVICES.Generic
             List<AreaOfInterest> list = new List<AreaOfInterest>();
             list.Add(new AreaOfInterest { CAreaID = 0, AreaOfInterestName = "--------" });
             list.AddRange(AreaOfInterestRepository.GetAll());
+            return list;
+        }
+        public List<Salutation> GetSalutationList()
+        {
+            List<Salutation> list = new List<Salutation>();
+            list.Add(new Salutation { CSalutationID = 0, SalutationName = "--------" });
+            list.AddRange(SalutationRepository.GetAll());
             return list;
         }
     }

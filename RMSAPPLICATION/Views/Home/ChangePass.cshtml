@@ -33,7 +33,7 @@
 
 </head>
 
-<body class="login-container">
+<body class="login-container login-cover login-form">
 
     <!-- /main navbar -->
     <!-- Page container -->
@@ -50,21 +50,21 @@
                     @Html.AntiForgeryToken()
                     @Html.ValidationSummary(true)
                     <div class="col-md-12">
-                        <div class="panel panel-body login-form">
+                        <div class="panel panel-body  login-form">
                             <div class="text-center">
-                                <img src="~/Theme/assets/images/bcl_logo_final.png" height="100" />
-                                <h5 class="content-group text-bold">Password Change <small class="display-block"></small></h5>
+                                @*<img src="~/Theme/assets/images/bcl_logo_final.png" height="100" />*@
+                                <h5 class="content-group text-bold text-white">Password Change</h5>
                             </div>
 
                             <div class="form-group has-feedback">
-                                <label class="text-semibold">Enter New Password</label>
-                                <input type="password" Class="form-control" id="newPassword" name="newPassword" placeholder="New Password"/>
+                                <label class="text-semibold text-white">Enter New Password</label>
+                                <input type="password" Class="form-control" id="newPassword" name="newPassword" placeholder="New Password" />
                                 <div class="form-control-feedback">
                                     <i class="icon-lock4 text-muted"></i>
                                 </div>
                             </div>
                             <div class="form-group has-feedback">
-                                <label class="text-semibold">Retype-new Password</label>
+                                <label class="text-semibold text-white">Retype-new Password</label>
                                 <input type="password" Class="form-control" id="ConfirmnewPassword" name="ConfirmnewPassword" placeholder="Confirm New Password" />
                                 <div class="form-control-feedback">
                                     <i class="icon-lock4 text-muted"></i>
@@ -87,7 +87,7 @@
     <!-- /page container -->
     <!-- Footer -->
     <div class="footer text-muted text-center">
-        &copy; 2018. <a href="#">Recruitment Management System</a> by <a href="http://cns.com.pk" target="_blank">Computer & Networking Services</a>
+        &copy; 2018. <a href="#" class="text-white">Recruitment Management System</a> by <a href="http://www.bestway.com.pk/" target="_blank" class="text-white text-bold">Bestway Cement Limited.</a>
     </div>
     <!-- /footer -->
 

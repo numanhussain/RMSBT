@@ -47,7 +47,7 @@ function ExperienceDetailPostCreate(id) {
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-success-400',
+                        theme: 'bg-blue',
                         life: 6000
                     });
                     LoadPVExperienceDetailIndex(id)
@@ -133,6 +133,61 @@ function ExperienceDetailPostDelete(id) {
         });
     });
 }
+function LoadExperienceRadioButtons(val, id) {
+    if (val == "True") {
+        $('input:radio[id=HaveExperienceYes]').prop('checked', true);
+    } else {
+        $('input:radio[id=HaveExperienceNo]').prop('checked', true);
+    }
+    $('#HaveExperienceYes').click(function () {
+
+        var val = "";
+        var radio = document.getElementById('HaveExperienceYes');
+        val = true;
+        $.ajax({
+            type: "POST",
+            url: "/Experience/SaveExperienceDetail",
+            cache: false,
+            data: { HaveExperience: val },
+            datatype: "json",
+            success: function (data) {
+                if (data == "OK") {
+                    LoadPVExperienceDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
+                }
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+    $('#HaveExperienceNo').click(function () {
+
+        var val = "";
+        var radio = document.getElementById('HaveExperienceNo');
+        val = false;
+        $.ajax({
+            type: "POST",
+            url: "/Experience/SaveExperienceDetail",
+            cache: false,
+            data: { HaveExperience: val },
+            datatype: "json",
+            success: function (data) {
+                if (data == "OK") {
+                    LoadPVExperienceDetailIndex(id)
+                }
+                else {
+                    $('#modelBody').html(data);
+                }
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+}
 function HaveExperience() {
     $('#HaveExperience').click(function () {
         var id = false;
@@ -164,10 +219,96 @@ function HaveExperience() {
         });
     });
 }
-function FormControlsScriptEditExperieince(ContactEmployerYes,ContactEmployerNo) {
-    if (model.ContactEmployerYes == "YES") {
+function FormControlsScriptEditExperience(ContactEmployerYes, ContactEmployerNo) {
+    if (ContactEmployerYes == "YES") {
         $('input:radio[id=ContactEmployerYes]').prop('checked', true);
-    } if (model.ContactEmployerNo == "NO") {
+    } if (ContactEmployerNo == "NO") {
         $('input:radio[id=ContactEmployerNo]').prop('checked', true);
     }
+}
+function LoadDD2() {
+
+    //Load City
+    $('#CityID').empty();
+    var convalue = $('#selectedCountryIDHidden').val();
+    var URL = '/Candidate/CityList';
+    $.getJSON(URL + '/' + convalue, function (data) {
+        var items;
+        if (document.getElementById("selectedCityIdHidden").value != null)
+            var selectedItemID = document.getElementById("selectedCityIdHidden").value;
+
+        $.each(data, function (i, state) {
+            if (state.Value == selectedItemID)
+                items += "<option selected value='" + state.Value + "'>" + state.Text + "</option>";
+            else
+                items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+            // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
+        });
+        $('#CityID').html(items);
+    });
+    //Selection City:
+    $("#CountryID").on('change', function () {
+        $('#CityID').empty();
+        var convalue = $('#CountryID').val();
+        var URL = '/Candidate/CityList';
+        //var URL = '/Emp/LocationList';
+        $.getJSON(URL + '/' + convalue, function (data) {
+            var items;
+            if (document.getElementById("selectedCityIdHidden").value != null)
+                var selectedItemID = document.getElementById("selectedCityIdHidden").value;
+
+            $.each(data, function (i, state) {
+                if (state.Value == selectedItemID)
+                    items += "<option selected value='" + state.Value + "'>" + state.Text + "</option>";
+                else
+                    items += "<option value='" + state.Value + "'>" + state.Text + "</option>";
+                // state.Value cannot contain ' character. We are OK because state.Value = cnt++;
+            });
+            $('#CityID').html(items);
+        });
+
+
+    });
+ShowCityHide2();
+    $("#CountryID").on("change", function () {
+        ShowCityHide2();
+    });
+}
+function PostIndex(id) {
+     $('#btnPostCreate').click(function () {
+
+        $.ajax({
+            url: '/Experience/IndexSubmitt',
+            type: 'POST',
+            data: $("#formCreateID").serialize(),
+            success: function (data) {
+                if (data == "OK") {
+                    $.jGrowl('You have successfully saved your details.', {
+                        header: '',
+                        position: 'center',
+                        theme: 'bg-blue',
+                        life: 6000
+                    });
+                    LoadPVExperienceDetailIndex(id)
+                }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
+            },
+            error: function () {
+                $("#result").text('an error occured')
+            }
+        });
+});
+}
+function ShowCityHide2() {
+    $("#OtherCityDivHide2").hide();
+    if ($("#CountryID").val() == 74) {
+        $("#CityDivHide2").show();
+                $("#OtherCityDivHide2").hide();
+    }
+ else {
+                $("#CityDivHide2").hide();
+                $("#OtherCityDivHide2").show();
+            }
 }

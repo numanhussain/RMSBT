@@ -12,6 +12,6 @@ namespace RMSSERVICES.UserDetail
     {
         List<User> GetIndex();
         bool VerifyLink(string key);
-        ServiceMessage RegisterUser(User dbOperation);
+        ServiceMessage RegisterUser(User dbOperation,V_UserCandidate LoggedInUser);
     }
 }

@@ -50,7 +50,7 @@ function EduDetailPostCreate(id) {
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-success-400',
+                        theme: 'bg-blue',
                         life: 6000
                     });
                 }
@@ -175,6 +175,7 @@ function ShowHide() {
     $("#OtherInstitute").hide();
     $("#MajorSubjectDD").hide();
     $("#marksdiv").hide();
+    $("#OtherDegree").hide();
     switch ($("#DegreeLevelID").val()) {
         case "1":
             $("#DegreeTitleTB").show();
@@ -282,8 +283,19 @@ function ShowInstituteHide() {
         $("#OtherInstitute").show();
     }
 }
+function DegreeTypeChange() {
+    $("#DegreeTypeID").on("change", function () {
+        ShowOtherDegreeHide();
+    });
+}
+function ShowOtherDegreeHide() {
+    $("#OtherDegree").hide();
+    if ($("#DegreeTypeID").val() == 70 || $("#DegreeTypeID").val() == 71 || $("#DegreeTypeID").val() == 72 || $("#DegreeTypeID").val() == 73 || $("#DegreeTypeID").val() == 74 || $("#DegreeTypeID").val() == 75 || $("#DegreeTypeID").val() == 68 || $("#DegreeTypeID").val() == 76) {
+        $("#OtherDegree").show();
+    }
+}
 function LoadDegreeTypeDD() {
-    //Load City
+    //Load DegreeType
     $('#DegreeTypeID').empty();
     var convalue = $('#selectedDegreeLevelIDHidden').val();
     var URL = '/EduDetail/DegreeTypeList';
@@ -300,7 +312,7 @@ function LoadDegreeTypeDD() {
         });
         $('#DegreeTypeID').html(items);
     });
-    //Selection City:
+    //Selection Degre Level:
     $("#DegreeLevelID").on('change', function () {
         $('#DegreeTypeID').empty();
         var convalue = $('#DegreeLevelID').val();

@@ -47,7 +47,7 @@ function SavePersonalInfoFunction() {
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-success-400',
+                        theme: 'bg-blue',
                         life: 6000
                     });
                     CandidateGetCreate(id)
@@ -85,6 +85,7 @@ function SavePersonalInfoFunction() {
     });
 }
 function LoadDD() {
+
     //Load City
     $('#CityID').empty();
     var convalue = $('#selectedCountryIDHidden').val();
@@ -126,6 +127,11 @@ function LoadDD() {
 
 
     });
+
+ShowCityHide();
+    $("#CountryID").on("change", function () {
+        ShowCityHide();
+    });
 }
 function RedirectToIndex() {
     $.ajax({
@@ -157,19 +163,18 @@ function UpdateAppliedAs() {
             type: "POST",
             cache: false,
             data: { id: id }
-        }).done(function (data)
-                { 
-                if (data == "OK") {
-                   location.reload()
-                }
-                else {
-                    $('#PartialViewContainer').html(data);
-                }
+        }).done(function (data) {
+            if (data == "OK") {
+                location.reload()
+            }
+            else {
+                $('#PartialViewContainer').html(data);
+            }
         });
     });
 }
 
-function ViewProfileIndex(id) {
+function ViewProfileIndex(id, item) {
     $.ajax({
         type: "GET",
         url: "/Candidate/ViewProfileIndex",
@@ -184,4 +189,15 @@ function ViewProfileIndex(id) {
             alert("Dynamic content load failed.");
         }
     });
+}
+function ShowCityHide() {
+    $("#OtherCityDivHide").hide();
+    if ($("#CountryID").val() == 74) {
+        $("#CityDivHide").show();
+                $("#OtherCityDivHide").hide();
+    }
+ else {
+                $("#CityDivHide").hide();
+                $("#OtherCityDivHide").show();
+            }
 }

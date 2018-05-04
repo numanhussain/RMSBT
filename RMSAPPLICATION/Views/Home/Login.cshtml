@@ -53,7 +53,7 @@
                     <div class="panel panel-body login-form">
                         <div>
                             <img src="~/Theme/assets/images/bcl_logo_final.png" class="center-block" height="65" />
-                            <h4 class="content-group text-center text-blue-300 text-black">Bestway&nbsp;Cement&nbsp;Limited<small class="display-block text-white text-bold h6">Already have account? Please sign in.</small></h4>
+                            <h4 class="content-group text-center text-blue-300 text-black">Bestway&nbsp;Cement&nbsp;Limited<small class="display-block text-white text-bold">Already have account? Please sign in.</small></h4>
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Enter Email Address">
                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
@@ -63,14 +63,20 @@
                             </div>
 
                             <div class="form-group has-feedback has-feedback-left">
-                                <input type="password" id="Password" name="Password" class="form-control" placeholder="Password">
+                                <div class="input-group">
+                                    <input type="password" name="Password" class="form-control pwd" id="Password" placeholder="Password">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default reveal" type="button"><i class="glyphicon glyphicon-eye-open"></i></button>
+                                    </span>
+                                </div>
+                                @*<input type="password" id="Password" name="Password" class="form-control" placeholder="Password">*@
                                 <div class="form-control-feedback">
                                     <i class="icon-lock2 text-blue"></i>
-                                    <div class="text-bold">
-                                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                    </div>
+                                    @*<div class="text-bold">
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </div>*@
                                 </div>
-                                <a href="~/Home/ForgetPassword"><strong class="h6 text-white text-bold">Forgot Password?</strong> </a>
+                                <a href="~/Home/ForgetPassword"><strong class="text-white text-bold">Forgot Password?</strong> </a>
                             </div>
 
                             <div class="form-group">
@@ -78,7 +84,7 @@
                             </div>
 
                             <div class="text-left">
-                                <span class="text-white text-bold h6">New Member? Click here to</span> <a href="~/Home/RegisterUser"><strong class="text-blue text-bold h6">Register</strong></a>
+                                <span class="text-white text-bold">New Member? Click here to</span> <a href="~/Home/RegisterUser"><strong class="text-blue text-bold h6">Register</strong></a>
                             </div>
                         </div>
                     </div>
@@ -100,3 +106,13 @@
     <!-- /footer -->
 </body>
 </html>
+<script>
+    $(".reveal").on('click', function () {
+        var $pwd = $(".pwd");
+        if ($pwd.attr('type') === 'password') {
+            $pwd.attr('type', 'text');
+        } else {
+            $pwd.attr('type', 'password');
+        }
+    });
+</script>

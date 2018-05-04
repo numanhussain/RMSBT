@@ -31,5 +31,6 @@ namespace RMSCORE.Models.Operation
         public bool? InProgress { get; set; }
         public int? DegreeTypeID { get; set; }
         public string DegreeTypeName { get; set; }
+        public string OtherDegreeType { get; set; }
     }
 }

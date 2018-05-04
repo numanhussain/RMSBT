@@ -38,7 +38,7 @@ namespace RMSAPPLICATION.Controllers
             obj.CandidateID = vmf.CandidateID;
             obj.UserID = vmf.UserID;
             Session["ProfileStage"] = vmf.UserStage;
-            ViewBag.CategoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa=>aa.PCatagoryID), "PCatagoryID", "CatName", vmf.AppliedAs);
+            ViewBag.CategoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa => aa.PCatagoryID), "PCatagoryID", "CatName", vmf.AppliedAs);
             return View(obj);
         }
         [HttpGet]
@@ -49,13 +49,16 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             int? uid = vmf.UserID;
             Candidate vmOperation = CandidateService.GetCreate(cid, (int)uid);
-            if (vmOperation.CountryID == null)
+            if (vmOperation.CountryID == 74)
             {
-                vmOperation.CountryID = DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).First().CCID;
-            }
-            if (vmOperation.CityID == null)
-            {
-                ViewBag.CityID = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID);
+                if (vmOperation.CountryID == null)
+                {
+                    vmOperation.CountryID = DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).First().CCID;
+                }
+                if (vmOperation.CityID == null)
+                {
+                    ViewBag.CityID = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID);
+                }
             }
             CreateHelper(vmOperation);
             return View(vmOperation);
@@ -64,45 +67,57 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Create(Candidate dbOperation)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            if (dbOperation.SalutationID == 0)
+                ModelState.AddModelError("SalutationID", "Mandatory");
             if (dbOperation.CName == null || dbOperation.CName == "")
-                ModelState.AddModelError("CName", "Mandatory !!");
+                ModelState.AddModelError("CName", "Mandatory");
             if (dbOperation.FatherName == null || dbOperation.CName == "")
-                ModelState.AddModelError("FatherName", "Mandatory !!");
+                ModelState.AddModelError("FatherName", "Mandatory");
             if (dbOperation.DOB == null)
-                ModelState.AddModelError("DOB", "Mandatory !!");
-            if (dbOperation.DOB!= null)
+                ModelState.AddModelError("DOB", "Mandatory");
+            if (dbOperation.DOB != null)
             {
-                if (dbOperation.DOB >=DateTime.Today)
-                    ModelState.AddModelError("DOB", "Must be smaller than current date!!");
+                if (dbOperation.DOB >= DateTime.Today)
+                    ModelState.AddModelError("DOB", "Must be smaller than current date");
             }
             if (dbOperation.GenderID == 0)
-                ModelState.AddModelError("GenderID", "Mandatory !!");
+                ModelState.AddModelError("GenderID", "Mandatory");
             if (dbOperation.MartialStatusID == 0)
-                ModelState.AddModelError("MartialStatusID", "Mandatory !!");
+                ModelState.AddModelError("MartialStatusID", "Mandatory");
             if (dbOperation.ReligionID == 0)
-                ModelState.AddModelError("ReligionID", "Mandatory !!");
+                ModelState.AddModelError("ReligionID", "Mandatory");
             //if (dbOperation.BloodGroupID == 0)
-            //    ModelState.AddModelError("BloodGroupID", "Mandatory !!");
-            if (dbOperation.AreaOfInterestID == 0 )
-                ModelState.AddModelError("AreaOfInterestID", "Mandatory !!");
+            //    ModelState.AddModelError("BloodGroupID", "Mandatory");
+            if (dbOperation.AreaOfInterestID == 0)
+                ModelState.AddModelError("AreaOfInterestID", "Mandatory");
             if (dbOperation.DomicileCityID == 0)
-                ModelState.AddModelError("DomicileCityID", "Mandatory !!");
+                ModelState.AddModelError("DomicileCityID", "Mandatory");
             if (dbOperation.Address == null || dbOperation.Address == "")
-                ModelState.AddModelError("Address", "Mandatory !!");
-            if (dbOperation.CityID == 0)
-                ModelState.AddModelError("CityID", "Mandatory !!");
+                ModelState.AddModelError("Address", "Mandatory");
+            if (dbOperation.CountryID == 74)
+            {
+                dbOperation.OtherCityName = null;
+                if (dbOperation.CityID == 0)
+                    ModelState.AddModelError("CityID", "Mandatory");
+            }
+            if (dbOperation.CountryID != 74)
+            {
+                dbOperation.CityID = null;
+                if (dbOperation.OtherCityName == null || dbOperation.OtherCityName == "")
+                    ModelState.AddModelError("OtherCityName", "Mandatory");
+            }
             if (dbOperation.CountryID == 0)
-                ModelState.AddModelError("CountryID", "Mandatory !!");
+                ModelState.AddModelError("CountryID", "Mandatory");
             //if (dbOperation.NationalityCountryID == 0)
-            //    ModelState.AddModelError("NationalityCountryID", "Mandatory !!");
+            //    ModelState.AddModelError("NationalityCountryID", "Mandatory");
             if (dbOperation.CNICNo == null || dbOperation.CNICNo == "")
-                ModelState.AddModelError("CNICNo", "Mandatory !!");
+                ModelState.AddModelError("CNICNo", "Mandatory");
 
 
             //if (dbOperation.CNICNo != null)
             //{
             //    if (dbOperation.CNICNo.Length > 15)
-            //        ModelState.AddModelError("CNICNo", "String length exceeds!");
+            //        ModelState.AddModelError("CNICNo", "String length exceeds");
             //    Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
             //    if (!match.Success)
             //    {
@@ -110,18 +125,18 @@ namespace RMSAPPLICATION.Controllers
             //    }
             //}
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
-                ModelState.AddModelError("EmailID", "Mandatory !!");
+                ModelState.AddModelError("EmailID", "Mandatory ");
 
             if (dbOperation.EmailID != null)
             {
                 Match match = Regex.Match(dbOperation.EmailID, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
                 if (!match.Success)
                 {
-                    ModelState.AddModelError("EmailID", "Mandatory !!");
+                    ModelState.AddModelError("EmailID", "Mandatory");
                 }
             }
             if (dbOperation.CellNo == null || dbOperation.CellNo == "")
-                ModelState.AddModelError("CellNo", "Mandatory !!");
+                ModelState.AddModelError("CellNo", "Mandatory");
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 2)
@@ -187,15 +202,13 @@ namespace RMSAPPLICATION.Controllers
         #region-- 
         private void CreateHelper(Candidate obj)
         {
-            ViewBag.MartialStatusID = new SelectList(DDService.GetMartialStatusList().ToList().OrderBy(aa => aa.PMID).ToList(), "PMID", "MartialStatusName", obj.MartialStatusID);
-            ViewBag.BloodGroupID = new SelectList(DDService.GetBloodGroupList().ToList().OrderBy(aa => aa.CBID).ToList(), "CBID", "BGroupName", obj.BloodGroupID);
             ViewBag.CountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.CountryID);
             ViewBag.NationalityCountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.NationalityCountryID);
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
             ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
-            ViewBag.ReligionID = new SelectList(DDService.GetReligion().ToList().OrderBy(aa => aa.CReligionID).ToList(), "CReligionID", "ReligionName", obj.ReligionID);
             ViewBag.AreaOfInterestID = new SelectList(DDService.GetAreaOfInterestList().ToList().OrderBy(aa => aa.CAreaID).ToList(), "CAreaID", "AreaOfInterestName", obj.AreaOfInterestID);
+            ViewBag.SalutationID = new SelectList(DDService.GetSalutationList().ToList().OrderBy(aa => aa.CSalutationID).ToList(), "CSalutationID", "SalutationName", obj.SalutationID);
         }
         public byte[] ConvertToBytes(HttpPostedFileBase image)
         {

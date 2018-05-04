@@ -54,14 +54,16 @@
 <div class="navbar navbar-inverse bg-primary">
     <div class="navbar-header">
         <div style="padding-left:20px; padding-top:10px;">
-            <a href="~/Home/Index"><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-            <span class="h6 text-bold" style="padding-left:10px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
+            @*<a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
+                <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
+            <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
         </div>
     </div>
     <div class="navbar-collapse collapse" id="navbar-mobile">
         <ul class="nav navbar-nav navbar-right">
             <li>
-                <a href="~/Home/Login"><span class="h6 text-bold">Apply Online</span></a>
+                <a href="~/Home/Login"><small class="h6 text-bold">Apply Online</small></a>
+
             </li>
 
         </ul>
@@ -98,11 +100,11 @@
                                 }
                             </div>*@
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Position Purpose:</h6>
+                            <h6 class="text-semibold">Position Purpose</h6>
                             <p>@Html.DisplayFor(x => x.PositionPurpose)</p>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Job description</h6>
+                            <h6 class="text-semibold">Job Description</h6>
                             <p class="content-group-sm">@Html.DisplayFor(x => x.JobDescription)</p>
                         </div>
                         <div class="content-group-lg">

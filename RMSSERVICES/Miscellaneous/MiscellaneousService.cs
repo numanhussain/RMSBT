@@ -42,7 +42,7 @@ namespace RMSSERVICES.Miscellaneous
         public ServiceMessage PostCreate(MiscellaneousDetail obj, V_UserCandidate LoggedInUser)
         {
             User dbUser = UserRepository.GetSingle((int)LoggedInUser.UserID);
-            dbUser.HasCV = true;
+            dbUser.HasCV = LoggedInUser.HasCV;
             dbUser.UserStage = LoggedInUser.UserStage;
             UserRepository.Edit(dbUser);
             UserRepository.Save();
@@ -99,8 +99,12 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.DisabilityDetail = obj.DisabilityDetail;
             dbMiscellaneous.InternshipRequirement = obj.InternshipRequirement;
             dbMiscellaneous.InternshipDuration = obj.InternshipDuration;
-            dbMiscellaneous.MBSalary = obj.MBSalary;
+            dbMiscellaneous.MGSalary = obj.MGSalary;
             dbMiscellaneous.ExpectedSalary = obj.ExpectedSalary;
+            dbMiscellaneous.DateCompleted = DateTime.Now;
+            dbMiscellaneous.BloodGroupID = obj.BloodGroupID;
+            dbMiscellaneous.ReligionID = obj.ReligionID;
+            dbMiscellaneous.MaritalStatusID = obj.MaritalStatusID;
             return dbMiscellaneous;
         }
         #endregion

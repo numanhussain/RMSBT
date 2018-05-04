@@ -30,5 +30,6 @@ namespace RMSSERVICES.Generic
         List<Gender> GetGenderList();
         List<ExpCareerLevel> GetCareerLevelList();
         List<AreaOfInterest> GetAreaOfInterestList();
+        List<Salutation> GetSalutationList();
     }
 }

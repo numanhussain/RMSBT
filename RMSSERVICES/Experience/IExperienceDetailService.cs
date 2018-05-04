@@ -20,5 +20,6 @@ namespace RMSSERVICES.Experience
         ServiceMessage PostEdit(VMExperienceOperation obj);
         VMExperienceOperation GetDelete(int? id);
         ServiceMessage PostDelete(VMExperienceOperation obj);
+        ServiceMessage PostIndex(int? TotalExp, int? CementExp, V_UserCandidate LoggedInUser);
     }
 }

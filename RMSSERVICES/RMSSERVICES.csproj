@@ -81,6 +81,10 @@
     <Compile Include="UserDetail\UserService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RMSCORE\RMSCORE.csproj">
       <Project>{f23dd3c5-a885-4781-9ab2-05c0ebe9945c}</Project>
       <Name>RMSCORE</Name>
@@ -89,10 +93,6 @@
       <Project>{39d85120-f679-422a-b497-6406070df374}</Project>
       <Name>RMSREPO</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

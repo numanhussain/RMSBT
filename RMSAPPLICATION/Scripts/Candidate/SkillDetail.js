@@ -50,7 +50,7 @@ function SkillDetailPostCreate(id) {
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-success-400',
+                        theme: 'bg-blue',
                         life: 6000
                     });
                     LoadPVSkillDetailIndex(id)

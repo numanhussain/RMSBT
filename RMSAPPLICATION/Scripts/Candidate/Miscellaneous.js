@@ -68,7 +68,6 @@ function MiscellaneousDetailHide() {
         }
     });
 
-
     //get script of above when value is saved
     if (document.getElementById('WorkingRelative').value == "Yes") {
         $("#WorkingRelativeDetailtb ").show();
@@ -107,7 +106,7 @@ function MiscellaneousDetailHide() {
         $("#HearAboutDetailtb").hide();
     }
 }
-function SaveMiscellaneousInfoFunction(id) {
+function SaveMiscellaneousInfoFunction() {
     $('#btnPostCreate').click(function () {
         $.ajax({
             type: "POST",
@@ -115,13 +114,8 @@ function SaveMiscellaneousInfoFunction(id) {
             data: $("#formEditID").serialize(),
             success: function (data) {
                 if (data == "OK") {
-                    SaveCV();
-                    $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
-                        header: '',
-                        position: 'center',
-                        theme: 'bg-success-400',
-                        life: 7000
-                    });
+                    SaveCV()
+
                     MiscellaneousGetCreate(id)
                 }
                 else {
@@ -159,7 +153,12 @@ function SaveCV() {
             processData: false, // Not to process data  
             data: fileData,
             success: function (result) {
-                alert(result);
+                $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
+                    header: '',
+                    position: 'center',
+                    theme: 'bg-blue',
+                    life: 7000
+                });
             },
             error: function (err) {
                 alert(err.statusText);
@@ -170,5 +169,22 @@ function SaveCV() {
     }
 }
 
+function HasCV(HasCV) {
+    //Hide cv div
+    if (HasCV == null) {
+        $("#resumehide").show();
+    }
+    if (HasCV == "True") {
+        $("#resumehide").hide();
+    }
+    $('#UploadCV').click(function () {
+        if ($(this).is(":checked")) {
+            $("#resumehide").show();
+        }
+        else {
+            $("#resumehide").hide();
+        }
+    });
+}
 
 

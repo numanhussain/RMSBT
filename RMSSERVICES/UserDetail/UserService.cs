@@ -15,13 +15,15 @@ namespace RMSSERVICES.UserDetail
         IUnitOfWork UnitOfWork;
         IRepository<User> UserRepository;
         IRepository<Candidate> CandidateRepository;
+        IRepository<CementExperience> CementExperienceRepository;
         #endregion
         #region -- Service Interface Implementation --
-        public UserService(IUnitOfWork unitOfWork, IRepository<User> userRepository, IRepository<Candidate> candidateRepository)
+        public UserService(IUnitOfWork unitOfWork, IRepository<User> userRepository, IRepository<Candidate> candidateRepository, IRepository<CementExperience> cementExperienceRepository)
         {
             UnitOfWork = unitOfWork;
             UserRepository = userRepository;
             CandidateRepository = candidateRepository;
+            CementExperienceRepository = cementExperienceRepository;
         }
 
         public List<User> GetIndex()
@@ -46,7 +48,7 @@ namespace RMSSERVICES.UserDetail
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public ServiceMessage RegisterUser(User dbOperation)
+        public ServiceMessage RegisterUser(User dbOperation,V_UserCandidate LoggedInUser)
         {
             dbOperation.DateCreated = DateTime.Today;
             dbOperation.AppliedAs = dbOperation.AppliedAs;
@@ -61,6 +63,10 @@ namespace RMSSERVICES.UserDetail
             dbCandidate.DateCreated = DateTime.Today;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
+            CementExperience dbCementExperience = new CementExperience();
+            dbCementExperience.CandidateID = dbCandidate.CandidateID;
+            CementExperienceRepository.Add(dbCementExperience);
+            CementExperienceRepository.Save();
             return new ServiceMessage();
         }
         #endregion

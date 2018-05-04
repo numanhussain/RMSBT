@@ -17,14 +17,15 @@ namespace RMSCORE.Models.Operation
         public DateTime? EndDate { get; set; }
         public bool? CurrentlyWorking { get; set; }
         public int? CityID { get; set; }
+        public int? CountryID { get; set; }
         public string Address { get; set; }
-        [Required(ErrorMessage = "Mandatory !!")]
+        [Required(ErrorMessage = "Mandatory ")]
         [StringLength(250)]
         public string Responsibility1 { get; set; }
-        [Required(ErrorMessage = "Mandatory !!")]
+        [Required(ErrorMessage = "Mandatory ")]
         [StringLength(250)]
         public string Responsibility2 { get; set; }
-        [Required(ErrorMessage = "Mandatory !!")]
+        [Required(ErrorMessage = "Mandatory ")]
         [StringLength(250)]
         public string Responsibility3 { get; set; }
         public string Salary { get; set; }
@@ -39,5 +40,6 @@ namespace RMSCORE.Models.Operation
         public string AreaofInterest { get; set; }
         public string ReasonOfLeaving { get; set; }
         public string SupervisorName { get; set; }
+        public string OtherCityName { get; set; }
     }
 }

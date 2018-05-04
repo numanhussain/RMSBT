@@ -28,7 +28,7 @@
                         <div class="media-right media-middle text-nowrap">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID,@LoggedInUser.UserStage)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
                             <span id="DivJobApplied"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>
@@ -37,7 +37,7 @@
                             <p>@Html.DisplayFor(x => x.PositionPurpose)</p>
                         </div>
                         <div class="content-group-lg">
-                            <h6 class="text-semibold">Job description</h6>
+                            <h6 class="text-semibold">Job Description</h6>
                             <p class="content-group-sm">@Html.DisplayFor(x => x.JobDescription)</p>
                         </div>
                         <div class="content-group-lg">
@@ -51,7 +51,7 @@
                         <div class="media-middle media-middle text-nowrap" align="center">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID,@LoggedInUser.UserStage)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
                             <span id="DivJobApplied2"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>

@@ -49,6 +49,15 @@
                         @Html.ValidationMessageFor(model => model.DegreeTypeID, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <div id="OtherDegree">
+                    <div class="required label-control text-semibold col-md-1">Other Degree Type</div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(model => model.OtherDegreeType, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
+                        @Html.ValidationMessageFor(model => model.OtherDegreeType, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
                 <div id="DegreeTB">
                     <div class="required label-control text-semibold col-md-1"> Degree Title  </div>
                     <div class="col-md-3">
@@ -71,15 +80,15 @@
                         @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
                     </div>
                 </div>
+            </div>
+            <div class="form-group">
                 <div id="OtherInstitute">
                     <div class="required label-control text-semibold col-md-1"> Institute Name  </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                         @Html.EditorFor(model => model.OtherInstitute, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.OtherInstitute, "", new { @class = "text-danger" })
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">Start&nbsp;Date</div>
                 <div class="col-md-3">
                     @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
@@ -92,8 +101,8 @@
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label class=" checkbox-inline checkbox-right text-semibold col-md-5" for="InProgress">
+                <div class="col-md-1">
+                    <label class=" checkbox-inline checkbox-right text-semibold col-md-8" for="InProgress">
                         @Html.CheckBox("InProgress", new { @class = "styled", @id = "InProgress" })
                         @Html.ValidationMessageFor(model => model.InProgress, "", new { @class = "text-danger" })
                         In Progress
