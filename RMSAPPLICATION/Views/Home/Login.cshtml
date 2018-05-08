@@ -71,10 +71,12 @@
                                 </div>
                                 @*<input type="password" id="Password" name="Password" class="form-control" placeholder="Password">*@
                                 <div class="form-control-feedback">
-                                    <i class="icon-lock2 text-blue"></i>
-                                    @*<div class="text-bold">
-                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                        </div>*@
+                                    <i class="icon-lock2 text-muted"></i>
+
+                                </div>
+                                <div class="text-bold">
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+
                                 </div>
                                 <a href="~/Home/ForgetPassword"><strong class="text-white text-bold">Forgot Password?</strong> </a>
                             </div>

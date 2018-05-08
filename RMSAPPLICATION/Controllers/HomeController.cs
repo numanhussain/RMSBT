@@ -92,8 +92,7 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("UserName", "Enter a valid Email address.");
                 }
             }
-            Expression<Func<User, bool>> SpecificEntries1 = aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password && aa.UserStage > 1;
-            if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count > 0)
+            if (UserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password && aa.UserStage > 1).Count() > 0)
             {
                 V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.Email == Obj.UserName && aa.Password == Obj.Password);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
@@ -109,9 +108,10 @@ namespace RMSAPPLICATION.Controllers
             }
             else
             {
-                ModelState.AddModelError("UserName", "Please Activate You Email address");
+                //ModelState.AddModelError("UserName", "Please Activate You Email address");
+                ModelState.AddModelError("Password", "The username or password is incorrect");
             }
-            return RedirectToAction("Login", "Home");
+            return View("Login",Obj);
 
         }
         // 1: SignUp
@@ -140,7 +140,7 @@ namespace RMSAPPLICATION.Controllers
                     Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
                     if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
                     {
-                        UserService.RegisterUser(Obj,vmf);
+                        UserService.RegisterUser(Obj, vmf);
                         var code = Obj.SecurityLink;
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
                         EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
