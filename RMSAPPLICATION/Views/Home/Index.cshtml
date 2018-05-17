@@ -31,39 +31,27 @@
     <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
     <!-- /theme JS files -->
+
 </head>
-<div class="navbar navbar-inverse bg-primary">
-    <div class="navbar-header">
-        <div style="padding-left:20px; padding-top:10px;">
-            @*<a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-                <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
-            <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
-        </div>
-    </div>
-    <div class="navbar-collapse collapse" id="navbar-mobile">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a href="~/Home/Login"><small class="h6 text-bold">Apply Online</small></a>
 
-            </li>
-
-        </ul>
-    </div>
-</div>
 <!-- Page container -->
 <!-- Page header -->
-<div class="page-header">
+<div class="page-header2 landing-cover">
+    <div style="padding-left:20px; padding-bottom:0px; ">
+        <a><img src="/Theme/assets/images/New2x-312x93.png" height="90" style="margin-top:-25px"></a>
+        <a href="~/Home/Login"><small class="h1 text-bold text-white pull-right" style="margin-right:30px">Apply Online</small></a>
+    </div>
     <div class="page-header-content">
-        <div class="page-title">
-            <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
+        <div class="page-title" style="margin-left:10px">
+            <h1><span class="text-semibold text-white">Current Openings</span> </h1> <h5 class="text-semibold text-white">See if you can find exciting challenges at Bestway</h5>
         </div>
-        <div class="heading-elements">
+        <div class="heading-elements2" style="margin-left:20px">
             @using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
             {
-                <div class="form-group form-inline col-md-12">
-                    <input type="text" class="form-control col-md-4" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
-                    @Html.DropDownList("LocationID", null, new { @class = "form-control", style = "width: 250px;" })
-                    @Html.DropDownList("CatagoryID", null, new { @class = "form-control", style = "width: 250px;" })
+                <div class="form-group form-inline">
+                    <input type="text" class="form-control2 form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                    @Html.DropDownList("LocationID", null, new { @class = "form-control2 form-control" })
+                    @Html.DropDownList("CatagoryID", null, new { @class = "form-control2 form-control" })
                     <button type="Submit" class="form-control btn btn-primary">Search</button>
                 </div>
             }
@@ -85,7 +73,7 @@
                 <div class="panel panel-flat">
                     <table class="table datatable-basic">
                         <thead>
-                            <tr class="bg-green-600">
+                            <tr class="bg-primary">
                                 <th class="text-semibold">Job-ID</th>
                                 <th class="text-semibold">Position Title</th>
                                 <th class="text-semibold">Department</th>
@@ -131,7 +119,7 @@
             {
                 <div class="panel panel-flat border-left-danger">
                     <div class="panel-heading">
-                        <h6 class="panel-title">Currently No Job Openings are available  </h6>
+                        <h6 class="panel-title text-semibold">Currently no job openings are available  </h6>
                     </div>
 
                 </div>

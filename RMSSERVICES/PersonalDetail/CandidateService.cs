@@ -100,6 +100,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.AreaOfInterestID = dbOperation.AreaOfInterestID;
             dbCandidate.OtherCityName = dbOperation.OtherCityName;
             dbCandidate.SalutationID = dbOperation.SalutationID;
+            dbCandidate.OtherAreaName = dbOperation.OtherAreaName;
             return dbCandidate;
         }
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)

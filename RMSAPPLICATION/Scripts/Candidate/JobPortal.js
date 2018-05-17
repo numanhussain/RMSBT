@@ -69,7 +69,7 @@ function ApplyJob(id, item) {
     }).done(function (data) {
         if (data === "OK") {
             $('#myModal1').modal('hide');
-            $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully applied for this job. You can check the status of your application later by logging into your account at Bestway Career Portal.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
+            $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully applied for this job. You can check the status of your application later by logging into your account at Bestway Career Portal.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                 header: '',
                 position: 'center',
                 theme: 'bg-blue',

@@ -29,7 +29,7 @@
         <!-- Main content -->
         <!-- Basic datatable -->
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-green-600" style="height:41px">
+            <div class="breadcrumb-line bg-blue-600" style="height:41px">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb">
                     @*<li><a href="~/Job/Index"> Dashboard</a></li>
@@ -38,39 +38,49 @@
                 </ul>
             </div>
             <div class="panel-body">
-                <div class="form-group">
-                    <div class="required control-label col-md-12 text-semibold">Objective</div>
-                    <div class="col-md-8">
+                <div class="form-group col-md-8">
+                    <div>
+                        <label class=" required control-label text-semibold">Objective</label>
                         @Html.TextAreaFor(model => model.Objective, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
-                        @Html.ValidationMessageFor(m => m.Objective, null, new { @class = "text-danger" })
+                        <div class="small">
+                            @Html.ValidationMessageFor(m => m.Objective, null, new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="required control-label col-md-12 text-semibold">Strengths </div>
-                    <div class="col-md-8">
+                <div class="form-group col-md-8">
+                    <div>
+                        <label class=" required control-label text-semibold">Strengths</label>
                         @Html.TextAreaFor(model => model.Strengths, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
-                        @Html.ValidationMessageFor(m => m.Strengths, null, new { @class = "text-danger" })
-                    </div>
-                    <label class="required col-md-12 control-label text-semibold">Areas of improvement</label>
-                    <div class="col-md-8">
-                        @Html.TextAreaFor(model => model.AreaOfImprovement, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
-                        @Html.ValidationMessageFor(m => m.AreaOfImprovement, null, new { @class = "text-danger" })
+                        <div class="small">
+                            @Html.ValidationMessageFor(m => m.Strengths, null, new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="required control-label col-md-12 text-semibold">Briefly explain your skills and experience</div>
-                    <div class="col-md-8">
+                <div class="form-group col-md-8">
+                    <div>
+                        <label class=" required control-label text-semibold">Areas of improvement</label>
+                        @Html.TextAreaFor(model => model.AreaOfImprovement, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
+                        <div class="small">
+                            @Html.ValidationMessageFor(m => m.AreaOfImprovement, null, new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-8">
+                    <div>
+                        <label class=" required control-label text-semibold">Briefly explain your skills and experience</label>
                         @Html.TextAreaFor(model => model.MeetRequirements, new { @class = "form-control", @cols = 5, @rows = 3, placeholder = "Max 250 characters" })
-                        @Html.ValidationMessageFor(m => m.MeetRequirements, null, new { @class = "text-danger" })
+                        <div class="small">
+                            @Html.ValidationMessageFor(m => m.MeetRequirements, null, new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 <div class="heading-elements btn-toolbar pull-right">
-                    <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn btn-success icon-arrow-left15">Previous</button>
-                    <button type="button" id="btnPostCreate" class="btn btn-success" style="font-family:'Times New Roman'">Save</button>
-                    <button type="button" onclick="ReferenceGetCreate()" class="btn btn-success icon-arrow-right15">Next</button>
+                    <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn btn-primary icon-arrow-left15">Previous</button>
+                    <button type="button" id="btnPostCreate" class="btn btn-primary" style="font-family:'Times New Roman'">Save</button>
+                    <button type="button" onclick="ReferenceGetCreate()" class="btn btn-primary icon-arrow-right15">Next</button>
                 </div>
             </div>
         </div>

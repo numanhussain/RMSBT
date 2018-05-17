@@ -132,6 +132,11 @@ ShowCityHide();
     $("#CountryID").on("change", function () {
         ShowCityHide();
     });
+
+ShowAreaHide();
+    $("#AreaOfInterestID").on("change", function () {
+        ShowAreaHide();
+    });
 }
 function RedirectToIndex() {
     $.ajax({
@@ -200,4 +205,10 @@ function ShowCityHide() {
                 $("#CityDivHide").hide();
                 $("#OtherCityDivHide").show();
             }
+}
+function ShowAreaHide() {
+     $("#OtherAreaDivHide").hide();
+    if ($("#AreaOfInterestID").val() == 28) {
+        $("#OtherAreaDivHide").show();
+    }
 }

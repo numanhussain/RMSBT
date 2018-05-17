@@ -153,7 +153,7 @@ function SaveCV() {
             processData: false, // Not to process data  
             data: fileData,
             success: function (result) {
-                $.jGrowl('<div>Welcome to Bestway!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
+                $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway Cemant.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                     header: '',
                     position: 'center',
                     theme: 'bg-blue',

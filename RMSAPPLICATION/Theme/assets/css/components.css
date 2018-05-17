@@ -20027,8 +20027,8 @@ thead .htCollapseButton {
         .dataTables_paginate .paginate_button.current,
         .dataTables_paginate .paginate_button.current:hover,
         .dataTables_paginate .paginate_button.current:focus {
-            background-color: #66BB6A;
-            border-color: #66BB6A;
+            background-color: #2196f3;
+            border-color: #2196f3;
             color: #fff;
         }
 
@@ -22094,6 +22094,10 @@ thead .htCollapseButton {
     background: url('../images/login_cover.jpg') no-repeat;
     background-size: cover;
 }
+.landing-cover {
+    background: url('../images/bwc-slider-img02.jpg') no-repeat;
+    background-size: cover;
+}
 
 .login-container .page-container {
     padding-top: 40px;
@@ -22829,6 +22833,14 @@ thead .htCollapseButton {
 .heading-elements {
     background-color: inherit;
     position: absolute;
+    top: 50%;
+    right: 20px;
+    height: 36px;
+    margin-top: -18px;
+}
+.heading-elements2 {
+    background-color: inherit;
+    position: inherit;
     top: 50%;
     right: 20px;
     height: 36px;

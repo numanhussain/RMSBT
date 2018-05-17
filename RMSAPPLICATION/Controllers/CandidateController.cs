@@ -49,16 +49,13 @@ namespace RMSAPPLICATION.Controllers
             int cid = vmf.CandidateID;
             int? uid = vmf.UserID;
             Candidate vmOperation = CandidateService.GetCreate(cid, (int)uid);
-            if (vmOperation.CountryID == 74)
+            if (vmOperation.CountryID == null)
             {
-                if (vmOperation.CountryID == null)
-                {
-                    vmOperation.CountryID = DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).First().CCID;
-                }
-                if (vmOperation.CityID == null)
-                {
-                    ViewBag.CityID = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID);
-                }
+                vmOperation.CountryID = DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).First().CCID;
+            }
+            if (vmOperation.CityID == null)
+            {
+                ViewBag.CityID = DDService.GetCityList().ToList().OrderBy(aa => aa.CityID);
             }
             CreateHelper(vmOperation);
             return View(vmOperation);

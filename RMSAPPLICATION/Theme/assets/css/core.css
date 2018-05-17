@@ -425,6 +425,16 @@ a.bg-danger:focus {
     padding: 0;
     border-bottom-width: 0;
 }
+.page-header2 {
+    margin: 0;
+    padding: 55px;
+    border-bottom-width: 0;
+}
+.page-header3 {
+    margin-bottom: 0px;
+    padding: 0;
+    border-bottom-width: 0;
+}
 
 @media (min-width: 769px) {
     .page-header .heading-elements.collapse {

@@ -702,7 +702,7 @@
                     </label>
                 </div>
                 <div class="col-md-7">
-                    @Html.ActionLink("Update Profile", "Index", "Candidate", null, new { @class = "btn btn-success btn-large" })
+                    @Html.ActionLink("Update Profile", "Index", "Candidate", null, new { @class = "btn btn-primary btn-large" })
                 </div>
             </div>
 
@@ -728,7 +728,7 @@
     </div>
     <div class="modal-footer">
         <div id="ApproveDecline">
-            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-success bg-success-400" value="Save">Apply</button>
+            <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-primary bg-primary-400" value="Save">Apply</button>
             <button type="button" class=" btn btn-danger" name="Close" data-dismiss="modal">Decline</button>
         </div>
     </div>

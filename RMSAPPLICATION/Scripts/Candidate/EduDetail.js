@@ -179,67 +179,13 @@ function ShowHide() {
     switch ($("#DegreeLevelID").val()) {
         case "1":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
+            $("#InstitutionDD").show();
             $("#CGPATB").hide();
-            $("#DegreeTypeDD").hide();
+            $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
             break;
         case "2":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
-            $("#CGPATB").hide();
-            $("#DegreeTypeDD").show();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").show();
-            break;
-        case "3":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
-            $("#CGPATB").hide();
-            $("#DegreeTypeDD").show();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").show();
-            break;
-        case "4":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").show();
-            $("#DegreeTypeDD").show();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").show();
-        case "5":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").show();
-            $("#DegreeTypeDD").show();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").show();
-            break;
-        case "6":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").show();
-            $("#DegreeTypeDD").hide();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").show();
-            break;
-        case "7":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").show();
-            $("#DegreeTypeDD").hide();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").hide();
-            break;
-        case "8":
-            $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").hide();
-            $("#DegreeTypeDD").show();
-            $("#MajorSubjectDD").show();
-            $("#marksdiv").hide();
-            break;
-        case "9":
             $("#DegreeTitleTB").hide();
             $("#InstitutionDD").show();
             $("#CGPATB").hide();
@@ -247,10 +193,65 @@ function ShowHide() {
             $("#MajorSubjectDD").show();
             $("#marksdiv").hide();
             break;
-        case "10":
+        case "3":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
             $("#CGPATB").hide();
+            $("#DegreeTypeDD").hide();
+            $("#MajorSubjectDD").show();
+            $("#marksdiv").hide();
+            break;
+        case "4":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").hide();
+            $("#MajorSubjectDD").show();
+            break;
+        case "5":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").show();
+            $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
+            break;
+        case "6":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").hide();
+            $("#CGPATB").hide();
+            $("#DegreeTypeDD").show();
+            $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
+            break;
+        case "7":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#DegreeTypeDD").show();
+            $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
+            break;
+        case "8":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#DegreeTypeDD").show();
+            $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
+            break;
+        case "9":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
+            $("#DegreeTypeDD").hide();
+            $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
+            break;
+        case "10":
+            $("#DegreeTitleTB").show();
+            $("#InstitutionDD").show();
+            $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
             $("#marksdiv").hide();

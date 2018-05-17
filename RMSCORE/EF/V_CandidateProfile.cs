@@ -47,5 +47,6 @@ namespace RMSCORE.EF
         public string OtherCityName { get; set; }
         public Nullable<int> SalutationID { get; set; }
         public string SalutationName { get; set; }
+        public string OtherAreaName { get; set; }
     }
 }
