@@ -87,8 +87,8 @@ namespace RMSAPPLICATION.Controllers
             //    ModelState.AddModelError("BloodGroupID", "Mandatory");
             if (dbOperation.AreaOfInterestID == 0)
                 ModelState.AddModelError("AreaOfInterestID", "Mandatory");
-            if (dbOperation.DomicileCityID == 0)
-                ModelState.AddModelError("DomicileCityID", "Mandatory");
+            //if (dbOperation.DomicileCityID == 0)
+            //    ModelState.AddModelError("DomicileCityID", "Mandatory");
             if (dbOperation.Address == null || dbOperation.Address == "")
                 ModelState.AddModelError("Address", "Mandatory");
             if (dbOperation.CountryID == 74)

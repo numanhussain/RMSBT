@@ -20023,12 +20023,12 @@ thead .htCollapseButton {
         .dataTables_paginate .paginate_button:focus {
             background-color: #f5f5f5;
         }
-
+        /*changed*/
         .dataTables_paginate .paginate_button.current,
         .dataTables_paginate .paginate_button.current:hover,
         .dataTables_paginate .paginate_button.current:focus {
-            background-color: #2196f3;
-            border-color: #2196f3;
+            background-color: #00adf0;
+            border-color: #00adf0;
             color: #fff;
         }
 

@@ -29,9 +29,9 @@
 *
 * ---------------------------------------------------------------------------- */
 .bg-primary {
-  background-color: #2196F3;
-  border-color: #2196F3;
-  color: #fff;
+    background-color: #00adf0;
+    border-color: #00adf0;
+    color: #fff;
 }
 .bg-primary-300 {
   background-color: #64B5F6;
@@ -449,9 +449,9 @@
   color: #fff;
 }
 .bg-grey {
-  background-color: #777;
-  border-color: #777;
-  color: #fff;
+    background-color: #383838;
+    border-color: #383838;
+    color: #fff;
 }
 .bg-grey-300 {
   background-color: #999;
@@ -2307,7 +2307,7 @@
 .text-blue,
 .text-blue:hover,
 .text-blue:focus {
-  color: #03A9F4 !important;
+    color: #00adf0 !important;
 }
 .text-blue-300,
 .text-blue-300:hover,
@@ -2457,7 +2457,7 @@
 .text-grey,
 .text-grey:hover,
 .text-grey:focus {
-  color: #777 !important;
+  color: #111111 !important;
 }
 .text-grey-300,
 .text-grey-300:hover,

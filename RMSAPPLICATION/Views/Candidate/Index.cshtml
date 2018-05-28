@@ -41,13 +41,11 @@
         }*/
 
         .liActive {
-            color: white;
-            background-color: #077ce8;
+            background-color: #065094;
         }
 
         .liInActive {
-            color: white;
-            background-color: dodgerblue
+            background-color: #00adf0
         }
     </style>
 </head>
@@ -67,7 +65,7 @@
                                     <div class="form-group">
                                         <img src="~/Candidate/RetrieveImage/@Model.CandidateID" class="img-circle" id="dbImage" width="200" height="200" style="margin-left:10px; margin-top: 0px" />
                                         <div style="padding:10px;margin-left:50px ">
-                                            <div tabindex="500" class="btn btn-group btn-file bg-blue-600">
+                                            <div tabindex="500" class="btn btn-group btn-file bg-primary">
                                                 <i class="icon-file-plus"></i>  <span>Browse</span>
                                                 <input type="file" class="file-input" id="imgupload" onchange="fileCheck(this);" value="Open" data-browse-class="btn btn-primary btn-xs" data-show-caption="false" data-remove-class="btn btn-default btn-xs" data-show-upload="false" />
                                             </div>
@@ -81,10 +79,10 @@
                                 <ul class="navigation">
                                     <li id="hv1" onclick="CandidateGetCreate()"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-person"></i>Personal Details</a></li>
                                     <li id="hv2" class="hv" onclick="LoadPVEduDetailIndex(@Model.CandidateID)"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-book"></i>Education</a></li>
-                                    @if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
-                                    {
+                                    @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)*@
+                                    
                                         <li id="hv3" class="hv" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-stairs-up"></i>Experience</a></li>
-                                    }
+                                    
                                     <li id="hv33" class="hv" onclick="LoadPVSkillDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="glyphicon glyphicon-wrench"></i>Skills</a></li>
                                     <li id="hv7" class="hv" onclick="SelfAssessmentGetCreate(@Model.CandidateID)"><a href="#" class="btn text-bold text-white" style="text-align:left"><i class="icon-user-plus"></i>Self Assessment</a></li>
                                     @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
@@ -96,7 +94,7 @@
                                 </ul>
                                 <div class="form-group col-md-12">
                                     <div>
-                                        <label class="control-label text-semibold">Applying as:</label>
+                                        <label class="control-label text-semibold">Applying for:</label>
                                         @Html.DropDownList("CategoryID", null, new { @class = "form-control" })
                                     </div>
                                 </div>

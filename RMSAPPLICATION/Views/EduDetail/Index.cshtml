@@ -19,14 +19,14 @@
     <div class="modal-header">
         <div class="modal-title">
             <h3 class="text-black">
-                <i class="icon-book"></i>&nbsp;&nbsp;Education&nbsp;<small class="text-grey-600">(You have to add at least one education to proceed further)</small>
+                <i class="icon-book"></i>&nbsp;&nbsp;Education&nbsp;<small class="text-black">(You have to add at least one education to proceed further)</small>
             </h3>
 
         </div>
     </div>
 </div>
 <div class="panel panel-flat">
-    <div class="breadcrumb-line bg-blue-600">
+    <div class="breadcrumb-line bg-primary">
         <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
         <ul class="breadcrumb-elements pull-left bg-blue-800" style="margin-left:-20px">
             <li><a href="#" id="EduGetCreate"><i class="icon-add"></i> Add New Education</a></li>
@@ -82,7 +82,7 @@
                     @if (item.InProgress == true)
                     {
                         <td>
-                            <span class="label label-info">Currently Studying</span>
+                            <strong>Currently Studying</strong>
                         </td>
                     }
                     <td>
@@ -101,8 +101,8 @@
         </tbody>
     </table>
     <div class="btn btn-toolbar pull-right">
-        <button type="button" onclick="CandidateGetCreate()" class="btn btn-primary icon-arrow-left15" style=" font-family: 'Optima-Family'">Previous</button>
-        <button type="button" onclick="LoadPVExperienceDetailIndex()" class="btn btn-primary icon-arrow-right15">Next</button>
+        <button type="button" onclick="CandidateGetCreate()" class="btn bg-grey icon-arrow-left15" style=" font-family: 'Optima-Family'">Previous</button>
+        <button type="button" onclick="LoadPVExperienceDetailIndex()" class="btn bg-grey icon-arrow-right15">Next</button>
     </div>
 </div>
 <!-- Main content -->

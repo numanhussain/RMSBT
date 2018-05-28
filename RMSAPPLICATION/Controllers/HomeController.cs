@@ -92,9 +92,9 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("UserName", "Enter a valid Email address.");
                 }
             }
-            if (UserEntityService.GetIndex().Where(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password && aa.UserStage > 1).Count() > 0)
+            if (UserEntityService.GetIndexSpecific(aa => aa.UserName == Obj.UserName && aa.Password == Obj.Password && aa.UserStage > 1).Count() > 0)
             {
-                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.Email == Obj.UserName && aa.Password == Obj.Password);
+                V_UserCandidate vm = VUserEntityService.GetIndexSpecific(aa => aa.Email == Obj.UserName && aa.Password == Obj.Password).First();
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                 if (vm.UserStage == 8)
@@ -111,7 +111,7 @@ namespace RMSAPPLICATION.Controllers
                 //ModelState.AddModelError("UserName", "Please Activate You Email address");
                 ModelState.AddModelError("Password", "The username or password is incorrect");
             }
-            return View("Login",Obj);
+            return View("Login", Obj);
 
         }
         // 1: SignUp
@@ -132,13 +132,13 @@ namespace RMSAPPLICATION.Controllers
             {
                 return RedirectToAction("RegisterUser");
             }
-            else
+            Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
+            if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
             {
                 if (ModelState.IsValid)
                 {
                     Obj.UserName = Obj.Email;
-                    Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
-                    if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
+
                     {
                         UserService.RegisterUser(Obj, vmf);
                         var code = Obj.SecurityLink;
@@ -151,14 +151,13 @@ namespace RMSAPPLICATION.Controllers
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");
                     }
-                    else
-                    {
-                        // Show Message
-                    }
-
                 }
             }
-            return View(Obj);
+            else
+            {
+                ModelState.AddModelError("Email", "Already registered account");
+            }
+            return View("RegisterUser", Obj);
         }
         [HttpGet]
         [AllowAnonymous]

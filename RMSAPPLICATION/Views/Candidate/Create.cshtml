@@ -42,11 +42,11 @@
     <div style="margin-top:-25px">
         <div class="modal-header">
             <div class="modal-title">
-                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Details&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+                <h3 class="text-black"><i class="icon-person text-black"></i>&nbsp;&nbsp;Personal Details&nbsp;<small class="text-black">(All fields with an asterisk (*) are mandatory)</small></h3>
             </div>
         </div>
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-blue-300" style="height:41px">
+            <div class="breadcrumb-line bg-primary" style="height:41px">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb">
                     @*<li><a href="~/Job/Index"> Dashboard</a></li>
@@ -98,9 +98,7 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Date of Birth</label>
-                            <p id="date">
-                                @Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker", @type = "date" })
-                            </p>
+                            @Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
@@ -136,7 +134,7 @@
                     </div>
                     <div class="form-group col-md-3">
                         <div>
-                            <label class="required control-label text-semibold">Domicile</label>
+                            <label class="control-label text-semibold">Domicile</label>
                             @Html.DropDownList("DomicileCityID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -258,9 +256,9 @@
             <div class="panel-footer">
                 <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                 <div class="heading-elements">
-                    <button type="button" onclick="LoadPVEduDetailIndex(@Model.CandidateID)" class="btn btn-primary heading-btn pull-right icon-arrow-right15">Next</button>
+                    <button type="button" onclick="LoadPVEduDetailIndex(@Model.CandidateID)" class="btn bg-grey heading-btn pull-right icon-arrow-right15">Next</button>
                     @*<button type="button" id="btnPostEdit" class="btn btn-success bg-success-800 pull" value="Save">Save</button>*@
-                    <button type="button" id="btnPostCreate" class="btn btn-primary heading-btn pull-right" style="font-family:'Times New Roman'">Save</button>
+                    <button type="button" id="btnPostCreate" class="btn bg-primary heading-btn pull-right">Save</button>
                 </div>
             </div>
         </div>
@@ -268,10 +266,11 @@
         <!-- /main content -->
         <!-- /page content -->
     </div>
+
+
 }
 <script type="text/javascript">
     $(document).ready(function () {
-
         SavePersonalInfoFunction();
         LoadDD();
     });

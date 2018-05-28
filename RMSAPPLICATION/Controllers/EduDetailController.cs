@@ -35,7 +35,7 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            List<VMEduDetailIndex> vmlist = EduDetailService.GetIndex(cid);
+            List<VMEduDetailIndex> vmlist = EduDetailService.GetIndex(cid).OrderByDescending(aa => aa.EduID).ToList();
             return View(vmlist);
         }
         #region -- Controller Main View Actions  --
@@ -72,9 +72,9 @@ namespace RMSAPPLICATION.Controllers
                         ModelState.AddModelError("DegreeTitle", "Mandatory ");
                 }
 
-                if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0 || obj.DegreeLevelID == 2 && obj.InstitutionID == 0 || obj.DegreeLevelID == 3 && obj.InstitutionID == 0 || obj.DegreeLevelID == 10 && obj.InstitutionID == 0)
+                if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0)
                     obj.InstitutionID = null;
-                if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0)
+                if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0 || obj.DegreeLevelID == 2 && obj.InstitutionID == 0 || obj.DegreeLevelID == 3 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0 || obj.DegreeLevelID == 7 && obj.InstitutionID == 0 || obj.DegreeLevelID == 8 && obj.InstitutionID == 0 || obj.DegreeLevelID == 9 && obj.InstitutionID == 0 || obj.DegreeLevelID == 10 && obj.InstitutionID == 0)
                     ModelState.AddModelError("InstitutionID", "Mandatory ");
                 if (obj.StartDate == null)
                     ModelState.AddModelError("StartDate", "Mandatory ");
@@ -94,27 +94,36 @@ namespace RMSAPPLICATION.Controllers
                     if (obj.StartDate >= obj.EndDate)
                         ModelState.AddModelError("StartDate", "Must be smaller than end date");
                 }
-                if (obj.DegreeLevelID != 10)
-                {
-                    if (obj.InstitutionID == 0)
-                        ModelState.AddModelError("InstitutionID", "Mandatory ");
-                }
 
 
-                if (obj.DegreeLevelID == 1 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9 || obj.DegreeLevelID == 10 || obj.DegreeLevelID == 7)
+                if (obj.DegreeLevelID == 1 || obj.DegreeLevelID == 10)
                 {
                     obj.ObtainedMark = null; obj.TotalMark = null; obj.Percentage = null;
                 }
                 else
                 {
-                    if (obj.Percentage == null && obj.CGPA == null)
+                    if (obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6)
                     {
                         if (obj.ObtainedMark == null)
                             ModelState.AddModelError("ObtainedMark", "Mandatory ");
                         if (obj.TotalMark == null)
                             ModelState.AddModelError("TotalMark", "Mandatory ");
-                        if (obj.Percentage == null && obj.CGPA == null)
+                        if (obj.Percentage == null)
                             ModelState.AddModelError("Percentage", "Mandatory ");
+                    }
+                    else
+                    {
+                        if (obj.Percentage == null && obj.CGPA == null)
+                        {
+                            if (obj.ObtainedMark == null)
+                                ModelState.AddModelError("ObtainedMark", "Mandatory ");
+                            if (obj.TotalMark == null)
+                                ModelState.AddModelError("TotalMark", "Mandatory ");
+                            if (obj.Percentage == null)
+                                ModelState.AddModelError("Percentage", "Mandatory ");
+                            if (obj.CGPA == null)
+                                ModelState.AddModelError("CGPA", "Mandatory ");
+                        }
                     }
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)

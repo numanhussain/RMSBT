@@ -38,7 +38,8 @@ function SelectAllCheckBox() {
     $("#ApproveDecline").hide();
     $('#ask2').change(function () {
         if ($(this).is(":checked")) {
-            $("#titlehide").hide();
+            $("#hideshow2").hide();
+            $("#titlehide").show();
             $("#hrhide").hide();
             $("#profiledivhide").hide();
             $("#declarationdivhide").show();
@@ -72,7 +73,7 @@ function ApplyJob(id, item) {
             $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully applied for this job. You can check the status of your application later by logging into your account at Bestway Career Portal.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                 header: '',
                 position: 'center',
-                theme: 'bg-blue',
+                theme: 'alert-styled-right bg-info',
                 life: 7000
             });
             $("#DivJobApplied").show();
@@ -100,11 +101,11 @@ function ApplyJob(id, item) {
 //    });
 //}
 function ViewProfileIndex(id, item) {
-    if (item<8) {
+    if (item<7) {
         $.jGrowl('<div>You have to complete your profile first.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div></strong>', {
             header: '',
             position: 'center',
-            theme: 'bg-blue',
+            theme: 'alert-styled-left bg-danger',
             life: 9000
         });
     }

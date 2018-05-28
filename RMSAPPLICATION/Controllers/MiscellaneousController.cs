@@ -87,10 +87,6 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("MGSalary", "Mandatory ");
             if (obj.ExpectedSalary == null)
                 ModelState.AddModelError("ExpectedSalary", "Mandatory ");
-            if (obj.TotalExp == null)
-                ModelState.AddModelError("TotalExp", "Mandatory ");
-            if (obj.CementExp == null)
-                ModelState.AddModelError("CementExp", "Mandatory ");
             if (obj.BloodGroupID == 0)
                 ModelState.AddModelError("BloodGroupID", "Mandatory ");
             if (obj.ReligionID == 0)
@@ -188,10 +184,6 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
 
             return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
-        }
-        public ActionResult RetrieveImage()
-        {
-            return File(@"d:\test.pdf", "application/pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

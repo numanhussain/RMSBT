@@ -36,21 +36,22 @@ function ExperienceDetailGetCreate(id) {
     });
 }
 function ExperienceDetailPostCreate(id) {
-    $('#btnPostCreate').click(function () {
+    $('#btnPostCreate2').click(function () {
         $.ajax({
-            type: "POST",
-            url: "/Experience/Create",
-            data: $("#formCreateID").serialize(),
+            url: '/Experience/Create',
+            type: 'POST',
+            cache: false,
+            data: $("#formCreateID2").serialize(),
             success: function (data) {
                 if (data == "OK") {
                     $('#myModal').modal('hide');
+                    LoadPVExperienceDetailIndex(id)
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-blue',
+                        theme: 'alert-styled-right bg-info',
                         life: 6000
                     });
-                    LoadPVExperienceDetailIndex(id)
                 }
                 else {
                     $('#modelBody').html(data);
@@ -269,13 +270,13 @@ function LoadDD2() {
 
 
     });
-ShowCityHide2();
+    ShowCityHide2();
     $("#CountryID").on("change", function () {
         ShowCityHide2();
     });
 }
 function PostIndex(id) {
-     $('#btnPostCreate').click(function () {
+    $('#btnPostCreate').click(function () {
 
         $.ajax({
             url: '/Experience/IndexSubmitt',
@@ -299,16 +300,34 @@ function PostIndex(id) {
                 $("#result").text('an error occured')
             }
         });
-});
+    });
+}
+function PostIndex2() {
+    $("#Experience").change(function () {
+        var Experience = $('#Experience').val();
+        alert(Experience);
+        $.ajax({
+            url: "/Experience/SaveOverallExperience",
+            type: 'POST',
+            contentType: "application/json; charset=utf-8",
+            data: { Experience: Experience },
+            success: function (data) {
+                LoadPVExperienceDetailIndex(id)
+            },
+            error: function () {
+                $("#result").text('an error occured')
+            }
+        });
+    });
 }
 function ShowCityHide2() {
     $("#OtherCityDivHide2").hide();
     if ($("#CountryID").val() == 74) {
         $("#CityDivHide2").show();
-                $("#OtherCityDivHide2").hide();
+        $("#OtherCityDivHide2").hide();
     }
- else {
-                $("#CityDivHide2").hide();
-                $("#OtherCityDivHide2").show();
-            }
+    else {
+        $("#CityDivHide2").hide();
+        $("#OtherCityDivHide2").show();
+    }
 }

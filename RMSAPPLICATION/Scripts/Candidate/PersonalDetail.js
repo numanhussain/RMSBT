@@ -47,7 +47,7 @@ function SavePersonalInfoFunction() {
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-blue',
+                        theme: 'alert-styled-right bg-info',
                         life: 6000
                     });
                     CandidateGetCreate(id)

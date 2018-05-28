@@ -65,8 +65,8 @@ namespace RMSAPPLICATION.Controllers
             }
             if (ModelState.IsValid)
             {
-                if (vmf.UserStage == 7)
-                    vmf.UserStage = 8;
+                if (vmf.UserStage == 5)
+                    vmf.UserStage = 6;
                 CandidateStrengthService.PostIndex(dbOperation, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;

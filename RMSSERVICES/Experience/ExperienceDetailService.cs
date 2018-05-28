@@ -180,7 +180,7 @@ namespace RMSSERVICES.Experience
             }
             return new ServiceMessage();
         }
-        public ServiceMessage PostIndex(int? TotalExp, int? CementExp, V_UserCandidate LoggedInUser)
+        public ServiceMessage PostGeneralExperience(int? TotalExp,V_UserCandidate LoggedInUser)
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
             List<MiscellaneousDetail> dbVRMPositions = MiscellaneousRepository.FindBy(SpecificClient);
@@ -191,7 +191,6 @@ namespace RMSSERVICES.Experience
                 dbCementExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
                 dbCementExp.CandidateID = LoggedInUser.CandidateID;
                 dbCementExp.TotalExp = TotalExp;
-                dbCementExp.CementExp = CementExp;
                 MiscellaneousRepository.Edit(dbCementExp);
                 MiscellaneousRepository.Save();
             }
@@ -199,6 +198,29 @@ namespace RMSSERVICES.Experience
             {
                 dbCementExp.CandidateID = LoggedInUser.CandidateID;
                 dbCementExp.TotalExp = TotalExp;
+                MiscellaneousRepository.Add(dbCementExp);
+                MiscellaneousRepository.Save();
+            }
+
+            return new ServiceMessage();
+        }
+        public ServiceMessage PostCementExperience(int? CementExp, V_UserCandidate LoggedInUser)
+        {
+            Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
+            List<MiscellaneousDetail> dbVRMPositions = MiscellaneousRepository.FindBy(SpecificClient);
+            MiscellaneousDetail dbCementExp = new MiscellaneousDetail();
+            if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
+            {
+                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
+                dbCementExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
+                dbCementExp.CandidateID = LoggedInUser.CandidateID;
+                dbCementExp.CementExp = CementExp;
+                MiscellaneousRepository.Edit(dbCementExp);
+                MiscellaneousRepository.Save();
+            }
+            else
+            {
+                dbCementExp.CandidateID = LoggedInUser.CandidateID;
                 dbCementExp.CementExp = CementExp;
                 MiscellaneousRepository.Add(dbCementExp);
                 MiscellaneousRepository.Save();

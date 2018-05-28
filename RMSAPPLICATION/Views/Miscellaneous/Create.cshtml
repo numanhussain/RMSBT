@@ -22,11 +22,11 @@
             <!-- Basic datatable -->
             <div class="modal-header">
                 <div class="modal-title">
-                    <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous&nbsp;<small class="text-grey-400">(All fields with an asterisk (*) are mandatory)</small></h3>
+                    <h3 class="text-black"><i class="icon-nbsp"></i>&nbsp;&nbsp;Miscellaneous&nbsp;<small class="text-black">(All fields with an asterisk (*) are mandatory)</small></h3>
                 </div>
             </div>
             <div class="panel panel-flat">
-                <div class="breadcrumb-line bg-blue-600" style="height:41px">
+                <div class="breadcrumb-line bg-primary" style="height:41px">
                     <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                     <ul class="breadcrumb">
                         @*
@@ -222,7 +222,7 @@
                                 @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days", @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.NoticeTime, "", new { @class = "text-danger" })
                             </div>
-                            <div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
+                            @*<div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
                             <div class="col-md-1">
                                 @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
                                 <small class="text-grey-300">Years</small>
@@ -233,7 +233,7 @@
                                 @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
                                 <small class="text-grey-300">Years</small>
                                 @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
-                            </div>
+                            </div>*@
                         </div>
                         <div class="form-group">
                             <div class="required col-md-2 control-label text-semibold">Blood Group</div>
@@ -286,7 +286,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink("View CV", "DownloadExampleFiles", "Miscellaneous", new { fileName = "variation-example" }, new { @class = "btn btn-primary btn-large" })
+                                    @Html.ActionLink("View CV", "DownloadExampleFiles", "Miscellaneous", new { fileName = "variation-example" }, new { @class = "btn bg-primary btn-large", @target="_blank" })
                                 </div>
                             }
                         </div>
@@ -294,8 +294,8 @@
                     <div class="panel-footer">
                         <a class="heading-elements-toggle"><i class="icon-more"></i></a>
                         <div class="heading-elements btn-toolbar pull-right">
-                            <button type="button" onclick="ReferenceGetCreate()" class="btn btn-primary icon-arrow-left15">Previous</button>
-                            <button type="button" id="btnPostCreate" class="btn btn-primary" style="font-family:'Times New Roman'">Save</button>
+                            <button type="button" onclick="ReferenceGetCreate()" class="btn bg-grey icon-arrow-left15">Previous</button>
+                            <button type="button" id="btnPostCreate" class="btn bg-primary" @*style="font-family:'Times New Roman'"*@>Save</button>
                         </div>
                     </div>
                 </div>

@@ -35,7 +35,7 @@
 //    });
 //}
 function ReferenceDetailPostCreate(id) {
-   $('#btnPostCreate').click(function () {
+    $('#btnPostCreate').click(function () {
         $.ajax({
             type: "POST",
             url: "/Reference/Create",
@@ -43,10 +43,10 @@ function ReferenceDetailPostCreate(id) {
             success: function (data) {
                 if (data == "OK") {
                     $.jGrowl('You have successfully saved your details.', {
-                    header: '',
-                    position: 'center',
-                    theme: 'bg-blue',
-                    life:6000
+                        header: '',
+                        position: 'center',
+                        theme: 'alert-styled-right bg-info',
+                        life: 6000
                     });
                     ReferenceGetCreate(id)
                 }

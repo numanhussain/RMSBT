@@ -15,11 +15,8 @@
             <div class="panel panel-flat">
                 <div class="panel-body">
                     <div class="media stack-media-on-mobile text-left content-group-lg">
-                        <a href="#" class="media-left media-middle">
-                            <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
-                        </a>
                         <div class="media-body">
-                            <h5 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h5>
+                            <h4 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h4>
                             <ul class="list-inline list-inline-separate text-muted no-margin">
                                 <li>@Html.DisplayFor(x => x.LocName)</li>
                             </ul>
@@ -28,7 +25,7 @@
                         <div class="media-right media-middle text-nowrap">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID,@LoggedInUser.UserStage)" class="btn bg-primary-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID,@LoggedInUser.UserStage)" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
                             <span id="DivJobApplied"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>
@@ -51,7 +48,7 @@
                         <div class="media-middle media-middle text-nowrap" align="center">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID,@LoggedInUser.UserStage)" class="btn bg-primary-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID,@LoggedInUser.UserStage)" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
                             }
                             <span id="DivJobApplied2"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>

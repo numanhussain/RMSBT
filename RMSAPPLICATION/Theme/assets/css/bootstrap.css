@@ -1414,7 +1414,7 @@ html {
 }
 
 body {
-    font-family: 'Optima-Family';
+    font-family: Calibri;
     font-size: 13px;
     line-height: 1.5384616;
     color: #333333;
@@ -1431,7 +1431,7 @@ textarea {
 }
 
 a {
-    color: #1E88E5;
+    color: #00adf0;
     text-decoration: none;
 }
 
@@ -3254,7 +3254,7 @@ output {
     padding: 7px 12px;
     font-size: 13px;
     line-height: 1.5384616;
-    color: white;
+    color: black;
     background-color: #3440cd1f;
     background-image: none;
     border: 1px solid #ddd;

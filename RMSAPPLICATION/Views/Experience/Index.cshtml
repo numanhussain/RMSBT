@@ -25,6 +25,8 @@
                         </label>
                     </div>*@
 
+
+
                 <div class="form-group ">
                     <div class="col-md-12">
                         <div class="col-md-4">
@@ -46,70 +48,67 @@
                         {
                             using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
                             {
-                                <div class="col-md-1 text-semibold">
-                                    <label class="control-label">Experience </label>
+                                <div class="col-md-2 text-semibold">
+                                    <label class="control-label">Overall Experience </label>
                                 </div>
                                 <div class="col-md-1">
                                     <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
                                 </div>
                                 <div class="col-md-2 text-semibold">
-                                    <label class="control-label">Cement Experience </label>
+                                    <label class="control-label">Cement Industry Experience </label>
                                 </div>
                                 <div class="col-md-1">
                                     <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
-                                </div>
-                                <div class="col-md-1">
-                                    <button type="button" id="btnPostCreate" class="btn btn-primary" style="font-family:'Times New Roman'" value="Save">Save</button>
                                 </div>
                             }
                         }
                     </div>
                 </div>
-
                 @*<div class="col-md-6 pull-left">
-                    <div class="control-label col-md-7 text-semibold">Do you have any working experience?</div>
-                    <div class="col-md-2">
-                        <div class="radio-inline text-semibold">
-                            @Html.RadioButton("ExperienceSelection", "HaveExperienceYes", new { @checked = "checked", @id = "HaveExperienceYes" })
-                            Yes
+                        <div class="control-label col-md-7 text-semibold">Do you have any working experience?</div>
+                        <div class="col-md-2">
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("ExperienceSelection", "HaveExperienceYes", new { @checked = "checked", @id = "HaveExperienceYes" })
+                                Yes
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-3">
-                        <label class="radio-inline text-semibold">
-                            @Html.RadioButton("ExperienceSelection", "HaveExperienceNo", new { @id = "HaveExperienceNo" })
-                            No
-                        </label>
-                    </div>
-                </div>*@
+                        <div class="col-md-3">
+                            <label class="radio-inline text-semibold">
+                                @Html.RadioButton("ExperienceSelection", "HaveExperienceNo", new { @id = "HaveExperienceNo" })
+                                No
+                            </label>
+                        </div>
+                    </div>*@
             </div>
             @*@if (LoggedInUser.HaveExperience == true)
-            {
-                using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
                 {
-                    <div class="form-group">
-                        <div class="col-md-2">
-                            <label class="control-label">Experience </label>
-                            <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
+                    using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
+                    {
+                        <div class="form-group">
+                            <div class="col-md-2">
+                                <label class="control-label">Experience </label>
+                                <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
+                            </div>
+                            <div class="col-md-2">
+                                <label class="control-label">Cement Experience </label>
+                                <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>
+                            </div>
                         </div>
-                        <div class="col-md-2">
-                            <label class="control-label">Cement Experience </label>
-                            <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
-                        </div>
-                        <div class="col-md-2">
-                            <button type="button" id="btnPostCreate" class="btn btn-success bg-success-800" value="Save">Save</button>
-                        </div>
-                    </div>
-                }
-            }*@
+                    }
+                }*@
         </div>
     </div>
+
     <!-- Page content -->
     <!-- Main content -->
     <!-- Basic datatable -->
     if (LoggedInUser.HaveExperience == true)
     {
         <div class="panel panel-flat">
-            <div class="breadcrumb-line bg-blue-600">
+            <div class="breadcrumb-line bg-primary">
                 <a class="breadcrumb-elements-toggle"><i class="icon-menu-open"></i></a>
                 <ul class="breadcrumb-elements pull-left bg-blue-800" style="margin-left:-20px">
                     <li>
@@ -175,11 +174,11 @@
                             <td>
                                 @if (item.ContactEmployer == true)
                                 {
-                                    <span class="label label-info">Yes</span>
+                                    <strong>Yes</strong>
                                 }
                                 @if (item.ContactEmployer == false)
                                 {
-                                    <span class="label label-danger">No</span>
+                                    <strong>No</strong>
                                 }
                             </td>
                             <td>
@@ -194,8 +193,8 @@
     }
 
     <div class="btn btn-toolbar pull-right">
-        <button type="button" onclick="LoadPVEduDetailIndex()" class="btn btn-primary icon-arrow-left15">Previous</button>
-        <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn btn-primary icon-arrow-right15">Next</button>
+        <button type="button" onclick="LoadPVEduDetailIndex()" class="btn bg-grey icon-arrow-left15">Previous</button>
+        <button type="button" onclick="LoadPVSkillDetailIndex()" class="btn bg-grey icon-arrow-right15">Next</button>
     </div>
 
 }
@@ -203,7 +202,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         ExperienceDetailGetCreate();
-        PostIndex();
+        PostIndex2();
         HaveExperience();
         LoadExperienceRadioButtons('@LoggedInUser.HaveExperience',@LoggedInUser.CandidateID);
     });

@@ -72,8 +72,10 @@ namespace RMSSERVICES.Job
             vmJobDetail.JobTitle = dbJobDetail.JobTitle;
             vmJobDetail.CompanyName = dbJobDetail.CompanyName;
             vmJobDetail.LocID = dbJobDetail.LocID;
+            vmJobDetail.LocName = dbJobDetail.LocName;
             vmJobDetail.CatagoryID = dbJobDetail.CatagoryID;
             vmJobDetail.CityID = dbJobDetail.CityID;
+            vmJobDetail.CityName = dbJobDetail.CityName;
             vmJobDetail.DepatmentName = dbJobDetail.DepatmentName;
             vmJobDetail.JobDescription= dbJobDetail.JobDescription;
             vmJobDetail.PositionPurpose = dbJobDetail.PositionPurpose;

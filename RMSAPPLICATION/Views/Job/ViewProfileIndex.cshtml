@@ -6,7 +6,7 @@
 @{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.JobID)
-    <div class="modal-header bg-blue">
+    <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <div class="modal-title">
             <h3 id="titlehide" class="panel-title text-bold">Candidate Profile@*<span class="text-black"> @Html.DisplayFor(model => model.PersonalDetails.CName)</span>*@</h3>
@@ -69,28 +69,6 @@
                                             </div>
                                             @Html.DisplayFor(model => model.PersonalDetails.GenderName, new { @class = "form-control " })
                                         </div>
-
-                                        <div class="form-group col-md-3">
-                                            <div>
-                                                <label class="text-semibold">Marital Status</label>
-                                            </div>
-                                            @Html.DisplayFor(model => model.PersonalDetails.MartialStatusName, new { @class = "form-control " })
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <div>
-                                                <label class="text-semibold">Religion</label>
-                                            </div>
-                                            @Html.DisplayFor(model => model.PersonalDetails.ReligionName, new { @class = "form-control " })
-                                        </div>
-                                        <div class="form-group col-md-3">
-                                            <div>
-                                                <label class="text-semibold">Blood Group</label>
-                                            </div>
-                                            @Html.DisplayFor(model => model.PersonalDetails.BGroupName, new { @class = "form-control " })
-                                        </div>
-                                    </div>
-                                    <div class="row">
-
                                         <div class="form-group col-md-3">
                                             <div>
                                                 <label class="text-semibold">Area Of Interest</label>
@@ -111,16 +89,34 @@
                                             </div>
                                             @Html.DisplayFor(model => model.PersonalDetails.Address, new { @class = "form-control " })
                                         </div>
+                                        @*<div class="form-group col-md-3">
+                                                <div>
+                                                    <label class="text-semibold">Marital Status</label>
+                                                </div>
+                                                @Html.DisplayFor(model => model.PersonalDetails.MartialStatusName, new { @class = "form-control " })
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <div>
+                                                    <label class="text-semibold">Religion</label>
+                                                </div>
+                                                @Html.DisplayFor(model => model.PersonalDetails.ReligionName, new { @class = "form-control " })
+                                            </div>
+                                            <div class="form-group col-md-3">
+                                                <div>
+                                                    <label class="text-semibold">Blood Group</label>
+                                                </div>
+                                                @Html.DisplayFor(model => model.PersonalDetails.BGroupName, new { @class = "form-control " })
+                                            </div>*@
+                                    </div>
+                                    <div class="row">
+
+
                                         <div class="form-group col-md-3">
                                             <div>
                                                 <label class="text-semibold">Country</label>
                                             </div>
                                             @Html.DisplayFor(model => model.PersonalDetails.CountryName, new { @class = "form-control " })
                                         </div>
-                                    </div>
-                                    <div class="row">
-
-
                                         <div class="form-group col-md-3">
                                             <div>
                                                 <label class="text-semibold">City</label>
@@ -140,6 +136,8 @@
                                             </div>
                                             @Html.DisplayFor(model => model.PersonalDetails.CellNo, new { @class = "form-control " })
                                         </div>
+                                    </div>
+                                    <div class="row">
                                         <div class="form-group col-md-3">
                                             <div>
                                                 <label class="text-semibold">Email</label>
@@ -267,11 +265,11 @@
                                             <td>
                                                 @if (item.ContactEmployer == true)
                                                 {
-                                                    <span class="label label-success">Yes</span>
+                                                    <strong>Yes</strong>
                                                 }
                                                 @if (item.ContactEmployer == false)
                                                 {
-                                                    <span class="label label-danger">No</span>
+                                                    <strong>No</strong>
                                                 }
                                             </td>
                                         </tr>
@@ -686,8 +684,8 @@
                 </div>
             </div>
             @*<div class="col-md-12">
-                <input type='button' id='hideshow1' class="btn btn-info pull-right" value='Apply'>
-            </div>*@
+                    <input type='button' id='hideshow1' class="btn btn-info pull-right" value='Apply'>
+                </div>*@
             <div class="col-md-12" id="hrhide">
                 <hr />
             </div>
@@ -702,7 +700,7 @@
                     </label>
                 </div>
                 <div class="col-md-7">
-                    @Html.ActionLink("Update Profile", "Index", "Candidate", null, new { @class = "btn btn-primary btn-large" })
+                    @Html.ActionLink("Update Profile", "Index", "Candidate", null, new { @class = "btn bg-primary btn-large" })
                 </div>
             </div>
 
@@ -729,7 +727,7 @@
     <div class="modal-footer">
         <div id="ApproveDecline">
             <button type="button" onclick="ApplyJob(@Model.JobID,'@(HttpContext.Current.Session["ProfileStage"])')" class="btn btn-primary bg-primary-400" value="Save">Apply</button>
-            <button type="button" class=" btn btn-danger" name="Close" data-dismiss="modal">Decline</button>
+            <button type="button" class="btn bg-grey" name="Close" data-dismiss="modal">Cancel</button>
         </div>
     </div>
 }

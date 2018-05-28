@@ -50,7 +50,7 @@ function EduDetailPostCreate(id) {
                     $.jGrowl('You have successfully saved your details.', {
                         header: '',
                         position: 'center',
-                        theme: 'bg-blue',
+                        theme: 'alert-styled-right bg-info',
                         life: 6000
                     });
                 }
@@ -186,20 +186,20 @@ function ShowHide() {
             $("#marksdiv").hide();
             break;
         case "2":
-            $("#DegreeTitleTB").hide();
+            $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
-            $("#marksdiv").hide();
+            $("#marksdiv").show();
             break;
         case "3":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
+            $("#InstitutionDD").show();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
-            $("#marksdiv").hide();
+            $("#marksdiv").show();
             break;
         case "4":
             $("#DegreeTitleTB").show();
@@ -207,10 +207,11 @@ function ShowHide() {
             $("#CGPATB").hide();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
+            $("#marksdiv").show();
             break;
         case "5":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
+            $("#InstitutionDD").show();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
@@ -218,7 +219,7 @@ function ShowHide() {
             break;
         case "6":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").hide();
+            $("#InstitutionDD").show();
             $("#CGPATB").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
