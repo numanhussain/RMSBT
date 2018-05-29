@@ -279,7 +279,7 @@ function PostIndex(id) {
     $('#btnPostCreate').click(function () {
 
         $.ajax({
-            url: '/Experience/IndexSubmitt',
+            url: '/Experience/SaveOverallExperience',
             type: 'POST',
             data: $("#formCreateID").serialize(),
             success: function (data) {
@@ -302,17 +302,41 @@ function PostIndex(id) {
         });
     });
 }
-function PostIndex2() {
+function SaveOverallExperience() {
     $("#Experience").change(function () {
         var Experience = $('#Experience').val();
-        alert(Experience);
         $.ajax({
             url: "/Experience/SaveOverallExperience",
-            type: 'POST',
             contentType: "application/json; charset=utf-8",
-            data: { Experience: Experience },
+            data: { "Experience": Experience },
             success: function (data) {
-                LoadPVExperienceDetailIndex(id)
+                if (data == "OK") {
+                    location.reload;
+                }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
+            },
+            error: function () {
+                $("#result").text('an error occured')
+            }
+        });
+    });
+}
+function SaveCementExperience() {
+    $("#CementExperience").change(function () {
+        var CementExperience = $('#CementExperience').val();
+        $.ajax({
+            url: "/Experience/SaveCementExperience",
+            contentType: "application/json; charset=utf-8",
+            data: { "CementExp": CementExperience },
+            success: function (data) {
+                if (data == "OK") {
+                    LoadPVExperienceDetailIndex();
+                }
+                else {
+                    $('#PartialViewContainer').html(data);
+                }
             },
             error: function () {
                 $("#result").text('an error occured')

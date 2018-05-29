@@ -60,6 +60,9 @@
                                 <div class="col-md-1">
                                     <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
                                 </div>
+                                @*<div class="col-md-1">
+                                    <button type="button" id="btnPostCreate" class="btn btn-primary" value="Save">Save</button>
+                                </div>*@
                             }
                         }
                     </div>
@@ -123,22 +126,22 @@
                             Employer
                         </th>
                         <th class="text-bold">
-                            Manager's Name
+                            Manager's name
                         </th>
                         <th class="text-bold">
                             Nature of business
                         </th>
                         <th class="text-bold">
-                            Job Title
+                            Job title
                         </th>
                         <th class="text-bold">
-                            Joining Date
+                            Joining date
                         </th>
                         <th class="text-bold">
-                            Leaving Date
+                            Leaving date
                         </th>
                         <th class="text-bold">
-                            Contact Employer
+                            Contact employer
                         </th>
                         <th class="text-bold">
                             Action
@@ -202,7 +205,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
         ExperienceDetailGetCreate();
-        PostIndex2();
+        //PostIndex();
+        SaveOverallExperience();
+        SaveCementExperience();
         HaveExperience();
         LoadExperienceRadioButtons('@LoggedInUser.HaveExperience',@LoggedInUser.CandidateID);
     });

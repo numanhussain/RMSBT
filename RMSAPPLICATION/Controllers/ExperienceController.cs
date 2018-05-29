@@ -55,19 +55,27 @@ namespace RMSAPPLICATION.Controllers
             return View(vmlist);
         }
 
+        //public ActionResult SaveOverallExperience(int? Experience, int? CementExperience)
+        //{
+        //    V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+        //    int cid = vmf.CandidateID;
+        //    ExperienceDetailService.PostGeneralExperience(Experience, CementExperience, vmf);
+        //    return Json("OK", JsonRequestBehavior.AllowGet);
+        //}
+
         public ActionResult SaveOverallExperience(int? Experience)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            ExperienceDetailService.PostGeneralExperience(Experience, vmf);
+            ExperienceDetailService.PostGeneralExperience(Experience,vmf);
             return Json("OK", JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SaveCementExperience(int? Experience)
+        public ActionResult SaveCementExperience(int? CementExp)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            ExperienceDetailService.PostCementExperience(Experience, vmf);
+            ExperienceDetailService.PostCementExperience(CementExp, vmf);
             return Json("OK", JsonRequestBehavior.AllowGet);
         }
         #region -- Controller Main View Actions  --

@@ -109,83 +109,85 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="required col-md-5 control-label text-semibold">Have you been interviewed at Bestway Group before?</label>
-                            <div class="col-md-1 col-lg-pull-1">
-                                @Html.DropDownList("InterviewedBefore", new List<SelectListItem>
-                                                                                                                                                                                                                                                                            { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-                                @Html.ValidationMessageFor(model => model.InterviewedBefore, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div id="InterviewedBeforeDetailtb">
+                        @if (LoggedInUser.AppliedAs != 1)
+                        {
                             <div class="form-group">
-                                <div class="required col-md-2 control-label text-semibold">Post Applied for</div>
-                                <div class="col-md-2">
-                                    @Html.EditorFor(model => model.AppliedPosition, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.AppliedPosition, "", new { @class = "text-danger" })
+                                <label class="required col-md-5 control-label text-semibold">Have you been interviewed at Bestway Group before?</label>
+                                <div class="col-md-1 col-lg-pull-1">
+                                    @Html.DropDownList("InterviewedBefore", new List<SelectListItem>
+                                                                                                                                                                                                                                                                                { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                    @Html.ValidationMessageFor(model => model.InterviewedBefore, "", new { @class = "text-danger" })
                                 </div>
-                                <div class="required col-md-2 control-label text-semibold">Interview Date</div>
-                                <div class="col-md-2">
-                                    @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                                    @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="required col-md-1 control-label text-semibold text-right">Location</div>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.InterviewedLocation, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.InterviewedLocation, "", new { @class = "text-danger" })
-                                </div>
-
                             </div>
-                        </div>
+                            <div id="InterviewedBeforeDetailtb">
+                                <div class="form-group">
+                                    <div class="required col-md-2 control-label text-semibold">Post Applied for</div>
+                                    <div class="col-md-2">
+                                        @Html.EditorFor(model => model.AppliedPosition, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.AppliedPosition, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-2 control-label text-semibold">Interview Date</div>
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                        @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-1 control-label text-semibold text-right">Location</div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.InterviewedLocation, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.InterviewedLocation, "", new { @class = "text-danger" })
+                                    </div>
 
-                        <div class="form-group">
-                            <label class="required col-md-4 control-label text-semibold">Have you worked before with Bestway Group</label>
-                            <div class="col-md-1">
-                                @Html.DropDownList("WorkedBefore", new List<SelectListItem>
-                                                                                                                                                                                                                                                                            { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
-                                @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                        </div>
-                        <div id="WorkedBeforeDetailtb">
+
                             <div class="form-group">
-                                <div class="required col-md-2 control-label text-semibold">Date of Joining</div>
-                                <div class="col-md-3">
-                                    @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new
-                                    {
-                                        @class = "form-control",
-                                        @type = "date"@*@Value = @DateTime.Today.ToString("yyyy-MM-dd")*@})
-                                    @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
-                                <div class="col-md-2">
-                                    @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                                    @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="required col-md-1 control-label text-semibold text-right">Designation</div>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
-                                </div>
-
-                            </div>
-                            <div class="form-group">
-                                <div class="required col-md-2 control-label text-semibold">Employment No.</div>
+                                <label class="required col-md-4 control-label text-semibold">Have you worked before with Bestway Group</label>
                                 <div class="col-md-1">
-                                    @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.EmploymentNo, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="required col-md-1 control-label text-semibold text-right">Location</div>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="required col-md-2 control-label text-semibold text-right">Reason of leaving</div>
-                                <div class="col-md-3">
-                                    @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
-                                    @Html.ValidationMessageFor(model => model.ReasonLeaving, "", new { @class = "text-danger" })
+                                    @Html.DropDownList("WorkedBefore", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                    @Html.ValidationMessageFor(model => model.WorkedBefore, "", new { @class = "text-danger" })
                                 </div>
                             </div>
-                        </div>
+                            <div id="WorkedBeforeDetailtb">
+                                <div class="form-group">
+                                    <div class="required col-md-2 control-label text-semibold">Date of Joining</div>
+                                    <div class="col-md-3">
+                                        @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new
+                                   {
+                                       @class = "form-control",
+                                       @type = "date" @*@Value = @DateTime.Today.ToString("yyyy-MM-dd")*@})
+                                        @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                        @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-1 control-label text-semibold text-right">Designation</div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <div class="required col-md-2 control-label text-semibold">Employment No.</div>
+                                    <div class="col-md-1">
+                                        @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.EmploymentNo, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-1 control-label text-semibold text-right">Location</div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-2 control-label text-semibold text-right">Reason of leaving</div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.ReasonLeaving, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        }
                         @if (LoggedInUser.AppliedAs == 1)
                         {
                             <div class="form-group">
@@ -204,7 +206,7 @@
                             </div>
                         }
                         <div class="form-group">
-                            <div class="required col-md-4 control-label text-semibold">From where did you hear about the job?</div>
+                            <div class="required col-md-4 control-label text-semibold">From where did you hear about the opportunity?</div>
                             <div class="col-md-3">
                                 @Html.DropDownList("HearAboutJobID", null, new { @class = "form-control" })
                             </div>
@@ -223,47 +225,51 @@
                                 @Html.ValidationMessageFor(model => model.NoticeTime, "", new { @class = "text-danger" })
                             </div>
                             @*<div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
-                            <div class="col-md-1">
-                                @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
-                                <small class="text-grey-300">Years</small>
-                                @Html.ValidationMessageFor(model => model.TotalExp, "", new { @class = "text-danger" })
-                            </div>
-                            <div class="required required col-md-2 control-label text-semibold text-right">Cement Experience</div>
-                            <div class="col-md-1">
-                                @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
-                                <small class="text-grey-300">Years</small>
-                                @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
-                            </div>*@
+                                <div class="col-md-1">
+                                    @Html.EditorFor(model => model.TotalExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                                    <small class="text-grey-300">Years</small>
+                                    @Html.ValidationMessageFor(model => model.TotalExp, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="required required col-md-2 control-label text-semibold text-right">Cement Experience</div>
+                                <div class="col-md-1">
+                                    @Html.EditorFor(model => model.CementExp, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
+                                    <small class="text-grey-300">Years</small>
+                                    @Html.ValidationMessageFor(model => model.CementExp, "", new { @class = "text-danger" })
+                                </div>*@
                         </div>
                         <div class="form-group">
-                            <div class="required col-md-2 control-label text-semibold">Blood Group</div>
+                            <div class="col-md-2 control-label text-semibold">Blood Group</div>
                             <div class="col-md-2">
                                 @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
                             </div>
-                            <div class="required col-md-2 control-label text-semibold">Marital Status</div>
+                            <div class="col-md-2 control-label text-semibold">Marital Status</div>
                             <div class="col-md-2">
                                 @Html.DropDownList("MaritalStatusID", null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.MaritalStatusID, "", new { @class = "text-danger" })
                             </div>
-                            <div class="required col-md-2 control-label text-semibold">Religion</div>
+                            <div class="col-md-2 control-label text-semibold">Religion</div>
                             <div class="col-md-2">
                                 @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
                                 @Html.ValidationMessageFor(model => model.ReligionID, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="required col-md-2 control-label text-semibold">Monthly Gross Salary</div>
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.MGSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
-                                @Html.ValidationMessageFor(model => model.MGSalary, "", new { @class = "text-danger" })
+                        @if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
+                        {
+                            <div class="form-group">
+                                <div class="required col-md-2 control-label text-semibold">Monthly Gross Salary</div>
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.MGSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                                    @Html.ValidationMessageFor(model => model.MGSalary, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="required required col-md-2 control-label text-semibold">Expected Salary</div>
+                                <div class="col-md-2">
+                                    @Html.EditorFor(model => model.ExpectedSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
+                                    @Html.ValidationMessageFor(model => model.ExpectedSalary, "", new { @class = "text-danger" })
+                                </div>
                             </div>
-                            <div class="required required col-md-2 control-label text-semibold">Expected Salary</div>
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.ExpectedSalary, new { htmlAttributes = new { @class = "form-control", @placeholder = "Rs." } })
-                                @Html.ValidationMessageFor(model => model.ExpectedSalary, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
+                        }
+
                         <div class="form-group">
                             <div id="resumehide">
                                 <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
@@ -286,7 +292,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink("View CV", "DownloadExampleFiles", "Miscellaneous", new { fileName = "variation-example" }, new { @class = "btn bg-primary btn-large", @target="_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName +" cv", "DownloadExampleFiles", "Miscellaneous", new { fileName = "variation-example" }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>
@@ -309,7 +315,7 @@
         //Worked Before Selected
 
         SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
-        MiscellaneousDetailHide();
+        MiscellaneousDetailHide(@LoggedInUser.AppliedAs);
         HasCV('@LoggedInUser.HasCV');
 });
 </script>

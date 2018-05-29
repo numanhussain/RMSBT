@@ -63,10 +63,6 @@ namespace RMSSERVICES.UserDetail
             dbCandidate.DateCreated = DateTime.Today;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
-            CementExperience dbCementExperience = new CementExperience();
-            dbCementExperience.CandidateID = dbCandidate.CandidateID;
-            CementExperienceRepository.Add(dbCementExperience);
-            CementExperienceRepository.Save();
             return new ServiceMessage();
         }
         #endregion

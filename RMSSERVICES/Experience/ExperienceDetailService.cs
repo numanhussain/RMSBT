@@ -180,25 +180,24 @@ namespace RMSSERVICES.Experience
             }
             return new ServiceMessage();
         }
-        public ServiceMessage PostGeneralExperience(int? TotalExp,V_UserCandidate LoggedInUser)
+        public ServiceMessage PostGeneralExperience(int? TotalExp, V_UserCandidate LoggedInUser)
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
             List<MiscellaneousDetail> dbVRMPositions = MiscellaneousRepository.FindBy(SpecificClient);
-            MiscellaneousDetail dbCementExp = new MiscellaneousDetail();
+            MiscellaneousDetail dbTotalExp = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
-                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
-                dbCementExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
-                dbCementExp.CandidateID = LoggedInUser.CandidateID;
-                dbCementExp.TotalExp = TotalExp;
-                MiscellaneousRepository.Edit(dbCementExp);
+                dbTotalExp = dbVRMPositions.First();
+                dbTotalExp.CandidateID = LoggedInUser.CandidateID;
+                dbTotalExp.TotalExp = TotalExp;
+                MiscellaneousRepository.Edit(dbTotalExp);
                 MiscellaneousRepository.Save();
             }
             else
             {
-                dbCementExp.CandidateID = LoggedInUser.CandidateID;
-                dbCementExp.TotalExp = TotalExp;
-                MiscellaneousRepository.Add(dbCementExp);
+                dbTotalExp.CandidateID = LoggedInUser.CandidateID;
+                dbTotalExp.TotalExp = TotalExp;
+                MiscellaneousRepository.Add(dbTotalExp);
                 MiscellaneousRepository.Save();
             }
 
@@ -211,8 +210,7 @@ namespace RMSSERVICES.Experience
             MiscellaneousDetail dbCementExp = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
-                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
-                dbCementExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
+                dbCementExp = dbVRMPositions.First();
                 dbCementExp.CandidateID = LoggedInUser.CandidateID;
                 dbCementExp.CementExp = CementExp;
                 MiscellaneousRepository.Edit(dbCementExp);

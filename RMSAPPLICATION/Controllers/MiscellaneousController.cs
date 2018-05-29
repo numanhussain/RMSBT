@@ -56,10 +56,6 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("DisabilityDetail", "Mandatory ");
             if (obj.InterviewedBefore == "Yes" && obj.AppliedPosition == null)
                 ModelState.AddModelError("AppliedPosition", "Mandatory ");
-            if (obj.HearAboutJobID == 0)
-                ModelState.AddModelError("HearAboutJobID", "Mandatory ");
-            if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
-                ModelState.AddModelError("HearAboutDetail", "Mandatory ");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
                 ModelState.AddModelError("InterviewedDate", "Mandatory ");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
@@ -81,18 +77,27 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("EmploymentNo", "Mandatory ");
             if (obj.WorkedBefore == "Yes" && obj.Location == null)
                 ModelState.AddModelError("Location", "Mandatory ");
+            if (obj.HearAboutJobID == 0)
+                ModelState.AddModelError("HearAboutJobID", "Mandatory ");
+            if (obj.NoticeTime == null)
+                ModelState.AddModelError("NoticeTime", "Mandatory ");
+            if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
+                ModelState.AddModelError("HearAboutDetail", "Mandatory ");
             if (obj.InternshipDuration == "0")
                 ModelState.AddModelError("InternshipDuration", "Mandatory ");
-            if (obj.MGSalary == null || obj.MGSalary == "")
-                ModelState.AddModelError("MGSalary", "Mandatory ");
-            if (obj.ExpectedSalary == null)
-                ModelState.AddModelError("ExpectedSalary", "Mandatory ");
-            if (obj.BloodGroupID == 0)
-                ModelState.AddModelError("BloodGroupID", "Mandatory ");
-            if (obj.ReligionID == 0)
-                ModelState.AddModelError("ReligionID", "Mandatory ");
-            if (obj.MaritalStatusID == 0)
-                ModelState.AddModelError("MaritalStatusID", "Mandatory ");
+            if (vmf.AppliedAs == 5 || vmf.AppliedAs==6)
+            {
+                if (obj.MGSalary == null || obj.MGSalary == "")
+                    ModelState.AddModelError("MGSalary", "Mandatory ");
+                if (obj.ExpectedSalary == null)
+                    ModelState.AddModelError("ExpectedSalary", "Mandatory ");
+            }
+            //if (obj.BloodGroupID == 0)
+            //    ModelState.AddModelError("BloodGroupID", "Mandatory ");
+            //if (obj.ReligionID == 0)
+            //    ModelState.AddModelError("ReligionID", "Mandatory ");
+            //if (obj.MaritalStatusID == 0)
+            //    ModelState.AddModelError("MaritalStatusID", "Mandatory ");
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 6)

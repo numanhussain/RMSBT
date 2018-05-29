@@ -12,6 +12,11 @@ namespace RMSSERVICES.Generic
         public static int Port = 25;
         public static string Username = "essp.tms@bestway.com.pk";
         public static string Password = "Bcl#0099";
+        public static bool IsDateTime(string txtDate)
+        {
+            DateTime tempDate;
+            return DateTime.TryParse(txtDate, out tempDate);
+        }
         //public static string Hostname = "smtp.gmail.com";
         //public static int Port = 587;
         //public static string Username = "cnssoftwaretesting@gmail.com";

@@ -70,8 +70,10 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CName", "Mandatory");
             if (dbOperation.FatherName == null || dbOperation.CName == "")
                 ModelState.AddModelError("FatherName", "Mandatory");
-            if (dbOperation.DOB == null)
+            if (!AssistantService.IsDateTime(Request.Form["DOB"])) // check for valid date
                 ModelState.AddModelError("DOB", "Mandatory");
+            else
+                dbOperation.DOB = Convert.ToDateTime(Request.Form["DOB"].ToString());
             if (dbOperation.DOB != null)
             {
                 if (dbOperation.DOB >= DateTime.Today)
@@ -202,7 +204,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.CountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.CountryID);
             ViewBag.NationalityCountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.NationalityCountryID);
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
-            ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
+            ViewBag.DomicileCityID = new SelectList(DDService.GetDomicileList().ToList().OrderBy(aa => aa.CityName).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
             ViewBag.AreaOfInterestID = new SelectList(DDService.GetAreaOfInterestList().ToList().OrderBy(aa => aa.CAreaID).ToList(), "CAreaID", "AreaOfInterestName", obj.AreaOfInterestID);
             ViewBag.SalutationID = new SelectList(DDService.GetSalutationList().ToList().OrderBy(aa => aa.CSalutationID).ToList(), "CSalutationID", "SalutationName", obj.SalutationID);
