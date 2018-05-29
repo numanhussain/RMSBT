@@ -136,6 +136,14 @@ namespace RMSSERVICES.Generic
             list.AddRange(CityRepository.GetAll());
             return list;
         }
+        public List<City> GetDomicileList()
+        {
+            List<City> list = new List<City>();
+            list.Add(new City { CityID = 0, CityName = "--------" });
+            list.Add(new City { CityID = 116, CityName = "N/A" });
+            list.AddRange(CityRepository.GetAll());
+            return list;
+        }
         public List<Location> GetLocationList()
         {
             List<Location> list = new List<Location>();

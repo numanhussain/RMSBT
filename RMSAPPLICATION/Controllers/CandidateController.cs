@@ -202,7 +202,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.CountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.CountryID);
             ViewBag.NationalityCountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.NationalityCountryID);
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
-            ViewBag.DomicileCityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
+            ViewBag.DomicileCityID = new SelectList(DDService.GetDomicileList().ToList().OrderBy(aa => aa.CityName).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
             ViewBag.AreaOfInterestID = new SelectList(DDService.GetAreaOfInterestList().ToList().OrderBy(aa => aa.CAreaID).ToList(), "CAreaID", "AreaOfInterestName", obj.AreaOfInterestID);
             ViewBag.SalutationID = new SelectList(DDService.GetSalutationList().ToList().OrderBy(aa => aa.CSalutationID).ToList(), "CSalutationID", "SalutationName", obj.SalutationID);

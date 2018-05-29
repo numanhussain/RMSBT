@@ -18,7 +18,7 @@
         document.getElementById("UserstageAfterFirst").value = 7;
     });
 }
-function MiscellaneousDetailHide() {
+function MiscellaneousDetailHide(vmf) {
     $('#CriminalDetailtb').hide();
     $('#CrimanalRecord').change(function () {
         if ($("#CrimanalRecord").val() == "Yes") {
@@ -36,21 +36,23 @@ function MiscellaneousDetailHide() {
         }
     });
     $('#InterviewedBeforeDetailtb').hide();
-    $('#InterviewedBefore').change(function () {
-        if ($("#InterviewedBefore").val() == "Yes") {
-            $("#InterviewedBeforeDetailtb").show();
-        } else {
-            $("#InterviewedBeforeDetailtb").hide();
-        }
-    });
-    $('#WorkedBeforeDetailtb').hide();
-    $('#WorkedBefore').change(function () {
-        if ($("#WorkedBefore").val() == "Yes") {
-            $("#WorkedBeforeDetailtb").show();
-        } else {
-            $("#WorkedBeforeDetailtb").hide();
-        }
-    });
+    if (vmf != 1) {
+        $('#InterviewedBefore').change(function () {
+            if ($("#InterviewedBefore").val() == "Yes") {
+                $("#InterviewedBeforeDetailtb").show();
+            } else {
+                $("#InterviewedBeforeDetailtb").hide();
+            }
+        });
+        $('#WorkedBeforeDetailtb').hide();
+        $('#WorkedBefore').change(function () {
+            if ($("#WorkedBefore").val() == "Yes") {
+                $("#WorkedBeforeDetailtb").show();
+            } else {
+                $("#WorkedBeforeDetailtb").hide();
+            }
+        });
+    }
     $('#DisabilityDetailtb').hide();
     $('#Disability').change(function () {
         if ($("#Disability").val() == "Yes") {
@@ -81,23 +83,25 @@ function MiscellaneousDetailHide() {
     else {
         $("#CriminalDetailtb").hide();
     }
-    if (document.getElementById('InterviewedBefore').value == "Yes") {
-        $("#InterviewedBeforeDetailtb ").show();
-    }
-    else {
-        $("#InterviewedBeforeDetailtb").hide();
+    if (vmf != 1) {
+        if (document.getElementById('InterviewedBefore').value == "Yes") {
+            $("#InterviewedBeforeDetailtb ").show();
+        }
+        else {
+            $("#InterviewedBeforeDetailtb").hide();
+        }
+        if (document.getElementById('WorkedBefore').value == "Yes") {
+            $("#WorkedBeforeDetailtb ").show();
+        }
+        else {
+            $("#WorkedBeforeDetailtb").hide();
+        }
     }
     if (document.getElementById('Disability').value == "Yes") {
         $("#DisabilityDetailtb ").show();
     }
     else {
         $("#DisabilityDetailtb").hide();
-    }
-    if (document.getElementById('WorkedBefore').value == "Yes") {
-        $("#WorkedBeforeDetailtb ").show();
-    }
-    else {
-        $("#WorkedBeforeDetailtb").hide();
     }
     if (document.getElementById('HearAboutJobID').value == "8") {
         $("#HearAboutDetailtb ").show();
@@ -153,7 +157,7 @@ function SaveCV() {
             processData: false, // Not to process data  
             data: fileData,
             success: function (result) {
-                $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway Cemant.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
+                $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway Cement.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
                     header: '',
                     position: 'center',
                     theme: 'alert-styled-right bg-info',
