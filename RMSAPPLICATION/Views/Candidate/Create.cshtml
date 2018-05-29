@@ -98,7 +98,8 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Date of Birth</label>
-                            @Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                            <input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DOB.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                            @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
@@ -269,6 +270,20 @@
 
 
 }
+
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="DOB"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         SavePersonalInfoFunction();

@@ -80,9 +80,9 @@
                                     <li id="hv1" onclick="CandidateGetCreate()"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-person"></i>Personal Details</a></li>
                                     <li id="hv2" class="hv" onclick="LoadPVEduDetailIndex(@Model.CandidateID)"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-book"></i>Education</a></li>
                                     @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)*@
-                                    
-                                        <li id="hv3" class="hv" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-stairs-up"></i>Experience</a></li>
-                                    
+
+                                    <li id="hv3" class="hv" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="icon-stairs-up"></i>Experience</a></li>
+
                                     <li id="hv33" class="hv" onclick="LoadPVSkillDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn btn-block text-bold text-white" style="text-align:left"><i class="glyphicon glyphicon-wrench"></i>Skills</a></li>
                                     <li id="hv7" class="hv" onclick="SelfAssessmentGetCreate(@Model.CandidateID)"><a href="#" class="btn text-bold text-white" style="text-align:left"><i class="icon-user-plus"></i>Self Assessment</a></li>
                                     @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
@@ -134,9 +134,13 @@
 <script type="text/javascript" src="~/Scripts/Candidate/Reference.js"></script>
 <script type="text/javascript" src="~/Scripts/Candidate/Compensation.js"></script>
 <script type="text/javascript" src="~/Scripts/Candidate/SelfAssessment.js"></script>
+<!-- Extra JavaScript/CSS added manually in "Settings" tab -->
+<!-- Include jQuery -->
+
 
 <script type="text/javascript">
     $(document).ready(function () {
+
         //var val = document.getElementById("Userstage").value;
         //if (val == 7) {
         //    if (document.getElementById("UserstageAfterFirst").value == "") {

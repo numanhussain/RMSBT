@@ -187,8 +187,7 @@ namespace RMSSERVICES.Experience
             MiscellaneousDetail dbTotalExp = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
-                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
-                dbTotalExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
+                dbTotalExp = dbVRMPositions.First();
                 dbTotalExp.CandidateID = LoggedInUser.CandidateID;
                 dbTotalExp.TotalExp = TotalExp;
                 MiscellaneousRepository.Edit(dbTotalExp);
@@ -211,8 +210,7 @@ namespace RMSSERVICES.Experience
             MiscellaneousDetail dbCementExp = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
-                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
-                dbCementExp.PMiscellaneousID = dbVRMPosition.PMiscellaneousID;
+                dbCementExp = dbVRMPositions.First();
                 dbCementExp.CandidateID = LoggedInUser.CandidateID;
                 dbCementExp.CementExp = CementExp;
                 MiscellaneousRepository.Edit(dbCementExp);

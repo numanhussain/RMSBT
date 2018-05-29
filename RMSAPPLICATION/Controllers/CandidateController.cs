@@ -70,8 +70,10 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("CName", "Mandatory");
             if (dbOperation.FatherName == null || dbOperation.CName == "")
                 ModelState.AddModelError("FatherName", "Mandatory");
-            if (dbOperation.DOB == null)
+            if (!AssistantService.IsDateTime(Request.Form["DOB"])) // check for valid date
                 ModelState.AddModelError("DOB", "Mandatory");
+            else
+                dbOperation.DOB = Convert.ToDateTime(Request.Form["DOB"].ToString());
             if (dbOperation.DOB != null)
             {
                 if (dbOperation.DOB >= DateTime.Today)
