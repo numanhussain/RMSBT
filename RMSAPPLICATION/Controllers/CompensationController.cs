@@ -28,7 +28,7 @@ namespace RMSAPPLICATION.Controllers
             DDService = ddService;
         }
         #endregion 
-        // GET: Miscellaneous
+        // GET: Compensation
         #region -- Controller Main View Actions  --
         [HttpGet]
         public ActionResult Create()

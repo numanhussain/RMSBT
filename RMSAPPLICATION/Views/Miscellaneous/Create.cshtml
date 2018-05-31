@@ -128,7 +128,8 @@
                                     </div>
                                     <div class="required col-md-2 control-label text-semibold">Interview Date</div>
                                     <div class="col-md-2">
-                                        @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                        <input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.InterviewedDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                                        @* @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="required col-md-1 control-label text-semibold text-right">Location</div>
@@ -151,15 +152,14 @@
                                 <div class="form-group">
                                     <div class="required col-md-2 control-label text-semibold">Date of Joining</div>
                                     <div class="col-md-3">
-                                        @Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new
-                                   {
-                                       @class = "form-control",
-                                       @type = "date" @*@Value = @DateTime.Today.ToString("yyyy-MM-dd")*@})
+                                        <input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DateJoining.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                                        @*@Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
                                     <div class="col-md-2">
-                                        @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                                        <input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DateLeavig.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                                      @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="required col-md-1 control-label text-semibold text-right">Designation</div>
@@ -276,12 +276,18 @@
                                 <div class="col-md-3 col-lg-pull-1">
                                     <input type="file" placeholder="resume" value="resume" name="resume" title="Noi" class="file-styled" id="CVUpload" />
                                     <span class="help-block">Accepted formats: pdf, Max file size 1Mb</span>
+                                    <p id="error1" style="display:none; color:#FF0000;">
+                                        Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF.
+                                    </p>
+                                    <p id="error2" style="display:none; color:#FF0000;">
+                                        Maximum File Size Limit is 1MB.
+                                    </p>
                                 </div>
                             </div>
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-4">
-                                    <label class="required checkbox-inline checkbox-right text-semibold col-md-5" for="UploadCV">
+                                    <label class="required checkbox-inline checkbox-right text-semibold col-md-8" for="UploadCV">
                                         @Html.CheckBox("UploadCV", new { @class = "UploadCV", @id = "UploadCV" })
                                         @Html.ValidationMessageFor(model => model.UploadCV, "", new { @class = "text-danger" })
                                         Update resume:
@@ -292,7 +298,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink(LoggedInUser.CName +" cv", "DownloadExampleFiles", "Miscellaneous", new { fileName = "variation-example" }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CName }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>
@@ -310,10 +316,48 @@
         </div>
     }
 }
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="InterviewedDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="DateJoining"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="DateLeavig"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
 <script type="text/javascript">
     $(document).ready(function () {
         //Worked Before Selected
-
         SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
         MiscellaneousDetailHide(@LoggedInUser.AppliedAs);
         HasCV('@LoggedInUser.HasCV');

@@ -59,12 +59,14 @@
             <div class="form-group">
                 <div class="required control-label col-md-1 text-semibold">Start Date</div>
                 <div class="col-md-3">
+                    <input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
                     @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                     @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                 </div>
                 <div id="hidedatediv">
                     <div class="control-label col-md-1 text-semibold">End Date</div>
                     <div class="col-md-3">
+                        <input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
                         @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
@@ -157,6 +159,32 @@
         <button type="button" id="btnGetDelete" onclick="ExperienceDetailGetDelete(@Model.ExpID)" class="btn bg-grey">Delete</button>
     </div>
 }
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="StartDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
+<script>
+    $(document).ready(function () {
+        var date_input = $('input[name="EndDate"]'); //our date input has the name "date"
+        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+        date_input.datepicker({
+            format: 'dd/mm/yyyy',
+            orientation: 'bottom',
+            container: container,
+            todayHighlight: true,
+            autoclose: true,
+        })
+    })
+</script>
 <script type="text/javascript">
         $(document).ready(function () {
             var model = {

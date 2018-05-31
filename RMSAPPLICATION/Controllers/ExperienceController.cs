@@ -67,7 +67,7 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            ExperienceDetailService.PostGeneralExperience(Experience,vmf);
+            ExperienceDetailService.PostGeneralExperience(Experience, vmf);
             return Json("OK", JsonRequestBehavior.AllowGet);
         }
 
@@ -105,6 +105,16 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("EmployerName", "Mandatory ");
             if (obj.StartDate == null)
                 ModelState.AddModelError("StartDate", "Mandatory ");
+            if (obj.EndDate == null)
+                ModelState.AddModelError("EndDate", "Mandatory ");
+            if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
+                ModelState.AddModelError("StartDate", "Invalid date");
+            else
+                obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
+            if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
+                ModelState.AddModelError("EndDate", "Invalid date");
+            else
+                obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
             if (obj.StartDate > DateTime.Today.Date)
                 ModelState.AddModelError("StartDate", "Cannot be current date");
             if (obj.StartDate != null)
@@ -170,8 +180,18 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("EmployerName", "Mandatory ");
             if (obj.StartDate == null)
                 ModelState.AddModelError("StartDate", "Mandatory ");
+            if (obj.EndDate == null)
+                ModelState.AddModelError("EndDate", "Mandatory ");
             if (obj.StartDate > DateTime.Today.Date)
                 ModelState.AddModelError("StartDate", "Cannot be current date");
+            if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
+                ModelState.AddModelError("StartDate", "Invalid date");
+            else
+                obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
+            if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
+                ModelState.AddModelError("EndDate", "Invalid date");
+            else
+                obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
             if (obj.StartDate != null)
             {
                 if (obj.StartDate >= obj.EndDate)

@@ -118,9 +118,9 @@ function SaveMiscellaneousInfoFunction() {
             data: $("#formEditID").serialize(),
             success: function (data) {
                 if (data == "OK") {
-                    SaveCV()
+                    checkextension()
 
-                    MiscellaneousGetCreate(id)
+                    MiscellaneousGetCreate()
                 }
                 else {
                     $('#PartialViewContainer').html(data);
@@ -133,43 +133,59 @@ function SaveMiscellaneousInfoFunction() {
     });
 }
 function SaveCV() {
-    // Checking whether FormData is available in browser  
+    // Checking whether FormData is available in browser
     if (window.FormData !== undefined) {
 
         var fileUpload = $("#CVUpload").get(0);
+
+        //Get name of CV
         var files = fileUpload.files;
+        //Check extension of CV
+    }
+    // Create FormData object  
+    var fileData = new FormData();
 
-        // Create FormData object  
-        var fileData = new FormData();
+    var empid = document.getElementById("CandidateID").value;
+    // Looping over all files and add it to FormData object  
+    for (var i = 0; i < files.length; i++) {
+        fileData.append(files[i].name, files[i]);
+    }
 
-        var empid = document.getElementById("CandidateID").value;
-        // Looping over all files and add it to FormData object  
-        for (var i = 0; i < files.length; i++) {
-            fileData.append(files[i].name, files[i]);
+    // Adding one more key to FormData object  
+    fileData.append('CandidateID', empid);
+    $.ajax({
+        url: '/Miscellaneous/UploadFiles',
+        type: "POST",
+        contentType: false, // Not to set any content header  
+        processData: false, // Not to process data  
+        data: fileData,
+        success: function (result) {
+            $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway Cement.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
+                header: '',
+                position: 'center',
+                theme: 'alert-styled-right bg-info',
+                life: 7000
+            });
+        },
+        error: function (err) {
+            alert(err.statusText);
         }
-
-        // Adding one more key to FormData object  
-        fileData.append('CandidateID', empid);
-        $.ajax({
-            url: '/Miscellaneous/UploadFiles',
-            type: "POST",
-            contentType: false, // Not to set any content header  
-            processData: false, // Not to process data  
-            data: fileData,
-            success: function (result) {
-                $.jGrowl('<div>Welcome to Bestway Cement!</div><div>You have successfully created your profile. This is your first step towards prospective job opportunities. We appreciate your interest in Bestway Cement.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div>', {
-                    header: '',
-                    position: 'center',
-                    theme: 'alert-styled-right bg-info',
-                    life: 7000
-                });
-            },
-            error: function (err) {
-                alert(err.statusText);
-            }
+    });
+}
+function checkextension() {
+    var a = 0;
+    //binds to onchange event of your input field
+    var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
+    if (ext == "docx" || ext == "doc" || ext=="pdf") {
+        SaveCV();
+    }
+    else {
+        $.jGrowl('<div>Invalid CV formate.</div>', {
+            header: '',
+            position: 'center',
+            theme: 'alert-styled-right bg-info',
+            life: 4000
         });
-    } else {
-        alert("FormData is not supported.");
     }
 }
 

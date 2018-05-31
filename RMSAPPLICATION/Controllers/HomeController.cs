@@ -132,6 +132,8 @@ namespace RMSAPPLICATION.Controllers
             {
                 return RedirectToAction("RegisterUser");
             }
+            if (Obj.Email == null || Obj.Email == "")
+                ModelState.AddModelError("Email", "Mandatory");
             Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
             if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
             {

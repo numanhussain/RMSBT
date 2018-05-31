@@ -58,12 +58,24 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("AppliedPosition", "Mandatory ");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
                 ModelState.AddModelError("InterviewedDate", "Mandatory ");
+            if (!AssistantService.IsDateTime(Request.Form["InterviewedDate"])) // check for valid date
+                ModelState.AddModelError("InterviewedDate", "Invalid date");
+            else
+                obj.InterviewedDate = Convert.ToDateTime(Request.Form["InterviewedDate"].ToString());
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
                 ModelState.AddModelError("InterviewedLocation", "Mandatory ");
             if (obj.WorkedBefore == "Yes" && obj.DateJoining == null)
                 ModelState.AddModelError("DateJoining", "Mandatory ");
+            if (!AssistantService.IsDateTime(Request.Form["DateJoining"])) // check for valid date
+                ModelState.AddModelError("DateJoining", "Invalid date");
+            else
+                obj.DateJoining = Convert.ToDateTime(Request.Form["DateJoining"].ToString());
             if (obj.WorkedBefore == "Yes" && obj.DateLeavig == null)
                 ModelState.AddModelError("DateLeavig", "Mandatory ");
+            if (!AssistantService.IsDateTime(Request.Form["DateLeavig"])) // check for valid date
+                ModelState.AddModelError("DateLeavig", "Invalid date");
+            else
+                obj.DateLeavig = Convert.ToDateTime(Request.Form["DateLeavig"].ToString());
             if (obj.DateLeavig != null)
             {
                 if (obj.DateLeavig >= DateTime.Today)
@@ -85,7 +97,7 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("HearAboutDetail", "Mandatory ");
             if (obj.InternshipDuration == "0")
                 ModelState.AddModelError("InternshipDuration", "Mandatory ");
-            if (vmf.AppliedAs == 5 || vmf.AppliedAs==6)
+            if (vmf.AppliedAs == 5 || vmf.AppliedAs == 6)
             {
                 if (obj.MGSalary == null || obj.MGSalary == "")
                     ModelState.AddModelError("MGSalary", "Mandatory ");
@@ -102,7 +114,6 @@ namespace RMSAPPLICATION.Controllers
             {
                 if (vmf.UserStage == 6)
                     vmf.UserStage = 7;
-                vmf.HasCV = true;
                 MiscellaneousService.PostCreate(obj, vmf);
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
@@ -158,6 +169,7 @@ namespace RMSAPPLICATION.Controllers
         {
             //  Get all files from Request object  
             HttpFileCollectionBase files = Request.Files;
+
             for (int i = 0; i < files.Count; i++)
             {
                 //string path = AppDomain.CurrentDomain.BaseDirectory + "Uploads/";  
@@ -175,7 +187,7 @@ namespace RMSAPPLICATION.Controllers
                 else
                 {
                     //fname = file.FileName;
-                    fname = vmf.CandidateID.ToString() + ".pdf";
+                    fname = vmf.CandidateID.ToString();
                 }
 
                 // Get the complete folder path and store the file inside it.  
@@ -184,11 +196,11 @@ namespace RMSAPPLICATION.Controllers
             }
             // Returns message that successfully uploaded  
         }
-        public FilePathResult DownloadExampleFiles(string fileName)
+        public FilePathResult OpenCV(string fileName)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
 
-            return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
+            return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString()), "application/.pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

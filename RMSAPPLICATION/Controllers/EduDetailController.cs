@@ -78,6 +78,16 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("InstitutionID", "Mandatory ");
                 if (obj.StartDate == null)
                     ModelState.AddModelError("StartDate", "Mandatory ");
+                if (obj.EndDate == null)
+                    ModelState.AddModelError("EndDate", "Mandatory ");
+                if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
+                    ModelState.AddModelError("StartDate", "Invalid date");
+                else
+                    obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
+                if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
+                    ModelState.AddModelError("EndDate", "Invalid date");
+                else
+                    obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
                 if (obj.MajorSubject == null || obj.MajorSubject == "")
                     ModelState.AddModelError("MajorSubject", "Mandatory");
                 if (obj.InProgress == true)
@@ -170,6 +180,16 @@ namespace RMSAPPLICATION.Controllers
                     ModelState.AddModelError("InstitutionID", "Mandatory ");
                 if (obj.StartDate == null)
                     ModelState.AddModelError("StartDate", "Mandatory ");
+                if (obj.EndDate == null)
+                    ModelState.AddModelError("EndDate", "Mandatory ");
+                if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
+                    ModelState.AddModelError("StartDate", "Invalid date");
+                else
+                    obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
+                if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
+                    ModelState.AddModelError("EndDate", "Invalid date");
+                else
+                    obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
                 if (obj.MajorSubject == null || obj.MajorSubject == "")
                     ModelState.AddModelError("MajorSubject", "Mandatory");
                 if (obj.InProgress == true)
