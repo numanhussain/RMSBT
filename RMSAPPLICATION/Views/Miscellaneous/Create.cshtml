@@ -55,8 +55,7 @@
                         <div class="form-group">
                             <label class="required col-md-4 control-label text-semibold">Do you have any relatives working presently with Bestway Group?</label>
                             <div class="col-md-1">
-                                @Html.DropDownList("WorkingRelative", new List<SelectListItem>
-                                                                                                                                                                                                                                                                            { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                @Html.DropDownList("WorkingRelative", new List<SelectListItem>{ new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
                             </div>
                         </div>

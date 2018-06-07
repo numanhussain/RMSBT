@@ -49,6 +49,7 @@ namespace RMSCORE.EF
         public string InternshipDuration { get; set; }
         public Nullable<int> ExpectedSalary { get; set; }
         public string MGSalary { get; set; }
+        public Nullable<bool> UploadCV { get; set; }
         public Nullable<System.DateTime> DateCompleted { get; set; }
         public Nullable<int> BloodGroupID { get; set; }
         public string BGroupName { get; set; }

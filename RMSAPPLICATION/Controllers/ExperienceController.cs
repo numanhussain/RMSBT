@@ -18,21 +18,18 @@ namespace RMSAPPLICATION.Controllers
         #region -- Controller Initialization --
         //IEntityService<VMEduDetailIndex> EduDetailEntityService;
         IExperienceDetailService ExperienceDetailService;
-        IEntityService<CementExperience> CementExperienceService;
         IEntityService<Candidate> CandidateEntityService;
         IEntityService<User> UserEntityService;
         IEntityService<MiscellaneousDetail> MiscellaneousDetailService;
         IMiscellaneousService MiscellaneousService;
         IDDService DDService;
         // Controller Constructor
-        public ExperienceController(IExperienceDetailService experiencedetailService, IEntityService<User> userEntityService, IEntityService<Candidate> candidateEntityService, IDDService ddService,
-             IEntityService<CementExperience> cementExperienceService, IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousDetailService)
+        public ExperienceController(IExperienceDetailService experiencedetailService, IEntityService<User> userEntityService, IEntityService<Candidate> candidateEntityService, IDDService ddService, IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousDetailService)
         {
             DDService = ddService;
             ExperienceDetailService = experiencedetailService;
             CandidateEntityService = candidateEntityService;
             UserEntityService = userEntityService;
-            CementExperienceService = cementExperienceService;
             MiscellaneousService = miscellaneousService;
             MiscellaneousDetailService = miscellaneousDetailService;
         }

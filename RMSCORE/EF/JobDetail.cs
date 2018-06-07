@@ -14,12 +14,6 @@ namespace RMSCORE.EF
     
     public partial class JobDetail
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public JobDetail()
-        {
-            this.Interviews = new HashSet<Interview>();
-        }
-    
         public int JobID { get; set; }
         public string JobTitle { get; set; }
         public string JobDescription { get; set; }
@@ -35,8 +29,5 @@ namespace RMSCORE.EF
         public string SpecificRequirement { get; set; }
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Interview> Interviews { get; set; }
     }
 }

@@ -25,15 +25,15 @@ namespace RMSCORE.EF
         public string PassingYear { get; set; }
         public Nullable<int> Institution { get; set; }
         public string InstituteName { get; set; }
+        public int CandidateID { get; set; }
         public string CName { get; set; }
         public string DegreeTitle { get; set; }
         public string OtherInstitute { get; set; }
-        public string MajorSubject { get; set; }
-        public Nullable<int> DegreeLevelID { get; set; }
         public Nullable<bool> InProgress { get; set; }
         public Nullable<int> DegreeTypeID { get; set; }
         public string EduTypeName { get; set; }
+        public string MajorSubject { get; set; }
+        public Nullable<int> DegreeLevelID { get; set; }
         public string OtherDegreeType { get; set; }
-        public int CandidateID { get; set; }
     }
 }

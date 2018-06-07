@@ -12,18 +12,14 @@ namespace RMSSERVICES.UserDetail
     public class UserService : IUserService
     {
         #region -- Service Variables --
-        IUnitOfWork UnitOfWork;
         IRepository<User> UserRepository;
         IRepository<Candidate> CandidateRepository;
-        IRepository<CementExperience> CementExperienceRepository;
         #endregion
         #region -- Service Interface Implementation --
-        public UserService(IUnitOfWork unitOfWork, IRepository<User> userRepository, IRepository<Candidate> candidateRepository, IRepository<CementExperience> cementExperienceRepository)
+        public UserService(IRepository<User> userRepository, IRepository<Candidate> candidateRepository)
         {
-            UnitOfWork = unitOfWork;
             UserRepository = userRepository;
             CandidateRepository = candidateRepository;
-            CementExperienceRepository = cementExperienceRepository;
         }
 
         public List<User> GetIndex()
@@ -48,7 +44,7 @@ namespace RMSSERVICES.UserDetail
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public ServiceMessage RegisterUser(User dbOperation,V_UserCandidate LoggedInUser)
+        public ServiceMessage RegisterUser(User dbOperation, V_UserCandidate LoggedInUser)
         {
             dbOperation.DateCreated = DateTime.Today;
             dbOperation.AppliedAs = dbOperation.AppliedAs;

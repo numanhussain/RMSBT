@@ -26,13 +26,11 @@ namespace RMSCORE.EF
         public string LandlineNo { get; set; }
         public string CellNo { get; set; }
         public string EmailID { get; set; }
-        public Nullable<int> CityID { get; set; }
         public string DomicileCityName { get; set; }
         public Nullable<int> CountryID { get; set; }
         public string CountryName { get; set; }
         public Nullable<int> NationalityCountryID { get; set; }
         public string NationalityCountry { get; set; }
-        public Nullable<int> DomicileCityID { get; set; }
         public string CityName { get; set; }
         public string Objective { get; set; }
         public Nullable<int> GenderID { get; set; }
@@ -48,5 +46,7 @@ namespace RMSCORE.EF
         public Nullable<int> SalutationID { get; set; }
         public string SalutationName { get; set; }
         public string OtherAreaName { get; set; }
+        public Nullable<int> CityID { get; set; }
+        public Nullable<int> DomicileCityID { get; set; }
     }
 }

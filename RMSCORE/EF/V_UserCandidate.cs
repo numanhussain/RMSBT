@@ -22,8 +22,8 @@ namespace RMSCORE.EF
         public string RetypePassword { get; set; }
         public Nullable<int> UserStage { get; set; }
         public string Email { get; set; }
-        public Nullable<bool> HasCV { get; set; }
-        public Nullable<int> AppliedAs { get; set; }
         public Nullable<bool> HaveExperience { get; set; }
+        public Nullable<int> AppliedAs { get; set; }
+        public Nullable<bool> HasCV { get; set; }
     }
 }

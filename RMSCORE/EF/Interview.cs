@@ -24,6 +24,5 @@ namespace RMSCORE.EF
         public Nullable<bool> Status { get; set; }
     
         public virtual Candidate Candidate { get; set; }
-        public virtual JobDetail JobDetail { get; set; }
     }
 }

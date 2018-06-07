@@ -21,8 +21,8 @@ namespace RMSCORE.EF
         public string RefContact { get; set; }
         public string CName { get; set; }
         public string CNICNo { get; set; }
-        public string HowLongKnown { get; set; }
         public string Organization { get; set; }
+        public string HowLongKnown { get; set; }
         public Nullable<int> CandidateID { get; set; }
     }
 }
