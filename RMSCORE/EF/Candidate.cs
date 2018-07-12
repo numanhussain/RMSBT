@@ -51,6 +51,7 @@ namespace RMSCORE.EF
         public string OtherCityName { get; set; }
         public Nullable<int> SalutationID { get; set; }
         public string OtherAreaName { get; set; }
+        public string CVName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EduDetail> EduDetails { get; set; }

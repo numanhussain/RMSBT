@@ -15,13 +15,15 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         //IEntityService<VMEduDetailIndex> EduDetailEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         ISkillService SkillDetailService;
         IDDService DDService;
         // Controller Constructor
-        public SkillController(ISkillService skilldetailService, IDDService ddService)
+        public SkillController(ISkillService skilldetailService, IDDService ddService, IEntityService<CandidateStep> candidateStepEntityService)
         {
             DDService = ddService;
             SkillDetailService = skilldetailService;
+            CandidateStepEntityService = candidateStepEntityService;
         }
         #endregion
         #region -- Controller ActionResults  --
@@ -56,6 +58,10 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 SkillDetailService.PostCreate(obj);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepFour = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf.StepFour = dbtickStep.StepFour;
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             CreateHelper(obj);

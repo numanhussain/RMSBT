@@ -1,6 +1,7 @@
 ﻿using RMSCORE.EF;
 using RMSCORE.Models.Helper;
 using RMSCORE.Models.Main;
+using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using RMSSERVICES.Job;
 using RMSSERVICES.UserDetail;
@@ -20,14 +21,16 @@ namespace RMSAPPLICATION.Controllers
         IEntityService<User> UserEntityService;
         IEntityService<Candidate> CandidateEntityService;
         IEntityService<V_UserCandidate> VUserEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         IEntityService<Location> LocationService;
         IEntityService<Catagory> CatagoryService;
+        IRepository<User> UserRepository;
         IUserService UserService;
         IJobService JobService;
         IDDService DDService;
         // Controller Constructor
-        public HomeController(IEntityService<User> userEntityService, IJobService jobService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService,
-            IEntityService<Candidate> candidateEntityService)
+        public HomeController(IEntityService<User> userEntityService, IRepository<User> userRepository, IJobService jobService, IEntityService<Location> locationService, IEntityService<Catagory> catagoryService, IUserService userService, IDDService ddService, IEntityService<V_UserCandidate> vUserEntityService,
+            IEntityService<Candidate> candidateEntityService, IEntityService<CandidateStep> candidateStepEntityService)
         {
             UserEntityService = userEntityService;
             UserService = userService;
@@ -37,6 +40,8 @@ namespace RMSAPPLICATION.Controllers
             CatagoryService = catagoryService;
             JobService = jobService;
             CandidateEntityService = candidateEntityService;
+            UserRepository = userRepository;
+            CandidateStepEntityService = candidateStepEntityService;
         }
         #endregion
         #region -- Controller ActionResults  -- 
@@ -148,7 +153,7 @@ namespace RMSAPPLICATION.Controllers
                         EmailGenerate.SendEmail(Obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
                             "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
                             "<p>Please click <a href=\"" + callbackUrl + "\">here</a> to activate your profile.</p>" +
-                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "Email Verification", "");
+                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "", "Email Verification");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == Obj.UserID && c.Password == Obj.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");
@@ -174,6 +179,18 @@ namespace RMSAPPLICATION.Controllers
                 UserEntityService.PostEdit(user);
                 Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                 Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                Candidate dbCandidate = CandidateEntityService.GetEdit(vm.CandidateID);
+                CandidateStep dbTickSteps = new CandidateStep();
+                dbTickSteps.StepOne = false;
+                dbTickSteps.StepTwo = false;
+                dbTickSteps.StepThree = false;
+                dbTickSteps.StepFour = false;
+                dbTickSteps.StepFive = false;
+                dbTickSteps.StepSix = false;
+                dbTickSteps.StepSeven = false;
+                dbTickSteps.StepEight = false;
+                dbTickSteps.CandidateID = vm.CandidateID;
+                CandidateStepEntityService.PostCreate(dbTickSteps);
                 return RedirectToAction("ConfirmedEmail", "Home");
             }
             else
@@ -186,6 +203,36 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult ForgetPassword()
         {
             // throw new System.ArgumentException("Parameter cannot be null", "original");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ForgetPassword(User dbuser)
+        {
+            if (dbuser.Email == null || dbuser.Email == "")
+                ModelState.AddModelError("Email", "Mandatory");
+            Expression<Func<User, bool>> SpecificEntries = c => c.Email == dbuser.Email;
+            List<User> dbUsers = UserEntityService.GetIndexSpecific(SpecificEntries);
+            if (UserEntityService.GetIndexSpecific(SpecificEntries).ToList().Count > 0)
+            {
+                if (ModelState.IsValid)
+                {
+                    {
+                        User obj = UserEntityService.GetEdit(dbUsers.First().UserID);
+                        var Password = obj.Password;
+                        var callbackUrl = "http://localhost:65347/Home/Login";
+                        EmailGenerate.SendEmail(obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
+                            "<p>This is with reference to your request for for forgetting password at Bestway Career Portal. </p>" +
+                            "<p>Please enter you password : <u><strong>" + obj.Password + "</u></strong><p>" +
+                            " <p>Please click <a href=\"" + callbackUrl + "\">here</a> to login to your profile.</p>" +
+                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "", "Request for password");
+                        return RedirectToAction("PasswordEmailSent", "Home");
+                    }
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("Email", "Not registered email");
+            }
             return View();
         }
         public ActionResult LogOut()
@@ -224,6 +271,11 @@ namespace RMSAPPLICATION.Controllers
         }
         [HttpGet]
         public ActionResult EmailSent()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult PasswordEmailSent()
         {
             return View();
         }

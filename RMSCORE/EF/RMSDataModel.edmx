@@ -23,7 +23,7 @@
           <Key>
             <PropertyRef Name="CandidateID" />
           </Key>
-          <Property Name="CandidateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
           <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
           <Property Name="DOB" Type="datetime" />
@@ -51,6 +51,7 @@
           <Property Name="OtherCityName" Type="nvarchar" MaxLength="50" />
           <Property Name="SalutationID" Type="int" />
           <Property Name="OtherAreaName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVName" Type="nvarchar" MaxLength="70" />
         </EntityType>
         <EntityType Name="CandidateJob">
           <Key>
@@ -67,6 +68,20 @@
           </Key>
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CandidatePic" Type="image" />
+        </EntityType>
+        <EntityType Name="CandidateSteps">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="StepOne" Type="bit" />
+          <Property Name="StepTwo" Type="bit" />
+          <Property Name="StepThree" Type="bit" />
+          <Property Name="StepFour" Type="bit" />
+          <Property Name="StepFive" Type="bit" />
+          <Property Name="StepSix" Type="bit" />
+          <Property Name="StepSeven" Type="bit" />
+          <Property Name="StepEight" Type="bit" />
         </EntityType>
         <EntityType Name="CandidateStrength">
           <Key>
@@ -649,6 +664,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_CandidateProfile' does not have a prim
           <Property Name="OtherAreaName" Type="nvarchar" MaxLength="50" />
           <Property Name="CityID" Type="int" />
           <Property Name="DomicileCityID" Type="int" />
+          <Property Name="CVName" Type="nvarchar" MaxLength="70" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Interview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -716,7 +732,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Key>
             <PropertyRef Name="CandidateID" />
           </Key>
-          <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
           <Property Name="UserID" Type="int" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" />
@@ -727,6 +742,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="HaveExperience" Type="bit" />
           <Property Name="AppliedAs" Type="int" />
           <Property Name="HasCV" Type="bit" />
+          <Property Name="CVName" Type="nvarchar" MaxLength="70" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="StepOne" Type="bit" />
+          <Property Name="StepTwo" Type="bit" />
+          <Property Name="StepThree" Type="bit" />
+          <Property Name="StepFour" Type="bit" />
+          <Property Name="StepFive" Type="bit" />
+          <Property Name="StepSix" Type="bit" />
+          <Property Name="StepSeven" Type="bit" />
+          <Property Name="StepEight" Type="bit" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
           <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
@@ -806,6 +831,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateJob" EntityType="Self.CandidateJob" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidatePhoto" EntityType="Self.CandidatePhoto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CandidateSteps" EntityType="Self.CandidateSteps" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CandidateStrength" EntityType="Self.CandidateStrength" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Catagory" EntityType="Self.Catagory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
@@ -1006,7 +1032,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_CandidateProfile].[SalutationName] AS [SalutationName], 
     [V_CandidateProfile].[OtherAreaName] AS [OtherAreaName], 
     [V_CandidateProfile].[CityID] AS [CityID], 
-    [V_CandidateProfile].[DomicileCityID] AS [DomicileCityID]
+    [V_CandidateProfile].[DomicileCityID] AS [DomicileCityID], 
+    [V_CandidateProfile].[CVName] AS [CVName]
     FROM [dbo].[V_CandidateProfile] AS [V_CandidateProfile]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Interview" EntityType="Self.V_Interview" store:Type="Views" store:Schema="dbo">
@@ -1061,7 +1088,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </EntitySet>
           <EntitySet Name="V_UserCandidate" EntityType="Self.V_UserCandidate" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [V_UserCandidate].[CandidateID] AS [CandidateID], 
     [V_UserCandidate].[CName] AS [CName], 
     [V_UserCandidate].[UserID] AS [UserID], 
     [V_UserCandidate].[UserName] AS [UserName], 
@@ -1071,7 +1097,17 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_UserCandidate].[Email] AS [Email], 
     [V_UserCandidate].[HaveExperience] AS [HaveExperience], 
     [V_UserCandidate].[AppliedAs] AS [AppliedAs], 
-    [V_UserCandidate].[HasCV] AS [HasCV]
+    [V_UserCandidate].[HasCV] AS [HasCV], 
+    [V_UserCandidate].[CVName] AS [CVName], 
+    [V_UserCandidate].[CandidateID] AS [CandidateID], 
+    [V_UserCandidate].[StepOne] AS [StepOne], 
+    [V_UserCandidate].[StepTwo] AS [StepTwo], 
+    [V_UserCandidate].[StepThree] AS [StepThree], 
+    [V_UserCandidate].[StepFour] AS [StepFour], 
+    [V_UserCandidate].[StepFive] AS [StepFive], 
+    [V_UserCandidate].[StepSix] AS [StepSix], 
+    [V_UserCandidate].[StepSeven] AS [StepSeven], 
+    [V_UserCandidate].[StepEight] AS [StepEight]
     FROM [dbo].[V_UserCandidate] AS [V_UserCandidate]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_EduDetail_Candidate" Association="Self.FK_EduDetail_Candidate">
@@ -1109,6 +1145,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
           <EntitySet Name="CandidateJobs" EntityType="BTRMSModel.CandidateJob" />
           <EntitySet Name="CandidatePhotoes" EntityType="BTRMSModel.CandidatePhoto" />
+          <EntitySet Name="CandidateSteps" EntityType="BTRMSModel.CandidateStep" />
           <EntitySet Name="CandidateStrengths" EntityType="BTRMSModel.CandidateStrength" />
           <EntitySet Name="Catagories" EntityType="BTRMSModel.Catagory" />
           <EntitySet Name="Cities" EntityType="BTRMSModel.City" />
@@ -1191,7 +1228,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Key>
             <PropertyRef Name="CandidateID" />
           </Key>
-          <Property Name="CandidateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DOB" Type="DateTime" Precision="3" />
@@ -1219,6 +1256,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="OtherCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SalutationID" Type="Int32" />
           <Property Name="OtherAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="Candidate" ToRole="EduDetail" />
           <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Candidate" ToRole="Interview" />
           <NavigationProperty Name="NotificationDetails" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="Candidate" ToRole="NotificationDetail" />
@@ -1239,6 +1277,20 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </Key>
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CandidatePic" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="CandidateStep">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="StepOne" Type="Boolean" />
+          <Property Name="StepTwo" Type="Boolean" />
+          <Property Name="StepThree" Type="Boolean" />
+          <Property Name="StepFour" Type="Boolean" />
+          <Property Name="StepFive" Type="Boolean" />
+          <Property Name="StepSix" Type="Boolean" />
+          <Property Name="StepSeven" Type="Boolean" />
+          <Property Name="StepEight" Type="Boolean" />
         </EntityType>
         <EntityType Name="CandidateStrength">
           <Key>
@@ -1798,6 +1850,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="OtherAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CityID" Type="Int32" />
           <Property Name="DomicileCityID" Type="Int32" />
+          <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_Interview">
           <Key>
@@ -1857,7 +1910,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Key>
             <PropertyRef Name="CandidateID" />
           </Key>
-          <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserID" Type="Int32" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1868,6 +1920,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="HaveExperience" Type="Boolean" />
           <Property Name="AppliedAs" Type="Int32" />
           <Property Name="HasCV" Type="Boolean" />
+          <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="StepOne" Type="Boolean" />
+          <Property Name="StepTwo" Type="Boolean" />
+          <Property Name="StepThree" Type="Boolean" />
+          <Property Name="StepFour" Type="Boolean" />
+          <Property Name="StepFive" Type="Boolean" />
+          <Property Name="StepSix" Type="Boolean" />
+          <Property Name="StepSeven" Type="Boolean" />
+          <Property Name="StepEight" Type="Boolean" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
           <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
@@ -1966,6 +2028,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="Candidates">
             <EntityTypeMapping TypeName="BTRMSModel.Candidate">
               <MappingFragment StoreEntitySet="Candidate">
+                <ScalarProperty Name="CVName" ColumnName="CVName" />
                 <ScalarProperty Name="OtherAreaName" ColumnName="OtherAreaName" />
                 <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
                 <ScalarProperty Name="OtherCityName" ColumnName="OtherCityName" />
@@ -2011,6 +2074,21 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <EntityTypeMapping TypeName="BTRMSModel.CandidatePhoto">
               <MappingFragment StoreEntitySet="CandidatePhoto">
                 <ScalarProperty Name="CandidatePic" ColumnName="CandidatePic" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CandidateSteps">
+            <EntityTypeMapping TypeName="BTRMSModel.CandidateStep">
+              <MappingFragment StoreEntitySet="CandidateSteps">
+                <ScalarProperty Name="StepEight" ColumnName="StepEight" />
+                <ScalarProperty Name="StepSeven" ColumnName="StepSeven" />
+                <ScalarProperty Name="StepSix" ColumnName="StepSix" />
+                <ScalarProperty Name="StepFive" ColumnName="StepFive" />
+                <ScalarProperty Name="StepFour" ColumnName="StepFour" />
+                <ScalarProperty Name="StepThree" ColumnName="StepThree" />
+                <ScalarProperty Name="StepTwo" ColumnName="StepTwo" />
+                <ScalarProperty Name="StepOne" ColumnName="StepOne" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -2562,6 +2640,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_CandidateProfile">
             <EntityTypeMapping TypeName="BTRMSModel.V_CandidateProfile">
               <MappingFragment StoreEntitySet="V_CandidateProfile">
+                <ScalarProperty Name="CVName" ColumnName="CVName" />
                 <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
                 <ScalarProperty Name="OtherAreaName" ColumnName="OtherAreaName" />
@@ -2658,6 +2737,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_UserCandidate">
             <EntityTypeMapping TypeName="BTRMSModel.V_UserCandidate">
               <MappingFragment StoreEntitySet="V_UserCandidate">
+                <ScalarProperty Name="StepEight" ColumnName="StepEight" />
+                <ScalarProperty Name="StepSeven" ColumnName="StepSeven" />
+                <ScalarProperty Name="StepSix" ColumnName="StepSix" />
+                <ScalarProperty Name="StepFive" ColumnName="StepFive" />
+                <ScalarProperty Name="StepFour" ColumnName="StepFour" />
+                <ScalarProperty Name="StepThree" ColumnName="StepThree" />
+                <ScalarProperty Name="StepTwo" ColumnName="StepTwo" />
+                <ScalarProperty Name="StepOne" ColumnName="StepOne" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="CVName" ColumnName="CVName" />
                 <ScalarProperty Name="HasCV" ColumnName="HasCV" />
                 <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
                 <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
@@ -2668,7 +2757,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CName" ColumnName="CName" />
-                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

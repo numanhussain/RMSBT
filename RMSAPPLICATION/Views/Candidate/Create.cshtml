@@ -1,5 +1,7 @@
 ﻿@model RMSCORE.EF.Candidate
-
+@{
+    Layout = null;
+}
 @using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
 {
     @Html.AntiForgeryToken()
@@ -7,24 +9,6 @@
     @Html.HiddenFor(model => model.UserID)
     <!-- Page container -->
     <head>
-        @*<script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/core/libraries/bootstrap.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/blockui.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
-            <!-- /core JS files -->
-            <!-- Theme JS files -->
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/jgrowl.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/moment/moment.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/daterangepicker.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/anytime.min.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/picker.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/picker.date.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/picker.time.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/plugins/pickers/pickadate/legacy.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
-            <script type="text/javascript" src="~/Theme/assets/js/pages/picker_date.js"></script>*@
         <style>
             .panel-body {
                 background-color: white;
@@ -36,8 +20,6 @@
                 color: red;
             }
         </style>
-        @*<link rel="stylesheet" media="screen" type="text/css" href="~/Theme/assets/css/datepicker.css" />
-            <script type="text/javascript" src="~/Theme/assets/js/datepicker.js"></script>*@
     </head>
     <div style="margin-top:-25px">
         <div class="modal-header">
@@ -98,13 +80,13 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Date of Birth</label>
-                            <input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DOB.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                            <input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?DateTime.Today.ToString("MM/dd/yyyy"):Model.DOB.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
                             @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <span class="help-block">Format must be (dd/mm/yyyy)</span>
+                        <span class="help-block">Format must be (mm/dd/yyyy)</span>
                     </div>
                     <div class="form-group col-md-2">
                         <div>
@@ -142,33 +124,6 @@
                             @Html.ValidationMessageFor(model => model.DomicileCityID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    @*<div class="form-group col-md-2">
-                            <div>
-                                <label class=" required control-label text-semibold">Marital Status</label>
-                                @Html.DropDownList("MartialStatusID", null, new { @class = "form-control" })
-                            </div>
-                            <div class="small">
-                                @Html.ValidationMessageFor(model => model.MartialStatusID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md-2">
-                            <div>
-                                <label class="required control-label text-semibold">Religion</label>
-                                @Html.DropDownList("ReligionID", null, new { @class = "form-control" })
-                            </div>
-                            <div class="small">
-                                @Html.ValidationMessageFor(model => model.ReligionID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="form-group col-md-3">
-                            <div>
-                                <label class="control-label text-semibold">Blood Group</label>
-                                @Html.DropDownList("BloodGroupID", null, new { @class = "form-control" })
-                            </div>
-                            <div class="small">
-                                @Html.ValidationMessageFor(model => model.BloodGroupID, "", new { @class = "text-danger" })
-                            </div>
-                        </div>*@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6">
@@ -276,7 +231,7 @@
         var date_input = $('input[name="DOB"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
         date_input.datepicker({
-            format: 'dd/mm/yyyy',
+            format: 'mm/dd/yyyy',
             orientation: 'bottom',
             container: container,
             todayHighlight: true,

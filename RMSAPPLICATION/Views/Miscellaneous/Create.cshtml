@@ -1,5 +1,7 @@
 ﻿@model RMSCORE.EF.MiscellaneousDetail
-
+@{
+    Layout = null;
+}
 @{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
     using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formEditID", id = "formEditID" }))
     {
@@ -55,7 +57,7 @@
                         <div class="form-group">
                             <label class="required col-md-4 control-label text-semibold">Do you have any relatives working presently with Bestway Group?</label>
                             <div class="col-md-1">
-                                @Html.DropDownList("WorkingRelative", new List<SelectListItem>{ new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                @Html.DropDownList("WorkingRelative", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                 @Html.ValidationMessageFor(model => model.WorkingRelative, "", new { @class = "text-danger" })
                             </div>
                         </div>
@@ -113,8 +115,7 @@
                             <div class="form-group">
                                 <label class="required col-md-5 control-label text-semibold">Have you been interviewed at Bestway Group before?</label>
                                 <div class="col-md-1 col-lg-pull-1">
-                                    @Html.DropDownList("InterviewedBefore", new List<SelectListItem>
-                                                                                                                                                                                                                                                                                { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                    @Html.DropDownList("InterviewedBefore", new List<SelectListItem> { new SelectListItem { Text = "No", Value = "No" }, new SelectListItem { Text = "Yes", Value = "Yes" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
                                     @Html.ValidationMessageFor(model => model.InterviewedBefore, "", new { @class = "text-danger" })
                                 </div>
                             </div>
@@ -127,7 +128,7 @@
                                     </div>
                                     <div class="required col-md-2 control-label text-semibold">Interview Date</div>
                                     <div class="col-md-2">
-                                        <input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.InterviewedDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                                        <input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?"":Model.InterviewedDate.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
                                         @* @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
                                     </div>
@@ -151,14 +152,14 @@
                                 <div class="form-group">
                                     <div class="required col-md-2 control-label text-semibold">Date of Joining</div>
                                     <div class="col-md-3">
-                                        <input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DateJoining.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                                        <input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?"":Model.DateJoining.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
                                         @*@Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
                                     <div class="col-md-2">
-                                        <input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DateLeavig.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
-                                      @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                                        <input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?"":Model.DateLeavig.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
+                                        @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="required col-md-1 control-label text-semibold text-right">Designation</div>
@@ -297,7 +298,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CName }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CandidateID }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>
@@ -317,10 +318,10 @@
 }
 <script>
     $(document).ready(function () {
-        var date_input = $('input[name="InterviewedDate"]'); //our date input has the name "date"
+        var date_input11 = $('input[name="InterviewedDate"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
+        date_input11.datepicker({
+            format: 'mm/dd/yyyy',
             orientation: 'bottom',
             container: container,
             todayHighlight: true,
@@ -330,10 +331,10 @@
 </script>
 <script>
     $(document).ready(function () {
-        var date_input = $('input[name="DateJoining"]'); //our date input has the name "date"
+        var date_input12 = $('input[name="DateJoining"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
+        date_input12.datepicker({
+            format: 'mm/dd/yyyy',
             orientation: 'bottom',
             container: container,
             todayHighlight: true,
@@ -343,10 +344,10 @@
 </script>
 <script>
     $(document).ready(function () {
-        var date_input = $('input[name="DateLeavig"]'); //our date input has the name "date"
+        var date_input13 = $('input[name="DateLeavig"]'); //our date input has the name "date"
         var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'dd/mm/yyyy',
+        date_input13.datepicker({
+            format: 'mm/dd/yyyy',
             orientation: 'bottom',
             container: container,
             todayHighlight: true,

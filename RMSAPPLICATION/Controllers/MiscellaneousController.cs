@@ -1,5 +1,6 @@
 ﻿using RMSCORE.EF;
 using RMSCORE.Models.Operation;
+using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using RMSSERVICES.Miscellaneous;
 using System;
@@ -15,14 +16,19 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         IEntityService<MiscellaneousDetail> MiscellaneousEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         IMiscellaneousService MiscellaneousService;
         IDDService DDService;
+        IRepository<Candidate> CandidateRepository;
         // Controller Constructor
-        public MiscellaneousController(IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousentityService, IDDService ddService)
+        public MiscellaneousController(IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousentityService, IDDService ddService,
+             IRepository<Candidate> candidateRepository, IEntityService<CandidateStep> candidateStepEntityService)
         {
             DDService = ddService;
             MiscellaneousService = miscellaneousService;
             MiscellaneousEntityService = miscellaneousentityService;
+            CandidateStepEntityService = candidateStepEntityService;
+            CandidateRepository = candidateRepository;
         }
         #endregion 
         // GET: Miscellaneous
@@ -58,24 +64,33 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("AppliedPosition", "Mandatory ");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
                 ModelState.AddModelError("InterviewedDate", "Mandatory ");
-            if (!AssistantService.IsDateTime(Request.Form["InterviewedDate"])) // check for valid date
-                ModelState.AddModelError("InterviewedDate", "Invalid date");
-            else
-                obj.InterviewedDate = Convert.ToDateTime(Request.Form["InterviewedDate"].ToString());
+            if (obj.InterviewedBefore == "Yes")
+            {
+                if (!AssistantService.IsDateTime(Request.Form["InterviewedDate"])) // check for valid date
+                    ModelState.AddModelError("InterviewedDate", "Invalid date");
+                else
+                    obj.InterviewedDate = Convert.ToDateTime(Request.Form["InterviewedDate"].ToString());
+            }
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
                 ModelState.AddModelError("InterviewedLocation", "Mandatory ");
             if (obj.WorkedBefore == "Yes" && obj.DateJoining == null)
                 ModelState.AddModelError("DateJoining", "Mandatory ");
-            if (!AssistantService.IsDateTime(Request.Form["DateJoining"])) // check for valid date
-                ModelState.AddModelError("DateJoining", "Invalid date");
-            else
-                obj.DateJoining = Convert.ToDateTime(Request.Form["DateJoining"].ToString());
+            if (obj.WorkedBefore == "Yes")
+            {
+                if (!AssistantService.IsDateTime(Request.Form["DateJoining"])) // check for valid date
+                    ModelState.AddModelError("DateJoining", "Invalid date");
+                else
+                    obj.DateJoining = Convert.ToDateTime(Request.Form["DateJoining"].ToString());
+            }
             if (obj.WorkedBefore == "Yes" && obj.DateLeavig == null)
                 ModelState.AddModelError("DateLeavig", "Mandatory ");
-            if (!AssistantService.IsDateTime(Request.Form["DateLeavig"])) // check for valid date
-                ModelState.AddModelError("DateLeavig", "Invalid date");
-            else
-                obj.DateLeavig = Convert.ToDateTime(Request.Form["DateLeavig"].ToString());
+            if (obj.WorkedBefore == "Yes")
+            {
+                if (!AssistantService.IsDateTime(Request.Form["DateLeavig"])) // check for valid date
+                    ModelState.AddModelError("DateLeavig", "Invalid date");
+                else
+                    obj.DateLeavig = Convert.ToDateTime(Request.Form["DateLeavig"].ToString());
+            }
             if (obj.DateLeavig != null)
             {
                 if (obj.DateLeavig >= DateTime.Today)
@@ -115,6 +130,10 @@ namespace RMSAPPLICATION.Controllers
                 if (vmf.UserStage == 6)
                     vmf.UserStage = 7;
                 MiscellaneousService.PostCreate(obj, vmf);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepSeven = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf.StepSeven = dbtickStep.StepSeven;
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);
@@ -177,30 +196,58 @@ namespace RMSAPPLICATION.Controllers
 
                 HttpPostedFileBase file = files[i];
                 string fname;
-
+                var checkextension = Path.GetExtension(file.FileName).ToLower();
                 // Checking for Internet Explorer  
-                if (Request.Browser.Browser.ToUpper() == "IE" || Request.Browser.Browser.ToUpper() == "INTERNETEXPLORER")
+                if (checkextension == ".pdf")
                 {
-                    string[] testfiles = file.FileName.Split(new char[] { '\\' });
-                    fname = testfiles[testfiles.Length - 1];
+                    fname = vmf.CandidateID.ToString() + ".pdf";
+                }
+                else if (checkextension == ".jpg")
+                {
+                    fname = vmf.CandidateID.ToString() + ".jpg";
+                }
+                else if (checkextension == ".docx")
+                {
+                    //fname = file.FileName;
+                    fname = vmf.CandidateID.ToString() + ".docx";
                 }
                 else
                 {
-                    //fname = file.FileName;
-                    fname = vmf.CandidateID.ToString();
+                    fname = vmf.CandidateID.ToString() + ".doc";
                 }
-
                 // Get the complete folder path and store the file inside it.  
                 fname = Path.Combine(Server.MapPath("~/UploadFiles/"), fname);
                 file.SaveAs(fname);
+                Candidate dbCandidate = CandidateRepository.GetSingle(vmf.CandidateID);
+                dbCandidate.CVName = file.FileName;
+                CandidateRepository.Edit(dbCandidate);
+                CandidateRepository.Save();
+                vmf.CVName = dbCandidate.CVName;
+                Session["LoggedInUser"] = vmf;
             }
             // Returns message that successfully uploaded  
         }
         public FilePathResult OpenCV(string fileName)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
+            var checkextension = Path.GetExtension(vmf.CVName).ToLower();
+            if (checkextension == ".pdf")
+            {
+                return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");
+            }
+            else if (checkextension == ".docx")
+            {
+                return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".docx"), "application/docx");
+            }
+            else if (checkextension == ".doc")
+            {
+                return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".doc"), "application/doc");
+            }
+            else
+            {
+                return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".jpg"), "application/jpg");
+            }
 
-            return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString()), "application/.pdf");
         }
         #endregion
         #region -- Controller Private  Methods--

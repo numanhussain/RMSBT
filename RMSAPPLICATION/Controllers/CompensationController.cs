@@ -17,13 +17,15 @@ namespace RMSAPPLICATION.Controllers
 
         #region -- Controller Initialization --
         IEntityService<CompensationDetail> CompensationEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         ICompensationService CompensationDetailService;
         IDDService DDService;
         //IDDService DDService;
         // Controller Constructor
-        public CompensationController(ICompensationService compensationService, IEntityService<CompensationDetail> compensationEntityService, IDDService ddService)
+        public CompensationController(ICompensationService compensationService, IEntityService<CandidateStep> candidateStepEntityService,IEntityService<CompensationDetail> compensationEntityService, IDDService ddService)
         {
             CompensationEntityService = compensationEntityService;
+            CandidateStepEntityService = candidateStepEntityService;
             CompensationDetailService = compensationService;
             DDService = ddService;
         }
@@ -96,6 +98,10 @@ namespace RMSAPPLICATION.Controllers
                 if (vmf.UserStage == 5)
                     vmf.UserStage = 6;
                 CompensationDetailService.PostCreate(obj, vmf);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepEight = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf. StepEight= dbtickStep.StepEight;
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);

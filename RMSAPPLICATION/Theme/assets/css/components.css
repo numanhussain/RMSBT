@@ -28,6 +28,16 @@
 *  Latest update: Mar 10, 2016
 *
 * ---------------------------------------------------------------------------- */
+.login-cover {
+    background: url('../images/black.jpg') no-repeat;
+    background-size: cover;
+}
+
+.landing-cover {
+    background: url('../images/bwc-slider-img02.jpg') no-repeat;
+    background-size: cover;
+}
+
 .no-transitions * {
     -webkit-transition: none !important;
     -o-transition: none !important;
@@ -22091,9 +22101,10 @@ thead .htCollapseButton {
  *
  * ---------------------------------------------------------------------------- */
 .login-cover {
-    background: url('../images/login_cover.jpg') no-repeat;
+    background: url('../images/black.jpg') no-repeat;
     background-size: cover;
 }
+
 .landing-cover {
     background: url('../images/bwc-slider-img02.jpg') no-repeat;
     background-size: cover;
@@ -22838,6 +22849,7 @@ thead .htCollapseButton {
     height: 36px;
     margin-top: -18px;
 }
+
 .heading-elements2 {
     background-color: inherit;
     position: inherit;

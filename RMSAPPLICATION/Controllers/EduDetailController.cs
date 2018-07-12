@@ -20,13 +20,15 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         //IEntityService<V_Candidate_EduDetail> EduDetailEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         IEduDetailService EduDetailService;
         IDDService DDService;
         // Controller Constructor
-        public EduDetailController(IEduDetailService edudetailService, IDDService ddService)
+        public EduDetailController(IEduDetailService edudetailService, IDDService ddService, IEntityService<CandidateStep> candidateStepEntityService)
         {
             DDService = ddService;
             EduDetailService = edudetailService;
+            CandidateStepEntityService = candidateStepEntityService;
         }
         #endregion
         #region -- Controller ActionResults  --
@@ -76,18 +78,18 @@ namespace RMSAPPLICATION.Controllers
                     obj.InstitutionID = null;
                 if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0 || obj.DegreeLevelID == 2 && obj.InstitutionID == 0 || obj.DegreeLevelID == 3 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0 || obj.DegreeLevelID == 7 && obj.InstitutionID == 0 || obj.DegreeLevelID == 8 && obj.InstitutionID == 0 || obj.DegreeLevelID == 9 && obj.InstitutionID == 0 || obj.DegreeLevelID == 10 && obj.InstitutionID == 0)
                     ModelState.AddModelError("InstitutionID", "Mandatory ");
-                if (obj.StartDate == null)
-                    ModelState.AddModelError("StartDate", "Mandatory ");
-                if (obj.EndDate == null)
-                    ModelState.AddModelError("EndDate", "Mandatory ");
                 if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
                     ModelState.AddModelError("StartDate", "Invalid date");
                 else
                     obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
+                if (obj.StartDate == null)
+                    ModelState.AddModelError("StartDate", "Mandatory ");
                 if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
                     ModelState.AddModelError("EndDate", "Invalid date");
                 else
                     obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
+                if (obj.EndDate == null)
+                    ModelState.AddModelError("EndDate", "Mandatory ");
                 if (obj.MajorSubject == null || obj.MajorSubject == "")
                     ModelState.AddModelError("MajorSubject", "Mandatory");
                 if (obj.InProgress == true)
@@ -143,6 +145,10 @@ namespace RMSAPPLICATION.Controllers
                     if (vmf.UserStage == 3)
                         vmf.UserStage = 4;
                     EduDetailService.PostCreate(obj, vmf);
+                    CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                    dbtickStep.StepTwo = true;
+                    CandidateStepEntityService.PostEdit(dbtickStep);
+                    vmf.StepTwo = dbtickStep.StepTwo;
                     Session["LoggedInUser"] = vmf;
                     Session["ProfileStage"] = vmf.UserStage;
                     return Json("OK", JsonRequestBehavior.AllowGet);

@@ -50,7 +50,8 @@ function SavePersonalInfoFunction() {
                         theme: 'alert-styled-right bg-info',
                         life: 6000
                     });
-                    CandidateGetCreate(id)
+                    location.reload()
+                    CandidateGetCreate()
                 }
                 else {
                     $('#PartialViewContainer').html(data);

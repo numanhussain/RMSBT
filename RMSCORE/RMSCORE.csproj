@@ -64,6 +64,9 @@
     <Compile Include="EF\CandidatePhoto.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\CandidateStep.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\CandidateStrength.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

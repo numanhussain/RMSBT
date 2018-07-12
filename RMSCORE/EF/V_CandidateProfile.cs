@@ -48,5 +48,6 @@ namespace RMSCORE.EF
         public string OtherAreaName { get; set; }
         public Nullable<int> CityID { get; set; }
         public Nullable<int> DomicileCityID { get; set; }
+        public string CVName { get; set; }
     }
 }

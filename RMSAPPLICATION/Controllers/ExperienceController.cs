@@ -17,6 +17,7 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         //IEntityService<VMEduDetailIndex> EduDetailEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         IExperienceDetailService ExperienceDetailService;
         IEntityService<Candidate> CandidateEntityService;
         IEntityService<User> UserEntityService;
@@ -24,7 +25,8 @@ namespace RMSAPPLICATION.Controllers
         IMiscellaneousService MiscellaneousService;
         IDDService DDService;
         // Controller Constructor
-        public ExperienceController(IExperienceDetailService experiencedetailService, IEntityService<User> userEntityService, IEntityService<Candidate> candidateEntityService, IDDService ddService, IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousDetailService)
+        public ExperienceController(IExperienceDetailService experiencedetailService, IEntityService<User> userEntityService, IEntityService<Candidate> candidateEntityService, IDDService ddService, IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousDetailService,
+            IEntityService<CandidateStep> candidateStepEntityService)
         {
             DDService = ddService;
             ExperienceDetailService = experiencedetailService;
@@ -32,6 +34,7 @@ namespace RMSAPPLICATION.Controllers
             UserEntityService = userEntityService;
             MiscellaneousService = miscellaneousService;
             MiscellaneousDetailService = miscellaneousDetailService;
+            CandidateStepEntityService = candidateStepEntityService;
         }
         #endregion
         #region -- Controller ActionResults  --
@@ -147,6 +150,10 @@ namespace RMSAPPLICATION.Controllers
                 if (vmf.UserStage == 4)
                     vmf.UserStage = 5;
                 ExperienceDetailService.PostCreate(obj, vmf);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepThree = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf.StepThree = dbtickStep.StepThree;
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);

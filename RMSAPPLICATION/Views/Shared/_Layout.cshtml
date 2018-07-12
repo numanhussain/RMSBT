@@ -29,7 +29,7 @@
     <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/pnotify.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/noty.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/plugins/notifications/jgrowl.min.js"></script>
-    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/ripple.min.js"></script>
+    @*<script type="text/javascript" src="~/Theme/assets/js/plugins/ui/ripple.min.js"></script>*@
     <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/styling/uniform.min.js"></script>
 
@@ -52,9 +52,9 @@
             <div class="navbar navbar-inverse bg-grey">
                 <div class="navbar-header">
                     <div style="padding-left:20px; padding-top:10px;">
-                        <a><img src="~/Theme/assets/images/bcl_logo_final.png" height="38" /></a>
+                        <a><img src="~/Theme/assets/images/bcl_logo_final.png" height="38" style="padding-bottom:6px" /></a>
                         @*    <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
-                        <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
+                        <span class="h5 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
                     </div>
                 </div>
 
@@ -81,7 +81,7 @@
                                     </div>
                                 </div>
                             </li>*@
-                        <li class="dropdown">
+                        <li class="dropdown dropdown-user">
                             <a class="dropdown-toggle" data-toggle="dropdown">
                                 <img height="30" class="img-circle" src="~/Candidate/RetrieveImage/@LoggedInUser.CandidateID" />
                                 <span>@LoggedInUser.CName</span>

@@ -19,13 +19,15 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         IEntityService<Candidate> CandidateEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         ICandidateService CandidateService;
         IDDService DDService;
         // Controller Constructor
-        public CandidateController(IEntityService<Candidate> candidateEntityService, IDDService ddService, ICandidateService candidateservice)
+        public CandidateController(IEntityService<Candidate> candidateEntityService, IEntityService<CandidateStep> candidateStepEntityService,IDDService ddService, ICandidateService candidateservice)
 
         {
             CandidateEntityService = candidateEntityService;
+            CandidateStepEntityService = candidateStepEntityService;
             CandidateService = candidateservice;
             DDService = ddService;
         }
@@ -71,7 +73,7 @@ namespace RMSAPPLICATION.Controllers
             if (dbOperation.FatherName == null || dbOperation.CName == "")
                 ModelState.AddModelError("FatherName", "Mandatory");
             if (!AssistantService.IsDateTime(Request.Form["DOB"])) // check for valid date
-                ModelState.AddModelError("DOB", "Mandatory");
+                ModelState.AddModelError("DOB", "Date is not valid");
             else
                 dbOperation.DOB = Convert.ToDateTime(Request.Form["DOB"].ToString());
             if (dbOperation.DOB != null)
@@ -141,6 +143,10 @@ namespace RMSAPPLICATION.Controllers
                 if (vmf.UserStage == 2)
                     vmf.UserStage = 3;
                 CandidateService.PostCreate(dbOperation, vmf);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepOne = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf.StepOne = dbtickStep.StepOne;
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);

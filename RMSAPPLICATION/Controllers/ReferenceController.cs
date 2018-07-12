@@ -16,13 +16,15 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         //IEntityService<VMEduDetailIndex> EduDetailEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         IReferenceService ReferenceDetailService;
         IDDService DDService;
         // Controller Constructor
-        public ReferenceController(IReferenceService referencedetailService, IDDService ddService)
+        public ReferenceController(IReferenceService referencedetailService, IDDService ddService, IEntityService<CandidateStep> candidateStepEntityService)
         {
             DDService = ddService;
             ReferenceDetailService = referencedetailService;
+            CandidateStepEntityService = candidateStepEntityService;
         }
         #endregion
         #region -- Controller ActionResults  --
@@ -90,6 +92,10 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 ReferenceDetailService.PostCreate(obj, vmf);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepSix = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf.StepSix = dbtickStep.StepSix;
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
             return PartialView("Create", obj);

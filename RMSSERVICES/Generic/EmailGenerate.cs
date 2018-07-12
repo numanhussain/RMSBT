@@ -30,7 +30,7 @@ namespace RMSSERVICES.Generic
                 }
                 else
                 {
-                    mail.Subject = Subject;
+                    mail.Subject = "Position for" + Subject;
                 }
                 if (CC != null && CC != "")
                     mail.CC.Add(CC);

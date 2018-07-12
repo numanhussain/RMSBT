@@ -12,19 +12,8 @@ namespace RMSCORE.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class V_UserCandidate
+    public partial class CandidateStep
     {
-        public string CName { get; set; }
-        public Nullable<int> UserID { get; set; }
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string RetypePassword { get; set; }
-        public Nullable<int> UserStage { get; set; }
-        public string Email { get; set; }
-        public Nullable<bool> HaveExperience { get; set; }
-        public Nullable<int> AppliedAs { get; set; }
-        public Nullable<bool> HasCV { get; set; }
-        public string CVName { get; set; }
         public int CandidateID { get; set; }
         public Nullable<bool> StepOne { get; set; }
         public Nullable<bool> StepTwo { get; set; }

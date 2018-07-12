@@ -2909,7 +2909,9 @@
     <Content Include="Theme\starters\layout_navbar_fixed_main.html" />
     <Content Include="Theme\starters\layout_navbar_fixed_secondary.html" />
     <Content Include="Theme\starters\layout_sidebar_sticky.html" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -3310,6 +3312,7 @@
     <Content Include="Theme\assets\css\PS_2.TTF" />
     <Content Include="Theme\assets\css\PS_3.TTF" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
+    <Content Include="Views\Home\PasswordEmailSent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

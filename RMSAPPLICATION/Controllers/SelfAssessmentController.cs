@@ -13,10 +13,12 @@ namespace RMSAPPLICATION.Controllers
     {
         #region -- Controller Initialization --
         IEntityService<CandidateStrength> CandidateStrengthEntityService;
+        IEntityService<CandidateStep> CandidateStepEntityService;
         ISelfAssessmentService CandidateStrengthService;
-        public SelfAssessmentController(ISelfAssessmentService candidateStrengthService, IEntityService<CandidateStrength> candidateStrengthEntityService)
+        public SelfAssessmentController(ISelfAssessmentService candidateStrengthService, IEntityService<CandidateStep> candidateStepEntityService, IEntityService<CandidateStrength> candidateStrengthEntityService)
         {
             CandidateStrengthEntityService = candidateStrengthEntityService;
+            CandidateStepEntityService = candidateStepEntityService;
             CandidateStrengthService = candidateStrengthService;
         }
         #endregion 
@@ -68,6 +70,10 @@ namespace RMSAPPLICATION.Controllers
                 if (vmf.UserStage == 5)
                     vmf.UserStage = 6;
                 CandidateStrengthService.PostIndex(dbOperation, vmf);
+                CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);
+                dbtickStep.StepFive = true;
+                CandidateStepEntityService.PostEdit(dbtickStep);
+                vmf.StepFive = dbtickStep.StepFive;
                 Session["LoggedInUser"] = vmf;
                 Session["ProfileStage"] = vmf.UserStage;
                 return Json("OK", JsonRequestBehavior.AllowGet);
