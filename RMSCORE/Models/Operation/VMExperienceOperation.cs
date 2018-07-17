@@ -20,13 +20,13 @@ namespace RMSCORE.Models.Operation
         public int? CountryID { get; set; }
         public string Address { get; set; }
         [Required(ErrorMessage = "Mandatory ")]
-        [StringLength(250)]
+        [StringLength(500)]
         public string Responsibility1 { get; set; }
         [Required(ErrorMessage = "Mandatory ")]
-        [StringLength(250)]
+        [StringLength(500)]
         public string Responsibility2 { get; set; }
         [Required(ErrorMessage = "Mandatory ")]
-        [StringLength(250)]
+        [StringLength(500)]
         public string Responsibility3 { get; set; }
         public string Salary { get; set; }
         public int CandidateID { get; set; }

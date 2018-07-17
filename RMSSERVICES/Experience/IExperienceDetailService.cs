@@ -20,7 +20,7 @@ namespace RMSSERVICES.Experience
         ServiceMessage PostEdit(VMExperienceOperation obj);
         VMExperienceOperation GetDelete(int? id);
         ServiceMessage PostDelete(VMExperienceOperation obj);
-        ServiceMessage PostGeneralExperience(int? TotalExp, V_UserCandidate LoggedInUser);
-        ServiceMessage PostCementExperience(int? CementExp, V_UserCandidate LoggedInUser);
+        ServiceMessage PostGeneralExperience(float? TotalExp, V_UserCandidate LoggedInUser);
+        ServiceMessage PostCementExperience(float? CementExp, V_UserCandidate LoggedInUser);
     }
 }

@@ -23,8 +23,8 @@ namespace RMSCORE.EF
         public string Designation { get; set; }
         public string Location { get; set; }
         public string ReasonLeaving { get; set; }
-        public Nullable<int> TotalExp { get; set; }
-        public Nullable<int> CementExp { get; set; }
+        public Nullable<float> TotalExp { get; set; }
+        public Nullable<float> CementExp { get; set; }
         public Nullable<int> NoticeTime { get; set; }
         public Nullable<int> CandidateID { get; set; }
         public string WorkedBefore { get; set; }

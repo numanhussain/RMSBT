@@ -17,6 +17,7 @@
     <link href="~/Theme/assets/css/core.css" rel="stylesheet" type="text/css">
     <link href="~/Theme/assets/css/components.css" rel="stylesheet" type="text/css">
     <link href="~/Theme/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <!-- /global stylesheets -->
     <!-- Core JS files -->
     <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
@@ -44,6 +45,7 @@
                 <!-- Advanced login -->
                 <form action="~/Home/RegisterUser" enctype="multipart/form-data" method="post">
                     @Html.AntiForgeryToken()
+                    @Html.Raw(TempData["Error"])
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="col-md-12">
                         <div class="panel panel-body login-form">
@@ -52,11 +54,11 @@
                                 <h4 class="content-group text-bold text-white">Register here</h4>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                <label class="text-semibold text-blue">Applying for</label> &nbsp;
+                                <label class="text-semibold text-white">Applying for</label> &nbsp;
                                 @Html.DropDownList("AppliedAs", new List<SelectListItem> { new SelectListItem { Text = "Internship", Value = "1" }, new SelectListItem { Text = "MTO", Value = "2" }, new SelectListItem { Text = "Trainee Engineer", Value = "3" }, new SelectListItem { Text = "Apprentice", Value = "4" }, new SelectListItem { Text = "Full Time Employee", Value = "5" }, new SelectListItem { Text = "Contractual Employee", Value = "6" }, }, new { @class = "form-control" })
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                <label class="text-bold text-blue">Email</label>
+                                <label class="text-bold text-white">Email</label>
                                 @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your email" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                                 <div class="form-control-feedback">
@@ -64,7 +66,7 @@
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                <label class="text-bold text-blue">Enter Password</label>
+                                <label class="text-bold text-white">Enter Password</label>
                                 <div class="input-group">
                                     <input type="password" name="Password" class="form-control pwd" id="password" placeholder="Password">
                                     <span class="input-group-btn">
@@ -78,7 +80,7 @@
                                 </div>
                             </div>
                             <div class="form-group has-feedback has-feedback-left">
-                                <label class="text-bold text-blue">Retype-Password</label>
+                                <label class="text-bold text-white">Retype-Password</label>
                                 <div class="input-group">
                                     <input type="password" name="RetypePassword" class="form-control pwd" id="confirm_password" placeholder="Confirm-Password">
                                     <span class="input-group-btn">
@@ -92,7 +94,12 @@
                                 </div>
                                 <span id="message"></span>
                             </div>
-                            <button type="submit" class="btn btn-primary btn-block btn-lg">Register <i class="icon-circle-right2 position-right"></i></button>
+
+                            <div class="form-group">
+                                <div class="g-recaptcha" data-sitekey="6LdHcTwUAAAAAIFoGNGSjl_daxhYsQUWVV9PKWWW"></div>
+
+                            </div>
+                            <button type="submit" class="btn btn-block text-semibold bg-blue-800">Register <i class="icon-circle-right2 position-right"></i></button>
                         </div>
                     </div>
                 </form>
@@ -104,8 +111,8 @@
     </div>
     <!-- /page container -->
     <!-- Footer -->
-    <div class="footer text-muted text-center">
-        &copy; 2018. <a href="#">Recruitment Management System</a> by <a href="http://cns.com.pk" target="_blank">Computer & Networking Services</a>
+    <div class="footer text-center">
+        <span class="text-white text-bold"><strong>&copy; 2018. </strong></span><a href="#" class="text-white text-black">Recruitment Management System</a><span class="text-white text-bold"><strong> by </strong></span><a href="http://www.bestway.com.pk/" target="_blank" class="text-white text-black">Bestway Cement Limited</a>
     </div>
     <!-- /footer -->
 </body>

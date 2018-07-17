@@ -180,7 +180,7 @@ namespace RMSSERVICES.Experience
             }
             return new ServiceMessage();
         }
-        public ServiceMessage PostGeneralExperience(int? TotalExp, V_UserCandidate LoggedInUser)
+        public ServiceMessage PostGeneralExperience(float? TotalExp, V_UserCandidate LoggedInUser)
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
             List<MiscellaneousDetail> dbVRMPositions = MiscellaneousRepository.FindBy(SpecificClient);
@@ -203,7 +203,7 @@ namespace RMSSERVICES.Experience
 
             return new ServiceMessage();
         }
-        public ServiceMessage PostCementExperience(int? CementExp, V_UserCandidate LoggedInUser)
+        public ServiceMessage PostCementExperience(float? CementExp, V_UserCandidate LoggedInUser)
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
             List<MiscellaneousDetail> dbVRMPositions = MiscellaneousRepository.FindBy(SpecificClient);

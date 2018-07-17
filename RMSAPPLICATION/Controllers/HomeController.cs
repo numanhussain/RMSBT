@@ -1,4 +1,6 @@
-﻿using RMSCORE.EF;
+﻿using Newtonsoft.Json;
+using RMSAPPLICATION.Models;
+using RMSCORE.EF;
 using RMSCORE.Models.Helper;
 using RMSCORE.Models.Main;
 using RMSREPO.Generic;
@@ -9,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -140,9 +143,10 @@ namespace RMSAPPLICATION.Controllers
             if (Obj.Email == null || Obj.Email == "")
                 ModelState.AddModelError("Email", "Mandatory");
             Expression<Func<User, bool>> SpecificEntries1 = c => c.Email == Obj.Email;
+            CaptchaResponse response = ValidateCaptcha(Request["g-recaptcha-response"]);
             if (UserEntityService.GetIndexSpecific(SpecificEntries1).ToList().Count == 0)
             {
-                if (ModelState.IsValid)
+                if (response.Success && ModelState.IsValid)
                 {
                     Obj.UserName = Obj.Email;
 
@@ -158,6 +162,10 @@ namespace RMSAPPLICATION.Controllers
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");
                     }
+                }
+                else
+                {
+                    TempData["Error"] = "<script>alert('Please check you are not robot');</script>";
                 }
             }
             else
@@ -315,7 +323,6 @@ namespace RMSAPPLICATION.Controllers
             }
             return cmList;
         }
-
         private List<CustomModel> GetLocationList(List<string> list)
         {
             List<CustomModel> cmList = new List<CustomModel>();
@@ -328,6 +335,20 @@ namespace RMSAPPLICATION.Controllers
                 cmList.Add(cm);
             }
             return cmList;
+        }
+
+
+        /// <summary>
+        /// Validate Captcha
+        /// </summary>
+        /// <param name="response"></param>
+        /// <returns></returns>
+        public static CaptchaResponse ValidateCaptcha(string response)
+        {
+            string secret = System.Web.Configuration.WebConfigurationManager.AppSettings["recaptchaPrivateKey"];
+            var client = new WebClient();
+            var jsonResult = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
+            return JsonConvert.DeserializeObject<CaptchaResponse>(jsonResult.ToString());
         }
         #endregion
     }

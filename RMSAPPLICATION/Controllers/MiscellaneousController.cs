@@ -20,13 +20,15 @@ namespace RMSAPPLICATION.Controllers
         IMiscellaneousService MiscellaneousService;
         IDDService DDService;
         IRepository<Candidate> CandidateRepository;
+        IRepository<User> UserRepository;
         // Controller Constructor
         public MiscellaneousController(IMiscellaneousService miscellaneousService, IEntityService<MiscellaneousDetail> miscellaneousentityService, IDDService ddService,
-             IRepository<Candidate> candidateRepository, IEntityService<CandidateStep> candidateStepEntityService)
+             IRepository<Candidate> candidateRepository, IEntityService<CandidateStep> candidateStepEntityService, IRepository<User> userRepository)
         {
             DDService = ddService;
             MiscellaneousService = miscellaneousService;
             MiscellaneousEntityService = miscellaneousentityService;
+            UserRepository = userRepository;
             CandidateStepEntityService = candidateStepEntityService;
             CandidateRepository = candidateRepository;
         }
@@ -215,6 +217,7 @@ namespace RMSAPPLICATION.Controllers
                 {
                     fname = vmf.CandidateID.ToString() + ".doc";
                 }
+                DeleteFiles(vmf, files);
                 // Get the complete folder path and store the file inside it.  
                 fname = Path.Combine(Server.MapPath("~/UploadFiles/"), fname);
                 file.SaveAs(fname);
@@ -223,6 +226,11 @@ namespace RMSAPPLICATION.Controllers
                 CandidateRepository.Edit(dbCandidate);
                 CandidateRepository.Save();
                 vmf.CVName = dbCandidate.CVName;
+                User dbUser = UserRepository.GetSingle(vmf.CandidateID);
+                dbUser.HasCV = true;
+                UserRepository.Edit(dbUser);
+                UserRepository.Save();
+                vmf.HasCV = dbUser.HasCV;
                 Session["LoggedInUser"] = vmf;
             }
             // Returns message that successfully uploaded  
@@ -248,6 +256,39 @@ namespace RMSAPPLICATION.Controllers
                 return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".jpg"), "application/jpg");
             }
 
+        }
+        //Delete All previous files
+        public void DeleteFiles(V_UserCandidate vmf, HttpFileCollectionBase files)
+        {
+            string sourceDir = Server.MapPath("~/UploadFiles/");
+            try
+            {
+                string[] pdffiles = Directory.GetFiles(sourceDir, vmf.CandidateID.ToString() + ".pdf");
+                string[] docxfiles = Directory.GetFiles(sourceDir, vmf.CandidateID.ToString() + ".docx");
+                string[] docfiles = Directory.GetFiles(sourceDir, vmf.CandidateID.ToString() + ".doc");
+                string[] picfiles = Directory.GetFiles(sourceDir, vmf.CandidateID.ToString() + ".jpg");
+                // Delete source files that were copied.
+                foreach (string file in pdffiles)
+                {
+                    System.IO.File.Delete(file);
+                }
+                foreach (string file in docxfiles)
+                {
+                    System.IO.File.Delete(file);
+                }
+                foreach (string file in docfiles)
+                {
+                    System.IO.File.Delete(file);
+                }
+                foreach (string file in picfiles)
+                {
+                    System.IO.File.Delete(file);
+                }
+            }
+            catch (DirectoryNotFoundException dirNotFound)
+            {
+                Console.WriteLine(dirNotFound.Message);
+            }
         }
         #endregion
         #region -- Controller Private  Methods--

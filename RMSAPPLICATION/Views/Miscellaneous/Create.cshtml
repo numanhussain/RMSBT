@@ -298,7 +298,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CandidateID }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", @*new { fileName = LoggedInUser.CandidateID },*@ new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>

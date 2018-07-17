@@ -176,7 +176,7 @@ function checkextension() {
     var a = 0;
     //binds to onchange event of your input field
     var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
-    if (ext == "docx" || ext == "doc" || ext=="pdf"||ext=="jpg") {
+    if (ext == "docx" || ext == "doc" || ext == "pdf" || ext == "jpg" || ext=="") {
         SaveCV();
     }
     else {

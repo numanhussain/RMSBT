@@ -1,7 +1,7 @@
 ﻿@model List<RMSCORE.Models.Main.VMExperienceIndex>
-    @{ 
-        Layout = null;
-    }
+@{
+    Layout = null;
+}
 @{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
     <!-- Page container -->
     <!-- Page content -->
@@ -64,8 +64,8 @@
                                     <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
                                 </div>
                                 @*<div class="col-md-1">
-                                    <button type="button" id="btnPostCreate" class="btn btn-primary" value="Save">Save</button>
-                                </div>*@
+                                        <button type="button" id="btnPostCreate" class="btn btn-primary" value="Save">Save</button>
+                                    </div>*@
                             }
                         }
                     </div>
@@ -204,6 +204,7 @@
     </div>
 
 }
+<script src="~/Theme/assets/js/pages/datatables_basic.js"></script>
 <script type="text/javascript" src="~/Scripts/Candidate/Experience.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

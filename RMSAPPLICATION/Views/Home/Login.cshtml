@@ -48,13 +48,13 @@
 
                 <!-- Simple login form -->
                 <form action="~/Home/Login" enctype="multipart/form-data" method="post">
-                    @Html.AntiForgeryToken() 
-                    @Html.HiddenFor(model=>model.UserID)
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(model => model.UserID)
                     @Html.ValidationSummary(true)
                     <div class="panel panel-body login-form">
                         <div>
                             <img src="~/Theme/assets/images/bcl_logo_final.png" class="center-block" height="65" />
-                            <h4 class="content-group text-center text-blue text-black">Bestway&nbsp;Cement&nbsp;Limited<small class="display-block text-white text-bold">Already have account? Please sign in.</small></h4>
+                            <h4 class="content-group text-blue-800 text-center text-black text-semibold">Bestway&nbsp;Cement&nbsp;Limited<small class="display-block text-white text-bold">Already have account? Please sign in.</small></h4>
                             <div class="form-group has-feedback has-feedback-left">
                                 <input type="text" id="UserName" name="UserName" class="form-control" placeholder="Enter Email Address">
                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
@@ -83,11 +83,11 @@
                             </div>
 
                             <div class="form-group">
-                                <button type="submit" class="btn bg-primary btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+                                <button type="submit" class="btn btn-block text-semibold bg-blue-800">Sign in <i class="icon-enter3 position-right"></i></button>
                             </div>
 
                             <div class="text-left">
-                                <span class="text-white text-bold">New Member? Click here to</span> <a href="~/Home/RegisterUser"><strong class="text-blue text-bold h6">Register</strong></a>
+                                <span class="text-white text-bold">New Member? Click here to</span> <a href="~/Home/RegisterUser"><strong class="text-blue-800 text-semibold h5">Register</strong></a>
                             </div>
                         </div>
                     </div>
@@ -103,8 +103,8 @@
     </div>
     <!-- /page container -->
     <!-- Footer -->
-    <div class="footer text-muted text-center">
-        &copy; 2018. <a href="#" class="text-white">Recruitment Management System</a> by <a href="http://www.bestway.com.pk/" target="_blank" class="text-white text-bold">Bestway Cement Limited.</a>
+    <div class="footer text-center">
+        <span class="text-white text-bold"><strong>&copy; 2018. </strong></span><a href="#" class="text-white text-black">Recruitment Management System</a><span class="text-white text-bold"><strong> by </strong></span><a href="http://www.bestway.com.pk/" target="_blank" class="text-white text-black">Bestway Cement Limited</a>
     </div>
     <!-- /footer -->
 </body>

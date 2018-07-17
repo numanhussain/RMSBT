@@ -88,11 +88,11 @@
             <PropertyRef Name="StrengthID" />
           </Key>
           <Property Name="StrengthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Strengths" Type="nvarchar" MaxLength="500" />
-          <Property Name="AreaOfImprovement" Type="nvarchar" MaxLength="500" />
-          <Property Name="MeetRequirements" Type="nvarchar" MaxLength="500" />
+          <Property Name="Strengths" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AreaOfImprovement" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MeetRequirements" Type="nvarchar" MaxLength="1000" />
           <Property Name="CandidateID" Type="int" />
-          <Property Name="Objective" Type="nvarchar" MaxLength="500" />
+          <Property Name="Objective" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Catagory">
           <Key>
@@ -240,9 +240,9 @@
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="IndustryID" Type="int" />
           <Property Name="CountryID" Type="int" />
-          <Property Name="Responsibility1" Type="nvarchar" MaxLength="100" />
-          <Property Name="Responsibility2" Type="nvarchar" MaxLength="100" />
-          <Property Name="Responsibility3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Responsibility1" Type="nvarchar" MaxLength="600" />
+          <Property Name="Responsibility2" Type="nvarchar" MaxLength="600" />
+          <Property Name="Responsibility3" Type="nvarchar" MaxLength="600" />
           <Property Name="CareerLevelID" Type="int" />
           <Property Name="ContactEmployer" Type="bit" />
           <Property Name="AreaofInterest" Type="nvarchar" MaxLength="70" />
@@ -331,8 +331,8 @@
           <Property Name="Designation" Type="nvarchar" MaxLength="50" />
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
           <Property Name="ReasonLeaving" Type="nvarchar" MaxLength="100" />
-          <Property Name="TotalExp" Type="int" />
-          <Property Name="CementExp" Type="int" />
+          <Property Name="TotalExp" Type="real" />
+          <Property Name="CementExp" Type="real" />
           <Property Name="NoticeTime" Type="int" />
           <Property Name="CandidateID" Type="int" />
           <Property Name="WorkedBefore" Type="nvarchar" MaxLength="50" />
@@ -1297,11 +1297,11 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <PropertyRef Name="StrengthID" />
           </Key>
           <Property Name="StrengthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Strengths" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AreaOfImprovement" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MeetRequirements" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Strengths" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AreaOfImprovement" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MeetRequirements" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
-          <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Catagory">
           <Key>
@@ -1454,9 +1454,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="IndustryID" Type="Int32" />
           <Property Name="CountryID" Type="Int32" />
-          <Property Name="Responsibility1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility1" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility2" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility3" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
           <Property Name="CareerLevelID" Type="Int32" />
           <Property Name="ContactEmployer" Type="Boolean" />
           <Property Name="AreaofInterest" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
@@ -1546,8 +1546,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReasonLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TotalExp" Type="Int32" />
-          <Property Name="CementExp" Type="Int32" />
+          <Property Name="TotalExp" Type="Single" />
+          <Property Name="CementExp" Type="Single" />
           <Property Name="NoticeTime" Type="Int32" />
           <Property Name="CandidateID" Type="Int32" />
           <Property Name="WorkedBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
