@@ -12,8 +12,8 @@
         $("#hv4").addClass("liInActive");
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
-        $("#hv33").addClass("liInActive");
         $("#hv7").addClass("liInActive");
+        $("#hv8").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 4;
     });
 };
@@ -274,6 +274,11 @@ function LoadDD2() {
     $("#CountryID").on("change", function () {
         ShowCityHide2();
     });
+    // Other Induatry Load
+    ShowIndustryHide();
+    $("#IndustryID").on("change", function () {
+        ShowIndustryHide();
+    });
 }
 function PostIndex(id) {
     $('#btnPostCreate').click(function () {
@@ -305,53 +310,101 @@ function PostIndex(id) {
 function SaveOverallExperience() {
     $("#Experience").change(function () {
         var Experience = $('#Experience').val();
-        $.ajax({
-            url: "/Experience/SaveOverallExperience",
-            contentType: "application/json; charset=utf-8",
-            data: { "Experience": Experience },
-            success: function (data) {
-                if (data == "OK") {
-                    location.reload;
+        if (Experience == null || Experience == "") {
+            $.jGrowl('<div>Experience is must</div>', {
+                header: '',
+                position: 'center',
+                theme: 'alert-styled-right bg-info',
+                life: 7000
+            });
+        }
+        else {
+            $.ajax({
+                url: "/Experience/SaveOverallExperience",
+                contentType: "application/json; charset=utf-8",
+                data: { "Experience": Experience },
+                success: function (data) {
+                    if (data == "OK") {
+                        location.reload;
+                    }
+                    else {
+                        $('#PartialViewContainer').html(data);
+                    }
+                },
+                error: function () {
+                    $("#result").text('an error occured')
                 }
-                else {
-                    $('#PartialViewContainer').html(data);
-                }
-            },
-            error: function () {
-                $("#result").text('an error occured')
-            }
-        });
+            });
+        }
     });
 }
 function SaveCementExperience() {
     $("#CementExperience").change(function () {
         var CementExperience = $('#CementExperience').val();
-        $.ajax({
-            url: "/Experience/SaveCementExperience",
-            contentType: "application/json; charset=utf-8",
-            data: { "CementExp": CementExperience },
-            success: function (data) {
-                if (data == "OK") {
-                    LoadPVExperienceDetailIndex();
+        if (CementExperience == null || CementExperience == "") {
+            $.jGrowl('<div>Cement Experience is must</div>', {
+                header: '',
+                position: 'center',
+                theme: 'alert-styled-right bg-info',
+                life: 7000
+            });
+        }
+        else {
+            $.ajax({
+                url: "/Experience/SaveCementExperience",
+                contentType: "application/json; charset=utf-8",
+                data: { "CementExp": CementExperience },
+                success: function (data) {
+                    if (data == "OK") {
+                        LoadPVExperienceDetailIndex();
+                    }
+                    else {
+                        $('#PartialViewContainer').html(data);
+                    }
+                },
+                error: function () {
+                    $("#result").text('an error occured')
                 }
-                else {
-                    $('#PartialViewContainer').html(data);
-                }
-            },
-            error: function () {
-                $("#result").text('an error occured')
-            }
-        });
+            });
+        }
     });
 }
 function ShowCityHide2() {
     $("#OtherCityDivHide2").hide();
+    $("#OtherPakistaniCitydiv2").hide();
     if ($("#CountryID").val() == 74) {
         $("#CityDivHide2").show();
         $("#OtherCityDivHide2").hide();
+        $("#OtherPakistaniCitydiv2").hide();
     }
     else {
         $("#CityDivHide2").hide();
         $("#OtherCityDivHide2").show();
+        $("#OtherPakistaniCitydiv2").hide();
+    }
+}
+function OtherCity2() {
+    $("#OtherPakistaniCitydiv2").hide();
+    var selectedItemID = document.getElementById("selectedCityIdHidden").value;
+    if (selectedItemID == 117) {
+        $("#OtherPakistaniCitydiv2").show();
+    }
+    $("#CityID").on("change", function () {
+        if ($("#CityID").val() == 117) {
+            $("#OtherPakistaniCitydiv2").show();
+        }
+        else {
+            $("#OtherPakistaniCitydiv2").hide();
+        }
+    });
+}
+
+function ShowIndustryHide() {
+    $("#OtherIndustry").hide();
+    if ($("#IndustryID").val() == 110) {
+        $("#OtherIndustry").show();
+    }
+    else {
+        $("#OtherIndustry").hide();
     }
 }

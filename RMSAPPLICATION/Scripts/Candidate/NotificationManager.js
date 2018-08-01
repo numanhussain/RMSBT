@@ -14,3 +14,15 @@
         }
     });
 }
+function CheckSession() {
+    $.ajax({
+        type: "GET",
+        url: '/Home/SessionInfo',
+    }).done(function (data) {
+        if (data === true) {
+            window.location.href = '/Home/Login';
+        }
+    }).fail(function (e) {
+        alert('Error');
+    });
+}

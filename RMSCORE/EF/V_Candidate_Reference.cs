@@ -24,5 +24,7 @@ namespace RMSCORE.EF
         public string Organization { get; set; }
         public string HowLongKnown { get; set; }
         public Nullable<int> CandidateID { get; set; }
+        public Nullable<int> SalutationID { get; set; }
+        public string SalutationName { get; set; }
     }
 }

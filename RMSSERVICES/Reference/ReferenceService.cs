@@ -66,6 +66,7 @@ namespace RMSSERVICES.Reference
                         vmReference.CandidateID = id;
                         vmReference.RefID1 = dbVReferenceDetails[0].RefID;
                         vmReference.RefName1 = dbVReferenceDetails[0].RefName;
+                        vmReference.SalutationID1 = dbVReferenceDetails[0].SalutationID;
                         vmReference.RefDesignation1 = dbVReferenceDetails[0].RefDesignation;
                         vmReference.RefEmail1 = dbVReferenceDetails[0].RefEmail;
                         vmReference.Organization1 = dbVReferenceDetails[0].Organization;
@@ -76,6 +77,7 @@ namespace RMSSERVICES.Reference
                     {
                         vmReference.CandidateID = id;
                         vmReference.RefID2 = dbVReferenceDetails[1].RefID;
+                        vmReference.SalutationID2 = dbVReferenceDetails[1].SalutationID;
                         vmReference.RefName2 = dbVReferenceDetails[1].RefName;
                         vmReference.RefEmail2 = dbVReferenceDetails[1].RefEmail;
                         vmReference.RefDesignation2 = dbVReferenceDetails[1].RefDesignation;
@@ -182,6 +184,7 @@ namespace RMSSERVICES.Reference
         {
             ReferenceDetail dbReferenceDetail = new ReferenceDetail();
             dbReferenceDetail.RefID = obj.RefID1;
+            dbReferenceDetail.SalutationID = obj.SalutationID1;
             dbReferenceDetail.RefName = obj.RefName1;
             dbReferenceDetail.RefDesignation = obj.RefDesignation1;
             dbReferenceDetail.RefContact = obj.RefContact1;
@@ -194,6 +197,7 @@ namespace RMSSERVICES.Reference
         {
             ReferenceDetail dbReferenceDetail = new ReferenceDetail();
             dbReferenceDetail.RefID = obj.RefID2;
+            dbReferenceDetail.SalutationID = obj.SalutationID2;
             dbReferenceDetail.RefName = obj.RefName2;
             dbReferenceDetail.RefDesignation = obj.RefDesignation2;
             dbReferenceDetail.RefContact = obj.RefContact2;

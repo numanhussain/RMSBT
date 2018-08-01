@@ -47,6 +47,7 @@ namespace RMSCORE.EF
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HearAbout> HearAbouts { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
+        public virtual DbSet<InterviewStatu> InterviewStatus { get; set; }
         public virtual DbSet<JobDetail> JobDetails { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<MartialStatu> MartialStatus { get; set; }

@@ -10,10 +10,10 @@
         $("#hv2").addClass("liInActive");
         $("#hv3").addClass("liInActive");
         $("#hv4").addClass("liInActive");
-        $("#hv5").addClass("liInActive");
+        $("#hv5").addClass("liActive");
         $("#hv6").addClass("liInActive");
-        $("#hv33").addClass("liInActive");
-        $("#hv7").addClass("liActive");
+        $("#hv7").addClass("liInActive");
+        $("#hv8").addClass("liInActive");
     });
 };
 function SelfAssessmentPostCreate(item) {

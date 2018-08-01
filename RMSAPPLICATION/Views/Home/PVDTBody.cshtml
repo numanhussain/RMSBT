@@ -1,0 +1,37 @@
+﻿@model List<RMSCORE.Models.Main.VMOpenJobIndex>
+@{
+    ViewBag.title = "Job Portal";
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            <div class="text-semibold">@item.JobID</div>
+        </td>
+        <td>
+            <div class="text-semibold"><a href="~/Job/JobDetailIndex?JobID=@item.JobID">@item.JobTitle</a></div>
+            <div class="text-muted">Click on title for more information..</div>
+        </td>
+        <td>
+            <div class="text-semibold">@item.DepatmentName</div>
+        </td>
+        <td>
+            <div class="text-semibold">@item.CatName</div>
+        </td>
+        <td>
+            <div class="text-semibold">@item.LocName</div>
+        </td>
+        <td>
+            <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
+        </td>s
+        <td>
+            <div class="text-semibold">
+                @if (item.DeadlineDate != null)
+                {
+                    @item.DeadlineDate.Value.ToString("MM/dd/yyyy")}
+            </div>
+        </td>
+    </tr>
+}
+

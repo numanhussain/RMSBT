@@ -1,0 +1,24 @@
+﻿@model List<RMSCORE.Models.Main.VMOpenJobIndex>
+
+
+@{
+    ViewBag.Title = "WebGrid";
+}
+<div><b>Table Format Data Displaying Using WebGrid</b><br /></div>
+@{ var grid = new WebGrid(Model, canPage: false);}
+<div>
+
+    @grid.GetHtml(tableStyle: "table table-bordered table-responsive table-hover",
+    columns: grid.Columns(
+         grid.Column("JobID", "Employee Id"),
+         grid.Column("JobTitle", "First Name"),
+         grid.Column("DepatmentName", "Last Name"),
+         grid.Column("CatName", @Html.DropDownList("CatagoryID", null, new { @class = "form - control form - control" })),
+         grid.Column("LocName", "Salary"),
+         grid.Column("CreatedDate", "Company"),
+         grid.Column("DeadlineDate", "Department"),
+         grid.Column("",)
+    )
+    )
+</div>
+

@@ -1,0 +1,81 @@
+﻿@model List<RMSCORE.Models.Main.VMOpenJobIndex>
+@{
+    ViewBag.title = "Job Portal";
+    Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</title>
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
+    <!-- /theme JS files -->
+
+</head>
+<!-- Page container -->
+<div class="page-container">
+    <!-- Page content -->
+    <div class="page-content">
+        <!-- Main content -->
+        <div class="content-wrapper">
+            <div><b>Table Format Data Displaying in ForEach</b><br /></div>
+            <table class="table table-bordered table-responsive table-hover">
+                <tr>
+                    <th>Employee Id </th>
+                    <th>First Name </th>
+                    <th>Last Name </th>
+                    <th>Email</th>
+                    <th>Salary</th>
+                    <th>Company</th>
+                    <th>Department</th>
+                </tr>
+                @foreach (var d in Model)
+                {
+                    <tr>
+                        <td>@d.JobID</td>
+                        <td>@d.JobTitle</td>
+                        <td>@d.DepatmentName</td>
+                        <td>@d.CatName</td>
+                        <td>@d.LocName</td>
+                        <td>
+                            @if (d.CreatedDate != null)
+                            {
+                                @d.CreatedDate.Value.ToString("DD/MM/YYYY")
+                            }
+                        </td>
+                        <td>
+                            @if (d.DeadlineDate != null)
+                            {@d.DeadlineDate.Value.ToString("DD/MM/YYY")}
+                        </td>
+
+                    </tr>
+                }
+            </table>
+
+        </div>
+        <!-- /main content -->
+    </div>
+    <!-- /page content -->
+</div>
+<!-- /page container -->

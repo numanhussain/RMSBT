@@ -19,7 +19,6 @@ namespace RMSSERVICES.PersonalDetail
         IRepository<Candidate> CandidateRepository;
         IRepository<V_UserCandidate> VUserRepositiory;
         IRepository<User> UserRepository;
-        IRepository<VMCandidateIndex> VMCandidateRepository;
         IRepository<CandidatePhoto> CandidatePhotoRepository;
         IRepository<V_Candidate_EduDetail> VEducationRepository;
         IRepository<V_Candidate_Exp> VCandidateExpRepository;
@@ -30,14 +29,13 @@ namespace RMSSERVICES.PersonalDetail
         IRepository<V_Candidate_Skills> VCandidateSkillsRepositiory;
         IRepository<V_CandidateProfile> VCandidateRepositiory;
         public CandidateService(IUnitOfWork unitOfWork,
-        IRepository<CandidatePhoto> candidatePhotoRepository, IRepository<V_Candidate_EduDetail> vEducationRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository, IRepository<VMCandidateIndex> vmCandidateRepository, IRepository<V_UserCandidate> vuserRepositiory,
+        IRepository<CandidatePhoto> candidatePhotoRepository, IRepository<V_Candidate_EduDetail> vEducationRepository, IRepository<Candidate> candidateRepository, IRepository<User> userRepository, IRepository<V_UserCandidate> vuserRepositiory,
         IRepository<V_Candidate_Exp> vCandidateExpRepository, IRepository<CompensationDetail> compensationDetailRepository, IRepository<V_Candidate_Miscellaneous> miscellaneousDetailRepository, IRepository<CandidateStrength> candidateStrengthRepository,
         IRepository<V_Candidate_Reference> vCandidateReferenceRepositiory,
         IRepository<V_Candidate_Skills> vCandidateSkillsRepositiory, IRepository<V_CandidateProfile> vCandidateRepositiory)
         {
             UnitOfWork = unitOfWork;
             CandidateRepository = candidateRepository;
-            VMCandidateRepository = vmCandidateRepository;
             CandidatePhotoRepository = candidatePhotoRepository;
             VUserRepositiory = vuserRepositiory;
             UserRepository = userRepository;
@@ -101,6 +99,11 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.OtherCityName = dbOperation.OtherCityName;
             dbCandidate.SalutationID = dbOperation.SalutationID;
             dbCandidate.OtherAreaName = dbOperation.OtherAreaName;
+            dbCandidate.WorkPermitYes = dbOperation.WorkPermitYes;
+            dbCandidate.WorkPermitNo = dbOperation.WorkPermitNo;
+            dbCandidate.OtherDomicileCityName = dbOperation.OtherDomicileCityName;
+            dbCandidate.OtherPakistaniCityName = dbOperation.OtherPakistaniCityName;
+            dbCandidate.Tehsil = dbOperation.Tehsil;
             return dbCandidate;
         }
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)

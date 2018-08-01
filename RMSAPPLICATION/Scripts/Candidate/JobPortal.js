@@ -101,7 +101,7 @@ function ApplyJob(id, item) {
 //    });
 //}
 function ViewProfileIndex(id, item) {
-    if (item<7) {
+    if (item < 7) {
         $.jGrowl('<div>You have to complete your profile first.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div></strong>', {
             header: '',
             position: 'center',
@@ -124,9 +124,9 @@ function ViewProfileIndex(id, item) {
                 alert("Dynamic content load failed.");
             }
         });
-$("#closbtn").click(function () {
-        $('#myModal1').modal('hide');
-    });
+        $("#closbtn").click(function () {
+            $('#myModal1').modal('hide');
+        });
     }
 }
 function CandidateGetCreate() {
@@ -144,5 +144,53 @@ function CandidateGetCreate() {
         $("#hv6").addClass("liInActive");
         $("#hv33").addClass("liInActive");
         $("#hv7").addClass("liInActive");
+    });
+};
+function GetFilteredList() {
+    var CatID = $("#CatagoryID").val();
+    var LocID = $('#LocationID').val();
+    $.ajax({
+        type: "POST",
+        url: "/Home/IndexSubmit",
+        data: { LocationID: LocID, CatagoryID: CatID },
+        datatype: "json",
+        success: function (data) {
+            $('#PVDTBody').html(data);
+        },
+        error: function () {
+            alert("Dynamic content load failed.");
+        }
+    });
+    $("#CatagoryID").on('change', function () {
+        var CatID = $(this).val();
+        var LocID = $('#LocationID').val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/IndexSubmit",
+            data: { LocationID: LocID, CatagoryID: CatID },
+            datatype: "json",
+            success: function (data) {
+                $('#PVDTBody').html(data);
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+    $("#LocationID").on('change', function () {
+        var LocID = $(this).val();
+        var CatID = $('#CatagoryID').val();
+        $.ajax({
+            type: "POST",
+            url: "/Home/IndexSubmit",
+            data: { LocationID: LocID, CatagoryID: CatID },
+            datatype: "json",
+            success: function (data) {
+                $('#PVDTBody').html(data);
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
     });
 };

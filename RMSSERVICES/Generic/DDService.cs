@@ -32,12 +32,13 @@ namespace RMSSERVICES.Generic
         IRepository<ExpCareerLevel> CareerLevelRepository;
         IRepository<AreaOfInterest> AreaOfInterestRepository;
         IRepository<Salutation> SalutationRepository;
+        IRepository<InterviewStatu> InterviewStatusRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<BloodGroup> bloodGroupRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
             IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository,
-        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository, IRepository<AreaOfInterest> areaOfInterestRepository, IRepository<Salutation> salutationRepository)
+        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository, IRepository<AreaOfInterest> areaOfInterestRepository, IRepository<Salutation> salutationRepository, IRepository<InterviewStatu> interviewStatusRepository)
         {
             _unitOfWork = unitOfWork;
             CityRepository = cityRepository;
@@ -60,6 +61,7 @@ namespace RMSSERVICES.Generic
             CareerLevelRepository = careerLevelRepository;
             AreaOfInterestRepository = areaOfInterestRepository;
             SalutationRepository = salutationRepository;
+            InterviewStatusRepository = interviewStatusRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -77,6 +79,13 @@ namespace RMSSERVICES.Generic
             List<EduInstitute> list = new List<EduInstitute>();
             list.Add(new EduInstitute { InstituteID = 0, InstituteName = "--------" });
             list.AddRange(EduInstituteRepository.GetAll());
+            return list;
+        }
+        public List<InterviewStatu> GetInterviewStatus()
+        {
+            List<InterviewStatu> list = new List<InterviewStatu>();
+            list.Add(new InterviewStatu { InterviewStatusID = 0, InterviewStatusName = "--------" });
+            list.AddRange(InterviewStatusRepository.GetAll());
             return list;
         }
         public List<User> GetUser()
@@ -139,8 +148,8 @@ namespace RMSSERVICES.Generic
         public List<City> GetDomicileList()
         {
             List<City> list = new List<City>();
-            list.Add(new City { CityID = 0, CityName = "--------" });
-            list.Add(new City { CityID = 116, CityName = "N/A" });
+            list.Add(new City { CityID = 0, CityName = "N/A" });
+            //list.Add(new City { CityID = 116, CityName = "N/A" });
             list.AddRange(CityRepository.GetAll());
             return list;
         }

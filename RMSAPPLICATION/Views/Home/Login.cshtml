@@ -1,7 +1,9 @@
 ﻿@model RMSCORE.EF.User
 @{
-    ViewBag.title = "Login";
-    Layout = null;
+                /**/
+
+                ViewBag.title = "Login";
+                Layout = null;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +51,6 @@
                 <!-- Simple login form -->
                 <form action="~/Home/Login" enctype="multipart/form-data" method="post">
                     @Html.AntiForgeryToken()
-                    @Html.HiddenFor(model => model.UserID)
                     @Html.ValidationSummary(true)
                     <div class="panel panel-body login-form">
                         <div>

@@ -23,8 +23,8 @@ namespace RMSCORE.EF
         public string Designation { get; set; }
         public string Location { get; set; }
         public string ReasonLeaving { get; set; }
-        public Nullable<float> TotalExp { get; set; }
-        public Nullable<float> CementExp { get; set; }
+        public Nullable<double> TotalExp { get; set; }
+        public Nullable<double> CementExp { get; set; }
         public Nullable<int> NoticeTime { get; set; }
         public Nullable<int> CandidateID { get; set; }
         public string WorkedBefore { get; set; }
@@ -51,5 +51,11 @@ namespace RMSCORE.EF
         public Nullable<int> BloodGroupID { get; set; }
         public Nullable<int> MaritalStatusID { get; set; }
         public Nullable<int> ReligionID { get; set; }
+        public string LinkedInLink { get; set; }
+        public string WorkingRelativeCompanyName { get; set; }
+        public Nullable<int> InterviewStatusID { get; set; }
+        public string WorkedBeforeCompanyName { get; set; }
+        public Nullable<bool> WorkedBeforeCurrentlyWorking { get; set; }
+        public string InterviewBeforeCompanyName { get; set; }
     }
 }

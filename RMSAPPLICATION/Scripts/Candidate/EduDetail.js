@@ -13,8 +13,8 @@
         $("#hv4").addClass("liInActive");
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
-        $("#hv33").addClass("liInActive");
         $("#hv7").addClass("liInActive");
+        $("#hv8").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 3;
     });
 };
@@ -274,15 +274,29 @@ function InstituteChange() {
         }
 
     });
+
+    // Other Institute Show
     ShowInstituteHide();
     $("#InstitutionID").on("change", function () {
         ShowInstituteHide();
     });
+    // Degree level Other
+    ShowOtherDegreeLevel();
+    $("#DegreeLevelID").on("change", function () {
+        ShowOtherDegreeLevel();
+    });
 }
 function ShowInstituteHide() {
     $("#OtherInstitute").hide();
-    if ($("#InstitutionID").val() == 148) {
+    if ($("#InstitutionID").val() == 150) {
         $("#OtherInstitute").show();
+    }
+}
+function ShowOtherDegreeLevel() {
+    // Degree Level Other
+    $("#OtherDegreelevel").hide();
+    if ($("#DegreeLevelID").val() == 11) {
+        $("#OtherDegreelevel").show();
     }
 }
 function DegreeTypeChange() {

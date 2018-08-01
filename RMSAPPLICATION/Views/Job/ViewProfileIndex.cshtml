@@ -7,7 +7,7 @@
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.JobID)
     <div class="modal-header bg-primary">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        @*<button type="button" class="close" data-dismiss="modal">&times;</button>*@
         <div class="modal-title">
             <h3 id="titlehide" class="panel-title text-bold">Candidate Profile@*<span class="text-black"> @Html.DisplayFor(model => model.PersonalDetails.CName)</span>*@</h3>
         </div>

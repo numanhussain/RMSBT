@@ -31,10 +31,10 @@
     <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
     @*<style>
-        option{
-            background-color:#025dac
-        }
-    </style>*@
+            option{
+                background-color:#025dac
+            }
+        </style>*@
     <!-- /theme JS files -->
 
 </head>
@@ -51,16 +51,16 @@
             <h1><span class="text-semibold text-white">Current Openings</span> </h1> <h5 class="text-semibold text-white">See if you can find exciting challenges at Bestway</h5>
         </div>
         @*<div class="heading-elements2" style="margin-left:20px">
-            @using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
-            {
-                <div class="form-group form-inline">
-                    <input type="text" class="form-control2 form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
-                    @Html.DropDownList("LocationID", null, new { @class = "form-control2 form-control" })
-                    @Html.DropDownList("CatagoryID", null, new { @class = "form-control2 form-control" })
-                    <button type="Submit" class="form-control btn bg-primary">Search</button>
-                </div>
-            }
-        </div>*@
+                @using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
+                {
+                    <div class="form-group form-inline">
+                        <input type="text" class="form-control2 form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                        @Html.DropDownList("LocationID", null, new { @class = "form-control2 form-control" })
+                        @Html.DropDownList("CatagoryID", null, new { @class = "form-control2 form-control" })
+                        <button type="Submit" class="form-control btn bg-primary">Search</button>
+                    </div>
+                }
+            </div>*@
     </div>
 </div>
 <!-- /page header -->
@@ -71,61 +71,34 @@
         <!-- Main content -->
         <div class="content-wrapper">
             <!-- Basic datatable -->
-            @using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
-            {
+            @*@using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
+                {
                 <div class="form-group form-inline pull-right" style="margin-top:10px; margin-right:10px">
                     <input type="text" class="form-control form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
                     @Html.DropDownList("LocationID", null, new { @class = "form-control form-control" })
                     @Html.DropDownList("CatagoryID", null, new { @class = "form-control form-control" })
                     <button type="Submit" class="form-control btn bg-primary">Search</button>
                 </div>
-            }
+                }*@
 
             @if (Model.Count > 0)
             {
                 <div class="panel panel-flat">
-                    <table class="table datatable-basic">
+                    <table class="table">
                         <thead>
                             <tr class="bg-primary">
                                 <th class="text-semibold">Job-ID</th>
                                 <th class="text-semibold">Position Title</th>
                                 <th class="text-semibold">Department</th>
-                                <th class="text-semibold">Category</th>
-                                <th class="text-semibold">Location</th>
+                                <th class="text-semibold">@Html.DropDownList("CatagoryID", null, new { @class = "form-control form-control" })</th>
+                                <th class="text-semibold">@Html.DropDownList("LocationID", null, new { @class = "form-control form-control" })</th>
                                 <th class="text-semibold">Opening Date</th>
                                 <th class="text-semibold">Closing Date</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        <div class="text-semibold">@item.JobID</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-semibold"><a href="~/Job/JobDetailIndex?JobID=@item.JobID">@item.JobTitle</a></div>
-                                        <div class="text-muted">Click on title for more information..</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-semibold">@item.DepatmentName</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-semibold">@item.CatName</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-semibold">@item.LocName</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
-                                    </td>
-                                    <td>
-                                        <div class="text-semibold"> @if (item.DeadlineDate != null) {
-                                            @item.DeadlineDate.Value.ToString("MM/dd/yyyy")}</div>
-                                    </td>
-                                </tr>
-                            }
-                        </tbody>
+
+                        <tbody id="PVDTBody"></tbody>
+
                     </table>
                 </div>
             }
@@ -148,3 +121,10 @@
     <!-- /page content -->
 </div>
 <!-- /page container -->
+
+<script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
+<script>
+    $(document).ready(function () {
+        GetFilteredList();
+    });
+</script>

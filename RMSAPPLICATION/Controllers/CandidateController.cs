@@ -23,7 +23,7 @@ namespace RMSAPPLICATION.Controllers
         ICandidateService CandidateService;
         IDDService DDService;
         // Controller Constructor
-        public CandidateController(IEntityService<Candidate> candidateEntityService, IEntityService<CandidateStep> candidateStepEntityService,IDDService ddService, ICandidateService candidateservice)
+        public CandidateController(IEntityService<Candidate> candidateEntityService, IEntityService<CandidateStep> candidateStepEntityService, IDDService ddService, ICandidateService candidateservice)
 
         {
             CandidateEntityService = candidateEntityService;
@@ -65,6 +65,7 @@ namespace RMSAPPLICATION.Controllers
         [HttpPost]
         public ActionResult Create(Candidate dbOperation)
         {
+            ReadFromRadioButton(dbOperation);
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (dbOperation.SalutationID == 0)
                 ModelState.AddModelError("SalutationID", "Mandatory");
@@ -91,24 +92,44 @@ namespace RMSAPPLICATION.Controllers
             //    ModelState.AddModelError("BloodGroupID", "Mandatory");
             if (dbOperation.AreaOfInterestID == 0)
                 ModelState.AddModelError("AreaOfInterestID", "Mandatory");
+            if (dbOperation.AreaOfInterestID == 28)
+            {
+                if (dbOperation.OtherAreaName == null || dbOperation.OtherAreaName == "")
+                    ModelState.AddModelError("OtherAreaName", "Mandatory");
+            }
+            if (dbOperation.AreaOfInterestID != 28)
+            {
+                dbOperation.OtherAreaName = null;
+            }
             //if (dbOperation.DomicileCityID == 0)
             //    ModelState.AddModelError("DomicileCityID", "Mandatory");
+            if (dbOperation.DomicileCityID != 117)
+            {
+                dbOperation.OtherDomicileCityName = null;
+            }
             if (dbOperation.Address == null || dbOperation.Address == "")
                 ModelState.AddModelError("Address", "Mandatory");
-            if (dbOperation.CountryID == 74)
-            {
-                dbOperation.OtherCityName = null;
-                if (dbOperation.CityID == 0)
-                    ModelState.AddModelError("CityID", "Mandatory");
-            }
+            if (dbOperation.CountryID == 0)
+                ModelState.AddModelError("CountryID", "Mandatory");
             if (dbOperation.CountryID != 74)
             {
-                dbOperation.CityID = null;
+                dbOperation.OtherPakistaniCityName = null;
                 if (dbOperation.OtherCityName == null || dbOperation.OtherCityName == "")
                     ModelState.AddModelError("OtherCityName", "Mandatory");
             }
-            if (dbOperation.CountryID == 0)
-                ModelState.AddModelError("CountryID", "Mandatory");
+            if (dbOperation.CountryID == 74)
+            {
+                dbOperation.OtherCityName = null;
+            }
+            if (dbOperation.CityID == 117)
+            {
+                if (dbOperation.OtherPakistaniCityName == null || dbOperation.OtherPakistaniCityName == "")
+                    ModelState.AddModelError("OtherPakistaniCityName", "Mandatory");
+            }
+            if (dbOperation.CityID != 117)
+            {
+                dbOperation.OtherPakistaniCityName = null;
+            }
             //if (dbOperation.NationalityCountryID == 0)
             //    ModelState.AddModelError("NationalityCountryID", "Mandatory");
             if (dbOperation.CNICNo == null || dbOperation.CNICNo == "")
@@ -210,7 +231,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.CountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.CountryID);
             ViewBag.NationalityCountryID = new SelectList(DDService.GetCountryList().ToList().OrderBy(aa => aa.CCID).ToList(), "CCID", "CountryName", obj.NationalityCountryID);
             ViewBag.CityID = new SelectList(DDService.GetCityList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.CityID);
-            ViewBag.DomicileCityID = new SelectList(DDService.GetDomicileList().ToList().OrderBy(aa => aa.CityName).ToList(), "CityID", "CityName", obj.DomicileCityID);
+            ViewBag.DomicileCityID = new SelectList(DDService.GetDomicileList().ToList().OrderBy(aa => aa.CityID).ToList(), "CityID", "CityName", obj.DomicileCityID);
             ViewBag.GenderID = new SelectList(DDService.GetGenderList().ToList().OrderBy(aa => aa.CGenderID).ToList(), "CGenderID", "GenderName", obj.GenderID);
             ViewBag.AreaOfInterestID = new SelectList(DDService.GetAreaOfInterestList().ToList().OrderBy(aa => aa.CAreaID).ToList(), "CAreaID", "AreaOfInterestName", obj.AreaOfInterestID);
             ViewBag.SalutationID = new SelectList(DDService.GetSalutationList().ToList().OrderBy(aa => aa.CSalutationID).ToList(), "CSalutationID", "SalutationName", obj.SalutationID);
@@ -292,6 +313,32 @@ namespace RMSAPPLICATION.Controllers
                 list.Add(vm);
             }
             return list;
+        }
+        private void ReadFromRadioButton(Candidate obj)
+        {
+            #region -- Radio Buttons--
+            // Adjust Bonus of Compensation Radio Button
+            string radioWorkPermitValue = "";
+
+            var WorkPermitValue = ValueProvider.GetValue("WorkPermitSelection");
+            if (WorkPermitValue != null)
+            {
+                if (radioWorkPermitValue != null)
+                {
+                    radioWorkPermitValue = WorkPermitValue.AttemptedValue;
+                }
+                if (radioWorkPermitValue == "WorkPermitYes")
+                {
+                    obj.WorkPermitYes = true;
+                    obj.WorkPermitYes = false;
+                }
+                if (radioWorkPermitValue == "WorkPermitNo")
+                {
+                    obj.WorkPermitYes = false;
+                    obj.WorkPermitYes = true;
+                }
+            }
+            #endregion
         }
         #endregion
     }

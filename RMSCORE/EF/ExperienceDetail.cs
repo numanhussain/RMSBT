@@ -35,5 +35,8 @@ namespace RMSCORE.EF
         public string ReasonOfLeaving { get; set; }
         public string SupervisorName { get; set; }
         public string OtherCity { get; set; }
+        public string PostalCode { get; set; }
+        public string OtherCityName { get; set; }
+        public string OtherIndustryName { get; set; }
     }
 }

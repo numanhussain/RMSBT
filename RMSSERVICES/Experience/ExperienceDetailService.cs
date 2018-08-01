@@ -64,6 +64,8 @@ namespace RMSSERVICES.Experience
                 vmExperienceDetail.ReasonOfLeaving = dbExperienceDetail.ReasonOfLeaving;
                 vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
                 vmExperienceDetail.CareerLevelID = dbExperienceDetail.CareerLevelID;
+                vmExperienceDetail.OtherCityName = dbExperienceDetail.OtherCityName;
+                vmExperienceDetail.OtherIndustryName = dbExperienceDetail.OtherIndustryName;
                 //vmExperienceDetail.Experience=dbCementExperienceDetail.
                 vmExperienceDetails.Add(vmExperienceDetail);
             }
@@ -95,7 +97,6 @@ namespace RMSSERVICES.Experience
             ExperienceDetail dbExperienceDetail = ExperienceRepository.GetSingle(id);
             VMExperienceOperation vmExperienceDetail = new VMExperienceOperation();
             vmExperienceDetail.ExpID = dbExperienceDetail.ExpID;
-            vmExperienceDetail.PositionTitle = dbExperienceDetail.PostionTitle;
             vmExperienceDetail.JobTitle = dbExperienceDetail.JobTitle;
             vmExperienceDetail.StartDate = dbExperienceDetail.StartDate;
             vmExperienceDetail.EndDate = dbExperienceDetail.EndDate;
@@ -122,7 +123,9 @@ namespace RMSSERVICES.Experience
             vmExperienceDetail.SupervisorName = dbExperienceDetail.SupervisorName;
             vmExperienceDetail.CareerLevelID = dbExperienceDetail.CareerLevelID;
             vmExperienceDetail.CountryID = dbExperienceDetail.CountryID;
-            vmExperienceDetail.OtherCityName = dbExperienceDetail.OtherCity;
+            vmExperienceDetail.OtherCity = dbExperienceDetail.OtherCity;
+            vmExperienceDetail.OtherCityName = dbExperienceDetail.OtherCityName;
+            vmExperienceDetail.OtherIndustryName = dbExperienceDetail.OtherIndustryName;
             return vmExperienceDetail;
         }
         public ServiceMessage PostEdit(VMExperienceOperation obj)
@@ -139,7 +142,7 @@ namespace RMSSERVICES.Experience
             Expression<Func<ExperienceDetail, bool>> TotalExperiences = c => c.ExpID == id;
             ExperienceDetail dbExperienceDetail = ExperienceRepository.GetSingle((int)id);
             obj.ExpID = dbExperienceDetail.ExpID;
-            obj.PositionTitle = dbExperienceDetail.PostionTitle;
+            obj.JobTitle = dbExperienceDetail.JobTitle;
             obj.JobTitle = dbExperienceDetail.JobTitle;
             obj.StartDate = dbExperienceDetail.StartDate;
             obj.EndDate = dbExperienceDetail.EndDate;
@@ -167,6 +170,8 @@ namespace RMSSERVICES.Experience
             obj.CareerLevelID = dbExperienceDetail.CareerLevelID;
             obj.CountryID = dbExperienceDetail.CountryID;
             obj.OtherCityName = dbExperienceDetail.OtherCity;
+            obj.OtherCityName = dbExperienceDetail.OtherCityName;
+            obj.OtherIndustryName = dbExperienceDetail.OtherIndustryName;
             return obj;
         }
         public ServiceMessage PostDelete(VMExperienceOperation obj)
@@ -232,7 +237,7 @@ namespace RMSSERVICES.Experience
         {
             ExperienceDetail dbExperiencedetail = new ExperienceDetail();
             dbExperiencedetail.ExpID = obj.ExpID;
-            dbExperiencedetail.PostionTitle = obj.PositionTitle;
+            dbExperiencedetail.JobTitle = obj.JobTitle;
             dbExperiencedetail.EmployerName = obj.EmployerName;
             dbExperiencedetail.JobTitle = obj.JobTitle;
             dbExperiencedetail.StartDate = obj.StartDate;
@@ -259,7 +264,9 @@ namespace RMSSERVICES.Experience
             dbExperiencedetail.SupervisorName = obj.SupervisorName;
             dbExperiencedetail.CareerLevelID = obj.CareerLevelID;
             dbExperiencedetail.CountryID = obj.CountryID;
-            dbExperiencedetail.OtherCity = obj.OtherCityName;
+            dbExperiencedetail.OtherCity = obj.OtherCity;
+            dbExperiencedetail.OtherCityName = obj.OtherCityName;
+            dbExperiencedetail.OtherIndustryName = obj.OtherIndustryName;
             return dbExperiencedetail;
         }
         #endregion

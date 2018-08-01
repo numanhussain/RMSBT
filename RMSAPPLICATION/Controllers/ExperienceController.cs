@@ -94,7 +94,18 @@ namespace RMSAPPLICATION.Controllers
             ReadFromRadioButton(obj);
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.IndustryID == 0)
-                ModelState.AddModelError("IndustryID", "Mandatory ");
+                ModelState.AddModelError("IndustryID", "Mandatory");
+            if (obj.IndustryID == 110)
+            {
+                obj.OtherIndustryName = null;
+                if (obj.IndustryID == 0)
+                    ModelState.AddModelError("CityID", "Mandatory");
+            }
+            if (obj.IndustryID == 110)
+            {
+                if (obj.OtherIndustryName == null || obj.OtherIndustryName == "")
+                    ModelState.AddModelError("OtherIndustryName", "Mandatory");
+            }
             if (obj.JobTitle == null || obj.JobTitle == "")
                 ModelState.AddModelError("PositionTitle", "Mandatory ");
             if (obj.EmployerName == null || obj.EmployerName == "")
@@ -137,6 +148,8 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory ");
+            if (obj.CountryID == 0)
+                ModelState.AddModelError("CountryID", "Mandatory");
             if (obj.CountryID == 74)
             {
                 obj.OtherCityName = null;
@@ -145,12 +158,15 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.CountryID != 74)
             {
-                obj.CityID = null;
                 if (obj.OtherCityName == null || obj.OtherCityName == "")
                     ModelState.AddModelError("OtherCityName", "Mandatory");
             }
-            if (obj.CountryID == 0)
-                ModelState.AddModelError("CountryID", "Mandatory");
+            if (obj.CityID == 117)
+            {
+                if (obj.OtherCityName == null || obj.OtherCityName == "")
+                    ModelState.AddModelError("OtherCityName", "Mandatory");
+
+            }
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 4)
@@ -178,8 +194,20 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(VMExperienceOperation obj)
         {
             ReadFromRadioButton(obj);
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.IndustryID == 0)
-                ModelState.AddModelError("IndustryID", "Mandatory ");
+                ModelState.AddModelError("IndustryID", "Mandatory");
+            if (obj.IndustryID != 110)
+            {
+                obj.OtherIndustryName = null;
+                if (obj.IndustryID == 0)
+                    ModelState.AddModelError("CityID", "Mandatory");
+            }
+            if (obj.IndustryID == 110)
+            {
+                if (obj.OtherIndustryName == null || obj.OtherIndustryName == "")
+                    ModelState.AddModelError("OtherIndustryName", "Mandatory");
+            }
             if (obj.JobTitle == null || obj.JobTitle == "")
                 ModelState.AddModelError("PositionTitle", "Mandatory ");
             if (obj.EmployerName == null || obj.EmployerName == "")
@@ -222,21 +250,25 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory ");
+            if (obj.CountryID == 0)
+                ModelState.AddModelError("CountryID", "Mandatory");
             if (obj.CountryID == 74)
             {
-                obj.OtherCityName = null;
+                obj.OtherCity = null;
                 if (obj.CityID == 0)
                     ModelState.AddModelError("CityID", "Mandatory");
             }
             if (obj.CountryID != 74)
             {
-                obj.CityID = null;
+                if (obj.OtherCity == null || obj.OtherCity == "")
+                    ModelState.AddModelError("OtherCity", "Mandatory");
+            }
+            if (obj.CityID == 117)
+            {
                 if (obj.OtherCityName == null || obj.OtherCityName == "")
                     ModelState.AddModelError("OtherCityName", "Mandatory");
-            }
-            if (obj.CountryID == 0)
-                ModelState.AddModelError("CountryID", "Mandatory");
 
+            }
             if (ModelState.IsValid)
             {
                 ExperienceDetailService.PostEdit(obj);
@@ -304,11 +336,6 @@ namespace RMSAPPLICATION.Controllers
                     obj.ContactEmployerYes = "NO";
                     obj.ContactEmployerNo = "YES";
                 }
-            }
-            else
-            {
-                obj.ContactEmployerYes = "NO";
-                obj.ContactEmployerNo = "NO";
             }
             #endregion
         }

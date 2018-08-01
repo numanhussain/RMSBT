@@ -8,11 +8,11 @@
         $("#hv1").addClass("liInActive");
         $("#hv2").addClass("liInActive");
         $("#hv3").addClass("liInActive");
-        $("#hv4").addClass("liInActive");
+        $("#hv4").addClass("liActive");
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
-        $("#hv33").addClass("liActive");
         $("#hv7").addClass("liInActive");
+        $("#hv8").addClass("liInActive");
         $('#PartialViewContainer').html(result);
     });
 };

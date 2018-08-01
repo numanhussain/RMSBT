@@ -9,6 +9,12 @@
     <!-- Basic datatable -->
     <head>
         <style>
+
+            .required:after {
+                content: "*";
+                font-weight: bold;
+                color: red;
+            }
         </style>
     </head>
     <div style="margin-top:-25px">
@@ -52,16 +58,16 @@
                             using (Html.BeginForm(null, null, FormMethod.Post, new { name = "formCreateID", id = "formCreateID" }))
                             {
                                 <div class="col-md-2 text-semibold">
-                                    <label class="control-label">Overall Experience </label>
+                                    <label class="control-label required">Overall Experience </label>
                                 </div>
                                 <div class="col-md-1">
                                     <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
                                 </div>
                                 <div class="col-md-2 text-semibold">
-                                    <label class="control-label">Cement Industry Experience </label>
+                                    <label class="control-label required">Cement Industry Experience </label>
                                 </div>
                                 <div class="col-md-1">
-                                    <input type="text" class="form-control " name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
+                                    <input type="text" class="form-control" name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
                                 </div>
                                 @*<div class="col-md-1">
                                         <button type="button" id="btnPostCreate" class="btn btn-primary" value="Save">Save</button>

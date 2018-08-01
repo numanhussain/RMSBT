@@ -32,5 +32,6 @@ namespace RMSSERVICES.Generic
         List<AreaOfInterest> GetAreaOfInterestList();
         List<Salutation> GetSalutationList();
         List<City> GetDomicileList();
+        List<InterviewStatu> GetInterviewStatus();
     }
 }

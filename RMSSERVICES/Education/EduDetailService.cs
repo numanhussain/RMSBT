@@ -51,6 +51,8 @@ namespace RMSSERVICES.Education
                 vmEduDetail.DegreeTypeName = dbEduDetail.EduTypeName;
                 vmEduDetail.InProgress = dbEduDetail.InProgress;
                 vmEduDetail.CGPA = dbEduDetail.CGPA;
+                vmEduDetail.OtherDegreeLevelName = dbEduDetail.OtherDegreeLevelName;
+                vmEduDetail.GradeName = dbEduDetail.GradeName;
 
                 vmEduDetails.Add(vmEduDetail);
             }
@@ -84,7 +86,7 @@ namespace RMSSERVICES.Education
             vmEduDetail.EduID = dbEduDetail.EduID;
             vmEduDetail.CandidateID = dbEduDetail.CandidateID;
             vmEduDetail.DegreeLevelID = dbEduDetail.DegreeLevelID;
-            vmEduDetail.InstitutionID = dbEduDetail.Institution;
+            vmEduDetail.InstitutionID = dbEduDetail.InstitutionID;
             vmEduDetail.ObtainedMark = dbEduDetail.ObtainedMark;
             vmEduDetail.TotalMark = dbEduDetail.TotalMark;
             vmEduDetail.StartDate = dbEduDetail.StartDate;
@@ -99,6 +101,8 @@ namespace RMSSERVICES.Education
             vmEduDetail.DegreeTypeID = dbEduDetail.DegreeTypeID;
             vmEduDetail.DegreeLevelID = dbEduDetail.DegreeLevelID;
             vmEduDetail.OtherDegreeType = dbEduDetail.OtherDegreeType;
+            vmEduDetail.OtherDegreeLevelName = dbEduDetail.OtherDegreeLevelName;
+            vmEduDetail.GradeName = dbEduDetail.GradeName;
             return vmEduDetail;
         }
         public ServiceMessage PostEdit(VMEduDetailOperation obj)
@@ -117,7 +121,7 @@ namespace RMSSERVICES.Education
             obj.EduID = dbEduDetail.EduID;
             obj.CandidateID = dbEduDetail.CandidateID;
             obj.DegreeLevelID = dbEduDetail.DegreeLevelID;
-            obj.InstitutionID = dbEduDetail.Institution;
+            obj.InstitutionID = dbEduDetail.InstitutionID;
             obj.StartDate = dbEduDetail.StartDate;
             obj.EndDate = dbEduDetail.EndDate;
             obj.ObtainedMark = dbEduDetail.ObtainedMark;
@@ -131,6 +135,8 @@ namespace RMSSERVICES.Education
             obj.InProgress = dbEduDetail.InProgress;
             obj.DegreeTypeID = dbEduDetail.DegreeTypeID;
             obj.OtherDegreeType = dbEduDetail.OtherDegreeType;
+            obj.OtherDegreeLevelName = dbEduDetail.OtherDegreeLevelName;
+            obj.GradeName = dbEduDetail.GradeName;
             return obj;
         }
         public ServiceMessage PostDelete(VMEduDetailOperation vmOperation)
@@ -149,7 +155,7 @@ namespace RMSSERVICES.Education
             EduDetail dbEdudetail = new EduDetail();
             dbEdudetail.CandidateID = obj.CandidateID;
             dbEdudetail.DegreeLevelID = obj.DegreeLevelID;
-            dbEdudetail.Institution = obj.InstitutionID;
+            dbEdudetail.InstitutionID = obj.InstitutionID;
             dbEdudetail.EduID = obj.EduID;
             dbEdudetail.ObtainedMark = obj.ObtainedMark;
             dbEdudetail.TotalMark = obj.TotalMark;
@@ -164,6 +170,8 @@ namespace RMSSERVICES.Education
             dbEdudetail.InProgress = obj.InProgress;
             dbEdudetail.DegreeTypeID = obj.DegreeTypeID;
             dbEdudetail.OtherDegreeType = obj.OtherDegreeType;
+            dbEdudetail.OtherDegreeLevelName = obj.OtherDegreeLevelName;
+            dbEdudetail.GradeName = obj.GradeName;
             return dbEdudetail;
         }
     }

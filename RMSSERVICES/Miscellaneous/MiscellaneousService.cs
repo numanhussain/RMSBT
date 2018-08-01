@@ -105,6 +105,11 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.BloodGroupID = obj.BloodGroupID;
             dbMiscellaneous.ReligionID = obj.ReligionID;
             dbMiscellaneous.MaritalStatusID = obj.MaritalStatusID;
+            dbMiscellaneous.WorkingRelativeCompanyName = obj.WorkingRelativeCompanyName;
+            dbMiscellaneous.InterviewStatusID = obj.InterviewStatusID;
+            dbMiscellaneous.WorkedBeforeCompanyName = obj.WorkedBeforeCompanyName;
+            dbMiscellaneous.WorkedBeforeCurrentlyWorking = obj.WorkedBeforeCurrentlyWorking;
+            dbMiscellaneous.InterviewBeforeCompanyName = obj.InterviewBeforeCompanyName;
             return dbMiscellaneous;
         }
         #endregion

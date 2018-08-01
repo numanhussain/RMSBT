@@ -7,14 +7,14 @@
         cache: false,
     }).done(function (result) {
         $('#PartialViewContainer').html(result);
-        $("#hv1").addClass("liInActive");
+        $("#hv1").addClass("liActive");
         $("#hv2").addClass("liInActive");
         $("#hv3").addClass("liInActive");
         $("#hv4").addClass("liInActive");
         $("#hv5").addClass("liInActive");
-        $("#hv6").addClass("liActive");
-        $("#hv33").addClass("liInActive");
-        $("#hv7").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv7").addClass("liActive");
+        $("#hv8").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 7;
     });
 }

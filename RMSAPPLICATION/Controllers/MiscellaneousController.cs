@@ -50,6 +50,10 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.CrimanalRecord == "Yes" && obj.CrimeDetail == null)
                 ModelState.AddModelError("CrimeDetail", "Mandatory ");
+            if (obj.CrimanalRecord == "No")
+            {
+                obj.CrimanalRecord = null;
+            }
             if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeName == null)
                 ModelState.AddModelError("WorkingRelativeName", "Mandatory ");
             if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeRelation == null)
@@ -60,8 +64,23 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("WorkingRelativeDesignation", "Mandatory ");
             if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeLocation == null)
                 ModelState.AddModelError("WorkingRelativeLocation", "Mandatory ");
+            if (obj.WorkingRelative == "Yes" && obj.WorkingRelativeCompanyName == null)
+                ModelState.AddModelError("WorkingRelativeCompanyName", "Mandatory ");
+            if (obj.WorkingRelative == "No")
+            {
+                obj.WorkingRelativeName = null;
+                obj.WorkingRelativeRelation = null;
+                obj.WorkingRelativeDepartment = null;
+                obj.WorkingRelativeDesignation = null;
+                obj.WorkingRelativeLocation = null;
+                obj.WorkingRelativeCompanyName = null;
+            }
             if (obj.Disability == "Yes" && obj.DisabilityDetail == null)
                 ModelState.AddModelError("DisabilityDetail", "Mandatory ");
+            if (obj.Disability == "No")
+            {
+                obj.DisabilityDetail = null;
+            }
             if (obj.InterviewedBefore == "Yes" && obj.AppliedPosition == null)
                 ModelState.AddModelError("AppliedPosition", "Mandatory ");
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedDate == null)
@@ -75,6 +94,18 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.InterviewedBefore == "Yes" && obj.InterviewedLocation == null)
                 ModelState.AddModelError("InterviewedLocation", "Mandatory ");
+            if (obj.InterviewedBefore == "Yes" && obj.InterviewBeforeCompanyName == null)
+                ModelState.AddModelError("InterviewBeforeCompanyName", "Mandatory ");
+            if (obj.InterviewedBefore == "Yes" && obj.InterviewStatusID == 0)
+                ModelState.AddModelError("InterviewStatusID", "Mandatory ");
+            if (obj.InterviewedBefore == "No")
+            {
+                obj.AppliedPosition = null;
+                obj.InterviewedDate = null;
+                obj.InterviewedLocation = null;
+                obj.InterviewBeforeCompanyName = null;
+                obj.InterviewStatusID = null;
+            }
             if (obj.WorkedBefore == "Yes" && obj.DateJoining == null)
                 ModelState.AddModelError("DateJoining", "Mandatory ");
             if (obj.WorkedBefore == "Yes")
@@ -84,14 +115,25 @@ namespace RMSAPPLICATION.Controllers
                 else
                     obj.DateJoining = Convert.ToDateTime(Request.Form["DateJoining"].ToString());
             }
-            if (obj.WorkedBefore == "Yes" && obj.DateLeavig == null)
-                ModelState.AddModelError("DateLeavig", "Mandatory ");
+            
             if (obj.WorkedBefore == "Yes")
             {
                 if (!AssistantService.IsDateTime(Request.Form["DateLeavig"])) // check for valid date
                     ModelState.AddModelError("DateLeavig", "Invalid date");
                 else
                     obj.DateLeavig = Convert.ToDateTime(Request.Form["DateLeavig"].ToString());
+            }
+            if (obj.WorkedBefore == "Yes")
+            {
+                if (obj.WorkedBeforeCurrentlyWorking == true)
+                {
+                    obj.DateLeavig = null;
+                }
+                else
+                {
+                    if (obj.DateLeavig == null)
+                        ModelState.AddModelError("DateLeavig", "Mandatory ");
+                }
             }
             if (obj.DateLeavig != null)
             {
@@ -106,12 +148,28 @@ namespace RMSAPPLICATION.Controllers
                 ModelState.AddModelError("EmploymentNo", "Mandatory ");
             if (obj.WorkedBefore == "Yes" && obj.Location == null)
                 ModelState.AddModelError("Location", "Mandatory ");
+            if (obj.WorkedBefore == "Yes" && obj.WorkedBeforeCompanyName == null)
+                ModelState.AddModelError("WorkedBeforeCompanyName", "Mandatory ");
+            if (obj.WorkedBefore == "No")
+            {
+                obj.DateJoining = null;
+                obj.DateLeavig = null;
+                obj.Designation = null;
+                obj.ReasonLeaving = null;
+                obj.EmploymentNo = null;
+                obj.Location = null;
+                obj.WorkedBeforeCompanyName = null;
+            }
             if (obj.HearAboutJobID == 0)
                 ModelState.AddModelError("HearAboutJobID", "Mandatory ");
-            if (obj.NoticeTime == null)
-                ModelState.AddModelError("NoticeTime", "Mandatory ");
             if (obj.HearAboutJobID == 8 && obj.HearAboutDetail == null)
                 ModelState.AddModelError("HearAboutDetail", "Mandatory ");
+            if (obj.HearAboutJobID != 8)
+            {
+                obj.HearAboutDetail = null;
+            }
+            if (obj.NoticeTime == null)
+                ModelState.AddModelError("NoticeTime", "Mandatory ");
             if (obj.InternshipDuration == "0")
                 ModelState.AddModelError("InternshipDuration", "Mandatory ");
             if (vmf.AppliedAs == 5 || vmf.AppliedAs == 6)
@@ -298,6 +356,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.BloodGroupID = new SelectList(DDService.GetBloodGroupList().ToList().OrderBy(aa => aa.CBID).ToList(), "CBID", "BGroupName", obj.BloodGroupID);
             ViewBag.MaritalStatusID = new SelectList(DDService.GetMartialStatusList().ToList().OrderBy(aa => aa.PMID).ToList(), "PMID", "MartialStatusName", obj.MaritalStatusID);
             ViewBag.HearAboutJobID = new SelectList(DDService.GetHearAboutJob().ToList().OrderBy(aa => aa.HearAboutID).ToList(), "HearAboutID", "HearAboutSource", obj.HearAboutJobID);
+            ViewBag.InterviewStatusID = new SelectList(DDService.GetInterviewStatus().ToList().OrderBy(aa => aa.InterviewStatusID).ToList(), "InterviewStatusID", "InterviewStatusName", obj.InterviewStatusID);
         }
         #endregion
     }

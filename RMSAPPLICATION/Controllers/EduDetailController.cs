@@ -68,6 +68,11 @@ namespace RMSAPPLICATION.Controllers
             }
             else
             {
+                if (obj.DegreeLevelID == 11)
+                {
+                    if (obj.OtherDegreeLevelName == null || obj.OtherDegreeLevelName == "")
+                        ModelState.AddModelError("OtherDegreeLevelName", "Mandatory");
+                }
                 if (obj.DegreeLevelID != 10)
                 {
                     if (obj.DegreeTitle == null)
@@ -143,6 +148,14 @@ namespace RMSAPPLICATION.Controllers
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory ");
+                if (obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4)
+                {
+                    ModelState.AddModelError("GradeName", "Mandatory ");
+                }
+                if (obj.ObtainedMark > obj.TotalMark)
+                {
+                    ModelState.AddModelError("ObtainedMark", "Mandatory ");
+                }
                 if (ModelState.IsValid)
                 {
                     if (vmf.UserStage == 3)
@@ -177,6 +190,11 @@ namespace RMSAPPLICATION.Controllers
             }
             else
             {
+                if (obj.DegreeLevelID ==11)
+                {
+                    if (obj.OtherDegreeLevelName == null || obj.OtherDegreeLevelName == "")
+                        ModelState.AddModelError("OtherDegreeLevelName", "Mandatory");
+                }
                 if (obj.DegreeLevelID != 10)
                 {
                     if (obj.DegreeTitle == null)
@@ -252,7 +270,14 @@ namespace RMSAPPLICATION.Controllers
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory ");
-
+                if (obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4)
+                {
+                    ModelState.AddModelError("GradeName", "Mandatory ");
+                }
+                if (obj.ObtainedMark > obj.TotalMark)
+                {
+                    ModelState.AddModelError("ObtainedMark", "Mandatory ");
+                }
                 if (ModelState.IsValid)
                 {
                     EduDetailService.PostEdit(obj);

@@ -1,4 +1,5 @@
 ﻿using RMSCORE.EF;
+using RMSCORE.Models.Other;
 using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using System;
@@ -44,22 +45,30 @@ namespace RMSSERVICES.UserDetail
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public ServiceMessage RegisterUser(User dbOperation, V_UserCandidate LoggedInUser)
+        public ServiceMessage RegisterUser(UserModel vmUserModel, V_UserCandidate LoggedInUser)
         {
-            dbOperation.DateCreated = DateTime.Today;
-            dbOperation.AppliedAs = dbOperation.AppliedAs;
-            dbOperation.UserStage = 1;
-            dbOperation.SecurityLink = RandomString(15);
-            UserRepository.Add(dbOperation);
+            User dbUser = new User();
+            dbUser.DateCreated = DateTime.Today;
+            dbUser.AppliedAs = vmUserModel.CatagoryID;
+            dbUser.UserStage = 1;
+            dbUser.UserName = vmUserModel.Email;
+            dbUser.Email = vmUserModel.Email;
+            dbUser.Password = StringCipher.Encrypt(vmUserModel.Password);
+            dbUser.RetypePassword = StringCipher.Encrypt(vmUserModel.RetypePassword);
+            dbUser.SecurityLink = RandomString(15);
+            UserRepository.Add(dbUser);
             UserRepository.Save();
             Candidate dbCandidate = new Candidate();
-            dbCandidate.CandidateID = dbOperation.UserID;
-            dbCandidate.UserID = dbOperation.UserID;
-            dbCandidate.EmailID = dbOperation.Email;
-            dbCandidate.AppliedAs = dbOperation.AppliedAs;
+            dbCandidate.CandidateID = dbUser.UserID;
+            dbCandidate.UserID = dbUser.UserID;
+            dbCandidate.EmailID = dbUser.Email;
+            dbCandidate.AppliedAs = dbUser.AppliedAs;
             dbCandidate.DateCreated = DateTime.Today;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
+            vmUserModel.UserID = dbUser.UserID;
+            vmUserModel.Password = dbUser.Password;
+            vmUserModel.SecurityLink = dbUser.SecurityLink;
             return new ServiceMessage();
         }
         #endregion

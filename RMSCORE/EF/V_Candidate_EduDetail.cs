@@ -15,25 +15,27 @@ namespace RMSCORE.EF
     public partial class V_Candidate_EduDetail
     {
         public string DegreeLevel { get; set; }
-        public string ObtainedMark { get; set; }
+        public Nullable<int> ObtainedMark { get; set; }
         public Nullable<System.DateTime> StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
         public int EduID { get; set; }
-        public string TotalMark { get; set; }
+        public Nullable<int> TotalMark { get; set; }
         public string Percentage { get; set; }
-        public string CGPA { get; set; }
+        public Nullable<double> CGPA { get; set; }
         public string PassingYear { get; set; }
-        public Nullable<int> Institution { get; set; }
         public string InstituteName { get; set; }
         public int CandidateID { get; set; }
         public string CName { get; set; }
         public string DegreeTitle { get; set; }
-        public string OtherInstitute { get; set; }
         public Nullable<bool> InProgress { get; set; }
         public Nullable<int> DegreeTypeID { get; set; }
         public string EduTypeName { get; set; }
         public string MajorSubject { get; set; }
         public Nullable<int> DegreeLevelID { get; set; }
         public string OtherDegreeType { get; set; }
+        public string OtherDegreeLevelName { get; set; }
+        public string GradeName { get; set; }
+        public string OtherInstitute { get; set; }
+        public Nullable<int> InstitutionID { get; set; }
     }
 }
