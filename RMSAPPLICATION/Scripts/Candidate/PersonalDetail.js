@@ -1,4 +1,6 @@
-﻿function CandidateGetCreate() {
+﻿
+
+function CandidateGetCreate() {
     clearClasses();
     $.ajax({
         url: '/Candidate/Create',
@@ -50,7 +52,6 @@ function SavePersonalInfoFunction() {
                         theme: 'alert-styled-right bg-info',
                         life: 6000
                     });
-                    location.reload()
                     CandidateGetCreate()
                 }
                 else {
@@ -292,4 +293,16 @@ function OtherCity() {
             $("#OtherPakistaniCitydiv").hide();
         }
     });
+}
+
+function DateLoad() {
+    var date_input = $('input[name="DOB"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_input.datepicker({
+        format: 'dd/MM/yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
 }

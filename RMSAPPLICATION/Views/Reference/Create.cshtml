@@ -53,7 +53,7 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="required control-label text-semibold">Referee's Full Name</label>
-                            @Html.EditorFor(model => model.RefName1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            @Html.EditorFor(model => model.RefName1, new { htmlAttributes = new { @class = "form-control text-capitalize", id = "FName" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.RefName1, "", new { @class = "text-danger" })
                             </div>
@@ -123,7 +123,7 @@
                     <div class="form-group col-md-4">
                         <div>
                             <label class="required control-label text-semibold">Referee's Full Name</label>
-                            @Html.EditorFor(model => model.RefName2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            @Html.EditorFor(model => model.RefName2, new { htmlAttributes = new { @class = "form-control text-capitalize", id = "FName" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.RefName2, "", new { @class = "text-danger" })
                             </div>

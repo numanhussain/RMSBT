@@ -169,6 +169,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CandidateController.cs" />
     <Compile Include="Controllers\CompensationController.cs" />
     <Compile Include="Controllers\EduDetailController.cs" />
@@ -181,7 +182,6 @@
     <Compile Include="Controllers\ReferenceController.cs" />
     <Compile Include="Controllers\SelfAssessmentController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
-    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -3322,8 +3322,9 @@
     <Content Include="Views\Home\PVDTBody.cshtml" />
     <Content Include="Views\Instruction\Index.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
-    <Content Include="Views\Test\WebGrid.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Home\RequestNewLink.cshtml" />
+    <Content Include="Views\Job\PVJobDetailIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

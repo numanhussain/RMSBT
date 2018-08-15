@@ -11,6 +11,7 @@ namespace RMSCORE.Models.Other
     public class VMLoggedUser : V_UserCandidate
     {
         public bool Reponse { get; set; }
+        public string CompletePassword { get; set; }
     }
     public class UserModel : User
     {

@@ -58,6 +58,8 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
             ViewBag.LocationID = new SelectList(DDService.GetLocationList().ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
@@ -66,13 +68,11 @@ namespace RMSAPPLICATION.Controllers
             return View(vm);
         }
         [HttpPost]
-        public ActionResult IndexSubmit(int? LocationID, int? CatagoryID)
+        public ActionResult IndexSubmit(int? LocationID, int? CatagoryID, string FilterBox)
         {
             List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
-            if (LocationID == 0 && CatagoryID == 0)
-            {
-                vmAllJobList = vmAllJobList.ToList();
-            }
+            if (FilterBox != "")
+                vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle == FilterBox).ToList();
             if (LocationID > 0)
             {
                 vmAllJobList = vmAllJobList.Where(aa => aa.LocID == LocationID).ToList();
@@ -85,7 +85,7 @@ namespace RMSAPPLICATION.Controllers
             ViewBag.CatagoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName", CatagoryID);
             //ViewBag.LocationID = GetLocationList(LocationService.GetIndex().Select(aa => aa.LocName).Distinct().ToList());
             //ViewBag.CatagoryID = GetCatagoryList(CatagoryService.GetIndex().Select(aa => aa.CatName).Distinct().ToList());
-            return PartialView("PVDTBody", vmAllJobList);
+            return View("Index", vmAllJobList);
         }
         #region -- Controller Main View Actions  --
         [HttpGet]
@@ -104,27 +104,34 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 Expression<Func<User, bool>> SpecificEntries = c => c.UserName == Obj.UserName;
-                User dbUsers = UserEntityService.GetIndexSpecific(SpecificEntries).First();
-                string EncryptPassword;
-                String DecryptPassword = StringCipher.Decrypt(dbUsers.Password);
-                EncryptPassword = StringCipher.Encrypt(Obj.Password);
-                if (UserEntityService.GetIndexSpecific(aa => aa.UserName == Obj.UserName && aa.Password == EncryptPassword && aa.UserStage > 1).Count() > 0)
+                if (UserEntityService.GetIndexSpecific(SpecificEntries).Count() > 0)
                 {
-                    V_UserCandidate vm = VUserEntityService.GetIndexSpecific(aa => aa.Email == Obj.UserName && aa.Password == EncryptPassword).First();
-                    Expression<Func<V_UserCandidate, bool>> SpecificEntries2 = c => c.UserID == vm.UserID;
-                    Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries2).First();
-                    if (vm.UserStage == 8)
+                    User dbUsers = UserEntityService.GetIndexSpecific(SpecificEntries).First();
+                    string EncryptPassword;
+                    String DecryptPassword = StringCipher.Decrypt(dbUsers.Password);
+                    EncryptPassword = StringCipher.Encrypt(Obj.Password);
+                    if (UserEntityService.GetIndexSpecific(aa => aa.UserName == Obj.UserName && aa.Password == EncryptPassword && aa.UserStage > 1).Count() > 0)
                     {
-                        return RedirectToAction("Index", "Job");
+                        V_UserCandidate vm = VUserEntityService.GetIndexSpecific(aa => aa.Email == Obj.UserName && aa.Password == EncryptPassword).First();
+                        Expression<Func<V_UserCandidate, bool>> SpecificEntries2 = c => c.UserID == vm.UserID;
+                        Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries2).First();
+                        if (vm.UserStage == 8)
+                        {
+                            return RedirectToAction("Index", "Instruction");
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "Instruction");
+                        }
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Instruction");
+                        ModelState.AddModelError("Password", "The username or password is incorrect or account not verified");
                     }
                 }
                 else
                 {
-                    ModelState.AddModelError("Password", "The username or password is incorrect");
+                    ModelState.AddModelError("UserName", "The username not exists");
                 }
             }
             return View("Login", Obj);
@@ -143,7 +150,6 @@ namespace RMSAPPLICATION.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult RegisterUser(UserModel vmUserModel)
         {
-            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (vmUserModel.Password != vmUserModel.RetypePassword)
             {
                 ModelState.AddModelError("Password", "Password not matched");
@@ -163,14 +169,15 @@ namespace RMSAPPLICATION.Controllers
                 {
                     vmUserModel.UserName = vmUserModel.Email;
                     {
-                        UserService.RegisterUser(vmUserModel, vmf);
+                        UserService.RegisterUser(vmUserModel);
 
                         var code = vmUserModel.SecurityLink;
                         var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
-                        EmailGenerate.SendEmail(vmUserModel.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
-                            "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
-                            "<p>Please click <a href=\"" + callbackUrl + "\">here</a> to activate your profile.</p>" +
-                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "", "Email Verification");
+                        DDService.GenerateEmail(vmUserModel.Email, "", "Account Activation", EmailText.GetRegisterEmailText(vmUserModel, callbackUrl), 0, 1);
+                        //EmailGenerate.SendEmail(vmUserModel.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
+                        //    "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
+                        //    "<p>Please click <a href=\"" + callbackUrl + "\">here</a> to activate your profile.</p>" +
+                        //    "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "", "Email Verification");
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vmUserModel.UserID && c.Password == vmUserModel.Password;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
                         return RedirectToAction("EmailSent", "Home");
@@ -190,32 +197,65 @@ namespace RMSAPPLICATION.Controllers
         {
             if (UserService.VerifyLink(User))
             {
-                User user = UserEntityService.GetIndex().Where(aa => aa.UserStage == 1 && aa.SecurityLink == User).First();
-
-                V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == user.UserName && aa.Password == user.Password);
-                user.UserStage = 2;
-                UserEntityService.PostEdit(user);
-                Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
-                Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                Candidate dbCandidate = CandidateEntityService.GetEdit(vm.CandidateID);
-                CandidateStep dbTickSteps = new CandidateStep();
-                dbTickSteps.StepOne = false;
-                dbTickSteps.StepTwo = false;
-                dbTickSteps.StepThree = false;
-                dbTickSteps.StepFour = false;
-                dbTickSteps.StepFive = false;
-                dbTickSteps.StepSix = false;
-                dbTickSteps.StepSeven = false;
-                dbTickSteps.StepEight = false;
-                dbTickSteps.CandidateID = vm.CandidateID;
-                CandidateStepEntityService.PostCreate(dbTickSteps);
-                return RedirectToAction("ConfirmedEmail", "Home");
+                if (UserEntityService.GetIndex().Where(aa => aa.UserStage == 1 && aa.SecurityLink == User).Count() > 0)
+                {
+                    User user = UserEntityService.GetIndex().Where(aa => aa.UserStage == 1 && aa.SecurityLink == User).First();
+                    TimeSpan Hours = (DateTime.Now - user.EmailSentTime) ?? TimeSpan.Zero;
+                    int hours = Convert.ToInt32(Hours.TotalHours);
+                    if (hours >= 24)
+                    {
+                        ViewBag.Message = "Your link has been expired";
+                        return View("RequestNewLink", user);
+                    }
+                    else
+                    {
+                        V_UserCandidate vm = VUserEntityService.GetIndex().First(aa => aa.UserName == user.UserName && aa.Password == user.Password);
+                        user.UserStage = 2;
+                        UserEntityService.PostEdit(user);
+                        Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
+                        Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
+                        Candidate dbCandidate = CandidateEntityService.GetEdit(vm.CandidateID);
+                        CandidateStep dbTickSteps = new CandidateStep();
+                        dbTickSteps.StepOne = false;
+                        dbTickSteps.StepTwo = false;
+                        dbTickSteps.StepThree = false;
+                        dbTickSteps.StepFour = false;
+                        dbTickSteps.StepFive = false;
+                        dbTickSteps.StepSix = false;
+                        dbTickSteps.StepSeven = false;
+                        dbTickSteps.StepEight = false;
+                        dbTickSteps.CandidateID = vm.CandidateID;
+                        CandidateStepEntityService.PostCreate(dbTickSteps);
+                        return RedirectToAction("ConfirmedEmail", "Home");
+                    }
+                }
+                else
+                {
+                    ViewBag.Message = "Already Verified email account";
+                    return View();
+                }
             }
             else
             {
-                ViewBag.Message = "Link is not valid or expired";
+                ViewBag.Message = "Link is not valid or trashed";
                 return View();
             }
+        }
+        [HttpPost]
+        public ActionResult RequestNewLink(User dbUser)
+        {
+            Expression<Func<User, bool>> SpecificClient2 = c => c.UserID == dbUser.UserID && c.UserName == dbUser.UserName;
+            if (UserEntityService.GetIndexSpecific(SpecificClient2).Count > 0)
+            {
+                User dbuser = UserEntityService.GetEdit(dbUser.UserID);
+                dbuser.SecurityLink = RandomString(15);
+                dbuser.EmailSentTime = DateTime.Now;
+                UserEntityService.PostEdit(dbuser);
+                var code = dbuser.SecurityLink;
+                var callbackUrl = Url.Action("VerifyLink", "Home", new { User = code }, protocol: Request.Url.Scheme);
+                DDService.GenerateEmail(dbuser.UserName, "", "New verification link", EmailText.RequestNewLinkText(dbuser, callbackUrl), 0, 1);
+            }
+            return View("EmailSent");
         }
         [HttpGet]
         public ActionResult ForgetPassword()
@@ -236,13 +276,14 @@ namespace RMSAPPLICATION.Controllers
                 {
                     {
                         User obj = UserEntityService.GetEdit(dbUsers.First().UserID);
-                        var Password = obj.Password;
-                        var callbackUrl = "http://localhost:65347/Home/Login";
-                        EmailGenerate.SendEmail(obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
-                            "<p>This is with reference to your request for for forgetting password at Bestway Career Portal. </p>" +
-                            "<p>Please enter you password : <u><strong>" + obj.Password + "</u></strong><p>" +
-                            " <p>Please click <a href=\"" + callbackUrl + "\">here</a> to login to your profile.</p>" +
-                            "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "", "Request for password");
+                        var Password = StringCipher.Decrypt(obj.Password);
+                        var callbackUrl = "careers.bestway.com.pk";
+                        DDService.GenerateEmail(dbuser.Email, "", "Password Recovery", EmailText.GetForgetPasswordEmailText(Password, callbackUrl), 0, 2);
+                        //EmailGenerate.SendEmail(obj.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, " + " </p>" +
+                        //    "<p>This is with reference to your request for for forgetting password at Bestway Career Portal. </p>" +
+                        //    "<p>Please enter you password : <u><strong>" + Password + "</u></strong><p>" +
+                        //    " <p>Please click <a href=\"" + callbackUrl + "\">here</a> to login to your profile.</p>" +
+                        //    "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "", "Request for password");
                         return RedirectToAction("PasswordEmailSent", "Home");
                     }
                 }
@@ -436,6 +477,13 @@ namespace RMSAPPLICATION.Controllers
             var client = new WebClient();
             var jsonResult = client.DownloadString(string.Format("https://www.google.com/recaptcha/api/siteverify?secret={0}&response={1}", secret, response));
             return JsonConvert.DeserializeObject<CaptchaResponse>(jsonResult.ToString());
+        }
+        private Random random = new Random();
+        public string RandomString(int length)
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            return new string(Enumerable.Repeat(chars, length)
+              .Select(s => s[random.Next(s.Length)]).ToArray());
         }
         #endregion
     }

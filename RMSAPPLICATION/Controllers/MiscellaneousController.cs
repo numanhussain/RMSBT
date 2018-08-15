@@ -115,7 +115,7 @@ namespace RMSAPPLICATION.Controllers
                 else
                     obj.DateJoining = Convert.ToDateTime(Request.Form["DateJoining"].ToString());
             }
-            
+
             if (obj.WorkedBefore == "Yes")
             {
                 if (!AssistantService.IsDateTime(Request.Form["DateLeavig"])) // check for valid date
@@ -168,8 +168,15 @@ namespace RMSAPPLICATION.Controllers
             {
                 obj.HearAboutDetail = null;
             }
-            if (obj.NoticeTime == null)
-                ModelState.AddModelError("NoticeTime", "Mandatory ");
+            if (obj.NoticeTimeID == 0)
+            {
+                ModelState.AddModelError("NoticeTimeID", "Mandatory ");
+            }
+            if (obj.NoticeTimeID != 0)
+            {
+                if (obj.NoticeTime == null)
+                    ModelState.AddModelError("NoticeTime", "Mandatory ");
+            }
             if (obj.InternshipDuration == "0")
                 ModelState.AddModelError("InternshipDuration", "Mandatory ");
             if (vmf.AppliedAs == 5 || vmf.AppliedAs == 6)

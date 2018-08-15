@@ -33,12 +33,15 @@ namespace RMSSERVICES.Generic
         IRepository<AreaOfInterest> AreaOfInterestRepository;
         IRepository<Salutation> SalutationRepository;
         IRepository<InterviewStatu> InterviewStatusRepository;
+        IRepository<EduBoard> EduBoardRepository;
+        IRepository<EmailLog> EmailLogRepository;
         public DDService(IUnitOfWork unitOfWork,
         IRepository<SkillLevel> skilllevelRepository,
         IRepository<ExperienceIndustry> expIndustryRepository, IRepository<BloodGroup> bloodGroupRepository, IRepository<City> cityRepository, IRepository<Country> countryRepository, IRepository<Candidate> candidateRepository, IRepository<MartialStatu> martialStatusRepository,
         IRepository<EduDegreeLevel> edudetailRepository, IRepository<EduInstitute> eduinstituteRepository,
             IRepository<User> userRepository, IRepository<JobDetail> jobRepository, IRepository<HearAbout> hearAboutJobRepository, IRepository<Location> locationRepository, IRepository<Catagory> catagoryRepository, IRepository<Gender> genderRepository,
-        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository, IRepository<AreaOfInterest> areaOfInterestRepository, IRepository<Salutation> salutationRepository, IRepository<InterviewStatu> interviewStatusRepository)
+        IRepository<Religion> religionRepository, IRepository<EduDegreeType> eduDegreeTypeRepository, IRepository<ExpCareerLevel> careerLevelRepository, IRepository<AreaOfInterest> areaOfInterestRepository, IRepository<Salutation> salutationRepository, IRepository<InterviewStatu> interviewStatusRepository, IRepository<EduBoard> eduBoardRepository,
+        IRepository<EmailLog> emailLogRepository)
         {
             _unitOfWork = unitOfWork;
             CityRepository = cityRepository;
@@ -62,6 +65,8 @@ namespace RMSSERVICES.Generic
             AreaOfInterestRepository = areaOfInterestRepository;
             SalutationRepository = salutationRepository;
             InterviewStatusRepository = interviewStatusRepository;
+            EduBoardRepository = eduBoardRepository;
+            EmailLogRepository = emailLogRepository;
         }
         public List<Candidate> GetCandidate()
         {
@@ -213,6 +218,32 @@ namespace RMSSERVICES.Generic
             list.Add(new Salutation { CSalutationID = 0, SalutationName = "--------" });
             list.AddRange(SalutationRepository.GetAll());
             return list;
+        }
+        public List<EduBoard> GetBoardList()
+        { 
+            List<EduBoard> list = new List<EduBoard>();
+            list.Add(new EduBoard { BISEID = 0, BiseName = "------" });
+            list.AddRange(EduBoardRepository.GetAll());
+            return list;
+        }
+        public void GenerateEmail(string TO, string CC, string Subject, string Body, int CandidateID, int NotiTypeID)
+        {
+
+            EmailLog notificationEmail = new EmailLog();
+            notificationEmail.ToAddress = TO;
+            if (notificationEmail.ToAddress != null && notificationEmail.ToAddress != "")
+            {
+
+                notificationEmail.CCAddress = CC;
+                notificationEmail.Subject = Subject;
+                notificationEmail.Body = Body;
+                notificationEmail.IsSent = false;
+                notificationEmail.CreatedDateTime = DateTime.Now;
+                notificationEmail.CandidateID = CandidateID;
+                notificationEmail.EmailTypeID = NotiTypeID;
+                EmailLogRepository.Add(notificationEmail);
+                EmailLogRepository.Save();
+            }
         }
     }
 }

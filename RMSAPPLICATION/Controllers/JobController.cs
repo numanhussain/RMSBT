@@ -182,13 +182,14 @@ namespace RMSAPPLICATION.Controllers
                     dbCandidateJob.JobID = JobID;
                     dbCandidateJob.CJobDate = DateTime.Now;
                     JobApplyService.PostCreate(dbCandidateJob);
-                    var callbackUrl = "10.227.0.52";
-                    EmailGenerate.SendEmail(vmf.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear <strong><u>" + vmf.CName + " </u></strong>  </p><div><p>Thank you for your keen interest in applying for the position of <strong><u>" + dbJob.JobTitle + "</u></strong>.We have received your application for this post. </p>" +
-                        "<p>Our Talent Acquisition Team will meticulously evaluate your profile in line with the requirements of the post you have applied for. Since, we receive a large number of applications for different positions, it is not possible to communicate with every candidate individually. Therefore, only the short-listed candidates will be contacted for interview and other assessments as deemed appropriate. </p></div>" +
-                        "<div>You can check the status of your application by logging into your account at Bestway Career Portal.</div>" + "<p>Link:<u><a href=\"" + callbackUrl + "\">10.227.0.52</a></u>" + "</p>" +
-                        "<div>Wish you best of luck in your quest to find a suitable career in accordance with your professional and academic qualifications.</div>" +
-                        "<div>Kindly note if you have applied for multiple positions, you will receive a separate notification for each position</div>" +
-                        "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "",dbJob.JobTitle);
+                    var callbackUrl = "careers.bestway.com.pk";
+                    DDService.GenerateEmail(vmf.Email, "", "Job Application for " + dbJob.JobTitle + " " + dbCandidateJob.JobID + " ", EmailText.GetJobApplyEmailText(vmf, dbJob, callbackUrl), vmf.CandidateID, 3);
+                    //EmailGenerate.SendEmail(vmf.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear <strong><u>" + vmf.CName + " </u></strong>  </p><div><p>Thank you for your keen interest in applying for the position of <strong><u>" + dbJob.JobTitle + "</u></strong>.We have received your application for this post. </p>" +
+                    //    "<p>Our Talent Acquisition Team will meticulously evaluate your profile in line with the requirements of the post you have applied for. Since, we receive a large number of applications for different positions, it is not possible to communicate with every candidate individually. Therefore, only the short-listed candidates will be contacted for interview and other assessments as deemed appropriate. </p></div>" +
+                    //    "<div>You can check the status of your application by logging into your account at Bestway Career Portal.</div>" + "<p>Link:<u><a href=\"" + callbackUrl + "\">10.227.0.52</a></u>" + "</p>" +
+                    //    "<div>Wish you best of luck in your quest to find a suitable career in accordance with your professional and academic qualifications.</div>" +
+                    //    "<div>Kindly note if you have applied for multiple positions, you will receive a separate notification for each position</div>" +
+                    //    "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "",dbJob.JobTitle);
                     return Json("OK", JsonRequestBehavior.AllowGet);
                 }
                 else

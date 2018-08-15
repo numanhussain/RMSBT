@@ -1,0 +1,61 @@
+﻿@model List<RMSCORE.Models.Other.VMLoggedUser>
+@{
+    ViewBag.Title = "User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
+    <div class="page-header ">
+        <div class="page-header-content">
+            <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold" style="margin-top:10px">Users Details</span></h4>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <table class="table">
+                        <thead>
+                            <tr class="">
+                                <th>Email</th>
+                                <th>
+                                    Password
+                                </th>
+                                <th>
+                                    Created Date
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CompletePassword)
+                                    </td>
+                                    <td>
+                                        @if (item.DateCreated != null)
+                                        {@item.DateCreated.Value.ToString("MM/dd/yyyy")}
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+}
+
+
+
+

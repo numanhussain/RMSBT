@@ -45,10 +45,11 @@ namespace RMSSERVICES.UserDetail
             return new string(Enumerable.Repeat(chars, length)
               .Select(s => s[random.Next(s.Length)]).ToArray());
         }
-        public ServiceMessage RegisterUser(UserModel vmUserModel, V_UserCandidate LoggedInUser)
+        public ServiceMessage RegisterUser(UserModel vmUserModel)
         {
             User dbUser = new User();
             dbUser.DateCreated = DateTime.Today;
+            dbUser.EmailSentTime = DateTime.Now;
             dbUser.AppliedAs = vmUserModel.CatagoryID;
             dbUser.UserStage = 1;
             dbUser.UserName = vmUserModel.Email;
@@ -70,6 +71,22 @@ namespace RMSSERVICES.UserDetail
             vmUserModel.Password = dbUser.Password;
             vmUserModel.SecurityLink = dbUser.SecurityLink;
             return new ServiceMessage();
+        }
+
+        public List<VMLoggedUser> GetAllIndex()
+        {
+            List<User> dbVUserCandidates = UserRepository.GetAll();
+            List<VMLoggedUser> VMLoggedUsers = new List<VMLoggedUser>();
+            foreach (var dbVUserCandidate in dbVUserCandidates)
+            {
+                VMLoggedUser vmLoggedUser = new VMLoggedUser();
+                vmLoggedUser.UserID = dbVUserCandidate.UserID;
+                vmLoggedUser.UserName = dbVUserCandidate.UserName;
+                vmLoggedUser.CompletePassword = StringCipher.Decrypt(dbVUserCandidate.Password);
+                vmLoggedUser.DateCreated = dbVUserCandidate.DateCreated;
+                VMLoggedUsers.Add(vmLoggedUser);
+            }
+            return VMLoggedUsers.OrderBy(aa => aa.UserName).ToList();
         }
         #endregion
         #region -- Service Private Methods --

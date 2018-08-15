@@ -41,6 +41,8 @@ namespace RMSCORE.EF
         public virtual DbSet<EduDegreeType> EduDegreeTypes { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }
         public virtual DbSet<EduInstitute> EduInstitutes { get; set; }
+        public virtual DbSet<EmailLog> EmailLogs { get; set; }
+        public virtual DbSet<EmailNotificationType> EmailNotificationTypes { get; set; }
         public virtual DbSet<ExpCareerLevel> ExpCareerLevels { get; set; }
         public virtual DbSet<ExperienceDetail> ExperienceDetails { get; set; }
         public virtual DbSet<ExperienceIndustry> ExperienceIndustries { get; set; }

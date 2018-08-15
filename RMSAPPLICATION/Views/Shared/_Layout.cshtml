@@ -88,9 +88,9 @@
                                 <i class="caret"></i>
                             </a>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="~/Candidate/Index"><i class="icon-user-plus"></i> My profile</a></li>
+                                <li><a href="~/Candidate/Index"><i class="icon-user-plus"></i> My Profile</a></li>
                                 <li><a href="~/Home/ChangePass"><i class="icon-cog5"></i> Change Password</a></li>
-                                <li><a href="~/Home/Contact"><i class="glyphicon glyphicon-earphone"></i> Contact</a></li>
+                                <li><a href="~/Home/Contact"><i class="glyphicon glyphicon-earphone"></i>Contact Us</a></li>
                                 <li><a href="~/Home/LogOut"><i class="icon-switch2"></i> Logout</a></li>
                             </ul>
                         </li>
@@ -109,8 +109,10 @@
                         <li><a href="~/Job/Index"><i class="icon-display4 position-left"></i>Job Dashboard</a></li>
                         <li><a href="~/Candidate/Index"><i class="icon-profile position-left"></i> Profile</a></li>
                         <li><a href="~/Job/JobApply"><i class="icon-keyboard position-left"></i> Applied Jobs</a></li>
-                        <li><a href="~/Test/WebGrid"><i class="icon-keyboard position-left"></i> Applied Jobs</a></li>
-                        @*<li><a href="~/Notification/Index"><i class="icon-profile position-left"></i> Interview</a></li>*@
+                        @if (LoggedInUser.HasAccess == true)
+                        {
+                            <li><a href="~/Admin/Index"><i class="icon-profile position-left"></i> User</a></li>
+                        }
                     </ul>
 
                 </div>

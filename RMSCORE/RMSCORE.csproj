@@ -97,6 +97,12 @@
     <Compile Include="EF\EduInstitute.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\EmailLog.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmailNotificationType.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\ExpCareerLevel.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

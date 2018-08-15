@@ -60,6 +60,7 @@
     <Compile Include="Generic\AssistantService.cs" />
     <Compile Include="Generic\DDService.cs" />
     <Compile Include="Generic\EmailGenerate.cs" />
+    <Compile Include="Generic\EmailText.cs" />
     <Compile Include="Generic\EntityService.cs" />
     <Compile Include="Generic\IDDService.cs" />
     <Compile Include="Generic\IEntityService.cs" />

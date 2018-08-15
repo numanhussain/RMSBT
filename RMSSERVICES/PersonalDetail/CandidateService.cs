@@ -104,6 +104,7 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.OtherDomicileCityName = dbOperation.OtherDomicileCityName;
             dbCandidate.OtherPakistaniCityName = dbOperation.OtherPakistaniCityName;
             dbCandidate.Tehsil = dbOperation.Tehsil;
+            dbCandidate.PostalCode = dbOperation.PostalCode;
             return dbCandidate;
         }
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)

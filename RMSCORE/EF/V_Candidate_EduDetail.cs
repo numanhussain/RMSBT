@@ -37,5 +37,9 @@ namespace RMSCORE.EF
         public string GradeName { get; set; }
         public string OtherInstitute { get; set; }
         public Nullable<int> InstitutionID { get; set; }
+        public Nullable<int> BoardID { get; set; }
+        public string BoardName { get; set; }
+        public string OtherBoardName { get; set; }
+        public Nullable<int> EduCriteriaID { get; set; }
     }
 }

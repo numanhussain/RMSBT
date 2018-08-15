@@ -9,17 +9,17 @@
 *
 * ---------------------------------------------------------------------------- */
 
-$(function() {
+$(function () {
 
 
     // Table setup
     // ------------------------------
 
     // Setting datatable defaults
-    $.extend( $.fn.dataTable.defaults, {
+    $.extend($.fn.dataTable.defaults, {
         autoWidth: false,
-        columnDefs: [{ 
-            orderable: false,
+        columnDefs: [{
+            orderable: true,
             width: '100px'
         }],
         dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
@@ -32,14 +32,21 @@ $(function() {
         drawCallback: function () {
             $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
         },
-        preDrawCallback: function() {
+        preDrawCallback: function () {
             $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
         }
     });
 
 
     // Basic datatable
-    $('.datatable-basic').DataTable({ "order": [] });
+    $('.datatable-basic').DataTable({
+        "order": [],
+        "bSortable": true,
+        "searching": false,
+        "bFilter": false,
+        "bLengthChange": false
+
+    });
 
 
 
@@ -47,7 +54,7 @@ $(function() {
     $('.datatable-pagination').DataTable({
         pagingType: "simple",
         language: {
-            paginate: {'next': 'Next &rarr;', 'previous': '&larr; Prev'}
+            paginate: { 'next': 'Next &rarr;', 'previous': '&larr; Prev' }
         }
     });
 
@@ -77,5 +84,5 @@ $(function() {
         minimumResultsForSearch: Infinity,
         width: 'auto'
     });
-    
+
 });

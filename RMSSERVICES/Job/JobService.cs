@@ -57,6 +57,8 @@ namespace RMSSERVICES.Job
                 vmVAppliedJob.CJobDate = dbVAppliedJob.CJobDate;
                 vmVAppliedJob.JobID = dbVAppliedJob.JobID;
                 vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
+                vmVAppliedJob.DepatmentName = dbVAppliedJob.DepatmentName;
+                vmVAppliedJob.CatName = dbVAppliedJob.CatName;
                 vmVAppliedJobs.Add(vmVAppliedJob);
             }
             return vmVAppliedJobs.OrderByDescending(aa => aa.CJobID).ToList();

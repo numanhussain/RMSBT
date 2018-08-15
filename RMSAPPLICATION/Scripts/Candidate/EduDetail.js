@@ -169,93 +169,97 @@ function DegreeChange() {
 }
 function ShowHide() {
     $("#InstitutionDD").hide();
-    $("#CGPATB").hide();
     $("#DegreeTypeDD").hide();
     $("#DegreeTitleTB").hide();
     $("#OtherInstitute").hide();
     $("#MajorSubjectDD").hide();
     $("#marksdiv").hide();
     $("#OtherDegree").hide();
+    $("#BoardDD").hide();
+    $("#OtherBoard").hide();
+    $("#marksdiv").hide();
+    $("#GradeDiv").hide();
+    $("#CGPADiv").hide();
     switch ($("#DegreeLevelID").val()) {
         case "1":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").hide();
+            $("#InstitutionDD").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             $("#marksdiv").hide();
+            $("#BoardDD").show();
             break;
         case "2":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").hide();
+            $("#InstitutionDD").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").show();
             break;
         case "3":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").hide();
+            $("#InstitutionDD").hide();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").show();
             break;
         case "4":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").hide();
-            $("#CGPATB").hide();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").show();
             break;
         case "5":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").hide();
+            $("#InstitutionDD").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").show();
             break;
         case "6":
             $("#DegreeTitleTB").show();
-            $("#InstitutionDD").show();
-            $("#CGPATB").hide();
+            $("#InstitutionDD").hide();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").show();
             break;
         case "7":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
-            $("#CGPATB").show();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").hide();
             break;
         case "8":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
-            $("#CGPATB").show();
             $("#DegreeTypeDD").show();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").hide();
             break;
         case "9":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
-            $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
             $("#marksdiv").show();
+            $("#BoardDD").hide();
             break;
         case "10":
             $("#DegreeTitleTB").show();
             $("#InstitutionDD").show();
-            $("#CGPATB").show();
             $("#DegreeTypeDD").hide();
             $("#MajorSubjectDD").show();
             $("#marksdiv").hide();
+            $("#BoardDD").hide();
             break;
     }
 }
@@ -285,6 +289,17 @@ function InstituteChange() {
     $("#DegreeLevelID").on("change", function () {
         ShowOtherDegreeLevel();
     });
+
+    // Other Board Name
+    ShowOtherBoard();
+    $("#BoardID").on("change", function () {
+        ShowOtherBoard();
+    });
+    // Other Board Name
+    ShowEduCriteria();
+    $("#EduCriteriaID").on("change", function () {
+        ShowEduCriteria();
+    });
 }
 function ShowInstituteHide() {
     $("#OtherInstitute").hide();
@@ -297,6 +312,35 @@ function ShowOtherDegreeLevel() {
     $("#OtherDegreelevel").hide();
     if ($("#DegreeLevelID").val() == 11) {
         $("#OtherDegreelevel").show();
+    }
+}
+
+function ShowOtherBoard() {
+    // Degree Level Other
+    $("#OtherBoard").hide();
+    if ($("#BoardID").val() == 48) {
+        $("#OtherBoard").show();
+    }
+}
+
+function ShowEduCriteria() {
+    $("#TotalMarksDiv").hide();
+    $("#GradeDiv").hide();
+    $("#CGPADiv").hide();
+    if ($("#EduCriteriaID").val() == 1) {
+        $("#TotalMarksDiv").show();
+        $("#GradeDiv").hide();
+        $("#CGPADiv").hide();
+    }
+    else if ($("#EduCriteriaID").val() == 2) {
+        $("#TotalMarksDiv").hide();
+        $("#GradeDiv").show();
+        $("#CGPADiv").hide();
+    }
+    else if ($("#EduCriteriaID").val() == 3) {
+        $("#TotalMarksDiv").hide();
+        $("#GradeDiv").hide();
+        $("#CGPADiv").show();
     }
 }
 function DegreeTypeChange() {
@@ -350,5 +394,22 @@ function LoadDegreeTypeDD() {
         });
 
 
+    });
+}
+function CalculatePercentage() {
+    $("#ObtainedMark").change(function () {
+        var TotalMark = $('#TotalMark').val();
+        var ObtainedMark = $('#ObtainedMark').val();
+        $.ajax({
+            url: "/EduDetail/CalculatePercentage",
+            contentType: "application/json; charset=utf-8",
+            data: { TotalMark: TotalMark, ObtainedMark: ObtainedMark },
+            success: function (data) {
+                document.getElementById("Percentage").value = data;
+            },
+            error: function () {
+                $("#result").text('an error occured')
+            }
+        });
     });
 }

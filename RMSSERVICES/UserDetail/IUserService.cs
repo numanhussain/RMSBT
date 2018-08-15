@@ -13,6 +13,7 @@ namespace RMSSERVICES.UserDetail
     {
         List<User> GetIndex();
         bool VerifyLink(string key);
-        ServiceMessage RegisterUser(UserModel vmUserModel, V_UserCandidate LoggedInUser);
+        ServiceMessage RegisterUser(UserModel vmUserModel);
+        List<VMLoggedUser> GetAllIndex();
     }
 }

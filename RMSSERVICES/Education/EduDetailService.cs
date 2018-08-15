@@ -43,6 +43,7 @@ namespace RMSSERVICES.Education
                 vmEduDetail.TotalMark = dbEduDetail.TotalMark;
                 vmEduDetail.Percentage = dbEduDetail.Percentage;
                 vmEduDetail.EndDate = dbEduDetail.EndDate;
+                vmEduDetail.InstitutionID = dbEduDetail.InstitutionID;
                 vmEduDetail.InstitutionName = dbEduDetail.InstituteName;
                 vmEduDetail.EduID = dbEduDetail.EduID;
                 vmEduDetail.DegreeTitle = dbEduDetail.DegreeTitle;
@@ -53,6 +54,10 @@ namespace RMSSERVICES.Education
                 vmEduDetail.CGPA = dbEduDetail.CGPA;
                 vmEduDetail.OtherDegreeLevelName = dbEduDetail.OtherDegreeLevelName;
                 vmEduDetail.GradeName = dbEduDetail.GradeName;
+                vmEduDetail.BoardID = dbEduDetail.BoardID;
+                vmEduDetail.BoardName = dbEduDetail.BoardName;
+                vmEduDetail.OtherBoardName = dbEduDetail.OtherBoardName;
+                vmEduDetail.EduCriteriaID = dbEduDetail.EduCriteriaID;
 
                 vmEduDetails.Add(vmEduDetail);
             }
@@ -103,6 +108,9 @@ namespace RMSSERVICES.Education
             vmEduDetail.OtherDegreeType = dbEduDetail.OtherDegreeType;
             vmEduDetail.OtherDegreeLevelName = dbEduDetail.OtherDegreeLevelName;
             vmEduDetail.GradeName = dbEduDetail.GradeName;
+            vmEduDetail.BoardID = dbEduDetail.BoardID;
+            vmEduDetail.OtherBoardName = dbEduDetail.OtherBoardName;
+            vmEduDetail.EduCriteriaID = dbEduDetail.EduCriteriaID;
             return vmEduDetail;
         }
         public ServiceMessage PostEdit(VMEduDetailOperation obj)
@@ -137,6 +145,9 @@ namespace RMSSERVICES.Education
             obj.OtherDegreeType = dbEduDetail.OtherDegreeType;
             obj.OtherDegreeLevelName = dbEduDetail.OtherDegreeLevelName;
             obj.GradeName = dbEduDetail.GradeName;
+            obj.BoardID = dbEduDetail.BoardID;
+            obj.OtherBoardName = dbEduDetail.OtherBoardName;
+            obj.EduCriteriaID = dbEduDetail.EduCriteriaID;
             return obj;
         }
         public ServiceMessage PostDelete(VMEduDetailOperation vmOperation)
@@ -172,6 +183,9 @@ namespace RMSSERVICES.Education
             dbEdudetail.OtherDegreeType = obj.OtherDegreeType;
             dbEdudetail.OtherDegreeLevelName = obj.OtherDegreeLevelName;
             dbEdudetail.GradeName = obj.GradeName;
+            dbEdudetail.BoardID = obj.BoardID;
+            dbEdudetail.OtherBoardName = obj.OtherBoardName;
+            dbEdudetail.EduCriteriaID = obj.EduCriteriaID;
             return dbEdudetail;
         }
     }

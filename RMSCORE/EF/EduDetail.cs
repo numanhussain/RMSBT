@@ -33,6 +33,9 @@ namespace RMSCORE.EF
         public string OtherDegreeType { get; set; }
         public string OtherDegreeLevelName { get; set; }
         public string GradeName { get; set; }
+        public Nullable<int> BoardID { get; set; }
+        public string OtherBoardName { get; set; }
+        public Nullable<int> EduCriteriaID { get; set; }
     
         public virtual Candidate Candidate { get; set; }
         public virtual EduDegreeLevel EduDegreeLevel { get; set; }

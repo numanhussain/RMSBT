@@ -79,13 +79,17 @@ namespace RMSAPPLICATION.Controllers
                         ModelState.AddModelError("DegreeTitle", "Mandatory ");
                 }
 
-                if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0)
+                if ((obj.DegreeLevelID == 1 || obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6) && obj.InstitutionID == 0)
                     obj.InstitutionID = null;
-                if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0 || obj.DegreeLevelID == 2 && obj.InstitutionID == 0 || obj.DegreeLevelID == 3 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0 || obj.DegreeLevelID == 7 && obj.InstitutionID == 0 || obj.DegreeLevelID == 8 && obj.InstitutionID == 0 || obj.DegreeLevelID == 9 && obj.InstitutionID == 0 || obj.DegreeLevelID == 10 && obj.InstitutionID == 0)
+                if ((obj.DegreeLevelID == 7 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9 || obj.DegreeLevelID == 10) && obj.InstitutionID == 0)
                     ModelState.AddModelError("InstitutionID", "Mandatory ");
                 if (obj.InProgress == true)
                 {
                     obj.EndDate = null;
+                    if (obj.StartDate >= DateTime.Now)
+                    {
+                        ModelState.AddModelError("StartDate", "Must be smaller than today's date ");
+                    }
                 }
                 else
                 {
@@ -114,41 +118,60 @@ namespace RMSAPPLICATION.Controllers
                     if (obj.StartDate >= obj.EndDate)
                         ModelState.AddModelError("StartDate", "Must be smaller than end date");
                 }
-
-
-                if (obj.DegreeLevelID == 1 || obj.DegreeLevelID == 10)
+                if (obj.StartDate != null)
                 {
-                    obj.ObtainedMark = null; obj.TotalMark = null; obj.Percentage = null;
+                    if (obj.EndDate >= DateTime.Now)
+                        ModelState.AddModelError("EndDate", "Must be smaller than today's date");
                 }
-                else
+                if ((obj.DegreeLevelID == 1 || obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6) && obj.BoardID == 0)
                 {
-                    if (obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6)
-                    {
-                        if (obj.ObtainedMark == null)
-                            ModelState.AddModelError("ObtainedMark", "Mandatory ");
-                        if (obj.TotalMark == null)
-                            ModelState.AddModelError("TotalMark", "Mandatory ");
-                        if (obj.Percentage == null)
-                            ModelState.AddModelError("Percentage", "Mandatory ");
-                    }
-                    else
-                    {
-                        if (obj.Percentage == null && obj.CGPA == null)
-                        {
-                            if (obj.ObtainedMark == null)
-                                ModelState.AddModelError("ObtainedMark", "Mandatory ");
-                            if (obj.TotalMark == null)
-                                ModelState.AddModelError("TotalMark", "Mandatory ");
-                            if (obj.Percentage == null)
-                                ModelState.AddModelError("Percentage", "Mandatory ");
-                            if (obj.CGPA == null)
-                                ModelState.AddModelError("CGPA", "Mandatory ");
-                        }
-                    }
+                    ModelState.AddModelError("BoardID", "Mandatory");
+                }
+                if (obj.BoardID == 48)
+                {
+                    if (obj.OtherBoardName == null || obj.OtherBoardName == "")
+                        ModelState.AddModelError("OtherBoardName", "Mandatory");
+                }
+                if (obj.BoardID != 48)
+                {
+                    obj.OtherBoardName = null;
+                }
+                if ((obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 || obj.DegreeLevelID == 7 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9) && obj.EduCriteriaID == 0)
+                {
+                    ModelState.AddModelError("EduCriteriaID", "Mandatory");
+                }
+                if (obj.EduCriteriaID == 1)
+                {
+                    obj.CGPA = null;
+                    obj.GradeName = null;
+                    if (obj.TotalMark == null)
+                        ModelState.AddModelError("TotalMark", "Mandatory");
+                    if (obj.ObtainedMark == null)
+                        ModelState.AddModelError("ObtainedMark", "Mandatory");
+                    if (obj.Percentage == null || obj.Percentage == "")
+                        ModelState.AddModelError("Percentage", "Mandatory");
+                }
+                if (obj.EduCriteriaID == 2)
+                {
+                    obj.TotalMark = null;
+                    obj.ObtainedMark = null;
+                    obj.Percentage = null;
+                    obj.CGPA = null;
+                    if (obj.GradeName == null || obj.GradeName == "")
+                        ModelState.AddModelError("GradeName", "Mandatory");
+                }
+                if (obj.EduCriteriaID == 3)
+                {
+                    obj.TotalMark = null;
+                    obj.ObtainedMark = null;
+                    obj.Percentage = null;
+                    obj.GradeName = null;
+                    if (obj.CGPA == null)
+                        ModelState.AddModelError("CGPA", "Mandatory");
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory ");
-                if (obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4)
+                if ((obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4) && obj.GradeName == null)
                 {
                     ModelState.AddModelError("GradeName", "Mandatory ");
                 }
@@ -173,24 +196,32 @@ namespace RMSAPPLICATION.Controllers
             CreateHelper(obj);
             return PartialView("Create", obj);
         }
+        public ActionResult CalculatePercentage(int? TotalMark, int? ObtainedMark)
+        {
+            var tot = ((ObtainedMark * 100) / TotalMark).ToString();
+
+            return Json(tot, JsonRequestBehavior.AllowGet);
+        }
         [HttpGet]
         public ActionResult Edit(int id)
         {
             VMEduDetailOperation obj = EduDetailService.GetEdit(id);
+            ViewBag.TotalMark = obj.TotalMark;
+            ViewBag.obtainedMark= obj.ObtainedMark;
+            ViewBag.Percentage = obj.Percentage;
             EditHelper(obj);
             return PartialView(obj);
         }
         [HttpPost]
         public ActionResult Edit(VMEduDetailOperation obj)
         {
-            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.DegreeLevelID == 0)
             {
                 ModelState.AddModelError("DegreeLevelID", "Mandatory !!");
             }
             else
             {
-                if (obj.DegreeLevelID ==11)
+                if (obj.DegreeLevelID == 11)
                 {
                     if (obj.OtherDegreeLevelName == null || obj.OtherDegreeLevelName == "")
                         ModelState.AddModelError("OtherDegreeLevelName", "Mandatory");
@@ -201,13 +232,17 @@ namespace RMSAPPLICATION.Controllers
                         ModelState.AddModelError("DegreeTitle", "Mandatory ");
                 }
 
-                if (obj.DegreeLevelID == 4 && obj.InstitutionID == 0)
+                if ((obj.DegreeLevelID == 1 || obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6) && obj.InstitutionID == 0)
                     obj.InstitutionID = null;
-                if (obj.DegreeLevelID == 1 && obj.InstitutionID == 0 || obj.DegreeLevelID == 2 && obj.InstitutionID == 0 || obj.DegreeLevelID == 3 && obj.InstitutionID == 0 || obj.DegreeLevelID == 5 && obj.InstitutionID == 0 || obj.DegreeLevelID == 6 && obj.InstitutionID == 0 || obj.DegreeLevelID == 7 && obj.InstitutionID == 0 || obj.DegreeLevelID == 8 && obj.InstitutionID == 0 || obj.DegreeLevelID == 9 && obj.InstitutionID == 0 || obj.DegreeLevelID == 10 && obj.InstitutionID == 0)
+                if ((obj.DegreeLevelID == 7 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9 || obj.DegreeLevelID == 10) && obj.InstitutionID == 0)
                     ModelState.AddModelError("InstitutionID", "Mandatory ");
                 if (obj.InProgress == true)
                 {
                     obj.EndDate = null;
+                    if (obj.StartDate >= DateTime.Now)
+                    {
+                        ModelState.AddModelError("StartDate", "Must be smaller than today's date ");
+                    }
                 }
                 else
                 {
@@ -236,41 +271,60 @@ namespace RMSAPPLICATION.Controllers
                     if (obj.StartDate >= obj.EndDate)
                         ModelState.AddModelError("StartDate", "Must be smaller than end date");
                 }
-
-
-                if (obj.DegreeLevelID == 1 || obj.DegreeLevelID == 10)
+                if (obj.StartDate != null)
                 {
-                    obj.ObtainedMark = null; obj.TotalMark = null; obj.Percentage = null;
+                    if (obj.EndDate >= DateTime.Now)
+                        ModelState.AddModelError("EndDate", "Must be smaller than today's date");
                 }
-                else
+                if ((obj.DegreeLevelID == 1 || obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6) && obj.BoardID == 0)
                 {
-                    if (obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6)
-                    {
-                        if (obj.ObtainedMark == null)
-                            ModelState.AddModelError("ObtainedMark", "Mandatory ");
-                        if (obj.TotalMark == null)
-                            ModelState.AddModelError("TotalMark", "Mandatory ");
-                        if (obj.Percentage == null)
-                            ModelState.AddModelError("Percentage", "Mandatory ");
-                    }
-                    else
-                    {
-                        if (obj.Percentage == null && obj.CGPA == null)
-                        {
-                            if (obj.ObtainedMark == null)
-                                ModelState.AddModelError("ObtainedMark", "Mandatory ");
-                            if (obj.TotalMark == null)
-                                ModelState.AddModelError("TotalMark", "Mandatory ");
-                            if (obj.Percentage == null)
-                                ModelState.AddModelError("Percentage", "Mandatory ");
-                            if (obj.CGPA == null)
-                                ModelState.AddModelError("CGPA", "Mandatory ");
-                        }
-                    }
+                    ModelState.AddModelError("BoardID", "Mandatory");
+                }
+                if (obj.BoardID == 48)
+                {
+                    if (obj.OtherBoardName == null || obj.OtherBoardName == "")
+                        ModelState.AddModelError("OtherBoardName", "Mandatory");
+                }
+                if (obj.BoardID != 48)
+                {
+                    obj.OtherBoardName = null;
+                }
+                if ((obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6 || obj.DegreeLevelID == 7 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9) && obj.EduCriteriaID == 0)
+                {
+                    ModelState.AddModelError("EduCriteriaID", "Mandatory");
+                }
+                if (obj.EduCriteriaID == 1)
+                {
+                    obj.CGPA = null;
+                    obj.GradeName = null;
+                    if (obj.TotalMark == null)
+                        ModelState.AddModelError("TotalMark", "Mandatory");
+                    if (obj.ObtainedMark == null)
+                        ModelState.AddModelError("ObtainedMark", "Mandatory");
+                    if (obj.Percentage == null || obj.Percentage == "")
+                        ModelState.AddModelError("Percentage", "Mandatory");
+                }
+                if (obj.EduCriteriaID == 2)
+                {
+                    obj.TotalMark = null;
+                    obj.ObtainedMark = null;
+                    obj.Percentage = null;
+                    obj.CGPA = null;
+                    if (obj.GradeName == null || obj.GradeName == "")
+                        ModelState.AddModelError("GradeName", "Mandatory");
+                }
+                if (obj.EduCriteriaID == 3)
+                {
+                    obj.TotalMark = null;
+                    obj.ObtainedMark = null;
+                    obj.Percentage = null;
+                    obj.GradeName = null;
+                    if (obj.CGPA == null)
+                        ModelState.AddModelError("CGPA", "Mandatory");
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory ");
-                if (obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4)
+                if ((obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4) && obj.GradeName == null)
                 {
                     ModelState.AddModelError("GradeName", "Mandatory ");
                 }
@@ -291,6 +345,9 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Delete(int? id)
         {
             VMEduDetailOperation vmOperation = EduDetailService.GetDelete((int)id);
+            ViewBag.TotalMark = vmOperation.TotalMark;
+            ViewBag.obtainedMark = vmOperation.ObtainedMark;
+            ViewBag.Percentage = vmOperation.Percentage;
             EditHelper(vmOperation);
             return View(vmOperation);
         }
@@ -307,14 +364,16 @@ namespace RMSAPPLICATION.Controllers
         private void CreateHelper(VMEduDetailOperation obj)
         {
             ViewBag.DegreeLevelID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel");
-            ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName");
+            ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteName).ToList(), "InstituteID", "InstituteName");
             ViewBag.DegreeTypeID = new SelectList(DDService.GetEduDegreeType().ToList().OrderBy(aa => aa.EduTypeID).ToList(), "EduTypeID", "EduTypeName");
+            ViewBag.BoardID = new SelectList(DDService.GetBoardList().ToList().OrderBy(aa => aa.BISEID).ToList(), "BISEID", "BiseName");
         }
         private void EditHelper(VMEduDetailOperation obj)
         {
             ViewBag.DegreeLevelID = new SelectList(DDService.GetEduLevel().ToList().OrderBy(aa => aa.DLevelID).ToList(), "DLevelID", "DegreeLevel", obj.DegreeLevelID);
-            ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteID).ToList(), "InstituteID", "InstituteName", obj.InstitutionID);
+            ViewBag.InstitutionID = new SelectList(DDService.GetInstitute().ToList().OrderBy(aa => aa.InstituteName).ToList(), "InstituteID", "InstituteName", obj.InstitutionID);
             ViewBag.DegreeTypeID = new SelectList(DDService.GetEduDegreeType().ToList().OrderBy(aa => aa.EduTypeID).ToList(), "EduTypeID", "EduTypeName", obj.DegreeTypeID);
+            ViewBag.BoardID = new SelectList(DDService.GetBoardList().ToList().OrderBy(aa => aa.BISEID).ToList(), "BISEID", "BiseName", obj.BoardID);
         }
         public ActionResult DegreeTypeList(string ID)
         {

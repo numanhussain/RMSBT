@@ -7,7 +7,7 @@
         cache: false,
     }).done(function (result) {
         $('#PartialViewContainer').html(result);
-        $("#hv1").addClass("liActive");
+        $("#hv1").addClass("liInActive");
         $("#hv2").addClass("liInActive");
         $("#hv3").addClass("liInActive");
         $("#hv4").addClass("liInActive");
@@ -67,6 +67,14 @@ function MiscellaneousDetailHide(vmf) {
             $("#HearAboutDetailtb").show();
         } else {
             $("#HearAboutDetailtb").hide();
+        }
+    });
+    $('#NoticeTimetb').hide();
+    $('#NoticeTimeID').change(function () {
+        if ($("#HearAboutJobID").val() != "0") {
+            $("#NoticeTimetb").show();
+        } else {
+            $("#NoticeTimetb").hide();
         }
     });
 

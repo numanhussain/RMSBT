@@ -64,5 +64,6 @@ namespace RMSCORE.EF
         public Nullable<bool> WorkedBeforeCurrentlyWorking { get; set; }
         public string InterviewStatusName { get; set; }
         public string InterviewBeforeCompanyName { get; set; }
+        public Nullable<int> NoticeTimeID { get; set; }
     }
 }

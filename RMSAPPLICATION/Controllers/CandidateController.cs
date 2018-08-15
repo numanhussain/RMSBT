@@ -130,22 +130,30 @@ namespace RMSAPPLICATION.Controllers
             {
                 dbOperation.OtherPakistaniCityName = null;
             }
-            //if (dbOperation.NationalityCountryID == 0)
-            //    ModelState.AddModelError("NationalityCountryID", "Mandatory");
-            if (dbOperation.CNICNo == null || dbOperation.CNICNo == "")
-                ModelState.AddModelError("CNICNo", "Mandatory");
-
-
-            //if (dbOperation.CNICNo != null)
-            //{
-            //    if (dbOperation.CNICNo.Length > 15)
-            //        ModelState.AddModelError("CNICNo", "String length exceeds");
-            //    Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
-            //    if (!match.Success)
-            //    {
-            //        ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
-            //    }
-            //}
+            if (dbOperation.NationalityCountryID == 0)
+                ModelState.AddModelError("NationalityCountryID", "Mandatory");
+            if (dbOperation.NationalityCountryID == 74)
+            {
+                dbOperation.PassportNumber = null;
+                if (dbOperation.CNICNo == null || dbOperation.CNICNo == "")
+                    ModelState.AddModelError("CNICNo", "Mandatory");
+                else if (dbOperation.CNICNo != null)
+                {
+                    if (dbOperation.CNICNo.Length > 15)
+                        ModelState.AddModelError("CNICNo", "String length exceeds");
+                    Match match = Regex.Match(dbOperation.CNICNo, @"\d{1,5}\-\d{1,7}\-\d{1,1}");
+                    if (!match.Success)
+                    {
+                        ModelState.AddModelError("CNICNo", "Enter a valid CNIC No");
+                    }
+                }
+            }
+            if (dbOperation.NationalityCountryID != 74)
+            {
+                dbOperation.CNICNo = null;
+                if (dbOperation.PassportNumber == null || dbOperation.PassportNumber == "")
+                    ModelState.AddModelError("PassportNumber", "Mandatory");
+            }
             if (dbOperation.EmailID == null || dbOperation.EmailID == "")
                 ModelState.AddModelError("EmailID", "Mandatory ");
 

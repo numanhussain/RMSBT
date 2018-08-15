@@ -14,11 +14,24 @@ namespace RMSCORE.EF
     
     public partial class V_AppliedJob
     {
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public int CJobID { get; set; }
         public Nullable<System.DateTime> CJobDate { get; set; }
         public string CName { get; set; }
         public Nullable<int> JobID { get; set; }
         public string JobTitle { get; set; }
+        public string DepatmentName { get; set; }
+        public string SpecificRequirement { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public string PositionPurpose { get; set; }
+        public string ExperienceAndQualification { get; set; }
+        public string Experience { get; set; }
+        public string CompanyName { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<int> LocID { get; set; }
+        public Nullable<int> CityID { get; set; }
+        public string JobDescription { get; set; }
+        public Nullable<int> CatagoryID { get; set; }
+        public string CatName { get; set; }
     }
 }

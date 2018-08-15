@@ -20,10 +20,6 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> DateCreated { get; set; }
         public Nullable<int> UserTypeID { get; set; }
         public Nullable<bool> Status { get; set; }
-        public Nullable<bool> CanEdit { get; set; }
-        public Nullable<bool> CanDelete { get; set; }
-        public Nullable<bool> CanView { get; set; }
-        public Nullable<bool> CanAdd { get; set; }
         public string Email { get; set; }
         public string RetypePassword { get; set; }
         public Nullable<int> UserStage { get; set; }
@@ -31,5 +27,7 @@ namespace RMSCORE.EF
         public Nullable<int> AppliedAs { get; set; }
         public Nullable<bool> HaveExperience { get; set; }
         public Nullable<bool> HasCV { get; set; }
+        public Nullable<bool> HasAccess { get; set; }
+        public Nullable<System.DateTime> EmailSentTime { get; set; }
     }
 }

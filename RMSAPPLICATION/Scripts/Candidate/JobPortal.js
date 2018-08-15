@@ -146,7 +146,7 @@ function CandidateGetCreate() {
         $("#hv7").addClass("liInActive");
     });
 };
-function GetFilteredList() {
+function GetFilteredListHome() {
     var CatID = $("#CatagoryID").val();
     var LocID = $('#LocationID').val();
     $.ajax({
@@ -187,6 +187,54 @@ function GetFilteredList() {
             datatype: "json",
             success: function (data) {
                 $('#PVDTBody').html(data);
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+};
+function GetFilteredList() {
+    var CatID = $("#CatagoryID").val();
+    var LocID = $('#LocationID').val();
+    $.ajax({
+        type: "POST",
+        url: "/Job/IndexSubmit",
+        data: { LocationID: LocID, CatagoryID: CatID },
+        datatype: "json",
+        success: function (data) {
+            $('#PartialContainer').html(data);
+        },
+        error: function () {
+            alert("Dynamic content load failed.");
+        }
+    });
+    $("#CatagoryID").on('change', function () {
+        var CatID = $(this).val();
+        var LocID = $('#LocationID').val();
+        $.ajax({
+            type: "POST",
+            url: "/Job/IndexSubmit",
+            data: { LocationID: LocID, CatagoryID: CatID },
+            datatype: "json",
+            success: function (data) {
+                $('#PartialContainer').html(data);
+            },
+            error: function () {
+                alert("Dynamic content load failed.");
+            }
+        });
+    });
+    $("#LocationID").on('change', function () {
+        var LocID = $(this).val();
+        var CatID = $('#CatagoryID').val();
+        $.ajax({
+            type: "POST",
+            url: "/Job/IndexSubmit",
+            data: { LocationID: LocID, CatagoryID: CatID },
+            datatype: "json",
+            success: function (data) {
+                $('#PartialContainer').html(data);
             },
             error: function () {
                 alert("Dynamic content load failed.");

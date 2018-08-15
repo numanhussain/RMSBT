@@ -34,5 +34,7 @@ namespace RMSCORE.EF
         public Nullable<bool> StepSix { get; set; }
         public Nullable<bool> StepSeven { get; set; }
         public Nullable<bool> StepEight { get; set; }
+        public Nullable<bool> HasAccess { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
     }
 }

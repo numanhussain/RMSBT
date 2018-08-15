@@ -101,19 +101,19 @@
                             </div>*@
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Position Purpose</h6>
-                            <p>@Html.DisplayFor(x => x.PositionPurpose)</p>
+                            <p>@Html.Raw(Model.PositionPurpose)</p>
                         </div>
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Job Description</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.JobDescription)</p>
+                            <p class="content-group-sm">@Html.Raw(Model.JobDescription)</p>
                         </div>
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Experience and Qualification</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.ExperienceAndQualification)</p>
+                            <p class="content-group-sm">@Html.Raw(Model.ExperienceAndQualification)</p>
                         </div>
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Specific Requirements</h6>
-                            <p class="content-group-sm">@Html.DisplayFor(x => x.SpecificRequirement)</p>
+                            <p class="content-group-sm">@Html.Raw(Model.SpecificRequirement)</p>
                         </div>
                     </div>
                     <!-- /details -->

@@ -110,6 +110,8 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.WorkedBeforeCompanyName = obj.WorkedBeforeCompanyName;
             dbMiscellaneous.WorkedBeforeCurrentlyWorking = obj.WorkedBeforeCurrentlyWorking;
             dbMiscellaneous.InterviewBeforeCompanyName = obj.InterviewBeforeCompanyName;
+            dbMiscellaneous.LinkedInLink = obj.LinkedInLink;
+            dbMiscellaneous.NoticeTimeID = obj.NoticeTimeID;
             return dbMiscellaneous;
         }
         #endregion

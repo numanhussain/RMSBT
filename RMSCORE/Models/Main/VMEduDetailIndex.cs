@@ -34,5 +34,8 @@ namespace RMSCORE.Models.Main
         public bool? InProgress { get; set; }
         public string OtherDegreeLevelName { get; set; }
         public string GradeName { get; set; }
+        public int? BoardID { get; set; }
+        public string OtherBoardName { get; set; }
+        public int? EduCriteriaID { get; set; }
     }
 }
