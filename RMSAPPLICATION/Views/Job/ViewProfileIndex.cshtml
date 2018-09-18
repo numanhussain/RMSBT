@@ -182,7 +182,14 @@
                                             </td>
 
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.InstituteName)
+                                                @if (item.DegreeLevelID == 1 || item.DegreeLevelID == 2 || item.DegreeLevelID == 3 || item.DegreeLevelID == 4 || item.DegreeLevelID == 5 || item.DegreeLevelID == 6)
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.BoardName)
+                                                }
+                                                else
+                                                {
+                                                    @Html.DisplayFor(modelItem => item.InstituteName)
+                                                }
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.DegreeTitle)

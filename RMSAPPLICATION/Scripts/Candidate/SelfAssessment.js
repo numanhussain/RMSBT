@@ -30,7 +30,7 @@ function SelfAssessmentPostCreate(item) {
                         theme: 'alert-styled-right bg-info',
                         life: 6000
                     });
-                    SelfAssessmentGetCreate(id)
+                    SelfAssessmentGetCreate()
                 }
                 else {
                     $('#PartialViewContainer').html(data);

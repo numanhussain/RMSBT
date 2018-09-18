@@ -15,12 +15,16 @@ namespace RMSSERVICES.UserDetail
         #region -- Service Variables --
         IRepository<User> UserRepository;
         IRepository<Candidate> CandidateRepository;
+        IRepository<CandidateStep> CandidateStepRepository;
+        IRepository<V_CandidateDetail> V_CandidateDetailRepositiory;
         #endregion
         #region -- Service Interface Implementation --
-        public UserService(IRepository<User> userRepository, IRepository<Candidate> candidateRepository)
+        public UserService(IRepository<User> userRepository, IRepository<Candidate> candidateRepository, IRepository<CandidateStep> candidateStepRepository, IRepository<V_CandidateDetail> v_CandidateDetailRepositiory)
         {
             UserRepository = userRepository;
             CandidateRepository = candidateRepository;
+            CandidateStepRepository = candidateStepRepository;
+            V_CandidateDetailRepositiory = v_CandidateDetailRepositiory;
         }
 
         public List<User> GetIndex()
@@ -67,26 +71,49 @@ namespace RMSSERVICES.UserDetail
             dbCandidate.DateCreated = DateTime.Today;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
+            CandidateStep dbCandidateSteps = new CandidateStep();
+            dbCandidateSteps.CandidateID = dbCandidate.CandidateID;
+            dbCandidateSteps.StepOne = false;
+            dbCandidateSteps.StepTwo = false;
+            dbCandidateSteps.StepThree = false;
+            dbCandidateSteps.StepFour= false;
+            dbCandidateSteps.StepFive = false;
+            dbCandidateSteps.StepSix = false;
+            dbCandidateSteps.StepSeven = false;
+            dbCandidateSteps.StepEight= false;
+            CandidateStepRepository.Add(dbCandidateSteps);
+            CandidateStepRepository.Save();
             vmUserModel.UserID = dbUser.UserID;
             vmUserModel.Password = dbUser.Password;
             vmUserModel.SecurityLink = dbUser.SecurityLink;
             return new ServiceMessage();
         }
 
-        public List<VMLoggedUser> GetAllIndex()
+        public List<VMCandidateDetail> GetAllIndex()
         {
-            List<User> dbVUserCandidates = UserRepository.GetAll();
-            List<VMLoggedUser> VMLoggedUsers = new List<VMLoggedUser>();
-            foreach (var dbVUserCandidate in dbVUserCandidates)
+            List<V_CandidateDetail> dbVCandidateDetails = V_CandidateDetailRepositiory.GetAll();
+            List<VMCandidateDetail> VMLoggedUsers = new List<VMCandidateDetail>();
+            foreach (var dbVCandidateDetail in dbVCandidateDetails)
             {
-                VMLoggedUser vmLoggedUser = new VMLoggedUser();
-                vmLoggedUser.UserID = dbVUserCandidate.UserID;
-                vmLoggedUser.UserName = dbVUserCandidate.UserName;
-                vmLoggedUser.CompletePassword = StringCipher.Decrypt(dbVUserCandidate.Password);
-                vmLoggedUser.DateCreated = dbVUserCandidate.DateCreated;
-                VMLoggedUsers.Add(vmLoggedUser);
+                VMCandidateDetail vmCandidateDetail = new VMCandidateDetail();
+                vmCandidateDetail.UserID = dbVCandidateDetail.UserID;
+                vmCandidateDetail.Email = dbVCandidateDetail.Email;
+                vmCandidateDetail.UserStage = dbVCandidateDetail.UserStage;
+                vmCandidateDetail.CName= dbVCandidateDetail.CName;
+                vmCandidateDetail.CompletePassword = StringCipher.Decrypt(dbVCandidateDetail.Password);
+                vmCandidateDetail.DateCreated = dbVCandidateDetail.DateCreated;
+                vmCandidateDetail.StepOne = dbVCandidateDetail.StepOne;
+                vmCandidateDetail.StepTwo = dbVCandidateDetail.StepTwo;
+                vmCandidateDetail.StepThree = dbVCandidateDetail.StepThree;
+                vmCandidateDetail.StepFour = dbVCandidateDetail.StepFour;
+                vmCandidateDetail.StepFive = dbVCandidateDetail.StepFive;
+                vmCandidateDetail.StepSix = dbVCandidateDetail.StepSix;
+                vmCandidateDetail.StepSeven = dbVCandidateDetail.StepSeven;
+                vmCandidateDetail.StepEight = dbVCandidateDetail.StepEight;
+                vmCandidateDetail.HasCV = dbVCandidateDetail.HasCV;
+                VMLoggedUsers.Add(vmCandidateDetail);
             }
-            return VMLoggedUsers.OrderBy(aa => aa.UserName).ToList();
+            return VMLoggedUsers.ToList();
         }
         #endregion
         #region -- Service Private Methods --

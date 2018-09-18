@@ -100,8 +100,8 @@ function ApplyJob(id, item) {
 //        }
 //    });
 //}
-function ViewProfileIndex(id, item) {
-    if (item < 7) {
+function ViewProfileIndex(id, item, CateID) {
+    if (item == 0) {
         $.jGrowl('<div>You have to complete your profile first.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div></strong>', {
             header: '',
             position: 'center',

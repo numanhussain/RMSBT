@@ -32,18 +32,18 @@
             {
                 <div class="panel panel-flat">
                     @*<div class="panel-heading">
-                    <h5 class="panel-title">Basic datatable</h5>
-                    <div class="heading-elements">
-                        <ul class="icons-list">
-                            <li><a data-action="collapse"></a></li>
-                            <li><a data-action="reload"></a></li>
-                            <li><a data-action="close"></a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
-                </div>*@
+                            <h5 class="panel-title">Basic datatable</h5>
+                            <div class="heading-elements">
+                                <ul class="icons-list">
+                                    <li><a data-action="collapse"></a></li>
+                                    <li><a data-action="reload"></a></li>
+                                    <li><a data-action="close"></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
+                        </div>*@
                     <table class="table datatable-basic">
                         <thead>
                             <tr class="bg-primary">
@@ -77,13 +77,14 @@
                                         <div class="text-semibold">@item.LocName</div>
                                     </td>
                                     <td>
-                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
+                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("dd-MMM-yyyy")</div>
                                     </td>
                                     <td>
                                         <div class="text-semibold">
                                             @if (item.DeadlineDate != null)
                                             {
-                                                @item.DeadlineDate.Value.ToString("MM/dd/yyyy")}
+                                                @item.DeadlineDate.Value.ToString("dd-MMM-yyyy")
+                                            }
                                         </div>
                                     </td>
                                 </tr>

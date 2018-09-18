@@ -1,6 +1,4 @@
-﻿
-
-function CandidateGetCreate() {
+﻿function CandidateGetCreate() {
     clearClasses();
     $.ajax({
         url: '/Candidate/Create',
@@ -256,7 +254,7 @@ function FormControlsScriptEdit(model) {
 }
 function WorkPermitNotify() {
     $('#WorkPermitNo').click(function () {
-        $.jGrowl('You have successfully saved your details.', {
+        $.jGrowl('<div>You have to no work permit.</div><div>Work permit is mandatory</div>', {
             header: '',
             position: 'center',
             theme: 'alert-styled-right bg-info',
@@ -299,7 +297,7 @@ function DateLoad() {
     var date_input = $('input[name="DOB"]'); //our date input has the name "date"
     var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
     date_input.datepicker({
-        format: 'dd/MM/yyyy',
+        format: 'dd-MM-yyyy',
         orientation: 'bottom',
         container: container,
         todayHighlight: true,

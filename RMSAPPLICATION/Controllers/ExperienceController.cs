@@ -158,8 +158,8 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.CountryID != 74)
             {
-                if (obj.OtherCityName == null || obj.OtherCityName == "")
-                    ModelState.AddModelError("OtherCityName", "Mandatory");
+                if (obj.OtherCity == null || obj.OtherCity == "")
+                    ModelState.AddModelError("OtherCity", "Mandatory");
             }
             if (obj.CityID == 117)
             {

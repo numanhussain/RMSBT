@@ -413,3 +413,24 @@ function CalculatePercentage() {
         });
     });
 }
+
+function EduDateLoad() {
+    var date_inputEduStartDate = $('input[name="StartDate"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputEduStartDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+    var date_inputEduEndDate = $('input[name="EndDate"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputEduEndDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+}

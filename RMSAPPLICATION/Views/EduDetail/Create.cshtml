@@ -124,24 +124,24 @@
             <div class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">Start Date</label>
-                    <input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
-                    @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                    @*<input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?"dd/mm/yyyy":Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
+                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MM-yyyy}", new { @class = "form-control", id = "EndDate", name = "StartDate", @type = "text", placeholder = "dd-mm-yyyy" })
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+                <span class="help-block">Format must be (dd-mm-yyyy)</span>
             </div>
             <div id="hidedatediv" class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">End Date</label>
-                    <input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
-                    @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                    @*  <input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?"dd/mm/yyyy":Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
+                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "dd-mm-yyyy" })
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+                <span class="help-block">Format must be (dd-mm-yyyy)</span>
             </div>
             <div class="col-md-3">
                 <div class="col-md-3"></div>
@@ -225,32 +225,6 @@
         <button type="button" id="btnPostCreate" class="btn bg-primary" value="Save">Save</button>
     </div>
 }
-<script>
-    $(document).ready(function () {
-        var date_input1 = $('input[name="StartDate"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input1.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        var date_input2 = $('input[name="EndDate"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input2.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $('#OtherDegreeType').tooltip({ 'trigger': 'focus', 'title': 'Enter as per your degree' });
@@ -261,5 +235,6 @@
         LoadDegreeTypeDD();
         DegreeTypeChange();
         CalculatePercentage();
+        EduDateLoad();
     });
 </script>

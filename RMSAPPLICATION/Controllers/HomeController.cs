@@ -156,6 +156,14 @@ namespace RMSAPPLICATION.Controllers
             }
             if (vmUserModel.Email == null || vmUserModel.Email == "")
                 ModelState.AddModelError("Email", "Mandatory");
+            if (vmUserModel.Email != null)
+            {
+                Match match = Regex.Match(vmUserModel.Email, @"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("Email", "Invalid Formate");
+                }
+            }
             if (Session["Captcha"] == null || Session["Captcha"].ToString() != vmUserModel.Captcha)
             {
                 ModelState.AddModelError("Captcha", "Captcha Entry Wrong");
@@ -214,18 +222,6 @@ namespace RMSAPPLICATION.Controllers
                         UserEntityService.PostEdit(user);
                         Expression<Func<V_UserCandidate, bool>> SpecificEntries = c => c.UserID == vm.UserID;
                         Session["LoggedInUser"] = VUserEntityService.GetIndexSpecific(SpecificEntries).First();
-                        Candidate dbCandidate = CandidateEntityService.GetEdit(vm.CandidateID);
-                        CandidateStep dbTickSteps = new CandidateStep();
-                        dbTickSteps.StepOne = false;
-                        dbTickSteps.StepTwo = false;
-                        dbTickSteps.StepThree = false;
-                        dbTickSteps.StepFour = false;
-                        dbTickSteps.StepFive = false;
-                        dbTickSteps.StepSix = false;
-                        dbTickSteps.StepSeven = false;
-                        dbTickSteps.StepEight = false;
-                        dbTickSteps.CandidateID = vm.CandidateID;
-                        CandidateStepEntityService.PostCreate(dbTickSteps);
                         return RedirectToAction("ConfirmedEmail", "Home");
                     }
                 }

@@ -283,7 +283,8 @@ namespace RMSAPPLICATION.Controllers
                     fname = vmf.CandidateID.ToString() + ".doc";
                 }
                 DeleteFiles(vmf, files);
-                // Get the complete folder path and store the file inside it.  
+                // Get the complete folder path and store the file inside it. 
+                //string path = "C://data//"+fname;
                 fname = Path.Combine(Server.MapPath("~/UploadFiles/"), fname);
                 file.SaveAs(fname);
                 Candidate dbCandidate = CandidateRepository.GetSingle(vmf.CandidateID);
@@ -320,11 +321,11 @@ namespace RMSAPPLICATION.Controllers
             {
                 return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".jpg"), "application/jpg");
             }
-
         }
         //Delete All previous files
         public void DeleteFiles(V_UserCandidate vmf, HttpFileCollectionBase files)
         {
+            //string sourceDir = "C://data//";
             string sourceDir = Server.MapPath("~/UploadFiles/");
             try
             {

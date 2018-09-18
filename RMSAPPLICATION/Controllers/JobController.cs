@@ -174,7 +174,7 @@ namespace RMSAPPLICATION.Controllers
             Expression<Func<CandidateJob, bool>> SpecificClient2 = c => c.CandidateID == vmf.CandidateID && c.JobID == JobID;
             if (JobApplyService.GetIndexSpecific(SpecificClient2).Count == 0)
             {
-                string Message = JobService.CheckForProfileCompletion(vmf);
+                string Message = JobService.CheckForProfileCompletion(vmf, dbJob);
                 if (Message == "")
                 {
                     CandidateJob dbCandidateJob = new CandidateJob();
@@ -182,6 +182,8 @@ namespace RMSAPPLICATION.Controllers
                     dbCandidateJob.JobID = JobID;
                     dbCandidateJob.CJobDate = DateTime.Now;
                     JobApplyService.PostCreate(dbCandidateJob);
+                    dbJob.StatusID = 1;
+                    JobEntityService.PostEdit(dbJob);
                     var callbackUrl = "careers.bestway.com.pk";
                     DDService.GenerateEmail(vmf.Email, "", "Job Application for " + dbJob.JobTitle + " " + dbCandidateJob.JobID + " ", EmailText.GetJobApplyEmailText(vmf, dbJob, callbackUrl), vmf.CandidateID, 3);
                     //EmailGenerate.SendEmail(vmf.Email, "", "<html><head><meta content=\"text/html; charset = utf - 8\" /></head><body><p>Dear <strong><u>" + vmf.CName + " </u></strong>  </p><div><p>Thank you for your keen interest in applying for the position of <strong><u>" + dbJob.JobTitle + "</u></strong>.We have received your application for this post. </p>" +
@@ -191,6 +193,7 @@ namespace RMSAPPLICATION.Controllers
                     //    "<div>Kindly note if you have applied for multiple positions, you will receive a separate notification for each position</div>" +
                     //    "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div></body></html>", "",dbJob.JobTitle);
                     return Json("OK", JsonRequestBehavior.AllowGet);
+
                 }
                 else
                 {

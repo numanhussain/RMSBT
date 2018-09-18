@@ -206,6 +206,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(int id)
         {
             VMEduDetailOperation obj = EduDetailService.GetEdit(id);
+            string myDate = obj.StartDate.Value.ToString("dd/MM/yyyy");
             ViewBag.TotalMark = obj.TotalMark;
             ViewBag.obtainedMark= obj.ObtainedMark;
             ViewBag.Percentage = obj.Percentage;

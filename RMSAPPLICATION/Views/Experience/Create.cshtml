@@ -87,24 +87,26 @@
             <div class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">Start Date</label>
-                    <input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @*<input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?"dd/mm/yyyy":Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
                     @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+                <span class="help-block">Format must be (dd-mm-yyyy)</span>
             </div>
             <div id="hidedatediv" class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">End Date</label>
-                    <input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @*<input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?"dd/mm/yyyy":Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
                     @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+                <span class="help-block">Format must be (dd-mm-yyyy)</span>
             </div>
             <div class="col-md-4">
                 <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="CurrentlyWorking">
@@ -227,32 +229,6 @@
         <button type="button" id="btnPostCreate2" class="btn bg-primary">Save</button>
     </div>
 }
-<script>
-    $(document).ready(function () {
-        var date_input7 = $('input[name="StartDate"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input7.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        var date_input8 = $('input[name="EndDate"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input8.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
          $("#hidedatediv").show();
@@ -274,6 +250,7 @@
         });
         LoadDD2();
         OtherCity2();
+        ExperienceDateLoad();
         ExperienceDetailPostCreate(@Model.CandidateID);
      FormControlsScriptEditExperience('@Model.ContactEmployerYes', '@Model.ContactEmployerNo');
     });

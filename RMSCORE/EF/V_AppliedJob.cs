@@ -22,7 +22,6 @@ namespace RMSCORE.EF
         public string JobTitle { get; set; }
         public string DepatmentName { get; set; }
         public string SpecificRequirement { get; set; }
-        public Nullable<bool> Status { get; set; }
         public string PositionPurpose { get; set; }
         public string ExperienceAndQualification { get; set; }
         public string Experience { get; set; }
@@ -33,5 +32,7 @@ namespace RMSCORE.EF
         public string JobDescription { get; set; }
         public Nullable<int> CatagoryID { get; set; }
         public string CatName { get; set; }
+        public Nullable<int> StatusID { get; set; }
+        public string JStatusName { get; set; }
     }
 }

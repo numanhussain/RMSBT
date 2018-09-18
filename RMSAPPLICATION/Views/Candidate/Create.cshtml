@@ -117,7 +117,8 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Date of Birth</label>
-                            <input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.DOB.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                            @Html.TextBoxFor(x => x.DOB, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DOB", name = "DOB", @type = "text", placeholder = "dd-mm-yyyy" })
+                            @*<input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?"dd/mm/yyyy":Model.DOB.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
                             @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })

@@ -18,4 +18,8 @@ namespace RMSCORE.Models.Other
         public string Captcha { get; set; }
         public int? CatagoryID { get; set; }
     }
+    public class VMCandidateDetail : V_CandidateDetail
+    {
+        public string CompletePassword { get; set; }
+    }
 }

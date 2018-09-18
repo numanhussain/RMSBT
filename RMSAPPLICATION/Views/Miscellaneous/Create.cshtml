@@ -132,7 +132,8 @@
                                     </div>
                                     <div class="required col-md-2 control-label text-semibold">Interview Date</div>
                                     <div class="col-md-2">
-                                        <input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?"":Model.InterviewedDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />
+                                        @Html.TextBoxFor(x => x.InterviewedDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "InterviewedDate", name = "InterviewedDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                                        @*<input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?"":Model.InterviewedDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />*@
                                         @* @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
                                     </div>
@@ -167,14 +168,16 @@
                                 <div class="form-group">
                                     <div class="required col-md-2 control-label text-semibold">Joining Date</div>
                                     <div class="col-md-2">
-                                        <input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?"":Model.DateJoining.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />
+                                        @Html.TextBoxFor(x => x.DateJoining, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateJoining", name = "DateJoining", @type = "text", placeholder = "dd-mm-yyyy" })
+                                        @*<input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?"":Model.DateJoining.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />*@
                                         @*@Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                     </div>
                                     <div id="hidedatediv">
                                         <div class="required col-md-2 control-label text-semibold">Leaving date</div>
                                         <div class="col-md-2">
-                                            <input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?"":Model.DateLeavig.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />
+                                            @Html.TextBoxFor(x => x.DateLeavig, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateLeavig", name = "DateLeavig", @type = "text", placeholder = "dd-mm-yyyy" })
+                                            @*<input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?"":Model.DateLeavig.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />*@
                                             @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                             @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
                                         </div>
@@ -357,45 +360,6 @@
         </div>
     }
 }
-<script>
-    $(document).ready(function () {
-        var date_input11 = $('input[name="InterviewedDate"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input11.datepicker({
-            format: 'dd/mm/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        var date_input12 = $('input[name="DateJoining"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input12.datepicker({
-            format: 'dd/mm/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        var date_input13 = $('input[name="DateLeavig"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input13.datepicker({
-            format: 'dd/mm/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
         $("#hidedatediv").show();
@@ -416,5 +380,6 @@
         SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
         MiscellaneousDetailHide(@LoggedInUser.AppliedAs);
         HasCV('@LoggedInUser.HasCV');
+        MiscellaneousDateLoad();
 });
 </script>

@@ -32,7 +32,6 @@ namespace RMSSERVICES.Miscellaneous
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == id;
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
-            dbMiscellaneous.CandidateID = id;
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
                 dbMiscellaneous = MiscellaneousRepository.FindBy(SpecificClient).First();

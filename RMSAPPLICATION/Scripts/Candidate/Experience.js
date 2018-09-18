@@ -408,3 +408,24 @@ function ShowIndustryHide() {
         $("#OtherIndustry").hide();
     }
 }
+
+function ExperienceDateLoad() {
+    var date_inputExperienceStartDate = $('input[name="StartDate"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputExperienceStartDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+    var date_inputExperienceEndDate = $('input[name="EndDate"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputExperienceEndDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+}

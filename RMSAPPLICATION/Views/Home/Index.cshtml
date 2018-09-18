@@ -117,13 +117,13 @@
                                         <div class="text-semibold">@item.LocName</div>
                                     </td>
                                     <td>
-                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
+                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("dd-MMM-yyyy")</div>
                                     </td>
                                     <td>
                                         <div class="text-semibold">
                                             @if (item.DeadlineDate != null)
                                             {
-                                                @item.DeadlineDate.Value.ToString("MM/dd/yyyy")}
+                                                @item.DeadlineDate.Value.ToString("dd-MMM-yyyy")}
                                         </div>
                                     </td>
                                 </tr>

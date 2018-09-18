@@ -25,8 +25,6 @@ namespace RMSCORE.EF
         public string ReasonLeaving { get; set; }
         public Nullable<int> NoticeTime { get; set; }
         public Nullable<int> CandidateID { get; set; }
-        public string CName { get; set; }
-        public string CNICNo { get; set; }
         public string WorkedBefore { get; set; }
         public Nullable<int> HearAboutJobID { get; set; }
         public string HearAboutSource { get; set; }

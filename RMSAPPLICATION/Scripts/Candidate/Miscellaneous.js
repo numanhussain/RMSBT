@@ -215,4 +215,34 @@ function HasCV(HasCV) {
     });
 }
 
+function MiscellaneousDateLoad() {
+    var date_inputMiscellaneousInterviewDate = $('input[name="InterviewedDate"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputMiscellaneousInterviewDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+    var date_inputMiscellaneousJoiningDate = $('input[name="DateJoining"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputMiscellaneousJoiningDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+    var date_inputMiscellaneousLeavingDate = $('input[name="DateLeavig"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputMiscellaneousLeavingDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+}
+
 
