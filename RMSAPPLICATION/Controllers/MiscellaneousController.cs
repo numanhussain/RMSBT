@@ -40,7 +40,9 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
-            MiscellaneousDetail obj = MiscellaneousService.GetCreate(cid);
+            MiscellaneousDetail obj = new MiscellaneousDetail();
+            obj.WorkedBeforeCurrentlyWorking = false;
+            obj = MiscellaneousService.GetCreate(cid);
             CreateHelper(obj);
             return View(obj);
         }

@@ -18,6 +18,24 @@
         document.getElementById("UserstageAfterFirst").value = 7;
     });
 }
+function LoadWorkingBeforeControlShow(AppliedAs) {
+    if (AppliedAs != 1) {
+        $("#hidedatediv").show();
+        if (document.getElementById('WorkedBeforeCurrentlyWorking').checked) {
+            $("#hidedatediv").hide();
+        }
+        //Currently working  Selected
+        $('#WorkedBeforeCurrentlyWorking').click(function () {
+            if ($(this).is(":checked")) {
+                $("#hidedatediv").hide();
+            }
+            else {
+                $("#hidedatediv").show();
+            }
+
+        });
+    }
+}
 function MiscellaneousDetailHide(vmf) {
     $('#CriminalDetailtb').hide();
     $('#CrimanalRecord').change(function () {
@@ -184,7 +202,7 @@ function checkextension() {
     var a = 0;
     //binds to onchange event of your input field
     var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
-    if (ext == "docx" || ext == "doc" || ext == "pdf" || ext == "jpg" || ext=="") {
+    if (ext == "docx" || ext == "doc" || ext == "pdf" || ext == "jpg" || ext == "") {
         SaveCV();
     }
     else {

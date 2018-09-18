@@ -362,20 +362,7 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
-        $("#hidedatediv").show();
-        if (document.getElementById('WorkedBeforeCurrentlyWorking').checked) {
-            $("#hidedatediv").hide();
-        }
-        //Currently working  Selected
-        $('#WorkedBeforeCurrentlyWorking').click(function () {
-            if ($(this).is(":checked")) {
-                $("#hidedatediv").hide();
-            }
-            else {
-                $("#hidedatediv").show();
-            }
-
-        });
+        LoadWorkingBeforeControlShow(@LoggedInUser.AppliedAs);
         //Worked Before Selected
         SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
         MiscellaneousDetailHide(@LoggedInUser.AppliedAs);
