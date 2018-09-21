@@ -55,7 +55,7 @@
     <div class="navbar-header">
         <div style="padding-left:20px; padding-top:10px;">
             <a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-                @*<a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
+            @*<a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
             <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
         </div>
     </div>
@@ -80,12 +80,14 @@
                 <div class="panel-body">
                     <div class="media stack-media-on-mobile text-left content-group-lg">
                         @*<a href="#" class="media-left media-middle">
-                            <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
-                        </a>*@
+                                <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
+                            </a>*@
                         <div class="media-body">
                             <h4 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h4>
                             <ul class="list-inline list-inline-separate text-muted no-margin">
-                                <li>@Html.DisplayFor(x => x.LocName)</li>
+                                <li><span class="text-semibold">Location:</span> @Html.DisplayFor(x => x.LocName)</li>
+                                <li><span class="text-semibold">Department: </span>@Html.DisplayFor(x => x.DepatmentName)</li>
+                                <li><span class="text-semibold">Sub Department:</span> @Html.DisplayFor(x => x.SubDepartmentName)</li>
                             </ul>
                         </div>
 

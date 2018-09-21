@@ -91,7 +91,7 @@ namespace RMSSERVICES.Job
             else
                 vmJobDetail.IsApplied = false;
             //Candidate step by step profile completion
-            if (vmJobDetail.CatagoryID != 3)
+            if (vmJobDetail.CatagoryID != 2)
             {
                 CandidateStep dbCandidateStep = CandidateStepRepository.GetSingle(LoggedInUser.CandidateID);
                 if (dbCandidateStep.StepOne == true && dbCandidateStep.StepTwo == true && dbCandidateStep.StepThree == true && dbCandidateStep.StepFour == true && dbCandidateStep.StepFive == true && dbCandidateStep.StepSix == true && dbCandidateStep.StepSeven == true)
@@ -137,7 +137,7 @@ namespace RMSSERVICES.Job
             {
                 message = "Kindly enter your educations in profile.";
             }
-            if (dbJob.CatagoryID == 3)
+            if (dbJob.CatagoryID == 2)
             {
                 Expression<Func<EduDetail, bool>> SpecificEdu = c => c.CandidateID == LoggedInUser.CandidateID && (c.DegreeLevelID == 6);
                 if (EduDetailRepository.FindBy(SpecificEdu).Count == 0)
@@ -145,7 +145,7 @@ namespace RMSSERVICES.Job
                     message = "Kindly enter your intermediate education in profile.";
                 }
             }
-            if (dbJob.CatagoryID == 4)
+            if (dbJob.CatagoryID == 3)
             {
                 Expression<Func<EduDetail, bool>> SpecificEdu = c => c.CandidateID == LoggedInUser.CandidateID && (c.DegreeLevelID == 5);
                 if (EduDetailRepository.FindBy(SpecificClient1).Count == 0)
@@ -181,6 +181,8 @@ namespace RMSSERVICES.Job
             vmJobDetail.PositionPurpose = dbJobDetail.PositionPurpose;
             vmJobDetail.ExperienceAndQualification = dbJobDetail.ExperienceAndQualification;
             vmJobDetail.SpecificRequirement = dbJobDetail.SpecificRequirement;
+            vmJobDetail.DepatmentName = dbJobDetail.DepatmentName;
+            vmJobDetail.SubDepartmentName = dbJobDetail.SubDepartmentName;
             return vmJobDetail;
         }
         //public List<VMOpenJobIndex> GetOpenJob(V_UserCandidate LoggedInUser)
@@ -251,6 +253,7 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.StatusID = dbOpenJob.StatusID;
                 vmOpenJobIndex.JStatusName = dbOpenJob.JStatusName;
                 vmOpenJobIndex.DepatmentName = dbOpenJob.DepatmentName;
+                vmOpenJobIndex.SubDepartmentName = dbOpenJob.SubDepartmentName;
                 vmOpenJobIndex.SpecificRequirement = dbOpenJob.SpecificRequirement;
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);

@@ -178,6 +178,15 @@
     <Compile Include="EF\User.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\VRM_Candidate.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VRM_CandidateSimple.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\VRM_EduDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\V_AppliedJob.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

@@ -254,7 +254,7 @@ function FormControlsScriptEdit(model) {
 }
 function WorkPermitNotify() {
     $('#WorkPermitNo').click(function () {
-        $.jGrowl('<div>You have to no work permit.</div><div>Work permit is mandatory</div>', {
+        $.jGrowl('<div>Work permit is mandatory</div>', {
             header: '',
             position: 'center',
             theme: 'alert-styled-right bg-info',
