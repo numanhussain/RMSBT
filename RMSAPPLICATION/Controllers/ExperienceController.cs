@@ -63,7 +63,7 @@ namespace RMSAPPLICATION.Controllers
         //    return Json("OK", JsonRequestBehavior.AllowGet);
         //}
 
-        public ActionResult SaveOverallExperience(int? Experience)
+        public ActionResult SaveOverallExperience(float? Experience)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
@@ -71,7 +71,7 @@ namespace RMSAPPLICATION.Controllers
             return Json("OK", JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult SaveCementExperience(int? CementExp)
+        public ActionResult SaveCementExperience(float? CementExp)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
@@ -93,28 +93,45 @@ namespace RMSAPPLICATION.Controllers
         {
             ReadFromRadioButton(obj);
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            if (obj.CurrentlyWorking == true)
-            {
-                obj.EndDate = null;
-            }
             if (obj.IndustryID == 0)
-                ModelState.AddModelError("IndustryID", "Mandatory ");
+                ModelState.AddModelError("IndustryID", "Mandatory");
+            if (obj.IndustryID == 110)
+            {
+                obj.OtherIndustryName = null;
+                if (obj.IndustryID == 0)
+                    ModelState.AddModelError("CityID", "Mandatory");
+            }
+            if (obj.IndustryID == 110)
+            {
+                if (obj.OtherIndustryName == null || obj.OtherIndustryName == "")
+                    ModelState.AddModelError("OtherIndustryName", "Mandatory");
+            }
             if (obj.JobTitle == null || obj.JobTitle == "")
                 ModelState.AddModelError("PositionTitle", "Mandatory ");
             if (obj.EmployerName == null || obj.EmployerName == "")
                 ModelState.AddModelError("EmployerName", "Mandatory ");
             if (obj.StartDate == null)
                 ModelState.AddModelError("StartDate", "Mandatory ");
-            if (obj.EndDate == null)
-                ModelState.AddModelError("EndDate", "Mandatory ");
+            if (obj.CurrentlyWorking == true)
+            {
+                obj.EndDate = null;
+            }
+            else
+            {
+                if (obj.EndDate == null)
+                    ModelState.AddModelError("EndDate", "Mandatory ");
+            }
             if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
                 ModelState.AddModelError("StartDate", "Invalid date");
             else
                 obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
-            if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
-                ModelState.AddModelError("EndDate", "Invalid date");
-            else
-                obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
+            if (obj.EndDate != null)
+            {
+                if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
+                    ModelState.AddModelError("EndDate", "Invalid date");
+                else
+                    obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
+            }
             if (obj.StartDate > DateTime.Today.Date)
                 ModelState.AddModelError("StartDate", "Cannot be current date");
             if (obj.StartDate != null)
@@ -131,6 +148,8 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory ");
+            if (obj.CountryID == 0)
+                ModelState.AddModelError("CountryID", "Mandatory");
             if (obj.CountryID == 74)
             {
                 obj.OtherCityName = null;
@@ -139,12 +158,15 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.CountryID != 74)
             {
-                obj.CityID = null;
+                if (obj.OtherCity == null || obj.OtherCity == "")
+                    ModelState.AddModelError("OtherCity", "Mandatory");
+            }
+            if (obj.CityID == 117)
+            {
                 if (obj.OtherCityName == null || obj.OtherCityName == "")
                     ModelState.AddModelError("OtherCityName", "Mandatory");
+
             }
-            if (obj.CountryID == 0)
-                ModelState.AddModelError("CountryID", "Mandatory");
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 4)
@@ -172,30 +194,48 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(VMExperienceOperation obj)
         {
             ReadFromRadioButton(obj);
-            if (obj.CurrentlyWorking == true)
-            {
-                obj.EndDate = null;
-            }
+            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.IndustryID == 0)
-                ModelState.AddModelError("IndustryID", "Mandatory ");
+                ModelState.AddModelError("IndustryID", "Mandatory");
+            if (obj.IndustryID != 110)
+            {
+                obj.OtherIndustryName = null;
+                if (obj.IndustryID == 0)
+                    ModelState.AddModelError("CityID", "Mandatory");
+            }
+            if (obj.IndustryID == 110)
+            {
+                if (obj.OtherIndustryName == null || obj.OtherIndustryName == "")
+                    ModelState.AddModelError("OtherIndustryName", "Mandatory");
+            }
             if (obj.JobTitle == null || obj.JobTitle == "")
                 ModelState.AddModelError("PositionTitle", "Mandatory ");
             if (obj.EmployerName == null || obj.EmployerName == "")
                 ModelState.AddModelError("EmployerName", "Mandatory ");
             if (obj.StartDate == null)
                 ModelState.AddModelError("StartDate", "Mandatory ");
-            if (obj.EndDate == null)
-                ModelState.AddModelError("EndDate", "Mandatory ");
-            if (obj.StartDate > DateTime.Today.Date)
-                ModelState.AddModelError("StartDate", "Cannot be current date");
+            if (obj.CurrentlyWorking == true)
+            {
+                obj.EndDate = null;
+            }
+            else
+            {
+                if (obj.EndDate == null)
+                    ModelState.AddModelError("EndDate", "Mandatory ");
+            }
             if (!AssistantService.IsDateTime(Request.Form["StartDate"])) // check for valid date
                 ModelState.AddModelError("StartDate", "Invalid date");
             else
                 obj.StartDate = Convert.ToDateTime(Request.Form["StartDate"].ToString());
-            if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
-                ModelState.AddModelError("EndDate", "Invalid date");
-            else
-                obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
+            if (obj.EndDate != null)
+            {
+                if (!AssistantService.IsDateTime(Request.Form["EndDate"])) // check for valid date
+                    ModelState.AddModelError("EndDate", "Invalid date");
+                else
+                    obj.EndDate = Convert.ToDateTime(Request.Form["EndDate"].ToString());
+            }
+            if (obj.StartDate > DateTime.Today.Date)
+                ModelState.AddModelError("StartDate", "Cannot be current date");
             if (obj.StartDate != null)
             {
                 if (obj.StartDate >= obj.EndDate)
@@ -210,21 +250,25 @@ namespace RMSAPPLICATION.Controllers
             }
             if (obj.Address == null || obj.Address == "")
                 ModelState.AddModelError("Address", "Mandatory ");
+            if (obj.CountryID == 0)
+                ModelState.AddModelError("CountryID", "Mandatory");
             if (obj.CountryID == 74)
             {
-                obj.OtherCityName = null;
+                obj.OtherCity = null;
                 if (obj.CityID == 0)
                     ModelState.AddModelError("CityID", "Mandatory");
             }
             if (obj.CountryID != 74)
             {
-                obj.CityID = null;
+                if (obj.OtherCity == null || obj.OtherCity == "")
+                    ModelState.AddModelError("OtherCity", "Mandatory");
+            }
+            if (obj.CityID == 117)
+            {
                 if (obj.OtherCityName == null || obj.OtherCityName == "")
                     ModelState.AddModelError("OtherCityName", "Mandatory");
-            }
-            if (obj.CountryID == 0)
-                ModelState.AddModelError("CountryID", "Mandatory");
 
+            }
             if (ModelState.IsValid)
             {
                 ExperienceDetailService.PostEdit(obj);
@@ -292,11 +336,6 @@ namespace RMSAPPLICATION.Controllers
                     obj.ContactEmployerYes = "NO";
                     obj.ContactEmployerNo = "YES";
                 }
-            }
-            else
-            {
-                obj.ContactEmployerYes = "NO";
-                obj.ContactEmployerNo = "NO";
             }
             #endregion
         }

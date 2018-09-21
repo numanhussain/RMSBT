@@ -41,13 +41,17 @@ namespace RMSCORE.EF
         public virtual DbSet<EduDegreeType> EduDegreeTypes { get; set; }
         public virtual DbSet<EduDetail> EduDetails { get; set; }
         public virtual DbSet<EduInstitute> EduInstitutes { get; set; }
+        public virtual DbSet<EmailLog> EmailLogs { get; set; }
+        public virtual DbSet<EmailNotificationType> EmailNotificationTypes { get; set; }
         public virtual DbSet<ExpCareerLevel> ExpCareerLevels { get; set; }
         public virtual DbSet<ExperienceDetail> ExperienceDetails { get; set; }
         public virtual DbSet<ExperienceIndustry> ExperienceIndustries { get; set; }
         public virtual DbSet<Gender> Genders { get; set; }
         public virtual DbSet<HearAbout> HearAbouts { get; set; }
         public virtual DbSet<Interview> Interviews { get; set; }
+        public virtual DbSet<InterviewStatu> InterviewStatus { get; set; }
         public virtual DbSet<JobDetail> JobDetails { get; set; }
+        public virtual DbSet<JobStatu> JobStatus { get; set; }
         public virtual DbSet<Location> Locations { get; set; }
         public virtual DbSet<MartialStatu> MartialStatus { get; set; }
         public virtual DbSet<MiscellaneousDetail> MiscellaneousDetails { get; set; }
@@ -65,6 +69,7 @@ namespace RMSCORE.EF
         public virtual DbSet<V_Candidate_Miscellaneous> V_Candidate_Miscellaneous { get; set; }
         public virtual DbSet<V_Candidate_Reference> V_Candidate_Reference { get; set; }
         public virtual DbSet<V_Candidate_Skills> V_Candidate_Skills { get; set; }
+        public virtual DbSet<V_CandidateDetail> V_CandidateDetail { get; set; }
         public virtual DbSet<V_CandidateProfile> V_CandidateProfile { get; set; }
         public virtual DbSet<V_Interview> V_Interview { get; set; }
         public virtual DbSet<V_JobDetail> V_JobDetail { get; set; }

@@ -21,8 +21,6 @@ namespace RMSCORE.EF
         public string RetypePassword { get; set; }
         public Nullable<int> UserStage { get; set; }
         public string Email { get; set; }
-        public Nullable<bool> HaveExperience { get; set; }
-        public Nullable<int> AppliedAs { get; set; }
         public Nullable<bool> HasCV { get; set; }
         public string CVName { get; set; }
         public int CandidateID { get; set; }
@@ -34,5 +32,10 @@ namespace RMSCORE.EF
         public Nullable<bool> StepSix { get; set; }
         public Nullable<bool> StepSeven { get; set; }
         public Nullable<bool> StepEight { get; set; }
+        public Nullable<bool> HasAccess { get; set; }
+        public Nullable<System.DateTime> DateCreated { get; set; }
+        public Nullable<bool> Status { get; set; }
+        public Nullable<int> AppliedAs { get; set; }
+        public Nullable<bool> HaveExperience { get; set; }
     }
 }

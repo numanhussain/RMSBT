@@ -97,6 +97,12 @@
     <Compile Include="EF\EduInstitute.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\EmailLog.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\EmailNotificationType.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\ExpCareerLevel.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -115,7 +121,13 @@
     <Compile Include="EF\Interview.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\InterviewStatu.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\JobDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EF\JobStatu.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EF\Location.cs">
@@ -169,6 +181,9 @@
     <Compile Include="EF\V_AppliedJob.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="EF\V_CandidateDetail.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\V_CandidateProfile.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>
@@ -216,11 +231,11 @@
     <Compile Include="Models\Operation\VMMiscellaneousOperation.cs" />
     <Compile Include="Models\Operation\VMReferenceOperation.cs" />
     <Compile Include="Models\Operation\VMSkillOperation.cs" />
+    <Compile Include="Models\Other\VMLoggedUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\Base\" />
-    <Folder Include="Models\Other\" />
     <Folder Include="Models\Static\" />
   </ItemGroup>
   <ItemGroup>

@@ -1,7 +1,7 @@
 ﻿@model List<RMSCORE.Models.Main.VMEduDetailIndex>
-    @{ 
-        Layout = null;
-    }
+@{
+    Layout = null;
+}
 <!-- Page container -->
 <head>
     <style>
@@ -70,7 +70,21 @@
                     </td>
 
                     <td>
-                        @Html.DisplayFor(modelItem => item.InstitutionName)
+                        @if (item.InstitutionID == null || item.InstitutionID == 0)
+                        {
+                            if (item.BoardID != 48)
+                            {
+                                @Html.DisplayFor(modelItem => item.BoardName)
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(modelItem => item.OtherBoardName)
+                            }
+                        }
+                        else
+                        {
+                            @Html.DisplayFor(modelItem => item.InstitutionName)
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DegreeTitle)
@@ -79,7 +93,7 @@
                     {
                         <td>
                             @if (item.EndDate != null)
-                            {@item.EndDate.Value.ToString("MM/dd/yyyy")}
+                            {@item.EndDate.Value.ToString("dd-MMM-yyyy")}
                         </td>
                     }
                     @if (item.InProgress == true)
@@ -110,6 +124,7 @@
 </div>
 <!-- Main content -->
 <!-- Basic datatable -->
+<script src="~/Theme/assets/js/pages/datatables_basic.js"></script>
 <script type="text/javascript" src="~/Scripts/Candidate/EduDetail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

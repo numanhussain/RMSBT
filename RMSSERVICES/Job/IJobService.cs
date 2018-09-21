@@ -16,6 +16,6 @@ namespace RMSSERVICES.Job
         VMOpenJobIndex GetJobDetail(int id, V_UserCandidate LoggedInUser);
         VMOpenJobIndex GetJobDetailIndex(int id);
         List<VMOpenJobIndex> GetOpenJobIndex();
-        string CheckForProfileCompletion(V_UserCandidate LoggedInUser);
+        string CheckForProfileCompletion(V_UserCandidate LoggedInUser, JobDetail dbJobDetail);
     }
 }

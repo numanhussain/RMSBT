@@ -62,8 +62,10 @@
     <p>
         <h4 class="text-bold text-center">
             You have successfully verified your email.<br />
-            Please @Html.ActionLink("Login", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
         </h4>
+        <div class="text-semibold h5 text-center">
+            Back to @Html.ActionLink("Login", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </div>
     </p>
 </div>
 

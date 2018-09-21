@@ -52,6 +52,13 @@
           <Property Name="SalutationID" Type="int" />
           <Property Name="OtherAreaName" Type="nvarchar" MaxLength="50" />
           <Property Name="CVName" Type="nvarchar" MaxLength="70" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkPermitYes" Type="bit" />
+          <Property Name="WorkPermitNo" Type="bit" />
+          <Property Name="OtherDomicileCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherPakistaniCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tehsil" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="CandidateJob">
           <Key>
@@ -88,11 +95,11 @@
             <PropertyRef Name="StrengthID" />
           </Key>
           <Property Name="StrengthID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Strengths" Type="nvarchar" MaxLength="500" />
-          <Property Name="AreaOfImprovement" Type="nvarchar" MaxLength="500" />
-          <Property Name="MeetRequirements" Type="nvarchar" MaxLength="500" />
+          <Property Name="Strengths" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AreaOfImprovement" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MeetRequirements" Type="nvarchar" MaxLength="1000" />
           <Property Name="CandidateID" Type="int" />
-          <Property Name="Objective" Type="nvarchar" MaxLength="500" />
+          <Property Name="Objective" Type="nvarchar" MaxLength="1000" />
         </EntityType>
         <EntityType Name="Catagory">
           <Key>
@@ -194,21 +201,26 @@
           </Key>
           <Property Name="EduID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DegreeLevelID" Type="int" />
-          <Property Name="ObtainedMark" Type="nvarchar" MaxLength="50" />
-          <Property Name="TotalMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObtainedMark" Type="int" />
+          <Property Name="TotalMark" Type="int" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
-          <Property Name="Institution" Type="int" />
+          <Property Name="InstitutionID" Type="int" />
           <Property Name="MajorSubject" Type="nvarchar" MaxLength="200" />
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="Percentage" Type="nvarchar" MaxLength="30" />
-          <Property Name="CGPA" Type="nvarchar" MaxLength="30" />
+          <Property Name="CGPA" Type="float" />
           <Property Name="PassingYear" Type="nvarchar" MaxLength="30" />
           <Property Name="DegreeTitle" Type="nvarchar" MaxLength="100" />
           <Property Name="OtherInstitute" Type="nvarchar" MaxLength="150" />
           <Property Name="InProgress" Type="bit" />
           <Property Name="DegreeTypeID" Type="int" />
           <Property Name="OtherDegreeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherDegreeLevelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BoardID" Type="int" />
+          <Property Name="OtherBoardName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EduCriteriaID" Type="int" />
         </EntityType>
         <EntityType Name="EduInstitute">
           <Key>
@@ -216,6 +228,29 @@
           </Key>
           <Property Name="InstituteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="InstituteName" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="EmailLog">
+          <Key>
+            <PropertyRef Name="PEmailID" />
+          </Key>
+          <Property Name="PEmailID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="CCAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="200" />
+          <Property Name="Body" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IsSent" Type="bit" />
+          <Property Name="EmailTypeID" Type="int" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="SendDateTime" Type="datetime" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="EmailNotificationType">
+          <Key>
+            <PropertyRef Name="PEmailTypeID" />
+          </Key>
+          <Property Name="PEmailTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailTypeName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ExpCareerLevel">
           <Key>
@@ -240,15 +275,18 @@
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="IndustryID" Type="int" />
           <Property Name="CountryID" Type="int" />
-          <Property Name="Responsibility1" Type="nvarchar" MaxLength="100" />
-          <Property Name="Responsibility2" Type="nvarchar" MaxLength="100" />
-          <Property Name="Responsibility3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Responsibility1" Type="nvarchar" MaxLength="600" />
+          <Property Name="Responsibility2" Type="nvarchar" MaxLength="600" />
+          <Property Name="Responsibility3" Type="nvarchar" MaxLength="600" />
           <Property Name="CareerLevelID" Type="int" />
           <Property Name="ContactEmployer" Type="bit" />
           <Property Name="AreaofInterest" Type="nvarchar" MaxLength="70" />
           <Property Name="ReasonOfLeaving" Type="nvarchar" MaxLength="100" />
           <Property Name="SupervisorName" Type="nvarchar" MaxLength="50" />
           <Property Name="OtherCity" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherIndustryName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ExperienceIndustry">
           <Key>
@@ -284,6 +322,13 @@
           <Property Name="EndDateTime" Type="datetime" />
           <Property Name="Status" Type="bit" />
         </EntityType>
+        <EntityType Name="InterviewStatus">
+          <Key>
+            <PropertyRef Name="InterviewStatusID" />
+          </Key>
+          <Property Name="InterviewStatusID" Type="int" Nullable="false" />
+          <Property Name="InterviewStatusName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="JobDetail">
           <Key>
             <PropertyRef Name="JobID" />
@@ -299,10 +344,17 @@
           <Property Name="ExperienceAndQualification" Type="nvarchar" MaxLength="3000" />
           <Property Name="PositionPurpose" Type="nvarchar" MaxLength="3000" />
           <Property Name="CatagoryID" Type="int" />
-          <Property Name="Status" Type="bit" />
+          <Property Name="StatusID" Type="int" />
           <Property Name="SpecificRequirement" Type="nvarchar" MaxLength="3000" />
           <Property Name="DeadlineDate" Type="date" />
           <Property Name="DepatmentName" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="JobStatus">
+          <Key>
+            <PropertyRef Name="JStatusID" />
+          </Key>
+          <Property Name="JStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JStatusName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -331,8 +383,8 @@
           <Property Name="Designation" Type="nvarchar" MaxLength="50" />
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
           <Property Name="ReasonLeaving" Type="nvarchar" MaxLength="100" />
-          <Property Name="TotalExp" Type="int" />
-          <Property Name="CementExp" Type="int" />
+          <Property Name="TotalExp" Type="float" />
+          <Property Name="CementExp" Type="float" />
           <Property Name="NoticeTime" Type="int" />
           <Property Name="CandidateID" Type="int" />
           <Property Name="WorkedBefore" Type="nvarchar" MaxLength="50" />
@@ -359,6 +411,13 @@
           <Property Name="BloodGroupID" Type="int" />
           <Property Name="MaritalStatusID" Type="int" />
           <Property Name="ReligionID" Type="int" />
+          <Property Name="LinkedInLink" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkingRelativeCompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="InterviewStatusID" Type="int" />
+          <Property Name="WorkedBeforeCompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkedBeforeCurrentlyWorking" Type="bit" />
+          <Property Name="InterviewBeforeCompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoticeTimeID" Type="int" />
         </EntityType>
         <EntityType Name="NotificationDetail">
           <Key>
@@ -379,13 +438,14 @@
             <PropertyRef Name="RefID" />
           </Key>
           <Property Name="RefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RefName" Type="nvarchar" MaxLength="50" />
-          <Property Name="RefDesignation" Type="nvarchar" MaxLength="50" />
-          <Property Name="RefEmail" Type="nvarchar" MaxLength="50" />
-          <Property Name="RefContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RefDesignation" Type="nvarchar" MaxLength="100" />
+          <Property Name="RefEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="RefContact" Type="nvarchar" MaxLength="100" />
           <Property Name="CandidateID" Type="int" />
-          <Property Name="HowLongKnown" Type="nvarchar" MaxLength="50" />
-          <Property Name="Organization" Type="nvarchar" MaxLength="50" />
+          <Property Name="HowLongKnown" Type="nvarchar" MaxLength="100" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="100" />
+          <Property Name="SalutationID" Type="int" />
         </EntityType>
         <EntityType Name="Religion">
           <Key>
@@ -433,22 +493,20 @@
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="70" />
+          <Property Name="Password" Type="nvarchar(max)" />
           <Property Name="DateCreated" Type="datetime" />
           <Property Name="UserTypeID" Type="int" />
           <Property Name="Status" Type="bit" />
-          <Property Name="CanEdit" Type="bit" />
-          <Property Name="CanDelete" Type="bit" />
-          <Property Name="CanView" Type="bit" />
-          <Property Name="CanAdd" Type="bit" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="RetypePassword" Type="nvarchar" MaxLength="50" />
+          <Property Name="RetypePassword" Type="nvarchar(max)" />
           <Property Name="UserStage" Type="int" />
           <Property Name="SecurityLink" Type="nvarchar(max)" />
           <Property Name="AppliedAs" Type="int" />
           <Property Name="HaveExperience" Type="bit" />
           <Property Name="HasCV" Type="bit" />
+          <Property Name="HasAccess" Type="bit" />
+          <Property Name="EmailSentTime" Type="datetime" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6013: The table/view 'BTRMS.dbo.UserTest' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
@@ -471,14 +529,29 @@ warning 6013: The table/view 'BTRMS.dbo.UserTest' does not have a primary key de
 warning 6002: The table/view 'BTRMS.dbo.V_AppliedJob' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="V_AppliedJob">
           <Key>
+            <PropertyRef Name="CandidateID" />
             <PropertyRef Name="CJobID" />
           </Key>
-          <Property Name="CandidateID" Type="int" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CJobID" Type="int" Nullable="false" />
           <Property Name="CJobDate" Type="datetime" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
           <Property Name="JobID" Type="int" />
           <Property Name="JobTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="DepatmentName" Type="nvarchar" MaxLength="30" />
+          <Property Name="SpecificRequirement" Type="nvarchar" MaxLength="3000" />
+          <Property Name="PositionPurpose" Type="nvarchar" MaxLength="3000" />
+          <Property Name="ExperienceAndQualification" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Experience" Type="nvarchar" MaxLength="500" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="30" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="LocID" Type="int" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="JobDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="CatagoryID" Type="int" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="JStatusName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Candidate_EduDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -488,26 +561,32 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_EduDetail' does not have a p
             <PropertyRef Name="CandidateID" />
           </Key>
           <Property Name="DegreeLevel" Type="nvarchar" MaxLength="50" />
-          <Property Name="ObtainedMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObtainedMark" Type="int" />
           <Property Name="StartDate" Type="datetime" />
           <Property Name="EndDate" Type="datetime" />
           <Property Name="EduID" Type="int" Nullable="false" />
-          <Property Name="TotalMark" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalMark" Type="int" />
           <Property Name="Percentage" Type="nvarchar" MaxLength="30" />
-          <Property Name="CGPA" Type="nvarchar" MaxLength="30" />
+          <Property Name="CGPA" Type="float" />
           <Property Name="PassingYear" Type="nvarchar" MaxLength="30" />
-          <Property Name="Institution" Type="int" />
           <Property Name="InstituteName" Type="nvarchar" MaxLength="150" />
           <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
           <Property Name="DegreeTitle" Type="nvarchar" MaxLength="100" />
-          <Property Name="OtherInstitute" Type="nvarchar" MaxLength="150" />
           <Property Name="InProgress" Type="bit" />
           <Property Name="DegreeTypeID" Type="int" />
           <Property Name="EduTypeName" Type="nvarchar" MaxLength="70" />
           <Property Name="MajorSubject" Type="nvarchar" MaxLength="200" />
           <Property Name="DegreeLevelID" Type="int" />
           <Property Name="OtherDegreeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherDegreeLevelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherInstitute" Type="nvarchar" MaxLength="150" />
+          <Property Name="InstitutionID" Type="int" />
+          <Property Name="BoardID" Type="int" />
+          <Property Name="BoardName" Type="nvarchar" MaxLength="150" />
+          <Property Name="OtherBoardName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EduCriteriaID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Exp' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -528,9 +607,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Exp' does not have a primary
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
           <Property Name="IndustryID" Type="int" />
           <Property Name="ExpIndustryName" Type="nvarchar" MaxLength="50" />
-          <Property Name="Responsibility1" Type="nvarchar" MaxLength="100" />
-          <Property Name="Responsibility2" Type="nvarchar" MaxLength="100" />
-          <Property Name="Responsibility3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Responsibility1" Type="nvarchar" MaxLength="600" />
+          <Property Name="Responsibility2" Type="nvarchar" MaxLength="600" />
+          <Property Name="Responsibility3" Type="nvarchar" MaxLength="600" />
           <Property Name="CityID" Type="int" />
           <Property Name="CityName" Type="nvarchar" MaxLength="50" />
           <Property Name="CareerLevelID" Type="int" />
@@ -542,6 +621,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Exp' does not have a primary
           <Property Name="OtherCity" Type="nvarchar" MaxLength="50" />
           <Property Name="CountryID" Type="int" />
           <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherIndustryName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Miscellaneous' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -558,12 +640,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Miscellaneous' does not have
           <Property Name="Designation" Type="nvarchar" MaxLength="50" />
           <Property Name="Location" Type="nvarchar" MaxLength="50" />
           <Property Name="ReasonLeaving" Type="nvarchar" MaxLength="100" />
-          <Property Name="TotalExp" Type="int" />
-          <Property Name="CementExp" Type="int" />
           <Property Name="NoticeTime" Type="int" />
           <Property Name="CandidateID" Type="int" />
-          <Property Name="CName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
           <Property Name="WorkedBefore" Type="nvarchar" MaxLength="50" />
           <Property Name="HearAboutJobID" Type="int" />
           <Property Name="HearAboutSource" Type="nvarchar" MaxLength="50" />
@@ -592,6 +670,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Miscellaneous' does not have
           <Property Name="MartialStatusName" Type="nvarchar" MaxLength="50" />
           <Property Name="ReligionID" Type="int" />
           <Property Name="ReligionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalExp" Type="float" />
+          <Property Name="CementExp" Type="float" />
+          <Property Name="LinkedInLink" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkingRelativeCompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="InterviewStatusID" Type="int" />
+          <Property Name="WorkedBeforeCompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkedBeforeCurrentlyWorking" Type="bit" />
+          <Property Name="InterviewStatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InterviewBeforeCompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoticeTimeID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Reference' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -609,6 +697,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Reference' does not have a p
           <Property Name="Organization" Type="nvarchar" MaxLength="50" />
           <Property Name="HowLongKnown" Type="nvarchar" MaxLength="50" />
           <Property Name="CandidateID" Type="int" />
+          <Property Name="SalutationID" Type="int" />
+          <Property Name="SalutationName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Skills' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -622,6 +712,28 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Skills' does not have a prim
           <Property Name="SLevelID" Type="int" />
           <Property Name="SkillLevelName" Type="nvarchar" MaxLength="50" />
           <Property Name="CandidateID" Type="int" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.V_CandidateDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="V_CandidateDetail">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserStage" Type="int" />
+          <Property Name="StepOne" Type="bit" />
+          <Property Name="StepTwo" Type="bit" />
+          <Property Name="StepThree" Type="bit" />
+          <Property Name="StepFour" Type="bit" />
+          <Property Name="StepFive" Type="bit" />
+          <Property Name="StepSix" Type="bit" />
+          <Property Name="StepSeven" Type="bit" />
+          <Property Name="StepEight" Type="bit" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="HasCV" Type="bit" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -665,6 +777,15 @@ warning 6002: The table/view 'BTRMS.dbo.V_CandidateProfile' does not have a prim
           <Property Name="CityID" Type="int" />
           <Property Name="DomicileCityID" Type="int" />
           <Property Name="CVName" Type="nvarchar" MaxLength="70" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="OtherDomicileCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkPermitYes" Type="bit" />
+          <Property Name="WorkPermitNo" Type="bit" />
+          <Property Name="OtherPakistaniCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tehsil" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="HaveExperience" Type="bit" />
+          <Property Name="AppliedAs" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Interview' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -699,7 +820,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_JobDetail' does not have a primary key
           <Property Name="CreatedDate" Type="date" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="30" />
           <Property Name="Experience" Type="nvarchar" MaxLength="500" />
-          <Property Name="Status" Type="bit" />
           <Property Name="DeadlineDate" Type="date" />
           <Property Name="DepatmentName" Type="nvarchar" MaxLength="30" />
           <Property Name="PositionPurpose" Type="nvarchar" MaxLength="3000" />
@@ -708,6 +828,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_JobDetail' does not have a primary key
           <Property Name="CatagoryID" Type="int" />
           <Property Name="CatName" Type="nvarchar" MaxLength="50" />
           <Property Name="ExperienceAndQualification" Type="nvarchar" MaxLength="3000" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="JStatusName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Notification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -739,8 +861,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="RetypePassword" Type="nvarchar" MaxLength="50" />
           <Property Name="UserStage" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="HaveExperience" Type="bit" />
-          <Property Name="AppliedAs" Type="int" />
           <Property Name="HasCV" Type="bit" />
           <Property Name="CVName" Type="nvarchar" MaxLength="70" />
           <Property Name="CandidateID" Type="int" Nullable="false" />
@@ -752,6 +872,11 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="StepSix" Type="bit" />
           <Property Name="StepSeven" Type="bit" />
           <Property Name="StepEight" Type="bit" />
+          <Property Name="HasAccess" Type="bit" />
+          <Property Name="DateCreated" Type="datetime" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="AppliedAs" Type="int" />
+          <Property Name="HaveExperience" Type="bit" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
           <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
@@ -785,7 +910,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               <PropertyRef Name="InstituteID" />
             </Principal>
             <Dependent Role="EduDetail">
-              <PropertyRef Name="Institution" />
+              <PropertyRef Name="InstitutionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -842,13 +967,17 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="EduDegreeType" EntityType="Self.EduDegreeType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduDetail" EntityType="Self.EduDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EduInstitute" EntityType="Self.EduInstitute" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailLog" EntityType="Self.EmailLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmailNotificationType" EntityType="Self.EmailNotificationType" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExpCareerLevel" EntityType="Self.ExpCareerLevel" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExperienceDetail" EntityType="Self.ExperienceDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ExperienceIndustry" EntityType="Self.ExperienceIndustry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HearAbout" EntityType="Self.HearAbout" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Interview" EntityType="Self.Interview" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InterviewStatus" EntityType="Self.InterviewStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="JobDetail" EntityType="Self.JobDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="JobStatus" EntityType="Self.JobStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MartialStatus" EntityType="Self.MartialStatus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MiscellaneousDetails" EntityType="Self.MiscellaneousDetails" Schema="dbo" store:Type="Tables" />
@@ -867,7 +996,21 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_AppliedJob].[CJobDate] AS [CJobDate], 
     [V_AppliedJob].[CName] AS [CName], 
     [V_AppliedJob].[JobID] AS [JobID], 
-    [V_AppliedJob].[JobTitle] AS [JobTitle]
+    [V_AppliedJob].[JobTitle] AS [JobTitle], 
+    [V_AppliedJob].[DepatmentName] AS [DepatmentName], 
+    [V_AppliedJob].[SpecificRequirement] AS [SpecificRequirement], 
+    [V_AppliedJob].[PositionPurpose] AS [PositionPurpose], 
+    [V_AppliedJob].[ExperienceAndQualification] AS [ExperienceAndQualification], 
+    [V_AppliedJob].[Experience] AS [Experience], 
+    [V_AppliedJob].[CompanyName] AS [CompanyName], 
+    [V_AppliedJob].[CreatedDate] AS [CreatedDate], 
+    [V_AppliedJob].[LocID] AS [LocID], 
+    [V_AppliedJob].[CityID] AS [CityID], 
+    [V_AppliedJob].[JobDescription] AS [JobDescription], 
+    [V_AppliedJob].[CatagoryID] AS [CatagoryID], 
+    [V_AppliedJob].[CatName] AS [CatName], 
+    [V_AppliedJob].[StatusID] AS [StatusID], 
+    [V_AppliedJob].[JStatusName] AS [JStatusName]
     FROM [dbo].[V_AppliedJob] AS [V_AppliedJob]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Candidate_EduDetail" EntityType="Self.V_Candidate_EduDetail" store:Type="Views" store:Schema="dbo">
@@ -881,18 +1024,24 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_EduDetail].[Percentage] AS [Percentage], 
     [V_Candidate_EduDetail].[CGPA] AS [CGPA], 
     [V_Candidate_EduDetail].[PassingYear] AS [PassingYear], 
-    [V_Candidate_EduDetail].[Institution] AS [Institution], 
     [V_Candidate_EduDetail].[InstituteName] AS [InstituteName], 
     [V_Candidate_EduDetail].[CandidateID] AS [CandidateID], 
     [V_Candidate_EduDetail].[CName] AS [CName], 
     [V_Candidate_EduDetail].[DegreeTitle] AS [DegreeTitle], 
-    [V_Candidate_EduDetail].[OtherInstitute] AS [OtherInstitute], 
     [V_Candidate_EduDetail].[InProgress] AS [InProgress], 
     [V_Candidate_EduDetail].[DegreeTypeID] AS [DegreeTypeID], 
     [V_Candidate_EduDetail].[EduTypeName] AS [EduTypeName], 
     [V_Candidate_EduDetail].[MajorSubject] AS [MajorSubject], 
     [V_Candidate_EduDetail].[DegreeLevelID] AS [DegreeLevelID], 
-    [V_Candidate_EduDetail].[OtherDegreeType] AS [OtherDegreeType]
+    [V_Candidate_EduDetail].[OtherDegreeType] AS [OtherDegreeType], 
+    [V_Candidate_EduDetail].[OtherDegreeLevelName] AS [OtherDegreeLevelName], 
+    [V_Candidate_EduDetail].[GradeName] AS [GradeName], 
+    [V_Candidate_EduDetail].[OtherInstitute] AS [OtherInstitute], 
+    [V_Candidate_EduDetail].[InstitutionID] AS [InstitutionID], 
+    [V_Candidate_EduDetail].[BoardID] AS [BoardID], 
+    [V_Candidate_EduDetail].[BoardName] AS [BoardName], 
+    [V_Candidate_EduDetail].[OtherBoardName] AS [OtherBoardName], 
+    [V_Candidate_EduDetail].[EduCriteriaID] AS [EduCriteriaID]
     FROM [dbo].[V_Candidate_EduDetail] AS [V_Candidate_EduDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Candidate_Exp" EntityType="Self.V_Candidate_Exp" store:Type="Views" store:Schema="dbo">
@@ -922,7 +1071,10 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_Exp].[SupervisorName] AS [SupervisorName], 
     [V_Candidate_Exp].[OtherCity] AS [OtherCity], 
     [V_Candidate_Exp].[CountryID] AS [CountryID], 
-    [V_Candidate_Exp].[CountryName] AS [CountryName]
+    [V_Candidate_Exp].[CountryName] AS [CountryName], 
+    [V_Candidate_Exp].[PostalCode] AS [PostalCode], 
+    [V_Candidate_Exp].[OtherCityName] AS [OtherCityName], 
+    [V_Candidate_Exp].[OtherIndustryName] AS [OtherIndustryName]
     FROM [dbo].[V_Candidate_Exp] AS [V_Candidate_Exp]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Candidate_Miscellaneous" EntityType="Self.V_Candidate_Miscellaneous" store:Type="Views" store:Schema="dbo">
@@ -936,12 +1088,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_Miscellaneous].[Designation] AS [Designation], 
     [V_Candidate_Miscellaneous].[Location] AS [Location], 
     [V_Candidate_Miscellaneous].[ReasonLeaving] AS [ReasonLeaving], 
-    [V_Candidate_Miscellaneous].[TotalExp] AS [TotalExp], 
-    [V_Candidate_Miscellaneous].[CementExp] AS [CementExp], 
     [V_Candidate_Miscellaneous].[NoticeTime] AS [NoticeTime], 
     [V_Candidate_Miscellaneous].[CandidateID] AS [CandidateID], 
-    [V_Candidate_Miscellaneous].[CName] AS [CName], 
-    [V_Candidate_Miscellaneous].[CNICNo] AS [CNICNo], 
     [V_Candidate_Miscellaneous].[WorkedBefore] AS [WorkedBefore], 
     [V_Candidate_Miscellaneous].[HearAboutJobID] AS [HearAboutJobID], 
     [V_Candidate_Miscellaneous].[HearAboutSource] AS [HearAboutSource], 
@@ -969,7 +1117,17 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_Miscellaneous].[MaritalStatusID] AS [MaritalStatusID], 
     [V_Candidate_Miscellaneous].[MartialStatusName] AS [MartialStatusName], 
     [V_Candidate_Miscellaneous].[ReligionID] AS [ReligionID], 
-    [V_Candidate_Miscellaneous].[ReligionName] AS [ReligionName]
+    [V_Candidate_Miscellaneous].[ReligionName] AS [ReligionName], 
+    [V_Candidate_Miscellaneous].[TotalExp] AS [TotalExp], 
+    [V_Candidate_Miscellaneous].[CementExp] AS [CementExp], 
+    [V_Candidate_Miscellaneous].[LinkedInLink] AS [LinkedInLink], 
+    [V_Candidate_Miscellaneous].[WorkingRelativeCompanyName] AS [WorkingRelativeCompanyName], 
+    [V_Candidate_Miscellaneous].[InterviewStatusID] AS [InterviewStatusID], 
+    [V_Candidate_Miscellaneous].[WorkedBeforeCompanyName] AS [WorkedBeforeCompanyName], 
+    [V_Candidate_Miscellaneous].[WorkedBeforeCurrentlyWorking] AS [WorkedBeforeCurrentlyWorking], 
+    [V_Candidate_Miscellaneous].[InterviewStatusName] AS [InterviewStatusName], 
+    [V_Candidate_Miscellaneous].[InterviewBeforeCompanyName] AS [InterviewBeforeCompanyName], 
+    [V_Candidate_Miscellaneous].[NoticeTimeID] AS [NoticeTimeID]
     FROM [dbo].[V_Candidate_Miscellaneous] AS [V_Candidate_Miscellaneous]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Candidate_Reference" EntityType="Self.V_Candidate_Reference" store:Type="Views" store:Schema="dbo">
@@ -983,7 +1141,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_Reference].[CNICNo] AS [CNICNo], 
     [V_Candidate_Reference].[Organization] AS [Organization], 
     [V_Candidate_Reference].[HowLongKnown] AS [HowLongKnown], 
-    [V_Candidate_Reference].[CandidateID] AS [CandidateID]
+    [V_Candidate_Reference].[CandidateID] AS [CandidateID], 
+    [V_Candidate_Reference].[SalutationID] AS [SalutationID], 
+    [V_Candidate_Reference].[SalutationName] AS [SalutationName]
     FROM [dbo].[V_Candidate_Reference] AS [V_Candidate_Reference]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Candidate_Skills" EntityType="Self.V_Candidate_Skills" store:Type="Views" store:Schema="dbo">
@@ -996,6 +1156,25 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_Candidate_Skills].[CandidateID] AS [CandidateID], 
     [V_Candidate_Skills].[CName] AS [CName]
     FROM [dbo].[V_Candidate_Skills] AS [V_Candidate_Skills]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="V_CandidateDetail" EntityType="Self.V_CandidateDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [V_CandidateDetail].[UserID] AS [UserID], 
+    [V_CandidateDetail].[Email] AS [Email], 
+    [V_CandidateDetail].[UserStage] AS [UserStage], 
+    [V_CandidateDetail].[StepOne] AS [StepOne], 
+    [V_CandidateDetail].[StepTwo] AS [StepTwo], 
+    [V_CandidateDetail].[StepThree] AS [StepThree], 
+    [V_CandidateDetail].[StepFour] AS [StepFour], 
+    [V_CandidateDetail].[StepFive] AS [StepFive], 
+    [V_CandidateDetail].[StepSix] AS [StepSix], 
+    [V_CandidateDetail].[StepSeven] AS [StepSeven], 
+    [V_CandidateDetail].[StepEight] AS [StepEight], 
+    [V_CandidateDetail].[Password] AS [Password], 
+    [V_CandidateDetail].[DateCreated] AS [DateCreated], 
+    [V_CandidateDetail].[HasCV] AS [HasCV], 
+    [V_CandidateDetail].[CName] AS [CName]
+    FROM [dbo].[V_CandidateDetail] AS [V_CandidateDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_CandidateProfile" EntityType="Self.V_CandidateProfile" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
@@ -1033,7 +1212,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_CandidateProfile].[OtherAreaName] AS [OtherAreaName], 
     [V_CandidateProfile].[CityID] AS [CityID], 
     [V_CandidateProfile].[DomicileCityID] AS [DomicileCityID], 
-    [V_CandidateProfile].[CVName] AS [CVName]
+    [V_CandidateProfile].[CVName] AS [CVName], 
+    [V_CandidateProfile].[PassportNumber] AS [PassportNumber], 
+    [V_CandidateProfile].[OtherDomicileCityName] AS [OtherDomicileCityName], 
+    [V_CandidateProfile].[WorkPermitYes] AS [WorkPermitYes], 
+    [V_CandidateProfile].[WorkPermitNo] AS [WorkPermitNo], 
+    [V_CandidateProfile].[OtherPakistaniCityName] AS [OtherPakistaniCityName], 
+    [V_CandidateProfile].[Tehsil] AS [Tehsil], 
+    [V_CandidateProfile].[PostalCode] AS [PostalCode], 
+    [V_CandidateProfile].[HaveExperience] AS [HaveExperience], 
+    [V_CandidateProfile].[AppliedAs] AS [AppliedAs]
     FROM [dbo].[V_CandidateProfile] AS [V_CandidateProfile]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Interview" EntityType="Self.V_Interview" store:Type="Views" store:Schema="dbo">
@@ -1061,7 +1249,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_JobDetail].[CreatedDate] AS [CreatedDate], 
     [V_JobDetail].[CompanyName] AS [CompanyName], 
     [V_JobDetail].[Experience] AS [Experience], 
-    [V_JobDetail].[Status] AS [Status], 
     [V_JobDetail].[DeadlineDate] AS [DeadlineDate], 
     [V_JobDetail].[DepatmentName] AS [DepatmentName], 
     [V_JobDetail].[PositionPurpose] AS [PositionPurpose], 
@@ -1069,7 +1256,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_JobDetail].[JobDescription] AS [JobDescription], 
     [V_JobDetail].[CatagoryID] AS [CatagoryID], 
     [V_JobDetail].[CatName] AS [CatName], 
-    [V_JobDetail].[ExperienceAndQualification] AS [ExperienceAndQualification]
+    [V_JobDetail].[ExperienceAndQualification] AS [ExperienceAndQualification], 
+    [V_JobDetail].[StatusID] AS [StatusID], 
+    [V_JobDetail].[JStatusName] AS [JStatusName]
     FROM [dbo].[V_JobDetail] AS [V_JobDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Notification" EntityType="Self.V_Notification" store:Type="Views" store:Schema="dbo">
@@ -1095,8 +1284,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_UserCandidate].[RetypePassword] AS [RetypePassword], 
     [V_UserCandidate].[UserStage] AS [UserStage], 
     [V_UserCandidate].[Email] AS [Email], 
-    [V_UserCandidate].[HaveExperience] AS [HaveExperience], 
-    [V_UserCandidate].[AppliedAs] AS [AppliedAs], 
     [V_UserCandidate].[HasCV] AS [HasCV], 
     [V_UserCandidate].[CVName] AS [CVName], 
     [V_UserCandidate].[CandidateID] AS [CandidateID], 
@@ -1107,7 +1294,12 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_UserCandidate].[StepFive] AS [StepFive], 
     [V_UserCandidate].[StepSix] AS [StepSix], 
     [V_UserCandidate].[StepSeven] AS [StepSeven], 
-    [V_UserCandidate].[StepEight] AS [StepEight]
+    [V_UserCandidate].[StepEight] AS [StepEight], 
+    [V_UserCandidate].[HasAccess] AS [HasAccess], 
+    [V_UserCandidate].[DateCreated] AS [DateCreated], 
+    [V_UserCandidate].[Status] AS [Status], 
+    [V_UserCandidate].[AppliedAs] AS [AppliedAs], 
+    [V_UserCandidate].[HaveExperience] AS [HaveExperience]
     FROM [dbo].[V_UserCandidate] AS [V_UserCandidate]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_EduDetail_Candidate" Association="Self.FK_EduDetail_Candidate">
@@ -1156,13 +1348,17 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="EduDegreeTypes" EntityType="BTRMSModel.EduDegreeType" />
           <EntitySet Name="EduDetails" EntityType="BTRMSModel.EduDetail" />
           <EntitySet Name="EduInstitutes" EntityType="BTRMSModel.EduInstitute" />
+          <EntitySet Name="EmailLogs" EntityType="BTRMSModel.EmailLog" />
+          <EntitySet Name="EmailNotificationTypes" EntityType="BTRMSModel.EmailNotificationType" />
           <EntitySet Name="ExpCareerLevels" EntityType="BTRMSModel.ExpCareerLevel" />
           <EntitySet Name="ExperienceDetails" EntityType="BTRMSModel.ExperienceDetail" />
           <EntitySet Name="ExperienceIndustries" EntityType="BTRMSModel.ExperienceIndustry" />
           <EntitySet Name="Genders" EntityType="BTRMSModel.Gender" />
           <EntitySet Name="HearAbouts" EntityType="BTRMSModel.HearAbout" />
           <EntitySet Name="Interviews" EntityType="BTRMSModel.Interview" />
+          <EntitySet Name="InterviewStatus" EntityType="BTRMSModel.InterviewStatu" />
           <EntitySet Name="JobDetails" EntityType="BTRMSModel.JobDetail" />
+          <EntitySet Name="JobStatus" EntityType="BTRMSModel.JobStatu" />
           <EntitySet Name="Locations" EntityType="BTRMSModel.Location" />
           <EntitySet Name="MartialStatus" EntityType="BTRMSModel.MartialStatu" />
           <EntitySet Name="MiscellaneousDetails" EntityType="BTRMSModel.MiscellaneousDetail" />
@@ -1180,6 +1376,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="V_Candidate_Miscellaneous" EntityType="BTRMSModel.V_Candidate_Miscellaneous" />
           <EntitySet Name="V_Candidate_Reference" EntityType="BTRMSModel.V_Candidate_Reference" />
           <EntitySet Name="V_Candidate_Skills" EntityType="BTRMSModel.V_Candidate_Skills" />
+          <EntitySet Name="V_CandidateDetail" EntityType="BTRMSModel.V_CandidateDetail" />
           <EntitySet Name="V_CandidateProfile" EntityType="BTRMSModel.V_CandidateProfile" />
           <EntitySet Name="V_Interview" EntityType="BTRMSModel.V_Interview" />
           <EntitySet Name="V_JobDetail" EntityType="BTRMSModel.V_JobDetail" />
@@ -1257,6 +1454,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="SalutationID" Type="Int32" />
           <Property Name="OtherAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPermitYes" Type="Boolean" />
+          <Property Name="WorkPermitNo" Type="Boolean" />
+          <Property Name="OtherDomicileCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherPakistaniCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tehsil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="Candidate" ToRole="EduDetail" />
           <NavigationProperty Name="Interviews" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Candidate" ToRole="Interview" />
           <NavigationProperty Name="NotificationDetails" Relationship="BTRMSModel.FK_Notification_Candidate" FromRole="Candidate" ToRole="NotificationDetail" />
@@ -1297,11 +1501,11 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <PropertyRef Name="StrengthID" />
           </Key>
           <Property Name="StrengthID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Strengths" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="AreaOfImprovement" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="MeetRequirements" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Strengths" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AreaOfImprovement" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MeetRequirements" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
-          <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Catagory">
           <Key>
@@ -1404,21 +1608,26 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           </Key>
           <Property Name="EduID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DegreeLevelID" Type="Int32" />
-          <Property Name="ObtainedMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="TotalMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObtainedMark" Type="Int32" />
+          <Property Name="TotalMark" Type="Int32" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
-          <Property Name="Institution" Type="Int32" />
+          <Property Name="InstitutionID" Type="Int32" />
           <Property Name="MajorSubject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="Percentage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="CGPA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CGPA" Type="Double" />
           <Property Name="PassingYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="DegreeTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="OtherInstitute" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="InProgress" Type="Boolean" />
           <Property Name="DegreeTypeID" Type="Int32" />
           <Property Name="OtherDegreeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherDegreeLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BoardID" Type="Int32" />
+          <Property Name="OtherBoardName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EduCriteriaID" Type="Int32" />
           <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_EduDetail_Candidate" FromRole="EduDetail" ToRole="Candidate" />
           <NavigationProperty Name="EduDegreeLevel" Relationship="BTRMSModel.FK_EduDetail_EduDegreeLevel" FromRole="EduDetail" ToRole="EduDegreeLevel" />
           <NavigationProperty Name="EduInstitute" Relationship="BTRMSModel.FK_EduDetail_EduInstituate" FromRole="EduDetail" ToRole="EduInstitute" />
@@ -1430,6 +1639,29 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="InstituteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="InstituteName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EduDetails" Relationship="BTRMSModel.FK_EduDetail_EduInstituate" FromRole="EduInstitute" ToRole="EduDetail" />
+        </EntityType>
+        <EntityType Name="EmailLog">
+          <Key>
+            <PropertyRef Name="PEmailID" />
+          </Key>
+          <Property Name="PEmailID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CCAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IsSent" Type="Boolean" />
+          <Property Name="EmailTypeID" Type="Int32" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="SendDateTime" Type="DateTime" Precision="3" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="EmailNotificationType">
+          <Key>
+            <PropertyRef Name="PEmailTypeID" />
+          </Key>
+          <Property Name="PEmailTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmailTypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ExpCareerLevel">
           <Key>
@@ -1454,15 +1686,18 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="IndustryID" Type="Int32" />
           <Property Name="CountryID" Type="Int32" />
-          <Property Name="Responsibility1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility1" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility2" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility3" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
           <Property Name="CareerLevelID" Type="Int32" />
           <Property Name="ContactEmployer" Type="Boolean" />
           <Property Name="AreaofInterest" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="ReasonOfLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SupervisorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="OtherCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherIndustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ExperienceIndustry">
           <Key>
@@ -1499,6 +1734,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Status" Type="Boolean" />
           <NavigationProperty Name="Candidate" Relationship="BTRMSModel.FK_Interview_Candidate" FromRole="Interview" ToRole="Candidate" />
         </EntityType>
+        <EntityType Name="InterviewStatu">
+          <Key>
+            <PropertyRef Name="InterviewStatusID" />
+          </Key>
+          <Property Name="InterviewStatusID" Type="Int32" Nullable="false" />
+          <Property Name="InterviewStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="JobDetail">
           <Key>
             <PropertyRef Name="JobID" />
@@ -1514,10 +1756,17 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="ExperienceAndQualification" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="PositionPurpose" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="CatagoryID" Type="Int32" />
-          <Property Name="Status" Type="Boolean" />
+          <Property Name="StatusID" Type="Int32" />
           <Property Name="SpecificRequirement" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <Property Name="DepatmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="JobStatu">
+          <Key>
+            <PropertyRef Name="JStatusID" />
+          </Key>
+          <Property Name="JStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -1546,8 +1795,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReasonLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TotalExp" Type="Int32" />
-          <Property Name="CementExp" Type="Int32" />
+          <Property Name="TotalExp" Type="Double" />
+          <Property Name="CementExp" Type="Double" />
           <Property Name="NoticeTime" Type="Int32" />
           <Property Name="CandidateID" Type="Int32" />
           <Property Name="WorkedBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1574,6 +1823,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="BloodGroupID" Type="Int32" />
           <Property Name="MaritalStatusID" Type="Int32" />
           <Property Name="ReligionID" Type="Int32" />
+          <Property Name="LinkedInLink" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeCompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewStatusID" Type="Int32" />
+          <Property Name="WorkedBeforeCompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkedBeforeCurrentlyWorking" Type="Boolean" />
+          <Property Name="InterviewBeforeCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeTimeID" Type="Int32" />
         </EntityType>
         <EntityType Name="NotificationDetail">
           <Key>
@@ -1595,13 +1851,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <PropertyRef Name="RefID" />
           </Key>
           <Property Name="RefID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RefName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RefDesignation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RefEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RefContact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
-          <Property Name="HowLongKnown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HowLongKnown" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalutationID" Type="Int32" />
         </EntityType>
         <EntityType Name="Religion">
           <Key>
@@ -1650,33 +1907,46 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="DateCreated" Type="DateTime" Precision="3" />
           <Property Name="UserTypeID" Type="Int32" />
           <Property Name="Status" Type="Boolean" />
-          <Property Name="CanEdit" Type="Boolean" />
-          <Property Name="CanDelete" Type="Boolean" />
-          <Property Name="CanView" Type="Boolean" />
-          <Property Name="CanAdd" Type="Boolean" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RetypePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RetypePassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="UserStage" Type="Int32" />
           <Property Name="SecurityLink" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="AppliedAs" Type="Int32" />
           <Property Name="HaveExperience" Type="Boolean" />
           <Property Name="HasCV" Type="Boolean" />
+          <Property Name="HasAccess" Type="Boolean" />
+          <Property Name="EmailSentTime" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="V_AppliedJob">
           <Key>
+            <PropertyRef Name="CandidateID" />
             <PropertyRef Name="CJobID" />
           </Key>
-          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CJobID" Type="Int32" Nullable="false" />
           <Property Name="CJobDate" Type="DateTime" Precision="3" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="JobID" Type="Int32" />
           <Property Name="JobTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DepatmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SpecificRequirement" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="PositionPurpose" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="ExperienceAndQualification" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Experience" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="LocID" Type="Int32" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="JobDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="CatagoryID" Type="Int32" />
+          <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="JStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_Candidate_EduDetail">
           <Key>
@@ -1684,26 +1954,32 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <PropertyRef Name="CandidateID" />
           </Key>
           <Property Name="DegreeLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ObtainedMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObtainedMark" Type="Int32" />
           <Property Name="StartDate" Type="DateTime" Precision="3" />
           <Property Name="EndDate" Type="DateTime" Precision="3" />
           <Property Name="EduID" Type="Int32" Nullable="false" />
-          <Property Name="TotalMark" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalMark" Type="Int32" />
           <Property Name="Percentage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="CGPA" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CGPA" Type="Double" />
           <Property Name="PassingYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Institution" Type="Int32" />
           <Property Name="InstituteName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DegreeTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="OtherInstitute" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="InProgress" Type="Boolean" />
           <Property Name="DegreeTypeID" Type="Int32" />
           <Property Name="EduTypeName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="MajorSubject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="DegreeLevelID" Type="Int32" />
           <Property Name="OtherDegreeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherDegreeLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherInstitute" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionID" Type="Int32" />
+          <Property Name="BoardID" Type="Int32" />
+          <Property Name="BoardName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OtherBoardName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EduCriteriaID" Type="Int32" />
         </EntityType>
         <EntityType Name="V_Candidate_Exp">
           <Key>
@@ -1722,9 +1998,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="IndustryID" Type="Int32" />
           <Property Name="ExpIndustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Responsibility3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility1" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility2" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+          <Property Name="Responsibility3" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
           <Property Name="CityID" Type="Int32" />
           <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CareerLevelID" Type="Int32" />
@@ -1736,6 +2012,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="OtherCity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CountryID" Type="Int32" />
           <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherIndustryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_Candidate_Miscellaneous">
           <Key>
@@ -1750,12 +2029,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReasonLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TotalExp" Type="Int32" />
-          <Property Name="CementExp" Type="Int32" />
           <Property Name="NoticeTime" Type="Int32" />
           <Property Name="CandidateID" Type="Int32" />
-          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="WorkedBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HearAboutJobID" Type="Int32" />
           <Property Name="HearAboutSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -1784,6 +2059,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="MartialStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReligionID" Type="Int32" />
           <Property Name="ReligionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalExp" Type="Double" />
+          <Property Name="CementExp" Type="Double" />
+          <Property Name="LinkedInLink" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeCompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewStatusID" Type="Int32" />
+          <Property Name="WorkedBeforeCompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkedBeforeCurrentlyWorking" Type="Boolean" />
+          <Property Name="InterviewStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewBeforeCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeTimeID" Type="Int32" />
         </EntityType>
         <EntityType Name="V_Candidate_Reference">
           <Key>
@@ -1799,6 +2084,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="HowLongKnown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
+          <Property Name="SalutationID" Type="Int32" />
+          <Property Name="SalutationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_Candidate_Skills">
           <Key>
@@ -1810,6 +2097,26 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="SLevelID" Type="Int32" />
           <Property Name="SkillLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="V_CandidateDetail">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserStage" Type="Int32" />
+          <Property Name="StepOne" Type="Boolean" />
+          <Property Name="StepTwo" Type="Boolean" />
+          <Property Name="StepThree" Type="Boolean" />
+          <Property Name="StepFour" Type="Boolean" />
+          <Property Name="StepFive" Type="Boolean" />
+          <Property Name="StepSix" Type="Boolean" />
+          <Property Name="StepSeven" Type="Boolean" />
+          <Property Name="StepEight" Type="Boolean" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="HasCV" Type="Boolean" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_CandidateProfile">
@@ -1851,6 +2158,15 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CityID" Type="Int32" />
           <Property Name="DomicileCityID" Type="Int32" />
           <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="OtherDomicileCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPermitYes" Type="Boolean" />
+          <Property Name="WorkPermitNo" Type="Boolean" />
+          <Property Name="OtherPakistaniCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tehsil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HaveExperience" Type="Boolean" />
+          <Property Name="AppliedAs" Type="Int32" />
         </EntityType>
         <EntityType Name="V_Interview">
           <Key>
@@ -1881,7 +2197,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Experience" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Status" Type="Boolean" />
           <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <Property Name="DepatmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="PositionPurpose" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
@@ -1890,6 +2205,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="CatagoryID" Type="Int32" />
           <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ExperienceAndQualification" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="JStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_Notification">
           <Key>
@@ -1917,8 +2234,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="RetypePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="UserStage" Type="Int32" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HaveExperience" Type="Boolean" />
-          <Property Name="AppliedAs" Type="Int32" />
           <Property Name="HasCV" Type="Boolean" />
           <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" Nullable="false" />
@@ -1930,6 +2245,11 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="StepSix" Type="Boolean" />
           <Property Name="StepSeven" Type="Boolean" />
           <Property Name="StepEight" Type="Boolean" />
+          <Property Name="HasAccess" Type="Boolean" />
+          <Property Name="DateCreated" Type="DateTime" Precision="3" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="AppliedAs" Type="Int32" />
+          <Property Name="HaveExperience" Type="Boolean" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
           <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
@@ -1999,7 +2319,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               <PropertyRef Name="InstituteID" />
             </Principal>
             <Dependent Role="EduDetail">
-              <PropertyRef Name="Institution" />
+              <PropertyRef Name="InstitutionID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2028,6 +2348,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="Candidates">
             <EntityTypeMapping TypeName="BTRMSModel.Candidate">
               <MappingFragment StoreEntitySet="Candidate">
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Tehsil" ColumnName="Tehsil" />
+                <ScalarProperty Name="OtherPakistaniCityName" ColumnName="OtherPakistaniCityName" />
+                <ScalarProperty Name="OtherDomicileCityName" ColumnName="OtherDomicileCityName" />
+                <ScalarProperty Name="WorkPermitNo" ColumnName="WorkPermitNo" />
+                <ScalarProperty Name="WorkPermitYes" ColumnName="WorkPermitYes" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="CVName" ColumnName="CVName" />
                 <ScalarProperty Name="OtherAreaName" ColumnName="OtherAreaName" />
                 <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
@@ -2209,6 +2536,11 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="EduDetails">
             <EntityTypeMapping TypeName="BTRMSModel.EduDetail">
               <MappingFragment StoreEntitySet="EduDetail">
+                <ScalarProperty Name="EduCriteriaID" ColumnName="EduCriteriaID" />
+                <ScalarProperty Name="OtherBoardName" ColumnName="OtherBoardName" />
+                <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="OtherDegreeLevelName" ColumnName="OtherDegreeLevelName" />
                 <ScalarProperty Name="OtherDegreeType" ColumnName="OtherDegreeType" />
                 <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
                 <ScalarProperty Name="InProgress" ColumnName="InProgress" />
@@ -2219,7 +2551,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
-                <ScalarProperty Name="Institution" ColumnName="Institution" />
+                <ScalarProperty Name="InstitutionID" ColumnName="InstitutionID" />
                 <ScalarProperty Name="EndDate" ColumnName="EndDate" />
                 <ScalarProperty Name="StartDate" ColumnName="StartDate" />
                 <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
@@ -2237,6 +2569,31 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EmailLogs">
+            <EntityTypeMapping TypeName="BTRMSModel.EmailLog">
+              <MappingFragment StoreEntitySet="EmailLog">
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="SendDateTime" ColumnName="SendDateTime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="EmailTypeID" ColumnName="EmailTypeID" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="CCAddress" ColumnName="CCAddress" />
+                <ScalarProperty Name="ToAddress" ColumnName="ToAddress" />
+                <ScalarProperty Name="PEmailID" ColumnName="PEmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmailNotificationTypes">
+            <EntityTypeMapping TypeName="BTRMSModel.EmailNotificationType">
+              <MappingFragment StoreEntitySet="EmailNotificationType">
+                <ScalarProperty Name="EmailTypeName" ColumnName="EmailTypeName" />
+                <ScalarProperty Name="PEmailTypeID" ColumnName="PEmailTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ExpCareerLevels">
             <EntityTypeMapping TypeName="BTRMSModel.ExpCareerLevel">
               <MappingFragment StoreEntitySet="ExpCareerLevel">
@@ -2248,6 +2605,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="ExperienceDetails">
             <EntityTypeMapping TypeName="BTRMSModel.ExperienceDetail">
               <MappingFragment StoreEntitySet="ExperienceDetail">
+                <ScalarProperty Name="OtherIndustryName" ColumnName="OtherIndustryName" />
+                <ScalarProperty Name="OtherCityName" ColumnName="OtherCityName" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="OtherCity" ColumnName="OtherCity" />
                 <ScalarProperty Name="SupervisorName" ColumnName="SupervisorName" />
                 <ScalarProperty Name="ReasonOfLeaving" ColumnName="ReasonOfLeaving" />
@@ -2310,13 +2670,21 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="InterviewStatus">
+            <EntityTypeMapping TypeName="BTRMSModel.InterviewStatu">
+              <MappingFragment StoreEntitySet="InterviewStatus">
+                <ScalarProperty Name="InterviewStatusName" ColumnName="InterviewStatusName" />
+                <ScalarProperty Name="InterviewStatusID" ColumnName="InterviewStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="JobDetails">
             <EntityTypeMapping TypeName="BTRMSModel.JobDetail">
               <MappingFragment StoreEntitySet="JobDetail">
                 <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
                 <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
                 <ScalarProperty Name="SpecificRequirement" ColumnName="SpecificRequirement" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
                 <ScalarProperty Name="PositionPurpose" ColumnName="PositionPurpose" />
                 <ScalarProperty Name="ExperienceAndQualification" ColumnName="ExperienceAndQualification" />
@@ -2328,6 +2696,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="JobStatus">
+            <EntityTypeMapping TypeName="BTRMSModel.JobStatu">
+              <MappingFragment StoreEntitySet="JobStatus">
+                <ScalarProperty Name="JStatusName" ColumnName="JStatusName" />
+                <ScalarProperty Name="JStatusID" ColumnName="JStatusID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2350,6 +2726,13 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="MiscellaneousDetails">
             <EntityTypeMapping TypeName="BTRMSModel.MiscellaneousDetail">
               <MappingFragment StoreEntitySet="MiscellaneousDetails">
+                <ScalarProperty Name="NoticeTimeID" ColumnName="NoticeTimeID" />
+                <ScalarProperty Name="InterviewBeforeCompanyName" ColumnName="InterviewBeforeCompanyName" />
+                <ScalarProperty Name="WorkedBeforeCurrentlyWorking" ColumnName="WorkedBeforeCurrentlyWorking" />
+                <ScalarProperty Name="WorkedBeforeCompanyName" ColumnName="WorkedBeforeCompanyName" />
+                <ScalarProperty Name="InterviewStatusID" ColumnName="InterviewStatusID" />
+                <ScalarProperty Name="WorkingRelativeCompanyName" ColumnName="WorkingRelativeCompanyName" />
+                <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
                 <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
                 <ScalarProperty Name="MaritalStatusID" ColumnName="MaritalStatusID" />
                 <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
@@ -2408,6 +2791,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="ReferenceDetails">
             <EntityTypeMapping TypeName="BTRMSModel.ReferenceDetail">
               <MappingFragment StoreEntitySet="ReferenceDetail">
+                <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
                 <ScalarProperty Name="Organization" ColumnName="Organization" />
                 <ScalarProperty Name="HowLongKnown" ColumnName="HowLongKnown" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
@@ -2468,6 +2852,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="BTRMSModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="EmailSentTime" ColumnName="EmailSentTime" />
+                <ScalarProperty Name="HasAccess" ColumnName="HasAccess" />
                 <ScalarProperty Name="HasCV" ColumnName="HasCV" />
                 <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
                 <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
@@ -2475,10 +2861,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="UserStage" ColumnName="UserStage" />
                 <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
-                <ScalarProperty Name="CanView" ColumnName="CanView" />
-                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
-                <ScalarProperty Name="CanEdit" ColumnName="CanEdit" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
                 <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
@@ -2491,6 +2873,20 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_AppliedJob">
             <EntityTypeMapping TypeName="BTRMSModel.V_AppliedJob">
               <MappingFragment StoreEntitySet="V_AppliedJob">
+                <ScalarProperty Name="JStatusName" ColumnName="JStatusName" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
+                <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="LocID" ColumnName="LocID" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Experience" ColumnName="Experience" />
+                <ScalarProperty Name="ExperienceAndQualification" ColumnName="ExperienceAndQualification" />
+                <ScalarProperty Name="PositionPurpose" ColumnName="PositionPurpose" />
+                <ScalarProperty Name="SpecificRequirement" ColumnName="SpecificRequirement" />
+                <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
                 <ScalarProperty Name="JobTitle" ColumnName="JobTitle" />
                 <ScalarProperty Name="JobID" ColumnName="JobID" />
                 <ScalarProperty Name="CName" ColumnName="CName" />
@@ -2503,18 +2899,24 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_Candidate_EduDetail">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_EduDetail">
               <MappingFragment StoreEntitySet="V_Candidate_EduDetail">
+                <ScalarProperty Name="EduCriteriaID" ColumnName="EduCriteriaID" />
+                <ScalarProperty Name="OtherBoardName" ColumnName="OtherBoardName" />
+                <ScalarProperty Name="BoardName" ColumnName="BoardName" />
+                <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+                <ScalarProperty Name="InstitutionID" ColumnName="InstitutionID" />
+                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="OtherDegreeLevelName" ColumnName="OtherDegreeLevelName" />
                 <ScalarProperty Name="OtherDegreeType" ColumnName="OtherDegreeType" />
                 <ScalarProperty Name="DegreeLevelID" ColumnName="DegreeLevelID" />
                 <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
                 <ScalarProperty Name="EduTypeName" ColumnName="EduTypeName" />
                 <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
                 <ScalarProperty Name="InProgress" ColumnName="InProgress" />
-                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
                 <ScalarProperty Name="DegreeTitle" ColumnName="DegreeTitle" />
                 <ScalarProperty Name="CName" ColumnName="CName" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
-                <ScalarProperty Name="Institution" ColumnName="Institution" />
                 <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
                 <ScalarProperty Name="CGPA" ColumnName="CGPA" />
                 <ScalarProperty Name="Percentage" ColumnName="Percentage" />
@@ -2530,6 +2932,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_Candidate_Exp">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Exp">
               <MappingFragment StoreEntitySet="V_Candidate_Exp">
+                <ScalarProperty Name="OtherIndustryName" ColumnName="OtherIndustryName" />
+                <ScalarProperty Name="OtherCityName" ColumnName="OtherCityName" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
                 <ScalarProperty Name="CountryName" ColumnName="CountryName" />
                 <ScalarProperty Name="CountryID" ColumnName="CountryID" />
                 <ScalarProperty Name="OtherCity" ColumnName="OtherCity" />
@@ -2562,6 +2967,16 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_Candidate_Miscellaneous">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Miscellaneous">
               <MappingFragment StoreEntitySet="V_Candidate_Miscellaneous">
+                <ScalarProperty Name="NoticeTimeID" ColumnName="NoticeTimeID" />
+                <ScalarProperty Name="InterviewBeforeCompanyName" ColumnName="InterviewBeforeCompanyName" />
+                <ScalarProperty Name="InterviewStatusName" ColumnName="InterviewStatusName" />
+                <ScalarProperty Name="WorkedBeforeCurrentlyWorking" ColumnName="WorkedBeforeCurrentlyWorking" />
+                <ScalarProperty Name="WorkedBeforeCompanyName" ColumnName="WorkedBeforeCompanyName" />
+                <ScalarProperty Name="InterviewStatusID" ColumnName="InterviewStatusID" />
+                <ScalarProperty Name="WorkingRelativeCompanyName" ColumnName="WorkingRelativeCompanyName" />
+                <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
+                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
+                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
                 <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
                 <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
                 <ScalarProperty Name="MartialStatusName" ColumnName="MartialStatusName" />
@@ -2590,12 +3005,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="HearAboutSource" ColumnName="HearAboutSource" />
                 <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
                 <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
-                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
-                <ScalarProperty Name="CName" ColumnName="CName" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
-                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
-                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
                 <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Designation" ColumnName="Designation" />
@@ -2611,6 +3022,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_Candidate_Reference">
             <EntityTypeMapping TypeName="BTRMSModel.V_Candidate_Reference">
               <MappingFragment StoreEntitySet="V_Candidate_Reference">
+                <ScalarProperty Name="SalutationName" ColumnName="SalutationName" />
+                <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="HowLongKnown" ColumnName="HowLongKnown" />
                 <ScalarProperty Name="Organization" ColumnName="Organization" />
@@ -2637,9 +3050,39 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="V_CandidateDetail">
+            <EntityTypeMapping TypeName="BTRMSModel.V_CandidateDetail">
+              <MappingFragment StoreEntitySet="V_CandidateDetail">
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="HasCV" ColumnName="HasCV" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="StepEight" ColumnName="StepEight" />
+                <ScalarProperty Name="StepSeven" ColumnName="StepSeven" />
+                <ScalarProperty Name="StepSix" ColumnName="StepSix" />
+                <ScalarProperty Name="StepFive" ColumnName="StepFive" />
+                <ScalarProperty Name="StepFour" ColumnName="StepFour" />
+                <ScalarProperty Name="StepThree" ColumnName="StepThree" />
+                <ScalarProperty Name="StepTwo" ColumnName="StepTwo" />
+                <ScalarProperty Name="StepOne" ColumnName="StepOne" />
+                <ScalarProperty Name="UserStage" ColumnName="UserStage" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="V_CandidateProfile">
             <EntityTypeMapping TypeName="BTRMSModel.V_CandidateProfile">
               <MappingFragment StoreEntitySet="V_CandidateProfile">
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Tehsil" ColumnName="Tehsil" />
+                <ScalarProperty Name="OtherPakistaniCityName" ColumnName="OtherPakistaniCityName" />
+                <ScalarProperty Name="WorkPermitNo" ColumnName="WorkPermitNo" />
+                <ScalarProperty Name="WorkPermitYes" ColumnName="WorkPermitYes" />
+                <ScalarProperty Name="OtherDomicileCityName" ColumnName="OtherDomicileCityName" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="CVName" ColumnName="CVName" />
                 <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
                 <ScalarProperty Name="CityID" ColumnName="CityID" />
@@ -2697,6 +3140,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_JobDetail">
             <EntityTypeMapping TypeName="BTRMSModel.V_JobDetail">
               <MappingFragment StoreEntitySet="V_JobDetail">
+                <ScalarProperty Name="JStatusName" ColumnName="JStatusName" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="ExperienceAndQualification" ColumnName="ExperienceAndQualification" />
                 <ScalarProperty Name="CatName" ColumnName="CatName" />
                 <ScalarProperty Name="CatagoryID" ColumnName="CatagoryID" />
@@ -2705,7 +3150,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="PositionPurpose" ColumnName="PositionPurpose" />
                 <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
                 <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
                 <ScalarProperty Name="Experience" ColumnName="Experience" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
@@ -2737,6 +3181,11 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_UserCandidate">
             <EntityTypeMapping TypeName="BTRMSModel.V_UserCandidate">
               <MappingFragment StoreEntitySet="V_UserCandidate">
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="HasAccess" ColumnName="HasAccess" />
                 <ScalarProperty Name="StepEight" ColumnName="StepEight" />
                 <ScalarProperty Name="StepSeven" ColumnName="StepSeven" />
                 <ScalarProperty Name="StepSix" ColumnName="StepSix" />
@@ -2748,8 +3197,6 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
                 <ScalarProperty Name="CVName" ColumnName="CVName" />
                 <ScalarProperty Name="HasCV" ColumnName="HasCV" />
-                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
-                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="UserStage" ColumnName="UserStage" />
                 <ScalarProperty Name="RetypePassword" ColumnName="RetypePassword" />

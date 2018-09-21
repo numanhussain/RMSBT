@@ -17,6 +17,8 @@
     @Html.HiddenFor(model => model.CGPA)
     @Html.HiddenFor(model => model.PassingYear)
     @Html.HiddenFor(model => model.InProgress)
+    @Html.HiddenFor(model => model.GradeName)
+    @Html.HiddenFor(model => model.OtherDegreeLevelName)
     <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
@@ -24,110 +26,198 @@
         </h4>
     </div>
     <div class="modal-body">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="required control-label col-md-1 text-semibold">Level</div>
-                <div class="col-md-3">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Education Level Name</label>
                     @Html.DropDownList("DegreeLevelID", null, new { @class = "form-control" })
                     @Html.HiddenFor(model => model.DegreeLevelID, new { id = "selectedDegreeLevelIDHidden" })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.DegreeLevelID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="OtherDegreelevel" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Education Level Name</label>
+                    @Html.EditorFor(model => model.OtherDegreeLevelName, new { htmlAttributes = new { @class = "form-control", placeholder = "Title", id = "OtherDegreeLevelName" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherDegreeLevelName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="DegreeTypeDD" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Degree Type Name</label>
+                    <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="DegreeTypeID" @*style=" width:300px;"*@ name="DegreeTypeID"></select>
+                    @Html.HiddenFor(model => model.DegreeTypeID, new { id = "selectedCityIdHidden" })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.DegreeTypeID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="OtherDegree" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Degree Type Name</label>
+                    @Html.EditorFor(model => model.OtherDegreeType, new { htmlAttributes = new { @class = "form-control", placeholder = "Title", id = "OtherDegreeType" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherDegreeType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="DegreeTB" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Degree Title</label>
+                    @Html.EditorFor(model => model.DegreeTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
+                </div>
+                <div class="small text-grey-300">
+                    <small>Example: BSc (Hon's) in CS</small>
+                    @Html.ValidationMessageFor(model => model.DegreeTitle, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="MajorSubjectDD" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Major Subjects</label>
+                    @Html.EditorFor(model => model.MajorSubject, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.MajorSubject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="InstitutionDD" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Institution Name</label>
+                    @Html.DropDownList("InstitutionID", null, new { @class = "form-control" })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="OtherInstitute" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Institution Name</label>
+                    @Html.EditorFor(model => model.OtherInstitute, new { htmlAttributes = new { @class = "form-control", id = "OtherInstitute" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherInstitute, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="BoardDD" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Institution/Board</label>
+                    @Html.DropDownList("BoardID", null, new { @class = "form-control" })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.BoardID, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div id="OtherBoard" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Other Institution/Board</label>
+                    @Html.EditorFor(model => model.OtherBoardName, new { htmlAttributes = new { @class = "form-control", id = "OtherBoard" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherBoardName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Start Date</label>
+                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @*<input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?"dd/mm/yyyy":Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
+                    @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                     <div class="small">
-                        @Html.ValidationMessageFor(model => model.DegreeLevelID, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div id="DegreeTypeDD">
-                    <div class=" label-control text-semibold col-md-1">Degree Type</div>
-                    <div class="col-md-3">
-                        <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="DegreeTypeID" @*style=" width:300px;"*@ name="DegreeTypeID"></select>
-                        @Html.HiddenFor(model => model.DegreeTypeID, new { id = "selectedCityIdHidden" })
-                        @Html.ValidationMessageFor(model => model.DegreeTypeID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div id="OtherDegree">
-                    <div class="required label-control text-semibold col-md-1">Other Degree Type</div>
-                    <div class="col-md-3">
-                        @Html.EditorFor(model => model.OtherDegreeType, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
-                        @Html.ValidationMessageFor(model => model.OtherDegreeType, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                <span class="help-block">Format must be (dd/mm/yyyy)</span>
             </div>
-            <div class="form-group">
-                <div id="DegreeTB">
-                    <div class="required label-control text-semibold col-md-1"> Degree Title  </div>
-                    <div class="col-md-3">
-                        @Html.EditorFor(model => model.DegreeTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
-                        <small class="text-grey-300">Example: BSc (Hon's) in CS</small>
-                        @Html.ValidationMessageFor(model => model.DegreeTitle, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div id="MajorSubjectDD">
-                    <div class="required control-label text-semibold col-md-1"> Major  </div>
-                    <div class="col-md-3">
-                        @Html.EditorFor(model => model.MajorSubject, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.MajorSubject, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div id="InstitutionDD">
-                    <div class="control-label text-semibold col-md-1">Institution</div>
-                    <div class="col-md-3">
-                        @Html.DropDownList("InstitutionID", null, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.InstitutionID, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div id="OtherInstitute">
-                    <div class="required label-control text-semibold col-md-1"> Institute Name  </div>
-                    <div class="col-md-2">
-                        @Html.EditorFor(model => model.OtherInstitute, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.OtherInstitute, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="required control-label col-md-1 text-semibold">Start&nbsp;Date</div>
-                <div class="col-md-3">
-                    @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-                </div>
-                <div id="hidedatediv">
-                    <div class="required control-label col-md-1 text-semibold">End&nbsp; Date</div>
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+            <div id="hidedatediv" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">End Date</label>
+                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @*<input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?"dd/mm/yyyy":Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
+                    @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                    <div class="small">
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col-md-1">
-                    <label class=" checkbox-inline checkbox-right text-semibold col-md-6" for="InProgress">
-                        @Html.CheckBox("InProgress", new { @class = "styled", @id = "InProgress" })
-                        @Html.ValidationMessageFor(model => model.InProgress, "", new { @class = "text-danger" })
-                        In Progress
-                    </label>
+                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+            </div>
+            <div class="col-md-3">
+                <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="InProgress">
+                    @Html.CheckBox("InProgress", new { @class = "styled", @id = "InProgress", @name = "InProgress" })
+                    @Html.ValidationMessageFor(model => model.InProgress, "", new { @class = "text-danger" })
+                    In Progress
+                </label>
+            </div>
+
+        </div>
+        <div class="row">
+            <div id="marksdiv" class="form-group col-md-2">
+                <div>
+                    <label class="required control-label text-semibold">Select</label>
+                    @Html.DropDownList("EduCriteriaID", new List<SelectListItem> { new SelectListItem { Text = "-----", Value = "0" }, new SelectListItem { Text = "Marks", Value = "1" }, new SelectListItem { Text = "Grade", Value = "2" }, new SelectListItem { Text = "CGPA", Value = "3" } }, new { @class = "form-control" })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.EduCriteriaID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div class="form-group col-md-3">
-                    <label class="required text-semibold">Total Marks</label>
+            <div id="TotalMarksDiv">
+                <div class="form-group col-md-2">
                     <div>
-                        @Html.EditorFor(model => model.TotalMark, new { htmlAttributes = new { @class = "form-control" } })
+                        <label class="required control-label text-semibold">Total Marks</label>
+                        <input type="text" class="form-control" name="TotalMark" id="TotalMark" placeholder="" value="@ViewBag.TotalMark" />
+                        @*@Html.EditorFor(model => model.TotalMark, new { htmlAttributes = new { @class = "form-control", id = "TotalMarks" } })*@
+                    </div>
+                    <div class="small">
                         @Html.ValidationMessageFor(model => model.TotalMark, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="form-group col-md-3">
-                    <label class="required text-semibold">Obtained Marks</label>
-                    <div>@Html.EditorFor(model => model.ObtainedMark, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    @Html.ValidationMessageFor(model => model.ObtainedMark, "", new { @class = "text-danger" })
+                <div class="form-group col-md-2">
+                    <div>
+                        <label class="required control-label text-semibold">Obtained Marks</label>
+                        <input type="text" class="form-control" name="ObtainedMark" id="ObtainedMark" placeholder="" value="@ViewBag.ObtainedMark" />
+                        @*@Html.EditorFor(model => model.ObtainedMark, new { htmlAttributes = new { @class = "form-control", id = "ObtainedMarks" } })*@
+                    </div>
+                    <div class="small">
+                        @Html.ValidationMessageFor(model => model.ObtainedMark, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-
-                <div class="form-group col-md-3">
-                    <label class="required text-semibold">Percentage</label>
-                    <div>@Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })</div>
-                    @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                <div class="form-group col-md-2">
+                    <div>
+                        <label class="required control-label text-semibold">Percentage</label>
+                        <input type="text" class="form-control" name="Percentage" id="Percentage" placeholder="" value="@ViewBag.Percentage" />
+                        @*@Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })*@
+                    </div>
+                    <div class="small">
+                        @Html.ValidationMessageFor(model => model.Percentage, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div id="CGPATB">
-                    <div class="form-group col-md-3">
-                        <label class="required text-semibold">CGPA</label>
-                        <div>
-                            @Html.EditorFor(model => model.CGPA, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.CGPA, "", new { @class = "text-danger" })
-                        </div>
+            </div>
+            <div id="GradeDiv">
+                <div class="form-group col-md-2">
+                    <div>
+                        <label class="required control-label text-semibold">Grade Name</label>
+                        @Html.EditorFor(model => model.GradeName, new { htmlAttributes = new { @class = "form-control" } })
+                    </div>
+                    <div class="small">
+                        @Html.ValidationMessageFor(model => model.GradeName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div id="CGPADiv">
+                <div class="form-group col-md-2">
+                    <div>
+                        <label class="required control-label text-semibold">CGPA</label>
+                        @Html.EditorFor(model => model.CGPA, new { htmlAttributes = new { @class = "form-control", placeholder = "Out of 4" } })
+                    </div>
+                    <div class="small">
+                        @Html.ValidationMessageFor(model => model.CGPA, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
@@ -148,5 +238,8 @@
         DegreeChange();
         InstituteChange();
         LoadDegreeTypeDD();
+        DegreeTypeChange();
+        CalculatePercentage();
+        EduDateLoad();
     });
 </script>

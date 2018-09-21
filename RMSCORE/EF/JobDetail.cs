@@ -25,7 +25,7 @@ namespace RMSCORE.EF
         public string ExperienceAndQualification { get; set; }
         public string PositionPurpose { get; set; }
         public Nullable<int> CatagoryID { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public Nullable<int> StatusID { get; set; }
         public string SpecificRequirement { get; set; }
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }

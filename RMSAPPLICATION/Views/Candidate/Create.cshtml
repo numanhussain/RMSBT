@@ -49,29 +49,66 @@
                     </div>
                     <div class="form-group col-md-3">
                         <div>
-                            <label class=" required control-label text-semibold">Name</label>
-                            @Html.TextBoxFor(model => model.CName, new { @class = "form-control " })
+                            <label class="required control-label text-semibold ">Full Name</label>
+                            @Html.TextBoxFor(model => model.CName, new { @class = "form-control text-capitalize", id = "CName" })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Father's/Husband's Name</label>
-                            @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.EditorFor(model => model.FatherName, new { htmlAttributes = new { @class = "form-control text-capitalize", id = "FName" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.FatherName, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <div>
-                            <label class="required control-label text-semibold">CNIC/Passport No.</label>
+                            <label class="control-label text-semibold">Nationality</label>
+                            @Html.DropDownList("NationalityCountryID", null, new { @class = "form-control" })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.NationalityCountryID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div id="CNICdiv" class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">CNIC #</label>
                             @Html.EditorFor(model => model.CNICNo, new { htmlAttributes = new { @class = "form-control", placeholder = "xxxxx-xxxxxxx-x" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.CNICNo, "", new { @class = "text-danger" })
                             </div>
+                        </div>
+                    </div>
+                    <div id="Passportdiv" class="form-group col-md-3">
+                        <div>
+                            <label class="control-label text-semibold">Passport #</label>
+                            @Html.EditorFor(model => model.PassportNumber, new { htmlAttributes = new { @class = "form-control" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.PassportNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div id="WorkPermitdiv" class="form-group">
+                        <div class="control-label col-md-4 text-semibold">Do you have permit to work in pakistan?</div>
+                        <div class="col-md-1">
+                            <div class="radio-inline text-semibold">
+                                @Html.RadioButton("WorlPermitSelection", "WorkPermitYes", new { @checked = "checked", @id = "WorkPermitYes" })
+                                @Html.ValidationMessageFor(model => model.WorkPermitYes, "", new { @class = "text-danger" })
+                                Yes
+                            </div>
+                        </div>
+                        <div class="col-md-1">
+                            <label class="radio-inline text-semibold">
+                                @Html.RadioButton("WorlPermitSelection", "WorkPermitNo", new { @class = "checked", @id = "WorkPermitNo" })
+                                @Html.ValidationMessageFor(model => model.WorkPermitNo, "", new { @class = "text-danger" })
+                                No
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -80,13 +117,14 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Date of Birth</label>
-                            <input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?DateTime.Today.ToString("MM/dd/yyyy"):Model.DOB.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
+                            @Html.TextBoxFor(x => x.DOB, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DOB", name = "DOB", @type = "text", placeholder = "dd-mm-yyyy" })
+                            @*<input class="form-control" id="DOB" name="DOB" value="@(Model.DOB==null?"dd/mm/yyyy":Model.DOB.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
                             @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.DOB, "", new { @class = "text-danger" })
                             </div>
                         </div>
-                        <span class="help-block">Format must be (mm/dd/yyyy)</span>
+                        <span class="help-block">Format must be (dd/mm/yyyy)</span>
                     </div>
                     <div class="form-group col-md-2">
                         <div>
@@ -97,7 +135,7 @@
                             @Html.ValidationMessageFor(model => model.GenderID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-2">
+                    <div class="form-group col-md-3">
                         <div>
                             <label class="control-label text-semibold">Area of interest</label>
                             @Html.DropDownList("AreaOfInterestID", null, new { @class = "form-control" })
@@ -106,7 +144,7 @@
                             @Html.ValidationMessageFor(model => model.AreaOfInterestID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-2" id="OtherAreaDivHide">
+                    <div class="form-group col-md-3" id="OtherAreaDivHide">
                         <div>
                             <label class="required control-label text-semibold">Other Interest</label>
                             @Html.EditorFor(model => model.OtherAreaName, new { htmlAttributes = new { @class = "form-control" } })
@@ -115,26 +153,37 @@
                             @Html.ValidationMessageFor(model => model.OtherAreaName, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group col-md-3">
+                </div>
+                <div class="row">
+                    <div id="Domicilediv" class="form-group col-md-3">
                         <div>
-                            <label class="control-label text-semibold">Domicile</label>
+                            <label class="control-label text-semibold">Domicile District</label>
                             @Html.DropDownList("DomicileCityID", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
                             @Html.ValidationMessageFor(model => model.DomicileCityID, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="row">
+                    <div id="OtherDomicileCitydiv" class="form-group col-md-3">
+                        <div>
+                            <label class=" control-label text-semibold">Domicile District</label>
+                            @Html.EditorFor(model => model.OtherDomicileCityName, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.OtherDomicileCityName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
                     <div class="form-group col-md-6">
                         <div>
-                            <label class="required required control-label text-semibold">Address</label>
+                            <label class="required required control-label text-semibold">Present Address</label>
                             @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="row">
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Country</label>
@@ -147,7 +196,7 @@
                     </div>
                     <div class="form-group col-md-3" id="CityDivHide">
                         <div>
-                            <label class="required control-label text-semibold">City</label>
+                            <label class="required control-label text-semibold">City/District</label>
                             <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" name="CityID"></select>
                             @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
                         </div>
@@ -157,22 +206,40 @@
                     </div>
                     <div class="form-group col-md-3" id="OtherCityDivHide">
                         <div>
-                            <label class="required control-label text-semibold">City </label>
+                            <label class="required control-label text-semibold">City/District</label>
                             @Html.EditorFor(model => model.OtherCityName, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <div class="small">
                             @Html.ValidationMessageFor(model => model.OtherCityName, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="form-group col-md-3">
+                    <div class="form-group col-md-3" id="OtherPakistaniCitydiv">
                         <div>
-                            <label class="control-label text-semibold">Nationality</label>
-                            @Html.DropDownList("NationalityCountryID", null, new { @class = "form-control" })
+                            <label class="required control-label text-semibold">City/District</label>
+                            @Html.EditorFor(model => model.OtherPakistaniCityName, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                         <div class="small">
-                            @Html.ValidationMessageFor(model => model.NationalityCountryID, "", new { @class = "text-danger" })
+                            @Html.ValidationMessageFor(model => model.OtherPakistaniCityName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class=" control-label text-semibold">Tehsil/Town</label>
+                            @Html.EditorFor(model => model.Tehsil, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.Tehsil, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <div>
+                            <label class=" control-label text-semibold">Postal Code</label>
+                            @Html.EditorFor(model => model.PostalCode, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.PostalCode, "", new { @class = "text-danger" })
                         </div>
                     </div>
                     <div class="form-group col-md-3">
@@ -225,24 +292,20 @@
 
 
 }
-
-<script>
-    $(document).ready(function () {
-        var date_input = $('input[name="DOB"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
+        var model = {
+                "WorkPermitYes": @Html.Raw(Json.Encode(Model.WorkPermitYes)),
+                "WorkPermitNo": @Html.Raw(Json.Encode(Model.WorkPermitNo))
+                };
+        $('#CName').tooltip({ 'trigger': 'focus', 'title': 'As per your CNIC' });
+        $('#FName').tooltip({ 'trigger': 'focus', 'title': 'As per your CNIC' });
         SavePersonalInfoFunction();
         LoadDD();
+        WorkPermitNotify();
+        FormControlsScriptEdit(model);
+        OtherCity();
+        DateLoad();
     });
 </script>
 

@@ -9,11 +9,11 @@
         $("#hv1").addClass("liInActive");
         $("#hv2").addClass("liInActive");
         $("#hv3").addClass("liInActive");
-        $("#hv4").addClass("liActive");
+        $("#hv4").addClass("liInActive");
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liInActive");
-        $("#hv33").addClass("liInActive");
         $("#hv7").addClass("liInActive");
+        $("#hv8").addClass("liActive");
         document.getElementById("UserstageAfterFirst").value = 5;
     });
 }

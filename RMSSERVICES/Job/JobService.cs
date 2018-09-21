@@ -23,12 +23,11 @@ namespace RMSSERVICES.Job
         IRepository<CompensationDetail> CompensationDetailRepository;
         IRepository<MiscellaneousDetail> MiscellaneousDetailRepository;
         IRepository<CandidateStrength> CandidateStrengthRepository;
+        IRepository<CandidateStep> CandidateStepRepository;
         public JobService(IUnitOfWork unitOfWork, IRepository<V_JobDetail> openJobRepository, IRepository<V_AppliedJob> jobRepository,
-            IRepository<CandidateJob> appliedJobRepository, IRepository<Candidate> candidateProfileRepository,
-        IRepository<EduDetail> eduDetailRepository, IRepository<ExperienceDetail> experienceDetailRepository,
-        IRepository<CompensationDetail> compensationDetailRepository,
-        IRepository<MiscellaneousDetail> miscellaneousDetailRepository,
-        IRepository<CandidateStrength> candidateStrengthRepository)
+            IRepository<CandidateJob> appliedJobRepository, IRepository<Candidate> candidateProfileRepository, IRepository<EduDetail> eduDetailRepository, IRepository<ExperienceDetail> experienceDetailRepository,
+        IRepository<CompensationDetail> compensationDetailRepository, IRepository<MiscellaneousDetail> miscellaneousDetailRepository, IRepository<CandidateStrength> candidateStrengthRepository,
+          IRepository<CandidateStep> candidateStepRepository)
         {
             UnitOfWork = unitOfWork;
             JobRepository = jobRepository;
@@ -40,6 +39,7 @@ namespace RMSSERVICES.Job
             CompensationDetailRepository = compensationDetailRepository;
             MiscellaneousDetailRepository = miscellaneousDetailRepository;
             CandidateStrengthRepository = candidateStrengthRepository;
+            CandidateStepRepository = candidateStepRepository;
         }
         #endregion
         #region -- Service Interface Implementation --
@@ -57,6 +57,10 @@ namespace RMSSERVICES.Job
                 vmVAppliedJob.CJobDate = dbVAppliedJob.CJobDate;
                 vmVAppliedJob.JobID = dbVAppliedJob.JobID;
                 vmVAppliedJob.JobTitle = dbVAppliedJob.JobTitle;
+                vmVAppliedJob.DepatmentName = dbVAppliedJob.DepatmentName;
+                vmVAppliedJob.CatName = dbVAppliedJob.CatName;
+                vmVAppliedJob.StatusID = dbVAppliedJob.StatusID;
+                vmVAppliedJob.JStatusName = dbVAppliedJob.JStatusName;
                 vmVAppliedJobs.Add(vmVAppliedJob);
             }
             return vmVAppliedJobs.OrderByDescending(aa => aa.CJobID).ToList();
@@ -77,18 +81,36 @@ namespace RMSSERVICES.Job
             vmJobDetail.CityID = dbJobDetail.CityID;
             vmJobDetail.CityName = dbJobDetail.CityName;
             vmJobDetail.DepatmentName = dbJobDetail.DepatmentName;
-            vmJobDetail.JobDescription= dbJobDetail.JobDescription;
+            vmJobDetail.JobDescription = dbJobDetail.JobDescription;
             vmJobDetail.PositionPurpose = dbJobDetail.PositionPurpose;
             vmJobDetail.ExperienceAndQualification = dbJobDetail.ExperienceAndQualification;
             vmJobDetail.SpecificRequirement = dbJobDetail.SpecificRequirement;
+            vmJobDetail.DeadlineDate = dbJobDetail.DeadlineDate;
             if (dbAppliedJobs.Where(aa => aa.JobID == dbJobDetail.JobID).Count() > 0)
                 vmJobDetail.IsApplied = true;
             else
                 vmJobDetail.IsApplied = false;
+            //Candidate step by step profile completion
+            if (vmJobDetail.CatagoryID != 3)
+            {
+                CandidateStep dbCandidateStep = CandidateStepRepository.GetSingle(LoggedInUser.CandidateID);
+                if (dbCandidateStep.StepOne == true && dbCandidateStep.StepTwo == true && dbCandidateStep.StepThree == true && dbCandidateStep.StepFour == true && dbCandidateStep.StepFive == true && dbCandidateStep.StepSix == true && dbCandidateStep.StepSeven == true)
+                {
+                    vmJobDetail.IsCompletedProfile = 1;
+                }
+                else
+                {
+                    vmJobDetail.IsCompletedProfile = 0;
+                }
+            }
+            else
+            {
+                vmJobDetail.IsCompletedProfile = 1;
+            }
             return vmJobDetail;
         }
 
-        public string CheckForProfileCompletion(V_UserCandidate LoggedInUser)
+        public string CheckForProfileCompletion(V_UserCandidate LoggedInUser, JobDetail dbJob)
         {
             string message = "";
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient4 = c => c.CandidateID == LoggedInUser.CandidateID;
@@ -101,21 +123,45 @@ namespace RMSSERVICES.Job
             //{
             //    message = "Kindly enter your compensation details in profile";
             //}
-            Expression<Func<ExperienceDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
-            if (ExperienceDetailRepository.FindBy(SpecificClient2).Count == 0)
+            if (LoggedInUser.HaveExperience == true)
             {
-                message = "Kindly enter your experience details in profile";
+                Expression<Func<ExperienceDetail, bool>> SpecificClient2 = c => c.CandidateID == LoggedInUser.CandidateID;
+                if (ExperienceDetailRepository.FindBy(SpecificClient2).Count == 0)
+                {
+                    message = "Kindly enter your experience details in profile.";
+                }
             }
+
             Expression<Func<EduDetail, bool>> SpecificClient1 = c => c.CandidateID == LoggedInUser.CandidateID;
             if (EduDetailRepository.FindBy(SpecificClient1).Count == 0)
             {
-                message = "Kindly enter your educations in profile";
+                message = "Kindly enter your educations in profile.";
+            }
+            if (dbJob.CatagoryID == 3)
+            {
+                Expression<Func<EduDetail, bool>> SpecificEdu = c => c.CandidateID == LoggedInUser.CandidateID && (c.DegreeLevelID == 6);
+                if (EduDetailRepository.FindBy(SpecificEdu).Count == 0)
+                {
+                    message = "Kindly enter your intermediate education in profile.";
+                }
+            }
+            if (dbJob.CatagoryID == 4)
+            {
+                Expression<Func<EduDetail, bool>> SpecificEdu = c => c.CandidateID == LoggedInUser.CandidateID && (c.DegreeLevelID == 5);
+                if (EduDetailRepository.FindBy(SpecificClient1).Count == 0)
+                {
+                    message = "Kindly enter your matriculation detail in profile.";
+                }
             }
             Expression<Func<Candidate, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
             Candidate candidate = CandidateRepository.GetSingle(LoggedInUser.CandidateID);
             if (candidate.CName == null || candidate.CName == "")
             {
-                message = "Kindly enter your personal details in profile";
+                message = "Kindly enter your personal details in profile.";
+            }
+            if (candidate.WorkPermitNo == true)
+            {
+                message = "You are not eligible as you have no work permit.";
             }
             return message;
         }
@@ -184,7 +230,7 @@ namespace RMSSERVICES.Job
         }
         public List<VMOpenJobIndex> JobIndex()
         {
-            List<V_JobDetail> dbOpenJobs = OpenJobRepository.GetAll();
+            List<V_JobDetail> dbOpenJobs = OpenJobRepository.GetAll().Where(aa => aa.DeadlineDate > DateTime.Today).ToList();
             List<VMOpenJobIndex> vmOpenJobs = new List<VMOpenJobIndex>();
             foreach (var dbOpenJob in dbOpenJobs)
             {
@@ -202,10 +248,10 @@ namespace RMSSERVICES.Job
                 vmOpenJobIndex.PositionPurpose = dbOpenJob.PositionPurpose;
                 vmOpenJobIndex.CatagoryID = dbOpenJob.CatagoryID;
                 vmOpenJobIndex.CatName = dbOpenJob.CatName;
-                vmOpenJobIndex.Status = dbOpenJob.Status;
+                vmOpenJobIndex.StatusID = dbOpenJob.StatusID;
+                vmOpenJobIndex.JStatusName = dbOpenJob.JStatusName;
                 vmOpenJobIndex.DepatmentName = dbOpenJob.DepatmentName;
                 vmOpenJobIndex.SpecificRequirement = dbOpenJob.SpecificRequirement;
-
                 vmOpenJobIndex.DeadlineDate = dbOpenJob.DeadlineDate;
                 vmOpenJobs.Add(vmOpenJobIndex);
             }

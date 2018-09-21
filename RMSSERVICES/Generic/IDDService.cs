@@ -32,5 +32,8 @@ namespace RMSSERVICES.Generic
         List<AreaOfInterest> GetAreaOfInterestList();
         List<Salutation> GetSalutationList();
         List<City> GetDomicileList();
+        List<InterviewStatu> GetInterviewStatus();
+        List<EduBoard> GetBoardList();
+        void GenerateEmail(string TO, string CC, string Subject, string Body, int CandidateID, int NotiTypeID);
     }
 }

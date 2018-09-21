@@ -43,6 +43,7 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
             VMReferenceOperation obj = ReferenceDetailService.GetCreate(cid);
+            HelperClass(obj);
             return View(obj);
         }
         [HttpPost]
@@ -98,6 +99,7 @@ namespace RMSAPPLICATION.Controllers
                 vmf.StepSix = dbtickStep.StepSix;
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
+            HelperClass(obj);
             return PartialView("Create", obj);
         }
         [HttpGet]
@@ -112,6 +114,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult Edit(int id)
         {
             VMReferenceOperation obj = ReferenceDetailService.GetEdit((int)id);
+            HelperClass(obj);
             return PartialView(obj);
         }
         [HttpPost]
@@ -162,12 +165,14 @@ namespace RMSAPPLICATION.Controllers
                 ReferenceDetailService.PostEdit(obj);
                 return Json("OK", JsonRequestBehavior.AllowGet);
             }
+            HelperClass(obj);
             return PartialView(obj);
         }
         [HttpGet]
         public ActionResult Delete(int? id)
         {
             VMReferenceOperation vmOperation = ReferenceDetailService.GetDelete((int)id);
+            HelperClass(vmOperation);
             return View(vmOperation);
         }
         [HttpPost]
@@ -179,6 +184,11 @@ namespace RMSAPPLICATION.Controllers
         #endregion
         #endregion
         #region -- Controller Private  Methods--
+        private void HelperClass(VMReferenceOperation obj)
+        {
+            ViewBag.SalutationID1 = new SelectList(DDService.GetSalutationList().ToList().OrderBy(aa => aa.CSalutationID).ToList(), "CSalutationID", "SalutationName", obj.SalutationID1);
+            ViewBag.SalutationID2 = new SelectList(DDService.GetSalutationList().ToList().OrderBy(aa => aa.CSalutationID).ToList(), "CSalutationID", "SalutationName", obj.SalutationID2);
+        }
         #endregion
     }
 }

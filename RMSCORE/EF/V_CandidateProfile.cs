@@ -49,5 +49,14 @@ namespace RMSCORE.EF
         public Nullable<int> CityID { get; set; }
         public Nullable<int> DomicileCityID { get; set; }
         public string CVName { get; set; }
+        public string PassportNumber { get; set; }
+        public string OtherDomicileCityName { get; set; }
+        public Nullable<bool> WorkPermitYes { get; set; }
+        public Nullable<bool> WorkPermitNo { get; set; }
+        public string OtherPakistaniCityName { get; set; }
+        public string Tehsil { get; set; }
+        public string PostalCode { get; set; }
+        public Nullable<bool> HaveExperience { get; set; }
+        public Nullable<int> AppliedAs { get; set; }
     }
 }

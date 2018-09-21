@@ -25,6 +25,12 @@
                                 Job Title
                             </th>
                             <th>
+                                Job Catagory
+                            </th>
+                            <th>
+                                Department
+                            </th>
+                            <th>
                                 Applied Date
                             </th>
                             <th>
@@ -41,13 +47,21 @@
                                     @Html.DisplayFor(modelItem => item.JobTitle)
                                 </td>
                                 <td>
+                                    @Html.DisplayFor(modelItem => item.CatName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DepatmentName)
+                                </td>
+                                <td>
                                     @if (item.CJobDate != null)
                                     {
                                         @item.CJobDate.Value.ToString("dd-MM-yyyy");
                                     }
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Status)
+                                    <strong>
+                                        @Html.DisplayFor(modelItem => item.JStatusName)
+                                    </strong>
                                 </td>
                             </tr>
                         }

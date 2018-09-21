@@ -40,81 +40,140 @@
             <div class="panel-body">
                 <div class="text-black">Reference # 1 : Personal (should not be immediate relative)</div>
                 <hr />
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="required control-label col-md-2 text-semibold">Reference Name</div>
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.RefName1, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.RefName1, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <div>
+                            <label class="required control-label text-semibold">Title</label>s
+                            @Html.DropDownList("SalutationID1", null, new { @class = "form-control" })
                         </div>
-                        <div class="required control-label col-md-1 text-semibold text-right"> Designation</div>
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.RefDesignation1, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.RefDesignation1, "", new { @class = "text-danger" })
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.SalutationID1, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="required control-label col-md-2 text-semibold">Organization</div>
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.Organization1, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Organization1, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="required control-label col-md-1 text-semibold">Contact</div>
-                        <div class="col-md-3">
-                            @Html.EditorFor(model => model.RefContact1, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.RefContact1, "", new { @class = "text-danger" })
+                    <div class="form-group col-md-4">
+                        <div>
+                            <label class="required control-label text-semibold">Referee's Full Name</label>
+                            @Html.EditorFor(model => model.RefName1, new { htmlAttributes = new { @class = "form-control text-capitalize", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefName1, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="required control-label col-md-2 text-semibold">How long known?</div>
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.HowLongKnown1, new { htmlAttributes = new { @class = "form-control", placeholder = "years" } })
-                            @Html.ValidationMessageFor(model => model.HowLongKnown1, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="required control-label col-md-1 text-semibold">Email</div>
-                        <div class="col-md-3">
-                            @Html.EditorFor(model => model.RefEmail1, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
-                            @Html.ValidationMessageFor(model => model.RefEmail1, "", new { @class = "text-danger" })
+                    <div class="form-group col-md-4">
+                        <div>
+                            <label class="required control-label text-semibold">Designation</label>
+                            @Html.EditorFor(model => model.RefDesignation1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefDesignation1, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Organization</label>
+                            @Html.EditorFor(model => model.Organization1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.Organization1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Phone #</label>
+                            @Html.EditorFor(model => model.RefContact1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefContact1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">How long known?</label>
+                            @Html.EditorFor(model => model.HowLongKnown1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.HowLongKnown1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Email</label>
+                            @Html.EditorFor(model => model.RefEmail1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefEmail1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="text-black">Reference # 2 : Professional (someone you know in a professional capacity)</div>
                 <hr />
-                <div class="form-horizontal">
-                    <div class="form-group">
-                        <div class="required control-label col-md-2 text-semibold">Reference Name</div>
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.RefName2, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.RefName2, "", new { @class = "text-danger" })
+                <div class="row">
+                    <div class="form-group col-md-2">
+                        <div>
+                            <label class="required control-label text-semibold">Title</label>
+                            @Html.DropDownList("SalutationID2", null, new { @class = "form-control" })
                         </div>
-                        <div class="required control-label col-md-1 text-semibold text-right"> Designation</div>
-                        <div class="col-md-4">
-                            @Html.EditorFor(model => model.RefDesignation2, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.RefDesignation2, "", new { @class = "text-danger" })
+                        <div class="small">
+                            @Html.ValidationMessageFor(model => model.SalutationID2, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="required control-label col-md-2 text-semibold">Organization</div>
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.Organization2, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Organization2, "", new { @class = "text-danger" })
-                        </div>
-                        <div class="required control-label col-md-1 text-semibold">Contact</div>
-                        <div class="col-md-3">
-                            @Html.EditorFor(model => model.RefContact2, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.RefContact2, "", new { @class = "text-danger" })
+                    <div class="form-group col-md-4">
+                        <div>
+                            <label class="required control-label text-semibold">Referee's Full Name</label>
+                            @Html.EditorFor(model => model.RefName2, new { htmlAttributes = new { @class = "form-control text-capitalize", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefName2, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="required control-label col-md-2 text-semibold">How long known?</div>
-                        <div class="col-md-5">
-                            @Html.EditorFor(model => model.HowLongKnown2, new { htmlAttributes = new { @class = "form-control", placeholder = "years" } })
-                            @Html.ValidationMessageFor(model => model.HowLongKnown2, "", new { @class = "text-danger" })
+                    <div class="form-group col-md-4">
+                        <div>
+                            <label class="required control-label text-semibold">Designation</label>
+                            @Html.EditorFor(model => model.RefDesignation2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefDesignation2, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                        <div class="required control-label col-md-1 text-semibold">Email</div>
-                        <div class="col-md-3">
-                            @Html.EditorFor(model => model.RefEmail2, new { htmlAttributes = new { @class = "form-control", placeholder = "abc@gmail.com" } })
-                            @Html.ValidationMessageFor(model => model.RefEmail2, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Organization</label>
+                            @Html.EditorFor(model => model.Organization2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.Organization2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Phone #</label>
+                            @Html.EditorFor(model => model.RefContact2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefContact2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">How long known?</label>
+                            @Html.EditorFor(model => model.HowLongKnown2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.HowLongKnown2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div>
+                            <label class="required control-label text-semibold">Email</label>
+                            @Html.EditorFor(model => model.RefEmail2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            <div class="small">
+                                @Html.ValidationMessageFor(model => model.RefEmail2, "", new { @class = "text-danger" })
+                            </div>
                         </div>
                     </div>
                 </div>

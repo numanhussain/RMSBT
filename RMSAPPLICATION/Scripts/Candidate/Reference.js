@@ -35,6 +35,7 @@
 //    });
 //}
 function ReferenceDetailPostCreate(id) {
+    clearClasses();
     $('#btnPostCreate').click(function () {
         $.ajax({
             type: "POST",
@@ -170,8 +171,8 @@ function ReferenceGetCreate(id, item) {
         $("#hv4").addClass("liInActive");
         $("#hv5").addClass("liInActive");
         $("#hv6").addClass("liActive");
-        $("#hv33").addClass("liInActive");
         $("#hv7").addClass("liInActive");
+        $("#hv8").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 7;
     });
 }

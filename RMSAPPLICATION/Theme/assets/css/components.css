@@ -22116,8 +22116,8 @@ thead .htCollapseButton {
 }
 
     .login-container .page-container .login-form {
-        width: 320px;
-        background-color: #012813;
+        width: 350px;
+        background-color: transparent;
     }
 
         .login-container .page-container .login-form .thumb {

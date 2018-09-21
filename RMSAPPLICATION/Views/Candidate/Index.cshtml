@@ -5,47 +5,12 @@
 }
 <head>
     <style>
-        /*#hv1 :hover {
-            color: white;
-            background-color: dodgerblue
-        }
-
-        #hv2 :hover {
-            color: white;
-            background-color: dodgerblue
-        }
-
-        #hv3 :hover {
-            color: white;
-            background-color: dodgerblue
-        }
-
-        #hv4 :hover {
-            color: white;
-            background-color: dodgerblue
-        }
-
-        #hv5 :hover {
-            color: white;
-            background-color: dodgerblue
-        }
-
-        #hv6 :hover {
-            color: white;
-            background-color: dodgerblue
-        }
-
-        #hv33 :hover {
-            color: white;
-            background-color: dodgerblue
-        }*/
-
         .liActive {
-            background-color: #065094;
+            background-color: #00adf0;
         }
 
         .liInActive {
-            background-color: #00adf0
+            background-color: #00adf0;
         }
     </style>
 </head>
@@ -76,7 +41,7 @@
                                         </div>
                                     </div>
                                 </section>
-                                <ul class="navigation">
+                                <ul class="navigation bg-primary">
                                     <li id="hv1" onclick="CandidateGetCreate()">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepOne == true)
@@ -84,16 +49,16 @@
                                         </a>
                                     </li>
 
-                                    <li id="hv2" class="hv" onclick="LoadPVEduDetailIndex(@Model.CandidateID)">
+                                    <li id="hv2" onclick="LoadPVEduDetailIndex(@Model.CandidateID)">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
-                                            @if (LoggedInUser.StepTwo == true )
+                                            @if (LoggedInUser.StepTwo == true)
                                             {<i class="icon-checkmark4"></i>}Education
                                         </a>
 
                                     </li>
                                     @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)*@
 
-                                    <li id="hv3" class="hv" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
+                                    <li id="hv3" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepThree == true)
                                             {<i class="icon-checkmark4"></i>}
@@ -101,13 +66,13 @@
                                         </a>
                                     </li>
 
-                                    <li id="hv33" class="hv" onclick="LoadPVSkillDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
+                                    <li id="hv4" onclick="LoadPVSkillDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepFour == true)
                                             {<i class="icon-checkmark4"></i>} Skills
                                         </a>
                                     </li>
-                                    <li id="hv7" class="hv" onclick="SelfAssessmentGetCreate(@Model.CandidateID)">
+                                    <li id="hv5" onclick="SelfAssessmentGetCreate(@Model.CandidateID)">
                                         <a href="#" class="btn text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepFive == true)
                                             {<i class="icon-checkmark4"></i>} Self Assessment
@@ -117,13 +82,13 @@
                                         {
                                             <li id="hv4" class="hv" onclick="CompensationGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn text-bold text-white"><i class="icon-user-plus"></i>Compensation</a></li>
                                         }*@
-                                    <li id="hv5" class="hv" onclick="ReferenceGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
+                                    <li id="hv6" onclick="ReferenceGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepSix == true)
                                             {<i class="icon-checkmark4"></i>}Reference
                                         </a>
                                     </li>
-                                    <li id="hv6" class="hv" onclick="MiscellaneousGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
+                                    <li id="hv7" onclick="MiscellaneousGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
                                         <a href="#" class="btn btn-block  text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepSeven == true)
                                             {<i class="icon-checkmark4"></i>} Miscellaneous

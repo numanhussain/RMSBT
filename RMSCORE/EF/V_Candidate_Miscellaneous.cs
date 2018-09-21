@@ -23,12 +23,8 @@ namespace RMSCORE.EF
         public string Designation { get; set; }
         public string Location { get; set; }
         public string ReasonLeaving { get; set; }
-        public Nullable<int> TotalExp { get; set; }
-        public Nullable<int> CementExp { get; set; }
         public Nullable<int> NoticeTime { get; set; }
         public Nullable<int> CandidateID { get; set; }
-        public string CName { get; set; }
-        public string CNICNo { get; set; }
         public string WorkedBefore { get; set; }
         public Nullable<int> HearAboutJobID { get; set; }
         public string HearAboutSource { get; set; }
@@ -57,5 +53,15 @@ namespace RMSCORE.EF
         public string MartialStatusName { get; set; }
         public Nullable<int> ReligionID { get; set; }
         public string ReligionName { get; set; }
+        public Nullable<double> TotalExp { get; set; }
+        public Nullable<double> CementExp { get; set; }
+        public string LinkedInLink { get; set; }
+        public string WorkingRelativeCompanyName { get; set; }
+        public Nullable<int> InterviewStatusID { get; set; }
+        public string WorkedBeforeCompanyName { get; set; }
+        public Nullable<bool> WorkedBeforeCurrentlyWorking { get; set; }
+        public string InterviewStatusName { get; set; }
+        public string InterviewBeforeCompanyName { get; set; }
+        public Nullable<int> NoticeTimeID { get; set; }
     }
 }

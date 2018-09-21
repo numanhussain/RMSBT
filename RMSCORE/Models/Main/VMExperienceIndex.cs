@@ -37,5 +37,7 @@ namespace RMSCORE.Models.Main
         public int? Experience { get; set; }
         public int? CementExperience { get; set; }
         public MiscellaneousDetail MiscellaneousDetail { get; set; }
+        public string OtherCityName { get; set; }
+        public string OtherIndustryName { get; set; }
     }
 }

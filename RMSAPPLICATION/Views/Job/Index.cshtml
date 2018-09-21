@@ -9,17 +9,6 @@
         <div class="page-title">
             <h2><span class="text-semibold text-blue">Current Openings</span> </h2> <h6 class="text-semibold">See if you can find exciting challenges at Bestway</h6>
         </div>
-        <div class="heading-elements">
-            @using (Html.BeginForm("IndexSubmit", "Job", FormMethod.Post))
-            {
-                <div class="form-group form-inline col-md-12">
-                    <input type="text" class="form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
-                    @Html.DropDownList("LocationID", null, new { @class = "form-control" })
-                    @Html.DropDownList("CatagoryID", null, new { @class = "form-control" })
-                    <button type="Submit" class="form-control btn bg-primary"   >Search</button>
-                </div>
-            }
-        </div>
     </div>
 </div>
 <!-- /page header -->
@@ -29,6 +18,15 @@
     <div class="page-content">
         <!-- Main content -->
         <div class="content-wrapper">
+            @using (Html.BeginForm("IndexSubmit", "Job", FormMethod.Post))
+            {
+                <div class="form-group form-inline pull-left" style="margin-top:10px; margin-left:10px">
+                    <input type="text" class="form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                    @Html.DropDownList("LocationID", null, new { @class = "form-control" })
+                    @Html.DropDownList("CatagoryID", null, new { @class = "form-control" })
+                    <button type="Submit" class="form-control btn bg-primary">Search</button>
+                </div>
+            }
             <!-- Basic datatable -->
             @if (Model.Count > 0)
             {
@@ -79,11 +77,15 @@
                                         <div class="text-semibold">@item.LocName</div>
                                     </td>
                                     <td>
-                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("MM/dd/yyyy")</div>
+                                        <div class="text-semibold">@item.CreatedDate.Value.ToString("dd-MMM-yyyy")</div>
                                     </td>
                                     <td>
-                                        <div class="text-semibold">@if (item.DeadlineDate != null) {
-                                            @item.DeadlineDate.Value.ToString("MM/dd/yyyy")}</div>
+                                        <div class="text-semibold">
+                                            @if (item.DeadlineDate != null)
+                                            {
+                                                @item.DeadlineDate.Value.ToString("dd-MMM-yyyy")
+                                            }
+                                        </div>
                                     </td>
                                 </tr>
                             }

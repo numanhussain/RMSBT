@@ -32,7 +32,6 @@ namespace RMSSERVICES.Miscellaneous
         {
             Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == id;
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
-            dbMiscellaneous.CandidateID = id;
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
                 dbMiscellaneous = MiscellaneousRepository.FindBy(SpecificClient).First();
@@ -105,6 +104,13 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.BloodGroupID = obj.BloodGroupID;
             dbMiscellaneous.ReligionID = obj.ReligionID;
             dbMiscellaneous.MaritalStatusID = obj.MaritalStatusID;
+            dbMiscellaneous.WorkingRelativeCompanyName = obj.WorkingRelativeCompanyName;
+            dbMiscellaneous.InterviewStatusID = obj.InterviewStatusID;
+            dbMiscellaneous.WorkedBeforeCompanyName = obj.WorkedBeforeCompanyName;
+            dbMiscellaneous.WorkedBeforeCurrentlyWorking = obj.WorkedBeforeCurrentlyWorking;
+            dbMiscellaneous.InterviewBeforeCompanyName = obj.InterviewBeforeCompanyName;
+            dbMiscellaneous.LinkedInLink = obj.LinkedInLink;
+            dbMiscellaneous.NoticeTimeID = obj.NoticeTimeID;
             return dbMiscellaneous;
         }
         #endregion

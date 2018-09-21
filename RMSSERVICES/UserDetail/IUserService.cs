@@ -1,4 +1,5 @@
 ﻿using RMSCORE.EF;
+using RMSCORE.Models.Other;
 using RMSSERVICES.Generic;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace RMSSERVICES.UserDetail
     {
         List<User> GetIndex();
         bool VerifyLink(string key);
-        ServiceMessage RegisterUser(User dbOperation,V_UserCandidate LoggedInUser);
+        ServiceMessage RegisterUser(UserModel vmUserModel);
+        List<VMCandidateDetail> GetAllIndex();
     }
 }

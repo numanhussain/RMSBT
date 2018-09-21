@@ -27,8 +27,9 @@ namespace RMSCORE.Models.Main
     {
         public bool IsApplied { get; set; }
         public string FilterBox { get; set; }
-        public bool IsCompletedProfile { get; set; }
+        public int IsCompletedProfile { get; set; }
         public string ProfileMessage { get; set; }
         public int CandidateID { get; set; }
+        public bool OpenJob { get; set; }
     }
 }

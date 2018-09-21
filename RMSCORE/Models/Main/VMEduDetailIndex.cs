@@ -20,10 +20,10 @@ namespace RMSCORE.Models.Main
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public string ObtainedMark { get; set; }
-        public string TotalMark { get; set; }
+        public int? ObtainedMark { get; set; }
+        public int? TotalMark { get; set; }
         public string Percentage { get; set; }
-        public string CGPA { get; set; }
+        public double? CGPA { get; set; }
         public string BoardName { get; set; }
         public string IndustryName { get; set; }
         public string PassingYear { get; set; }
@@ -32,5 +32,10 @@ namespace RMSCORE.Models.Main
         public int? DegreeTypeID { get; set; }
         public string DegreeTypeName { get; set; }
         public bool? InProgress { get; set; }
+        public string OtherDegreeLevelName { get; set; }
+        public string GradeName { get; set; }
+        public int? BoardID { get; set; }
+        public string OtherBoardName { get; set; }
+        public int? EduCriteriaID { get; set; }
     }
 }

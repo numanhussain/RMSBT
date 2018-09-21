@@ -1,7 +1,7 @@
 ﻿@model List<RMSCORE.Models.Main.VMSkillIndex>
-    @{ 
-        Layout = null;
-    }
+@{
+    Layout = null;
+}
 <!-- Page container -->
 <div style="margin-top:-25px">
     <div class="modal-header">
@@ -35,7 +35,7 @@
                     Description
                 </th>
                 <th class="text-bold">
-                   Action
+                    Action
                 </th>
             </tr>
         </thead>
@@ -55,7 +55,7 @@
                     </td>
                     <td>
                         <button type="button" id="btnGetEdit" onclick="SkillDetailGetEdit(@item.SkillID)" class="btn border-info-600 btn-flat text-indigo-600 btn-icon btn-rounded"><i class="icon-pencil6"></i></button>
-                      @*  <button type="button" id="btnGetDelete" onclick="SkillDetailGetDelete(@item.SkillID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>*@
+                        @*  <button type="button" id="btnGetDelete" onclick="SkillDetailGetDelete(@item.SkillID)" class="btn border-warning btn-xs text-warning-700 btn-flat btn-rounded"><i class="note-icon-trash"></i></button>*@
 
                     </td>
                 </tr>
@@ -67,6 +67,7 @@
         <button type="button" onclick="SelfAssessmentGetCreate()" class="btn bg-grey icon-arrow-right15">Next</button>
     </div>
 </div>
+<script src="~/Theme/assets/js/pages/datatables_basic.js"></script>
 <script type="text/javascript" src="~/Scripts/Candidate/SkillDetail.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {

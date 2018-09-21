@@ -12,11 +12,29 @@
         $("#hv3").addClass("liInActive");
         $("#hv4").addClass("liInActive");
         $("#hv5").addClass("liInActive");
-        $("#hv6").addClass("liActive");
-        $("#hv33").addClass("liInActive");
-        $("#hv7").addClass("liInActive");
+        $("#hv6").addClass("liInActive");
+        $("#hv7").addClass("liActive");
+        $("#hv8").addClass("liInActive");
         document.getElementById("UserstageAfterFirst").value = 7;
     });
+}
+function LoadWorkingBeforeControlShow(AppliedAs) {
+    if (AppliedAs != 1) {
+        $("#hidedatediv").show();
+        if (document.getElementById('WorkedBeforeCurrentlyWorking').checked) {
+            $("#hidedatediv").hide();
+        }
+        //Currently working  Selected
+        $('#WorkedBeforeCurrentlyWorking').click(function () {
+            if ($(this).is(":checked")) {
+                $("#hidedatediv").hide();
+            }
+            else {
+                $("#hidedatediv").show();
+            }
+
+        });
+    }
 }
 function MiscellaneousDetailHide(vmf) {
     $('#CriminalDetailtb').hide();
@@ -67,6 +85,14 @@ function MiscellaneousDetailHide(vmf) {
             $("#HearAboutDetailtb").show();
         } else {
             $("#HearAboutDetailtb").hide();
+        }
+    });
+    $('#NoticeTimetb').hide();
+    $('#NoticeTimeID').change(function () {
+        if ($("#HearAboutJobID").val() != "0") {
+            $("#NoticeTimetb").show();
+        } else {
+            $("#NoticeTimetb").hide();
         }
     });
 
@@ -176,7 +202,7 @@ function checkextension() {
     var a = 0;
     //binds to onchange event of your input field
     var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
-    if (ext == "docx" || ext == "doc" || ext=="pdf"||ext=="jpg") {
+    if (ext == "docx" || ext == "doc" || ext == "pdf" || ext == "jpg" || ext == "") {
         SaveCV();
     }
     else {
@@ -205,6 +231,36 @@ function HasCV(HasCV) {
             $("#resumehide").hide();
         }
     });
+}
+
+function MiscellaneousDateLoad() {
+    var date_inputMiscellaneousInterviewDate = $('input[name="InterviewedDate"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputMiscellaneousInterviewDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+    var date_inputMiscellaneousJoiningDate = $('input[name="DateJoining"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputMiscellaneousJoiningDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
+    var date_inputMiscellaneousLeavingDate = $('input[name="DateLeavig"]'); //our date input has the name "date"
+    var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+    date_inputMiscellaneousLeavingDate.datepicker({
+        format: 'dd-MM-yyyy',
+        orientation: 'bottom',
+        container: container,
+        todayHighlight: true,
+        autoclose: true,
+    })
 }
 
 

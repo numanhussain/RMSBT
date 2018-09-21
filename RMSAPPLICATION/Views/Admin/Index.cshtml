@@ -1,0 +1,192 @@
+﻿@model List<RMSCORE.Models.Other.VMCandidateDetail>
+@*@using PagedList.Mvc;*@
+@{
+    ViewBag.Title = "User Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
+    <div class="page-header ">
+        <div class="page-header-content">
+            <div class="col-md-8">
+                <h4><i class="icon-arrow-right6 position-left"></i> <span class="text-semibold" style="margin-top:10px">Admin Dashboard</span></h4>
+            </div>
+            <div class="col-md-4" style="padding-top:8px;">
+                <form class="form-inline" role="form">
+                    <div class="form-group pull-right SearchBtnMargin">
+                        @using (Html.BeginForm("Index", "Admin", FormMethod.Get))
+                        {<p>
+                                Find: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control", placeholder = "Enter Name" })
+                                <input class="btn btn-sm bg-primary-600" type="submit" value="Search" />
+                            </p>}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Page container -->
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                <!-- Basic datatable -->
+                <div class="panel panel-flat">
+                    <div class="modal-header bg-primary" style="padding:20px">
+                    </div>
+                    <table class="table table-bordered table-framed table-striped table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th class="text-semibold">
+                                    Photo
+                                </th>
+                                <th>UserID</th>
+                                <th>Name</th>
+                                @*<th>Sr No.</th>*@
+                                <th>Email</th>
+
+                                <th>
+                                    Password
+                                </th>
+                                <th>
+                                    Created Date
+                                </th>
+                                <th>
+                                    User Stage
+                                </th>
+                                <th>
+                                    CV
+                                </th>
+                                <th>
+                                    Personal
+                                </th>
+                                <th>
+                                    Education
+                                </th>
+                                <th>
+                                    Experience
+                                </th>
+                                <th>
+                                    Skills
+                                </th>
+                                <th>
+                                    Self-assesment
+                                </th>
+                                <th>
+                                    Reference
+                                </th>
+                                <th>
+                                    Miscellaneous
+                                </th>
+                                <th>
+                                    Compensation
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*@{ int a = 0; }*@
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <img src="~/Candidate/RetrieveImage/@item.UserID" id="imground" alt="" height=30 width=35 />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserID)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CName)
+                                    </td>
+                                    @*<td>@(++a)</td>*@
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Email)
+                                    </td>
+
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CompletePassword)
+                                    </td>
+                                    <td>
+                                        @if (item.DateCreated != null)
+                                        {@item.DateCreated.Value.ToString("dd-MMM-yyyy")}
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.UserStage)
+                                    </td>
+                                    <td>
+                                        @if (item.HasCV == true)
+                                        {
+                                            @Html.ActionLink(item.UserID + " cv", "OpenCV", "Admin", new { fileName = item.UserID }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                        }
+                                        else
+                                        {
+                                            <strong>No</strong>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepOne == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepTwo == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepThree == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepFour == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepFive == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepSix == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepSeven == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                    <td>
+                                        @if (item.StepEight == true)
+                                        {
+                                            <i class="icon-checkmark3"></i>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                @*<div class="row">
+                        <div class="col-md-8">@Html.PagedListPager(Model, page => Url.Action("Index", new { Status = ViewBag.StatusSave, Location = ViewBag.LocIDSave, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
+                        <div class="col-md-2 text-semibold">Total enteries are : @Model.TotalItemCount </div>
+                        <div class="col-md-2 text-semibold">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+                    </div>*@
+                <!-- /basic datatable -->
+            </div>
+            <!-- /main content -->
+        </div>
+        <!-- /page content -->
+    </div>
+}
+
+
+
+

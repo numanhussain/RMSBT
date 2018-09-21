@@ -9,6 +9,7 @@ namespace RMSCORE.Models.Operation
     public class VMReferenceOperation
     {
         public int RefID1 { get; set; }
+        public int? SalutationID1 { get; set; }
         public string RefName1 { get; set; }
         public string RefEmail1 { get; set; }
         public string RefContact1 { get; set; }
@@ -18,6 +19,7 @@ namespace RMSCORE.Models.Operation
         public string Organization1 { get; set; }
         public string HowLongKnown1 { get; set; }
         public int RefID2 { get; set; }
+        public int? SalutationID2 { get; set; }
         public string RefName2 { get; set; }
         public string RefEmail2 { get; set; }
         public string RefContact2 { get; set; }

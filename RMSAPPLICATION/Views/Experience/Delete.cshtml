@@ -10,7 +10,7 @@
     @Html.HiddenFor(model => model.ExpID)
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.IndustryID)
-    @Html.HiddenFor(model => model.PositionTitle)
+    @Html.HiddenFor(model => model.JobTitle)
     @Html.HiddenFor(model => model.StartDate)
     @Html.HiddenFor(model => model.EndDate)
     @Html.HiddenFor(model => model.EmployerName)
@@ -25,6 +25,8 @@
     @Html.HiddenFor(model => model.ReasonOfLeaving)
     @Html.HiddenFor(model => model.SupervisorName)
     @Html.HiddenFor(model => model.CountryID)
+    @Html.HiddenFor(model => model.OtherCityName)
+    @Html.HiddenFor(model => model.OtherIndustryName)
     <div class="modal-header bg-primary">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">
@@ -32,111 +34,186 @@
         </h4>
     </div>
     <div class="modal-body">
-        <div class="form-horizontal">
-            <div class="form-group">
-                <div class="control-label col-md-1 text-semibold">Industry</div>
-                <div class="col-md-2">
+        <div class="row">
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Industry Name</label>
                     @Html.DropDownList("IndustryID", null, new { @class = "form-control" })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.IndustryID, "", new { @class = "text-danger" })
                 </div>
-                <div class="required control-label col-md-1 text-semibold text-right">Employer</div>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div id="OtherIndustry" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Industry Name</label>
+                    @Html.EditorFor(model => model.OtherIndustryName, new { htmlAttributes = new { @class = "form-control", placeholder = "Title", id = "OtherDegreeType" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherIndustryName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Employer Name</label>
+                    @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control text-capitalize", placeholder = "Title", id = "EmployerName" } })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
                 </div>
-                <div class="required control-label col-md-2 text-semibold text-right">Manager's Name</div>
-                <div class="col-md-3">
-                    @Html.EditorFor(model => model.SupervisorName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Manager's Full Name</label>
+                    @Html.EditorFor(model => model.SupervisorName, new { htmlAttributes = new { @class = "form-control text-capitalize", placeholder = "Title", id = "EmployerName" } })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.SupervisorName, "", new { @class = "text-danger" })
                 </div>
-
             </div>
-            <div class="form-group">
-                <div class="control-label col-md-1 text-semibold ">Career level</div>
-                <div class="col-md-3">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Career level</label>
                     @Html.DropDownList("CareerLevelID", null, new { @class = "form-control" })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.CareerLevelID, "", new { @class = "text-danger" })
                 </div>
-                <div class="control-label col-md-1 text-semibold">Job Title</div>
-                <div class="col-md-4">
-                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Job Title</label>
+                    @Html.EditorFor(model => model.JobTitle, new { htmlAttributes = new { @class = "form-control", placeholder = "Title", id = "EmployerName" } })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.JobTitle, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div class="required control-label col-md-1 text-semibold">Start Date</div>
-                <div class="col-md-3">
-                    @Html.TextBoxFor(x => x.StartDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
-                    @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Start Date</label>
+                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @*<input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />*@
+                    @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                    <div class="small">
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
                 </div>
-                <div id="hidedatediv">
-                    <div class="control-label col-md-1 text-semibold">End Date</div>
-                    <div class="col-md-3">
-                        @Html.TextBoxFor(x => x.EndDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+            </div>
+            <div id="hidedatediv" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">End Date</label>
+                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @*<input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?DateTime.Today.ToString("dd/MM/yyyy"):Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />*@
+                    @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                    <div class="small">
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <label class="checkbox-inline checkbox-right text-semibold col-md-12 col-lg-pull-4 text-right " for="CurrentlyWorking">
-                        @Html.CheckBox("CurrentlyWorking", new { @class = "styled", @id = "CurrentlyWorking" })
-                        @Html.ValidationMessageFor(model => model.CurrentlyWorking, "", new { @class = "text-danger" })
-                        Currently Working
-                    </label>
+                <span class="help-block">Format must be (dd/mm/yyyy)</span>
+            </div>
+            <div class="col-md-4">
+                <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="CurrentlyWorking">
+                    @Html.CheckBox("CurrentlyWorking", new { @class = "styled", @id = "CurrentlyWorking", @name = "CurrentlyWorking" })
+                    @Html.ValidationMessageFor(model => model.CurrentlyWorking, "", new { @class = "text-danger" })
+                    Currently Working
+                </label>
+            </div>
+        </div>
+        <div class="row">
+            <div id="hidereasonofleaving" class="form-group col-md-6">
+                <div>
+                    <label class="required control-label text-semibold">Reason of Leaving</label>
+                    @Html.TextAreaFor(model => model.ReasonOfLeaving, new { @class = "form-control" })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div id="hidereasonofleaving">
-                    <div class="control-label col-md-1 text-semibold">Reason of Leaving</div>
-                    <div class="col-md-5">
-                        @Html.TextAreaFor(model => model.ReasonOfLeaving, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.ReasonOfLeaving, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="control-label col-md-1 text-semibold text-left">Address</div>
-                <div class="col-md-5">
+            <div class="form-group col-md-6">
+                <div>
+                    <label class="required control-label text-semibold">Address</label>
                     @Html.TextAreaFor(model => model.Address, new { @class = "form-control" })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div class="control-label col-md-1 text-semibold text-right">Country</div>
-                <div class="col-md-3">
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">Country Name</label>
                     @Html.DropDownList("CountryID", null, new { @class = "form-control" })
                     @Html.HiddenFor(model => model.CountryID, new { id = "selectedCountryIDHidden" })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.CountryID, "", new { @class = "text-danger" })
                 </div>
-                <div class="control-label col-md-1 text-semibold text-right">City</div>
-                <div class="col-md-3">
+            </div>
+            <div id="CityDivHide2" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">City Name</label>
                     <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" name="CityID"></select>
                     @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
+                </div>
+                <div class="small">
                     @Html.ValidationMessageFor(model => model.CityID, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="col-md-12 form-group">
-                <div class="text-semibold text-left">Reponsibilities:</div>
-                <hr />
-            </div>
-            <div class="form-group">
-                <div class="required control-label col-md-1 text-semibold">1:</div>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility1, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
-                    @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
+            <div id="OtherCityDivHide2" class="form-group col-md-3">
+                <div>
+                    <label class="required control-label text-semibold">City Name</label>
+                    @Html.EditorFor(model => model.OtherCity, new { htmlAttributes = new { @class = "form-control", placeholder = "Title", id = "OtherDegreeType" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherCity, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div class="required control-label col-md-1 text-semibold">2:</div>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility2, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
-                    @Html.ValidationMessageFor(m => m.Responsibility2, null, new { @class = "text-danger" })
+            <div class="form-group col-md-3" id="OtherPakistaniCitydiv2">
+                <div>
+                    <label class="required control-label text-semibold">Other City Name</label>
+                    @Html.EditorFor(model => model.OtherCityName, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+                <div class="small">
+                    @Html.ValidationMessageFor(model => model.OtherCityName, "", new { @class = "text-danger" })
                 </div>
             </div>
-            <div class="form-group">
-                <div class="required control-label col-md-1 text-semibold">3:</div>
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Responsibility3, new { @class = "form-control multi-line", @cols = 3, @rows = 2, placeholder = "Up to Maximum Length of 250character" })
-                    @Html.ValidationMessageFor(m => m.Responsibility3, null, new { @class = "text-danger" })
-                </div>
+        </div>
+        <div class="col-md-12 form-group">
+            <div class="text-semibold text-left">Reponsibilities:</div>
+            <hr />
+        </div>
+        <div class="row">
+            <div class="required control-label col-md-1 text-semibold">1:</div>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Responsibility1, new { @maxlength = 250, @class = "form-control", @cols = 3, @rows = 2, @id = "textarea1", placeholder = "Up to maximum length of 250 characters" })
+                @Html.ValidationMessageFor(m => m.Responsibility1, null, new { @class = "text-danger" })
+                <div id="textarea_feedback1" class="text-blue-800 text-semibold"></div>
             </div>
+        </div>
+        <div class="row">
+            <div class="required control-label col-md-1 text-semibold">2:</div>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Responsibility2, new { @maxlength = 250, @class = "form-control", @cols = 3, @rows = 2, @id = "textarea2", placeholder = "Up to maximum length of 250 characters" })
+                @Html.ValidationMessageFor(m => m.Responsibility2, null, new { @class = "text-danger" })
+                <div id="textarea_feedback2" class="text-blue-800 text-semibold"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="required control-label col-md-1 text-semibold">3:</div>
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Responsibility3, new { @maxlength = 250, @class = "form-control", @cols = 3, @rows = 2, @id = "textarea3", placeholder = "Up to maximum length of 250 characters" })
+                @Html.ValidationMessageFor(m => m.Responsibility3, null, new { @class = "text-danger" })
+                <div id="textarea_feedback3" class="text-blue-800 text-semibold"></div>
+            </div>
+        </div>
+        <div class="row">
             <div class="form-group">
                 <div class="control-label col-md-3 text-semibold">May we contact the employer?</div>
                 <div class="col-md-2">
@@ -171,6 +248,7 @@
                 "ContactEmployerNo": @Html.Raw(Json.Encode(Model.ContactEmployerNo)),
             };
             LoadDD2();
+            ExperienceDateLoad();
         ExperienceDetailPostDelete(@Model.CandidateID);
         FormControlsScriptEditExperience('@Model.ContactEmployerYes', '@Model.ContactEmployerNo');
     });

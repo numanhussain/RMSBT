@@ -23,7 +23,6 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> CreatedDate { get; set; }
         public string CompanyName { get; set; }
         public string Experience { get; set; }
-        public Nullable<bool> Status { get; set; }
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }
         public string PositionPurpose { get; set; }
@@ -32,5 +31,7 @@ namespace RMSCORE.EF
         public Nullable<int> CatagoryID { get; set; }
         public string CatName { get; set; }
         public string ExperienceAndQualification { get; set; }
+        public Nullable<int> StatusID { get; set; }
+        public string JStatusName { get; set; }
     }
 }

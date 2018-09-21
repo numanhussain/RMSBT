@@ -65,7 +65,7 @@
                         <div id="WorkingRelativeDetailtb">
                             <div class="form-group">
                                 <div class=" col-md-1 control-label text-semibold">Name </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.WorkingRelativeName, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Name " } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeName, "", new { @class = "text-danger" })
                                 </div>
@@ -83,16 +83,20 @@
                             </div>
                             <div class="form-group">
                                 <div class=" col-md-1 control-label text-semibold">Location </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.WorkingRelativeLocation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State location" } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeLocation, "", new { @class = "text-danger" })
                                 </div>
                                 <div class=" col-md-1 control-label text-semibold">Designation </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     @Html.EditorFor(model => model.WorkingRelativeDesignation, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Designation" } })
                                     @Html.ValidationMessageFor(model => model.WorkingRelativeDesignation, "", new { @class = "text-danger" })
                                 </div>
-
+                                <div class=" col-md-1 control-label text-semibold">Company  </div>
+                                <div class="col-md-3">
+                                    @Html.EditorFor(model => model.WorkingRelativeCompanyName, new { htmlAttributes = new { @class = "form-control", @placeholder = "State Company Name" } })
+                                    @Html.ValidationMessageFor(model => model.WorkingRelativeCompanyName, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
                         <div class="form-group">
@@ -128,7 +132,8 @@
                                     </div>
                                     <div class="required col-md-2 control-label text-semibold">Interview Date</div>
                                     <div class="col-md-2">
-                                        <input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?"":Model.InterviewedDate.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
+                                        @Html.TextBoxFor(x => x.InterviewedDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "InterviewedDate", name = "InterviewedDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                                        @*<input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?"":Model.InterviewedDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />*@
                                         @* @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
                                     </div>
@@ -137,7 +142,18 @@
                                         @Html.EditorFor(model => model.InterviewedLocation, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.InterviewedLocation, "", new { @class = "text-danger" })
                                     </div>
-
+                                </div>
+                                <div class="form-group">
+                                    <div class="required col-md-2 control-label text-semibold">Company Name</div>
+                                    <div class="col-md-3">
+                                        @Html.EditorFor(model => model.InterviewBeforeCompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.InterviewBeforeCompanyName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-2 control-label text-semibold">Result Status</div>
+                                    <div class="col-md-3">
+                                        @Html.DropDownList("InterviewStatusID", null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.InterviewStatusID, "", new { @class = "text-danger" })
+                                    </div>
                                 </div>
                             </div>
 
@@ -150,26 +166,36 @@
                             </div>
                             <div id="WorkedBeforeDetailtb">
                                 <div class="form-group">
-                                    <div class="required col-md-2 control-label text-semibold">Date of Joining</div>
-                                    <div class="col-md-3">
-                                        <input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?"":Model.DateJoining.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
+                                    <div class="required col-md-2 control-label text-semibold">Joining Date</div>
+                                    <div class="col-md-2">
+                                        @Html.TextBoxFor(x => x.DateJoining, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateJoining", name = "DateJoining", @type = "text", placeholder = "dd-mm-yyyy" })
+                                        @*<input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?"":Model.DateJoining.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />*@
                                         @*@Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="required col-md-1 control-label text-semibold">Date of Leaving</div>
-                                    <div class="col-md-2">
-                                        <input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?"":Model.DateLeavig.Value.ToString("MM/dd/yyyy"))" placeholder="MM/DD/YYYY" type="text" />
-                                        @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
-                                        @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
+                                    <div id="hidedatediv">
+                                        <div class="required col-md-2 control-label text-semibold">Leaving date</div>
+                                        <div class="col-md-2">
+                                            @Html.TextBoxFor(x => x.DateLeavig, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateLeavig", name = "DateLeavig", @type = "text", placeholder = "dd-mm-yyyy" })
+                                            @*<input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?"":Model.DateLeavig.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />*@
+                                            @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                                            @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
+                                        </div>
                                     </div>
-                                    <div class="required col-md-1 control-label text-semibold text-right">Designation</div>
+                                    <div class="col-md-4">
+                                        <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="WorkedBeforeCurrentlyWorking">
+                                            @Html.CheckBox("WorkedBeforeCurrentlyWorking", new { @class = "styled", @id = "WorkedBeforeCurrentlyWorking", @name = "WorkedBeforeCurrentlyWorking" })
+                                            @Html.ValidationMessageFor(model => model.WorkedBeforeCurrentlyWorking, "", new { @class = "text-danger" })
+                                            Currently Working
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="required col-md-2 control-label text-semibold">Last Designation</div>
                                     <div class="col-md-3">
                                         @Html.EditorFor(model => model.Designation, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Designation, "", new { @class = "text-danger" })
                                     </div>
-
-                                </div>
-                                <div class="form-group">
                                     <div class="required col-md-2 control-label text-semibold">Employment No.</div>
                                     <div class="col-md-1">
                                         @Html.EditorFor(model => model.EmploymentNo, new { htmlAttributes = new { @class = "form-control" } })
@@ -180,8 +206,15 @@
                                         @Html.EditorFor(model => model.Location, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.Location, "", new { @class = "text-danger" })
                                     </div>
-                                    <div class="required col-md-2 control-label text-semibold text-right">Reason of leaving</div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="required col-md-2 control-label text-semibold">Company Name</div>
                                     <div class="col-md-3">
+                                        @Html.EditorFor(model => model.WorkedBeforeCompanyName, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.WorkedBeforeCompanyName, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="required col-md-2 control-label text-semibold ">Reason of leaving</div>
+                                    <div class="col-md-4">
                                         @Html.EditorFor(model => model.ReasonLeaving, new { htmlAttributes = new { @class = "form-control" } })
                                         @Html.ValidationMessageFor(model => model.ReasonLeaving, "", new { @class = "text-danger" })
                                     </div>
@@ -211,18 +244,29 @@
                                 @Html.DropDownList("HearAboutJobID", null, new { @class = "form-control" })
                             </div>
                             <div id="HearAboutDetailtb">
-                                <div class="required col-md-1 control-label text-semibold text-right">Details </div>
-                                <div class="col-md-4">
+                                <div class="required col-md-1 control-label text-semibold">Other</div>
+                                <div class="col-md-2">
                                     @Html.EditorFor(model => model.HearAboutDetail, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.HearAboutDetail, "", new { @class = "text-danger" })
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="required col-md-4 control-label text-semibold">How much notice you need to give to your current employer?</div>
+                            <div class="required col-md-5 control-label text-semibold">How much notice you need to give to your current employer?</div>
                             <div class="col-md-2">
                                 @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days", @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.NoticeTime, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-md-2">
+                                @Html.DropDownList("NoticeTimeID", new List<SelectListItem> { new SelectListItem { Text = "----", Value = "0" }, new SelectListItem { Text = "Days", Value = "1" }, new SelectListItem { Text = "Month", Value = "2" } }, new { @class = "btn btn-default dropdown-toggle dropdown ComboBoxWidth" })
+                                @Html.ValidationMessageFor(model => model.NoticeTimeID, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2 control-label text-semibold">LinkedIn URL</div>
+                            <div class="col-md-4">
+                                @Html.EditorFor(model => model.LinkedInLink, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.LinkedInLink, "", new { @class = "text-danger" })
                             </div>
                             @*<div class="required required col-md-2 control-label text-semibold text-right">Total Experience</div>
                                 <div class="col-md-1">
@@ -273,7 +317,7 @@
                         <div class="form-group">
                             <div id="resumehide">
                                 <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
-                                <div class="col-md-3 col-lg-pull-1">
+                                <div class="col-md-2 col-lg-pull-1">
                                     <input type="file" placeholder="resume" value="resume" name="resume" title="Noi" class="file-styled" id="CVUpload" />
                                     <span class="help-block">Accepted formats: pdf, Max file size 1Mb</span>
                                     <p id="error1" style="display:none; color:#FF0000;">
@@ -298,7 +342,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CandidateID }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous",@*new { fileName = LoggedInUser.CandidateID },*@/**/new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>
@@ -316,50 +360,13 @@
         </div>
     }
 }
-<script>
-    $(document).ready(function () {
-        var date_input11 = $('input[name="InterviewedDate"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input11.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        var date_input12 = $('input[name="DateJoining"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input12.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
-<script>
-    $(document).ready(function () {
-        var date_input13 = $('input[name="DateLeavig"]'); //our date input has the name "date"
-        var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
-        date_input13.datepicker({
-            format: 'mm/dd/yyyy',
-            orientation: 'bottom',
-            container: container,
-            todayHighlight: true,
-            autoclose: true,
-        })
-    })
-</script>
 <script type="text/javascript">
     $(document).ready(function () {
+        LoadWorkingBeforeControlShow(@LoggedInUser.AppliedAs);
         //Worked Before Selected
         SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
         MiscellaneousDetailHide(@LoggedInUser.AppliedAs);
         HasCV('@LoggedInUser.HasCV');
+        MiscellaneousDateLoad();
 });
 </script>

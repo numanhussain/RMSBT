@@ -49,19 +49,21 @@
         }
     </style>
 </head>
-<div class="navbar navbar-inverse bg-primary">
+<div class="navbar navbar-inverse bg-grey">
     <div class="navbar-header">
         <div style="padding-left:20px; padding-top:10px;">
-            @*<a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-                <a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
-            <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
+            <a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
+            <span class="h6 text-bold" style="padding-left:10px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
         </div>
     </div>
 </div>
 <div>
     <p>
-        <h3>
+        <h3 class="text-center text-bold">
             @ViewBag.Message
-        </h3>
+        </h3> 
+        <div class="text-semibold h5 text-center">
+            Back to @Html.ActionLink("Login", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </div>
     </p>
 </div>
