@@ -1,9 +1,7 @@
-﻿
-@{
-    ViewBag.Title = "PasswordEmailSent";
+﻿@{
+    ViewBag.Title = "Confirm Email";
     Layout = null;
 }
-
 <head>
 
     <meta charset="utf-8">
@@ -64,14 +62,10 @@
 <div>
     <p>
         <h4 class="text-bold text-center">
-<<<<<<< HEAD
-            Your password has been sent to your email address, please open your email.
-            @*Back To @Html.ActionLink("Login", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })*@
-=======
             A verification link has been sent to your email address, kindly open and verify your email.
->>>>>>> 7c105a79be020c76ff60bdb7708333c5f2d1a421
         </h4>
-        <div class="text-semibold h5 text-center">
+        <h6 class="text-bold text-center text-grey-400 text-italic">Note: If you dont find your email in inbox ,please check the spam/junk folder.</h6>
+        <div class="text-semibold  h5 text-center ">
             Back to @Html.ActionLink("Login", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
         </div>
     </p>

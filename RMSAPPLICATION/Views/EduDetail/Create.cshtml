@@ -77,7 +77,7 @@
             <div id="MajorSubjectDD" class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">Major Subjects</label>
-                    @Html.EditorFor(model => model.MajorSubject, new { htmlAttributes = new { @class = "form-control", placeholder = "Title" } })
+                    @Html.EditorFor(model => model.MajorSubject, new { htmlAttributes = new { @class = "form-control", placeholder = "Subject Title" } })
                 </div>
                 <div class="small">
                     @Html.ValidationMessageFor(model => model.MajorSubject, "", new { @class = "text-danger" })
@@ -130,7 +130,7 @@
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd-mm-yyyy)</span>
+                @*<span class="help-block">Format must be (dd-mm-yyyy)</span>*@
             </div>
             <div id="hidedatediv" class="form-group col-md-3">
                 <div>
@@ -141,7 +141,7 @@
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd-mm-yyyy)</span>
+
             </div>
             <div class="col-md-3">
                 <div class="col-md-3"></div>

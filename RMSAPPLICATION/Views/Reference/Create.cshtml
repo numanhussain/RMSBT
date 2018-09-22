@@ -43,7 +43,7 @@
                 <div class="row">
                     <div class="form-group col-md-2">
                         <div>
-                            <label class="required control-label text-semibold">Title</label>s
+                            <label class="required control-label text-semibold">Title</label>
                             @Html.DropDownList("SalutationID1", null, new { @class = "form-control" })
                         </div>
                         <div class="small">
@@ -91,7 +91,7 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">How long known?</label>
-                            @Html.EditorFor(model => model.HowLongKnown1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            @Html.EditorFor(model => model.HowLongKnown1, new { htmlAttributes = new { @class = "form-control", id = "FName", placeholder = "Number of years" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.HowLongKnown1, "", new { @class = "text-danger" })
                             </div>
@@ -100,7 +100,7 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Email</label>
-                            @Html.EditorFor(model => model.RefEmail1, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            @Html.EditorFor(model => model.RefEmail1, new { htmlAttributes = new { @class = "form-control", id = "FName", placeholder = "abc@gmail.com" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.RefEmail1, "", new { @class = "text-danger" })
                             </div>
@@ -161,7 +161,7 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">How long known?</label>
-                            @Html.EditorFor(model => model.HowLongKnown2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            @Html.EditorFor(model => model.HowLongKnown2, new { htmlAttributes = new { @class = "form-control", id = "FName", placeholder = "Number of years" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.HowLongKnown2, "", new { @class = "text-danger" })
                             </div>
@@ -170,7 +170,7 @@
                     <div class="form-group col-md-3">
                         <div>
                             <label class="required control-label text-semibold">Email</label>
-                            @Html.EditorFor(model => model.RefEmail2, new { htmlAttributes = new { @class = "form-control", id = "FName" } })
+                            @Html.EditorFor(model => model.RefEmail2, new { htmlAttributes = new { @class = "form-control", id = "FName", placeholder = "abc@gmail.com" } })
                             <div class="small">
                                 @Html.ValidationMessageFor(model => model.RefEmail2, "", new { @class = "text-danger" })
                             </div>

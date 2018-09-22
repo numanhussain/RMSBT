@@ -208,7 +208,10 @@
                                                 </td>
                                             }
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Percentage)/ @Html.DisplayFor(modelItem => item.CGPA)
+                                                @Html.DisplayFor(modelItem => item.Percentage)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.CGPA)
                                             </td>
                                         </tr>
                                     }
@@ -381,23 +384,23 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.RefName)
+                                                @Html.DisplayFor(modelItem => item.Organization)
                                             </td>
 
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.RefDesignation)
+                                                @Html.DisplayFor(modelItem => item.RefName)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.RefEmail)
+                                                @Html.DisplayFor(modelItem => item.RefDesignation)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.RefContact)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.HowLongKnown)
+                                                @Html.DisplayFor(modelItem => item.RefEmail)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Organization)
+                                                @Html.DisplayFor(modelItem => item.HowLongKnown)
                                             </td>
                                         </tr>
                                     }

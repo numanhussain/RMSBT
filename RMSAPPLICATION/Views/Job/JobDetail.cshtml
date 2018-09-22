@@ -18,7 +18,9 @@
                         <div class="media-body">
                             <h4 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h4>
                             <ul class="list-inline list-inline-separate text-muted no-margin">
-                                <li>@Html.DisplayFor(x => x.LocName)</li>
+                                <li><span class="text-semibold">Location:</span> @Html.DisplayFor(x => x.LocName)</li>
+                                <li><span class="text-semibold">Department: </span>@Html.DisplayFor(x => x.DepatmentName)</li>
+                                <li><span class="text-semibold">Sub Department:</span> @Html.DisplayFor(x => x.SubDepartmentName)</li>
                             </ul>
                         </div>
 

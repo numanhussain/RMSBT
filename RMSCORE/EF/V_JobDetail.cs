@@ -33,5 +33,6 @@ namespace RMSCORE.EF
         public string ExperienceAndQualification { get; set; }
         public Nullable<int> StatusID { get; set; }
         public string JStatusName { get; set; }
+        public string SubDepartmentName { get; set; }
     }
 }

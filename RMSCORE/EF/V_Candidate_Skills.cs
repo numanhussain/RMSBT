@@ -19,7 +19,7 @@ namespace RMSCORE.EF
         public int SkillID { get; set; }
         public Nullable<int> SLevelID { get; set; }
         public string SkillLevelName { get; set; }
-        public Nullable<int> CandidateID { get; set; }
+        public int CandidateID { get; set; }
         public string CName { get; set; }
     }
 }

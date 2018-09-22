@@ -75,5 +75,8 @@ namespace RMSCORE.EF
         public virtual DbSet<V_JobDetail> V_JobDetail { get; set; }
         public virtual DbSet<V_Notification> V_Notification { get; set; }
         public virtual DbSet<V_UserCandidate> V_UserCandidate { get; set; }
+        public virtual DbSet<VRM_Candidate> VRM_Candidate { get; set; }
+        public virtual DbSet<VRM_CandidateSimple> VRM_CandidateSimple { get; set; }
+        public virtual DbSet<VRM_EduDetail> VRM_EduDetail { get; set; }
     }
 }

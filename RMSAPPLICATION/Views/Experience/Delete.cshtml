@@ -56,7 +56,7 @@
             <div class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">Employer Name</label>
-                    @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control text-capitalize", placeholder = "Title", id = "EmployerName" } })
+                    @Html.EditorFor(model => model.EmployerName, new { htmlAttributes = new { @class = "form-control text-capitalize", placeholder = "Name of employer", id = "EmployerName" } })
                 </div>
                 <div class="small">
                     @Html.ValidationMessageFor(model => model.EmployerName, "", new { @class = "text-danger" })
@@ -65,7 +65,7 @@
             <div class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">Manager's Full Name</label>
-                    @Html.EditorFor(model => model.SupervisorName, new { htmlAttributes = new { @class = "form-control text-capitalize", placeholder = "Title", id = "EmployerName" } })
+                    @Html.EditorFor(model => model.SupervisorName, new { htmlAttributes = new { @class = "form-control text-capitalize", placeholder = "Name", id = "EmployerName" } })
                 </div>
                 <div class="small">
                     @Html.ValidationMessageFor(model => model.SupervisorName, "", new { @class = "text-danger" })
@@ -103,7 +103,6 @@
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd/mm/yyyy)</span>
             </div>
             <div id="hidedatediv" class="form-group col-md-3">
                 <div>
@@ -115,7 +114,6 @@
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <span class="help-block">Format must be (dd/mm/yyyy)</span>
             </div>
             <div class="col-md-4">
                 <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="CurrentlyWorking">
@@ -148,7 +146,7 @@
         <div class="row">
             <div class="form-group col-md-3">
                 <div>
-                    <label class="required control-label text-semibold">Country Name</label>
+                    <label class="required control-label text-semibold">Country </label>
                     @Html.DropDownList("CountryID", null, new { @class = "form-control" })
                     @Html.HiddenFor(model => model.CountryID, new { id = "selectedCountryIDHidden" })
                 </div>
@@ -158,7 +156,7 @@
             </div>
             <div id="CityDivHide2" class="form-group col-md-3">
                 <div>
-                    <label class="required control-label text-semibold">City Name</label>
+                    <label class="required control-label text-semibold">City</label>
                     <select class="form-control dropdown-toggle dropdown ComboBoxWidth" id="CityID" name="CityID"></select>
                     @Html.HiddenFor(model => model.CityID, new { id = "selectedCityIdHidden" })
                 </div>
@@ -168,8 +166,8 @@
             </div>
             <div id="OtherCityDivHide2" class="form-group col-md-3">
                 <div>
-                    <label class="required control-label text-semibold">City Name</label>
-                    @Html.EditorFor(model => model.OtherCity, new { htmlAttributes = new { @class = "form-control", placeholder = "Title", id = "OtherDegreeType" } })
+                    <label class="required control-label text-semibold">City</label>
+                    @Html.EditorFor(model => model.OtherCity, new { htmlAttributes = new { @class = "form-control",  id = "OtherDegreeType" } })
                 </div>
                 <div class="small">
                     @Html.ValidationMessageFor(model => model.OtherCity, "", new { @class = "text-danger" })
@@ -177,7 +175,7 @@
             </div>
             <div class="form-group col-md-3" id="OtherPakistaniCitydiv2">
                 <div>
-                    <label class="required control-label text-semibold">Other City Name</label>
+                    <label class="required control-label text-semibold">Other City</label>
                     @Html.EditorFor(model => model.OtherCityName, new { htmlAttributes = new { @class = "form-control" } })
                 </div>
                 <div class="small">

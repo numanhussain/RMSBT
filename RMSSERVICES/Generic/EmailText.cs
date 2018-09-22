@@ -15,7 +15,7 @@ namespace RMSSERVICES.Generic
             string Body = " <html><head><meta content =\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, </p>" +
                                     "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
                                     "<p>Please click <a href=\"" + URL + "\">here</a> to activate your profile.</p>" +
-                                     "<p>Note:The verification link expire after 24 hours.</p>" +
+                                     "<p>Note:The verification link will expire after 24 hours.</p>" +
                                     "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div>" +
                                     " <br/><p> ***This is system generated email.Please do not reply.***</p></body></html>";
             return Body;
@@ -25,7 +25,7 @@ namespace RMSSERVICES.Generic
             string Body = " <html><head><meta content =\"text/html; charset = utf - 8\" /></head><body><p>Dear Candidate, </p>" +
                                     "<p>This is with reference to your request for creating online profile at Bestway Career Portal. </p>" +
                                     "<p>Please click <a href=\"" + URL + "\">here</a> to activate your profile.</p>" +
-                                     "<p>Note:The verification link expire after 24 hours.</p>" +
+                                     "<p>Note:The verification link will expire after 24 hours.</p>" +
                                     "<div>Best Regards</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited</div>" +
                                     " <br/><p> ***This is system generated email.Please do not reply.***</p></body></html>";
             return Body;

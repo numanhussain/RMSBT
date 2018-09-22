@@ -1,6 +1,8 @@
-﻿@model List<RMSCORE.Models.Other.VMCandidateDetail>
-@*@using PagedList.Mvc;*@
+﻿@model PagedList.IPagedList<RMSCORE.Models.Other.VMCandidateDetail>
+@using PagedList.Mvc;
 @{
+    /**/
+
     ViewBag.Title = "User Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -36,12 +38,12 @@
                     <table class="table table-bordered table-framed table-striped table-hover table-condensed">
                         <thead>
                             <tr>
+                                <th>Sr No.</th>
                                 <th class="text-semibold">
                                     Photo
                                 </th>
                                 <th>UserID</th>
                                 <th>Name</th>
-                                @*<th>Sr No.</th>*@
                                 <th>Email</th>
 
                                 <th>
@@ -77,18 +79,16 @@
                                 <th>
                                     Miscellaneous
                                 </th>
-                                <th>
-                                    Compensation
-                                </th>
                             </tr>
                         </thead>
                         <tbody>
-                            @*@{ int a = 0; }*@
+                            @{ int a = 0; }
                             @foreach (var item in Model)
                             {
                                 <tr>
+                                    <td>@(++a)</td>
                                     <td>
-                                        <img src="~/Candidate/RetrieveImage/@item.UserID" id="imground" alt="" height=30 width=35 />
+                                        <img src="~/Candidate/RetrieveImage/@item.UserID" id="imground" alt="" class="img-circle" height=30 width=35 />
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.UserID)
@@ -96,7 +96,6 @@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.CName)
                                     </td>
-                                    @*<td>@(++a)</td>*@
                                     <td>
                                         @Html.DisplayFor(modelItem => item.Email)
                                     </td>
@@ -163,22 +162,16 @@
                                             <i class="icon-checkmark3"></i>
                                         }
                                     </td>
-                                    <td>
-                                        @if (item.StepEight == true)
-                                        {
-                                            <i class="icon-checkmark3"></i>
-                                        }
-                                    </td>
                                 </tr>
                             }
                         </tbody>
                     </table>
                 </div>
-                @*<div class="row">
-                        <div class="col-md-8">@Html.PagedListPager(Model, page => Url.Action("Index", new { Status = ViewBag.StatusSave, Location = ViewBag.LocIDSave, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
-                        <div class="col-md-2 text-semibold">Total enteries are : @Model.TotalItemCount </div>
-                        <div class="col-md-2 text-semibold">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
-                    </div>*@
+                <div class="row">
+                    <div class="col-md-8">@Html.PagedListPager(Model, page => Url.Action("Index", new { Status = ViewBag.StatusSave, Location = ViewBag.LocIDSave, page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))</div>
+                    <div class="col-md-2 text-semibold">Total enteries are : @Model.TotalItemCount </div>
+                    <div class="col-md-2 text-semibold">Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount</div>
+                </div>
                 <!-- /basic datatable -->
             </div>
             <!-- /main content -->

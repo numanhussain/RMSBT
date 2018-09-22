@@ -29,5 +29,6 @@ namespace RMSCORE.EF
         public string SpecificRequirement { get; set; }
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }
+        public string SubDepartmentName { get; set; }
     }
 }

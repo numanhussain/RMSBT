@@ -348,6 +348,7 @@
           <Property Name="SpecificRequirement" Type="nvarchar" MaxLength="3000" />
           <Property Name="DeadlineDate" Type="date" />
           <Property Name="DepatmentName" Type="nvarchar" MaxLength="30" />
+          <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="JobStatus">
           <Key>
@@ -688,14 +689,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Reference' does not have a p
             <PropertyRef Name="RefID" />
           </Key>
           <Property Name="RefID" Type="int" Nullable="false" />
-          <Property Name="RefName" Type="nvarchar" MaxLength="50" />
-          <Property Name="RefDesignation" Type="nvarchar" MaxLength="50" />
-          <Property Name="RefEmail" Type="nvarchar" MaxLength="50" />
-          <Property Name="RefContact" Type="nvarchar" MaxLength="50" />
+          <Property Name="RefName" Type="nvarchar" MaxLength="100" />
+          <Property Name="RefDesignation" Type="nvarchar" MaxLength="100" />
+          <Property Name="RefEmail" Type="nvarchar" MaxLength="100" />
+          <Property Name="RefContact" Type="nvarchar" MaxLength="100" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
           <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
-          <Property Name="Organization" Type="nvarchar" MaxLength="50" />
-          <Property Name="HowLongKnown" Type="nvarchar" MaxLength="50" />
+          <Property Name="Organization" Type="nvarchar" MaxLength="100" />
+          <Property Name="HowLongKnown" Type="nvarchar" MaxLength="100" />
           <Property Name="CandidateID" Type="int" />
           <Property Name="SalutationID" Type="int" />
           <Property Name="SalutationName" Type="nvarchar" MaxLength="50" />
@@ -705,13 +706,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_Candidate_Skills' does not have a prim
         <EntityType Name="V_Candidate_Skills">
           <Key>
             <PropertyRef Name="SkillID" />
+            <PropertyRef Name="CandidateID" />
           </Key>
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="Title" Type="nvarchar" MaxLength="50" />
           <Property Name="SkillID" Type="int" Nullable="false" />
           <Property Name="SLevelID" Type="int" />
           <Property Name="SkillLevelName" Type="nvarchar" MaxLength="50" />
-          <Property Name="CandidateID" Type="int" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
           <Property Name="CName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -830,6 +832,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_JobDetail' does not have a primary key
           <Property Name="ExperienceAndQualification" Type="nvarchar" MaxLength="3000" />
           <Property Name="StatusID" Type="int" />
           <Property Name="JStatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Notification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -877,6 +880,200 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Status" Type="bit" />
           <Property Name="AppliedAs" Type="int" />
           <Property Name="HaveExperience" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.VRM_Candidate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VRM_Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroupID" Type="int" />
+          <Property Name="BGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MartialStatusID" Type="int" />
+          <Property Name="MartialStatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LandlineNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DomicileCityID" Type="int" />
+          <Property Name="DimicileCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalityCountryID" Type="int" />
+          <Property Name="NationalityCountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Objective" Type="nvarchar" MaxLength="500" />
+          <Property Name="CImage" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="GenderID" Type="int" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AppliedAs" Type="int" />
+          <Property Name="DateCreated" Type="date" />
+          <Property Name="ReligionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReligionID" Type="int" />
+          <Property Name="HaveExperience" Type="bit" />
+          <Property Name="AreaOfInterestID" Type="int" />
+          <Property Name="AreaOfInterestName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalutationID" Type="int" />
+          <Property Name="SalutationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherAreaName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVName" Type="nvarchar" MaxLength="70" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkPermitYes" Type="bit" />
+          <Property Name="WorkPermitNo" Type="bit" />
+          <Property Name="OtherDomicileCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherPakistaniCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tehsil" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="PMiscellaneousID" Type="int" />
+          <Property Name="CrimanalRecord" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelative" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateLeavig" Type="datetime" />
+          <Property Name="EmploymentNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Location" Type="nvarchar" MaxLength="50" />
+          <Property Name="ReasonLeaving" Type="nvarchar" MaxLength="100" />
+          <Property Name="NoticeTime" Type="int" />
+          <Property Name="WorkedBefore" Type="nvarchar" MaxLength="50" />
+          <Property Name="HearAboutSource" Type="nvarchar" MaxLength="50" />
+          <Property Name="HearAboutJobID" Type="int" />
+          <Property Name="CrimeDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelativeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelativeRelation" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelativeDepartment" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelativeDesignation" Type="nvarchar" MaxLength="50" />
+          <Property Name="WorkingRelativeLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="InterviewedBefore" Type="nvarchar" MaxLength="50" />
+          <Property Name="InterviewedDate" Type="datetime" />
+          <Property Name="InterviewedLocation" Type="nvarchar" MaxLength="50" />
+          <Property Name="AppliedPosition" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisabilityDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Disability" Type="nvarchar" MaxLength="50" />
+          <Property Name="InternshipRequirement" Type="bit" />
+          <Property Name="HearAboutDetail" Type="nvarchar" MaxLength="50" />
+          <Property Name="InternshipDuration" Type="nvarchar" MaxLength="20" />
+          <Property Name="ExpectedSalary" Type="int" />
+          <Property Name="MGSalary" Type="nvarchar" MaxLength="50" />
+          <Property Name="UploadCV" Type="bit" />
+          <Property Name="DateCompleted" Type="date" />
+          <Property Name="MiscellaneousBloodGroupID" Type="int" />
+          <Property Name="MiscellaneousMaritalStatusID" Type="int" />
+          <Property Name="MiscellaneousBloodGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiscellaneousMaritalStatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MiscellaneousReligionID" Type="int" />
+          <Property Name="MiscellaneousReligionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TotalExp" Type="float" />
+          <Property Name="CementExp" Type="float" />
+          <Property Name="LinkedInLink" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkingRelativeCompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="InterviewStatusID" Type="int" />
+          <Property Name="WorkedBeforeCompanyName" Type="nvarchar" MaxLength="150" />
+          <Property Name="WorkedBeforeCurrentlyWorking" Type="bit" />
+          <Property Name="InterviewStatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="InterviewBeforeCompanyName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NoticeTimeID" Type="int" />
+          <Property Name="StrengthID" Type="int" />
+          <Property Name="Strengths" Type="nvarchar" MaxLength="1000" />
+          <Property Name="AreaOfImprovement" Type="nvarchar" MaxLength="1000" />
+          <Property Name="MeetRequirements" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CandidateStrengthObjectives" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.VRM_CandidateSimple' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VRM_CandidateSimple">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="CName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="50" />
+          <Property Name="DOB" Type="datetime" />
+          <Property Name="CNICNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="BloodGroupID" Type="int" />
+          <Property Name="BGroupName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MartialStatusID" Type="int" />
+          <Property Name="MartialStatusName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="CityID" Type="int" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="LandlineNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="CellNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="50" />
+          <Property Name="DomicileCityID" Type="int" />
+          <Property Name="DimicileCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="NationalityCountryID" Type="int" />
+          <Property Name="NationalityCountryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Objective" Type="nvarchar" MaxLength="500" />
+          <Property Name="CImage" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="GenderID" Type="int" />
+          <Property Name="GenderName" Type="nvarchar" MaxLength="50" />
+          <Property Name="AppliedAs" Type="int" />
+          <Property Name="DateCreated" Type="date" />
+          <Property Name="ReligionID" Type="int" />
+          <Property Name="ReligionName" Type="nvarchar" MaxLength="50" />
+          <Property Name="HaveExperience" Type="bit" />
+          <Property Name="AreaOfInterestID" Type="int" />
+          <Property Name="AreaOfInterestName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="CatName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SalutationID" Type="int" />
+          <Property Name="SalutationName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherAreaName" Type="nvarchar" MaxLength="50" />
+          <Property Name="CVName" Type="nvarchar" MaxLength="70" />
+          <Property Name="PassportNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="WorkPermitYes" Type="bit" />
+          <Property Name="WorkPermitNo" Type="bit" />
+          <Property Name="OtherDomicileCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherPakistaniCityName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tehsil" Type="nvarchar" MaxLength="50" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VRM_EduDetail">
+          <Key>
+            <PropertyRef Name="EduID" />
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="EduID" Type="int" Nullable="false" />
+          <Property Name="DegreeLevelID" Type="int" />
+          <Property Name="DegreeLevel" Type="nvarchar" MaxLength="50" />
+          <Property Name="ObtainedMark" Type="int" />
+          <Property Name="TotalMark" Type="int" />
+          <Property Name="StartDate" Type="datetime" />
+          <Property Name="EndDate" Type="datetime" />
+          <Property Name="InstitutionID" Type="int" />
+          <Property Name="InstituteName" Type="nvarchar" MaxLength="150" />
+          <Property Name="MajorSubject" Type="nvarchar" MaxLength="200" />
+          <Property Name="CandidateID" Type="int" Nullable="false" />
+          <Property Name="Percentage" Type="nvarchar" MaxLength="30" />
+          <Property Name="CGPA" Type="float" />
+          <Property Name="DegreeTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="PassingYear" Type="nvarchar" MaxLength="30" />
+          <Property Name="OtherInstitute" Type="nvarchar" MaxLength="150" />
+          <Property Name="InProgress" Type="bit" />
+          <Property Name="DegreeTypeID" Type="int" />
+          <Property Name="EduTypeName" Type="nvarchar" MaxLength="70" />
+          <Property Name="OtherDegreeType" Type="nvarchar" MaxLength="50" />
+          <Property Name="OtherDegreeLevelName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GradeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="BoardID" Type="int" />
+          <Property Name="BiseName" Type="nvarchar" MaxLength="150" />
+          <Property Name="OtherBoardName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EduCriteriaID" Type="int" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
           <End Role="Candidate" Type="Self.Candidate" Multiplicity="1" />
@@ -1258,7 +1455,8 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_JobDetail].[CatName] AS [CatName], 
     [V_JobDetail].[ExperienceAndQualification] AS [ExperienceAndQualification], 
     [V_JobDetail].[StatusID] AS [StatusID], 
-    [V_JobDetail].[JStatusName] AS [JStatusName]
+    [V_JobDetail].[JStatusName] AS [JStatusName], 
+    [V_JobDetail].[SubDepartmentName] AS [SubDepartmentName]
     FROM [dbo].[V_JobDetail] AS [V_JobDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Notification" EntityType="Self.V_Notification" store:Type="Views" store:Schema="dbo">
@@ -1301,6 +1499,190 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
     [V_UserCandidate].[AppliedAs] AS [AppliedAs], 
     [V_UserCandidate].[HaveExperience] AS [HaveExperience]
     FROM [dbo].[V_UserCandidate] AS [V_UserCandidate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VRM_Candidate" EntityType="Self.VRM_Candidate" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VRM_Candidate].[CName] AS [CName], 
+    [VRM_Candidate].[FatherName] AS [FatherName], 
+    [VRM_Candidate].[DOB] AS [DOB], 
+    [VRM_Candidate].[CNICNo] AS [CNICNo], 
+    [VRM_Candidate].[BloodGroupID] AS [BloodGroupID], 
+    [VRM_Candidate].[BGroupName] AS [BGroupName], 
+    [VRM_Candidate].[MartialStatusID] AS [MartialStatusID], 
+    [VRM_Candidate].[MartialStatusName] AS [MartialStatusName], 
+    [VRM_Candidate].[Address] AS [Address], 
+    [VRM_Candidate].[CityID] AS [CityID], 
+    [VRM_Candidate].[CityName] AS [CityName], 
+    [VRM_Candidate].[CountryID] AS [CountryID], 
+    [VRM_Candidate].[CountryName] AS [CountryName], 
+    [VRM_Candidate].[LandlineNo] AS [LandlineNo], 
+    [VRM_Candidate].[CellNo] AS [CellNo], 
+    [VRM_Candidate].[EmailID] AS [EmailID], 
+    [VRM_Candidate].[DomicileCityID] AS [DomicileCityID], 
+    [VRM_Candidate].[DimicileCityName] AS [DimicileCityName], 
+    [VRM_Candidate].[NationalityCountryID] AS [NationalityCountryID], 
+    [VRM_Candidate].[NationalityCountryName] AS [NationalityCountryName], 
+    [VRM_Candidate].[Objective] AS [Objective], 
+    [VRM_Candidate].[CImage] AS [CImage], 
+    [VRM_Candidate].[UserID] AS [UserID], 
+    [VRM_Candidate].[GenderID] AS [GenderID], 
+    [VRM_Candidate].[GenderName] AS [GenderName], 
+    [VRM_Candidate].[AppliedAs] AS [AppliedAs], 
+    [VRM_Candidate].[DateCreated] AS [DateCreated], 
+    [VRM_Candidate].[ReligionName] AS [ReligionName], 
+    [VRM_Candidate].[ReligionID] AS [ReligionID], 
+    [VRM_Candidate].[HaveExperience] AS [HaveExperience], 
+    [VRM_Candidate].[AreaOfInterestID] AS [AreaOfInterestID], 
+    [VRM_Candidate].[AreaOfInterestName] AS [AreaOfInterestName], 
+    [VRM_Candidate].[CategoryID] AS [CategoryID], 
+    [VRM_Candidate].[CatName] AS [CatName], 
+    [VRM_Candidate].[OtherCityName] AS [OtherCityName], 
+    [VRM_Candidate].[SalutationID] AS [SalutationID], 
+    [VRM_Candidate].[SalutationName] AS [SalutationName], 
+    [VRM_Candidate].[OtherAreaName] AS [OtherAreaName], 
+    [VRM_Candidate].[CVName] AS [CVName], 
+    [VRM_Candidate].[PassportNumber] AS [PassportNumber], 
+    [VRM_Candidate].[WorkPermitYes] AS [WorkPermitYes], 
+    [VRM_Candidate].[WorkPermitNo] AS [WorkPermitNo], 
+    [VRM_Candidate].[OtherDomicileCityName] AS [OtherDomicileCityName], 
+    [VRM_Candidate].[OtherPakistaniCityName] AS [OtherPakistaniCityName], 
+    [VRM_Candidate].[Tehsil] AS [Tehsil], 
+    [VRM_Candidate].[PostalCode] AS [PostalCode], 
+    [VRM_Candidate].[PMiscellaneousID] AS [PMiscellaneousID], 
+    [VRM_Candidate].[CrimanalRecord] AS [CrimanalRecord], 
+    [VRM_Candidate].[WorkingRelative] AS [WorkingRelative], 
+    [VRM_Candidate].[DateLeavig] AS [DateLeavig], 
+    [VRM_Candidate].[EmploymentNo] AS [EmploymentNo], 
+    [VRM_Candidate].[Designation] AS [Designation], 
+    [VRM_Candidate].[Location] AS [Location], 
+    [VRM_Candidate].[ReasonLeaving] AS [ReasonLeaving], 
+    [VRM_Candidate].[NoticeTime] AS [NoticeTime], 
+    [VRM_Candidate].[WorkedBefore] AS [WorkedBefore], 
+    [VRM_Candidate].[HearAboutSource] AS [HearAboutSource], 
+    [VRM_Candidate].[HearAboutJobID] AS [HearAboutJobID], 
+    [VRM_Candidate].[CrimeDetail] AS [CrimeDetail], 
+    [VRM_Candidate].[WorkingRelativeName] AS [WorkingRelativeName], 
+    [VRM_Candidate].[WorkingRelativeRelation] AS [WorkingRelativeRelation], 
+    [VRM_Candidate].[WorkingRelativeDepartment] AS [WorkingRelativeDepartment], 
+    [VRM_Candidate].[WorkingRelativeDesignation] AS [WorkingRelativeDesignation], 
+    [VRM_Candidate].[WorkingRelativeLocation] AS [WorkingRelativeLocation], 
+    [VRM_Candidate].[InterviewedBefore] AS [InterviewedBefore], 
+    [VRM_Candidate].[InterviewedDate] AS [InterviewedDate], 
+    [VRM_Candidate].[InterviewedLocation] AS [InterviewedLocation], 
+    [VRM_Candidate].[AppliedPosition] AS [AppliedPosition], 
+    [VRM_Candidate].[DisabilityDetail] AS [DisabilityDetail], 
+    [VRM_Candidate].[Disability] AS [Disability], 
+    [VRM_Candidate].[InternshipRequirement] AS [InternshipRequirement], 
+    [VRM_Candidate].[HearAboutDetail] AS [HearAboutDetail], 
+    [VRM_Candidate].[InternshipDuration] AS [InternshipDuration], 
+    [VRM_Candidate].[ExpectedSalary] AS [ExpectedSalary], 
+    [VRM_Candidate].[MGSalary] AS [MGSalary], 
+    [VRM_Candidate].[UploadCV] AS [UploadCV], 
+    [VRM_Candidate].[DateCompleted] AS [DateCompleted], 
+    [VRM_Candidate].[MiscellaneousBloodGroupID] AS [MiscellaneousBloodGroupID], 
+    [VRM_Candidate].[MiscellaneousMaritalStatusID] AS [MiscellaneousMaritalStatusID], 
+    [VRM_Candidate].[MiscellaneousBloodGroupName] AS [MiscellaneousBloodGroupName], 
+    [VRM_Candidate].[MiscellaneousMaritalStatusName] AS [MiscellaneousMaritalStatusName], 
+    [VRM_Candidate].[MiscellaneousReligionID] AS [MiscellaneousReligionID], 
+    [VRM_Candidate].[MiscellaneousReligionName] AS [MiscellaneousReligionName], 
+    [VRM_Candidate].[TotalExp] AS [TotalExp], 
+    [VRM_Candidate].[CementExp] AS [CementExp], 
+    [VRM_Candidate].[LinkedInLink] AS [LinkedInLink], 
+    [VRM_Candidate].[WorkingRelativeCompanyName] AS [WorkingRelativeCompanyName], 
+    [VRM_Candidate].[InterviewStatusID] AS [InterviewStatusID], 
+    [VRM_Candidate].[WorkedBeforeCompanyName] AS [WorkedBeforeCompanyName], 
+    [VRM_Candidate].[WorkedBeforeCurrentlyWorking] AS [WorkedBeforeCurrentlyWorking], 
+    [VRM_Candidate].[InterviewStatusName] AS [InterviewStatusName], 
+    [VRM_Candidate].[InterviewBeforeCompanyName] AS [InterviewBeforeCompanyName], 
+    [VRM_Candidate].[NoticeTimeID] AS [NoticeTimeID], 
+    [VRM_Candidate].[StrengthID] AS [StrengthID], 
+    [VRM_Candidate].[Strengths] AS [Strengths], 
+    [VRM_Candidate].[AreaOfImprovement] AS [AreaOfImprovement], 
+    [VRM_Candidate].[MeetRequirements] AS [MeetRequirements], 
+    [VRM_Candidate].[CandidateStrengthObjectives] AS [CandidateStrengthObjectives], 
+    [VRM_Candidate].[CandidateID] AS [CandidateID]
+    FROM [dbo].[VRM_Candidate] AS [VRM_Candidate]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VRM_CandidateSimple" EntityType="Self.VRM_CandidateSimple" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VRM_CandidateSimple].[CandidateID] AS [CandidateID], 
+    [VRM_CandidateSimple].[CName] AS [CName], 
+    [VRM_CandidateSimple].[FatherName] AS [FatherName], 
+    [VRM_CandidateSimple].[DOB] AS [DOB], 
+    [VRM_CandidateSimple].[CNICNo] AS [CNICNo], 
+    [VRM_CandidateSimple].[BloodGroupID] AS [BloodGroupID], 
+    [VRM_CandidateSimple].[BGroupName] AS [BGroupName], 
+    [VRM_CandidateSimple].[MartialStatusID] AS [MartialStatusID], 
+    [VRM_CandidateSimple].[MartialStatusName] AS [MartialStatusName], 
+    [VRM_CandidateSimple].[Address] AS [Address], 
+    [VRM_CandidateSimple].[CityID] AS [CityID], 
+    [VRM_CandidateSimple].[CityName] AS [CityName], 
+    [VRM_CandidateSimple].[CountryID] AS [CountryID], 
+    [VRM_CandidateSimple].[CountryName] AS [CountryName], 
+    [VRM_CandidateSimple].[LandlineNo] AS [LandlineNo], 
+    [VRM_CandidateSimple].[CellNo] AS [CellNo], 
+    [VRM_CandidateSimple].[EmailID] AS [EmailID], 
+    [VRM_CandidateSimple].[DomicileCityID] AS [DomicileCityID], 
+    [VRM_CandidateSimple].[DimicileCityName] AS [DimicileCityName], 
+    [VRM_CandidateSimple].[NationalityCountryID] AS [NationalityCountryID], 
+    [VRM_CandidateSimple].[NationalityCountryName] AS [NationalityCountryName], 
+    [VRM_CandidateSimple].[Objective] AS [Objective], 
+    [VRM_CandidateSimple].[CImage] AS [CImage], 
+    [VRM_CandidateSimple].[UserID] AS [UserID], 
+    [VRM_CandidateSimple].[GenderID] AS [GenderID], 
+    [VRM_CandidateSimple].[GenderName] AS [GenderName], 
+    [VRM_CandidateSimple].[AppliedAs] AS [AppliedAs], 
+    [VRM_CandidateSimple].[DateCreated] AS [DateCreated], 
+    [VRM_CandidateSimple].[ReligionID] AS [ReligionID], 
+    [VRM_CandidateSimple].[ReligionName] AS [ReligionName], 
+    [VRM_CandidateSimple].[HaveExperience] AS [HaveExperience], 
+    [VRM_CandidateSimple].[AreaOfInterestID] AS [AreaOfInterestID], 
+    [VRM_CandidateSimple].[AreaOfInterestName] AS [AreaOfInterestName], 
+    [VRM_CandidateSimple].[CategoryID] AS [CategoryID], 
+    [VRM_CandidateSimple].[CatName] AS [CatName], 
+    [VRM_CandidateSimple].[OtherCityName] AS [OtherCityName], 
+    [VRM_CandidateSimple].[SalutationID] AS [SalutationID], 
+    [VRM_CandidateSimple].[SalutationName] AS [SalutationName], 
+    [VRM_CandidateSimple].[OtherAreaName] AS [OtherAreaName], 
+    [VRM_CandidateSimple].[CVName] AS [CVName], 
+    [VRM_CandidateSimple].[PassportNumber] AS [PassportNumber], 
+    [VRM_CandidateSimple].[WorkPermitYes] AS [WorkPermitYes], 
+    [VRM_CandidateSimple].[WorkPermitNo] AS [WorkPermitNo], 
+    [VRM_CandidateSimple].[OtherDomicileCityName] AS [OtherDomicileCityName], 
+    [VRM_CandidateSimple].[OtherPakistaniCityName] AS [OtherPakistaniCityName], 
+    [VRM_CandidateSimple].[Tehsil] AS [Tehsil], 
+    [VRM_CandidateSimple].[PostalCode] AS [PostalCode]
+    FROM [dbo].[VRM_CandidateSimple] AS [VRM_CandidateSimple]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="VRM_EduDetail" EntityType="Self.VRM_EduDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VRM_EduDetail].[EduID] AS [EduID], 
+    [VRM_EduDetail].[DegreeLevelID] AS [DegreeLevelID], 
+    [VRM_EduDetail].[DegreeLevel] AS [DegreeLevel], 
+    [VRM_EduDetail].[ObtainedMark] AS [ObtainedMark], 
+    [VRM_EduDetail].[TotalMark] AS [TotalMark], 
+    [VRM_EduDetail].[StartDate] AS [StartDate], 
+    [VRM_EduDetail].[EndDate] AS [EndDate], 
+    [VRM_EduDetail].[InstitutionID] AS [InstitutionID], 
+    [VRM_EduDetail].[InstituteName] AS [InstituteName], 
+    [VRM_EduDetail].[MajorSubject] AS [MajorSubject], 
+    [VRM_EduDetail].[CandidateID] AS [CandidateID], 
+    [VRM_EduDetail].[Percentage] AS [Percentage], 
+    [VRM_EduDetail].[CGPA] AS [CGPA], 
+    [VRM_EduDetail].[DegreeTitle] AS [DegreeTitle], 
+    [VRM_EduDetail].[PassingYear] AS [PassingYear], 
+    [VRM_EduDetail].[OtherInstitute] AS [OtherInstitute], 
+    [VRM_EduDetail].[InProgress] AS [InProgress], 
+    [VRM_EduDetail].[DegreeTypeID] AS [DegreeTypeID], 
+    [VRM_EduDetail].[EduTypeName] AS [EduTypeName], 
+    [VRM_EduDetail].[OtherDegreeType] AS [OtherDegreeType], 
+    [VRM_EduDetail].[OtherDegreeLevelName] AS [OtherDegreeLevelName], 
+    [VRM_EduDetail].[GradeName] AS [GradeName], 
+    [VRM_EduDetail].[BoardID] AS [BoardID], 
+    [VRM_EduDetail].[BiseName] AS [BiseName], 
+    [VRM_EduDetail].[OtherBoardName] AS [OtherBoardName], 
+    [VRM_EduDetail].[EduCriteriaID] AS [EduCriteriaID]
+    FROM [dbo].[VRM_EduDetail] AS [VRM_EduDetail]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_EduDetail_Candidate" Association="Self.FK_EduDetail_Candidate">
             <End Role="Candidate" EntitySet="Candidate" />
@@ -1382,6 +1764,9 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySet Name="V_JobDetail" EntityType="BTRMSModel.V_JobDetail" />
           <EntitySet Name="V_Notification" EntityType="BTRMSModel.V_Notification" />
           <EntitySet Name="V_UserCandidate" EntityType="BTRMSModel.V_UserCandidate" />
+          <EntitySet Name="VRM_Candidate" EntityType="BTRMSModel.VRM_Candidate" />
+          <EntitySet Name="VRM_CandidateSimple" EntityType="BTRMSModel.VRM_CandidateSimple" />
+          <EntitySet Name="VRM_EduDetail" EntityType="BTRMSModel.VRM_EduDetail" />
           <AssociationSet Name="FK_EduDetail_Candidate" Association="BTRMSModel.FK_EduDetail_Candidate">
             <End Role="Candidate" EntitySet="Candidates" />
             <End Role="EduDetail" EntitySet="EduDetails" />
@@ -1760,6 +2145,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="SpecificRequirement" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <Property Name="DepatmentName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartmentName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="JobStatu">
           <Key>
@@ -2075,14 +2461,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
             <PropertyRef Name="RefID" />
           </Key>
           <Property Name="RefID" Type="Int32" Nullable="false" />
-          <Property Name="RefName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="RefContact" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RefName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RefDesignation" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RefEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RefContact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Organization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="HowLongKnown" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Organization" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="HowLongKnown" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CandidateID" Type="Int32" />
           <Property Name="SalutationID" Type="Int32" />
           <Property Name="SalutationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -2090,13 +2476,14 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
         <EntityType Name="V_Candidate_Skills">
           <Key>
             <PropertyRef Name="SkillID" />
+            <PropertyRef Name="CandidateID" />
           </Key>
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SkillID" Type="Int32" Nullable="false" />
           <Property Name="SLevelID" Type="Int32" />
           <Property Name="SkillLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
           <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_CandidateDetail">
@@ -2207,6 +2594,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="ExperienceAndQualification" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="StatusID" Type="Int32" />
           <Property Name="JStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SubDepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="V_Notification">
           <Key>
@@ -2250,6 +2638,194 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <Property Name="Status" Type="Boolean" />
           <Property Name="AppliedAs" Type="Int32" />
           <Property Name="HaveExperience" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="VRM_Candidate">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BloodGroupID" Type="Int32" />
+          <Property Name="BGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MartialStatusID" Type="Int32" />
+          <Property Name="MartialStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LandlineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DomicileCityID" Type="Int32" />
+          <Property Name="DimicileCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalityCountryID" Type="Int32" />
+          <Property Name="NationalityCountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CImage" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="GenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppliedAs" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="ReligionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReligionID" Type="Int32" />
+          <Property Name="HaveExperience" Type="Boolean" />
+          <Property Name="AreaOfInterestID" Type="Int32" />
+          <Property Name="AreaOfInterestName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalutationID" Type="Int32" />
+          <Property Name="SalutationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPermitYes" Type="Boolean" />
+          <Property Name="WorkPermitNo" Type="Boolean" />
+          <Property Name="OtherDomicileCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherPakistaniCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tehsil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PMiscellaneousID" Type="Int32" />
+          <Property Name="CrimanalRecord" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelative" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateLeavig" Type="DateTime" Precision="3" />
+          <Property Name="EmploymentNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ReasonLeaving" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeTime" Type="Int32" />
+          <Property Name="WorkedBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HearAboutSource" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HearAboutJobID" Type="Int32" />
+          <Property Name="CrimeDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeRelation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeDepartment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeDesignation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewedBefore" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewedDate" Type="DateTime" Precision="3" />
+          <Property Name="InterviewedLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppliedPosition" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisabilityDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Disability" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InternshipRequirement" Type="Boolean" />
+          <Property Name="HearAboutDetail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InternshipDuration" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectedSalary" Type="Int32" />
+          <Property Name="MGSalary" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UploadCV" Type="Boolean" />
+          <Property Name="DateCompleted" Type="DateTime" Precision="0" />
+          <Property Name="MiscellaneousBloodGroupID" Type="Int32" />
+          <Property Name="MiscellaneousMaritalStatusID" Type="Int32" />
+          <Property Name="MiscellaneousBloodGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiscellaneousMaritalStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MiscellaneousReligionID" Type="Int32" />
+          <Property Name="MiscellaneousReligionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TotalExp" Type="Double" />
+          <Property Name="CementExp" Type="Double" />
+          <Property Name="LinkedInLink" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingRelativeCompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewStatusID" Type="Int32" />
+          <Property Name="WorkedBeforeCompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkedBeforeCurrentlyWorking" Type="Boolean" />
+          <Property Name="InterviewStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="InterviewBeforeCompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NoticeTimeID" Type="Int32" />
+          <Property Name="StrengthID" Type="Int32" />
+          <Property Name="Strengths" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="AreaOfImprovement" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="MeetRequirements" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateStrengthObjectives" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VRM_CandidateSimple">
+          <Key>
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="CName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Precision="3" />
+          <Property Name="CNICNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BloodGroupID" Type="Int32" />
+          <Property Name="BGroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MartialStatusID" Type="Int32" />
+          <Property Name="MartialStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CityID" Type="Int32" />
+          <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CountryID" Type="Int32" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LandlineNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CellNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DomicileCityID" Type="Int32" />
+          <Property Name="DimicileCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NationalityCountryID" Type="Int32" />
+          <Property Name="NationalityCountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Objective" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CImage" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="GenderID" Type="Int32" />
+          <Property Name="GenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AppliedAs" Type="Int32" />
+          <Property Name="DateCreated" Type="DateTime" Precision="0" />
+          <Property Name="ReligionID" Type="Int32" />
+          <Property Name="ReligionName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HaveExperience" Type="Boolean" />
+          <Property Name="AreaOfInterestID" Type="Int32" />
+          <Property Name="AreaOfInterestName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="CatName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SalutationID" Type="Int32" />
+          <Property Name="SalutationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CVName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="PassportNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPermitYes" Type="Boolean" />
+          <Property Name="WorkPermitNo" Type="Boolean" />
+          <Property Name="OtherDomicileCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherPakistaniCityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tehsil" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PostalCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="VRM_EduDetail">
+          <Key>
+            <PropertyRef Name="EduID" />
+            <PropertyRef Name="CandidateID" />
+          </Key>
+          <Property Name="EduID" Type="Int32" Nullable="false" />
+          <Property Name="DegreeLevelID" Type="Int32" />
+          <Property Name="DegreeLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ObtainedMark" Type="Int32" />
+          <Property Name="TotalMark" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Precision="3" />
+          <Property Name="InstitutionID" Type="Int32" />
+          <Property Name="InstituteName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="MajorSubject" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CandidateID" Type="Int32" Nullable="false" />
+          <Property Name="Percentage" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CGPA" Type="Double" />
+          <Property Name="DegreeTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PassingYear" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="OtherInstitute" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="InProgress" Type="Boolean" />
+          <Property Name="DegreeTypeID" Type="Int32" />
+          <Property Name="EduTypeName" Type="String" MaxLength="70" FixedLength="false" Unicode="true" />
+          <Property Name="OtherDegreeType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OtherDegreeLevelName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GradeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="BoardID" Type="Int32" />
+          <Property Name="BiseName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OtherBoardName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EduCriteriaID" Type="Int32" />
         </EntityType>
         <Association Name="FK_EduDetail_Candidate">
           <End Type="BTRMSModel.Candidate" Role="Candidate" Multiplicity="1" />
@@ -2681,6 +3257,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="JobDetails">
             <EntityTypeMapping TypeName="BTRMSModel.JobDetail">
               <MappingFragment StoreEntitySet="JobDetail">
+                <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
                 <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
                 <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
                 <ScalarProperty Name="SpecificRequirement" ColumnName="SpecificRequirement" />
@@ -3140,6 +3717,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
           <EntitySetMapping Name="V_JobDetail">
             <EntityTypeMapping TypeName="BTRMSModel.V_JobDetail">
               <MappingFragment StoreEntitySet="V_JobDetail">
+                <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
                 <ScalarProperty Name="JStatusName" ColumnName="JStatusName" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />
                 <ScalarProperty Name="ExperienceAndQualification" ColumnName="ExperienceAndQualification" />
@@ -3204,6 +3782,196 @@ warning 6002: The table/view 'BTRMS.dbo.V_UserCandidate' does not have a primary
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="CName" ColumnName="CName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VRM_Candidate">
+            <EntityTypeMapping TypeName="BTRMSModel.VRM_Candidate">
+              <MappingFragment StoreEntitySet="VRM_Candidate">
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="CandidateStrengthObjectives" ColumnName="CandidateStrengthObjectives" />
+                <ScalarProperty Name="MeetRequirements" ColumnName="MeetRequirements" />
+                <ScalarProperty Name="AreaOfImprovement" ColumnName="AreaOfImprovement" />
+                <ScalarProperty Name="Strengths" ColumnName="Strengths" />
+                <ScalarProperty Name="StrengthID" ColumnName="StrengthID" />
+                <ScalarProperty Name="NoticeTimeID" ColumnName="NoticeTimeID" />
+                <ScalarProperty Name="InterviewBeforeCompanyName" ColumnName="InterviewBeforeCompanyName" />
+                <ScalarProperty Name="InterviewStatusName" ColumnName="InterviewStatusName" />
+                <ScalarProperty Name="WorkedBeforeCurrentlyWorking" ColumnName="WorkedBeforeCurrentlyWorking" />
+                <ScalarProperty Name="WorkedBeforeCompanyName" ColumnName="WorkedBeforeCompanyName" />
+                <ScalarProperty Name="InterviewStatusID" ColumnName="InterviewStatusID" />
+                <ScalarProperty Name="WorkingRelativeCompanyName" ColumnName="WorkingRelativeCompanyName" />
+                <ScalarProperty Name="LinkedInLink" ColumnName="LinkedInLink" />
+                <ScalarProperty Name="CementExp" ColumnName="CementExp" />
+                <ScalarProperty Name="TotalExp" ColumnName="TotalExp" />
+                <ScalarProperty Name="MiscellaneousReligionName" ColumnName="MiscellaneousReligionName" />
+                <ScalarProperty Name="MiscellaneousReligionID" ColumnName="MiscellaneousReligionID" />
+                <ScalarProperty Name="MiscellaneousMaritalStatusName" ColumnName="MiscellaneousMaritalStatusName" />
+                <ScalarProperty Name="MiscellaneousBloodGroupName" ColumnName="MiscellaneousBloodGroupName" />
+                <ScalarProperty Name="MiscellaneousMaritalStatusID" ColumnName="MiscellaneousMaritalStatusID" />
+                <ScalarProperty Name="MiscellaneousBloodGroupID" ColumnName="MiscellaneousBloodGroupID" />
+                <ScalarProperty Name="DateCompleted" ColumnName="DateCompleted" />
+                <ScalarProperty Name="UploadCV" ColumnName="UploadCV" />
+                <ScalarProperty Name="MGSalary" ColumnName="MGSalary" />
+                <ScalarProperty Name="ExpectedSalary" ColumnName="ExpectedSalary" />
+                <ScalarProperty Name="InternshipDuration" ColumnName="InternshipDuration" />
+                <ScalarProperty Name="HearAboutDetail" ColumnName="HearAboutDetail" />
+                <ScalarProperty Name="InternshipRequirement" ColumnName="InternshipRequirement" />
+                <ScalarProperty Name="Disability" ColumnName="Disability" />
+                <ScalarProperty Name="DisabilityDetail" ColumnName="DisabilityDetail" />
+                <ScalarProperty Name="AppliedPosition" ColumnName="AppliedPosition" />
+                <ScalarProperty Name="InterviewedLocation" ColumnName="InterviewedLocation" />
+                <ScalarProperty Name="InterviewedDate" ColumnName="InterviewedDate" />
+                <ScalarProperty Name="InterviewedBefore" ColumnName="InterviewedBefore" />
+                <ScalarProperty Name="WorkingRelativeLocation" ColumnName="WorkingRelativeLocation" />
+                <ScalarProperty Name="WorkingRelativeDesignation" ColumnName="WorkingRelativeDesignation" />
+                <ScalarProperty Name="WorkingRelativeDepartment" ColumnName="WorkingRelativeDepartment" />
+                <ScalarProperty Name="WorkingRelativeRelation" ColumnName="WorkingRelativeRelation" />
+                <ScalarProperty Name="WorkingRelativeName" ColumnName="WorkingRelativeName" />
+                <ScalarProperty Name="CrimeDetail" ColumnName="CrimeDetail" />
+                <ScalarProperty Name="HearAboutJobID" ColumnName="HearAboutJobID" />
+                <ScalarProperty Name="HearAboutSource" ColumnName="HearAboutSource" />
+                <ScalarProperty Name="WorkedBefore" ColumnName="WorkedBefore" />
+                <ScalarProperty Name="NoticeTime" ColumnName="NoticeTime" />
+                <ScalarProperty Name="ReasonLeaving" ColumnName="ReasonLeaving" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="EmploymentNo" ColumnName="EmploymentNo" />
+                <ScalarProperty Name="DateLeavig" ColumnName="DateLeavig" />
+                <ScalarProperty Name="WorkingRelative" ColumnName="WorkingRelative" />
+                <ScalarProperty Name="CrimanalRecord" ColumnName="CrimanalRecord" />
+                <ScalarProperty Name="PMiscellaneousID" ColumnName="PMiscellaneousID" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Tehsil" ColumnName="Tehsil" />
+                <ScalarProperty Name="OtherPakistaniCityName" ColumnName="OtherPakistaniCityName" />
+                <ScalarProperty Name="OtherDomicileCityName" ColumnName="OtherDomicileCityName" />
+                <ScalarProperty Name="WorkPermitNo" ColumnName="WorkPermitNo" />
+                <ScalarProperty Name="WorkPermitYes" ColumnName="WorkPermitYes" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="CVName" ColumnName="CVName" />
+                <ScalarProperty Name="OtherAreaName" ColumnName="OtherAreaName" />
+                <ScalarProperty Name="SalutationName" ColumnName="SalutationName" />
+                <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
+                <ScalarProperty Name="OtherCityName" ColumnName="OtherCityName" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="AreaOfInterestName" ColumnName="AreaOfInterestName" />
+                <ScalarProperty Name="AreaOfInterestID" ColumnName="AreaOfInterestID" />
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
+                <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CImage" ColumnName="CImage" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="NationalityCountryName" ColumnName="NationalityCountryName" />
+                <ScalarProperty Name="NationalityCountryID" ColumnName="NationalityCountryID" />
+                <ScalarProperty Name="DimicileCityName" ColumnName="DimicileCityName" />
+                <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MartialStatusName" ColumnName="MartialStatusName" />
+                <ScalarProperty Name="MartialStatusID" ColumnName="MartialStatusID" />
+                <ScalarProperty Name="BGroupName" ColumnName="BGroupName" />
+                <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VRM_CandidateSimple">
+            <EntityTypeMapping TypeName="BTRMSModel.VRM_CandidateSimple">
+              <MappingFragment StoreEntitySet="VRM_CandidateSimple">
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="Tehsil" ColumnName="Tehsil" />
+                <ScalarProperty Name="OtherPakistaniCityName" ColumnName="OtherPakistaniCityName" />
+                <ScalarProperty Name="OtherDomicileCityName" ColumnName="OtherDomicileCityName" />
+                <ScalarProperty Name="WorkPermitNo" ColumnName="WorkPermitNo" />
+                <ScalarProperty Name="WorkPermitYes" ColumnName="WorkPermitYes" />
+                <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
+                <ScalarProperty Name="CVName" ColumnName="CVName" />
+                <ScalarProperty Name="OtherAreaName" ColumnName="OtherAreaName" />
+                <ScalarProperty Name="SalutationName" ColumnName="SalutationName" />
+                <ScalarProperty Name="SalutationID" ColumnName="SalutationID" />
+                <ScalarProperty Name="OtherCityName" ColumnName="OtherCityName" />
+                <ScalarProperty Name="CatName" ColumnName="CatName" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="AreaOfInterestName" ColumnName="AreaOfInterestName" />
+                <ScalarProperty Name="AreaOfInterestID" ColumnName="AreaOfInterestID" />
+                <ScalarProperty Name="HaveExperience" ColumnName="HaveExperience" />
+                <ScalarProperty Name="ReligionName" ColumnName="ReligionName" />
+                <ScalarProperty Name="ReligionID" ColumnName="ReligionID" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="AppliedAs" ColumnName="AppliedAs" />
+                <ScalarProperty Name="GenderName" ColumnName="GenderName" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CImage" ColumnName="CImage" />
+                <ScalarProperty Name="Objective" ColumnName="Objective" />
+                <ScalarProperty Name="NationalityCountryName" ColumnName="NationalityCountryName" />
+                <ScalarProperty Name="NationalityCountryID" ColumnName="NationalityCountryID" />
+                <ScalarProperty Name="DimicileCityName" ColumnName="DimicileCityName" />
+                <ScalarProperty Name="DomicileCityID" ColumnName="DomicileCityID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CellNo" ColumnName="CellNo" />
+                <ScalarProperty Name="LandlineNo" ColumnName="LandlineNo" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="CityID" ColumnName="CityID" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="MartialStatusName" ColumnName="MartialStatusName" />
+                <ScalarProperty Name="MartialStatusID" ColumnName="MartialStatusID" />
+                <ScalarProperty Name="BGroupName" ColumnName="BGroupName" />
+                <ScalarProperty Name="BloodGroupID" ColumnName="BloodGroupID" />
+                <ScalarProperty Name="CNICNo" ColumnName="CNICNo" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="CName" ColumnName="CName" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VRM_EduDetail">
+            <EntityTypeMapping TypeName="BTRMSModel.VRM_EduDetail">
+              <MappingFragment StoreEntitySet="VRM_EduDetail">
+                <ScalarProperty Name="EduCriteriaID" ColumnName="EduCriteriaID" />
+                <ScalarProperty Name="OtherBoardName" ColumnName="OtherBoardName" />
+                <ScalarProperty Name="BiseName" ColumnName="BiseName" />
+                <ScalarProperty Name="BoardID" ColumnName="BoardID" />
+                <ScalarProperty Name="GradeName" ColumnName="GradeName" />
+                <ScalarProperty Name="OtherDegreeLevelName" ColumnName="OtherDegreeLevelName" />
+                <ScalarProperty Name="OtherDegreeType" ColumnName="OtherDegreeType" />
+                <ScalarProperty Name="EduTypeName" ColumnName="EduTypeName" />
+                <ScalarProperty Name="DegreeTypeID" ColumnName="DegreeTypeID" />
+                <ScalarProperty Name="InProgress" ColumnName="InProgress" />
+                <ScalarProperty Name="OtherInstitute" ColumnName="OtherInstitute" />
+                <ScalarProperty Name="PassingYear" ColumnName="PassingYear" />
+                <ScalarProperty Name="DegreeTitle" ColumnName="DegreeTitle" />
+                <ScalarProperty Name="CGPA" ColumnName="CGPA" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="MajorSubject" ColumnName="MajorSubject" />
+                <ScalarProperty Name="InstituteName" ColumnName="InstituteName" />
+                <ScalarProperty Name="InstitutionID" ColumnName="InstitutionID" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="TotalMark" ColumnName="TotalMark" />
+                <ScalarProperty Name="ObtainedMark" ColumnName="ObtainedMark" />
+                <ScalarProperty Name="DegreeLevel" ColumnName="DegreeLevel" />
+                <ScalarProperty Name="DegreeLevelID" ColumnName="DegreeLevelID" />
+                <ScalarProperty Name="EduID" ColumnName="EduID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -254,7 +254,7 @@
                         <div class="form-group">
                             <div class="required col-md-5 control-label text-semibold">How much notice you need to give to your current employer?</div>
                             <div class="col-md-2">
-                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Days", @min = "0" } })
+                                @Html.EditorFor(model => model.NoticeTime, new { htmlAttributes = new { @class = "form-control", @min = "0" } })
                                 @Html.ValidationMessageFor(model => model.NoticeTime, "", new { @class = "text-danger" })
                             </div>
                             <div class="col-md-2">
@@ -342,7 +342,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous",@*new { fileName = LoggedInUser.CandidateID },*@/**/new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CName }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>

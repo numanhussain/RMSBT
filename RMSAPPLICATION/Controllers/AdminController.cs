@@ -56,9 +56,9 @@ namespace RMSAPPLICATION.Controllers
                 //vmCandidateDetails = vmCandidateDetails.Where(aa => aa.CName.ToUpper().Contains(searchString.ToUpper())).ToList();
 
             }
-            //int pageSize = 10;
-            //int pageNumber = (page ?? 1);
-            return View(vmCandidateDetails/*.ToPagedList(pageNumber, pageSize)*/);
+            int pageSize = 20;
+            int pageNumber = (page ?? 1);
+            return View(vmCandidateDetails.ToPagedList(pageNumber, pageSize));
         }
         public FilePathResult OpenCV(string fileName)
         {
