@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="required col-md-2 control-label text-semibold">Interview Date</div>
                                     <div class="col-md-2">
-                                        @Html.TextBoxFor(x => x.InterviewedDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "InterviewedDate", name = "InterviewedDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                                        @Html.TextBoxFor(x => x.InterviewedDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "InterviewedDate", name = "InterviewedDate", @type = "text", placeholder = "" })
                                         @*<input class="form-control" id="InterviewedDate" name="InterviewedDate" value="@(Model.InterviewedDate==null?"":Model.InterviewedDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />*@
                                         @* @Html.TextBoxFor(x => x.InterviewedDate, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.InterviewedDate, "", new { @class = "text-danger" })
@@ -168,7 +168,7 @@
                                 <div class="form-group">
                                     <div class="required col-md-2 control-label text-semibold">Joining Date</div>
                                     <div class="col-md-2">
-                                        @Html.TextBoxFor(x => x.DateJoining, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateJoining", name = "DateJoining", @type = "text", placeholder = "dd-mm-yyyy" })
+                                        @Html.TextBoxFor(x => x.DateJoining, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateJoining", name = "DateJoining", @type = "text", placeholder = "" })
                                         @*<input class="form-control" id="DateJoining" name="DateJoining" value="@(Model.DateJoining==null?"":Model.DateJoining.Value.ToString("dd/MM/yyyy"))" placeholder="DD/MM/YYYY" type="text" />*@
                                         @*@Html.TextBoxFor(x => x.DateJoining, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })*@
                                         @Html.ValidationMessageFor(model => model.DateJoining, "", new { @class = "text-danger" })
@@ -176,7 +176,7 @@
                                     <div id="hidedatediv">
                                         <div class="required col-md-2 control-label text-semibold">Leaving date</div>
                                         <div class="col-md-2">
-                                            @Html.TextBoxFor(x => x.DateLeavig, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateLeavig", name = "DateLeavig", @type = "text", placeholder = "dd-mm-yyyy" })
+                                            @Html.TextBoxFor(x => x.DateLeavig, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "DateLeavig", name = "DateLeavig", @type = "text", placeholder = "" })
                                             @*<input class="form-control" id="DateLeavig" name="DateLeavig" value="@(Model.DateLeavig==null?"":Model.DateLeavig.Value.ToString("dd/MM/yyyy"))" placeholder="dd/MM/YYYY" type="text" />*@
                                             @*  @Html.TextBoxFor(x => x.DateLeavig, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                                             @Html.ValidationMessageFor(model => model.DateLeavig, "", new { @class = "text-danger" })
@@ -315,17 +315,22 @@
                         }
 
                         <div class="form-group">
+                            @*<div id="resumehide">
+                                    <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
+                                    <div class="col-md-3">
+
+                                        <div class="btn btn-primary btn-xs btn-file">
+                                            <i class="icon-file-plus"></i>  <span class="hidden-xs">Upload </span>
+                                            <input type="file" class="file-input" id="CVUpload" value="Open" onchange="ValidateSize(this)" />
+                                        </div>
+                                        <span class="help-block form-inline">Formate Must be:<strong>jpg,pdf,doc,docx<br /></strong>&nbsp;&nbsp;&nbsp; Max file size 1Mb</span>
+                                    </div>
+                                </div>*@
                             <div id="resumehide">
                                 <label class="required col-md-3 control-label text-semibold">Upload your resume online:</label>
-                                <div class="col-md-2 col-lg-pull-1">
-                                    <input type="file" placeholder="resume" value="resume" name="resume" title="Noi" class="file-styled" id="CVUpload" />
-                                    <span class="help-block">Accepted formats: pdf, Max file size 1Mb</span>
-                                    <p id="error1" style="display:none; color:#FF0000;">
-                                        Invalid Image Format! Image Format Must Be JPG, JPEG, PNG or GIF.
-                                    </p>
-                                    <p id="error2" style="display:none; color:#FF0000;">
-                                        Maximum File Size Limit is 1MB.
-                                    </p>
+                                <div class="col-md-3 ">
+                                    <input type="file" placeholder="resume" value="resume" name="resume" title="Noi" onchange="ValidateSize(this)" class="file-styled" id="CVUpload" />
+                                    <span class="help-block">Accepted formats:PDF,JPG,DOC,DOCX, &nbsp;&nbsp; Max file size 1Mb</span>
                                 </div>
                             </div>
                             @if (LoggedInUser.HasCV == true)
@@ -342,7 +347,7 @@
                             @if (LoggedInUser.HasCV == true)
                             {
                                 <div class="col-md-2 col-md-pull-1">
-                                    @Html.ActionLink(LoggedInUser.CName + " cv", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.CName }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
+                                    @Html.ActionLink(LoggedInUser.CName + ".CV", "OpenCV", "Miscellaneous", new { fileName = LoggedInUser.UserID }, new { @class = "btn bg-primary btn-large", @target = "_blank" })
                                 </div>
                             }
                         </div>
@@ -362,9 +367,10 @@
 }
 <script type="text/javascript">
     $(document).ready(function () {
+    CheckCVAttached('@LoggedInUser.HasCV');
         LoadWorkingBeforeControlShow(@LoggedInUser.AppliedAs);
         //Worked Before Selected
-        SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
+        //SaveMiscellaneousInfoFunction(@LoggedInUser.CandidateID);
         MiscellaneousDetailHide(@LoggedInUser.AppliedAs);
         HasCV('@LoggedInUser.HasCV');
         MiscellaneousDateLoad();

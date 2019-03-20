@@ -20,5 +20,6 @@ namespace RMSCORE.EF
         public string MeetRequirements { get; set; }
         public Nullable<int> CandidateID { get; set; }
         public string Objective { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

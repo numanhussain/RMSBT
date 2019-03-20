@@ -37,5 +37,7 @@ namespace RMSCORE.EF
         public Nullable<bool> Status { get; set; }
         public Nullable<int> AppliedAs { get; set; }
         public Nullable<bool> HaveExperience { get; set; }
+        public Nullable<bool> CompensationStatus { get; set; }
+        public Nullable<bool> CompensationFilled { get; set; }
     }
 }

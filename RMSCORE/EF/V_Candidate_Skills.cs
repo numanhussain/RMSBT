@@ -21,5 +21,6 @@ namespace RMSCORE.EF
         public string SkillLevelName { get; set; }
         public int CandidateID { get; set; }
         public string CName { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

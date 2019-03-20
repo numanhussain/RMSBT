@@ -109,6 +109,7 @@ namespace RMSSERVICES.Skill
             dbEdudetail.SLevelID = obj.SLevelID;
             dbEdudetail.Description = obj.Description;
             dbEdudetail.CandidateID = obj.CandidateID;
+            dbEdudetail.EditDate = DateTime.Now;
             return dbEdudetail;
         }
     }

@@ -37,7 +37,6 @@ namespace RMSCORE.EF
         public string NationalityCountryName { get; set; }
         public string Objective { get; set; }
         public Nullable<int> CImage { get; set; }
-        public Nullable<int> UserID { get; set; }
         public Nullable<int> GenderID { get; set; }
         public string GenderName { get; set; }
         public Nullable<int> AppliedAs { get; set; }
@@ -61,5 +60,11 @@ namespace RMSCORE.EF
         public string OtherPakistaniCityName { get; set; }
         public string Tehsil { get; set; }
         public string PostalCode { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public Nullable<int> UserStage { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
+        public Nullable<double> TotalExp { get; set; }
+        public Nullable<double> Cement { get; set; }
+        public Nullable<bool> CompensationFilled { get; set; }
     }
 }

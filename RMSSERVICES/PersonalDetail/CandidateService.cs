@@ -10,6 +10,8 @@ using RMSSERVICES.Generic;
 using RMSREPO.Generic;
 using RMSCORE.EF;
 using System.Linq.Expressions;
+using System.Globalization;
+using System.Threading;
 
 namespace RMSSERVICES.PersonalDetail
 {
@@ -56,6 +58,7 @@ namespace RMSSERVICES.PersonalDetail
         {
             Candidate dbCandidate = CandidateRepository.GetSingle(cid);
             dbCandidate.UserID = uid;
+            dbCandidate.CandidateID = cid;
             return dbCandidate;
         }
         public ServiceMessage PostCreate(Candidate dbOperation, V_UserCandidate LoggedInUser)
@@ -76,8 +79,8 @@ namespace RMSSERVICES.PersonalDetail
         {
             Candidate dbCandidate = new Candidate();
             dbCandidate.CandidateID = dbOperation.CandidateID;
-            dbCandidate.CName = dbOperation.CName;
-            dbCandidate.FatherName = dbOperation.FatherName;
+            dbCandidate.CName = ConvertToTitleCase(dbOperation.CName);
+            dbCandidate.FatherName = ConvertToTitleCase(dbOperation.FatherName);
             dbCandidate.BloodGroupID = dbOperation.BloodGroupID;
             dbCandidate.CNICNo = dbOperation.CNICNo;
             dbCandidate.GenderID = dbOperation.GenderID;
@@ -96,15 +99,31 @@ namespace RMSSERVICES.PersonalDetail
             dbCandidate.LandlineNo = dbOperation.LandlineNo;
             dbCandidate.ReligionID = dbOperation.ReligionID;
             dbCandidate.AreaOfInterestID = dbOperation.AreaOfInterestID;
-            dbCandidate.OtherCityName = dbOperation.OtherCityName;
+            if (dbOperation.OtherCityName != null)
+            {
+                dbCandidate.OtherCityName = ConvertToTitleCase(dbOperation.OtherCityName);
+            }
             dbCandidate.SalutationID = dbOperation.SalutationID;
-            dbCandidate.OtherAreaName = dbOperation.OtherAreaName;
+            if (dbOperation.OtherAreaName != null)
+            {
+                dbCandidate.OtherAreaName = ConvertToTitleCase(dbOperation.OtherAreaName);
+            }
             dbCandidate.WorkPermitYes = dbOperation.WorkPermitYes;
             dbCandidate.WorkPermitNo = dbOperation.WorkPermitNo;
-            dbCandidate.OtherDomicileCityName = dbOperation.OtherDomicileCityName;
-            dbCandidate.OtherPakistaniCityName = dbOperation.OtherPakistaniCityName;
-            dbCandidate.Tehsil = dbOperation.Tehsil;
+            if (dbOperation.OtherDomicileCityName != null)
+            {
+                dbCandidate.OtherDomicileCityName = ConvertToTitleCase(dbOperation.OtherDomicileCityName);
+            }
+            if (dbOperation.OtherPakistaniCityName != null)
+            {
+                dbCandidate.OtherPakistaniCityName = ConvertToTitleCase(dbOperation.OtherPakistaniCityName);
+            }
+            if (dbOperation.OtherPakistaniCityName != null)
+            {
+                dbCandidate.Tehsil = ConvertToTitleCase(dbOperation.Tehsil);
+            }
             dbCandidate.PostalCode = dbOperation.PostalCode;
+            dbCandidate.EditDate = DateTime.Now;
             return dbCandidate;
         }
         public VMCandidateProfileView GetProfileDetails(int? CandidateID, int? JobID)
@@ -166,6 +185,14 @@ namespace RMSSERVICES.PersonalDetail
                 CandidatePhotoRepository.Add(empImage);
                 UnitOfWork.Commit();
             }
+        }
+        public string ConvertToTitleCase(string obj)
+        {
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+            string val = textInfo.ToLower(obj);
+            string val2 = textInfo.ToTitleCase(val);
+            return val2;
         }
     }
 }

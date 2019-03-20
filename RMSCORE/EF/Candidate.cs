@@ -17,7 +17,6 @@ namespace RMSCORE.EF
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Candidate()
         {
-            this.EduDetails = new HashSet<EduDetail>();
             this.Interviews = new HashSet<Interview>();
             this.NotificationDetails = new HashSet<NotificationDetail>();
             this.SkillDetails = new HashSet<SkillDetail>();
@@ -59,9 +58,11 @@ namespace RMSCORE.EF
         public string OtherPakistaniCityName { get; set; }
         public string Tehsil { get; set; }
         public string PostalCode { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
+        public Nullable<double> TotalExp { get; set; }
+        public Nullable<double> Cement { get; set; }
+        public Nullable<bool> CompensationFilled { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EduDetail> EduDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Interview> Interviews { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

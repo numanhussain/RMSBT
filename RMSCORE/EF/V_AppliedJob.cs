@@ -20,7 +20,6 @@ namespace RMSCORE.EF
         public string CName { get; set; }
         public Nullable<int> JobID { get; set; }
         public string JobTitle { get; set; }
-        public string DepatmentName { get; set; }
         public string SpecificRequirement { get; set; }
         public string PositionPurpose { get; set; }
         public string ExperienceAndQualification { get; set; }
@@ -34,5 +33,24 @@ namespace RMSCORE.EF
         public string CatName { get; set; }
         public Nullable<int> StatusID { get; set; }
         public string JStatusName { get; set; }
+        public string CVName { get; set; }
+        public Nullable<int> UserID { get; set; }
+        public Nullable<bool> HasCV { get; set; }
+        public string CellNo { get; set; }
+        public Nullable<System.DateTime> DOB { get; set; }
+        public string DepatmentName { get; set; }
+        public string SubDepartmentName { get; set; }
+        public string FatherName { get; set; }
+        public string CNICNo { get; set; }
+        public string Address { get; set; }
+        public Nullable<int> CountryID { get; set; }
+        public string CountryName { get; set; }
+        public string EmailID { get; set; }
+        public Nullable<int> CandidateCityID { get; set; }
+        public string CityName { get; set; }
+        public Nullable<int> DomicileCityID { get; set; }
+        public string DomicileCityName { get; set; }
+        public Nullable<double> TotalExp { get; set; }
+        public Nullable<double> Cement { get; set; }
     }
 }

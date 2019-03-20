@@ -4,10 +4,12 @@ using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RMSSERVICES.Miscellaneous
@@ -45,29 +47,33 @@ namespace RMSSERVICES.Miscellaneous
             dbUser.UserStage = LoggedInUser.UserStage;
             UserRepository.Edit(dbUser);
             UserRepository.Save();
-            Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == obj.CandidateID;
+            Expression<Func<MiscellaneousDetail, bool>> SpecificClient = c => c.CandidateID == LoggedInUser.CandidateID;
+            List<MiscellaneousDetail> dbMiscellaneouss = MiscellaneousRepository.FindBy(SpecificClient).ToList();
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
             if (MiscellaneousRepository.FindBy(SpecificClient).Count() > 0)
             {
-                dbMiscellaneous = ConvertMiscellaneousObject(obj);
+                dbMiscellaneous = ConvertMiscellaneousObject(obj, LoggedInUser);
                 MiscellaneousRepository.Edit(dbMiscellaneous);
                 MiscellaneousRepository.Save();
+
             }
             else
             {
-                dbMiscellaneous = ConvertMiscellaneousObject(obj);
+                dbMiscellaneous = ConvertMiscellaneousObject(obj, LoggedInUser);
                 MiscellaneousRepository.Add(dbMiscellaneous);
                 MiscellaneousRepository.Save();
+
             }
 
             return new ServiceMessage();
         }
         #endregion
         #region -- Service Private Methods --
-        private MiscellaneousDetail ConvertMiscellaneousObject(MiscellaneousDetail obj)
+        private MiscellaneousDetail ConvertMiscellaneousObject(MiscellaneousDetail obj, V_UserCandidate LoggedInUser)
         {
             MiscellaneousDetail dbMiscellaneous = new MiscellaneousDetail();
             dbMiscellaneous.PMiscellaneousID = obj.PMiscellaneousID;
+            dbMiscellaneous.CandidateID = LoggedInUser.CandidateID;
             dbMiscellaneous.CrimanalRecord = obj.CrimanalRecord;
             dbMiscellaneous.WorkingRelative = obj.WorkingRelative;
             dbMiscellaneous.WorkedBefore = obj.WorkedBefore;
@@ -81,10 +87,12 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.TotalExp = obj.TotalExp;
             dbMiscellaneous.CementExp = obj.CementExp;
             dbMiscellaneous.NoticeTime = obj.NoticeTime;
-            dbMiscellaneous.CandidateID = obj.CandidateID;
             dbMiscellaneous.CrimeDetail = obj.CrimeDetail;
             dbMiscellaneous.WorkingRelative = obj.WorkingRelative;
-            dbMiscellaneous.WorkingRelativeName = obj.WorkingRelativeName;
+            if (obj.WorkingRelativeName != null)
+            {
+                dbMiscellaneous.WorkingRelativeName = ConvertToTitleCase(obj.WorkingRelativeName);
+            }
             dbMiscellaneous.WorkingRelativeRelation = obj.WorkingRelativeRelation;
             dbMiscellaneous.WorkingRelativeDepartment = obj.WorkingRelativeDepartment;
             dbMiscellaneous.WorkingRelativeDesignation = obj.WorkingRelativeDesignation;
@@ -104,15 +112,33 @@ namespace RMSSERVICES.Miscellaneous
             dbMiscellaneous.BloodGroupID = obj.BloodGroupID;
             dbMiscellaneous.ReligionID = obj.ReligionID;
             dbMiscellaneous.MaritalStatusID = obj.MaritalStatusID;
-            dbMiscellaneous.WorkingRelativeCompanyName = obj.WorkingRelativeCompanyName;
+            if (obj.WorkingRelativeCompanyName != null)
+            {
+                dbMiscellaneous.WorkingRelativeCompanyName = ConvertToTitleCase(obj.WorkingRelativeCompanyName);
+            }
             dbMiscellaneous.InterviewStatusID = obj.InterviewStatusID;
-            dbMiscellaneous.WorkedBeforeCompanyName = obj.WorkedBeforeCompanyName;
+            if (obj.WorkedBeforeCompanyName != null)
+            {
+                dbMiscellaneous.WorkedBeforeCompanyName = ConvertToTitleCase(obj.WorkedBeforeCompanyName);
+            }
             dbMiscellaneous.WorkedBeforeCurrentlyWorking = obj.WorkedBeforeCurrentlyWorking;
-            dbMiscellaneous.InterviewBeforeCompanyName = obj.InterviewBeforeCompanyName;
+            if (obj.InterviewBeforeCompanyName != null)
+            {
+                dbMiscellaneous.InterviewBeforeCompanyName = ConvertToTitleCase(obj.InterviewBeforeCompanyName);
+            }
             dbMiscellaneous.LinkedInLink = obj.LinkedInLink;
             dbMiscellaneous.NoticeTimeID = obj.NoticeTimeID;
+            dbMiscellaneous.EditDate= DateTime.Now;
             return dbMiscellaneous;
         }
         #endregion
+        public string ConvertToTitleCase(string obj)
+        {
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+            string val = textInfo.ToLower(obj);
+            string val2 = textInfo.ToTitleCase(val);
+            return val2;
+        }
     }
 }

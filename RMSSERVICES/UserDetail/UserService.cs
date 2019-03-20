@@ -17,14 +17,16 @@ namespace RMSSERVICES.UserDetail
         IRepository<Candidate> CandidateRepository;
         IRepository<CandidateStep> CandidateStepRepository;
         IRepository<V_CandidateDetail> V_CandidateDetailRepositiory;
+        IRepository<V_AppliedJob> V_AppliedJobRepositiory;
         #endregion
         #region -- Service Interface Implementation --
-        public UserService(IRepository<User> userRepository, IRepository<Candidate> candidateRepository, IRepository<CandidateStep> candidateStepRepository, IRepository<V_CandidateDetail> v_CandidateDetailRepositiory)
+        public UserService(IRepository<User> userRepository, IRepository<Candidate> candidateRepository, IRepository<CandidateStep> candidateStepRepository, IRepository<V_CandidateDetail> v_CandidateDetailRepositiory, IRepository<V_AppliedJob> v_AppliedJobRepositiory)
         {
             UserRepository = userRepository;
             CandidateRepository = candidateRepository;
             CandidateStepRepository = candidateStepRepository;
             V_CandidateDetailRepositiory = v_CandidateDetailRepositiory;
+            V_AppliedJobRepositiory = v_AppliedJobRepositiory;
         }
 
         public List<User> GetIndex()
@@ -52,7 +54,7 @@ namespace RMSSERVICES.UserDetail
         public ServiceMessage RegisterUser(UserModel vmUserModel)
         {
             User dbUser = new User();
-            dbUser.DateCreated = DateTime.Today;
+            dbUser.DateCreated = DateTime.Now;
             dbUser.EmailSentTime = DateTime.Now;
             dbUser.AppliedAs = vmUserModel.CatagoryID;
             dbUser.UserStage = 1;
@@ -68,7 +70,7 @@ namespace RMSSERVICES.UserDetail
             dbCandidate.UserID = dbUser.UserID;
             dbCandidate.EmailID = dbUser.Email;
             dbCandidate.AppliedAs = dbUser.AppliedAs;
-            dbCandidate.DateCreated = DateTime.Today;
+            dbCandidate.DateCreated = DateTime.Now;
             CandidateRepository.Add(dbCandidate);
             CandidateRepository.Save();
             CandidateStep dbCandidateSteps = new CandidateStep();
@@ -76,11 +78,11 @@ namespace RMSSERVICES.UserDetail
             dbCandidateSteps.StepOne = false;
             dbCandidateSteps.StepTwo = false;
             dbCandidateSteps.StepThree = false;
-            dbCandidateSteps.StepFour= false;
+            dbCandidateSteps.StepFour = false;
             dbCandidateSteps.StepFive = false;
             dbCandidateSteps.StepSix = false;
             dbCandidateSteps.StepSeven = false;
-            dbCandidateSteps.StepEight= false;
+            dbCandidateSteps.StepEight = false;
             CandidateStepRepository.Add(dbCandidateSteps);
             CandidateStepRepository.Save();
             vmUserModel.UserID = dbUser.UserID;
@@ -91,7 +93,7 @@ namespace RMSSERVICES.UserDetail
 
         public List<VMCandidateDetail> GetAllIndex()
         {
-            List<V_CandidateDetail> dbVCandidateDetails = V_CandidateDetailRepositiory.GetAll();
+            List<V_CandidateDetail> dbVCandidateDetails = V_CandidateDetailRepositiory.GetAll().Where(aa => aa.UserID == 28991).ToList();
             List<VMCandidateDetail> VMLoggedUsers = new List<VMCandidateDetail>();
             foreach (var dbVCandidateDetail in dbVCandidateDetails)
             {
@@ -99,7 +101,7 @@ namespace RMSSERVICES.UserDetail
                 vmCandidateDetail.UserID = dbVCandidateDetail.UserID;
                 vmCandidateDetail.Email = dbVCandidateDetail.Email;
                 vmCandidateDetail.UserStage = dbVCandidateDetail.UserStage;
-                vmCandidateDetail.CName= dbVCandidateDetail.CName;
+                vmCandidateDetail.CName = dbVCandidateDetail.CName;
                 vmCandidateDetail.CompletePassword = StringCipher.Decrypt(dbVCandidateDetail.Password);
                 vmCandidateDetail.DateCreated = dbVCandidateDetail.DateCreated;
                 vmCandidateDetail.StepOne = dbVCandidateDetail.StepOne;
@@ -114,6 +116,46 @@ namespace RMSSERVICES.UserDetail
                 VMLoggedUsers.Add(vmCandidateDetail);
             }
             return VMLoggedUsers.ToList();
+        }
+
+        public List<VMAppliedJobDetail> GetAppliedJobDetails(int? JobID, V_UserCandidate LoggendInUser)
+        {
+            List<VMAppliedJobDetail> vmAppliedJobDetails = new List<VMAppliedJobDetail>();
+            if (JobID == 0 || JobID == null)
+            {
+                List<V_AppliedJob> dbVAppliedJobs = V_AppliedJobRepositiory.GetAll();
+                foreach (var dbVAppliedJob in dbVAppliedJobs)
+                {
+                    VMAppliedJobDetail vmAppliedJobDetail = new VMAppliedJobDetail();
+                    vmAppliedJobDetail.JobID = dbVAppliedJob.JobID;
+                    vmAppliedJobDetail.JobTitle = dbVAppliedJob.JobTitle;
+                    vmAppliedJobDetail.CandidateID = dbVAppliedJob.CandidateID;
+                    vmAppliedJobDetail.CName = dbVAppliedJob.CName;
+                    vmAppliedJobDetail.CatName = dbVAppliedJob.CatName;
+                    vmAppliedJobDetail.DepatmentName = dbVAppliedJob.DepatmentName;
+                    vmAppliedJobDetail.JStatusName = dbVAppliedJob.JStatusName;
+                    vmAppliedJobDetail.HasCV = dbVAppliedJob.HasCV;
+                    vmAppliedJobDetails.Add(vmAppliedJobDetail);
+                }
+            }
+            else
+            {
+                List<V_AppliedJob> dbVAppliedJobs = V_AppliedJobRepositiory.GetAll().Where(aa => aa.JobID == JobID).ToList();
+                foreach (var dbVAppliedJob in dbVAppliedJobs)
+                {
+                    VMAppliedJobDetail vmAppliedJobDetail = new VMAppliedJobDetail();
+                    vmAppliedJobDetail.JobID = dbVAppliedJob.JobID;
+                    vmAppliedJobDetail.JobTitle = dbVAppliedJob.JobTitle;
+                    vmAppliedJobDetail.CandidateID = dbVAppliedJob.CandidateID;
+                    vmAppliedJobDetail.CName = dbVAppliedJob.CName;
+                    vmAppliedJobDetail.CatName = dbVAppliedJob.CatName;
+                    vmAppliedJobDetail.DepatmentName = dbVAppliedJob.DepatmentName;
+                    vmAppliedJobDetail.JStatusName = dbVAppliedJob.JStatusName;
+                    vmAppliedJobDetail.HasCV = dbVAppliedJob.HasCV;
+                    vmAppliedJobDetails.Add(vmAppliedJobDetail);
+                }
+            }
+            return vmAppliedJobDetails.ToList();
         }
         #endregion
         #region -- Service Private Methods --

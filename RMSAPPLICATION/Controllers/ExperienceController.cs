@@ -43,15 +43,53 @@ namespace RMSAPPLICATION.Controllers
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             int cid = vmf.CandidateID;
+            float TotalExperience = 0;
+            float CementExperience = 0;
+            float TotalSum = 0;
+            float CementSum = 0;
             List<VMExperienceIndex> vmlist = ExperienceDetailService.GetIndex(cid);
             Expression<Func<MiscellaneousDetail, bool>> SpecificPosition3 = c => c.CandidateID == cid;
-            if (MiscellaneousDetailService.GetIndexSpecific(SpecificPosition3).Count > 0)
+            List<MiscellaneousDetail> dbMiscellaneousDetails = MiscellaneousDetailService.GetIndexSpecific(SpecificPosition3);
+            foreach (var item in vmlist.OrderBy(aa => aa.StartDate))
             {
-                List<MiscellaneousDetail> dbVRMPositions = MiscellaneousDetailService.GetIndexSpecific(SpecificPosition3);
-                MiscellaneousDetail dbVRMPosition = dbVRMPositions.First();
-                ViewBag.Experience = dbVRMPosition.TotalExp;
-                ViewBag.CementExperience = dbVRMPosition.CementExp;
+                if (MiscellaneousDetailService.GetIndexSpecific(SpecificPosition3).Count > 0)
+                {
+                    MiscellaneousDetail dbMiscellaneous = dbMiscellaneousDetails.First();
+                    if (item.IndustryID == 68)
+                    {
+                        if (item.EndDate != null)
+                        {
+                            CementExperience = item.EndDate.Value.Year - item.StartDate.Value.Year;
+                        }
+                        else
+                        {
+                            CementExperience = DateTime.Now.Year - item.StartDate.Value.Year;
+                        }
+                        CementSum = CementSum + CementExperience;
+                    }
+                    if (item.IndustryID != 68)
+                    {
+                        if (item.EndDate != null)
+                        {
+                            TotalExperience = item.EndDate.Value.Year - item.StartDate.Value.Year;
+                        }
+                        else
+                        {
+                            TotalExperience = DateTime.Now.Year - item.StartDate.Value.Year;
+                        }
+                        TotalSum = TotalSum + TotalExperience;
+                    }
+                    dbMiscellaneous.TotalExp = TotalSum + CementSum;
+                    dbMiscellaneous.CementExp = CementSum;
+                    MiscellaneousDetailService.PostEdit(dbMiscellaneous);
+                    if (dbMiscellaneous.TotalExp != null && dbMiscellaneous.CementExp != null)
+                    {
+                        ViewBag.Experience = dbMiscellaneous.TotalExp.Value.ToString("0.0");
+                        ViewBag.CementExperience = dbMiscellaneous.CementExp.Value.ToString("0.0");
+                    }
+                }
             }
+
             return View(vmlist);
         }
 
@@ -95,11 +133,9 @@ namespace RMSAPPLICATION.Controllers
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             if (obj.IndustryID == 0)
                 ModelState.AddModelError("IndustryID", "Mandatory");
-            if (obj.IndustryID == 110)
+            if (obj.IndustryID != 110)
             {
                 obj.OtherIndustryName = null;
-                if (obj.IndustryID == 0)
-                    ModelState.AddModelError("CityID", "Mandatory");
             }
             if (obj.IndustryID == 110)
             {

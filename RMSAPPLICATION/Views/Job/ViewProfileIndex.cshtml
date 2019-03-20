@@ -3,6 +3,12 @@
     ViewBag.title = "View Profile";
     Layout = null;
 }
+<style>
+    div {
+        text-align: justify;
+        text-justify: inter-word;
+    }
+</style>
 @{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.JobID)
@@ -56,7 +62,7 @@
                                                 <label class="text-semibold">Date of Birth</label>
                                             </div>
                                             @if (Model.PersonalDetails.DOB != null)
-                                            {@Model.PersonalDetails.DOB.Value.ToString("MM/dd/yyyy")}
+                                            {@Model.PersonalDetails.DOB.Value.ToString("dd-MMM-yyyy")}
 
                                         </div>
                                     </div>
@@ -171,6 +177,9 @@
                                         <th class="text-bold">
                                             CGPA
                                         </th>
+                                        <th class="text-bold">
+                                            Grade
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -192,7 +201,7 @@
                                                 }
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.DegreeTitle)
+                                                @Html.DisplayFor(modelItem => item.EduTypeName)
                                             </td>
                                             @if (item.InProgress == false)
                                             {
@@ -212,6 +221,9 @@
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.CGPA)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.GradeName)
                                             </td>
                                         </tr>
                                     }
@@ -260,16 +272,16 @@
                                                 @Html.DisplayFor(modelItem => item.ExpIndustryName)
                                             </td>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.PostionTitle)
+                                                @Html.DisplayFor(modelItem => item.JobTitle)
                                             </td>
                                             <td>
                                                 @if (item.StartDate != null)
-                                                {@item.StartDate.Value.ToString("MM/dd/yyyy");
+                                                {@item.StartDate.Value.ToString("dd-MMM-yyyy");
                                             }
                                             </td>
                                             <td>
                                                 @if (item.EndDate != null)
-                                                {@item.EndDate.Value.ToString("MM/dd/yyyy");
+                                                {@item.EndDate.Value.ToString("dd-MMM-yyyy");
                                             }
                                             </td>
                                             <td>
@@ -360,13 +372,13 @@
                                 <thead>
                                     <tr>
                                         <th class="text-bold">
-                                            Organization
-                                        </th>
-                                        <th class="text-bold">
                                             Name
                                         </th>
                                         <th class="text-bold">
                                             Designation
+                                        </th>
+                                        <th class="text-bold">
+                                            Organization
                                         </th>
                                         <th class="text-bold">
                                             Contact
@@ -384,14 +396,13 @@
                                     {
                                         <tr>
                                             <td>
-                                                @Html.DisplayFor(modelItem => item.Organization)
-                                            </td>
-
-                                            <td>
                                                 @Html.DisplayFor(modelItem => item.RefName)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.RefDesignation)
+                                            </td>
+                                            <td>
+                                                @Html.DisplayFor(modelItem => item.Organization)
                                             </td>
                                             <td>
                                                 @Html.DisplayFor(modelItem => item.RefContact)
@@ -484,8 +495,9 @@
                             </div>
                         </div>
 
-
-                        @*<div class="tab-pane" id="basic-tab5">
+                        @if (Model.PersonalDetails.CompensationFilled == true)
+                        {
+                            <div class="tab-pane" id="basic-tab5">
                                 <div class="profile-user-info-striped">
                                     <div class="row">
                                         <div class="form-group col-md-3">
@@ -689,13 +701,11 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>*@
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-            @*<div class="col-md-12">
-                    <input type='button' id='hideshow1' class="btn btn-info pull-right" value='Apply'>
-                </div>*@
             <div class="col-md-12" id="hrhide">
                 <hr />
             </div>
@@ -720,9 +730,9 @@
                 <div class="text-black">
                     <b><strong>Note: </strong> Please read the below terms and conditions statement carefully</b>
                 </div>
-                <p class="text-highlight">
+                <div class="text-highlight">
                     I certify that the information provided by me in this form and all transcripts/documents/CV submitted herewith or in connection with this application for employment is accurate and true, and may be subject to verification, I understand that falsification or concealment of any information, may disqualify my application and/or be ground for disciplinary action up to and including termination and/or legal action. Unless otherwise indicated, I agree and give my consent that any person, firm or organization listed herein is authorized to furnish Bestway with reference material concerning my character, past employment or any other information requested.
-                </p>
+                </div>
                 <lable class="col-md-1 text-bold">Signature=</lable>
                 <div class="col-md-3 text-bold">
                     @Html.DisplayFor(model => LoggedInUser.CName)

@@ -38,5 +38,6 @@ namespace RMSCORE.EF
         public string PostalCode { get; set; }
         public string OtherCityName { get; set; }
         public string OtherIndustryName { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

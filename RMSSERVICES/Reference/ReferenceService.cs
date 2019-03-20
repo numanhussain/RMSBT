@@ -6,9 +6,11 @@ using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace RMSSERVICES.Reference
@@ -87,6 +89,7 @@ namespace RMSSERVICES.Reference
                     }
                 }
             }
+            vmReference.CandidateID = id;
             return vmReference;
         }
         public ServiceMessage PostCreate(VMReferenceOperation obj, V_UserCandidate LoggedInUser)
@@ -107,6 +110,7 @@ namespace RMSSERVICES.Reference
                 ReferenceRepository.Save();
                 dbReferenceDetail = ConvertReference2Object(obj);
                 dbReferenceDetail.CandidateID = LoggedInUser.CandidateID;
+                dbReferenceDetail.EditDate = DateTime.Now;
                 ReferenceRepository.Edit(dbReferenceDetail);
                 ReferenceRepository.Save();
             }
@@ -118,6 +122,7 @@ namespace RMSSERVICES.Reference
                 ReferenceRepository.Save();
                 dbReferenceDetail = ConvertReference2Object(obj);
                 dbReferenceDetail.CandidateID = LoggedInUser.CandidateID;
+                dbReferenceDetail.EditDate = DateTime.Now;
                 dbReferenceDetail = ReferenceRepository.Add(dbReferenceDetail);
                 ReferenceRepository.Save();
             }
@@ -178,6 +183,14 @@ namespace RMSSERVICES.Reference
         {
             throw new NotImplementedException();
         }
+        public string ConvertToTitleCase(string obj)
+        {
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+            string val = textInfo.ToLower(obj);
+            string val2 = textInfo.ToTitleCase(val);
+            return val2;
+        }
         #endregion
         #region -- Service Private Methods --
         private ReferenceDetail ConvertReference1Object(VMReferenceOperation obj)
@@ -185,12 +198,12 @@ namespace RMSSERVICES.Reference
             ReferenceDetail dbReferenceDetail = new ReferenceDetail();
             dbReferenceDetail.RefID = obj.RefID1;
             dbReferenceDetail.SalutationID = obj.SalutationID1;
-            dbReferenceDetail.RefName = obj.RefName1;
+            dbReferenceDetail.RefName = ConvertToTitleCase(obj.RefName1);
             dbReferenceDetail.RefDesignation = obj.RefDesignation1;
             dbReferenceDetail.RefContact = obj.RefContact1;
             dbReferenceDetail.RefEmail = obj.RefEmail1;
             dbReferenceDetail.HowLongKnown = obj.HowLongKnown1;
-            dbReferenceDetail.Organization = obj.Organization1;
+            dbReferenceDetail.Organization = ConvertToTitleCase(obj.Organization1);
             return dbReferenceDetail;
         }
         private ReferenceDetail ConvertReference2Object(VMReferenceOperation obj)
@@ -198,12 +211,12 @@ namespace RMSSERVICES.Reference
             ReferenceDetail dbReferenceDetail = new ReferenceDetail();
             dbReferenceDetail.RefID = obj.RefID2;
             dbReferenceDetail.SalutationID = obj.SalutationID2;
-            dbReferenceDetail.RefName = obj.RefName2;
+            dbReferenceDetail.RefName = ConvertToTitleCase(obj.RefName2);
             dbReferenceDetail.RefDesignation = obj.RefDesignation2;
             dbReferenceDetail.RefContact = obj.RefContact2;
             dbReferenceDetail.RefEmail = obj.RefEmail2;
             dbReferenceDetail.HowLongKnown = obj.HowLongKnown2;
-            dbReferenceDetail.Organization = obj.Organization2;
+            dbReferenceDetail.Organization = ConvertToTitleCase(obj.Organization2);
             return dbReferenceDetail;
         }
         #endregion

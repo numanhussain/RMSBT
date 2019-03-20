@@ -38,7 +38,7 @@ namespace RMSSERVICES.Compensation
             }
             return dbCompensation;
         }
-        public ServiceMessage PostCreate(CompensationDetail obj,V_UserCandidate LoggedInUser)
+        public ServiceMessage PostCreate(CompensationDetail obj, V_UserCandidate LoggedInUser)
         {
             Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
             List<User> images = UserRepository.FindBy(SpecificEntries);
@@ -61,7 +61,9 @@ namespace RMSSERVICES.Compensation
                 CompensationRepository.Add(dbCompensation);
                 CompensationRepository.Save();
             }
-                
+            Candidate dbCandidate = CandidateRepository.GetSingle((int)obj.CandidateID);
+            dbCandidate.CompensationFilled = true;
+            CandidateRepository.Edit(dbCandidate);
             return new ServiceMessage();
         }
         #endregion
@@ -114,6 +116,7 @@ namespace RMSSERVICES.Compensation
             dbCompensation.CandidateID = obj.CandidateID;
             dbCompensation.SpecifyYears = obj.SpecifyYears;
             dbCompensation.MobileNoOfYears = obj.MobileNoOfYears;
+            dbCompensation.EditDate = DateTime.Now;
             return dbCompensation;
         }
         #endregion

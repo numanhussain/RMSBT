@@ -126,7 +126,7 @@
                 <div>
                     <label class="required control-label text-semibold">Start Date</label>
 
-                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "" })
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
@@ -135,13 +135,14 @@
             <div id="hidedatediv" class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">End Date</label>
-                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "" })
                     @*<input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?"dd/mm/yyyy":Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />
-                        Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
+                Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <span class="help-block">e.g. 01-January-2018</span>
             </div>
             <div class="col-md-3">
                 <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="InProgress">
@@ -150,7 +151,7 @@
                     In Progress
                 </label>
             </div>
-
+            <span class="help-block">e.g. 01-January-2018</span>
         </div>
         <div class="row">
             <div id="marksdiv" class="form-group col-md-2">
@@ -186,7 +187,7 @@
                 <div class="form-group col-md-2">
                     <div>
                         <label class="required control-label text-semibold">Percentage</label>
-                        <input type="text" class="form-control" name="Percentage" id="Percentage" placeholder="" value="@ViewBag.Percentage" />
+                        <input type="text" class="form-control" name="Percentage" id="Percentage" placeholder="" readonly="readonly" value="@ViewBag.Percentage" />
                         @*@Html.EditorFor(model => model.Percentage, new { htmlAttributes = new { @class = "form-control" } })*@
                     </div>
                     <div class="small">
@@ -209,7 +210,8 @@
                 <div class="form-group col-md-2">
                     <div>
                         <label class="required control-label text-semibold">CGPA</label>
-                        @Html.EditorFor(model => model.CGPA, new { htmlAttributes = new { @class = "form-control", placeholder = "Out of 4" } })
+                        <input type="text" @*style="width:60px"*@ name="CGPA" class="form-control text-center" minlength=1 maxlength="4"  value="@Model.CGPA" placeholder="Out of 4">
+                        @*@Html.EditorFor(model => model.CGPA, new { htmlAttributes = new { @class = "form-control", placeholder = "Out of 4" } })*@
                     </div>
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.CGPA, "", new { @class = "text-danger" })

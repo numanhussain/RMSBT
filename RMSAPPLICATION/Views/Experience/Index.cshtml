@@ -61,13 +61,13 @@
                                     <label class="control-label required">Overall Experience </label>
                                 </div>
                                 <div class="col-md-1">
-                                    <input type="text" class="form-control" name="Experience" id="Experience" placeholder="Years" value="@ViewBag.Experience" />
+                                    <input type="text" class="form-control" name="Experience" id="Experience" minlength=1 maxlength="3" max="2400" placeholder="Years" value="@ViewBag.Experience" />
                                 </div>
                                 <div class="col-md-2 text-semibold">
                                     <label class="control-label required">Cement Industry Experience </label>
                                 </div>
                                 <div class="col-md-1">
-                                    <input type="text" class="form-control" name="CementExperience" id="CementExperience" placeholder="Years" value="@ViewBag.CementExperience" />
+                                    <input type="text" class="form-control" name="CementExperience" id="CementExperience" minlength=1 maxlength="3" max="2400" placeholder="Years" value="@ViewBag.CementExperience" />
                                 </div>
                                 @*<div class="col-md-1">
                                         <button type="button" id="btnPostCreate" class="btn btn-primary" value="Save">Save</button>

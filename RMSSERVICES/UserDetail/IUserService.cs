@@ -15,5 +15,6 @@ namespace RMSSERVICES.UserDetail
         bool VerifyLink(string key);
         ServiceMessage RegisterUser(UserModel vmUserModel);
         List<VMCandidateDetail> GetAllIndex();
+        List<VMAppliedJobDetail> GetAppliedJobDetails(int? JobID, V_UserCandidate LoggedInUser);
     }
 }

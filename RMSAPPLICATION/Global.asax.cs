@@ -46,5 +46,10 @@ namespace RMSAPPLICATION
             HttpContext.Current.Session["LoggedInUser"] = null;
             HttpContext.Current.Session["ToasterMessages"] = null;
         }
+        //protected void Application_Error()
+        //{
+        //    HttpContext httpContext = HttpContext.Current;
+        //    httpContext.Response.Redirect("~/Home/Error");
+        //}
     }
 }

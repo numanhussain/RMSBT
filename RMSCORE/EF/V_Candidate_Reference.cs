@@ -26,5 +26,6 @@ namespace RMSCORE.EF
         public Nullable<int> CandidateID { get; set; }
         public Nullable<int> SalutationID { get; set; }
         public string SalutationName { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

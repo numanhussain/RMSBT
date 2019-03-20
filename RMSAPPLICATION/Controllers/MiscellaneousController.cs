@@ -264,25 +264,27 @@ namespace RMSAPPLICATION.Controllers
                 //string filename = Path.GetFileName(Request.Files[i].FileName);  
 
                 HttpPostedFileBase file = files[i];
+                int byteCount = file.ContentLength;
+
                 string fname;
                 var checkextension = Path.GetExtension(file.FileName).ToLower();
                 // Checking for Internet Explorer  
                 if (checkextension == ".pdf")
                 {
-                    fname = vmf.CandidateID.ToString() + ".pdf";
+                    fname = vmf.CandidateID + ".pdf";
                 }
-                else if (checkextension == ".jpg")
+                else if (checkextension == ".doc")
                 {
-                    fname = vmf.CandidateID.ToString() + ".jpg";
+                    fname = vmf.CandidateID + ".doc";
                 }
                 else if (checkextension == ".docx")
                 {
                     //fname = file.FileName;
-                    fname = vmf.CandidateID.ToString() + ".docx";
+                    fname = vmf.CandidateID + ".docx";
                 }
                 else
                 {
-                    fname = vmf.CandidateID.ToString() + ".doc";
+                    fname = vmf.CandidateID + ".jpg";
                 }
                 DeleteFiles(vmf, files);
                 // Get the complete folder path and store the file inside it. 
@@ -306,7 +308,9 @@ namespace RMSAPPLICATION.Controllers
         public FilePathResult OpenCV(string fileName)
         {
             V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-            var checkextension = Path.GetExtension(vmf.CVName).ToLower();
+            int CandidateID = Convert.ToInt32(fileName);
+            Candidate dbVRMCandidate = CandidateRepository.GetSingle(CandidateID);
+            var checkextension = Path.GetExtension(dbVRMCandidate.CVName).ToLower();
             if (checkextension == ".pdf")
             {
                 return new FilePathResult(string.Format(@"~\UploadFiles\" + vmf.CandidateID.ToString() + ".pdf"), "application/pdf");

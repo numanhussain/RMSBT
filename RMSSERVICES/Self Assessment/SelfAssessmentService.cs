@@ -53,6 +53,7 @@ namespace RMSSERVICES.Self_Assessment
                 dbcandidateStrength.MeetRequirements = obj.MeetRequirements;
                 dbcandidateStrength.Objective = obj.Objective;
                 dbcandidateStrength.CandidateID = obj.CandidateID;
+                dbcandidateStrength.EditDate= DateTime.Now;
                 CandidateStrengthRepository.Edit(dbcandidateStrength);
                 CandidateStrengthRepository.Save();
             }
@@ -64,6 +65,7 @@ namespace RMSSERVICES.Self_Assessment
                 dbcandidateStrength.MeetRequirements = obj.MeetRequirements;
                 dbcandidateStrength.Objective = obj.Objective;
                 dbcandidateStrength.CandidateID = obj.CandidateID;
+                dbcandidateStrength.EditDate= DateTime.Now;
                 CandidateStrengthRepository.Add(dbcandidateStrength);
                 CandidateStrengthRepository.Save();
             }

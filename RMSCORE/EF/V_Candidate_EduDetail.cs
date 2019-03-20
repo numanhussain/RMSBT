@@ -41,5 +41,6 @@ namespace RMSCORE.EF
         public string BoardName { get; set; }
         public string OtherBoardName { get; set; }
         public Nullable<int> EduCriteriaID { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

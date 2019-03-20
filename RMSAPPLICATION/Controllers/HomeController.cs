@@ -58,8 +58,6 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-
-            V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
             List<VMOpenJobIndex> vm = JobService.JobIndex();
             ViewBag.LocationID = new SelectList(DDService.GetLocationList().ToList().OrderBy(aa => aa.PLocationID).ToList(), "PLocationID", "LocName");
             ViewBag.CatagoryID = new SelectList(DDService.GetCatagoryList().ToList().OrderBy(aa => aa.PCatagoryID).ToList(), "PCatagoryID", "CatName");
@@ -71,8 +69,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult IndexSubmit(int? LocationID, int? CatagoryID, string FilterBox)
         {
             List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
-            if (FilterBox != "")
-                vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle == FilterBox).ToList();
+            List<VMOpenJobIndex> vmTempAllJobList = new List<VMOpenJobIndex>();
             if (LocationID > 0)
             {
                 vmAllJobList = vmAllJobList.Where(aa => aa.LocID == LocationID).ToList();
@@ -91,7 +88,6 @@ namespace RMSAPPLICATION.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            //return RedirectToAction("Index","ReportManager",new { @area="Reporting"});
             return View();
         }
         [HttpPost]
@@ -430,6 +426,11 @@ namespace RMSAPPLICATION.Controllers
             return Json(false, JsonRequestBehavior.AllowGet);
         }
         public ActionResult Contact()
+        {
+            return View();
+        }
+        [HttpGet]
+        public ActionResult Error()
         {
             return View();
         }

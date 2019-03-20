@@ -137,25 +137,22 @@ function MiscellaneousDetailHide(vmf) {
     }
 }
 function SaveMiscellaneousInfoFunction() {
-    $('#btnPostCreate').click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/Miscellaneous/Create",
-            data: $("#formEditID").serialize(),
-            success: function (data) {
-                if (data == "OK") {
-                    checkextension()
-
-                    MiscellaneousGetCreate()
-                }
-                else {
-                    $('#PartialViewContainer').html(data);
-                }
-            },
-            error: function () {
-                alert("Dynamic content load failed.");
+    $.ajax({
+        type: "POST",
+        url: "/Miscellaneous/Create",
+        data: $("#formEditID").serialize(),
+        success: function (data) {
+            if (data === "OK") {
+                SaveCV();
+                MiscellaneousGetCreate();
             }
-        });
+            else {
+                $('#PartialViewContainer').html(data);
+            }
+        },
+        error: function () {
+            alert("Dynamic content load failed.");
+        }
     });
 }
 function SaveCV() {
@@ -261,6 +258,41 @@ function MiscellaneousDateLoad() {
         todayHighlight: true,
         autoclose: true,
     })
+}
+
+function CheckCVAttached(HasCV) {
+    $('#btnPostCreate').click(function () {
+        if (HasCV !== "True") {
+            var fileUpload = $("#CVUpload").get(0);
+            if (fileUpload.files.length === 0) {
+                // Display Message
+                alert("Please attach CV.");
+            }
+            else {
+                var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
+                if (ext === "docx" || ext === "doc" || ext === "pdf" || ext === "jpg" || ext === "") {
+                    SaveMiscellaneousInfoFunction();
+                }
+                else {
+                    alert("Please Select valid file extension.");
+                }
+            }
+        }
+        else {
+            SaveMiscellaneousInfoFunction();
+        }
+    });
+}
+function ValidateSize(file) {
+    var FileSize = file.files[0].size / 1024 / 1024; // in MB
+    if (FileSize > 1) {
+        alert('File size exceeds 1 MB');
+        // $(file).val(''); //for clearing with Jquery
+    }
+    var ext = $('#CVUpload').val().split('.').pop().toLowerCase();
+    if ($.inArray(ext, ['pdf', 'doc', 'docs', 'jpg']) === -1) {
+        alert('Invalid  file extension');
+    }
 }
 
 

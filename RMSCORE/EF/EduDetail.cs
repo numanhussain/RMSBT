@@ -36,9 +36,6 @@ namespace RMSCORE.EF
         public Nullable<int> BoardID { get; set; }
         public string OtherBoardName { get; set; }
         public Nullable<int> EduCriteriaID { get; set; }
-    
-        public virtual Candidate Candidate { get; set; }
-        public virtual EduDegreeLevel EduDegreeLevel { get; set; }
-        public virtual EduInstitute EduInstitute { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

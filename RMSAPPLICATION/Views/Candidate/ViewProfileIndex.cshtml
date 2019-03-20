@@ -4,6 +4,7 @@
     Layout = null;
 }
 @{RMSCORE.EF.V_UserCandidate LoggedInUser = (RMSCORE.EF.V_UserCandidate)HttpContext.Current.Session["LoggedInUser"];
+
     @Html.HiddenFor(model => model.CandidateID)
     @Html.HiddenFor(model => model.JobID)
     <div class="modal-header bg-blue">

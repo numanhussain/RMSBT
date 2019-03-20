@@ -23,5 +23,6 @@ namespace RMSCORE.EF
         public string HowLongKnown { get; set; }
         public string Organization { get; set; }
         public Nullable<int> SalutationID { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

@@ -20,14 +20,12 @@
                             <ul class="list-inline list-inline-separate text-muted no-margin">
                                 <li><span class="text-semibold">Location:</span> @Html.DisplayFor(x => x.LocName)</li>
                                 <li><span class="text-semibold">Department: </span>@Html.DisplayFor(x => x.DepatmentName)</li>
-                                <li><span class="text-semibold">Sub Department:</span> @Html.DisplayFor(x => x.SubDepartmentName)</li>
                             </ul>
                         </div>
-
                         <div class="media-right media-middle text-nowrap">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply" onclick="ViewProfileIndex(@Model.JobID,@Model.IsCompletedProfile,@Model.CatagoryID)" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <button type="button" id="DivJobApply" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</button>
                             }
                             <span id="DivJobApplied"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>
@@ -52,7 +50,8 @@
                         <div class="media-middle media-middle text-nowrap" align="center">
                             @if (Model.IsApplied == false)
                             {
-                                <a href="#" name="submit" id="DivJobApply2" onclick="ViewProfileIndex(@Model.JobID,@Model.IsCompletedProfile,@Model.CatagoryID)" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
+                                <button type="button" id="DivJobApply2" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</button>
+                                @*<a href="#" name="submit" id="DivJobApply2" onclick="CheckCVAttachedJob(@LoggedInUser.HasCV,@Model.JobID,@Model.IsCompletedProfile,@Model.CatagoryID)" class="btn bg-primary"><i class="icon-envelop2 position-left"></i> Apply for this job</a>*@
                             }
                             <span id="DivJobApplied2"> <i class="icon-checkmark3"></i>Already Applied For this Job</span>
                         </div>
@@ -78,6 +77,8 @@
 <script type="text/javascript" src="~/Scripts/Candidate/JobPortal.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
+        CheckCVAttachedJobUpper('@LoggedInUser.HasCV',@Model.JobID,@Model.IsCompletedProfile,@Model.CatagoryID);
+         CheckCVAttachedJobLower('@LoggedInUser.HasCV',@Model.JobID,@Model.IsCompletedProfile,@Model.CatagoryID);
         if ('@(Model.IsApplied ==false)'=='True')
             $("#DivJobApplied").hide();
         if ('@(Model.IsApplied ==false)' == 'True')

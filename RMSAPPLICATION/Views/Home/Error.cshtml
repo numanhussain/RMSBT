@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "Error";
+    Layout = null;
+}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</title>
+
+    <!-- Global stylesheets -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/core.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/components.css" rel="stylesheet" type="text/css">
+    <link href="~/Theme/assets/css/colors.css" rel="stylesheet" type="text/css">
+    <!-- /global stylesheets -->
+    <!-- Core JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/pace.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/core/libraries/bootstrap.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/loaders/blockui.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/nicescroll.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/drilldown.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/tables/datatables/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/plugins/ui/ripple.min.js"></script>
+    <script type="text/javascript" src="/Theme/assets/js/plugins/forms/styling/uniform.min.js"></script>
+    <!-- /core JS files -->
+    <!-- Theme JS files -->
+    <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
+    <script type="text/javascript" src="/Theme/assets/js/pages/job_list.js"></script>
+    <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
+    <!-- /theme JS files -->
+    <style>
+        .form-control {
+            display: block;
+            width: 100%;
+            height: 38px;
+            padding: 8px 16px;
+            font-size: 13px;
+            line-height: 1.5384616;
+            color: #0094ff;
+            background-color: transparent;
+            background-image: none;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<div>
+    <p>
+        <h3 class="text-center text-bold">
+            Session expired.Back to @Html.ActionLink("Login", "Login", "Home", routeValues: null, htmlAttributes: new { id = "loginLink" })
+        </h3>
+    </p>
+</div>

@@ -20,8 +20,6 @@ namespace RMSCORE.Models.Main
         public int? CandidateID { get; set; }
         public string CName { get; set; }
         public DateTime? CJobDate { get; set; }
-        public int? JobID { get; set; }
-        public string JobTitle { get; set; }
     }
     public class VMOpenJobIndex : V_JobDetail
     {

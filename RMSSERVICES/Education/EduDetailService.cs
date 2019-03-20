@@ -10,6 +10,8 @@ using RMSREPO.Generic;
 using System.Linq.Expressions;
 using RMSCORE.Models.Main;
 using RMSCORE.Models.Operation;
+using System.Globalization;
+using System.Threading;
 
 namespace RMSSERVICES.Education
 {
@@ -69,7 +71,7 @@ namespace RMSSERVICES.Education
             vmEduDetail.CandidateID = id;
             return vmEduDetail;
         }
-        public ServiceMessage PostCreate(VMEduDetailOperation obj,V_UserCandidate LoggedInUser)
+        public ServiceMessage PostCreate(VMEduDetailOperation obj, V_UserCandidate LoggedInUser)
         {
             Expression<Func<User, bool>> SpecificEntries = c => c.UserID == LoggedInUser.UserID;
             List<User> images = UserRepository.FindBy(SpecificEntries);
@@ -174,19 +176,40 @@ namespace RMSSERVICES.Education
             dbEdudetail.EndDate = obj.EndDate;
             dbEdudetail.Percentage = obj.Percentage;
             dbEdudetail.CGPA = obj.CGPA;
-            dbEdudetail.MajorSubject = obj.MajorSubject;
+            dbEdudetail.MajorSubject = ConvertToTitleCase(obj.MajorSubject);
             dbEdudetail.PassingYear = obj.PassingYear;
-            dbEdudetail.DegreeTitle = obj.DegreeTitle;
-            dbEdudetail.OtherInstitute = obj.OtherInstitute;
+            dbEdudetail.DegreeTitle = ConvertToTitleCase(obj.DegreeTitle);
+            if (obj.OtherInstitute != null)
+            {
+                dbEdudetail.OtherInstitute = ConvertToTitleCase(obj.OtherInstitute);
+            }
             dbEdudetail.InProgress = obj.InProgress;
             dbEdudetail.DegreeTypeID = obj.DegreeTypeID;
-            dbEdudetail.OtherDegreeType = obj.OtherDegreeType;
-            dbEdudetail.OtherDegreeLevelName = obj.OtherDegreeLevelName;
-            dbEdudetail.GradeName = obj.GradeName;
+            dbEdudetail.OtherDegreeType = ConvertToTitleCase(obj.DegreeTitle);
+            if (obj.OtherDegreeLevelName != null)
+            {
+                dbEdudetail.OtherDegreeLevelName = ConvertToTitleCase(obj.OtherDegreeLevelName);
+            }
+            if (obj.GradeName != null)
+            {
+                dbEdudetail.GradeName = ConvertToTitleCase(obj.GradeName);
+            }
             dbEdudetail.BoardID = obj.BoardID;
-            dbEdudetail.OtherBoardName = obj.OtherBoardName;
+            if (obj.OtherBoardName != null)
+            {
+                dbEdudetail.OtherBoardName = ConvertToTitleCase(obj.OtherBoardName);
+            }
             dbEdudetail.EduCriteriaID = obj.EduCriteriaID;
+            dbEdudetail.EditDate = DateTime.Now;
             return dbEdudetail;
+        }
+        public string ConvertToTitleCase(string obj)
+        {
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+            string val = textInfo.ToLower(obj);
+            string val2 = textInfo.ToTitleCase(val);
+            return val2;
         }
     }
 }

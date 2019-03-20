@@ -4,12 +4,10 @@
     Layout = null;
 }
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</title>
-
     <!-- Global stylesheets -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
     <link href="~/Theme/assets/css/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
@@ -35,27 +33,11 @@
     <script type="text/javascript" src="/Theme/assets/js/pages/job_list.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
     <!-- /theme JS files -->
-    <style>
-        .form-control {
-            display: block;
-            width: 100%;
-            height: 38px;
-            padding: 8px 16px;
-            font-size: 13px;
-            line-height: 1.5384616;
-            color: #0094ff;
-            background-color: transparent;
-            background-image: none;
-            border: 1px solid #ddd;
-            border-radius: 3px;
-        }
-    </style>
 </head>
 <div class="navbar navbar-inverse">
     <div class="navbar-header">
         <div style="padding-left:20px; padding-top:10px;">
             <a><img src="~/Theme/assets/images/bcl_logo_final.png" height="30" /></a>
-            @*<a><img class="logo-main scale-with-grid" src="~/Theme/assets/images/bcl_logo_final.png" /></a>*@
             <span class="h4 text-bold" style="padding-left:0px;">Careers&nbsp;at&nbsp;Bestway&nbsp;Cement&nbsp;Limited</span>
         </div>
     </div>
@@ -79,28 +61,13 @@
             <div class="panel panel-flat">
                 <div class="panel-body">
                     <div class="media stack-media-on-mobile text-left content-group-lg">
-                        @*<a href="#" class="media-left media-middle">
-                                <img src="/Theme/assets/images/placeholder.jpg" class="img-rounded img-lg" alt="">
-                            </a>*@
                         <div class="media-body">
                             <h4 class="media-heading text-semibold">@Html.DisplayFor(x => x.JobTitle)</h4>
                             <ul class="list-inline list-inline-separate text-muted no-margin">
                                 <li><span class="text-semibold">Location:</span> @Html.DisplayFor(x => x.LocName)</li>
                                 <li><span class="text-semibold">Department: </span>@Html.DisplayFor(x => x.DepatmentName)</li>
-                                <li><span class="text-semibold">Sub Department:</span> @Html.DisplayFor(x => x.SubDepartmentName)</li>
                             </ul>
                         </div>
-
-                        @*<div class="media-right media-middle text-nowrap">
-                                @if (Model.IsApplied == false)
-                                {
-                                    <a href="#" name="submit" onclick="ApplyJob(@Model.JobID)" class="btn bg-success-400"><i class="icon-envelop2 position-left"></i> Apply for this job</a>
-                                }
-                                else
-                                {
-                                    <span class="glyphicon-ok-sign">Already Applied For this Job</span>
-                                }
-                            </div>*@
                         <div class="content-group-lg">
                             <h6 class="text-semibold">Position Purpose</h6>
                             <p>@Html.Raw(Model.PositionPurpose)</p>

@@ -28,7 +28,9 @@
                             <div class="panel-body">
                                 <section>
                                     <div class="form-group">
-                                        <img src="~/Candidate/RetrieveImage/@Model.CandidateID" class="img-circle" id="dbImage" width="200" height="200" style="margin-left:10px; margin-top: 0px" />
+                                        <a href="~/Candidate/RetrieveImage/@Model.CandidateID" target="_blank">
+                                            <img src="~/Candidate/RetrieveImage/@Model.CandidateID" class="img-circle" id="dbImage" width="200" height="200" style="margin-left:10px; margin-top: 0px" />
+                                        </a>
                                         <div style="padding:10px;margin-left:50px ">
                                             <div tabindex="500" class="btn btn-group btn-file bg-primary">
                                                 <i class="icon-file-plus"></i>  <span>Browse</span>
@@ -48,16 +50,13 @@
                                             {<i class="icon-checkmark4"></i>} Personal Details
                                         </a>
                                     </li>
-
                                     <li id="hv2" onclick="LoadPVEduDetailIndex(@Model.CandidateID)">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepTwo == true)
                                             {<i class="icon-checkmark4"></i>}Education
                                         </a>
-
                                     </li>
                                     @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)*@
-
                                     <li id="hv3" onclick="LoadPVExperienceDetailIndex(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepThree == true)
@@ -78,10 +77,17 @@
                                             {<i class="icon-checkmark4"></i>} Self Assessment
                                         </a>
                                     </li>
-                                    @*@if (LoggedInUser.AppliedAs == 5 || LoggedInUser.AppliedAs == 6)
-                                        {
-                                            <li id="hv4" class="hv" onclick="CompensationGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn text-bold text-white"><i class="icon-user-plus"></i>Compensation</a></li>
-                                        }*@
+                                    @if (LoggedInUser.CompensationStatus == true)
+                                    {
+                                        <li id="hv4" onclick="CompensationGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
+                                            <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
+                                                @if (LoggedInUser.StepEight == true)
+                                                {<i class="icon-checkmark4"></i>}
+                                                Compensation
+                                            </a>
+                                        </li>
+                                        @*<li id="hv4" class="hv" onclick="CompensationGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')"><a href="#" class="btn text-bold text-white"><i class="icon-user-plus"></i>Compensation</a></li>*@
+                                    }
                                     <li id="hv6" onclick="ReferenceGetCreate(@Model.CandidateID,'@(HttpContext.Current.Session["ProfileStage"])')">
                                         <a href="#" class="btn btn-block text-bold text-white" style="text-align:left">
                                             @if (LoggedInUser.StepSix == true)
@@ -112,6 +118,9 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-lg-12" id="PartialViewContainer"></div>
+                </div>
+                <div class="col-md-12 text-center">
+                    @Html.ActionLink("Apply for Job", "Index", "Job", null, new { @class = "btn bg-primary btn-large" })
                 </div>
             </div>
             <!-- /page content -->

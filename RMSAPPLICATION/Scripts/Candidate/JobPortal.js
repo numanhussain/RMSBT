@@ -7,7 +7,7 @@
             location.reload();
         },
         error: function () {
-            $("#result").text('an error occured')
+            $("#result").text('an error occured');
         }
     });
 }
@@ -23,7 +23,6 @@ function SelectAllCheckBox() {
         if (!$(this).prop("checked"))
             $("#chkSelectAll").prop("checked", false);
     });
-    var checkboxes = $(':checkbox');
 
     //checkboxes.prop('checked', true);
     // Select/Deselect for Employee
@@ -84,24 +83,8 @@ function ApplyJob(id, item) {
         else { alert(data); }
     });
 }
-//function DeclarationStatement(id) {
-//    $.ajax({
-//        type: "GET",
-//        url: "/Job/DeclarationStatement",
-//        contentType: "application/json; charset=utf-8",
-//        data: { JobID: id },
-//        datatype: "json",
-//        success: function (data) {
-//            $('#modelBody1').html(data);
-//            $('#myModal1').modal('show');
-//        },
-//        error: function () {
-//            alert("Dynamic content load failed.");
-//        }
-//    });
-//}
 function ViewProfileIndex(id, item, CateID) {
-    if (item == 0) {
+    if (item === 0) {
         $.jGrowl('<div>You have to complete your profile first.</div><div>Regards:</div><div>Talent Acquisition Team</div><div>Bestway Cement Limited </div></strong>', {
             header: '',
             position: 'center',
@@ -133,7 +116,7 @@ function CandidateGetCreate() {
     $.ajax({
         url: '/Candidate/Create',
         type: "GET",
-        cache: false,
+        cache: false
     }).done(function (result) {
         $('#PartialViewContainer').html(result);
         $("#hv1").addClass("liActive");
@@ -145,7 +128,7 @@ function CandidateGetCreate() {
         $("#hv33").addClass("liInActive");
         $("#hv7").addClass("liInActive");
     });
-};
+}
 function GetFilteredListHome() {
     var CatID = $("#CatagoryID").val();
     var LocID = $('#LocationID').val();
@@ -193,7 +176,7 @@ function GetFilteredListHome() {
             }
         });
     });
-};
+}
 function GetFilteredList() {
     var CatID = $("#CatagoryID").val();
     var LocID = $('#LocationID').val();
@@ -241,4 +224,36 @@ function GetFilteredList() {
             }
         });
     });
-};
+}
+function CheckCVAttachedJobUpper(HasCV, id, item, CateID) {
+    $('#DivJobApply').click(function () {
+        if (HasCV === "True") {
+            //var fileUpload = $("#CVUpload").get(0);
+            //if (fileUpload.files.length === 0) {
+            //    // Display Message
+            //    alert("Please attach CV.");
+            //}
+            //else {
+            ViewProfileIndex(id, item, CateID);
+        }
+        else {
+            alert("Please attach CV or update your CV again.");
+        }
+    });
+}
+function CheckCVAttachedJobLower(HasCV, id, item, CateID) {
+    $('#DivJobApply2').click(function () {
+        if (HasCV === "True") {
+            //var fileUpload = $("#CVUpload").get(0);
+            //if (fileUpload.files.length === 0) {
+            //    // Display Message
+            //    alert("Please attach CV.");
+            //}
+            //else {
+            ViewProfileIndex(id, item, CateID);
+        }
+        else {
+            alert("Please attach CV or update your CV again.");
+        }
+    });
+}

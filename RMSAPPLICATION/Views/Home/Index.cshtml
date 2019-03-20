@@ -74,7 +74,7 @@
             @using (Html.BeginForm("IndexSubmit", "Home", FormMethod.Post))
             {
                 <div class="form-group form-inline pull-left" style="margin-top:10px; margin-left:10px">
-                    <input type="text" class="form-control form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                    @*<input type="text" class="form-control form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />*@
                     @Html.DropDownList("LocationID", null, new { @class = "form-control form-control" })
                     @Html.DropDownList("CatagoryID", null, new { @class = "form-control form-control" })
                     <button type="Submit" class="form-control btn bg-primary">Search</button>
@@ -84,7 +84,7 @@
             @if (Model.Count > 0)
             {
                 <div class="panel panel-flat">
-                    <table class="table datatable-basic">
+                    <table class="table datatable-scroll-edit table-striped table-hover table-condensed">
                         <thead>
                             <tr class="bg-primary">
                                 <th class="text-semibold">Job-ID</th>
@@ -112,8 +112,8 @@
                                         <div class="text-semibold">@item.DepatmentName</div>
                                     </td>
                                     @*<td>
-                                        <div class="text-semibold">@item.SubDepartmentName</div>
-                                    </td>*@
+                                            <div class="text-semibold">@item.SubDepartmentName</div>
+                                        </td>*@
                                     <td>
                                         <div class="text-semibold">@item.CatName</div>
                                     </td>
@@ -140,9 +140,8 @@
             {
                 <div class="panel panel-flat border-left-danger">
                     <div class="panel-heading">
-                        <h6 class="panel-title text-semibold">Currently no job openings are available  </h6>
+                        <h6 class="panel-title text-semibold text-center" style="margin-right:360px">Currently no job openings are available</h6>
                     </div>
-
                 </div>
             }
             <!-- /basic datatable -->

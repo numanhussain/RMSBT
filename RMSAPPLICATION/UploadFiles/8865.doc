@@ -1,0 +1,151 @@
+
+
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+    <!--[if gte mso 9]><xml><w:WordDocument><w:View>Print</w:View><w:Zoom>100</w:Zoom><w:DoNotOptimizeForBrowser/></w:WordDocument></xml><![endif]-->
+    <style>
+        <!-- /* Style Definitions */
+        @page Section1 {
+            font-family: Arial;
+            font-size: 12px;
+            size: 8.5in 11.0in;
+            margin: 1.0in 1.25in 1.0in 1.25in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        p.MsoNormal, li.MsoNormal, div.MsoNormal {
+            mso-style-parent: "";
+            margin: 0in;
+            margin-bottom: .0001pt;
+            mso-pagination: widow-orphan;
+            font-size: 12.0pt;
+            font-family: "Times New Roman";
+            mso-fareast-font-family: "Times New Roman";
+        }
+
+        @page Section1 {
+            size: 8.5in 11.0in;
+            margin: .5in .5in .5in .5in;
+            mso-header-margin: .5in;
+            mso-footer-margin: .5in;
+            mso-paper-source: 0;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-width: 0px;
+            width: 100%;
+        }
+
+        td {
+            font-family: Arial;
+            font-size: 12px;
+            padding: 4px;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            font-family: Arial;
+            margin: 15px 0;
+            line-height: 150%;
+            text-align: left;
+        }
+
+        h3 {
+            font-size: 1.15em;
+            font-family: Arial;
+            margin: 15px 0;
+            text-align: left;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #d0d0d0;
+        }
+
+        h4 {
+            font-size: 1em;
+            font-family: Arial;
+            margin: 0;
+            line-height: 150%;
+            text-align: left;
+        }
+
+        .dates {
+            width: 12%;
+            text-align: right;
+            padding-right: 10px;
+            vertical-align: top;
+            color: #999999;
+        }
+
+        .mt10 {
+            margin-top: 10px;
+        }
+        -->
+    </style>
+    <o:smarttagtype namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="City" />
+    <o:smarttagtype namespaceuri="urn:schemas-microsoft-com:office:smarttags" name="place" />
+    <!--[if gte mso 9]><xml> <o:DocumentProperties><o:Author>Mustakbil.com</o:Author><o:Template>Normal</o:Template><o:Created>2011</o:Created><o:Company>Mustakbil.com</o:Company><o:CharactersWithSpaces>581</o:CharactersWithSpaces><o:Version>1.0</o:Version></o:DocumentProperties></xml><![endif]--><!--[if !mso]><object classid="clsid:38481807-CA0E-42D2-BF39-B33AF135CC4D" id=ieooui></object><![endif]--><!--[if gte mso 10]><![endif]-->
+    <style>
+        @page Section1 {
+            mso-footer: f1;
+        }
+
+        div.Section1 {
+            page: Section1;
+        }
+
+        p.MsoFooter, li.MsoFooter, div.MsoFooter {
+            mso-pagination: widow-orphan;
+            tab-stops: center 216.0pt right 432.0pt;
+        }
+    </style>
+</head>
+<body lang="EN-US" style="tab-interval:.5in;">
+
+    <div class="Section1" style="line-height:25px;">
+        <!--RESUME-->
+        <!--PERSONAL INFORMATION-->
+            <h2>Usman Mahmood D/o </h2>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <strong>Date of Birth :</strong>  Jan 1, 1
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Marital Status :</strong> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Email :</strong> <a href="mailto:uogee009@gmail.com">uogee009@gmail.com</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Contact :</strong> 3368691492 (Mobile)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <strong>Address :</strong> Gujranwala, Pakistan, , , 
+                        </td>
+                    </tr>
+                                                                                                </tbody>
+            </table>
+            <br />
+            <div style="mso-element:footer" id="f1">
+                <p class="MsoFooter">
+                    <div style="text-align:center;">Generated through Mustakbil.com &copy; Copyright 2018</div>
+                </p>
+            </div>
+    </div>
+</body>
+</html>

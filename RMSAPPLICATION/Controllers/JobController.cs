@@ -55,8 +55,7 @@ namespace RMSAPPLICATION.Controllers
         public ActionResult IndexSubmit(int? LocationID, int? CatagoryID, string FilterBox)
         {
             List<VMOpenJobIndex> vmAllJobList = JobService.JobIndex();
-            if (FilterBox != "")
-                vmAllJobList = vmAllJobList.Where(aa => aa.JobTitle == FilterBox).ToList();
+            List<VMOpenJobIndex> vmTempAllJobList = new List<VMOpenJobIndex>();
             if (LocationID > 0)
             {
                 vmAllJobList = vmAllJobList.Where(aa => aa.LocID == LocationID).ToList();

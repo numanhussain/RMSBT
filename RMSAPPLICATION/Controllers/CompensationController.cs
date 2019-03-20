@@ -95,7 +95,7 @@ namespace RMSAPPLICATION.Controllers
             if (ModelState.IsValid)
             {
                 V_UserCandidate vmf = Session["LoggedInUser"] as V_UserCandidate;
-                if (vmf.UserStage == 5)
+                if (vmf.UserStage == 7)
                     vmf.UserStage = 6;
                 CompensationDetailService.PostCreate(obj, vmf);
                 CandidateStep dbtickStep = CandidateStepEntityService.GetEdit(vmf.CandidateID);

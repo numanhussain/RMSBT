@@ -22,4 +22,10 @@ namespace RMSCORE.Models.Other
     {
         public string CompletePassword { get; set; }
     }
+    public class VMAppliedJobDetail : V_AppliedJob
+    {
+        public int TotalCountAllJob { get; set; }
+        public int TotalCountSpecificJob { get; set; }
+        public bool? HasCV { get; set; }
+    }
 }

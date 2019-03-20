@@ -87,24 +87,26 @@
             <div class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">Start Date</label>
-                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @Html.TextBoxFor(x => x.StartDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "StartDate", name = "StartDate", @type = "text", placeholder = "" })
                     @*<input class="form-control" id="StartDate" name="StartDate" value="@(Model.StartDate==null?"dd/mm/yyyy":Model.StartDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
                     @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <span class="help-block">e.g. 01-January-2018</span>
             </div>
             <div id="hidedatediv" class="form-group col-md-3">
                 <div>
                     <label class="required control-label text-semibold">End Date</label>
-                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "dd-mm-yyyy" })
+                    @Html.TextBoxFor(x => x.EndDate, "{0:dd-MMM-yyyy}", new { @class = "form-control", id = "EndDate", name = "EndDate", @type = "text", placeholder = "" })
                     @*<input class="form-control" id="EndDate" name="EndDate" value="@(Model.EndDate==null?"dd/mm/yyyy":Model.EndDate.Value.ToString("dd/MM/yyyy"))" placeholder="dd/mm/yyyy" type="text" />*@
                     @*@Html.TextBoxFor(x => x.DOB, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })*@
                     <div class="small">
                         @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
                     </div>
                 </div>
+                <span class="help-block">e.g. 01-January-2018</span>
             </div>
             <div class="col-md-4">
                 <label class="checkbox-inline checkbox-right text-semibold col-md-6" for="CurrentlyWorking">

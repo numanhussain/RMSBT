@@ -113,5 +113,67 @@ namespace RMSCORE.EF
         public string MeetRequirements { get; set; }
         public string CandidateStrengthObjectives { get; set; }
         public int CandidateID { get; set; }
+        public Nullable<bool> StepOne { get; set; }
+        public Nullable<bool> StepTwo { get; set; }
+        public Nullable<bool> StepThree { get; set; }
+        public Nullable<bool> StepFour { get; set; }
+        public Nullable<bool> StepFive { get; set; }
+        public Nullable<bool> StepSix { get; set; }
+        public Nullable<bool> StepSeven { get; set; }
+        public Nullable<bool> StepEight { get; set; }
+        public Nullable<int> UserStage { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
+        public Nullable<double> CandidateTotalExp { get; set; }
+        public Nullable<double> Cement { get; set; }
+        public Nullable<System.DateTime> UserDateCreated { get; set; }
+        public Nullable<bool> HasCV { get; set; }
+        public Nullable<bool> CompensationFilled { get; set; }
+        public Nullable<System.DateTime> DateJoining { get; set; }
+        public Nullable<System.DateTime> MiscellaneousEditDate { get; set; }
+        public string MBSalary { get; set; }
+        public string CompensationMGSalry { get; set; }
+        public Nullable<bool> Bonus { get; set; }
+        public Nullable<bool> BBonus { get; set; }
+        public Nullable<bool> GBonus { get; set; }
+        public Nullable<int> BonusPerYear { get; set; }
+        public Nullable<bool> LFA { get; set; }
+        public Nullable<bool> GLFA { get; set; }
+        public Nullable<bool> BLFA { get; set; }
+        public Nullable<int> LFAPerYear { get; set; }
+        public Nullable<bool> OT { get; set; }
+        public Nullable<bool> BOT { get; set; }
+        public Nullable<bool> GOT { get; set; }
+        public Nullable<int> TransportAllowence { get; set; }
+        public Nullable<int> MobileAllowence { get; set; }
+        public string CarEntitlement { get; set; }
+        public string MobileUserLimit { get; set; }
+        public Nullable<bool> BuyBackOption { get; set; }
+        public Nullable<int> AccomdAllowence { get; set; }
+        public Nullable<int> COLA { get; set; }
+        public string Other { get; set; }
+        public Nullable<bool> Food { get; set; }
+        public Nullable<bool> Free { get; set; }
+        public Nullable<bool> Subsidized { get; set; }
+        public string OPDInsurance { get; set; }
+        public string IPInsurance { get; set; }
+        public string LifeInsurance { get; set; }
+        public Nullable<bool> ProvidentFund { get; set; }
+        public Nullable<bool> GProvidentFund { get; set; }
+        public Nullable<bool> BProvidentFund { get; set; }
+        public Nullable<int> ProvidentFundPerYear { get; set; }
+        public Nullable<bool> Gratuity { get; set; }
+        public Nullable<bool> BGratuity { get; set; }
+        public Nullable<bool> GGratuity { get; set; }
+        public Nullable<int> CasualTAllowence { get; set; }
+        public Nullable<int> AnnualTAllowence { get; set; }
+        public Nullable<int> MedTAllowence { get; set; }
+        public Nullable<int> TAllowenceWorkDay { get; set; }
+        public Nullable<int> CompensationExpectedSalary { get; set; }
+        public string OtherBenifits { get; set; }
+        public Nullable<int> SpecifyYears { get; set; }
+        public string FuelAllowance { get; set; }
+        public Nullable<int> MobileNoOfYears { get; set; }
+        public Nullable<System.DateTime> CompensationEditDate { get; set; }
+        public Nullable<bool> CompensationStatus { get; set; }
     }
 }

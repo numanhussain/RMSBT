@@ -6,8 +6,10 @@ using RMSREPO.Generic;
 using RMSSERVICES.Generic;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading;
 
 namespace RMSSERVICES.Experience
 {
@@ -231,15 +233,29 @@ namespace RMSSERVICES.Experience
 
             return new ServiceMessage();
         }
+        public string ConvertToTitleCase(string obj)
+        {
+            CultureInfo cultureInfo = Thread.CurrentThread.CurrentCulture;
+            TextInfo textInfo = cultureInfo.TextInfo;
+            string val = textInfo.ToLower(obj);
+            string val2 = textInfo.ToTitleCase(val);
+            return val2;
+        }
         #endregion
         #region -- Service Private Methods --
         private ExperienceDetail ConvertExperienceObject(VMExperienceOperation obj)
         {
             ExperienceDetail dbExperiencedetail = new ExperienceDetail();
             dbExperiencedetail.ExpID = obj.ExpID;
-            dbExperiencedetail.JobTitle = obj.JobTitle;
-            dbExperiencedetail.EmployerName = obj.EmployerName;
-            dbExperiencedetail.JobTitle = obj.JobTitle;
+
+            if (obj.JobTitle != null)
+            {
+                dbExperiencedetail.JobTitle = ConvertToTitleCase(obj.JobTitle);
+            }
+            if (obj.EmployerName != null)
+            {
+                dbExperiencedetail.EmployerName = ConvertToTitleCase(obj.EmployerName);
+            }
             dbExperiencedetail.StartDate = obj.StartDate;
             dbExperiencedetail.EndDate = obj.EndDate;
             dbExperiencedetail.CurrentlyWorking = obj.CurrentlyWorking;
@@ -261,12 +277,24 @@ namespace RMSSERVICES.Experience
             }
             dbExperiencedetail.AreaofInterest = obj.AreaofInterest;
             dbExperiencedetail.ReasonOfLeaving = obj.ReasonOfLeaving;
-            dbExperiencedetail.SupervisorName = obj.SupervisorName;
+
+            if (obj.SupervisorName != null)
+            {
+                dbExperiencedetail.SupervisorName = ConvertToTitleCase(obj.SupervisorName);
+            }
             dbExperiencedetail.CareerLevelID = obj.CareerLevelID;
             dbExperiencedetail.CountryID = obj.CountryID;
             dbExperiencedetail.OtherCity = obj.OtherCity;
-            dbExperiencedetail.OtherCityName = obj.OtherCityName;
-            dbExperiencedetail.OtherIndustryName = obj.OtherIndustryName;
+
+            if (obj.OtherCityName != null)
+            {
+                dbExperiencedetail.OtherCityName = ConvertToTitleCase(obj.OtherCityName);
+            }
+            if (obj.OtherIndustryName != null)
+            {
+                dbExperiencedetail.OtherIndustryName = ConvertToTitleCase(obj.OtherIndustryName);
+            }
+            dbExperiencedetail.EditDate = DateTime.Now;
             return dbExperiencedetail;
         }
         #endregion

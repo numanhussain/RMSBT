@@ -78,7 +78,16 @@ namespace RMSAPPLICATION.Controllers
                     if (obj.DegreeTitle == null)
                         ModelState.AddModelError("DegreeTitle", "Mandatory ");
                 }
-
+                if (obj.DegreeTypeID == 68 || obj.DegreeTypeID == 72 || obj.DegreeTypeID == 73 || obj.DegreeTypeID == 74 || obj.DegreeTypeID == 75 || obj.DegreeTypeID == 76)
+                {
+                    if (obj.OtherDegreeType == null || obj.OtherDegreeType == "")
+                        ModelState.AddModelError("OtherDegreeType", "Mandatory");
+                }
+                if (obj.DegreeTypeID == 0)
+                {
+                    if (obj.DegreeTypeID == null)
+                        ModelState.AddModelError("DegreeTypeID", "Mandatory ");
+                }
                 if ((obj.DegreeLevelID == 1 || obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6) && obj.InstitutionID == 0)
                     obj.InstitutionID = null;
                 if ((obj.DegreeLevelID == 7 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9 || obj.DegreeLevelID == 10) && obj.InstitutionID == 0)
@@ -168,12 +177,18 @@ namespace RMSAPPLICATION.Controllers
                     obj.GradeName = null;
                     if (obj.CGPA == null)
                         ModelState.AddModelError("CGPA", "Mandatory");
+                    if (obj.CGPA > 4)
+                    {
+                        ModelState.AddModelError("CGPA", "CGPA less than 4");
+                    }
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory ");
                 if ((obj.DegreeTypeID == 3 || obj.DegreeTypeID == 4) && obj.GradeName == null)
                 {
-                    ModelState.AddModelError("GradeName", "Mandatory ");
+                    ModelState.AddModelError("GradeName", "Grade is mandatory in O-Levels/A-Levels");
+                    ModelState.AddModelError("TotalMark", "Grade is mandatory in O-Levels/A-Levels");
+                    ModelState.AddModelError("CGPA", "Grade is mandatory in O-Levels/A-Levels");
                 }
                 if (obj.ObtainedMark > obj.TotalMark)
                 {
@@ -208,7 +223,7 @@ namespace RMSAPPLICATION.Controllers
             VMEduDetailOperation obj = EduDetailService.GetEdit(id);
             string myDate = obj.StartDate.Value.ToString("dd/MM/yyyy");
             ViewBag.TotalMark = obj.TotalMark;
-            ViewBag.obtainedMark= obj.ObtainedMark;
+            ViewBag.obtainedMark = obj.ObtainedMark;
             ViewBag.Percentage = obj.Percentage;
             EditHelper(obj);
             return PartialView(obj);
@@ -232,7 +247,16 @@ namespace RMSAPPLICATION.Controllers
                     if (obj.DegreeTitle == null)
                         ModelState.AddModelError("DegreeTitle", "Mandatory ");
                 }
-
+                if (obj.DegreeTypeID == 68 || obj.DegreeTypeID == 72 || obj.DegreeTypeID == 73 || obj.DegreeTypeID == 74 || obj.DegreeTypeID == 75 || obj.DegreeTypeID == 76)
+                {
+                    if (obj.OtherDegreeType == null || obj.OtherDegreeType == "")
+                        ModelState.AddModelError("OtherDegreeType", "Mandatory");
+                }
+                if (obj.DegreeTypeID == 0)
+                {
+                    if (obj.DegreeTypeID == null)
+                        ModelState.AddModelError("DegreeTypeID", "Mandatory ");
+                }
                 if ((obj.DegreeLevelID == 1 || obj.DegreeLevelID == 2 || obj.DegreeLevelID == 3 || obj.DegreeLevelID == 4 || obj.DegreeLevelID == 5 || obj.DegreeLevelID == 6) && obj.InstitutionID == 0)
                     obj.InstitutionID = null;
                 if ((obj.DegreeLevelID == 7 || obj.DegreeLevelID == 8 || obj.DegreeLevelID == 9 || obj.DegreeLevelID == 10) && obj.InstitutionID == 0)
@@ -322,6 +346,10 @@ namespace RMSAPPLICATION.Controllers
                     obj.GradeName = null;
                     if (obj.CGPA == null)
                         ModelState.AddModelError("CGPA", "Mandatory");
+                    if (obj.CGPA > 4)
+                    {
+                        ModelState.AddModelError("CGPA", "CGPA less than 4");
+                    }
                 }
                 if (obj.InstitutionID == 148 && obj.OtherInstitute == null)
                     ModelState.AddModelError("OtherInstitute", "Mandatory ");

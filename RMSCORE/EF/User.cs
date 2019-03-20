@@ -29,5 +29,6 @@ namespace RMSCORE.EF
         public Nullable<bool> HasCV { get; set; }
         public Nullable<bool> HasAccess { get; set; }
         public Nullable<System.DateTime> EmailSentTime { get; set; }
+        public Nullable<bool> CompensationStatus { get; set; }
     }
 }

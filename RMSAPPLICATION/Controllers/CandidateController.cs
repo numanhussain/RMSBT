@@ -7,9 +7,11 @@ using RMSSERVICES.PersonalDetail;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 
@@ -167,6 +169,14 @@ namespace RMSAPPLICATION.Controllers
             }
             if (dbOperation.CellNo == null || dbOperation.CellNo == "")
                 ModelState.AddModelError("CellNo", "Mandatory");
+            if (dbOperation.CellNo != null)
+            {
+                Match match = Regex.Match(dbOperation.CellNo, "[0-9]{4}-[0-9]{7}$");
+                if (!match.Success)
+                {
+                    ModelState.AddModelError("CellNo", "Formate: e.g 0300-1234567");
+                }
+            }
             if (ModelState.IsValid)
             {
                 if (vmf.UserStage == 2)
@@ -225,6 +235,7 @@ namespace RMSAPPLICATION.Controllers
                 throw;
             }
         }
+
         [HttpGet]
         public ActionResult ViewProfileIndex(int? JobID)
         {
@@ -348,6 +359,7 @@ namespace RMSAPPLICATION.Controllers
             }
             #endregion
         }
+
         #endregion
     }
 }

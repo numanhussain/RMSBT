@@ -59,5 +59,6 @@ namespace RMSCORE.EF
         public Nullable<int> SpecifyYears { get; set; }
         public string FuelAllowance { get; set; }
         public Nullable<int> MobileNoOfYears { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     }
 }

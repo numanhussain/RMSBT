@@ -21,7 +21,7 @@
             @using (Html.BeginForm("IndexSubmit", "Job", FormMethod.Post))
             {
                 <div class="form-group form-inline pull-left" style="margin-top:10px; margin-left:10px">
-                    <input type="text" class="form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />
+                    @*<input type="text" class="form-control" name="FilterBox" id="FilterBox" placeholder="Enter Keyword/Title" value="@ViewBag.FilterBox" />*@
                     @Html.DropDownList("LocationID", null, new { @class = "form-control" })
                     @Html.DropDownList("CatagoryID", null, new { @class = "form-control" })
                     <button type="Submit" class="form-control btn bg-primary">Search</button>
@@ -101,7 +101,7 @@
             {
                 <div class="panel panel-flat border-left-danger">
                     <div class="panel-heading">
-                        <h6 class="panel-title text-semibold">Currently no job openings are available  </h6>
+                        <h6 class="panel-title text-semibold text-center" style="margin-right:360px">Currently no job openings are available  </h6>
                     </div>
 
                 </div>

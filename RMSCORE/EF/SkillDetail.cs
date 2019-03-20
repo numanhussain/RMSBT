@@ -19,6 +19,7 @@ namespace RMSCORE.EF
         public Nullable<int> SLevelID { get; set; }
         public string Description { get; set; }
         public int CandidateID { get; set; }
+        public Nullable<System.DateTime> EditDate { get; set; }
     
         public virtual Candidate Candidate { get; set; }
     }
