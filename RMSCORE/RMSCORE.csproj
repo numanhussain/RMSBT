@@ -49,6 +49,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\AlertEmailLog.cs">
+      <DependentUpon>RMSDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EF\AreaOfInterest.cs">
       <DependentUpon>RMSDataModel.tt</DependentUpon>
     </Compile>

@@ -5,6 +5,23 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="BTRMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AlertEmailLog">
+          <Key>
+            <PropertyRef Name="PEmailNotificationID" />
+          </Key>
+          <Property Name="PEmailNotificationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ToAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="CCAddress" Type="nvarchar" MaxLength="500" />
+          <Property Name="Subject" Type="nvarchar" MaxLength="150" />
+          <Property Name="Body" Type="nvarchar" MaxLength="4000" />
+          <Property Name="IsSent" Type="bit" />
+          <Property Name="CreatedDateTime" Type="datetime" />
+          <Property Name="SentDatetime" Type="datetime" />
+          <Property Name="CandidateID" Type="int" />
+          <Property Name="Remarks" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaofInterestID" Type="int" />
+          <Property Name="JobID" Type="int" />
+        </EntityType>
         <EntityType Name="AreaOfInterest">
           <Key>
             <PropertyRef Name="CAreaID" />
@@ -357,6 +374,7 @@
           <Property Name="DeadlineDate" Type="date" />
           <Property Name="DepatmentName" Type="nvarchar" MaxLength="3000" />
           <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="3000" />
+          <Property Name="AreaOfInterestID" Type="int" />
         </EntityType>
         <EntityType Name="JobStatus">
           <Key>
@@ -879,6 +897,7 @@ warning 6002: The table/view 'BTRMS.dbo.V_JobDetail' does not have a primary key
           <Property Name="StatusID" Type="int" />
           <Property Name="JStatusName" Type="nvarchar" MaxLength="50" />
           <Property Name="SubDepartmentName" Type="nvarchar" MaxLength="3000" />
+          <Property Name="AreaOfInterestID" Type="int" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'BTRMS.dbo.V_Notification' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -1228,6 +1247,7 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="BTRMSModelStoreContainer">
+          <EntitySet Name="AlertEmailLog" EntityType="Self.AlertEmailLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AreaOfInterest" EntityType="Self.AreaOfInterest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BloodGroup" EntityType="Self.BloodGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Candidate" EntityType="Self.Candidate" Schema="dbo" store:Type="Tables" />
@@ -1570,7 +1590,8 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
     [V_JobDetail].[ExperienceAndQualification] AS [ExperienceAndQualification], 
     [V_JobDetail].[StatusID] AS [StatusID], 
     [V_JobDetail].[JStatusName] AS [JStatusName], 
-    [V_JobDetail].[SubDepartmentName] AS [SubDepartmentName]
+    [V_JobDetail].[SubDepartmentName] AS [SubDepartmentName], 
+    [V_JobDetail].[AreaOfInterestID] AS [AreaOfInterestID]
     FROM [dbo].[V_JobDetail] AS [V_JobDetail]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="V_Notification" EntityType="Self.V_Notification" store:Type="Views" store:Schema="dbo">
@@ -1886,6 +1907,7 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
     <edmx:ConceptualModels>
       <Schema Namespace="BTRMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BTRMSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AlertEmailLogs" EntityType="BTRMSModel.AlertEmailLog" />
           <EntitySet Name="AreaOfInterests" EntityType="BTRMSModel.AreaOfInterest" />
           <EntitySet Name="BloodGroups" EntityType="BTRMSModel.BloodGroup" />
           <EntitySet Name="Candidates" EntityType="BTRMSModel.Candidate" />
@@ -1952,6 +1974,23 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
             <End Role="SkillDetail" EntitySet="SkillDetails" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="AlertEmailLog">
+          <Key>
+            <PropertyRef Name="PEmailNotificationID" />
+          </Key>
+          <Property Name="PEmailNotificationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ToAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CCAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Subject" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Body" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="IsSent" Type="Boolean" />
+          <Property Name="CreatedDateTime" Type="DateTime" Precision="3" />
+          <Property Name="SentDatetime" Type="DateTime" Precision="3" />
+          <Property Name="CandidateID" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaofInterestID" Type="Int32" />
+          <Property Name="JobID" Type="Int32" />
+        </EntityType>
         <EntityType Name="AreaOfInterest">
           <Key>
             <PropertyRef Name="CAreaID" />
@@ -2308,6 +2347,7 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
           <Property Name="DeadlineDate" Type="DateTime" Precision="0" />
           <Property Name="DepatmentName" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="SubDepartmentName" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="AreaOfInterestID" Type="Int32" />
         </EntityType>
         <EntityType Name="JobStatu">
           <Key>
@@ -2795,6 +2835,7 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
           <Property Name="StatusID" Type="Int32" />
           <Property Name="JStatusName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="SubDepartmentName" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="AreaOfInterestID" Type="Int32" />
         </EntityType>
         <EntityType Name="V_Notification">
           <Key>
@@ -3133,12 +3174,30 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        </Schema>
+      </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="BTRMSModelStoreContainer" CdmEntityContainer="BTRMSEntities">
+          <EntitySetMapping Name="AlertEmailLogs">
+            <EntityTypeMapping TypeName="BTRMSModel.AlertEmailLog">
+              <MappingFragment StoreEntitySet="AlertEmailLog">
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="AreaofInterestID" ColumnName="AreaofInterestID" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CandidateID" ColumnName="CandidateID" />
+                <ScalarProperty Name="SentDatetime" ColumnName="SentDatetime" />
+                <ScalarProperty Name="CreatedDateTime" ColumnName="CreatedDateTime" />
+                <ScalarProperty Name="IsSent" ColumnName="IsSent" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Subject" ColumnName="Subject" />
+                <ScalarProperty Name="CCAddress" ColumnName="CCAddress" />
+                <ScalarProperty Name="ToAddress" ColumnName="ToAddress" />
+                <ScalarProperty Name="PEmailNotificationID" ColumnName="PEmailNotificationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="AreaOfInterests">
             <EntityTypeMapping TypeName="BTRMSModel.AreaOfInterest">
               <MappingFragment StoreEntitySet="AreaOfInterest">
@@ -3499,6 +3558,7 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
           <EntitySetMapping Name="JobDetails">
             <EntityTypeMapping TypeName="BTRMSModel.JobDetail">
               <MappingFragment StoreEntitySet="JobDetail">
+                <ScalarProperty Name="AreaOfInterestID" ColumnName="AreaOfInterestID" />
                 <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
                 <ScalarProperty Name="DepatmentName" ColumnName="DepatmentName" />
                 <ScalarProperty Name="DeadlineDate" ColumnName="DeadlineDate" />
@@ -3997,6 +4057,7 @@ warning 6002: The table/view 'BTRMS.dbo.VRM_EduDetail' does not have a primary k
           <EntitySetMapping Name="V_JobDetail">
             <EntityTypeMapping TypeName="BTRMSModel.V_JobDetail">
               <MappingFragment StoreEntitySet="V_JobDetail">
+                <ScalarProperty Name="AreaOfInterestID" ColumnName="AreaOfInterestID" />
                 <ScalarProperty Name="SubDepartmentName" ColumnName="SubDepartmentName" />
                 <ScalarProperty Name="JStatusName" ColumnName="JStatusName" />
                 <ScalarProperty Name="StatusID" ColumnName="StatusID" />

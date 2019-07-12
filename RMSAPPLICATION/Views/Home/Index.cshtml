@@ -30,11 +30,48 @@
     <script type="text/javascript" src="~/Theme/assets/js/plugins/forms/selects/select2.min.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/core/app.js"></script>
     <script type="text/javascript" src="~/Theme/assets/js/pages/datatables_basic.js"></script>
-    @*<style>
-            option{
-                background-color:#025dac
+    <style>
+
+        .glyphicon-arrow-right {
+            font-size: 35px;
+        }
+
+        .panel {
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 100px;
+            -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+        }
+
+        .panel-body {
+            padding: 18px;
+            margin-bottom: 3px;
+            margin-top: -13px;
+        }
+
+        .panel-heading {
+            padding: 15px 20px;
+            border-bottom: none;
+            border-top-right-radius: 2px;
+            border-top-left-radius: 2px;
+            margin-top: 8px;
+        }
+
+            .panel-heading > .dropdown .dropdown-toggle {
+                color: inherit;
             }
-        </style>*@
+
+        .panel-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 15px;
+            color: inherit;
+        }
+        ul, ol {
+            padding-left: 30px;
+        }
+    </style>
     <!-- /theme JS files -->
 
 </head>
@@ -154,3 +191,109 @@
     <!-- /page content -->
 </div>
 <!-- /page container -->
+<div class="col-md-12">
+    <div class="modal fade" id="myModal">
+        <div class="modal-dialog modal-lg ">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#57adef">
+                    <img src="~/Theme/assets/images/bcl_logo_final.png" style="margin-top:-10px" class="pull-left" height="55" />
+                    <button type="button" class="close text-white" data-dismiss="modal" style="margin-top:-10px"><strong>x</strong></button>
+                    <h4 class="modal-title text-center text-white text-black"> BCL Management Trainee Program 2019</h4>
+
+                </div>
+                <div class="modal-body">
+                    <div class="form-group" style="font-family:Calibri">
+                        Bestway Cement Limited, (A company of Bestway Group, UK) the largest cement manufacturer of Pakistan announces its Management Trainee Program 2019.
+                    </div>
+                    <div class="form-group" style="font-family:Calibri">
+                        We are seeking highly talented and motivated fresh graduates with excellent academic background for induction as Management Trainee Officers  for one year in the following areas:
+
+                    </div>
+                    <div class="form-group" style="font-family:Calibri">
+                        Sales, Supply Chain, Human Resources, Administration, Plant Control, Finance, 	Internal Audit, Treasury, Budgeting & Reporting
+                    </div>
+                    <div class="col-md-3" style="font-family:Calibri">
+                        <div class="panel bg-primary">
+                            <div class="panel-heading">
+                                <h5 class="panel-title text-bold text-center">Recruitment</h5>
+
+                            </div>
+                            <div class="panel-body ">
+                                <ul>
+                                    <li>
+                                        Online Application
+                                    </li>
+                                    <li>
+                                        Shortlisting
+                                    </li>
+                                    <li>
+                                        Assessment Center
+                                    </li>
+                                    <li>
+                                        Onboarding
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-1" style="margin-top:80px;text-align: center"><i class="glyphicon glyphicon-arrow-right"></i></div>
+                    <div class="col-md-3" style="font-family:Calibri">
+                        <div class="panel bg-orange-400">
+                            <div class="panel-heading">
+                                <h5 class="panel-title text-bold text-center">
+                                    Development
+                                </h5>
+
+                            </div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>
+                                        Rotations
+
+                                    </li>
+                                    <li>Trainings</li>
+
+                                    <li>
+                                        Mentoring
+
+                                    </li>
+                                    <br />
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-1" style="margin-top:80px;text-align: center"><i class="glyphicon glyphicon-arrow-right"></i></div>
+                    <div class="col-md-3" style="font-family:Calibri">
+                        <div class="panel bg-success-700">
+                            <div class="panel-heading">
+                                <h5 class="panel-title text-bold text-center">
+                                    Completion
+                                </h5>
+
+                            </div>
+                            <div class="panel-body">
+                                <ul>
+                                    <li>Final Assessment</li>
+                                    <li>Graduation Ceremony</li>
+                                    <li>Job Offer (based on position availability</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn bg-blue-700" data-dismiss="modal">
+                        <strong>Click here to Apply</strong>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#myModal").modal('show');
+    });
+</script>

@@ -4,60 +4,61 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b3750452e42445eebc92538fb6d0ba65" Name="Diagram1" ZoomLevel="21">
-        <EntityTypeShape EntityType="BTRMSModel.AreaOfInterest" Width="1.5" PointX="5.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.BloodGroup" Width="1.5" PointX="5.75" PointY="3.75" />
+      <Diagram DiagramId="c9922a78e3a64a109c578ef0e0b8882a" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="BTRMSModel.AlertEmailLog" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.AreaOfInterest" Width="1.5" PointX="5.75" PointY="5.75" />
+        <EntityTypeShape EntityType="BTRMSModel.BloodGroup" Width="1.5" PointX="7.75" PointY="0.75" />
         <EntityTypeShape EntityType="BTRMSModel.Candidate" Width="1.5" PointX="0.75" PointY="1.375" />
-        <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="5.75" PointY="6.75" />
-        <EntityTypeShape EntityType="BTRMSModel.CandidatePhoto" Width="1.5" PointX="7.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.CandidateStep" Width="1.5" PointX="7.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BTRMSModel.CandidateStrength" Width="1.5" PointX="7.75" PointY="7.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Catagory" Width="1.5" PointX="9.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.City" Width="1.5" PointX="9.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BTRMSModel.CompensationDetail" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BTRMSModel.CandidateJob" Width="1.5" PointX="7.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BTRMSModel.CandidatePhoto" Width="1.5" PointX="7.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BTRMSModel.CandidateStep" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.CandidateStrength" Width="1.5" PointX="9.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BTRMSModel.Catagory" Width="1.5" PointX="5.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BTRMSModel.City" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BTRMSModel.CompensationDetail" Width="1.5" PointX="9.75" PointY="8.75" />
         <EntityTypeShape EntityType="BTRMSModel.Country" Width="1.5" PointX="11.75" PointY="0.75" />
         <EntityTypeShape EntityType="BTRMSModel.EduBoard" Width="1.5" PointX="0.75" PointY="11.75" />
         <EntityTypeShape EntityType="BTRMSModel.EduDegreeLevel" Width="1.5" PointX="2.75" PointY="11.75" />
         <EntityTypeShape EntityType="BTRMSModel.EduDegreeType" Width="1.5" PointX="11.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BTRMSModel.EduDetail" Width="1.5" PointX="4.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.EduInstitute" Width="1.5" PointX="11.75" PointY="6.75" />
-        <EntityTypeShape EntityType="BTRMSModel.EmailLog" Width="1.5" PointX="6.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.EmailNotificationType" Width="1.5" PointX="11.75" PointY="9.75" />
-        <EntityTypeShape EntityType="BTRMSModel.ExpCareerLevel" Width="1.5" PointX="11.75" PointY="12.75" />
-        <EntityTypeShape EntityType="BTRMSModel.ExperienceDetail" Width="1.5" PointX="13.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.ExperienceIndustry" Width="1.5" PointX="13.75" PointY="7.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Gender" Width="1.5" PointX="13.75" PointY="10.75" />
-        <EntityTypeShape EntityType="BTRMSModel.HearAbout" Width="1.5" PointX="13.75" PointY="13.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Interview" Width="1.5" PointX="3" PointY="4.375" />
-        <EntityTypeShape EntityType="BTRMSModel.InterviewStatu" Width="1.5" PointX="0.75" PointY="14.75" />
-        <EntityTypeShape EntityType="BTRMSModel.JobDetail" Width="1.5" PointX="15.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.JobStatu" Width="1.5" PointX="15.75" PointY="5.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Location" Width="1.5" PointX="6.75" PointY="15.75" />
-        <EntityTypeShape EntityType="BTRMSModel.MartialStatu" Width="1.5" PointX="15.75" PointY="8.75" />
-        <EntityTypeShape EntityType="BTRMSModel.MiscellaneousDetail" Width="1.5" PointX="15.75" PointY="11.75" />
-        <EntityTypeShape EntityType="BTRMSModel.NotificationDetail" Width="1.5" PointX="3" PointY="7.875" />
-        <EntityTypeShape EntityType="BTRMSModel.ReferenceDetail" Width="1.5" PointX="11.75" PointY="16.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Religion" Width="1.5" PointX="17.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.Salutation" Width="1.5" PointX="0.75" PointY="17.75" />
-        <EntityTypeShape EntityType="BTRMSModel.SkillDetail" Width="1.5" PointX="3" PointY="1.25" />
-        <EntityTypeShape EntityType="BTRMSModel.SkillLevel" Width="1.5" PointX="17.75" PointY="3.75" />
-        <EntityTypeShape EntityType="BTRMSModel.sysdiagram" Width="1.5" PointX="17.75" PointY="6.75" />
-        <EntityTypeShape EntityType="BTRMSModel.User" Width="1.5" PointX="8.75" PointY="17.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_AppliedJob" Width="1.5" PointX="17.75" PointY="9.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_EduDetail" Width="1.5" PointX="2.75" PointY="18.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Exp" Width="1.5" PointX="4.75" PointY="18.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Miscellaneous" Width="1.5" PointX="19.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Reference" Width="1.5" PointX="19.75" PointY="12.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Skills" Width="1.5" PointX="19.75" PointY="17.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_CandidateDetail" Width="1.5" PointX="10.75" PointY="20.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_CandidateProfile" Width="1.5" PointX="12.75" PointY="20.75" />
+        <EntityTypeShape EntityType="BTRMSModel.EduDetail" Width="1.5" PointX="11.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BTRMSModel.EduInstitute" Width="1.5" PointX="4.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BTRMSModel.EmailLog" Width="1.5" PointX="6.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BTRMSModel.EmailNotificationType" Width="1.5" PointX="13.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.ExpCareerLevel" Width="1.5" PointX="13.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BTRMSModel.ExperienceDetail" Width="1.5" PointX="13.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BTRMSModel.ExperienceIndustry" Width="1.5" PointX="11.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BTRMSModel.Gender" Width="1.5" PointX="13.75" PointY="13.75" />
+        <EntityTypeShape EntityType="BTRMSModel.HearAbout" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="BTRMSModel.Interview" Width="1.5" PointX="3" PointY="1.25" />
+        <EntityTypeShape EntityType="BTRMSModel.InterviewStatu" Width="1.5" PointX="15.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.JobDetail" Width="1.5" PointX="2.75" PointY="15.75" />
+        <EntityTypeShape EntityType="BTRMSModel.JobStatu" Width="1.5" PointX="15.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BTRMSModel.Location" Width="1.5" PointX="15.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BTRMSModel.MartialStatu" Width="1.5" PointX="15.75" PointY="9.75" />
+        <EntityTypeShape EntityType="BTRMSModel.MiscellaneousDetail" Width="1.5" PointX="15.75" PointY="12.75" />
+        <EntityTypeShape EntityType="BTRMSModel.NotificationDetail" Width="1.5" PointX="3" PointY="4.75" />
+        <EntityTypeShape EntityType="BTRMSModel.ReferenceDetail" Width="1.5" PointX="4.75" PointY="16.75" />
+        <EntityTypeShape EntityType="BTRMSModel.Religion" Width="1.5" PointX="6.75" PointY="16.75" />
+        <EntityTypeShape EntityType="BTRMSModel.Salutation" Width="1.5" PointX="11.75" PointY="16.75" />
+        <EntityTypeShape EntityType="BTRMSModel.SkillDetail" Width="1.5" PointX="3" PointY="8.5" />
+        <EntityTypeShape EntityType="BTRMSModel.SkillLevel" Width="1.5" PointX="17.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.sysdiagram" Width="1.5" PointX="17.75" PointY="3.75" />
+        <EntityTypeShape EntityType="BTRMSModel.User" Width="1.5" PointX="17.75" PointY="6.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_AppliedJob" Width="1.5" PointX="17.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_EduDetail" Width="1.5" PointX="19.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Exp" Width="1.5" PointX="6.75" PointY="19.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Miscellaneous" Width="1.5" PointX="19.75" PointY="8.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Reference" Width="1.5" PointX="8.75" PointY="19.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Candidate_Skills" Width="1.5" PointX="10.75" PointY="19.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_CandidateDetail" Width="1.5" PointX="12.75" PointY="19.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_CandidateProfile" Width="1.5" PointX="19.75" PointY="20.75" />
         <EntityTypeShape EntityType="BTRMSModel.V_Interview" Width="1.5" PointX="21.75" PointY="0.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_JobDetail" Width="1.5" PointX="21.75" PointY="4.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_Notification" Width="1.5" PointX="21.75" PointY="10.75" />
-        <EntityTypeShape EntityType="BTRMSModel.V_UserCandidate" Width="1.5" PointX="21.75" PointY="14.75" />
-        <EntityTypeShape EntityType="BTRMSModel.VRM_Candidate" Width="1.5" PointX="17.75" PointY="21.75" />
-        <EntityTypeShape EntityType="BTRMSModel.VRM_CandidateSimple" Width="1.5" PointX="19.75" PointY="21.75" />
-        <EntityTypeShape EntityType="BTRMSModel.VRM_EduDetail" Width="1.5" PointX="21.75" PointY="21.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_JobDetail" Width="1.5" PointX="0.75" PointY="21.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_Notification" Width="1.5" PointX="2.75" PointY="21.75" />
+        <EntityTypeShape EntityType="BTRMSModel.V_UserCandidate" Width="1.5" PointX="21.75" PointY="4.75" />
+        <EntityTypeShape EntityType="BTRMSModel.VRM_Candidate" Width="1.5" PointX="21.75" PointY="11.75" />
+        <EntityTypeShape EntityType="BTRMSModel.VRM_CandidateSimple" Width="1.5" PointX="23.75" PointY="0.75" />
+        <EntityTypeShape EntityType="BTRMSModel.VRM_EduDetail" Width="1.5" PointX="23.75" PointY="12.75" />
         <AssociationConnector Association="BTRMSModel.FK_Interview_Candidate" />
         <AssociationConnector Association="BTRMSModel.FK_Notification_Candidate" />
         <AssociationConnector Association="BTRMSModel.FK_Skill_Candidate" />

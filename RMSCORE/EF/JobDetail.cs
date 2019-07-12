@@ -30,5 +30,6 @@ namespace RMSCORE.EF
         public Nullable<System.DateTime> DeadlineDate { get; set; }
         public string DepatmentName { get; set; }
         public string SubDepartmentName { get; set; }
+        public Nullable<int> AreaOfInterestID { get; set; }
     }
 }

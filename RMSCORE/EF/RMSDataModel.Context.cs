@@ -25,6 +25,7 @@ namespace RMSCORE.EF
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AlertEmailLog> AlertEmailLogs { get; set; }
         public virtual DbSet<AreaOfInterest> AreaOfInterests { get; set; }
         public virtual DbSet<BloodGroup> BloodGroups { get; set; }
         public virtual DbSet<Candidate> Candidates { get; set; }
